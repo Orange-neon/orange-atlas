@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen Integral — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #07070a;
+    --surface: #101014;
+    --surface2: #16161c;
+    --border: rgba(255,255,255,0.07);
+    --text: #d8d8e0;
+    --muted: #555560;
+    --I: #b87fff;
+    --II: #22d3ee;
+    --III: #86efac;
+    --IV: #fb923c;
+    --V: #60a5fa;
+    --VI: #f87171;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── LANDING ── */
+  #landing {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background: radial-gradient(ellipse 80% 60% at 30% 40%, #1a0030 0%, var(--bg) 70%);
+    position: relative;
+    overflow: hidden;
+  }
+  #landing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 70% 20%, rgba(184,127,255,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(34,211,238,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .landing-inner { max-width: 700px; width: 100%; text-align: center; position: relative; z-index: 1; }
+  .eyebrow { font-size: 0.6rem; letter-spacing: 0.55em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .landing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .landing-title span {
+    background: linear-gradient(90deg, #b87fff, #22d3ee, #86efac, #fb923c, #f87171);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .landing-sub { color: #666; font-size: 0.93rem; line-height: 1.9; max-width: 480px; margin: 0 auto 2.5rem; }
+  .section-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-bottom: 2.5rem; }
+  .sec-card {
+    border-radius: 0.75rem;
+    padding: 1rem 0.8rem;
+    text-align: left;
+    border: 1px solid transparent;
+  }
+  .sec-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; line-height: 1; }
+  .sec-name { font-size: 0.72rem; font-weight: 700; margin: 0.25rem 0; }
+  .sec-sub { font-size: 0.6rem; color: #555; line-height: 1.5; }
+  .sec-badge { font-size: 0.58rem; padding: 0.12rem 0.4rem; border-radius: 0.2rem; display: inline-block; margin-top: 0.4rem; }
+  .stat-row { display: flex; gap: 3rem; justify-content: center; margin-bottom: 2.5rem; }
+  .stat-n { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: #fff; }
+  .stat-l { font-size: 0.6rem; color: #444; text-transform: uppercase; letter-spacing: 0.15em; }
+  .btn-start {
+    background: linear-gradient(135deg, #7c3aed, #be185d);
+    color: #fff; border: none;
+    padding: 1.1rem 4rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 60px rgba(124,58,237,0.35);
+    font-family: inherit;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 0 80px rgba(124,58,237,0.5); }
+
+  /* ── MAIN EXAM ── */
+  #exam { display: none; }
+
+  /* sticky header */
+  #exam-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(7,7,10,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-title-sm { font-size: 0.55rem; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; }
+  .header-stats { display: flex; gap: 2rem; align-items: center; }
+  .hstat-label { font-size: 0.5rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+  .hstat-val { font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* progress bar */
+  #progress-bar-wrap { height: 2px; background: rgba(255,255,255,0.04); }
+  #progress-bar { height: 100%; background: linear-gradient(90deg, #7c3aed, #22d3ee); width: 0%; transition: width 0.4s; }
+
+  /* score banner */
+  #score-banner { display: none; padding: 2.5rem; text-align: center; border-bottom: 1px solid var(--border); }
+  .score-eyebrow { font-size: 0.6rem; letter-spacing: 0.45em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 0.4rem; }
+  .score-number { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 900; color: #fff; line-height: 1; }
+  .score-breakdown { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-top: 0.4rem; }
+  .score-msg { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-top: 0.3rem; }
+
+  /* exam body */
+  #exam-body { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 8rem; }
+
+  /* section block */
+  .sec-block { margin-bottom: 4rem; }
+  .sec-header {
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+  }
+  .sec-header-top { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .sec-header-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; line-height: 1; }
+  .sec-header-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; }
+  .sec-header-desc { font-size: 0.8rem; color: #777; font-style: italic; line-height: 1.7; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+  /* passage */
+  .passage-wrap { margin-bottom: 1.5rem; border-radius: 0.75rem; overflow: hidden; }
+  .passage-toggle { width: 100%; background: none; border: none; padding: 0.9rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: inherit; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+  .passage-body { padding: 0 1.5rem 1.4rem; font-size: 0.9rem; color: #aaa; line-height: 2.1; border-top: 1px solid rgba(255,255,255,0.06); display: none; }
+  .passage-body.open { display: block; }
+
+  /* question card */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    padding: 1.8rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+  }
+  .q-card.correct { border-color: rgba(34,197,94,0.3); }
+  .q-card.wrong   { border-color: rgba(239,68,68,0.3); }
+
+  .q-top { display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start; }
+  .q-num-badge {
+    border-radius: 50%; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .q-body { flex: 1; }
+  .q-type-tag { display: inline-block; font-size: 0.58rem; border-radius: 0.2rem; padding: 0.12rem 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .q-pool {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0.4rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ccc;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+  .q-prompt { font-size: 0.93rem; line-height: 1.85; color: #ddd; white-space: pre-line; }
+
+  /* choices */
+  .choices { display: flex; flex-direction: column; gap: 0.5rem; padding-left: 2.9rem; margin-top: 1rem; }
+  .choice-btn {
+    text-align: left;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.87rem;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1.55;
+    font-family: inherit;
+  }
+  .choice-btn:hover:not(:disabled) { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.14); color: #ddd; }
+  .choice-btn.selected { border-color: rgba(184,127,255,0.5); color: #e9d5ff; background: rgba(184,127,255,0.08); }
+  .choice-btn.reveal-correct { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); color: #86efac !important; }
+  .choice-btn.reveal-wrong   { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.4); color: #fca5a5 !important; }
+
+  /* free response */
+  .free-row { padding-left: 2.9rem; display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap; margin-top: 1rem; }
+  .free-wrap { position: relative; }
+  .free-input {
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 0.45rem;
+    padding: 0.7rem 2.4rem 0.7rem 1rem;
+    font-size: 1rem;
+    color: var(--text);
+    font-family: inherit;
+    outline: none;
+    width: 270px;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .free-input:focus { border-color: rgba(184,127,255,0.4); }
+  .free-input.ok   { background: rgba(34,197,94,0.07); border-color: rgba(34,197,94,0.45); color: #86efac; }
+  .free-input.bad  { background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.45); color: #fca5a5; }
+  .free-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 1rem; pointer-events: none; }
+  .btn-verify {
+    background: rgba(184,127,255,0.12);
+    border: 1px solid rgba(184,127,255,0.3);
+    color: #b87fff;
+    padding: 0.7rem 1.15rem;
+    border-radius: 0.45rem;
+    font-size: 0.72rem;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 0.15s;
+  }
+  .btn-verify:hover { background: rgba(184,127,255,0.2); }
+  .free-error { padding-left: 2.9rem; margin-top: 0.45rem; font-size: 0.76rem; color: #ef4444; }
+
+  /* explanation */
+  .exp-area { padding-left: 2.9rem; margin-top: 1rem; }
+  .btn-exp {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted);
+    padding: 0.28rem 0.8rem;
+    border-radius: 0.3rem;
+    font-size: 0.67rem;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+  .btn-exp:hover { color: #ddd; border-color: rgba(255,255,255,0.25); }
+  .exp-box { display: none; margin-top: 0.7rem; border-radius: 0.5rem; padding: 0.9rem 1rem; font-size: 0.82rem; color: #bbb; line-height: 1.85; }
+  .exp-box.open { display: block; }
+  .exp-correct-label { font-weight: 700; }
+  .correct-answer-reveal { font-size: 0.82rem; color: #888; margin-bottom: 0.55rem; }
+  .correct-answer-reveal strong { font-size: 1rem; }
+
+  /* submit */
+  #submit-area { text-align: center; padding-top: 1rem; }
+  #remaining-msg { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+  #btn-submit {
+    background: #1c1c22;
+    color: #333;
+    border: none;
+    padding: 1.1rem 4.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: not-allowed;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: inherit;
+    transition: all 0.25s;
+  }
+  #btn-submit.ready {
+    background: linear-gradient(135deg, #7c3aed, #be185d);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 60px rgba(124,58,237,0.4);
+  }
+  #btn-submit.ready:hover { transform: translateY(-2px); box-shadow: 0 0 80px rgba(124,58,237,0.55); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 3px; }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .section-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-row { gap: 1.5rem; }
+    .free-input { width: 200px; }
+    #exam-header { padding: 0.6rem 1rem; }
+    .header-stats { gap: 1rem; }
+    .choices { padding-left: 0; }
+    .free-row { padding-left: 0; }
+    .exp-area { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ LANDING -->
+<section id="landing">
+  <div class="landing-inner">
+    <div class="eyebrow">Senderos 2 · Lección 5 · Versión III</div>
+    <h1 class="landing-title">
+      Examen Integral<br>
+      <span>Todo en Español</span>
+    </h1>
+    <p class="landing-sub">Veinticinco preguntas. Seis tipos de desafío. Cero inglés. El examen evalúa si realmente comprendes el vocabulario — no si lo memorizaste.</p>
+
+    <div class="section-grid" id="sec-grid"></div>
+
+    <div class="stat-row">
+      <div><div class="stat-n">25</div><div class="stat-l">preguntas</div></div>
+      <div><div class="stat-n">7</div><div class="stat-l">respuesta libre</div></div>
+      <div><div class="stat-n">18</div><div class="stat-l">opción múltiple</div></div>
+    </div>
+
+    <button class="btn-start" onclick="startExam()">Comenzar</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ EXAM -->
+<section id="exam">
+  <header id="exam-header">
+    <div>
+      <div class="header-title-sm">Lección 5 · v3</div>
+      <div class="header-title">Examen Integral</div>
+    </div>
+    <div class="header-stats">
+      <div>
+        <div class="hstat-label">Tiempo</div>
+        <div class="hstat-val" id="timer" style="color:#b87fff">00:00</div>
+      </div>
+      <div>
+        <div class="hstat-label">Progreso</div>
+        <div class="hstat-val" id="progress-text" style="color:#22d3ee">0/25</div>
+      </div>
+    </div>
+  </header>
+  <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+
+  <div id="score-banner">
+    <div class="score-eyebrow" id="score-eyebrow">Resultado Final</div>
+    <div class="score-number" id="score-number"></div>
+    <div class="score-breakdown" id="score-breakdown"></div>
+    <div class="score-msg" id="score-msg"></div>
+  </div>
+
+  <div id="exam-body"></div>
+</section>
+
+<script>
+// ─────────────────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────────────────
+const READING_PASSAGE = `Era el primer viaje largo de Sofía con su carro nuevo. Salió temprano, pero a los veinte minutos en la autopista, el móvil empezó a sonar sin parar. Lo ignoró. Entonces notó que el motor hacía un ruido extraño y que la temperatura subía. Paró en el arcén, bajó del carro y abrió el capó: el aceite estaba completamente seco. Intentó llamar al mecánico, pero la batería del móvil había muerto. Un conductor que pasaba vio los faros intermitentes que Sofía había dejado encendidos y se detuvo a ayudarla. Juntos revisaron la rueda trasera también — estaba casi desinflada. «Por eso el carro vibraba tanto», dijo Sofía. Llamaron a un taller desde el teléfono del otro conductor. Por fin llegó la grúa.`;
+
+const SECTIONS = [
+  { id:"I",  title:"El Intruso",              sub:"Encuentra la palabra que no pertenece",  color:"#b87fff", bg:"#0f001a" },
+  { id:"II", title:"¿Qué palabra es?",        sub:"Define con tus conocimientos del vocab", color:"#22d3ee", bg:"#001a1f" },
+  { id:"III",title:"Comprensión Lectora",     sub:"Lee, infiere, analiza",                  color:"#86efac", bg:"#071a0a" },
+  { id:"IV", title:"Contexto Conversacional", sub:"Diálogos reales y respuestas lógicas",   color:"#fb923c", bg:"#1a0800" },
+  { id:"V",  title:"Conjugación en Contexto", sub:"Deduce el tiempo y la persona tú mismo", color:"#60a5fa", bg:"#00101a" },
+  { id:"VI", title:"Síntesis Final",          sub:"Analogía, errores, subjuntivo avanzado", color:"#f87171", bg:"#1a0010" },
+];
+
+const QUESTIONS = [
+  // ══ I — El Intruso ══
+  { sec:"I", id:1, type:"mc", pool:"el teclado · el ratón · el volante · la pantalla",
+    prompt:"¿Cuál es el intruso?",
+    choices:["A) el teclado — es el único que no sirve para controlar algo.","B) el volante — los otros tres son componentes de una computadora.","C) la pantalla — es el único dispositivo de salida, no de entrada.","D) el ratón — es el único que puede ser inalámbrico por defecto."],
+    correct:"B", exp:"El volante pertenece al vocabulario del automóvil. El teclado, el ratón y la pantalla son todos componentes de una computadora. El intruso categórico es el volante." },
+
+  { sec:"I", id:2, type:"mc", pool:"arrancar · parar · conducir · descargar",
+    prompt:"¿Cuál es el intruso?",
+    choices:["A) arrancar — es el único que describe el inicio de una acción.","B) parar — es el único verbo de movimiento negativo.","C) descargar — los otros tres pertenecen al dominio del automóvil.","D) conducir — es el único verbo irregular en presente."],
+    correct:"C", exp:"Arrancar, parar y conducir son verbos del dominio automovilístico. Descargar pertenece al vocabulario tecnológico/informático. Es el intruso semántico." },
+
+  { sec:"I", id:3, type:"mc", pool:"la gasolinera · el taller mecánico · la carretera · el sitio web",
+    prompt:"¿Cuál es el intruso?",
+    choices:["A) la carretera — es infraestructura vial, no un establecimiento.","B) el sitio web — los otros tres son lugares físicos del mundo automovilístico.","C) la gasolinera — es el único lugar donde no se hacen reparaciones.","D) el taller mecánico — es el único donde trabaja un profesional certificado."],
+    correct:"B", exp:"La gasolinera, el taller mecánico y la carretera son lugares del mundo físico-automovilístico. El sitio web es un lugar virtual del dominio tecnológico." },
+
+  { sec:"I", id:4, type:"mc", pool:"guardar · borrar · grabar · lento",
+    prompt:"¿Cuál es el intruso?",
+    choices:["A) lento — los otros tres son verbos; lento es un adjetivo.","B) borrar — los otros tres conservan o crean información.","C) grabar — es el único que requiere un micrófono.","D) guardar — es el único que no modifica el contenido del archivo."],
+    correct:"A", exp:"Guardar, borrar y grabar son verbos del vocabulario tecnológico. Lento es un adjetivo — es el intruso morfológico." },
+
+  // ══ II — ¿Qué palabra es? ══
+  { sec:"II", id:5, type:"free",
+    prompt:"Parte del carro que protege el motor desde el exterior y que el mecánico levanta para hacer reparaciones.",
+    accepted:["el capo","capo","el capó","capó"], display:"el capó",
+    exp:"El capó es la cubierta exterior del motor. Se levanta para acceder al motor, revisar el aceite, la batería, etc." },
+
+  { sec:"II", id:6, type:"free",
+    prompt:"Dispositivo electrónico portátil que permite llamar, enviar mensajes y conectarse al internet desde cualquier lugar.",
+    accepted:["el movil","movil","el móvil","móvil"], display:"el móvil",
+    exp:"El móvil es el teléfono celular. Sus funciones: llamar, mensajear y conectarse a internet." },
+
+  { sec:"II", id:7, type:"free",
+    prompt:"Límite legal de velocidad que no se puede superar en una vía pública, indicado por señales de tráfico.",
+    accepted:["la velocidad maxima","velocidad maxima","la velocidad máxima","velocidad máxima"], display:"la velocidad máxima",
+    exp:"La velocidad máxima es el límite de velocidad impuesto por ley. Superarla puede resultar en una multa de la policía." },
+
+  { sec:"II", id:8, type:"free",
+    prompt:"Sistema global de redes informáticas interconectadas que permite acceder a sitios web, enviar correos y chatear.",
+    accepted:["el internet","internet"], display:"el internet",
+    exp:"El internet es la red global que conecta computadoras en todo el mundo. Permite navegar, descargar, chatear y enviar correos." },
+
+  { sec:"II", id:9, type:"free",
+    prompt:"Pieza de cristal en la parte delantera del automóvil que protege al conductor del viento y la lluvia.",
+    accepted:["el parabrisas","parabrisas"], display:"el parabrisas",
+    exp:"El parabrisas es el cristal delantero del coche. No confundir con el limpiaparabrisas — uno es la estructura, el otro el mecanismo limpiador." },
+
+  // ══ III — Comprensión Lectora ══
+  { sec:"III", id:10, type:"reading",
+    prompt:"¿Por qué el conductor que pasaba decidió detenerse a ayudar a Sofía?",
+    choices:["A) Porque Sofía le llamó al móvil para pedir ayuda.","B) Porque vio los faros del carro de Sofía encendidos intermitentemente.","C) Porque el mecánico le informó que había una emergencia en la autopista.","D) Porque la rueda desinflada bloqueaba el carril de la autopista."],
+    correct:"B", exp:"El texto dice: 'Un conductor que pasaba vio los faros intermitentes que Sofía había dejado encendidos y se detuvo.' El móvil de Sofía tenía la batería muerta, no podía llamar." },
+
+  { sec:"III", id:11, type:"reading",
+    prompt:"Según el texto, ¿qué problema tenía el carro de Sofía además del aceite seco?",
+    choices:["A) La batería del carro estaba descargada.","B) El parabrisas estaba roto.","C) Una rueda estaba casi desinflada.","D) El limpiaparabrisas no funcionaba."],
+    correct:"C", exp:"El texto menciona: 'revisaron la rueda trasera — estaba casi desinflada.' La batería muerta era la del móvil, no del carro." },
+
+  { sec:"III", id:12, type:"reading",
+    prompt:"¿Qué inferencia es más lógica sobre por qué el aceite estaba completamente seco?",
+    choices:["A) Sofía nunca había revisado el aceite antes del viaje largo.","B) El mecánico había borrado el aceite accidentalmente.","C) La gasolinera había puesto gasolina en vez de aceite.","D) El motor había consumido el aceite a causa del ruido extraño."],
+    correct:"A", exp:"La inferencia más razonable: Sofía no revisó el aceite antes de un viaje largo. El texto dice 'primer viaje largo con su carro nuevo' — sugiere inexperiencia." },
+
+  // ══ IV — Contexto Conversacional ══
+  { sec:"IV", id:13, type:"mc",
+    prompt:"— Oye, ¿por qué tardaste tanto en llegar?\n— Es que el tráfico estaba horrible en la carretera y encima tuve que parar en la gasolinera.\n— ¿Y eso?\n— ___",
+    choices:["A) «Porque necesitaba arrancar el carro de nuevo desde el principio.»","B) «Porque el tanque estaba casi vacío y tuve que llenarlo.»","C) «Porque quería revisar el sitio web de la gasolinera.»","D) «Porque el mecánico me dijo que apagara el móvil.»"],
+    correct:"B", exp:"'¿Y eso?' pide razón para parar en la gasolinera. Solo B es lógico: tanque vacío → llenar. A usa 'arrancar' incorrectamente; C y D son incoherentes." },
+
+  { sec:"IV", id:14, type:"mc",
+    prompt:"— No puedo abrir el correo electrónico.\n— ¿Funciona bien el internet?\n— Sí, pero la pantalla se congela cada vez que intento entrar.\n— ___",
+    choices:["A) «Entonces debes llamar al mecánico para que revise el aceite.»","B) «Prueba a apagar la computadora y volver a prenderla.»","C) «¿Ya grabaste el mensaje antes de borrar el canal?»","D) «Quizás el cargador del móvil no funciona bien.»"],
+    correct:"B", exp:"El problema es tecnológico — pantalla congelada. La solución lógica: apagar y prender de nuevo. A es del dominio automotriz. C y D son incoherentes." },
+
+  { sec:"IV", id:15, type:"mc",
+    prompt:"— Perdona, ¿hay una gasolinera por aquí?\n— Sí, siga por esta calle, doble a la derecha en la carretera principal.\n— Perfecto. ¿Y hay un taller mecánico cerca? Mis frenos hacen un ruido raro.\n— ___",
+    choices:["A) «Sí, justo detrás de la gasolinera hay un taller. Le recomiendo que los revise pronto.»","B) «No, pero puede revisar el aceite usted mismo en la autopista.»","C) «Los frenos no se arreglan en talleres, solo en gasolineras.»","D) «Le sugiero que descargue una aplicación para apagar los frenos.»"],
+    correct:"A", exp:"Solo A responde a ambas necesidades y usa el vocabulario correctamente. B, C y D contienen errores semánticos graves." },
+
+  { sec:"IV", id:16, type:"free",
+    prompt:"— ¿Ya terminaste el informe?\n— Casi, pero todavía no lo ______ porque tenía miedo de perder los cambios. (guardar — yo, pretérito)",
+    accepted:["guarde","guardé"], display:"guardé",
+    exp:"Pretérito, primera persona singular de 'guardar' (-ar regular): yo guardé. El contexto 'todavía no lo…' sitúa la acción en el pasado. No confundir con 'guardo' (presente) ni 'guardaba' (imperfecto)." },
+
+  // ══ V — Conjugación en Contexto ══
+  { sec:"V", id:17, type:"free",
+    prompt:"Cuando era pequeño, el teléfono siempre ______ a la hora de cenar y mis padres nunca lo contestaban. (sonar — él, imperfecto)",
+    accepted:["sonaba"], display:"sonaba",
+    exp:"«Cuando era pequeño» + «siempre» = acción habitual en el pasado → imperfecto. Sonar (o→ue) NO cambia el radical en imperfecto. La raíz es 'son-', no 'suen-' → sonaba. Error frecuente: escribir 'suenaba'." },
+
+  { sec:"V", id:18, type:"free",
+    prompt:"Ayer mi amigo ______ el tanque en la gasolinera antes de salir de viaje. (llenar — él, pretérito)",
+    accepted:["lleno","llenó"], display:"llenó",
+    exp:"Pretérito, tercera persona singular de 'llenar' (-ar regular): él llenó. La tilde en la -ó es importante — 'lleno' sin tilde es el adjetivo (full), no el verbo en pretérito." },
+
+  { sec:"V", id:19, type:"free",
+    prompt:"De niña, mi madre siempre ______ el móvil antes de dormir para ahorrar batería. (apagar — ella, imperfecto)",
+    accepted:["apagaba"], display:"apagaba",
+    exp:"Imperfecto, tercera persona singular de 'apagar' (-ar regular): ella apagaba. «De niña» + «siempre» son señales claras de acción habitual en el pasado → imperfecto, no pretérito." },
+
+  { sec:"V", id:20, type:"free",
+    prompt:"Ayer nosotros ______ la aplicación pero el internet estaba muy lento. (descargar — nosotros, pretérito)",
+    accepted:["descargamos"], display:"descargamos",
+    exp:"Pretérito, nosotros de 'descargar' (-ar regular): descargamos. Cuidado: la forma nosotros del pretérito (-amos) es idéntica al presente — el contexto 'ayer' confirma que es pretérito." },
+
+  { sec:"V", id:21, type:"free",
+    prompt:"Si el carro no arranca, ______ el aceite antes de llamar al mecánico. (revisar — tú, mandato/comando)",
+    accepted:["revisa"], display:"revisa",
+    exp:"Mandato afirmativo de tú: para verbos -ar regulares, usa la forma de él/ella en presente → revisa. No uses 'revise' (subjuntivo) ni 'revisas' (presente indicativo) — el comando de tú afirmativo es 'revisa'." },
+
+  // ══ VI — Síntesis Final ══
+  { sec:"VI", id:22, type:"mc",
+    prompt:"ANALOGÍA: «El teclado es a la computadora como el volante es al carro.»\n\nAhora: «La red es a la computadora como ______ es al carro.»",
+    choices:["A) la carretera — ambas son infraestructuras por las que circula la actividad principal.","B) el motor — ambos generan la energía necesaria para funcionar.","C) la llanta — ambas conectan el dispositivo con el exterior.","D) el cinturón de seguridad — ambos protegen al usuario de errores."],
+    correct:"A", exp:"La red es la infraestructura invisible por la que circula la información — igual que la carretera es la infraestructura física por la que circula el carro. Solo A comparte la función de 'medio por el que circula el sistema'." },
+
+  { sec:"VI", id:23, type:"mc",
+    prompt:"Un estudiante escribe: «Por fin descargué el app, lo grabé en el móvil y apagué el monitor para que el cargador no sonara.»\n\n¿Cuántos errores semánticos o lógicos contiene esta oración?",
+    choices:["A) Uno — «grabar» no se usa para instalar una aplicación.","B) Dos — «grabar» está mal usado; además, apagar el monitor no impide que el cargador suene.","C) Tres — «grabar» mal usado; el monitor apagado no afecta al cargador; y los cargadores no suenan.","D) Ninguno — todo es aceptable en un registro informal."],
+    correct:"C", exp:"Error 1: 'grabar' significa registrar audio/video, no instalar. Error 2: apagar el monitor es independiente del cargador. Error 3: los cargadores no 'suenan' — sonar es propio del teléfono/timbre. Tres errores distintos." },
+
+  { sec:"VI", id:24, type:"free",
+    prompt:"El mecánico me dijo: «______ los frenos cada seis meses.» (revisar — tú, mandato/comando)",
+    accepted:["revisa"], display:"revisa",
+    exp:"Mandato afirmativo de tú de 'revisar' (-ar regular): revisa. La forma del comando afirmativo de tú es igual a la tercera persona del presente: él revisa → ¡tú revisa! No confundir con 'revisas' (presente indicativo con sujeto) ni con 'revise' (forma subjuntiva)." },
+
+  { sec:"VI", id:25, type:"free",
+    prompt:"Antes de tener móvil, yo siempre ______ por la red desde la computadora de mi cuarto. (navegar — yo, imperfecto)",
+    accepted:["navegaba"], display:"navegaba",
+    exp:"Imperfecto, primera persona singular de 'navegar' (-ar regular): yo navegaba. «Antes de tener» indica estado o acción habitual en el pasado → imperfecto. No confundir con 'navegué' (pretérito — acción completada puntual) ni con 'navego' (presente)." },
+];
+
+// ─────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────
+const state = {
+  answers: {},      // qid → letter (mc) or null (free)
+  freeInputs: {},   // qid → string
+  freeChecked: {},  // qid → true/false/null
+  submitted: false,
+  seconds: 0,
+  timerInterval: null,
+};
+
+// ─────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────
+function normalize(s) {
+  return (s||"").toLowerCase().trim()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z\s]/g,"").replace(/\s+/g," ");
+}
+function checkFree(input, accepted) {
+  const n = normalize(input);
+  return accepted.map(normalize).some(a => a === n);
+}
+function fmt(s) {
+  return `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+}
+function secColor(secId) {
+  return SECTIONS.find(s => s.id === secId)?.color || "#fff";
+}
+
+// ─────────────────────────────────────────────────────────
+// LANDING CARDS
+// ─────────────────────────────────────────────────────────
+(function buildLanding() {
+  const grid = document.getElementById("sec-grid");
+  const qCounts = {};
+  const frCounts = {};
+  QUESTIONS.forEach(q => {
+    qCounts[q.sec] = (qCounts[q.sec]||0)+1;
+    if (q.type==="free") frCounts[q.sec] = (frCounts[q.sec]||0)+1;
+  });
+  SECTIONS.forEach(s => {
+    const card = document.createElement("div");
+    card.className = "sec-card";
+    card.style.background = s.bg;
+    card.style.borderColor = s.color+"22";
+    const fr = frCounts[s.id]||0;
+    const mc = (qCounts[s.id]||0) - fr;
+    card.innerHTML = `
+      <div class="sec-num" style="color:${s.color}">§${s.id}</div>
+      <div class="sec-name" style="color:${s.color}cc">${s.title}</div>
+      <div class="sec-sub">${s.sub}</div>
+      ${mc>0?`<span class="sec-badge" style="background:${s.color}20;color:${s.color}">${mc} MC</span>`:""}
+      ${fr>0?`<span class="sec-badge" style="background:rgba(255,255,255,0.07);color:#aaa;margin-left:0.25rem">${fr} libre</span>`:""}
+    `;
+    grid.appendChild(card);
+  });
+})();
+
+// ─────────────────────────────────────────────────────────
+// BUILD EXAM
+// ─────────────────────────────────────────────────────────
+function buildExam() {
+  const body = document.getElementById("exam-body");
+  const sectionIds = [...new Set(QUESTIONS.map(q=>q.sec))];
+
+  sectionIds.forEach(secId => {
+    const secData = SECTIONS.find(s=>s.id===secId);
+    const secQs = QUESTIONS.filter(q=>q.sec===secId);
+    const col = secData.color;
+    const hasReading = secQs.some(q=>q.type==="reading");
+    const frCount = secQs.filter(q=>q.type==="free").length;
+    const mcCount = secQs.length - frCount;
+
+    const secEl = document.createElement("div");
+    secEl.className = "sec-block";
+
+    // header
+    let badges = "";
+    if (mcCount>0) badges += `<span style="font-size:0.65rem;background:${col}20;color:${col};border-radius:0.2rem;padding:0.15rem 0.5rem;margin-left:auto">${mcCount} MC</span>`;
+    if (frCount>0) badges += `<span style="font-size:0.65rem;background:rgba(255,255,255,0.07);color:#aaa;border-radius:0.2rem;padding:0.15rem 0.5rem;${mcCount>0?"margin-left:0.3rem":""}">${frCount} libre</span>`;
+    secEl.innerHTML = `
+      <div class="sec-header" style="background:linear-gradient(135deg,${secData.bg} 0%,#080808 100%);border-color:${col}22">
+        <div class="sec-header-top">
+          <span class="sec-header-num" style="color:${col}">§${secId}</span>
+          <div>
+            <div class="sec-header-name" style="color:${col}cc">${secData.title}</div>
+          </div>
+          ${badges}
+        </div>
+        <div class="sec-header-desc">${getSectionDesc(secId)}</div>
+      </div>
+    `;
+
+    // reading passage
+    if (hasReading) {
+      const pWrap = document.createElement("div");
+      pWrap.className = "passage-wrap";
+      pWrap.style.background = "#0a180a";
+      pWrap.style.border = `1px solid ${col}25`;
+      pWrap.innerHTML = `
+        <button class="passage-toggle" style="color:${col}" onclick="togglePassage(this)">
+          <span>▪ Texto: El viaje de Sofía</span>
+          <span id="ptoggle-icon">▼ leer</span>
+        </button>
+        <div class="passage-body" id="passage-body">${READING_PASSAGE}</div>
+      `;
+      secEl.appendChild(pWrap);
+    }
+
+    // questions
+    secQs.forEach(q => {
+      secEl.appendChild(buildQuestion(q, col));
+    });
+
+    body.appendChild(secEl);
+  });
+
+  // submit
+  const sub = document.createElement("div");
+  sub.id = "submit-area";
+  sub.innerHTML = `
+    <p id="remaining-msg">25 pregunta(s) sin responder</p>
+    <button id="btn-submit" onclick="handleSubmit()">Entregar Examen</button>
+  `;
+  body.appendChild(sub);
+}
+
+function getSectionDesc(id) {
+  const descs = {
+    "I":   "En cada grupo, tres palabras comparten una categoría o función. Una no pertenece. Identifica el intruso y justifica tu respuesta.",
+    "II":  "Lee cada definición en español. Escribe la palabra o expresión del vocabulario que corresponde exactamente.",
+    "III": "Lee el texto con atención. Las preguntas exigen comprensión profunda — no basta con localizar información superficial.",
+    "IV":  "Lee cada diálogo. Selecciona o escribe la respuesta que completa la conversación de forma lógica, natural y correcta.",
+    "V":   "Completa cada oración con la forma verbal correcta. Solo se usan presente, pretérito, imperfecto y mandatos de tú — pero debes deducir cuál corresponde a cada contexto.",
+    "VI":  "Las preguntas más difíciles del examen. Exigen razonamiento cruzado, morfología avanzada y comprensión profunda.",
+  };
+  return descs[id]||"";
+}
+
+function buildQuestion(q, col) {
+  const card = document.createElement("div");
+  card.className = "q-card";
+  card.id = `card-${q.id}`;
+
+  const typeLabel = { mc:"Opción múltiple", free:"Respuesta libre", reading:"Comprensión lectora" }[q.type];
+  const typeColor = { mc:col, free:"#aaa", reading:col }[q.type];
+
+  let poolHTML = q.pool ? `<div class="q-pool">${q.pool}</div>` : "";
+  let promptHTML = `<p class="q-prompt">${q.prompt}</p>`;
+
+  let innerHTML = `
+    <div class="q-top">
+      <div class="q-num-badge" style="background:${col}18;color:${col}">${q.id}</div>
+      <div class="q-body">
+        <span class="q-type-tag" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>
+        ${poolHTML}
+        ${promptHTML}
+      </div>
+    </div>
+  `;
+
+  if (q.type === "mc" || q.type === "reading") {
+    let choicesHTML = `<div class="choices" id="choices-${q.id}">`;
+    q.choices.forEach(c => {
+      const letter = c.charAt(0);
+      choicesHTML += `<button class="choice-btn" id="choice-${q.id}-${letter}" onclick="selectMC(${q.id},'${letter}')">${c}</button>`;
+    });
+    choicesHTML += `</div>`;
+    innerHTML += choicesHTML;
+  } else {
+    innerHTML += `
+      <div class="free-row">
+        <div class="free-wrap">
+          <input class="free-input" id="free-input-${q.id}" placeholder="escribe la forma correcta…"
+            oninput="handleFreeInput(${q.id})"
+            onkeydown="if(event.key==='Enter')verifyFree(${q.id})">
+          <span class="free-icon" id="free-icon-${q.id}"></span>
+        </div>
+        <button class="btn-verify" id="btn-verify-${q.id}" onclick="verifyFree(${q.id})">Verificar</button>
+      </div>
+      <div class="free-error" id="free-error-${q.id}" style="display:none">Incorrecto. Vuelve a intentarlo.</div>
+    `;
+  }
+
+  innerHTML += `
+    <div class="exp-area" id="exp-area-${q.id}" style="display:none">
+      <div class="correct-answer-reveal" id="exp-correct-reveal-${q.id}" style="display:none"></div>
+      <button class="btn-exp" onclick="toggleExp(${q.id})">Ver explicación</button>
+      <div class="exp-box" id="exp-box-${q.id}">
+        <span class="exp-correct-label" style="color:${col}cc">Correcto: ${q.correct||q.display} · </span>${q.exp}
+      </div>
+    </div>
+  `;
+
+  card.innerHTML = innerHTML;
+  return card;
+}
+
+// ─────────────────────────────────────────────────────────
+// INTERACTIONS
+// ─────────────────────────────────────────────────────────
+function togglePassage(btn) {
+  const body = document.getElementById("passage-body");
+  const icon = document.getElementById("ptoggle-icon");
+  body.classList.toggle("open");
+  icon.textContent = body.classList.contains("open") ? "▲ ocultar" : "▼ leer";
+}
+
+function selectMC(qid, letter) {
+  if (state.submitted) return;
+  const q = QUESTIONS.find(q=>q.id===qid);
+  // deselect old
+  q.choices.forEach(c => {
+    const l = c.charAt(0);
+    const btn = document.getElementById(`choice-${qid}-${l}`);
+    if (btn) { btn.classList.remove("selected"); }
+  });
+  // select new
+  const btn = document.getElementById(`choice-${qid}-${letter}`);
+  if (btn) btn.classList.add("selected");
+  state.answers[qid] = letter;
+  updateProgress();
+}
+
+function handleFreeInput(qid) {
+  if (state.submitted) return;
+  const val = document.getElementById(`free-input-${qid}`).value;
+  state.freeInputs[qid] = val;
+  state.freeChecked[qid] = null;
+  // reset styling
+  const inp = document.getElementById(`free-input-${qid}`);
+  inp.className = "free-input";
+  document.getElementById(`free-icon-${qid}`).textContent = "";
+  document.getElementById(`free-error-${qid}`).style.display = "none";
+  updateProgress();
+}
+
+function verifyFree(qid) {
+  if (state.submitted) return;
+  const q = QUESTIONS.find(q=>q.id===qid);
+  const val = state.freeInputs[qid]||"";
+  if (!val.trim()) return;
+  const ok = checkFree(val, q.accepted);
+  state.freeChecked[qid] = ok;
+  const inp = document.getElementById(`free-input-${qid}`);
+  const icon = document.getElementById(`free-icon-${qid}`);
+  const err = document.getElementById(`free-error-${qid}`);
+  inp.className = "free-input " + (ok?"ok":"bad");
+  icon.textContent = ok ? "✓" : "✗";
+  err.style.display = ok ? "none" : "block";
+}
+
+function toggleExp(qid) {
+  const box = document.getElementById(`exp-box-${qid}`);
+  const btn = box.previousElementSibling;
+  box.classList.toggle("open");
+  btn.textContent = box.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+function updateProgress() {
+  const freeQids = QUESTIONS.filter(q=>q.type==="free").map(q=>q.id);
+  const mcDone = Object.keys(state.answers).length;
+  const frDone = freeQids.filter(id => (state.freeInputs[id]||"").trim()).length;
+  const done = mcDone + frDone;
+  document.getElementById("progress-text").textContent = `${done}/25`;
+  document.getElementById("progress-bar").style.width = `${(done/25)*100}%`;
+  document.getElementById("remaining-msg").textContent = `${25-done} pregunta(s) sin responder`;
+  const allDone = done === 25;
+  const btn = document.getElementById("btn-submit");
+  btn.classList.toggle("ready", allDone);
+}
+
+// ─────────────────────────────────────────────────────────
+// SUBMIT
+// ─────────────────────────────────────────────────────────
+function handleSubmit() {
+  const done = Object.keys(state.answers).length + QUESTIONS.filter(q=>q.type==="free").filter(q=>(state.freeInputs[q.id]||"").trim()).length;
+  if (done < 25) return;
+
+  state.submitted = true;
+  clearInterval(state.timerInterval);
+
+  // verify all free responses
+  QUESTIONS.filter(q=>q.type==="free").forEach(q => {
+    if (state.freeChecked[q.id] == null) {
+      const val = state.freeInputs[q.id]||"";
+      state.freeChecked[q.id] = checkFree(val, q.accepted);
+    }
+  });
+
+  // score
+  const mcQs = QUESTIONS.filter(q=>q.type!=="free");
+  const frQs = QUESTIONS.filter(q=>q.type==="free");
+  const mcScore = mcQs.reduce((a,q)=>a+(state.answers[q.id]===q.correct?1:0),0);
+  const frScore = frQs.reduce((a,q)=>a+(state.freeChecked[q.id]===true?1:0),0);
+  const total = mcScore + frScore;
+  const pct = Math.round((total/25)*100);
+
+  // reveal answers on all cards
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById(`card-${q.id}`);
+    if (!card) return;
+
+    if (q.type !== "free") {
+      const sel = state.answers[q.id];
+      const isCorrect = sel === q.correct;
+      card.classList.add(isCorrect ? "correct" : "wrong");
+      q.choices.forEach(c => {
+        const l = c.charAt(0);
+        const btn = document.getElementById(`choice-${q.id}-${l}`);
+        if (!btn) return;
+        btn.disabled = true;
+        if (l === q.correct) btn.classList.add("reveal-correct");
+        else if (l === sel && !isCorrect) btn.classList.add("reveal-wrong");
+        btn.classList.remove("selected");
+      });
+    } else {
+      const ok = state.freeChecked[q.id];
+      card.classList.add(ok ? "correct" : "wrong");
+      const inp = document.getElementById(`free-input-${q.id}`);
+      if (inp) {
+        inp.disabled = true;
+        inp.className = "free-input " + (ok?"ok":"bad");
+        document.getElementById(`free-icon-${q.id}`).textContent = ok?"✓":"✗";
+      }
+      const vbtn = document.getElementById(`btn-verify-${q.id}`);
+      if (vbtn) vbtn.style.display = "none";
+      if (!ok) {
+        const reveal = document.getElementById(`exp-correct-reveal-${q.id}`);
+        if (reveal) {
+          reveal.innerHTML = `Respuesta correcta: <strong style="font-size:1rem">${q.display}</strong>`;
+          reveal.style.display = "block";
+        }
+      }
+    }
+
+    // show exp area
+    const expArea = document.getElementById(`exp-area-${q.id}`);
+    if (expArea) expArea.style.display = "block";
+  });
+
+  // hide submit
+  document.getElementById("submit-area").style.display = "none";
+
+  // score banner
+  const banner = document.getElementById("score-banner");
+  banner.style.display = "block";
+  banner.style.background = pct>=80 ? "linear-gradient(135deg,#052e16,#064e3b)" : pct>=50 ? "linear-gradient(135deg,#431407,#78350f)" : "linear-gradient(135deg,#450a0a,#7f1d1d)";
+  document.getElementById("score-eyebrow").textContent = `Resultado Final · ${fmt(state.seconds)}`;
+  document.getElementById("score-number").textContent = `${total}/25`;
+  document.getElementById("score-breakdown").textContent = `Opción múltiple: ${mcScore}/${mcQs.length}  ·  Respuesta libre: ${frScore}/${frQs.length}`;
+  const msgs = [
+    [90,"Maestría excepcional. Dominio nativo."],
+    [75,"Comprensión sólida. Muy cerca de la maestría."],
+    [50,"Comprensión parcial. Revisa los contextos y las conjugaciones."],
+    [0,"Hay trabajo por hacer. Estudia las relaciones entre palabras."],
+  ];
+  document.getElementById("score-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  banner.scrollIntoView({ behavior:"smooth" });
+}
+
+// ─────────────────────────────────────────────────────────
+// TIMER
+// ─────────────────────────────────────────────────────────
+function startTimer() {
+  state.timerInterval = setInterval(() => {
+    state.seconds++;
+    document.getElementById("timer").textContent = fmt(state.seconds);
+  }, 1000);
+}
+
+// ─────────────────────────────────────────────────────────
+// START
+// ─────────────────────────────────────────────────────────
+function startExam() {
+  document.getElementById("landing").style.display = "none";
+  document.getElementById("exam").style.display = "block";
+  buildExam();
+  startTimer();
+  updateProgress();
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
