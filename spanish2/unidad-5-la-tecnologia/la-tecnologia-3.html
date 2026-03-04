@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Examen III — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -341,10 +342,10 @@ const QS = [
    exp:"La batería almacena energía eléctrica. La definición especifica 'motor de arranque' y 'sistemas eléctricos' — esto la distingue del motor (mecánico) y del cargador (para móviles). La batería del carro y la batería del móvil son el mismo concepto pero en contextos distintos."},
 
   {s:"II", id:7, type:"free",
-   prompt:"Conjunto de instrumentos, pedales y palancas dentro del habitáculo del automóvil que el conductor usa para controlarlo: incluye el volante, los pedales y la palanca de cambios.",
-   acc:["el volante","volante"],
-   disp:"el volante",
-   exp:"De todos los elementos mencionados, el volante es el que el conductor usa directamente para dirigir el vehículo. La definición menciona 'controlar el automóvil' y lo sitúa en el interior del habitáculo — solo el volante encaja exactamente como instrumento principal de dirección."},
+   prompt:"Banda de tela resistente fijada al asiento del automóvil que el conductor y los pasajeros se colocan sobre el cuerpo para protegerse en caso de accidente o frenada brusca.",
+   acc:["el cinturon de seguridad","cinturon de seguridad","el cinturón de seguridad","cinturón de seguridad"],
+   disp:"el cinturón de seguridad",
+   exp:"El cinturón de seguridad es la banda de protección que se lleva cruzada sobre el cuerpo. La definición especifica 'banda de tela', 'fijada al asiento' y 'proteger en accidente' — ninguna otra palabra del vocabulario comparte estas características."},
 
   {s:"II", id:8, type:"free",
    prompt:"Documento oficial emitido por las autoridades que certifica que una persona está legalmente autorizada para conducir un vehículo.",
@@ -452,28 +453,28 @@ const QS = [
    exp:"Imperfecto, tercera persona plural de 'revisar'. «Cuando teníamos» + «siempre» = hábito pasado → imperfecto. El sujeto es 'mis padres' (ellos) → revisaban. 'Revisaron' (pretérito, ellos) indicaría una sola acción concreta, contradiciendo 'siempre'. Solo 'revisaban' es correcto."},
 
   {s:"V", id:20, type:"free",
-   prompt:"El instructor de manejo le dijo a Elena: «Antes de arrancar, ______ siempre el cinturón de seguridad.»",
-   acc:["abrocha","ponte"],
-   disp:"abrocha",
-   exp:"Mandato afirmativo de tú de 'abrochar'. El instructor da una instrucción directa a Elena (tú). Mandato afirmativo de tú para verbos -ar regulares: forma de él/ella en presente → él abrocha → ¡abrocha! 'Abrocha' es la única respuesta del vocabulario de esta lección que encaja semánticamente con 'cinturón de seguridad'. No hay otro verbo del vocabulario que funcione aquí."},
+   prompt:"El instructor de manejo le dijo a Elena: «Si el carro de delante frena de repente, tú ______ inmediatamente el carro.»",
+   acc:["paras","para"],
+   disp:"paras / para",
+   exp:"Presente de indicativo, segunda persona singular de 'parar'. El instructor describe una situación habitual con instrucción general → presente. El sujeto es 'tú' → paras. También se acepta el mandato afirmativo de tú: 'para' (él para → ¡para!). Ambas formas son correctas porque el presente de tú y el mandato negativo son distintos — pero el mandato afirmativo de tú de 'parar' es 'para', que coincide con la forma él/ella del presente. Solo estos dos son aceptables."},
 
   {s:"V", id:21, type:"free",
-   prompt:"Mis amigos y yo ______ el trabajo en la computadora de la biblioteca porque en casa no teníamos internet.",
-   acc:["guardamos","imprimimos"],
+   prompt:"Mis amigos y yo ______ el archivo en la computadora de la biblioteca justo antes de que cerraran.",
+   acc:["guardamos"],
    disp:"guardamos",
-   exp:"Pretérito, nosotros de 'guardar' o 'imprimir'. «No teníamos» (imperfecto de fondo) + acción completada en el pasado → pretérito. La forma nosotros del pretérito de -ar es -amos: guardamos. La clave contextual es que la acción fue completada (guardaron el trabajo). 'Guardábamos' (imperfecto) indicaría costumbre habitual, pero el contexto describe una solución concreta a un problema."},
+   exp:"Pretérito, nosotros de 'guardar'. 'Justo antes de que cerraran' indica una acción puntual y completada en el pasado → pretérito. La forma nosotros del pretérito de verbos -ar es -amos: guardamos. 'Guardábamos' (imperfecto) indicaría costumbre habitual, pero 'justo antes de que cerraran' describe un momento específico único. El verbo es inequívocamente 'guardar' porque el objeto es 'el archivo' — 'imprimir un archivo' es posible pero el contexto de urgencia ('justo antes de que cerraran') hace que guardar sea la única acción lógica para no perder el trabajo."},
 
   // ══ §VI SÍNTESIS FINAL ══
   {s:"VI", id:22, type:"mc",
-   prompt:"ANALOGÍA DOBLE:\n«El acelerador es al carro como el ratón es a la computadora.»\n«Los frenos son al carro como ______ es a la computadora.»\n\n¿Qué completa la segunda analogía con la misma lógica funcional?",
+   prompt:"ANALOGÍA DOBLE:\n«El acelerador es al carro como el teclado es a la computadora.»\n«Los frenos son al carro como ______ es a la computadora.»\n\n¿Qué completa la segunda analogía con la misma lógica funcional?",
    ch:[
-    "A) la pantalla — ambos muestran el resultado de una acción.",
-    "B) el teclado — ambos permiten introducir comandos para controlar el sistema.",
-    "C) la tecla 'borrar' — ambos detienen o revierten una acción en curso.",
-    "D) el monitor — ambos reflejan el estado actual del sistema.",
+    "A) la pantalla — ambas muestran el resultado de una acción al usuario.",
+    "B) el ratón — ambos permiten al usuario detener o cancelar una operación en curso.",
+    "C) el monitor — ambos reflejan el estado actual del sistema.",
+    "D) la red — ambas conectan el sistema con el exterior.",
    ],
-   cor:"C",
-   exp:"El acelerador aumenta la velocidad → el ratón inicia/ejecuta acciones. Los frenos detienen o revierten el movimiento → la tecla 'borrar' detiene o revierte una acción (elimina, deshace). La lógica es 'control de parada/reversión'. La pantalla y el monitor son de salida, no de control. El teclado ejecuta acciones (más parecido al acelerador). Solo 'borrar' replica la función de detención y reversión."},
+   cor:"B",
+   exp:"El acelerador inicia y aumenta la acción → el teclado inicia y ejecuta comandos. Los frenos detienen o controlan la acción → el ratón permite al usuario interrumpir, cancelar o redirigir operaciones (cerrar ventanas, hacer clic en 'cancelar', detener una descarga). La pantalla y el monitor son dispositivos de salida pasiva, no de control activo. La red es infraestructura, no control. Solo el ratón replica funcionalmente la capacidad de 'detener o modificar una acción en curso'."},
 
   {s:"VI", id:23, type:"mc",
    prompt:"Un estudiante escribe:\n«Prendí el carro, metí el acelerador, guardé la velocidad máxima y llegué sin problemas.»\n\n¿Cuántos errores semánticos hay?",
@@ -490,13 +491,13 @@ const QS = [
    prompt:"Cuando yo era niño, mi madre siempre ______ el móvil antes de entrar al cine para no molestar a nadie.",
    acc:["apagaba"],
    disp:"apagaba",
-   exp:"Imperfecto, primera persona singular de 'apagar'. «Cuando era niño» + «siempre» = hábito repetido en el pasado → imperfecto. Apagar → yo apagaba. 'Apagué' (pretérito) indicaría una sola vez específica — contradiría 'siempre'. Solo 'apagaba' es correcto. El sujeto es 'mi madre' → ella apagaba — pero la oración comienza 'cuando yo era niño', estableciendo el contexto temporal desde la perspectiva del narrador."},
+   exp:"Imperfecto, tercera persona singular de 'apagar'. El sujeto es 'mi madre' (ella). «Cuando era niño» + «siempre» = hábito repetido en el pasado → imperfecto. Apagar → ella apagaba. 'Apagó' (pretérito) indicaría una sola ocasión específica — contradiría 'siempre'. Solo 'apagaba' es correcto."},
 
   {s:"VI", id:25, type:"free",
-   prompt:"El policía paró el carro y le dijo al conductor: «______ la licencia, por favor.»",
-   acc:["dame","muéstrame","presenta","muestra"],
-   disp:"muéstrame / dame",
-   exp:"Mandato afirmativo de tú dirigido al conductor. El policía pide ver la licencia — los verbos correctos son 'mostrar' (muéstrame) o 'dar' (dame) o 'presentar' (presenta). Los tres son mandatos afirmativos de tú válidos en este contexto. 'Muéstrame': mostrar → él muestra → muestra + me = muéstrame. 'Dame': dar → él da → da + me = dame. 'Presenta': presentar → él presenta → presenta. Cualquiera de las tres formas es correcta porque el vocabulario de esta lección incluye 'la licencia' como objeto de la instrucción, y el contexto policial hace inequívoco el significado."},
+   prompt:"El policía paró el carro y le dijo al conductor: «______ el motor, por favor.»",
+   acc:["apaga"],
+   disp:"apaga",
+   exp:"Mandato afirmativo de tú de 'apagar'. El policía le da una instrucción directa al conductor (tú). Mandato afirmativo de tú para verbos -ar regulares: forma de él/ella en presente → él apaga → ¡apaga! 'Apaga' es la única forma correcta. No confundir con 'apagues' (subjuntivo, incorrecto para mandato afirmativo de tú) ni con 'apagar' (infinitivo). El verbo 'apagar' está en el vocabulario de esta lección y es el único que tiene sentido con 'el motor' en este contexto."},
 ];
 
 // ══════════════════════════════════════
