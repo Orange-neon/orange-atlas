@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Examen VI — Senderos 2 Lección 5</title>
+<title>Examen VII — Senderos 2 Lección 5</title>
 <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -252,7 +252,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <!-- ══════════ LANDING ══════════ -->
 <div class="screen active" id="s-landing">
 <div class="land-inner">
-  <p class="land-kicker">Senderos 2 · Lección 5 · Examen VI</p>
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen VII</p>
   <h1 class="land-title">Examen<br><em>Riguroso</em></h1>
   <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
 
@@ -289,8 +289,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <div class="screen" id="s-exam">
   <div id="topbar">
     <div class="tb-left">
-      <div class="tb-qnum">Lección 5 · Examen VI</div>
-      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+      <div class="tb-qnum">Pregunta</div>
+      <div class="tb-qof" id="qof">1 de 20</div>
     </div>
     <div class="tb-timer" id="timer">
       <span class="timer-icon">⏱</span>
@@ -381,21 +381,27 @@ const QS = [
     cor:"D",
     exp:"El correo electrónico, el chat y la arroba son todos del dominio de la comunicación digital e internet. El acelerador es el pedal que controla la velocidad del carro — del dominio automovilístico. Es el intruso de dominio sin posibilidad de confusión." },
 
-  // 6 — Comprensión Lectora (free)
-  { id:6, sec:"Comprensión Lectora", type:"free",
+  // 6 — Comprensión Lectora (MC)
+  { id:6, sec:"Comprensión Lectora", type:"mc",
     passage: true,
     prompt:"¿Por qué Diego redujo la velocidad y encendió los faros?",
-    acc:["porque el limpiaparabrisas dejo de funcionar","porque el limpiaparabrisas dejo de funcionar y llovía","porque llovía y el limpiaparabrisas no funcionaba","porque el limpiaparabrisas no funcionaba","llovía mucho y el limpiaparabrisas no funcionaba","el limpiaparabrisas dejó de funcionar"],
-    disp:"porque el limpiaparabrisas dejó de funcionar / llovía fuerte",
-    exp:"El texto dice: 'el limpiaparabrisas del lado del conductor dejó de funcionar de repente' y llovía con mucha fuerza. Diego redujo la velocidad por precaución ante la lluvia y la visibilidad reducida, y encendió los faros para que los otros conductores lo vieran. Cualquier respuesta que capture la lluvia o el limpiaparabrisas es correcta." },
+    ch:["A) Porque la batería del carro estaba baja.",
+        "B) Porque llovía fuerte y el limpiaparabrisas dejó de funcionar.",
+        "C) Porque los frenos hacían un ruido raro.",
+        "D) Porque había un policía en la autopista."],
+    cor:"B",
+    exp:"El texto dice que llovía con mucha fuerza y que 'el limpiaparabrisas del lado del conductor dejó de funcionar de repente.' Diego redujo la velocidad por la lluvia y la visibilidad reducida, y encendió los faros para que los otros conductores lo vieran." },
 
-  // 7 — Comprensión Lectora (free)
-  { id:7, sec:"Comprensión Lectora", type:"free",
+  // 7 — Comprensión Lectora (MC)
+  { id:7, sec:"Comprensión Lectora", type:"mc",
     passage: true,
     prompt:"¿Por qué Diego no pudo consultar el sitio web del taller mientras esperaba?",
-    acc:["porque la red estaba cortada","la red estaba cortada","no habia red","no había red","la red no funcionaba","porque no habia red","porque no había red","porque la red no funcionaba en esa zona","la red estaba cortada en esa zona"],
-    disp:"porque la red estaba cortada en esa zona",
-    exp:"El texto dice: 'la red estaba cortada en esa zona.' Sin red no puedes acceder a ningún sitio web. No fue el móvil (que funcionó para llamar) ni el sitio web en sí — fue la ausencia de conexión a internet en esa zona." },
+    ch:["A) Porque el móvil se quedó sin batería.",
+        "B) Porque el taller no tenía sitio web.",
+        "C) Porque la red estaba cortada en esa zona.",
+        "D) Porque el móvil se cayó al suelo y se rompió."],
+    cor:"C",
+    exp:"El texto dice: 'la red estaba cortada en esa zona.' El móvil funcionaba — Diego lo usó para llamar al taller. No fue el móvil sin batería ni el sitio web inexistente. Fue la ausencia de conexión a internet en esa zona de la autopista." },
 
   // 8 — Definición más difícil
   { id:8, sec:"¿Qué palabra es?", type:"free",
@@ -538,7 +544,7 @@ function renderQ() {
 
   // progress
   document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
-  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+  document.getElementById("qof").textContent = `${ST.idx + 1} de ${QS.length}`;
 
   // build HTML
   let html = "";
