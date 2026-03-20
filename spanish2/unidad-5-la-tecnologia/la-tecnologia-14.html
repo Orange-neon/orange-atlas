@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen IXV — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+  --border:rgba(255,255,255,0.07);
+  --text:#ccccd8;--dim:#3e3e52;
+  --accent:#a78bfa;--accentd:#7c3aed;
+  --green:#34d399;--red:#f87171;
+  --warn:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+#s-landing{
+  align-items:center;justify-content:center;padding:3rem 1.5rem;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 80% 70%,rgba(52,211,153,0.05) 0%,transparent 50%);
+}
+.land-inner{max-width:580px;width:100%;text-align:center}
+.land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+.land-title{font-family:'Lora',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+.land-title em{font-style:italic;color:var(--accent)}
+.land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+.land-sub strong{color:#888;font-weight:500}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+.info-card{background:var(--s1);border:1px solid var(--border);border-radius:.6rem;padding:1.1rem .8rem;text-align:center}
+.info-n{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+.rules-box{
+  background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+  border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+  font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+}
+.rules-box li{margin-left:1rem;margin-bottom:.15rem}
+.rules-box strong{color:#a0a0c8;font-weight:600}
+
+.btn-main{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;border:none;
+  padding:1rem 3.5rem;border-radius:.45rem;font-size:.88rem;font-weight:600;
+  cursor:pointer;letter-spacing:.1em;text-transform:uppercase;font-family:'Inter',sans-serif;
+  box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+#s-exam{flex-direction:column}
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2rem;background:rgba(6,6,12,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;flex-shrink:0;
+}
+.tb-left{display:flex;flex-direction:column}
+.tb-qnum{font-family:'Lora',serif;font-size:.95rem;font-weight:700;color:#fff}
+.tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
+.tb-timer{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:500;
+  color:var(--accent);transition:color .3s;
+}
+.tb-timer.warn{color:var(--warn)}
+.tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-icon{font-size:.9rem}
+
+#progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+#progbar{height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0%;transition:width .4s}
+
+#qarea{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem 3rem}
+.qwrap{max-width:700px;width:100%}
+
+.qtype-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+}
+.qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+.passage-card{
+  background:var(--s1);border:1px solid rgba(52,211,153,.12);
+  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  font-size:.87rem;color:#888;line-height:2.3;
+  font-family:'Lora',serif;font-style:italic;
+}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+
+.qprompt{
+  font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
+  color:#ddd;line-height:1.85;margin-bottom:1.4rem;white-space:pre-line;
+}
+.qpool{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:.35rem;padding:.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+  color:#bbb;letter-spacing:.05em;margin-bottom:1rem;
+}
+
+.choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.choice-btn{
+  text-align:left;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+  padding:.75rem 1rem;font-size:.88rem;color:#888;
+  cursor:pointer;transition:all .13s;line-height:1.5;font-family:'Inter',sans-serif;
+}
+.choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+.choice-btn.sel{border-color:rgba(167,139,250,.55);color:#ede9fe;background:rgba(167,139,250,.08)}
+
+.free-wrap{margin-bottom:1.4rem}
+.free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.free-input{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+  padding:.8rem 1rem;font-size:1rem;color:var(--text);
+  font-family:'IBM Plex Mono',monospace;outline:none;
+  letter-spacing:.04em;transition:border-color .2s,background .2s;
+}
+.free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+
+.accent-bar{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;margin-bottom:.9rem}
+.accent-label{font-size:.58rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-right:.2rem;flex-shrink:0}
+.accent-btn{
+  background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+  color:#c4b5fd;border-radius:.28rem;padding:.28rem .52rem;
+  font-size:.95rem;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  cursor:pointer;transition:background .12s,border-color .12s;line-height:1;
+}
+.accent-btn:hover{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.45);color:#ede9fe}
+
+.btn-next{
+  background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+  padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+  cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all .2s;width:100%;
+}
+.btn-next.ready{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+  border-color:transparent;cursor:pointer;box-shadow:0 0 30px rgba(109,40,217,.3);
+}
+.btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+.btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+.qwrap{animation:qfade .35s ease}
+@keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+#s-results{flex-direction:column}
+#res-header{background:var(--s1);border-bottom:1px solid var(--border);padding:2.5rem 2rem;text-align:center;flex-shrink:0}
+.res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+.res-score{font-family:'Lora',serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+.res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+.res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+.res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:'IBM Plex Mono',monospace}
+#res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+.res-q{background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;margin-bottom:.8rem;border:1px solid var(--border)}
+.res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+.res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+.res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.res-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
+.res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+.res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+.res-prompt{font-family:'Lora',serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+.res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+.res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:'IBM Plex Mono',monospace}
+.res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+.res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+.res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+.res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+.res-exp-btn{
+  background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+  padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;
+  margin-left:2.1rem;transition:all .13s;
+}
+.res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+.res-exp-box{
+  display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+}
+.res-exp-box.open{display:block}
+
+.res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+.res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+.res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+.res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+#timeout-banner{
+  display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+  border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+  text-align:center;margin-bottom:1.5rem;
+}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+@media(max-width:540px){
+  #topbar{padding:.6rem 1rem}
+  .tb-timer{font-size:1.1rem}
+  .info-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div class="screen active" id="s-landing">
+<div class="land-inner">
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XV</p>
+  <h1 class="land-title">El Arte del<br><em>Mandato</em></h1>
+  <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-n">20</div>
+      <div class="info-l">preguntas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n" style="color:var(--warn)">17:00</div>
+      <div class="info-l">minutos</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n">5</div>
+      <div class="info-l">tipos</div>
+    </div>
+  </div>
+
+  <div class="rules-box">
+    <strong>Reglas del examen:</strong>
+    <ul>
+      <li>Examen enfocado exclusivamente en los mandatos de tú</li>
+      <li>Se incluyen mandatos afirmativos y negativos, regulares e irregulares</li>
+      <li>Una pregunta a la vez — no puedes volver atrás</li>
+      <li>No hay pistas sobre qué verbo usar ni si el mandato es afirmativo o negativo</li>
+    </ul>
+  </div>
+
+  <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+</div>
+</div>
+
+<!-- ══════════ EXAM ══════════ -->
+<div class="screen" id="s-exam">
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-qnum">El Arte del Mandato</div>
+      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+    </div>
+    <div class="tb-timer" id="timer">
+      <span class="timer-icon">⏱</span>
+      <span id="tdisp">17:00</span>
+    </div>
+  </div>
+  <div id="progbar-wrap"><div id="progbar"></div></div>
+  <div id="qarea">
+    <div class="qwrap" id="qwrap"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div class="screen" id="s-results">
+  <div id="res-header">
+    <div class="res-kicker" id="res-kicker">Resultado Final</div>
+    <div class="res-score" id="res-score"></div>
+    <div class="res-pct" id="res-pct"></div>
+    <div class="res-msg" id="res-msg"></div>
+    <div class="res-time" id="res-time"></div>
+  </div>
+  <div id="res-body">
+    <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+    <div id="res-list"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// PASSAGE
+// ══════════════════════════════════════════════
+const PASSAGE = `Antes del viaje, haz una lista de todo lo que necesitas. Pon el cargador y la memoria USB en la mochila. Cuando llegues al carro, revisa el aceite y las llantas. En la gasolinera, llena el tanque y no te vayas sin limpiar el parabrisas. Una vez en la autopista, no conduzcas a más de la velocidad máxima y no uses el móvil mientras manejas. Si el teléfono suena, no lo contestes — para el carro primero. Cuando llegues, guarda todos los archivos antes de apagar el ordenador. ¡Ten cuidado y todo va a salir bien!`;
+
+// ══════════════════════════════════════════════
+// NORMALIZE & CHECK
+// ══════════════════════════════════════════════
+const nm = s => (s||"").toLowerCase().trim().replace(/\s+/g," ");
+const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+// ══════════════════════════════════════════════
+// QUESTIONS
+// ══════════════════════════════════════════════
+const QS = [
+
+  // 1 — El Intruso (MC)
+  // haz/di/ven are all irregular 1-syllable affirmative commands; conduce is a REGULAR -ir command
+  { id:1, sec:"El Intruso", type:"mc",
+    pool:"haz · di · ven · conduce",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) haz","B) di","C) ven","D) conduce"],
+    cor:"D",
+    exp:"Haz, di y ven son mandatos afirmativos irregulares de tú — sus formas no siguen ninguna regla predecible y deben memorizarse (hacer→haz, decir→di, venir→ven). Conduce es el mandato afirmativo de 'conducir', pero es completamente regular: simplemente usa la tercera persona singular del presente (él conduce → ¡conduce!). Es el único mandato regular del grupo." },
+
+  // 2 — El Intruso (MC)
+  // no hagas/no pongas/no vengas come from irregular yo forms (hago/pongo/vengo → subjunctive stem);
+  // no navegues is just a -gar spelling change on an otherwise regular verb
+  { id:2, sec:"El Intruso", type:"mc",
+    pool:"no hagas · no pongas · no vengas · no navegues",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) no hagas","B) no pongas","C) no vengas","D) no navegues"],
+    cor:"D",
+    exp:"Los mandatos negativos de tú usan el presente de subjuntivo. No hagas, no pongas y no vengas vienen de verbos con formas yo irregulares en el presente: hago→haga→hagas, pongo→ponga→pongas, vengo→venga→vengas. Sus raíces son irregulares. No navegues, en cambio, viene de un verbo completamente regular — solo cambia la ortografía: -gar→-gues para conservar el sonido /g/. No hay irregularidad de raíz." },
+
+  // 3 — El Intruso (MC)
+  // pon/ten/sal are irregular affirmative commands; borra is a plain regular -ar command
+  { id:3, sec:"El Intruso", type:"mc",
+    pool:"pon · borra · sal · ten",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) pon","B) borra","C) sal","D) ten"],
+    cor:"B",
+    exp:"Pon, sal y ten son mandatos afirmativos irregulares de tú — sus formas no se pueden derivar con ninguna regla y hay que aprenderlas de memoria (poner→pon, salir→sal, tener→ten). Borra es el mandato afirmativo de 'borrar', un verbo regular -ar: simplemente toma la forma de él en el presente (él borra → ¡borra!). Es el único mandato regular del grupo." },
+
+  // 4 — El Intruso (MC)
+  // no vayas/no seas/no conduzcas have truly irregular subjunctive forms;
+  // no descargues is only a spelling change on a regular verb
+  { id:4, sec:"El Intruso", type:"mc",
+    pool:"no vayas · no seas · no conduzcas · no descargues",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) no vayas","B) no seas","C) no descargues","D) no conduzcas"],
+    cor:"C",
+    exp:"No vayas viene de ir, cuyo subjuntivo es completamente irregular (vaya). No seas viene de ser, igualmente irregular (sea). No conduzcas viene de conducir — la forma yo es conduzco, lo que produce la raíz irregular conduzc- en el subjuntivo. Los tres tienen irregularidades reales en la raíz. No descargues, en cambio, viene de un verbo regular — solo cambia -gar→-gues por ortografía. No hay irregularidad de raíz." },
+
+  // 5 — Comprensión Lectora (MC)
+  { id:5, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"Según el texto, ¿qué debes hacer ANTES de salir a la autopista?",
+    ch:["A) Guardar los archivos y apagar el ordenador.",
+        "B) Revisar el aceite, llenar el tanque y limpiar el parabrisas.",
+        "C) Poner el móvil en silencio para no recibir llamadas.",
+        "D) Conducir despacio hasta encontrar una gasolinera."],
+    cor:"B",
+    exp:"El texto dice: revisa el aceite y las llantas cuando llegues al carro, y en la gasolinera llena el tanque y limpia el parabrisas — todo esto antes de entrar a la autopista. Guardar los archivos es una instrucción para cuando ya llegues a tu destino, no antes de salir." },
+
+  // 6 — Comprensión Lectora (MC)
+  { id:6, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Qué dice el texto que NO debes hacer mientras manejas?",
+    ch:["A) Revisar el aceite en la carretera.",
+        "B) Llenar el tanque en la autopista.",
+        "C) Contestar el móvil si suena.",
+        "D) Guardar archivos en la memoria USB."],
+    cor:"C",
+    exp:"El texto dice: 'no uses el móvil mientras manejas' y 'si el teléfono suena, no lo contestes'. Ese es el comportamiento prohibido mientras conduces. Revisar el aceite y llenar el tanque son instrucciones para ANTES de salir, no durante el manejo." },
+
+  // 7 — Conjugación en Contexto (free) — graba (regular -ar, affirmative)
+  { id:7, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Ves algo increíble en la carretera. Le dices a tu amigo: «¡______ ese momento con la cámara del móvil antes de que desaparezca!»",
+    acc:["graba"],
+    disp:"graba",
+    exp:"Mandato afirmativo de tú de 'grabar' (regular -ar). Para verbos regulares -ar, el mandato afirmativo de tú es igual a la tercera persona singular del presente: él graba → ¡graba! No confundir con 'grabas' (presente indicativo, tú) ni con 'grabar' (infinitivo)." },
+
+  // 8 — Conjugación en Contexto (free) — haz (irregular affirmative)
+  { id:8, sec:"Conjugación en Contexto", type:"free",
+    prompt:"La computadora tiene demasiados programas abiertos y va muy lenta. Le dices a tu amigo: «______ clic en el ícono rojo para cerrar los archivos que no necesitas.»",
+    acc:["haz"],
+    disp:"haz",
+    exp:"Mandato afirmativo irregular de tú de 'hacer': haz. No sigue ninguna regla — hay que memorizarlo. 'Hace' es la tercera persona del presente (él), no el mandato. 'Haces' es el presente de tú. Solo 'haz' es el mandato afirmativo correcto. Es uno de los ocho mandatos irregulares de tú que se memorizan." },
+
+  // 9 — Conjugación en Contexto (free) — pon (irregular affirmative)
+  { id:9, sec:"Conjugación en Contexto", type:"free",
+    prompt:"El móvil está casi sin batería y el cargador está lejos. Le dices a tu amigo: «______ el cargador en el enchufe de la derecha antes de que se apague el teléfono.»",
+    acc:["pon"],
+    disp:"pon",
+    exp:"Mandato afirmativo irregular de tú de 'poner': pon. No se puede derivar de ninguna forma regular — hay que memorizarlo. 'Pone' es la tercera persona del presente (él). 'Pones' es el presente de tú. Solo 'pon' es el mandato afirmativo correcto. Es uno de los ocho mandatos irregulares de tú." },
+
+  // 10 — Conjugación en Contexto (free) — sal (irregular affirmative)
+  { id:10, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Tu amigo lleva dos horas esperando en el taller mecánico. El mecánico ya terminó con el carro. Le texteás: «______ del taller — el mecánico ya arregló todo y el carro está listo.»",
+    acc:["sal"],
+    disp:"sal",
+    exp:"Mandato afirmativo irregular de tú de 'salir': sal. Forma irregular — hay que memorizarla. 'Sale' es la tercera persona del presente (él). 'Sales' es el presente de tú. Solo 'sal' es el mandato afirmativo correcto. Es uno de los ocho mandatos irregulares de tú." },
+
+  // 11 — Conjugación en Contexto (free) — hagas (irregular negative)
+  { id:11, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Ves que tu amigo está a punto de borrar todos sus archivos sin guardarlos primero. Le dices: «No ______ eso — primero guárdalos en la memoria USB y después borras lo que no necesitas.»",
+    acc:["hagas"],
+    disp:"hagas",
+    exp:"Mandato negativo de tú de 'hacer': no hagas. El mandato negativo usa el presente de subjuntivo. La forma yo de hacer es irregular: hago → raíz hag- → subjuntivo: haga, hagas, haga... Tú: no hagas. No confundir con 'no haces' (presente indicativo — nunca se usa para mandatos negativos)." },
+
+  // 12 — Conjugación en Contexto (free) — vayas (irregular negative)
+  { id:12, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Tu amigo quiere tomar la carretera vieja. Tú sabes que está llena de tráfico. Le dices: «No ______ por esa ruta — la autopista es mucho más rápida hoy.»",
+    acc:["vayas"],
+    disp:"vayas",
+    exp:"Mandato negativo de tú de 'ir': no vayas. El verbo 'ir' tiene un subjuntivo completamente irregular: vaya, vayas, vaya... — no viene de ninguna forma predecible. No confundir con 'no vas' (presente indicativo — incorrecto para mandatos negativos) ni con 'no irás' (futuro)." },
+
+  // 13 — Conjugación en Contexto (free) — conduzcas/manejes (irregular/regular negative)
+  { id:13, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Tu amigo está muy cansado después de trabajar toda la noche. Tiene las llaves del carro. Le dices: «No ______ en ese estado — para el carro y descansa antes de continuar.»",
+    acc:["conduzcas","manejes"],
+    disp:"conduzcas / manejes",
+    exp:"Mandato negativo de tú. 'Conducir': la forma yo es conduzco → raíz irregular conduzc- → subjuntivo: conduzca, conduzcas → no conduzcas. 'Manejar': verbo regular -ar → subjuntivo: maneje, manejes → no manejes. Ambas formas son correctas y se aceptan. 'Conduces' y 'manejas' son el presente indicativo — nunca se usan para mandatos negativos." },
+
+  // 14 — Contexto Conversacional (free) — imprime (regular -ir, affirmative)
+  { id:14, sec:"Contexto Conversacional", type:"free",
+    prompt:"— Necesito llevar el documento al taller para que el mecánico lo vea en papel.\n— ______ el archivo desde la computadora — la impresora está en el cuarto de al lado.\n— ¿Ya tiene papel?\n— Sí, lo acabo de poner.",
+    acc:["imprime"],
+    disp:"imprime",
+    exp:"Mandato afirmativo de tú de 'imprimir' (regular -ir). Para verbos regulares -ir, el mandato afirmativo de tú es igual a la tercera persona singular del presente: él imprime → ¡imprime! 'Imprimes' es el presente de tú. 'Imprimir' es el infinitivo. Solo 'imprime' es el mandato correcto." },
+
+  // 15 — Contexto Conversacional (free) — ten (irregular affirmative)
+  { id:15, sec:"Contexto Conversacional", type:"free",
+    prompt:"— El mecánico dice que el arreglo del motor puede tardar tres horas.\n— ______ paciencia — estos trabajos no se pueden hacer rápido sin arriesgar el carro.\n— Está bien, voy a esperar.\n— Así es mejor.",
+    acc:["ten"],
+    disp:"ten",
+    exp:"Mandato afirmativo irregular de tú de 'tener': ten. Forma irregular — hay que memorizarla. 'Tiene' es la tercera persona del presente (él). 'Tienes' es el presente de tú. Solo 'ten' es el mandato afirmativo correcto. Es uno de los ocho mandatos irregulares de tú." },
+
+  // 16 — Contexto Conversacional (free) — di (irregular affirmative)
+  { id:16, sec:"Contexto Conversacional", type:"free",
+    prompt:"— ¿Ya encontraste el archivo del proyecto en la computadora?\n— No, hay demasiados íconos en la pantalla y no lo veo.\n— ______ me el nombre exacto del archivo y yo lo busco.\n— Se llama «proyecto_final_v2».",
+    acc:["di","dime"],
+    disp:"di / dime",
+    exp:"Mandato afirmativo irregular de tú de 'decir': di. Forma irregular — hay que memorizarla. 'Dice' es la tercera persona del presente (él). 'Dices' es el presente de tú. Solo 'di' es el mandato afirmativo correcto. Con el pronombre de objeto indirecto 'me' adjunto, también se acepta 'dime' (di + me)." },
+
+  // 17 — Contexto Conversacional (free) — descargues (spelling-change negative, -gar)
+  { id:17, sec:"Contexto Conversacional", type:"free",
+    prompt:"— Encontré una aplicación que dice que puede hacer que el carro consuma menos gasolina.\n— No la ______ — esas aplicaciones no existen y normalmente son virus o correo basura.\n— ¿En serio? Casi la instalo.\n— Menos mal que me preguntaste primero.",
+    acc:["descargues"],
+    disp:"descargues",
+    exp:"Mandato negativo de tú de 'descargar'. El verbo es regular, pero los verbos -gar cambian g→gu en el subjuntivo para conservar el sonido /g/ antes de -e: descarg- + e → *descarge (sonido /x/) — incorrecto. La forma correcta es descargu- + es = descargues. No confundir con 'no descargas' (presente indicativo — incorrecto para mandatos negativos)." },
+
+  // 18 — Contexto Conversacional (free) — pongas (irregular negative)
+  { id:18, sec:"Contexto Conversacional", type:"free",
+    prompt:"— Voy a poner el móvil encima del motor para que se cargue más rápido con el calor.\n— No lo ______ ahí — el calor excesivo del motor daña la batería del teléfono.\n— No sabía eso. Gracias por avisarme.\n— Usa el cargador normal, es más seguro.",
+    acc:["pongas"],
+    disp:"pongas",
+    exp:"Mandato negativo de tú de 'poner': no pongas. La forma yo de poner es irregular: pongo → raíz pong- → subjuntivo: ponga, pongas, ponga... Tú: no pongas. No confundir con 'no pones' (presente indicativo — incorrecto para mandatos negativos)." },
+
+  // 19 — Contexto Conversacional (free) — salgas (irregular negative)
+  { id:19, sec:"Contexto Conversacional", type:"free",
+    prompt:"— Creo que voy a salir del carro a revisar la llanta yo mismo.\n— No ______ — estamos en la autopista y es extremadamente peligroso pararse aquí. Llama a la policía.\n— Tienes razón, es mejor esperar.\n— Exacto, es lo más seguro.",
+    acc:["salgas"],
+    disp:"salgas",
+    exp:"Mandato negativo de tú de 'salir': no salgas. La forma yo de salir es irregular: salgo → raíz salg- → subjuntivo: salga, salgas, salga... Tú: no salgas. No confundir con 'no sales' (presente indicativo — incorrecto para mandatos negativos) ni con 'sal' (que es el mandato AFIRMATIVO)." },
+
+  // 20 — Contexto Conversacional (free) — vengas (irregular negative)
+  { id:20, sec:"Contexto Conversacional", type:"free",
+    prompt:"— ¿Quieres que vaya al taller contigo mañana para ayudarte con el carro?\n— No ______ — el mecánico dijo que solo tarda una hora y no hay nada que hacer mientras espero.\n— Está bien. Avísame cuando el carro esté listo.\n— Claro, te mando un mensaje.",
+    acc:["vengas"],
+    disp:"vengas",
+    exp:"Mandato negativo de tú de 'venir': no vengas. La forma yo de venir es irregular: vengo → raíz veng- → subjuntivo: venga, vengas, venga... Tú: no vengas. No confundir con 'no vienes' (presente indicativo — incorrecto para mandatos negativos) ni con 'ven' (que es el mandato AFIRMATIVO)." },
+];
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  answers: {},
+  secsLeft: 17 * 60,
+  tick: null,
+  timedOut: false,
+  startSecs: 0,
+};
+
+// ══════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════
+function startTimer() {
+  document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+  ST.tick = setInterval(() => {
+    ST.secsLeft--;
+    const d = document.getElementById("tdisp");
+    const t = document.getElementById("timer");
+    d.textContent = fmtT(ST.secsLeft);
+    if (ST.secsLeft <= 60) t.classList.add("crit");
+    else if (ST.secsLeft <= 180) t.classList.add("warn");
+    if (ST.secsLeft <= 0) {
+      clearInterval(ST.tick);
+      ST.timedOut = true;
+      showResults();
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ() {
+  const q = QS[ST.idx];
+  const wrap = document.getElementById("qwrap");
+
+  document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
+  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+
+  let html = "";
+  const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+  const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+  html += `<div class="qsec-label">${q.sec}</div>`;
+  html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+  if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
+
+  if (q.passage) {
+    html += `<div class="passage-card">
+      <div class="passage-label">Texto — Instrucciones para el viaje</div>
+      ${PASSAGE}
+    </div>`;
+  }
+
+  html += `<p class="qprompt">${q.prompt}</p>`;
+
+  if (q.type === "mc") {
+    html += `<div class="choices-grid">`;
+    q.ch.forEach(c => {
+      html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="free-wrap">
+      <div class="free-label">Escribe la forma correcta</div>
+      <input class="free-input" id="freeinp" placeholder="tu respuesta…"
+        oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+      <div class="accent-bar">
+        <span class="accent-label">Insertar:</span>
+        ${['á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ'].map(c=>`<button class="accent-btn" onclick="insertAccent('${c}')">${c}</button>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  const isLast = ST.idx === QS.length - 1;
+  html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+    ${isLast ? "Entregar Examen →" : "Siguiente →"}
+  </button>`;
+
+  wrap.style.animation = "none";
+  wrap.offsetHeight;
+  wrap.style.animation = "";
+  wrap.innerHTML = html;
+
+  const prev = ST.answers[q.id];
+  if (prev !== undefined) {
+    if (q.type === "mc") {
+      const btn = document.getElementById(`cb${prev}`);
+      if (btn) btn.classList.add("sel");
+      enableNext();
+    } else {
+      const inp = document.getElementById("freeinp");
+      if (inp) { inp.value = prev; enableNext(); }
+    }
+  }
+
+  if (q.type === "free") {
+    setTimeout(() => {
+      const inp = document.getElementById("freeinp");
+      if (inp) inp.focus();
+    }, 50);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════
+function pickMC(letter) {
+  const q = QS[ST.idx];
+  q.ch.forEach(c => {
+    const b = document.getElementById(`cb${c[0]}`);
+    if (b) b.classList.remove("sel");
+  });
+  const btn = document.getElementById(`cb${letter}`);
+  if (btn) btn.classList.add("sel");
+  ST.answers[q.id] = letter;
+  enableNext();
+}
+
+function insertAccent(ch) {
+  const inp = document.getElementById("freeinp");
+  if (!inp) return;
+  const s = inp.selectionStart, e = inp.selectionEnd;
+  inp.value = inp.value.slice(0,s) + ch + inp.value.slice(e);
+  inp.selectionStart = inp.selectionEnd = s + ch.length;
+  inp.focus();
+  freeTyped();
+}
+
+function freeTyped() {
+  const inp = document.getElementById("freeinp");
+  ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+  if (inp && inp.value.trim().length > 0) enableNext();
+  else disableNext();
+}
+
+function enableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.add("ready");
+  if (b) b.disabled = false;
+}
+function disableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.remove("ready");
+  if (b) b.disabled = true;
+}
+
+function tryNext() {
+  const q = QS[ST.idx];
+  if (q.type === "free") {
+    const inp = document.getElementById("freeinp");
+    if (inp) ST.answers[q.id] = inp.value;
+  }
+  if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+  ST.idx++;
+  if (ST.idx >= QS.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+// ══════════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════════
+function showResults() {
+  clearInterval(ST.tick);
+  const elapsed = 17 * 60 - ST.secsLeft;
+
+  let score = 0;
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    if (q.type === "mc") { if (ans === q.cor) score++; }
+    else { if (cf(ans, q.acc)) score++; }
+  });
+  const pct = Math.round((score / QS.length) * 100);
+
+  document.getElementById("s-exam").classList.remove("active");
+  document.getElementById("s-results").classList.add("active");
+  window.scrollTo(0, 0);
+
+  const hdr = document.getElementById("res-header");
+  hdr.style.background = pct >= 80
+    ? "linear-gradient(135deg,#052e16,#064e3b)"
+    : pct >= 55
+    ? "linear-gradient(135deg,#431407,#78350f)"
+    : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+  document.getElementById("res-score").textContent = `${score}/20`;
+  document.getElementById("res-pct").textContent =
+    `Opción múltiple: ${QS.filter(q=>q.type==="mc").reduce((a,q)=>a+(ST.answers[q.id]===q.cor?1:0),0)}/${QS.filter(q=>q.type==="mc").length}` +
+    `  ·  Respuesta libre: ${QS.filter(q=>q.type==="free").reduce((a,q)=>a+(cf(ST.answers[q.id]||"",q.acc)?1:0),0)}/${QS.filter(q=>q.type==="free").length}`;
+  const msgs = [[90,"Dominio excepcional."],[75,"Comprensión muy sólida."],[55,"Comprensión parcial — repasa los mandatos irregulares."],[0,"Hay trabajo por hacer — practica los mandatos irregulares."]];
+  document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  document.getElementById("res-time").textContent = ST.timedOut
+    ? "⚠ Tiempo agotado"
+    : `Tiempo: ${fmtT(elapsed)}`;
+
+  if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+  const list = document.getElementById("res-list");
+  list.innerHTML = "";
+
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+    const card = document.createElement("div");
+    card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+    const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+    let html = `<div class="res-q-top">
+      <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+      <div>
+        <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+        <p class="res-prompt">${q.pool ? `<span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#666;display:block;margin-bottom:.4rem">${q.pool}</span>` : ""}${q.prompt}</p>
+      </div>
+    </div>`;
+
+    if (q.type === "mc") {
+      html += `<div class="res-mc-choices">`;
+      q.ch.forEach(c => {
+        const l = c[0];
+        const isRight = l === q.cor;
+        const isYours = l === ans;
+        let cls = "";
+        if (isRight) cls = "rc-right";
+        else if (isYours && !isRight) cls = "rc-wrong";
+        html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="res-ans-row">`;
+      if (ans) {
+        html += `<span class="res-chip yours ${ok ? "ok" : "bad"}">Tu respuesta: ${ans}</span>`;
+      } else {
+        html += `<span class="res-chip yours bad">Sin respuesta</span>`;
+      }
+      if (!ok) {
+        html += `<span class="res-chip correct">Correcto: ${q.disp}</span>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+    <div class="res-exp-box" id="rexp${q.id}">
+      ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+    </div>`;
+
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function togE(id) {
+  const b = document.getElementById(`rexp${id}`);
+  const btn = b.previousElementSibling;
+  b.classList.toggle("open");
+  btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+// ══════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════
+function startExam() {
+  ST.startSecs = Date.now();
+  document.getElementById("s-landing").classList.remove("active");
+  document.getElementById("s-exam").classList.add("active");
+  window.scrollTo(0, 0);
+  startTimer();
+  renderQ();
+}
+</script>
+</body>
+</html>

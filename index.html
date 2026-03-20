@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orange Atlas Practice Hub</title>
+  <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap");
+
+    :root {
+      --bg: #070b13;
+      --bg-alt: #0c1320;
+      --panel: #111a2b;
+      --panel-soft: #172235;
+      --line: rgba(174, 196, 229, 0.2);
+      --text: #e8f0ff;
+      --muted: #9aadcb;
+      --brand: #ff8f3f;
+      --teal: #4bc3b1;
+      --ok: #74e3d3;
+      --shadow: 0 20px 44px rgba(4, 8, 15, 0.62);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(75% 46% at 4% 6%, rgba(75, 195, 177, 0.22), transparent 64%),
+        radial-gradient(56% 34% at 95% 0%, rgba(255, 143, 63, 0.22), transparent 56%),
+        linear-gradient(170deg, var(--bg) 0%, var(--bg-alt) 52%, #0a111d 100%);
+      padding: 1.35rem 1.1rem 3rem;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: linear-gradient(160deg, rgba(17, 26, 43, 0.92), rgba(23, 34, 53, 0.92));
+      padding: 0.8rem 1rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.1rem;
+      animation: fade-up 0.55s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.72rem;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 0.65rem;
+      border: 1px solid rgba(255, 143, 63, 0.46);
+      box-shadow: 0 8px 18px rgba(255, 143, 63, 0.22);
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .brand-name {
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 0.08rem;
+      white-space: nowrap;
+    }
+
+    .status {
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #ffd1a8;
+      background: rgba(255, 143, 63, 0.15);
+      border: 1px solid rgba(255, 143, 63, 0.35);
+      padding: 0.28rem 0.62rem;
+      flex-shrink: 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-main {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: linear-gradient(160deg, var(--panel) 0%, var(--panel-soft) 100%);
+      padding: 1.2rem 1.1rem;
+      box-shadow: var(--shadow);
+      animation: fade-up 0.62s ease both;
+    }
+
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.62rem;
+    }
+
+    h1 {
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.03;
+      margin-bottom: 0.75rem;
+      max-width: 14ch;
+    }
+
+    .lead {
+      color: #afc0dc;
+      line-height: 1.72;
+      max-width: 56ch;
+      font-size: 0.97rem;
+    }
+
+    .hero-side {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: linear-gradient(160deg, #111a29 0%, #101a2a 100%);
+      padding: 1rem 0.95rem;
+      box-shadow: var(--shadow);
+      animation: fade-up 0.7s ease both;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.58rem;
+    }
+
+    .metric {
+      border: 1px solid rgba(174, 196, 229, 0.18);
+      border-radius: 0.72rem;
+      background: rgba(7, 11, 19, 0.42);
+      padding: 0.68rem 0.74rem;
+    }
+
+    .metric-n {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.35rem;
+      color: var(--ok);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .metric-l {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .section-title {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.48rem;
+      margin: 1.1rem 0 0.7rem;
+      animation: fade-up 0.74s ease both;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .course-card {
+      border: 1px solid var(--line);
+      border-radius: 0.95rem;
+      background: linear-gradient(160deg, var(--panel) 0%, var(--panel-soft) 100%);
+      padding: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.62rem;
+      text-decoration: none;
+      color: inherit;
+      animation: fade-up 0.62s ease both;
+    }
+
+    .course-card:nth-child(2) { animation-delay: 0.1s; }
+    .course-card:nth-child(3) { animation-delay: 0.2s; }
+    .course-card:nth-child(4) { animation-delay: 0.3s; }
+
+    .course-card.live {
+      border-color: rgba(75, 195, 177, 0.5);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .course-card.live:hover {
+      transform: translateY(-3px);
+      border-color: rgba(75, 195, 177, 0.72);
+    }
+
+    .course-card.locked {
+      opacity: 0.82;
+    }
+
+    .chip {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 0.22rem 0.58rem;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .chip.live {
+      color: #93f8e8;
+      background: rgba(75, 195, 177, 0.16);
+      border-color: rgba(75, 195, 177, 0.42);
+    }
+
+    .chip.locked {
+      color: #ffd3ab;
+      background: rgba(255, 143, 63, 0.15);
+      border-color: rgba(255, 143, 63, 0.38);
+    }
+
+    .course-name {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.26rem;
+      line-height: 1.15;
+    }
+
+    .course-meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.58;
+    }
+
+    .course-cta {
+      margin-top: auto;
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .footer-note {
+      margin-top: 1.25rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.64;
+      animation: fade-up 0.82s ease both;
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding-top: 0.95rem;
+      }
+
+      .topbar {
+        padding: 0.72rem 0.8rem;
+      }
+
+      .brand-logo {
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand-name {
+        font-size: 0.94rem;
+      }
+
+      .brand-sub {
+        font-size: 0.74rem;
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="topbar" aria-label="Site header">
+      <div class="brand">
+        <img class="brand-logo" src="/orange-atlas/assets/orangeAtlas.png" alt="Orange Atlas logo">
+        <div>
+          <p class="brand-name">Orange Atlas</p>
+          <p class="brand-sub">Practice Test Hub</p>
+        </div>
+      </div>
+      <span class="status">Academic Portal</span>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">Central Access</p>
+        <h1>Select your course and launch unit practice</h1>
+        <p class="lead">
+          This homepage is your organized starting point for every course.
+          Each course opens into its own unit-based test library so students can find the right practice set quickly.
+        </p>
+      </div>
+
+      <aside class="hero-side" aria-label="Hub stats">
+        <div class="metric-grid">
+        <div class="metric">
+          <p class="metric-n">1</p>
+          <p class="metric-l">Active course</p>
+        </div>
+        <div class="metric">
+          <p class="metric-n">15</p>
+          <p class="metric-l">Live test sets</p>
+        </div>
+        <div class="metric">
+          <p class="metric-n">315</p>
+          <p class="metric-l">Questions across live exams</p>
+        </div>
+      </div>
+      </aside>
+    </section>
+
+    <h2 class="section-title">Courses</h2>
+    <section class="course-grid" aria-label="Available courses">
+      <a class="course-card live" href="./spanish2/index.html">
+        <span class="chip live">Active</span>
+        <h3 class="course-name">Spanish 2</h3>
+        <p class="course-meta">Practice hub with unit-based Senderos exams and a dedicated mandatos section.</p>
+        <p class="course-cta">Open Course Hub -></p>
+      </a>
+
+      <div class="course-card locked" aria-disabled="true">
+        <span class="chip locked">Coming Soon</span>
+        <h3 class="course-name">Spanish 1</h3>
+        <p class="course-meta">Foundation vocabulary, present tense, and early conversation assessments.</p>
+        <p class="course-cta">Course shell ready</p>
+      </div>
+
+      <div class="course-card locked" aria-disabled="true">
+        <span class="chip locked">Coming Soon</span>
+        <h3 class="course-name">AP Spanish Language</h3>
+        <p class="course-meta">Interpretive and presentational practice sets aligned to AP tasks.</p>
+        <p class="course-cta">Course shell ready</p>
+      </div>
+
+      <div class="course-card locked" aria-disabled="true">
+        <span class="chip locked">Coming Soon</span>
+        <h3 class="course-name">French 1</h3>
+        <p class="course-meta">Reserved slot for expansion into additional language pathways.</p>
+        <p class="course-cta">Course shell ready</p>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Structure standard: keep course homes at `/<course>/index.html`, and store tests in unit folders inside each course.
+    </p>
+  </main>
+</body>
+</html>
