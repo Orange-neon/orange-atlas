@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Examen XIX — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -332,13 +333,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 // ══════════════════════════════════════════════
 // PASSAGE
 // ══════════════════════════════════════════════
-const PASSAGE = `── TEXTO 1: La vida sin internet ──
+const PASSAGE = `── TEXTO 1: La rutina de la familia Herrera ──
 
-Cuando Isabel tenía doce años, su familia vivía en un pueblo pequeño donde no había internet. Para hacer sus tareas, Isabel iba a la biblioteca del pueblo y usaba las computadoras de escritorio que había allí. Tenía que esperar su turno porque solo había tres máquinas para todos los estudiantes del pueblo. A veces, cuando todas estaban ocupadas, Isabel tenía que copiar la información a mano en su cuaderno. El proceso era lento y agotador, pero Isabel aprendió a organizar su tiempo con mucho cuidado. Un día, la biblioteca instaló una red inalámbrica nueva, y de repente todos podían conectarse al mismo tiempo. Isabel no podía creer la diferencia — lo que antes le tomaba dos horas ahora lo hacía en veinte minutos. Hoy, Isabel trabaja para una empresa de tecnología y diseña aplicaciones para comunidades rurales que todavía no tienen acceso fácil a internet.
+Cuando Valentina era niña, su familia tenía una rutina muy estricta por las mañanas. Su madre siempre se levantaba antes que todos para preparar el desayuno: frutas frescas, avena caliente y té de manzanilla. Ella insistía en que una buena alimentación era la base de la salud, así que nunca había refrescos ni dulces en la mesa. El padre de Valentina tampoco tomaba café — prefería el jugo de naranja recién exprimido. Un día, Valentina llegó de la escuela completamente agotada y con un dolor de cabeza muy fuerte. Su madre le dio un vaso de agua tibia con limón y miel, y le pidió que descansara en su cuarto. Al día siguiente, Valentina se sintió completamente recuperada. Hoy, de adulta, Valentina sigue exactamente la misma rutina que aprendió en casa de niña y se la enseña a sus propios hijos.
 
-── TEXTO 2: El precio del móvil siempre conectado ──
+── TEXTO 2: Los remedios de la abuela ──
 
-Cuando Sebastián entró a la secundaria, sus padres le regalaron su primer móvil. Al principio, lo usaba principalmente para textear con sus amigos y navegar por las redes sociales por las noches. Con el tiempo, empezó a revisar el móvil cada vez con más frecuencia — durante las comidas, antes de dormir y hasta en clase. Sus calificaciones empezaron a bajar, aunque él insistía en que podía hacer varias cosas a la vez. Un profesor le explicó que el cerebro humano no está diseñado para concentrarse en múltiples pantallas al mismo tiempo, y que cada vez que Sebastián miraba el móvil, tardaba varios minutos en volver a concentrarse. Sebastián no quería creerlo, pero decidió hacer un experimento: durante una semana, dejó el móvil en su mochila durante las clases. Al final de la semana, sus notas habían mejorado notablemente. Desde entonces, Sebastián apaga el móvil antes de estudiar y lo prende solo cuando termina.`;
+La abuela de Marcos siempre supo cómo tratar los resfriados de la familia sin ir a la farmacia. Cada vez que alguien se enfermaba, ella hervía agua con jengibre rallado, miel y jugo de limón, y le daba la mezcla caliente al enfermo dos veces al día. Siempre decía que los medicamentos de la farmacia eran útiles en casos graves, pero que los remedios naturales podían aliviar los síntomas más rápido en casos leves. Un invierno, Marcos tuvo una fiebre bastante alta y se negó a tomar el remedio porque le parecía demasiado amargo. Su abuela insistió pacientemente, y después de dos días, la fiebre bajó. Marcos no estaba del todo seguro si fue el remedio o simplemente el tiempo lo que lo curó, pero desde entonces aprendió a respetar las tradiciones de su abuela. Hoy en día, cuando sus amigos se enferman, Marcos les recomienda el mismo remedio y les explica cómo prepararlo.`;
 
 // ══════════════════════════════════════════════
 // NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
@@ -348,12 +349,12 @@ const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
 const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
 
 // ══════════════════════════════════════════════
-// QUESTIONS — Interpretive Reading: Technology
+// QUESTIONS — Interpretive Reading Assessment
 //
-// §I   Comprehension      Q1–11
-// §II  Vocab in Context   Q12–16
-// §III Text Structure     Q17–18
-// §IV  Inference          Q19–20
+// §I   Comprehension (Q1–11)
+// §II  Vocabulary in Context (Q12–16)
+// §III Text Structure (Q17–18)
+// §IV  Inference (Q19–20)
 // ══════════════════════════════════════════════
 const QS = [
 
@@ -363,173 +364,173 @@ const QS = [
   { id:1, sec:"Comprehension", type:"mc",
     passage: true,
     prompt:"What is the main idea of Texto 1?",
-    ch:["A) Isabel's town was poor and had no modern buildings.",
-        "B) Growing up without easy internet access shaped Isabel's work ethic and eventually her career.",
-        "C) Libraries are the best place to do homework because they have computers.",
-        "D) The internet saves time and makes students lazy."],
+    ch:["A) Valentina's mother made breakfast every morning because she enjoyed cooking.",
+        "B) A family's health-focused morning routine shaped Valentina's habits as an adult.",
+        "C) Valentina got sick because she didn't eat breakfast before school.",
+        "D) The father's preference for orange juice improved his family's health."],
     cor:"B",
-    exp:"The passage traces how limited technology → careful habits → career in technology for rural communities. Option A is an over-generalization (the passage only mentions no internet, not poverty). Option C is too narrow — it's one detail. Option D misrepresents the passage's tone; Isabel's efficiency increased, but the text doesn't call students lazy." },
+    exp:"The passage covers the family's consistent health routine AND shows its long-term effect — Valentina still follows it as an adult and teaches it to her children. Option A focuses only on the mother's motivation (not the main idea). Option C invents a cause not in the text. Option D is a detail, not the main idea." },
 
   // 2 — Main idea: Texto 2
   { id:2, sec:"Comprehension", type:"mc",
     passage: true,
     prompt:"What is the main idea of Texto 2?",
-    ch:["A) Sebastián's parents gave him a phone too early.",
-        "B) Social media is harmful to all teenagers.",
-        "C) Sebastián's overuse of his phone hurt his grades until he tested a new strategy and changed his habits.",
-        "D) A teacher convinced Sebastián to stop using his phone completely."],
+    ch:["A) Marcos's grandmother believed that pharmacies were useless.",
+        "B) Marcos was very sick one winter and eventually recovered.",
+        "C) A grandmother's traditional home remedies influenced how Marcos approaches illness.",
+        "D) Natural remedies are always more effective than pharmacy medicine."],
     cor:"C",
-    exp:"The passage shows a progression: phone given → overuse → falling grades → teacher's explanation → experiment → improvement → new habit. Option A is an inference not supported by the text. Option B makes a universal claim the text never makes. Option D overstates — the teacher explained something; Sebastián chose to experiment on his own." },
+    exp:"The passage traces the grandmother's approach AND its lasting effect on Marcos — he now recommends the same remedy. Option A distorts her view (she said medicine is useful for serious cases, not useless). Option B is just one supporting detail. Option D is a claim Marcos's grandmother made for mild cases only — the text never says 'always'." },
 
-  // 3 — Supporting detail: why Isabel waited at the library
+  // 3 — Supporting detail: what the mother prepared
   { id:3, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"According to Texto 1, why did Isabel sometimes have to copy information by hand?",
-    ch:["A) The library didn't allow students to print anything.",
-        "B) All three computers were occupied when she arrived.",
-        "C) Her teacher required handwritten notes.",
-        "D) The computers were too slow to load the websites she needed."],
-    cor:"B",
-    exp:"The text says: 'cuando todas estaban ocupadas, Isabel tenía que copiar la información a mano.' All three machines being taken is the direct cause. Option A invents a printing rule. Option C invents a teacher requirement. Option D invents a speed problem — the text doesn't mention slow computers." },
+    prompt:"According to Texto 1, what did Valentina's mother prepare for breakfast every morning?",
+    ch:["A) Coffee, toast, and fresh fruit.",
+        "B) Orange juice, eggs, and tea.",
+        "C) Fresh fruit, hot oatmeal, and chamomile tea.",
+        "D) Warm water with lemon, fruit, and juice."],
+    cor:"C",
+    exp:"The text says: 'frutas frescas, avena caliente y té de manzanilla.' Option A adds coffee (the father avoided coffee). Option B mixes in the father's juice and adds eggs not mentioned. Option D confuses the sick-day remedy with the regular breakfast." },
 
-  // 4 — Supporting detail: how Isabel's time improved
+  // 4 — Supporting detail: father's preference
   { id:4, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"According to Texto 1, what specific change happened after the library got wireless internet?",
-    ch:["A) Isabel got her own laptop and stopped going to the library.",
-        "B) The library bought more computers so fewer students had to wait.",
-        "C) Tasks that used to take two hours could now be done in twenty minutes.",
-        "D) Isabel's grades improved immediately and she won a scholarship."],
-    cor:"C",
-    exp:"The text says: 'lo que antes le tomaba dos horas ahora lo hacía en veinte minutos.' Option A invents a laptop — the text doesn't say she got one. Option B invents more computers — the change was wireless internet, not more machines. Option D invents a scholarship not mentioned anywhere." },
+    prompt:"According to Texto 1, why didn't Valentina's father drink coffee?",
+    ch:["A) His doctor told him not to drink it.",
+        "B) He preferred freshly squeezed orange juice instead.",
+        "C) He was allergic to caffeine.",
+        "D) His wife didn't allow it at the breakfast table."],
+    cor:"B",
+    exp:"The text says: 'El padre de Valentina tampoco tomaba café — prefería el jugo de naranja recién exprimido.' The text gives his preference as the reason, not a doctor's order, allergy, or prohibition. Options A, C, and D all add information that does not appear in the passage." },
 
-  // 5 — Cause and effect: Sebastián's grades
+  // 5 — Cause and effect: Valentina's sick day
   { id:5, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"According to Texto 2, what caused Sebastián's grades to drop?",
-    ch:["A) He stopped doing homework because he was texting friends all night.",
-        "B) His teachers gave harder exams after he got his phone.",
-        "C) He began checking his phone constantly, including during class, which broke his concentration.",
-        "D) The social media apps he used were designed to be addictive."],
+    prompt:"What did Valentina's mother do when Valentina came home feeling sick?",
+    ch:["A) She took Valentina to the doctor immediately.",
+        "B) She gave her chamomile tea and sent her to bed.",
+        "C) She gave her warm water with lemon and honey, and told her to rest.",
+        "D) She gave her cold orange juice and aspirin."],
     cor:"C",
-    exp:"The text says he checked his phone 'durante las comidas, antes de dormir y hasta en clase' and that each look caused several minutes of lost concentration. Option A is partially plausible but the text never says he stopped doing homework. Option B is not mentioned. Option D is an interpretation not stated in the text — the word 'addictive' (adictivo) doesn't appear." },
+    exp:"The text says: 'Su madre le dio un vaso de agua tibia con limón y miel, y le pidió que descansara en su cuarto.' Option B confuses the sick-day treatment with the regular morning tea. Option A and D invent details not in the passage." },
 
-  // 6 — Supporting detail: what the teacher said
+  // 6 — Sequence: Texto 1
   { id:6, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"What did Sebastián's teacher explain to him?",
-    ch:["A) That using a phone in class was against school rules.",
-        "B) That the human brain cannot focus on multiple screens at once, and each phone check cost minutes of concentration.",
-        "C) That social media was bad for mental health.",
-        "D) That Sebastián needed to study more hours each night."],
-    cor:"B",
-    exp:"The text says: 'el cerebro humano no está diseñado para concentrarse en múltiples pantallas al mismo tiempo, y que cada vez que Sebastián miraba el móvil, tardaba varios minutos en volver a concentrarse.' Option A invents a school rule. Option C is never mentioned. Option D is never said — the teacher explained the science, not a study-hours requirement." },
+    prompt:"Which sequence of events from Texto 1 is correct?",
+    ch:["A) Valentina got sick → her mother gave her tea → she rested → she recovered.",
+        "B) Valentina recovered → she rested → her mother gave her a remedy.",
+        "C) Valentina got sick → her mother gave her lemon water with honey → she rested → she recovered.",
+        "D) Valentina's mother made breakfast → Valentina got sick at school → she never fully recovered."],
+    cor:"C",
+    exp:"The correct sequence: came home sick → mother gave lemon water with honey → told to rest → felt completely recovered the next day. Option A replaces 'lemon water with honey' with 'tea' (the regular morning drink). Option B reverses the sequence. Option D adds 'never fully recovered' which contradicts the text." },
 
-  // 7 — Sequence: Sebastián's story
+  // 7 — Supporting detail: grandmother's remedy
   { id:7, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"Which sequence of events from Texto 2 is correct?",
-    ch:["A) Grades dropped → teacher explained → experiment → grades improved → new habit formed.",
-        "B) Phone received → experiment → grades dropped → teacher explained → habit changed.",
-        "C) Teacher explained → experiment → phone received → grades improved.",
-        "D) Grades improved → experiment → grades dropped → phone received."],
-    cor:"A",
-    exp:"The correct order: received phone → overuse began → grades dropped → teacher explained the science → Sebastián ran one-week experiment → grades improved notably → new permanent habit. Option A captures this correctly (skipping the first step but maintaining the right order of events after the problem began). Options B, C, and D all reverse or scramble the sequence." },
+    prompt:"According to Texto 2, what ingredients did the grandmother use in her remedy?",
+    ch:["A) Ginger, cinnamon, and honey.",
+        "B) Boiled water, grated ginger, honey, and lemon juice.",
+        "C) Lemon juice, chamomile, honey, and warm milk.",
+        "D) Orange juice, ginger, and mint."],
+    cor:"B",
+    exp:"The text says: 'hervía agua con jengibre rallado, miel y jugo de limón.' Option A replaces lemon with cinnamon and omits the water. Option C adds chamomile and milk which don't appear. Option D substitutes orange juice and adds mint — neither is in the text." },
 
-  // 8 — Supporting detail: Isabel's job
+  // 8 — Supporting detail: frequency
   { id:8, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"What does Isabel do today as an adult?",
-    ch:["A) She works as a librarian and teaches people how to use computers.",
-        "B) She designs apps for rural communities that still lack easy internet access.",
-        "C) She teaches technology classes at the school she attended as a child.",
-        "D) She works for the government to build internet towers in small towns."],
-    cor:"B",
-    exp:"The text says: 'Isabel trabaja para una empresa de tecnología y diseña aplicaciones para comunidades rurales que todavía no tienen acceso fácil a internet.' Option A is a plausible distractor connected to the library, but her job is at a tech company, not a library. Options C and D are not in the text." },
+    prompt:"How often did the grandmother give her remedy to the sick person?",
+    ch:["A) Once a day, in the morning.",
+        "B) Three times a day, before meals.",
+        "C) Twice a day.",
+        "D) Only when the fever was very high."],
+    cor:"C",
+    exp:"The text says: 'le daba la mezcla caliente al enfermo dos veces al día.' Dos veces = twice. Option D is a trap — Marcos had a high fever but the text describes giving the remedy to anyone who got sick, twice a day, not only during high fevers." },
 
-  // 9 — Cause and effect: Sebastián's experiment result
+  // 9 — Cause and effect: why Marcos refused
   { id:9, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"What happened at the end of Sebastián's one-week experiment?",
-    ch:["A) His teachers noticed and congratulated him publicly.",
-        "B) His grades had improved noticeably.",
-        "C) He decided the experiment was too hard and went back to his old habits.",
-        "D) His friends stopped texting him because he never replied."],
-    cor:"B",
-    exp:"The text says: 'sus notas habían mejorado notablemente.' Option A invents teacher recognition not mentioned. Option C directly contradicts the text — he changed his habits permanently. Option D is never mentioned." },
+    prompt:"Why did Marcos refuse to take his grandmother's remedy at first?",
+    ch:["A) He didn't believe in natural remedies.",
+        "B) He thought he wasn't sick enough to need it.",
+        "C) He found it too bitter.",
+        "D) He wanted to go to the pharmacy instead."],
+    cor:"C",
+    exp:"The text says: 'se negó a tomar el remedio porque le parecía demasiado amargo.' Amargo = bitter. Option A is an inference not supported — his general beliefs aren't mentioned. Options B and D add information not in the text. This question also tests vocabulary: knowing 'amargo' means bitter." },
 
-  // 10 — Careful reading: what Isabel learned
+  // 10 — Cause/effect TRAP: what cured Marcos?
   { id:10, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"According to Texto 1, what specific skill did Isabel develop because of her limited access to technology?",
-    ch:["A) She learned to type very fast on old computers.",
-        "B) She memorized large amounts of information.",
-        "C) She learned to manage her time very carefully.",
-        "D) She learned to repair computers when they broke down."],
+    prompt:"According to Texto 2, what caused Marcos's fever to go down?",
+    ch:["A) The grandmother's remedy cured him.",
+        "B) He went to the pharmacy and got medicine.",
+        "C) The passage does not say for certain — it could have been the remedy or just time.",
+        "D) He rested for two days and drank plenty of water."],
     cor:"C",
-    exp:"The text says: 'Isabel aprendió a organizar su tiempo con mucho cuidado.' Options A, B, and D all sound plausible but none appear in the text. This is a reading precision trap — the answer is stated explicitly but students may guess based on what seems logical rather than what the text actually says." },
+    exp:"This is a careful reading trap. The text says: 'Marcos no estaba del todo seguro si fue el remedio o simplemente el tiempo lo que lo curó.' The text explicitly states uncertainty. Option A is what the grandmother would claim but the narrator doesn't confirm it. Options B and D add details not in the text." },
 
-  // 11 — Detail: Sebastián's new daily habit
+  // 11 — Supporting detail: what Marcos does today
   { id:11, sec:"Comprehension", type:"mc",
     passage: true,
-    prompt:"What is Sebastián's new habit described at the end of Texto 2?",
-    ch:["A) He turns his phone off for the entire day and only checks it at night.",
-        "B) He turns his phone off while studying and turns it back on when he finishes.",
-        "C) He only uses his phone on weekends.",
-        "D) He deleted all his social media apps."],
-    cor:"B",
-    exp:"The text says: 'Sebastián apaga el móvil antes de estudiar y lo prende solo cuando termina.' He turns it off before studying and turns it back on when done — not all day, not only weekends, and no mention of deleting apps. Options A, C, and D all overstate or change the described habit." },
+    prompt:"What does Marcos do today when his friends get sick?",
+    ch:["A) He takes them to his grandmother so she can treat them.",
+        "B) He recommends they go to the pharmacy for medicine.",
+        "C) He recommends the same remedy and explains how to make it.",
+        "D) He sends them the remedy already prepared."],
+    cor:"C",
+    exp:"The text says: 'Marcos les recomienda el mismo remedio y les explica cómo prepararlo.' Option A adds a visit to the grandmother not mentioned. Option B contradicts what Marcos learned. Option D is a plausible distractor but the text only says he recommends and explains — not that he sends it prepared." },
 
   // ── §II VOCABULARY IN CONTEXT ────────────────────────────────────────────
 
-  // 12 — "inalámbrica" (MC)
+  // 12 — "agotada" (MC)
   { id:12, sec:"Vocabulary in Context", type:"mc",
     passage: true,
-    prompt:"In Texto 1, the library installed a 'red inalámbrica nueva' and suddenly everyone could connect at the same time.\n\nBased on context, what does inalámbrica most likely mean?",
-    ch:["A) expensive and hard to install",
-        "B) wireless — not requiring physical cables",
-        "C) very fast and unlimited",
-        "D) shared between only a few users"],
+    prompt:"In Texto 1, Valentina arrives home 'completamente agotada y con un dolor de cabeza muy fuerte.'\n\nBased on context, what does agotada most likely mean?",
+    ch:["A) happy and energetic",
+        "B) completely exhausted / drained",
+        "C) angry and frustrated",
+        "D) confused and distracted"],
     cor:"B",
-    exp:"Key context clue: before this, only 3 machines existed and students had to wait their turn. After the 'red inalámbrica,' everyone could connect simultaneously — implying the connection was no longer tied to specific machines. 'Inalámbrica' = sin cables (without wires/wireless). Speed and cost are not mentioned as the change." },
+    exp:"Context clues: she came home from school, had a strong headache, and her mother immediately gave her a remedy and told her to rest. All of these responses point to being physically exhausted, not happy, angry, or confused. 'Completamente' (completely) intensifies the feeling of being drained." },
 
-  // 13 — "a la vez" (MC)
+  // 13 — "hervía" (MC)
   { id:13, sec:"Vocabulary in Context", type:"mc",
     passage: true,
-    prompt:"In Texto 2, Sebastián 'insistía en que podía hacer varias cosas a la vez.'\n\nBased on context, what does a la vez most likely mean?",
-    ch:["A) carefully and slowly",
-        "B) at the same time",
-        "C) one after the other",
-        "D) with great difficulty"],
-    cor:"B",
-    exp:"Context: the teacher specifically counters this claim by saying the brain cannot focus on 'múltiples pantallas al mismo tiempo.' The phrase 'al mismo tiempo' in the teacher's response directly mirrors and clarifies 'a la vez' — both mean 'at the same time.' Option C (one after another) would actually be the safe approach the teacher recommends, not what Sebastián claimed." },
+    prompt:"In Texto 2, the grandmother 'hervía agua con jengibre rallado, miel y jugo de limón.'\n\nBased on context, what does hervía most likely mean?",
+    ch:["A) mixed cold ingredients together",
+        "B) stored in a jar or container",
+        "C) boiled",
+        "D) tasted to check the flavor"],
+    cor:"C",
+    exp:"The clue is that the remedy is described as 'la mezcla caliente' (the hot mixture) given to the sick person. A mixture that's hot and made with water most likely involved boiling. 'Rallado' (grated) for the ginger also suggests preparation through heat, not cold mixing or storage." },
 
-  // 14 — "notablemente" (MC)
+  // 14 — "aliviar" (MC)
   { id:14, sec:"Vocabulary in Context", type:"mc",
     passage: true,
-    prompt:"At the end of Texto 2, 'sus notas habían mejorado notablemente.'\n\nBased on context, what does notablemente most likely mean?",
-    ch:["A) slightly — just a little bit",
-        "B) unexpectedly — in a surprising way",
-        "C) noticeably / significantly",
-        "D) temporarily — for only a short time"],
+    prompt:"The grandmother says natural remedies 'podían aliviar los síntomas más rápido en casos leves.'\n\nBased on context, what does aliviar most likely mean?",
+    ch:["A) to cure completely and permanently",
+        "B) to worsen",
+        "C) to relieve or ease",
+        "D) to ignore"],
     cor:"C",
-    exp:"Context: Sebastián ran a one-week experiment expecting results. The outcome is presented as the payoff of his effort. 'Notablemente' comes from 'notable' — worth noting, significant. Option A (slightly) contradicts the positive framing of the result. Option B (unexpectedly) adds surprise the text doesn't express — he expected improvement. Option D (temporarily) contradicts the permanent habit that follows." },
+    exp:"Key context: she says remedies could do this to 'síntomas' (symptoms) — and she contrasts natural remedies (for mild cases) with pharmacy medicine (for serious cases). 'Aliviar' falls between 'cure completely' (too strong) and 'ignore/worsen.' The contrast with 'casos graves' suggests easing mild discomfort, not a full cure." },
 
-  // 15 — "agotador" (free response)
+  // 15 — "remedios caseros" (free response)
   { id:15, sec:"Vocabulary in Context", type:"free",
     passage: true,
-    prompt:"In Texto 1: 'El proceso era lento y agotador, pero Isabel aprendió a organizar su tiempo.'\n\nIsabel had to wait for computers, copy by hand, and repeat this process regularly.\n\nBased on these context clues, what does agotador most likely mean in English?\n\nWrite your answer in English: ______",
-    acc:["exhausting","tiring","draining","very tiring","very exhausting","extremely tiring","worn out","tedious","tiresome","hard","difficult","taxing"],
-    disp:"exhausting / tiring",
-    exp:"Context clues: the process was slow ('lento'), required physical copying by hand, and was done repeatedly. 'Agotador' is related to 'agotado/a' (exhausted) — something that drains your energy. The 'but' ('pero') that follows also signals that despite the difficulty, Isabel pushed through — implying real effort was required." },
+    prompt:"The title of Texto 2 refers to 'los remedios de la abuela,' and the passage describes treatments made at home using ingredients like ginger, honey, and lemon — not from a pharmacy.\n\nBased on these context clues, what does remedios caseros most likely mean in English?\n\nWrite your answer in English: ______",
+    acc:["home remedies","homemade remedies","home remedy","natural remedies","traditional remedies","household remedies","folk remedies"],
+    disp:"home remedies",
+    exp:"Context clues: the treatments are made at home using natural food ingredients (ginger, honey, lemon), and contrasted directly with 'medicamentos de la farmacia' (pharmacy medicine). 'Casero/a' comes from 'casa' (home/house), so 'remedios caseros' = remedies made at home. 'Natural remedies' and 'traditional remedies' are also accepted." },
 
-  // 16 — "tardaba" (free response)
+  // 16 — "amargo" (free response)
   { id:16, sec:"Vocabulary in Context", type:"free",
     passage: true,
-    prompt:"In Texto 2: 'cada vez que Sebastián miraba el móvil, tardaba varios minutos en volver a concentrarse.'\n\nThe teacher is explaining why checking the phone during class hurts performance. Based on this context, what does tardaba most likely mean in English?\n\nWrite your answer in English: ______",
-    acc:["it took","he took","he spent","it took him","he needed","it would take","took him","he was taking","it was taking"],
-    disp:"it took (him)",
-    exp:"Context: the teacher is describing a time cost — each phone check had a consequence measured in minutes. 'Tardaba varios minutos en...' = 'it took him several minutes to...' The verb 'tardar' means to take time / to delay. Recognizing that the result is measured in minutes helps confirm this is about time spent, not difficulty or emotion." },
+    prompt:"Marcos 'se negó a tomar el remedio porque le parecía demasiado amargo.'\n\nThe remedy contains ginger, lemon, and honey — three strong, sharp flavors. Based on this context, what does amargo most likely mean in English?\n\nWrite your answer in English: ______",
+    acc:["bitter","too bitter","very bitter","bad tasting","bad taste","unpleasant","unpleasant tasting","sour","harsh"],
+    disp:"bitter",
+    exp:"Context clues: Marcos refused the drink. The ingredients include ginger (sharp/spicy), lemon (sour/acidic), and honey (sweet) — with ginger and lemon dominating the flavor profile of something described as 'demasiado' (too much/excessively) amargo. 'Bitter' or 'sour/harsh' are the most natural English translations. 'Bad tasting' is accepted as a broader interpretation." },
 
   // ── §III TEXT STRUCTURE ──────────────────────────────────────────────────
 
@@ -537,47 +538,47 @@ const QS = [
   { id:17, sec:"Text Structure", type:"mc",
     passage: true,
     prompt:"Which text structure BEST describes Texto 1?",
-    ch:["A) Sequence — it gives step-by-step instructions for using library computers.",
-        "B) Compare/Contrast — it compares life with and without internet.",
-        "C) Cause and Effect — limited technology access caused Isabel to develop strong habits that shaped her career.",
-        "D) Problem/Solution — Isabel had a problem finding computers and found a solution."],
+    ch:["A) Problem / Solution — the family had a health problem and found a solution.",
+        "B) Compare / Contrast — it compares the mother's habits with the father's habits.",
+        "C) Cause and Effect — the family's health routine caused Valentina to adopt healthy habits as an adult.",
+        "D) Sequence — it presents a numbered list of steps in the morning routine."],
     cor:"C",
-    exp:"The passage is driven by a chain of causes and effects: limited access → careful habits → efficient work → career in technology for rural areas. Option B is tempting — the before/after of the wireless installation does create a contrast — but that contrast serves to illustrate the cause/effect, not to compare two things systematically. Option A is wrong (no steps are listed). Option D is too narrow — the problem of finding computers is just the opening context, not the full structure." },
+    exp:"The passage presents a cause (the family's health-focused upbringing) and its long-term effect (Valentina still follows the same routine and teaches it to her children). Option A is partially present but the passage doesn't frame a 'problem' explicitly. Option B is too narrow — the father's preference is a detail, not the main structure. Option D has no numbered steps; the sequence of events is used to support a cause/effect narrative." },
 
-  // 18 — BOTH structures for Texto 2
+  // 18 — TWO structures that apply to Texto 2
   { id:18, sec:"Text Structure", type:"mc",
     passage: true,
     prompt:"Which TWO text structures both apply to Texto 2? (Choose the best answer.)",
-    ch:["A) Sequence and Compare/Contrast — it lists what Sebastián did each day and compares him to other students.",
-        "B) Problem/Solution and Cause/Effect — phone overuse is the problem; the experiment is the solution; the habit change shows the long-term effect.",
-        "C) Compare/Contrast and Sequence — it compares old Sebastián to new Sebastián and lists events in order.",
-        "D) Problem/Solution only — it presents a clear problem and a clear solution with no further effects described."],
+    ch:["A) Sequence and Compare/Contrast — it lists steps to make the remedy and compares two people.",
+        "B) Problem/Solution and Cause/Effect — illness is the problem, the remedy is the solution; taking the remedy caused the fever to go down (or not).",
+        "C) Compare/Contrast and Sequence — it compares pharmacies with home remedies and lists steps in order.",
+        "D) Problem/Solution and Sequence — it describes the problem and then lists numbered steps."],
     cor:"B",
-    exp:"Texto 2 clearly fits Problem/Solution (overuse → experiment → solution: new habit) AND Cause/Effect (phone use caused grade drops; teacher's explanation caused the experiment; the experiment caused lasting change). Option C is tempting — events ARE in order and there IS a before/after — but Sequence and Compare/Contrast are not the dominant structures. Option D is wrong because the text goes beyond the solution to describe lasting effects." },
+    exp:"Texto 2 fits BOTH Problem/Solution (someone gets sick → grandmother applies a remedy) AND Cause/Effect (the grandmother's teaching caused Marcos to adopt her approach; the remedy may have caused the fever to go down). Option C is tempting — the text does contrast pharmacy medicine with natural remedies — but Sequence as a primary structure is weak. Option D is wrong because there are no numbered steps. Option A misstates who is being compared." },
 
   // ── §IV INFERENCE ────────────────────────────────────────────────────────
 
-  // 19 — Inference: why Isabel designs apps for rural communities
+  // 19 — Inference about Valentina's mother
   { id:19, sec:"Inference", type:"mc",
     passage: true,
-    prompt:"Based on Texto 1, why does it make sense that Isabel chose to design apps specifically for rural communities?",
-    ch:["A) Her company assigned her to that project and she had no choice.",
-        "B) She experienced limited internet access firsthand as a child and understands what those communities need.",
-        "C) She felt guilty for having better technology than others when she grew up.",
-        "D) Rural communities pay more for technology apps, making it a profitable career choice."],
+    prompt:"Based on Texto 1, what can we logically infer about Valentina's mother's approach to health?",
+    ch:["A) She was a trained nutritionist or doctor.",
+        "B) She believed that consistent daily habits were more important than medicine when sick.",
+        "C) She thought Valentina was too weak and needed special care.",
+        "D) She disliked modern medicine and refused to use it."],
     cor:"B",
-    exp:"The text never says she was assigned the project, felt guilty, or chose it for profit. The logical inference is that her childhood without internet gave her direct understanding of the challenges rural communities face — she lived that experience and is now in a position to address it. This requires connecting her backstory to her adult work without the text explicitly stating the connection." },
+    exp:"The text shows she maintained a strict daily routine (preventative health), and when Valentina got sick, her response was a simple home remedy + rest, not a doctor visit. This implies she valued consistent healthy habits. Option A is not supported — no profession is mentioned. Option C is not in the text. Option D overstates her position — the text doesn't mention modern medicine at all in Texto 1." },
 
-  // 20 — Inference: what Sebastián's story suggests about technology
+  // 20 — Inference about Marcos
   { id:20, sec:"Inference", type:"mc",
     passage: true,
-    prompt:"Based on Texto 2, what can we logically infer about Sebastián's overall view of his phone by the end of the passage?",
-    ch:["A) He regrets getting a phone and wishes his parents had waited longer to give him one.",
-        "B) He thinks phones are dangerous and believes everyone should turn them off all day.",
-        "C) He sees his phone as useful but recognizes it needs to be managed, not avoided completely.",
-        "D) He is still skeptical that the phone caused his grade problems and thinks other factors were responsible."],
+    prompt:"By the end of Texto 2, what can we infer about how Marcos feels about his grandmother's remedy?",
+    ch:["A) He is completely convinced the remedy works and rejects pharmacy medicine.",
+        "B) He still isn't sure if the remedy works, so he avoids recommending it.",
+        "C) He respects the tradition and passes it on, even though he remains uncertain whether it actually works.",
+        "D) He recommends it only to people who hate going to the pharmacy."],
     cor:"C",
-    exp:"Sebastián doesn't abandon the phone — he turns it off during study time and turns it back on after. This shows he still uses it and values it, but has learned to control when. Option A implies regret not expressed in the text. Option B overstates — he only turns it off during studying, not all day. Option D contradicts the text: he ran the experiment, saw results, and changed his behavior permanently — suggesting he accepted the connection." },
+    exp:"The text says he is 'not entirely sure' whether the remedy or time cured him — yet he still recommends it and explains how to make it. This combination of uncertainty + continued recommendation = respect for tradition without full scientific conviction. Option A overstates his confidence. Option B contradicts the text (he does recommend it). Option D adds a condition not in the text." },
 ];
 
 // ══════════════════════════════════════════════
@@ -638,7 +639,7 @@ function renderQ() {
   // passage
   if (q.passage) {
     html += `<div class="passage-card">
-      <div class="passage-label">Textos — Sin internet · El precio del móvil</div>
+      <div class="passage-label">Textos — Familia Herrera · Remedios de la abuela</div>
       ${PASSAGE}
     </div>`;
   }
