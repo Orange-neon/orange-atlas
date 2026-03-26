@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Examen XV — Senderos 2 Lección 5</title>
+<title>Examen XVI — Senderos 2 Lección 5</title>
 <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -263,8 +263,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <!-- ══════════ LANDING ══════════ -->
 <div class="screen active" id="s-landing">
 <div class="land-inner">
-  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XV</p>
-  <h1 class="land-title">Mandatos II<br><em>con Pronombres</em></h1>
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XVI</p>
+  <h1 class="land-title">Mandatos III<br><em>con Pronombres</em></h1>
   <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
 
   <div class="info-grid">
@@ -300,7 +300,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <div class="screen" id="s-exam">
   <div id="topbar">
     <div class="tb-left">
-      <div class="tb-qnum">Mandatos II con Pronombres</div>
+      <div class="tb-qnum">Mandatos III con Pronombres</div>
       <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
     </div>
     <div class="tb-timer" id="timer">
@@ -333,7 +333,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 // ══════════════════════════════════════════════
 // PASSAGE
 // ══════════════════════════════════════════════
-const PASSAGE = `El martes por la mañana, Andrés llegó al taller mecánico con su carro. El mecánico lo saludó. «Revísame los frenos — hacen un ruido raro», dijo Andrés. «Claro, revisártelos es mi trabajo», respondió el mecánico. «Y el aceite también — revisámelo, por favor». Después de una hora, el mecánico le dijo: «Los frenos están bien, pero el aceite está muy bajo. Llénalo antes de salir». «¿Puedes llenármelo tú?», preguntó Andrés. «Por supuesto — llenártelo es fácil». Al salir, Andrés le preguntó: «¿Me mandas la factura por correo?». «No te la mando — págala ahora mismo», respondió el mecánico con una sonrisa.`;
+const PASSAGE = `El jueves por la tarde, Valeria ayudaba a su primo Tomás a prepararse para un viaje en carro. «Ponme el GPS en el móvil», dijo Tomás. «Ya te lo puse», respondió Valeria. «¿Y el cinturón? Abróchame el del asiento de atrás — está trabado». «No te lo abrocho — hazlo tú mismo, no es difícil». Tomás se rio. Antes de salir, Valeria dijo: «Prométeme que manejas con cuidado». «Te lo prometo», dijo Tomás. «Y no me texteen mientras manejas — no les contestes a nadie». «No te preocupes — no lo hago nunca». Valeria se quedó más tranquila.`;
 
 // ══════════════════════════════════════════════
 // NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
@@ -343,7 +343,7 @@ const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
 const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
 
 // ══════════════════════════════════════════════
-// QUESTIONS — Mandatos II con pronombres (all new verbs & contexts)
+// QUESTIONS — Mandatos III con pronombres (all new verbs & contexts)
 //
 // §I  Afirmativo tú + 1 pronombre  (regla 1-2-3)    Q1–Q7
 // §II Afirmativo tú + 2 pronombres (regla 1-2-3-4)  Q8–Q11
@@ -355,165 +355,166 @@ const QS = [
 
   // ── §I Afirmativo + 1 pronombre ─────────────────────────────────────────
 
-  // 1 — mándalo
+  // 1 — ciérrala
   { id:1, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"Tu amigo tiene el documento final del proyecto pero no lo ha enviado. Dile que lo mande ahora.\n\nVerbo: mandar · pronombre: lo\nEscribe el mandato completo: ______",
-    acc:["mándalo"],
-    disp:"mándalo",
-    exp:"mandar → mandato tú = manda. Añades 'lo': manda + lo → mándalo.\nRegla 1-2-3: mán-da-lo → tilde en la 3ª sílaba desde el final ('mán')." },
+    prompt:"Saliste del carro pero dejaste la puerta abierta. Tu amigo te dice que la cierres.\n\nVerbo: cerrar · pronombre: la\nEscribe el mandato completo: ______",
+    acc:["ciérrala"],
+    disp:"ciérrala",
+    exp:"cerrar → mandato tú = cierra (cambio de raíz e→ie). Añades 'la': cierra + la → ciérrala.\nRegla 1-2-3: cié-rra-la → tilde en la 3ª sílaba desde el final ('cié')." },
 
-  // 2 — lléname  (fill-in-the-blank dialogue)
+  // 2 — cónducelo  (fill-in-the-blank dialogue)
   { id:2, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"— El tanque está casi vacío.\n— ______ en esa gasolinera — está justo en la próxima salida.\n— Perfecto, gracias.\n\nVerbo: llenar · pronombre: lo",
-    acc:["llénalo"],
-    disp:"llénalo",
-    exp:"llenar → mandato tú = llena. Añades 'lo': llena + lo → llénalo.\nRegla 1-2-3: llé-na-lo → tilde en la 3ª sílaba desde el final ('llé')." },
+    prompt:"— ¿Quién va a manejar el carro al taller?\n— ______ tú — conoces mejor esa parte de la ciudad.\n— Está bien, yo lo llevo.\n\nVerbo: conducir · pronombre: lo",
+    acc:["condúcelo"],
+    disp:"condúcelo",
+    exp:"conducir → mandato tú = conduce. Añades 'lo': conduce + lo → condúcelo.\nRegla 1-2-3: con-dú-ce-lo → tilde en la 3ª sílaba desde el final ('dú')." },
 
-  // 3 — arréglalo
+  // 3 — abróchalo
   { id:3, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"El limpiaparabrisas del carro está roto. Le dices al mecánico que lo arregle.\n\nVerbo: arreglar · pronombre: lo\nEscribe el mandato completo: ______",
-    acc:["arréglalo"],
-    disp:"arréglalo",
-    exp:"arreglar → mandato tú = arregla. Añades 'lo': arregla + lo → arréglalo.\nRegla 1-2-3: a-rrég-la-lo → tilde en la 3ª sílaba desde el final ('rrég')." },
+    prompt:"Tu hermanito no se ha puesto el cinturón de seguridad. Le dices que se lo abroche.\n\nVerbo: abrochar · pronombre: lo\nEscribe el mandato completo: ______",
+    acc:["abróchalo"],
+    disp:"abróchalo",
+    exp:"abrochar → mandato tú = abrocha. Añades 'lo': abrocha + lo → abróchalo.\nRegla 1-2-3: a-bró-cha-lo → tilde en la 3ª sílaba desde el final ('bró')." },
 
-  // 4 — párcala  (fill-in-the-blank)
+  // 4 — prométemelo… wait, this is §I so just 1 pronoun — promételo
   { id:4, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"— No encuentro dónde dejar el carro.\n— ______ en la calle de atrás — siempre hay espacio ahí.\n— Buena idea, voy ahora.\n\nVerbo: aparcar · pronombre: la",
-    acc:["árcala","apárcala"],
-    disp:"apárcala",
-    exp:"aparcar → mandato tú = aparca. Añades 'la': aparca + la → apárcala.\nRegla 1-2-3: a-pár-ca-la → tilde en la 3ª sílaba desde el final ('pár')." },
+    prompt:"— ¿De verdad vas a manejar con más cuidado desde ahora?\n— Sí, sí, te lo juro.\n— Entonces ______ — quiero escucharlo de verdad.\n\nVerbo: prometer · pronombre: lo",
+    acc:["promételo"],
+    disp:"promételo",
+    exp:"prometer → mandato tú = promete. Añades 'lo': promete + lo → promételo.\nRegla 1-2-3: pro-mé-te-lo → tilde en la 3ª sílaba desde el final ('mé')." },
 
-  // 5 — préndelos
+  // 5 — póntelo
   { id:5, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"Está oscureciendo y los faros del carro están apagados. Un pasajero te dice que los prenda.\n\nVerbo: prender · pronombre: los\nEscribe el mandato completo: ______",
-    acc:["préndelos"],
-    disp:"préndelos",
-    exp:"prender → mandato tú = prende. Añades 'los': prende + los → préndelos.\nRegla 1-2-3: prén-de-los → tilde en la 3ª sílaba desde el final ('prén')." },
+    prompt:"Tu amigo olvidó ponerse el cinturón de seguridad antes de salir. Le dices que se lo ponga.\n\nVerbo: ponerse · pronombre: lo\nEscribe el mandato completo: ______",
+    acc:["póntelo"],
+    disp:"póntelo",
+    exp:"ponerse → mandato tú reflexivo = ponte. Añades 'lo': ponte + lo → póntelo.\nRegla 1-2-3: pón-te-lo → tilde en la 3ª sílaba desde el final ('pón').\nNota: 'te' aquí es el pronombre reflexivo, 'lo' es el objeto directo." },
 
-  // 6 — págala  (fill-in-the-blank)
+  // 6 — síguela  (fill-in-the-blank)
   { id:6, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"— Ya terminé de revisar el carro. Son ochenta dólares.\n— ¿Puedo pagar mañana?\n— No, ______ ahora — es la política del taller.\n\nVerbo: pagar · pronombre: la",
-    acc:["págala"],
-    disp:"págala",
-    exp:"pagar → mandato tú = paga. Añades 'la': paga + la → págala.\nRegla 1-2-3: pá-ga-la → tilde en la 3ª sílaba desde el final ('pá')." },
+    prompt:"— No sé por dónde ir — nunca he venido a esta parte de la ciudad.\n— ¿Ves esa señal azul? ______ hasta llegar a la autopista.\n— Perfecto, ya la veo.\n\nVerbo: seguir · pronombre: la",
+    acc:["síguela"],
+    disp:"síguela",
+    exp:"seguir → mandato tú = sigue (cambio ortográfico: segu → sigu). Añades 'la': sigue + la → síguela.\nRegla 1-2-3: sí-gue-la → tilde en la 3ª sílaba desde el final ('sí')." },
 
-  // 7 — árrancalo
+  // 7 — devuélvela
   { id:7, sec:"Afirmativo + 1 pronombre", type:"free",
-    prompt:"El carro lleva diez minutos sin encender. Tu amigo mecánico te dice que lo arranques de nuevo.\n\nVerbo: arrancar · pronombre: lo\nEscribe el mandato completo: ______",
-    acc:["arrancalo","arráncalo"],
-    disp:"arráncalo",
-    exp:"arrancar → mandato tú = arranca. Añades 'lo': arranca + lo → arráncalo.\nRegla 1-2-3: a-rrán-ca-lo → tilde en la 3ª sílaba desde el final ('rrán')." },
+    prompt:"Tu amigo todavía tiene tu llave del carro de la semana pasada. Le dices que te la devuelva.\n\nVerbo: devolver · pronombre: la\nEscribe el mandato completo: ______",
+    acc:["devuélvela"],
+    disp:"devuélvela",
+    exp:"devolver → mandato tú = devuelve (cambio de raíz o→ue). Añades 'la': devuelve + la → devuélvela.\nRegla 1-2-3: de-vuél-ve-la → tilde en la 3ª sílaba desde el final ('vuél')." },
 
   // ── §II Afirmativo + 2 pronombres ───────────────────────────────────────
 
-  // 8 — mándamelo
+  // 8 — ciérramela
   { id:8, sec:"Afirmativo + 2 pronombres", type:"free",
-    prompt:"Tu amigo tiene la dirección del taller mecánico guardada en el móvil. Dile que te la mande.\n\nVerbo: mandar · IO: me · DO: la\nEscribe el mandato completo: ______",
-    acc:["mándamela"],
-    disp:"mándamela",
-    exp:"mandar → mandato tú = manda. IO 'me' + DO 'la': manda + me + la → mándamela.\nRegla 1-2-3-4: mán-da-me-la → tilde en la 4ª sílaba desde el final ('mán').\nIO siempre precede al DO." },
+    prompt:"Tienes las manos ocupadas y la puerta del carro sigue abierta. Le pides a tu amigo que te la cierre.\n\nVerbo: cerrar · IO: me · DO: la\nEscribe el mandato completo: ______",
+    acc:["ciérramela"],
+    disp:"ciérramela",
+    exp:"cerrar → mandato tú = cierra. IO 'me' + DO 'la': cierra + me + la → ciérramela.\nRegla 1-2-3-4: cié-rra-me-la → tilde en la 4ª sílaba desde el final ('cié')." },
 
-  // 9 — llénámelo  (fill-in-the-blank)
+  // 9 — abróchámelo  (fill-in-the-blank)
   { id:9, sec:"Afirmativo + 2 pronombres", type:"free",
-    prompt:"— El tanque está vacío y tengo prisa.\n— ______ yo — tú espera aquí dentro.\n— Gracias, te lo agradezco.\n\nVerbo: llenar · IO: me · DO: lo",
-    acc:["llénamelo"],
-    disp:"llénamelo",
-    exp:"llenar → mandato tú = llena. IO 'me' + DO 'lo': llena + me + lo → llénamelo.\nRegla 1-2-3-4: llé-na-me-lo → tilde en la 4ª sílaba desde el final ('llé')." },
+    prompt:"— Este cinturón está muy difícil de cerrar — siempre se traba.\n— ______ yo — sé el truco para que no se trabe.\n— Gracias, siempre me cuesta trabajo.\n\nVerbo: abrochar · IO: me · DO: lo",
+    acc:["abróchámelo","abróchamelo"],
+    disp:"abróchámelo",
+    exp:"abrochar → mandato tú = abrocha. IO 'me' + DO 'lo': abrocha + me + lo → abróchámelo.\nRegla 1-2-3-4: a-bró-cha-me-lo → tilde en la 4ª sílaba desde el final ('bró')." },
 
-  // 10 — arréglámelo
+  // 10 — prométemelo
   { id:10, sec:"Afirmativo + 2 pronombres", type:"free",
-    prompt:"El estéreo del carro no funciona y llevas el carro al taller. Le dices al mecánico que te lo arregle.\n\nVerbo: arreglar · IO: me · DO: lo\nEscribe el mandato completo: ______",
-    acc:["arréglámelo","arréglamelo"],
-    disp:"arréglamelo",
-    exp:"arreglar → mandato tú = arregla. IO 'me' + DO 'lo': arregla + me + lo → arréglamelo.\nRegla 1-2-3-4: a-rrég-la-me-lo → tilde en la 4ª sílaba desde el final ('rrég')." },
+    prompt:"No confías en que tu amigo vaya a devolverte el carro a tiempo. Le pides que te lo prometa.\n\nVerbo: prometer · IO: me · DO: lo\nEscribe el mandato completo: ______",
+    acc:["prométemelo"],
+    disp:"prométemelo",
+    exp:"prometer → mandato tú = promete. IO 'me' + DO 'lo': promete + me + lo → prométemelo.\nRegla 1-2-3-4: pro-mé-te-me-lo → tilde en la 4ª sílaba desde el final ('mé')." },
 
-  // 11 — revísame + lo → revísámelo  (fill-in-the-blank)
+  // 11 — devuélvemela  (fill-in-the-blank)
   { id:11, sec:"Afirmativo + 2 pronombres", type:"free",
-    prompt:"— El aceite del carro está muy oscuro pero no sé si está bajo.\n— ______ — tengo el medidor aquí mismo.\n— Gracias, me quedó la duda.\n\nVerbo: revisar · IO: me · DO: lo",
-    acc:["revísамело","revísamelo"],
-    disp:"revísamelo",
-    exp:"revisar → mandato tú = revisa. IO 'me' + DO 'lo': revisa + me + lo → revísamelo.\nRegla 1-2-3-4: re-ví-sa-me-lo → tilde en la 4ª sílaba desde el final ('ví')." },
+    prompt:"— Oye, todavía tienes mi llave del carro.\n— Ah, es verdad. ¿La necesitas ahora?\n— Sí, ______ hoy mismo, por favor.\n\nVerbo: devolver · IO: me · DO: la",
+    acc:["devuélvemela"],
+    disp:"devuélvemela",
+    exp:"devolver → mandato tú = devuelve. IO 'me' + DO 'la': devuelve + me + la → devuélvemela.\nRegla 1-2-3-4: de-vuél-ve-me-la → tilde en la 4ª sílaba desde el final ('vuél')." },
 
   // ── §III Negativo + 1 pronombre ─────────────────────────────────────────
 
-  // 12 — no lo arranques
+  // 12 — no la cierres
   { id:12, sec:"Negativo + pronombre", type:"free",
-    prompt:"El mecánico todavía está trabajando en el motor. Te dice que no arranques el carro.\n\nVerbo: arrancar (subjuntivo tú) · pronombre: lo · va antes del verbo\nEscribe el mandato completo: ______",
-    acc:["no lo arranques"],
-    disp:"no lo arranques",
-    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'arrancar' → subjuntivo tú = arranques (c → qu para mantener el sonido /k/).\nPronombre 'lo' va ANTES: no lo arranques." },
+    prompt:"El mecánico todavía necesita acceso al carro. Dile que no cierre la puerta.\n\nVerbo: cerrar (subjuntivo tú) · pronombre: la\nEscribe el mandato completo: ______",
+    acc:["no la cierres"],
+    disp:"no la cierres",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'cerrar' → subjuntivo tú = cierres (cambio de raíz e→ie se mantiene en subjuntivo).\nPronombre 'la' va ANTES: no la cierres." },
 
-  // 13 — no la llenes  (fill-in-the-blank)
+  // 13 — no lo conduzcas  (fill-in-the-blank)
   { id:13, sec:"Negativo + pronombre", type:"free",
-    prompt:"— Voy a llenar el tanque hasta arriba.\n— ______ tanto — solo ponle la mitad, que la gasolina está muy cara hoy.\n— Tienes razón.\n\nVerbo: llenar (subjuntivo tú) · pronombre: la",
-    acc:["no la llenes"],
-    disp:"no la llenes",
-    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'llenar' → subjuntivo tú = llenes. Pronombre 'la' va ANTES: no la llenes.\nEn negativo, el pronombre nunca se pega al verbo ('no llénala' es incorrecto)." },
+    prompt:"— Quiero manejar el carro nuevo de tu papá.\n— ______ sin permiso — se va a enojar mucho.\n— Tienes razón, mejor le pregunto primero.\n\nVerbo: conducir (subjuntivo tú) · pronombre: lo",
+    acc:["no lo conduzcas"],
+    disp:"no lo conduzcas",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'conducir' → subjuntivo tú = conduzcas (c → zc en subjuntivo).\nPronombre 'lo' va ANTES: no lo conduzcas." },
 
-  // 14 — no los prendas
+  // 14 — no lo sigas
   { id:14, sec:"Negativo + pronombre", type:"free",
-    prompt:"Estás en un túnel muy largo con buena luz. Tu copiloto te dice que no prендas los faros todavía.\n\nVerbo: prender (subjuntivo tú) · pronombre: los\nEscribe el mandato completo: ______",
-    acc:["no los prendas"],
-    disp:"no los prendas",
-    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'prender' → subjuntivo tú = prendas. Pronombre 'los' va ANTES: no los prendas." },
+    prompt:"Ese carro delante de ustedes está manejando muy peligrosamente. Le dices al conductor que no lo siga.\n\nVerbo: seguir (subjuntivo tú) · pronombre: lo\nEscribe el mandato completo: ______",
+    acc:["no lo sigas"],
+    disp:"no lo sigas",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'seguir' → subjuntivo tú = sigas (e→i en subjuntivo, ortografía gu→g: sigues → sigas).\nPronombre 'lo' va ANTES: no lo sigas." },
 
-  // 15 — no lo pagues  (fill-in-the-blank)
+  // 15 — no me la devuelvas  (fill-in-the-blank)
+  // Wait — this has 2 pronouns, move to §IV. Replace with 1 pronoun version.
   { id:15, sec:"Negativo + pronombre", type:"free",
-    prompt:"— El mecánico me cobró doscientos dólares por algo muy sencillo.\n— ______ todavía — primero pide una explicación detallada.\n— Sí, tienes razón.\n\nVerbo: pagar (subjuntivo tú) · pronombre: lo",
-    acc:["no lo pagues"],
-    disp:"no lo pagues",
-    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'pagar' → subjuntivo tú = pagues (g → gu para mantener el sonido /g/).\nPronombre 'lo' va ANTES: no lo pagues." },
+    prompt:"— Te presté mi llave de repuesto pero ya la encontré.\n— ¿Te la devuelvo ahora?\n— No, ______ todavía — quédatela por si acaso.\n\nVerbo: devolver (subjuntivo tú) · pronombre: la",
+    acc:["no la devuelvas"],
+    disp:"no la devuelvas",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'devolver' → subjuntivo tú = devuelvas (o→ue se mantiene en subjuntivo).\nPronombre 'la' va ANTES: no la devuelvas." },
 
   // ── §IV Negativo + 2 pronombres ─────────────────────────────────────────
 
-  // 16 — no me lo arranques
+  // 16 — no me lo prometas
   { id:16, sec:"Negativo + 2 pronombres", type:"free",
-    prompt:"El mecánico está revisando el motor de tu carro. Le dices que no te lo arranque todavía.\n\nVerbo: arrancar (subjuntivo tú) · IO: me · DO: lo\nEscribe el mandato completo: ______",
-    acc:["no me lo arranques"],
-    disp:"no me lo arranques",
-    exp:"Mandato negativo tú con doble pronombre: no + IO + DO + subjuntivo.\nIO 'me' + DO 'lo' + 'arranques': no me lo arranques.\nOrden siempre: no → IO → DO → verbo en subjuntivo — sin tilde, sin pegar." },
+    prompt:"Tu amigo promete demasiado y nunca cumple. Cuando intenta prometerte algo, le dices que no te lo prometa.\n\nVerbo: prometer (subjuntivo tú) · IO: me · DO: lo\nEscribe el mandato completo: ______",
+    acc:["no me lo prometas"],
+    disp:"no me lo prometas",
+    exp:"Mandato negativo tú con doble pronombre: no + IO + DO + subjuntivo.\nIO 'me' + DO 'lo' + 'prometas' (subjuntivo tú de prometer): no me lo prometas.\nOrden: no → me (IO) → lo (DO) → prometas." },
 
-  // 17 — no me la pagues  (fill-in-the-blank)
+  // 17 — no me la cierres  (fill-in-the-blank)
   { id:17, sec:"Negativo + 2 pronombres", type:"free",
-    prompt:"— Quiero pagarte la gasolina — te la debo del otro día.\n— ______ — fue un favor de amigo, no te preocupes.\n— Eres muy generoso, gracias.\n\nVerbo: pagar (subjuntivo tú) · IO: me · DO: la",
-    acc:["no me la pagues"],
-    disp:"no me la pagues",
-    exp:"Mandato negativo tú con doble pronombre: no + IO + DO + subjuntivo.\nIO 'me' + DO 'la' + 'pagues' (g → gu en subjuntivo): no me la pagues.\nOrden: no → me (IO) → la (DO) → pagues." },
+    prompt:"— Voy a cerrar la ventana del carro — hace frío.\n— ______ todavía — necesito sacar el brazo para señalar.\n— Ah, está bien, avísame cuando termines.\n\nVerbo: cerrar (subjuntivo tú) · IO: me · DO: la",
+    acc:["no me la cierres"],
+    disp:"no me la cierres",
+    exp:"Mandato negativo tú con doble pronombre: no + IO + DO + subjuntivo.\nIO 'me' + DO 'la' + 'cierres' (subjuntivo tú de cerrar): no me la cierres.\nOrden: no → me (IO) → la (DO) → cierres." },
 
   // ── §V Comprensión Lectora ───────────────────────────────────────────────
 
   // 18 — MC
   { id:18, sec:"Comprensión Lectora", type:"mc",
     passage: true,
-    prompt:"¿Qué le pidió Andrés al mecánico además de revisar los frenos?",
-    ch:["A) Que le arreglara el limpiaparabrisas.",
-        "B) Que le revisara el aceite también.",
-        "C) Que le llenara el tanque de gasolina.",
-        "D) Que le cambiara las llantas."],
+    prompt:"¿Qué le pidió Valeria a Tomás justo antes de que saliera?",
+    ch:["A) Que le mandara un mensaje cuando llegara.",
+        "B) Que le prometiera que iba a manejar con cuidado.",
+        "C) Que no usara el GPS mientras manejaba.",
+        "D) Que la llamara si tenía algún problema en la carretera."],
     cor:"B",
-    exp:"El texto dice: '«Y el aceite también — revisámelo, por favor»'. Andrés pidió primero que revisaran los frenos, y luego también el aceite. El limpiaparabrisas, el tanque y las llantas no se mencionan." },
+    exp:"El texto dice: '«Prométeme que manejas con cuidado».' Valeria le pidió a Tomás que le prometiera manejar con cuidado. No le pidió que la llamara, que no usara el GPS, ni que le mandara un mensaje." },
 
   // 19 — MC
   { id:19, sec:"Comprensión Lectora", type:"mc",
     passage: true,
-    prompt:"¿Qué le respondió el mecánico cuando Andrés preguntó si le podía mandar la factura por correo?",
-    ch:["A) Que sí, que se la mandaba esa tarde.",
-        "B) Que no tenía su correo electrónico.",
-        "C) Que no — que la pagara en ese momento.",
-        "D) Que la podía pagar en línea más tarde."],
-    cor:"C",
-    exp:"El texto dice: '«No te la mando — págala ahora mismo», respondió el mecánico.' Negó la petición de Andrés y le dio un mandato afirmativo para que pagara en ese momento." },
+    prompt:"¿Qué respondió Tomás cuando Valeria le dijo 'Prométeme que manejas con cuidado'?",
+    ch:["A) «No te lo puedo prometer — hay mucho tráfico».",
+        "B) «Te lo prometo».",
+        "C) «Prométemelo tú primero».",
+        "D) «Ya te lo prometí ayer»." ],
+    cor:"B",
+    exp:"El texto dice: '«Te lo prometo», dijo Tomás.' Es la forma correcta con doble pronombre en primera persona (no un mandato): te (IO) + lo (DO) + prometo. Respondió de manera afirmativa y directa." },
 
   // 20 — MC
   { id:20, sec:"Comprensión Lectora", type:"mc",
     passage: true,
-    prompt:"¿Cuál de las siguientes formas aparece en el texto como mandato afirmativo de tú con pronombre?",
-    ch:["A) no te la mando",
-        "B) llénalo",
-        "C) págala",
-        "D) revisártelo"],
+    prompt:"¿Por qué Valeria le dijo a Tomás 'no les contestes a nadie'?",
+    ch:["A) Porque Tomás no tenía señal en la carretera.",
+        "B) Porque los amigos de Tomás molestaban demasiado.",
+        "C) Porque no quería que Tomás texteara mientras manejaba.",
+        "D) Porque el móvil de Tomás estaba casi sin batería."],
     cor:"C",
-    exp:"'Págala' aparece en el texto como mandato afirmativo de tú: paga + la → págala (regla 1-2-3). 'No te la mando' es una negación en primera persona, no un mandato. 'Llénalo' no aparece en el texto. 'Revisártelo' es un infinitivo con pronombres, no un mandato." },
+    exp:"El texto dice: '«No me texteen mientras manejas — no les contestes a nadie».' El contexto es claro: Valeria no quería que Tomás contestara mensajes al volante porque es peligroso. No fue un problema de señal, de batería ni de los amigos en particular." },
 ];
 
 // ══════════════════════════════════════════════
@@ -574,7 +575,7 @@ function renderQ() {
   // passage
   if (q.passage) {
     html += `<div class="passage-card">
-      <div class="passage-label">Texto — Andrés en el taller</div>
+      <div class="passage-label">Texto — Valeria y Tomás</div>
       ${PASSAGE}
     </div>`;
   }
