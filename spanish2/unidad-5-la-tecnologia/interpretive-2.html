@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen XX — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+  --border:rgba(255,255,255,0.07);
+  --text:#ccccd8;--dim:#3e3e52;
+  --accent:#a78bfa;--accentd:#7c3aed;
+  --green:#34d399;--red:#f87171;
+  --warn:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+/* ══ SCREENS ══ */
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ══ LANDING ══ */
+#s-landing{
+  align-items:center;justify-content:center;padding:3rem 1.5rem;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 80% 70%,rgba(52,211,153,0.05) 0%,transparent 50%);
+}
+.land-inner{max-width:580px;width:100%;text-align:center}
+.land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+.land-title{font-family:'Lora',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+.land-title em{font-style:italic;color:var(--accent)}
+.land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+.land-sub strong{color:#888;font-weight:500}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+.info-card{
+  background:var(--s1);border:1px solid var(--border);border-radius:.6rem;
+  padding:1.1rem .8rem;text-align:center;
+}
+.info-n{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+.rules-box{
+  background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+  border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+  font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+}
+.rules-box li{margin-left:1rem;margin-bottom:.15rem}
+.rules-box strong{color:#a0a0c8;font-weight:600}
+
+.btn-main{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);
+  color:#fff;border:none;padding:1rem 3.5rem;border-radius:.45rem;
+  font-size:.88rem;font-weight:600;cursor:pointer;letter-spacing:.1em;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
+  box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+/* ══ EXAM SCREEN ══ */
+#s-exam{flex-direction:column}
+
+/* top bar */
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2rem;background:rgba(6,6,12,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;flex-shrink:0;
+}
+.tb-left{display:flex;flex-direction:column}
+.tb-qnum{font-family:'Lora',serif;font-size:.95rem;font-weight:700;color:#fff}
+.tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
+.tb-timer{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:500;
+  color:var(--accent);transition:color .3s;
+}
+.tb-timer.warn{color:var(--warn)}
+.tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-icon{font-size:.9rem}
+
+/* progress */
+#progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+#progbar{height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0%;transition:width .4s}
+
+/* question area */
+#qarea{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.5rem 3rem;
+}
+.qwrap{max-width:700px;width:100%}
+
+/* type badge */
+.qtype-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+}
+
+/* section label */
+.qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* passage box */
+.passage-card{
+  background:var(--s1);border:1px solid rgba(52,211,153,.12);
+  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  font-size:.87rem;color:#888;line-height:2.1;
+  font-family:'Lora',serif;font-style:italic;
+}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+
+/* prompt */
+.qprompt{
+  font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
+  color:#ddd;line-height:1.85;margin-bottom:1.4rem;
+  white-space:pre-line;
+}
+.qpool{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:.35rem;padding:.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+  color:#bbb;letter-spacing:.05em;margin-bottom:1rem;
+}
+
+/* choices */
+.choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.choice-btn{
+  text-align:left;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+  padding:.75rem 1rem;font-size:.88rem;color:#888;
+  cursor:pointer;transition:all .13s;line-height:1.5;
+  font-family:'Inter',sans-serif;
+}
+.choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+.choice-btn.sel{
+  border-color:rgba(167,139,250,.55);color:#ede9fe;
+  background:rgba(167,139,250,.08);
+}
+
+/* free input */
+.free-wrap{margin-bottom:1.4rem}
+.free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.free-input{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+  padding:.8rem 1rem;font-size:1rem;color:var(--text);
+  font-family:'IBM Plex Mono',monospace;outline:none;
+  letter-spacing:.04em;transition:border-color .2s,background .2s;
+}
+.free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+
+/* accent toolbar */
+.accent-bar{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;margin-bottom:.9rem}
+.accent-label{font-size:.58rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-right:.2rem;flex-shrink:0}
+.accent-btn{
+  background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+  color:#c4b5fd;border-radius:.28rem;padding:.28rem .52rem;
+  font-size:.95rem;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  cursor:pointer;transition:background .12s,border-color .12s;line-height:1;
+}
+.accent-btn:hover{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.45);color:#ede9fe}
+
+/* next button */
+.btn-next{
+  background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+  padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+  cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all .2s;width:100%;
+}
+.btn-next.ready{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+  border-color:transparent;cursor:pointer;
+  box-shadow:0 0 30px rgba(109,40,217,.3);
+}
+.btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+.btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+/* question transition */
+.qwrap{animation:qfade .35s ease}
+@keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ RESULTS SCREEN ══ */
+#s-results{flex-direction:column}
+
+#res-header{
+  background:var(--s1);border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem;text-align:center;flex-shrink:0;
+}
+.res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+.res-score{font-family:'Lora',serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+.res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+.res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+.res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:'IBM Plex Mono',monospace}
+
+#res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+.res-q{
+  background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;
+  margin-bottom:.8rem;border:1px solid var(--border);
+}
+.res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+.res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+.res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.res-num{
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+.res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+.res-prompt{font-family:'Lora',serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+.res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+.res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:'IBM Plex Mono',monospace}
+.res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+.res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+.res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+.res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+.res-exp-btn{
+  background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+  padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;
+  margin-left:2.1rem;transition:all .13s;
+}
+.res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+.res-exp-box{
+  display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+}
+.res-exp-box.open{display:block}
+
+/* mc reveal */
+.res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+.res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+.res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+.res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+/* timeout banner */
+#timeout-banner{
+  display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+  border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+  text-align:center;margin-bottom:1.5rem;
+}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+@media(max-width:540px){
+  #topbar{padding:.6rem 1rem}
+  .tb-timer{font-size:1.1rem}
+  .info-grid{grid-template-columns:repeat(3,1fr)}
+  .info-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div class="screen active" id="s-landing">
+<div class="land-inner">
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XX</p>
+  <h1 class="land-title">Lectura<br><em>Interpretiva</em></h1>
+  <p class="land-sub">Veinte preguntas. <strong>Veinticinco minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-n">20</div>
+      <div class="info-l">preguntas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n" style="color:var(--warn)">25:00</div>
+      <div class="info-l">minutos</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n">5</div>
+      <div class="info-l">tipos</div>
+    </div>
+  </div>
+
+  <div class="rules-box">
+    <strong>Reglas del examen:</strong>
+    <ul>
+      <li>Una pregunta a la vez — no puedes volver atrás</li>
+      <li>El examen termina automáticamente cuando el tiempo llega a cero</li>
+      <li>Las respuestas libres se evalúan al final</li>
+      <li>Usa el contexto del texto para responder — no busques en el diccionario</li>
+    </ul>
+  </div>
+
+  <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+</div>
+</div>
+
+<!-- ══════════ EXAM ══════════ -->
+<div class="screen" id="s-exam">
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-qnum">Lectura Interpretiva</div>
+      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+    </div>
+    <div class="tb-timer" id="timer">
+      <span class="timer-icon">⏱</span>
+      <span id="tdisp">25:00</span>
+    </div>
+  </div>
+  <div id="progbar-wrap"><div id="progbar"></div></div>
+  <div id="qarea">
+    <div class="qwrap" id="qwrap"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div class="screen" id="s-results">
+  <div id="res-header">
+    <div class="res-kicker" id="res-kicker">Resultado Final</div>
+    <div class="res-score" id="res-score"></div>
+    <div class="res-pct" id="res-pct"></div>
+    <div class="res-msg" id="res-msg"></div>
+    <div class="res-time" id="res-time"></div>
+  </div>
+  <div id="res-body">
+    <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+    <div id="res-list"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// PASSAGE
+// ══════════════════════════════════════════════
+const PASSAGE = `── TEXTO 1: La semana sin pantallas ──
+
+Mateo era un estudiante de secundaria que pasaba horas navegando en internet y texteando con sus amigos cada noche. Un día, su profesora le dio un desafío especial: «Apaga el móvil y la computadora portátil durante una semana entera, y descubrirás algo tuyo que habías olvidado.» Al principio, Mateo no quería hacerlo — sentía que su teléfono era casi una parte de su propio cuerpo. Sin embargo, durante los primeros días, empezó a notar algo curioso: tenía más tiempo para leer y para salir con sus amigos en persona. Al final de la semana, Mateo escribió en un diario que el silencio digital le había parecido incómodo al principio pero liberador después. Cuando volvió a prender su móvil, no quería revisar las redes sociales de inmediato. Su profesora leyó el diario de Mateo y lo compartió con la clase porque pensaba que la experiencia suya podía inspirar a otros estudiantes. Desde entonces, Mateo apaga el televisor y el cargador de su móvil antes de acostarse, y solo lo prende por la mañana.
+
+── TEXTO 2: La avería en la autopista ──
+
+El domingo pasado, la familia Mendoza viajaba por la autopista cuando de repente el carro empezó a hacer un ruido extraño. El padre, don Ramón, intentó arrancar el motor varias veces, pero el carro no funcionaba. Don Ramón llamó a un mecánico desde su móvil, que tenía la batería casi llena por suerte. Mientras esperaban al lado de la carretera, el hijo menor le dijo: «Papá, usa la aplicación nuestra de mapas para encontrar el taller más cercano.» Don Ramón descargó la aplicación y encontró una gasolinera a solo tres kilómetros. Cuando llegó el mecánico, revisó el aceite, los frenos y los faros, y explicó que la batería del carro estaba dañada y necesitaba arreglo inmediato. Además, el mecánico les dijo que los limpiaparabrisas también estaban en mal estado y que el cinturón de seguridad del asiento trasero no funcionaba bien. Al final, la familia llegó a su destino dos horas tarde, pero don Ramón prometió revisar el carro antes de cada viaje largo.`;
+
+// ══════════════════════════════════════════════
+// NORMALIZE & CHECK
+// ══════════════════════════════════════════════
+const nm = s => (s||"").toLowerCase().trim().replace(/\s+/g," ");
+const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+// ══════════════════════════════════════════════
+// QUESTIONS
+//
+// §I   Comprensión         P1–11
+// §II  Vocabulario         P12–16
+// §III Estructura          P17–18
+// §IV  Inferencia          P19–20
+// ══════════════════════════════════════════════
+const QS = [
+
+  // ── §I COMPRENSIÓN ───────────────────────────────────────────────────────
+
+  // 1 — Idea principal Texto 1
+  { id:1, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"¿Cuál es la idea principal del Texto 1?",
+    ch:["A) Mateo no podía estudiar sin su teléfono porque lo necesitaba para buscar información.",
+        "B) Una semana sin pantallas le enseñó a Mateo algo valioso sobre sí mismo y cambió sus hábitos permanentemente.",
+        "C) Las redes sociales son peligrosas para todos los estudiantes de secundaria.",
+        "D) La profesora de Mateo le prohibió usar el móvil en clase para siempre."],
+    cor:"B",
+    exp:"El texto muestra una cadena de causa y efecto: el desafío de la profesora → incomodidad inicial → descubrimiento positivo → cambio permanente de hábitos. La opción A es incorrecta porque el texto nunca menciona que Mateo necesitara el teléfono para estudiar. La opción C hace una generalización que el texto nunca apoya. La opción D exagera — la profesora propuso un reto de una semana, no una prohibición permanente." },
+
+  // 2 — Idea principal Texto 2
+  { id:2, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"¿Cuál es la idea principal del Texto 2?",
+    ch:["A) Los mecánicos siempre encuentran más problemas de los esperados en los carros.",
+        "B) La familia Mendoza tuvo una avería en la autopista que reveló la importancia de revisar el carro antes de viajar.",
+        "C) Las aplicaciones de mapas son más útiles que los mecánicos cuando el carro no funciona.",
+        "D) La batería del carro de don Ramón siempre tenía problemas porque era muy vieja."],
+    cor:"B",
+    exp:"El texto muestra cómo una avería inesperada obligó a la familia a buscar ayuda, y al final don Ramón aprendió la lección de revisar el carro con anticipación. La opción A es una generalización no apoyada por el texto. La opción C exagera el papel de la aplicación — fue útil para encontrar la gasolinera, pero el mecánico fue quien resolvió el problema. La opción D inventa información sobre la edad de la batería que no aparece en el texto." },
+
+  // 3 — Detalle: ¿por qué Mateo no quería hacer el desafío?
+  { id:3, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 1, ¿por qué Mateo no quería participar en el desafío de la profesora al principio?",
+    ch:["A) Pensaba que una semana era demasiado tiempo para completar una tarea escolar.",
+        "B) Sentía que su teléfono era casi una parte de su propio cuerpo.",
+        "C) Sus padres le habían dicho que no podía apagar el móvil por razones de seguridad.",
+        "D) Creía que desconectarse del internet iba a afectar negativamente sus calificaciones."],
+    cor:"B",
+    exp:"El texto dice directamente: 'sentía que su teléfono era casi una parte de su propio cuerpo.' Las opciones A, C y D inventan razones que no aparecen en el texto. La opción A reformula 'una semana' como algo relacionado con una tarea, lo cual cambia el contexto. La opción C inventa la participación de los padres. La opción D inventa una preocupación académica no mencionada." },
+
+  // 4 — Detalle: ¿qué hizo la profesora con el diario?
+  { id:4, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 1, ¿qué hizo la profesora con el diario de Mateo?",
+    ch:["A) Lo corrigió y le devolvió una nota baja porque era muy corto.",
+        "B) Lo publicó en el sitio web de la escuela para que toda la comunidad pudiera leerlo.",
+        "C) Lo compartió con la clase porque pensaba que la experiencia de Mateo podía inspirar a otros.",
+        "D) Se lo entregó a los padres de Mateo como evidencia de su progreso académico."],
+    cor:"C",
+    exp:"El texto dice: 'Su profesora leyó el diario de Mateo y lo compartió con la clase porque pensaba que la experiencia suya podía inspirar a otros estudiantes.' Las opciones A, B y D inventan detalles que no están en el texto. La opción B es un distractor tentador porque 'compartir' se asocia hoy con publicar en línea, pero el texto especifica que lo compartió con la clase, no en un sitio web." },
+
+  // 5 — Causa y efecto: ¿por qué se detuvo la familia?
+  { id:5, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 2, ¿por qué no podía continuar su viaje la familia Mendoza?",
+    ch:["A) Hubo un accidente en la autopista y la policía cerró la carretera.",
+        "B) El tráfico era tan intenso que tuvieron que detenerse en una gasolinera.",
+        "C) El carro empezó a hacer un ruido extraño y el motor dejó de funcionar.",
+        "D) Se les acabó la gasolina porque olvidaron llenar el tanque antes de salir."],
+    cor:"C",
+    exp:"El texto dice que el carro 'empezó a hacer un ruido extraño' y que cuando don Ramón intentó arrancarlo 'el carro no funcionaba.' Las opciones A, B y D inventan causas no mencionadas. La opción D es un distractor especialmente tentador porque la gasolina es un problema común de carros y el texto menciona una gasolinera — pero esa gasolinera aparece más tarde, como el lugar donde ir, no como la causa del problema." },
+
+  // 6 — Detalle: ¿qué encontró el mecánico?
+  { id:6, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 2, ¿cuáles fueron los problemas que el mecánico identificó en el carro de la familia Mendoza?",
+    ch:["A) La batería estaba dañada, los limpiaparabrisas estaban en mal estado y el cinturón de seguridad no funcionaba bien.",
+        "B) Los frenos no funcionaban y la llanta trasera necesitaba cambio inmediato.",
+        "C) El motor necesitaba aceite nuevo y los faros estaban completamente quemados.",
+        "D) La bocina no funcionaba y el parabrisas estaba roto por un golpe."],
+    cor:"A",
+    exp:"El texto menciona exactamente: la batería dañada, los limpiaparabrisas en mal estado y el cinturón de seguridad del asiento trasero. Las opciones B, C y D mezclan vocabulario del texto (frenos, aceite, faros, parabrisas) con problemas que no se describen — una trampa clásica de examen donde las palabras conocidas pueden desviar al lector de lo que el texto realmente dice." },
+
+  // 7 — Secuencia: Texto 1
+  { id:7, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"¿Cuál es el orden correcto de los eventos del Texto 1?",
+    ch:["A) La profesora compartió el diario → Mateo no quería hacerlo → comenzó el desafío → notó cambios → escribió en el diario.",
+        "B) Mateo pasaba horas en internet → la profesora le dio el desafío → al principio no quería → notó cambios positivos → escribió en el diario → la profesora lo compartió → nuevo hábito permanente.",
+        "C) Mateo apagó el móvil → la profesora le dio el desafío → escribió en el diario → no quería revisarlo → cambió sus hábitos.",
+        "D) La profesora compartió el diario → Mateo cambió sus hábitos → la semana terminó → el desafío comenzó."],
+    cor:"B",
+    exp:"La secuencia correcta del texto: Mateo pasaba horas en internet → la profesora propuso el desafío → Mateo no quería al principio → durante los primeros días notó cambios → al final escribió en el diario → la profesora lo compartió → hábito nuevo permanente. La opción A empieza con el final del texto. La opción C invierte el orden del desafío y el apagado del móvil. La opción D pone las consecuencias antes de las causas." },
+
+  // 8 — Detalle: ¿qué notó Mateo?
+  { id:8, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 1, ¿qué cosas positivas notó Mateo durante los primeros días del desafío?",
+    ch:["A) Sus calificaciones mejoraron de inmediato y sus profesores lo felicitaron.",
+        "B) Tenía más tiempo para leer y para estar con sus amigos en persona.",
+        "C) Dormía mejor por las noches y se despertaba con más energía.",
+        "D) Descubrió que podía usar las computadoras de la biblioteca para compensar."],
+    cor:"B",
+    exp:"El texto dice: 'empezó a notar algo curioso: tenía más tiempo para leer y para salir con sus amigos en persona.' Las opciones A, C y D son distractores plausibles pero ninguno aparece en el texto. La opción A inventa una reacción de los profesores. La opción C inventa información sobre el sueño. La opción D contradice el espíritu del desafío — el punto era desconectarse, no buscar otra pantalla." },
+
+  // 9 — Causa y efecto: ¿por qué pudo don Ramón llamar?
+  { id:9, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 2, ¿por qué pudo don Ramón llamar al mecánico sin problema?",
+    ch:["A) Encontró una cabina telefónica cerca de la autopista.",
+        "B) Su hijo tenía un móvil con carga completa y se lo prestó a su padre.",
+        "C) El móvil de don Ramón tenía la batería casi llena en ese momento.",
+        "D) Un conductor que pasaba por ahí se detuvo y le prestó su teléfono."],
+    cor:"C",
+    exp:"El texto dice: 'Don Ramón llamó a un mecánico desde su móvil, que tenía la batería casi llena por suerte.' Las opciones A, B y D inventan situaciones no mencionadas. La opción B es especialmente engañosa porque el hijo sí aparece hablando en el texto — es tentador asumir que él prestó el teléfono — pero el texto no dice eso; el móvil que tenía la batería llena era el de don Ramón." },
+
+  // 10 — Detalle preciso: hábito nuevo de Mateo
+  { id:10, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 1, ¿cuáles son los nuevos hábitos nocturnos de Mateo al final del texto?",
+    ch:["A) Escribe en su diario cada noche y lee un libro antes de dormir.",
+        "B) Apaga el televisor y el cargador de su móvil antes de acostarse, y solo lo prende por la mañana.",
+        "C) Usa el móvil solo treinta minutos por la noche para textear con sus amigos.",
+        "D) Deja el móvil en otra habitación y desconecta el router antes de dormir."],
+    cor:"B",
+    exp:"El texto dice exactamente: 'Mateo apaga el televisor y el cargador de su móvil antes de acostarse, y solo lo prende por la mañana.' La opción A combina el diario (que sí aparece en el texto) con leer libros (que no se menciona como hábito nocturno nuevo) — una trampa de mezcla de detalles. La opción C inventa un límite de treinta minutos. La opción D cambia el cargador por el router, un detalle que no aparece." },
+
+  // 11 — Detalle: promesa de don Ramón
+  { id:11, sec:"Comprensión", type:"mc",
+    passage: true,
+    prompt:"Según el Texto 2, ¿qué prometió hacer don Ramón después de la experiencia en la autopista?",
+    ch:["A) Llevar el carro al mecánico todos los meses sin excepción.",
+        "B) Comprar un carro nuevo con mejor tecnología para el próximo viaje familiar.",
+        "C) Revisar el carro antes de cada viaje largo.",
+        "D) Descargar más aplicaciones de tecnología para emergencias futuras."],
+    cor:"C",
+    exp:"El texto dice: 'don Ramón prometió revisar el carro antes de cada viaje largo.' Las opciones A, B y D inventan promesas. La opción A exagera la frecuencia — el texto dice 'antes de cada viaje largo,' no 'todos los meses.' La opción B inventa la compra de un carro nuevo. La opción D usa vocabulario del texto (aplicaciones) para inventar una promesa que no aparece." },
+
+  // ── §II VOCABULARIO EN CONTEXTO ──────────────────────────────────────────
+
+  // 12 — "liberador" (MC)
+  { id:12, sec:"Vocabulario en Contexto", type:"mc",
+    passage: true,
+    prompt:"En el Texto 1: «el silencio digital le había parecido incómodo al principio pero liberador después.»\n\nMateo describe sus emociones durante y después de la semana sin pantallas: al principio fue difícil, pero al terminar tenía más tiempo, más conexión con amigos y menos estrés.\n\nSegún el contexto, ¿qué significa probablemente liberador?",
+    ch:["A) aburrido y vacío — sin entretenimiento ni distracción",
+        "B) que da sensación de libertad o alivio",
+        "C) ruidoso y caótico — lleno de actividad social nueva",
+        "D) peligroso — que puede causar consecuencias graves"],
+    cor:"B",
+    exp:"Clave de contexto: 'incómodo al principio pero liberador después' — el contraste entre la incomodidad inicial y la emoción final indica que 'liberador' es algo positivo. Los detalles del texto (más tiempo, más amigos, menos estrés) confirman que la semana trajo alivio. 'Liberador' viene del verbo 'liberar' — dar libertad. La opción A (aburrido) contradice el tono positivo. La opción D (peligroso) no encaja con el resultado positivo descrito." },
+
+  // 13 — "de inmediato" (MC)
+  { id:13, sec:"Vocabulario en Contexto", type:"mc",
+    passage: true,
+    prompt:"En el Texto 1: «Cuando volvió a prender su móvil, no quería revisar las redes sociales de inmediato.»\n\nEl texto contrasta el comportamiento antiguo de Mateo (revisar el móvil constantemente) con su actitud nueva después de la semana sin pantallas.\n\nSegún el contexto, ¿qué significa de inmediato?",
+    ch:["A) con mucho cuidado y paciencia",
+        "B) durante varios días seguidos",
+        "C) en ese mismo momento, sin esperar",
+        "D) con la ayuda de otra persona"],
+    cor:"C",
+    exp:"Clave de contexto: antes del desafío, Mateo revisaba el móvil constantemente — al menor momento libre. Ahora, al prenderlo de nuevo, ya no quería hacer eso 'de inmediato.' El contraste temporal (revisar ahora mismo vs. esperar) revela que 'de inmediato' significa 'en ese momento / sin demora.' La opción A (con cuidado) cambia el significado por completo. La opción B (durante días) no encaja — la acción de revisar el móvil ocurre en un instante." },
+
+  // 14 — "dañada" (MC)
+  { id:14, sec:"Vocabulario en Contexto", type:"mc",
+    passage: true,
+    prompt:"En el Texto 2: «el mecánico explicó que la batería del carro estaba dañada y necesitaba arreglo inmediato.»\n\nEl mecánico acababa de revisar el carro que no arrancaba y estaba identificando los problemas.\n\nSegún el contexto, ¿qué significa probablemente dañada?",
+    ch:["A) desconectada — que no está bien conectada al sistema eléctrico",
+        "B) descargada — que no tiene suficiente energía para funcionar",
+        "C) rota o en mal estado — que no puede funcionar correctamente",
+        "D) antigua — que tiene muchos años de uso"],
+    cor:"C",
+    exp:"Clave de contexto: la batería 'necesitaba arreglo' — si estuviera simplemente desconectada (opción A) o descargada (opción B), la solución sería reconectarla o recargarla, no arreglarla. 'Dañada' implica un daño físico que requiere reparación. La opción D (antigua) no necesariamente requiere arreglo. El distractor más peligroso es la opción B — 'descargada' y 'dañada' son problemas distintos de la batería, y confundirlos es un error común." },
+
+  // 15 — "desafío" (free response)
+  { id:15, sec:"Vocabulario en Contexto", type:"free",
+    passage: true,
+    prompt:"En el Texto 1: «su profesora le dio un desafío especial: 'Apaga el móvil y la computadora portátil durante una semana entera.'»\n\nLa profesora quería ver si Mateo podía cambiar su comportamiento digital — algo difícil de hacer para él.\n\nBasándote en estas claves de contexto, ¿qué significa probablemente desafío?\n\nEscribe un sinónimo o explicación en español: ______",
+    acc:["reto","prueba","tarea difícil","una prueba","un reto","tarea","ejercicio difícil","competencia","misión","una misión","una tarea difícil","un reto especial","una prueba especial","algo dificil","algo difícil","actividad difícil","una actividad difícil","tarea especial","una tarea especial","actividad especial"],
+    disp:"reto / prueba",
+    exp:"Claves de contexto: la profesora propone algo específico que a Mateo le costará esfuerzo ('no quería hacerlo'). El adjetivo 'especial' y la dificultad implícita sugieren que no es una tarea ordinaria. 'Desafío' es sinónimo de 'reto' — algo que requiere esfuerzo o voluntad para completar. Confundirlo con 'tarea' simple sería parcialmente correcto pero le falta el elemento de dificultad y voluntad que implica la palabra." },
+
+  // 16 — "en mal estado" (free response)
+  { id:16, sec:"Vocabulario en Contexto", type:"free",
+    passage: true,
+    prompt:"En el Texto 2: «el mecánico les dijo que los limpiaparabrisas también estaban en mal estado.»\n\nEl mecánico describía una lista de problemas del carro: la batería 'dañada', los limpiaparabrisas 'en mal estado', y el cinturón de seguridad que 'no funcionaba bien.'\n\nBasándote en el patrón de la lista, ¿qué significa probablemente en mal estado?\n\nEscribe un sinónimo o explicación en español: ______",
+    acc:["en malas condiciones","rotos","dañados","que no funcionan bien","descompuestos","deteriorados","con problemas","en malas condiciones","defectuosos","malos","no funcionan","estropeados","en mal estado","averiados","que no sirven","que no sirven bien","mal","malos"],
+    disp:"en malas condiciones / dañados",
+    exp:"Clave de contexto: 'en mal estado' aparece en una lista de problemas — la batería 'dañada,' los limpiaparabrisas 'en mal estado,' el cinturón 'que no funcionaba bien.' El patrón del contexto muestra que todos los items de la lista implican mal funcionamiento. 'En mal estado' = en malas condiciones, deteriorados, que no funcionan correctamente. El patrón de lista paralela es una estrategia clave para inferir el significado sin recurrir a traducción." },
+
+  // ── §III ESTRUCTURA DEL TEXTO ─────────────────────────────────────────────
+
+  // 17 — Estructura Texto 1
+  { id:17, sec:"Estructura del Texto", type:"mc",
+    passage: true,
+    prompt:"¿Qué estructura textual describe MEJOR el Texto 1?",
+    ch:["A) Secuencia — el texto explica paso a paso cómo apagar el móvil correctamente.",
+        "B) Comparación y contraste — el texto compara los hábitos de Mateo con los de sus amigos.",
+        "C) Causa y efecto — el desafío sin pantallas causó cambios en Mateo que transformaron su perspectiva y rutina.",
+        "D) Problema y solución — Mateo tenía adicción al internet y encontró una solución técnica para resolverla."],
+    cor:"C",
+    exp:"La estructura dominante es causa y efecto: el desafío (causa) → incomodidad inicial → descubrimiento de tiempo libre y conexión social → reflexión escrita → inspiración para otros → nuevo hábito permanente (efectos). La opción A es incorrecta — el texto no da instrucciones paso a paso. La opción B inventa una comparación con otros estudiantes que no aparece. La opción D es tentadora — hay un problema implícito (adicción digital) — pero el arreglo no es técnico sino un proceso de transformación personal, y el texto no presenta una 'solución' como tal." },
+
+  // 18 — Estructura Texto 2 (dos estructuras)
+  { id:18, sec:"Estructura del Texto", type:"mc",
+    passage: true,
+    prompt:"¿Cuáles DOS estructuras textuales aplican MEJOR al Texto 2? (Elige la mejor respuesta.)",
+    ch:["A) Secuencia y comparación/contraste — describe los eventos del día en orden y compara diferentes tipos de carros.",
+        "B) Problema/solución y causa/efecto — la avería es el problema; el mecánico es la solución; la experiencia causa que don Ramón cambie su rutina.",
+        "C) Comparación/contraste y secuencia — compara a don Ramón antes y después de la avería y lista los pasos cronológicamente.",
+        "D) Problema/solución solamente — hay un problema claro y una solución clara sin consecuencias adicionales descritas."],
+    cor:"B",
+    exp:"El Texto 2 combina claramente Problema/Solución (el carro no funciona → llaman al mecánico → el mecánico lo repara) y Causa/Efecto (la avería causó que llamaran al mecánico → el mecánico encontró múltiples problemas → don Ramón prometió revisar el carro en el futuro). La opción C es tentadora: hay un contraste implícito entre el don Ramón desprevenido y el cuidadoso al final, y los eventos sí están en orden cronológico — pero esas no son las estructuras dominantes del texto. La opción D es demasiado limitada porque el texto claramente muestra efectos más allá de la solución inmediata." },
+
+  // ── §IV INFERENCIA ────────────────────────────────────────────────────────
+
+  // 19 — Inferencia: método de enseñanza de la profesora
+  { id:19, sec:"Inferencia", type:"mc",
+    passage: true,
+    prompt:"Basándote en el Texto 1, ¿qué podemos inferir sobre el método de enseñanza de la profesora de Mateo?",
+    ch:["A) La profesora creía que castigar a los estudiantes era la mejor forma de corregir malos hábitos digitales.",
+        "B) La profesora pensaba que los estudiantes aprenden mejor a través de la experiencia directa que de las explicaciones.",
+        "C) La profesora quería que Mateo reprobara para enseñarle una lección importante sobre sus hábitos.",
+        "D) La profesora tenía reglas muy estrictas sobre el uso del móvil dentro de su salón de clases."],
+    cor:"B",
+    exp:"La profesora no le explicó por qué las pantallas son malas — le pidió que lo viviera: 'Apaga el móvil… y descubrirás.' Además, al compartir el diario con la clase, usó la experiencia real de Mateo como herramienta pedagógica para otros. Esto sugiere que valora el aprendizaje experiencial sobre la instrucción directa. La opción A inventa un castigo — el desafío era una propuesta, no una sanción. La opción C contradice el tono completamente positivo del texto. La opción D es plausible en general, pero el texto no menciona ninguna regla permanente en clase." },
+
+  // 20 — Inferencia: actitud de don Ramón hacia la tecnología
+  { id:20, sec:"Inferencia", type:"mc",
+    passage: true,
+    prompt:"Basándote en el Texto 2, ¿qué podemos inferir sobre la actitud de don Ramón hacia la tecnología al final del pasaje?",
+    ch:["A) Don Ramón desconfía de toda la tecnología y prefiere no depender de aplicaciones ni móviles.",
+        "B) Don Ramón cree que los mecánicos son más importantes que la tecnología y que no se debe usar en emergencias.",
+        "C) Don Ramón ve la tecnología como una herramienta útil, pero entiende que hay que prepararse y no depender de ella sin precaución.",
+        "D) Don Ramón está arrepentido de haber descargado la aplicación porque al final el mecánico resolvió todo de todas formas."],
+    cor:"C",
+    exp:"Don Ramón usó el móvil para llamar al mecánico y la aplicación para encontrar la gasolinera — la tecnología fue útil. Sin embargo, su promesa de revisar el carro antes de viajar muestra que aprendió que la tecnología no reemplaza la preparación. Esta actitud equilibrada — usar la tecnología con responsabilidad — es la que se puede inferir lógicamente. La opción A exagera: él usó el móvil y la aplicación sin problema. La opción B contradice su uso exitoso de la tecnología durante la crisis. La opción D malinterpreta el texto — don Ramón no mostró arrepentimiento por usar la aplicación; esta fue una parte positiva de la historia." },
+];
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  answers: {},
+  secsLeft: 25 * 60,
+  tick: null,
+  timedOut: false,
+  startSecs: 0,
+};
+
+// ══════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════
+function startTimer() {
+  document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+  ST.tick = setInterval(() => {
+    ST.secsLeft--;
+    const d = document.getElementById("tdisp");
+    const t = document.getElementById("timer");
+    d.textContent = fmtT(ST.secsLeft);
+    if (ST.secsLeft <= 60) t.classList.add("crit");
+    else if (ST.secsLeft <= 180) t.classList.add("warn");
+    if (ST.secsLeft <= 0) {
+      clearInterval(ST.tick);
+      ST.timedOut = true;
+      showResults();
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ() {
+  const q = QS[ST.idx];
+  const wrap = document.getElementById("qwrap");
+
+  document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
+  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+
+  let html = "";
+
+  const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+  const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+  html += `<div class="qsec-label">${q.sec}</div>`;
+  html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+  if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
+
+  if (q.passage) {
+    html += `<div class="passage-card">
+      <div class="passage-label">Textos — La semana sin pantallas · La avería en la autopista</div>
+      ${PASSAGE}
+    </div>`;
+  }
+
+  html += `<p class="qprompt">${q.prompt}</p>`;
+
+  if (q.type === "mc") {
+    html += `<div class="choices-grid">`;
+    q.ch.forEach(c => {
+      html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="free-wrap">
+      <div class="free-label">Escribe tu respuesta</div>
+      <input class="free-input" id="freeinp" placeholder="tu respuesta…"
+        oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+      <div class="accent-bar">
+        <span class="accent-label">Insertar:</span>
+        ${['á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ'].map(c=>`<button class="accent-btn" onclick="insertAccent('${c}')">${c}</button>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  const isLast = ST.idx === QS.length - 1;
+  html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+    ${isLast ? "Entregar Examen →" : "Siguiente →"}
+  </button>`;
+
+  wrap.style.animation = "none";
+  wrap.offsetHeight;
+  wrap.style.animation = "";
+  wrap.innerHTML = html;
+
+  const prev = ST.answers[q.id];
+  if (prev !== undefined) {
+    if (q.type === "mc") {
+      const btn = document.getElementById(`cb${prev}`);
+      if (btn) btn.classList.add("sel");
+      enableNext();
+    } else {
+      const inp = document.getElementById("freeinp");
+      if (inp) { inp.value = prev; enableNext(); }
+    }
+  }
+
+  if (q.type === "free") {
+    setTimeout(() => {
+      const inp = document.getElementById("freeinp");
+      if (inp) inp.focus();
+    }, 50);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════
+function pickMC(letter) {
+  const q = QS[ST.idx];
+  q.ch.forEach(c => {
+    const b = document.getElementById(`cb${c[0]}`);
+    if (b) b.classList.remove("sel");
+  });
+  const btn = document.getElementById(`cb${letter}`);
+  if (btn) btn.classList.add("sel");
+  ST.answers[q.id] = letter;
+  enableNext();
+}
+
+function insertAccent(ch) {
+  const inp = document.getElementById("freeinp");
+  if (!inp) return;
+  const s = inp.selectionStart, e = inp.selectionEnd;
+  inp.value = inp.value.slice(0,s) + ch + inp.value.slice(e);
+  inp.selectionStart = inp.selectionEnd = s + ch.length;
+  inp.focus();
+  freeTyped();
+}
+
+function freeTyped() {
+  const inp = document.getElementById("freeinp");
+  ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+  if (inp && inp.value.trim().length > 0) enableNext();
+  else disableNext();
+}
+
+function enableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.add("ready");
+  if (b) b.disabled = false;
+}
+function disableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.remove("ready");
+  if (b) b.disabled = true;
+}
+
+function tryNext() {
+  const q = QS[ST.idx];
+  if (q.type === "free") {
+    const inp = document.getElementById("freeinp");
+    if (inp) ST.answers[q.id] = inp.value;
+  }
+  if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+
+  ST.idx++;
+  if (ST.idx >= QS.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+// ══════════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════════
+function showResults() {
+  clearInterval(ST.tick);
+  const elapsed = 25 * 60 - ST.secsLeft;
+
+  let score = 0;
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    if (q.type === "mc") { if (ans === q.cor) score++; }
+    else { if (cf(ans, q.acc)) score++; }
+  });
+  const pct = Math.round((score / QS.length) * 100);
+
+  document.getElementById("s-exam").classList.remove("active");
+  document.getElementById("s-results").classList.add("active");
+  window.scrollTo(0, 0);
+
+  const hdr = document.getElementById("res-header");
+  hdr.style.background = pct >= 80
+    ? "linear-gradient(135deg,#052e16,#064e3b)"
+    : pct >= 55
+    ? "linear-gradient(135deg,#431407,#78350f)"
+    : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+  document.getElementById("res-score").textContent = `${score}/20`;
+  document.getElementById("res-pct").textContent =
+    `Opción múltiple: ${QS.filter(q=>q.type==="mc").reduce((a,q)=>a+(ST.answers[q.id]===q.cor?1:0),0)}/${QS.filter(q=>q.type==="mc").length}` +
+    `  ·  Respuesta libre: ${QS.filter(q=>q.type==="free").reduce((a,q)=>a+(cf(ST.answers[q.id]||"",q.acc)?1:0),0)}/${QS.filter(q=>q.type==="free").length}`;
+  const msgs = [[90,"Dominio excepcional."],[75,"Comprensión muy sólida."],[55,"Comprensión parcial — repasa los contextos."],[0,"Hay trabajo por hacer."]];
+  document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  document.getElementById("res-time").textContent = ST.timedOut
+    ? "⚠ Tiempo agotado"
+    : `Tiempo: ${fmtT(elapsed)}`;
+
+  if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+  const list = document.getElementById("res-list");
+  list.innerHTML = "";
+
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+    const card = document.createElement("div");
+    card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+
+    const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+    let html = `<div class="res-q-top">
+      <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+      <div>
+        <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+        <p class="res-prompt">${q.pool ? `<span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#666;display:block;margin-bottom:.4rem">${q.pool}</span>` : ""}${q.prompt}</p>
+      </div>
+    </div>`;
+
+    if (q.type === "mc") {
+      html += `<div class="res-mc-choices">`;
+      q.ch.forEach(c => {
+        const l = c[0];
+        const isRight = l === q.cor;
+        const isYours = l === ans;
+        let cls = "";
+        if (isRight) cls = "rc-right";
+        else if (isYours && !isRight) cls = "rc-wrong";
+        html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="res-ans-row">`;
+      if (ans) {
+        html += `<span class="res-chip yours ${ok ? "ok" : "bad"}">Tu respuesta: ${ans}</span>`;
+      } else {
+        html += `<span class="res-chip yours bad">Sin respuesta</span>`;
+      }
+      if (!ok) {
+        html += `<span class="res-chip correct">Correcto: ${q.disp}</span>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+    <div class="res-exp-box" id="rexp${q.id}">
+      ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+    </div>`;
+
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function togE(id) {
+  const b = document.getElementById(`rexp${id}`);
+  const btn = b.previousElementSibling;
+  b.classList.toggle("open");
+  btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+// ══════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════
+function startExam() {
+  ST.startSecs = Date.now();
+  document.getElementById("s-landing").classList.remove("active");
+  document.getElementById("s-exam").classList.add("active");
+  window.scrollTo(0, 0);
+  startTimer();
+  renderQ();
+}
+</script>
+</body>
+</html>
