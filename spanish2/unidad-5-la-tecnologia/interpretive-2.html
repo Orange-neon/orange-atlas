@@ -109,11 +109,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 /* passage box */
 .passage-card{
   background:var(--s1);border:1px solid rgba(52,211,153,.12);
-  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
-  font-size:.87rem;color:#888;line-height:2.1;
-  font-family:'Lora',serif;font-style:italic;
+  border-radius:.75rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  color:#b6b6c8;line-height:1.9;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
 }
-.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.55rem;font-family:'Inter',sans-serif}
+.passage-title{
+  font-family:'Lora',serif;font-size:1.08rem;font-weight:700;
+  color:#f5f5ff;line-height:1.35;margin-bottom:.85rem;
+}
+.passage-body{
+  font-family:'Lora',serif;font-size:.96rem;line-height:1.95;
+  color:#c4c4d8;
+}
+.passage-body p + p{margin-top:1rem}
 
 /* prompt */
 .qprompt{
@@ -340,6 +349,57 @@ Mateo era un estudiante de secundaria que pasaba horas navegando en internet y t
 ── TEXTO 2: La avería en la autopista ──
 
 El domingo pasado, la familia Mendoza viajaba por la autopista cuando de repente el carro empezó a hacer un ruido extraño. El padre, don Ramón, intentó arrancar el motor varias veces, pero el carro no funcionaba. Don Ramón llamó a un mecánico desde su móvil, que tenía la batería casi llena por suerte. Mientras esperaban al lado de la carretera, el hijo menor le dijo: «Papá, usa la aplicación nuestra de mapas para encontrar el taller más cercano.» Don Ramón descargó la aplicación y encontró una gasolinera a solo tres kilómetros. Cuando llegó el mecánico, revisó el aceite, los frenos y los faros, y explicó que la batería del carro estaba dañada y necesitaba arreglo inmediato. Además, el mecánico les dijo que los limpiaparabrisas también estaban en mal estado y que el cinturón de seguridad del asiento trasero no funcionaba bien. Al final, la familia llegó a su destino dos horas tarde, pero don Ramón prometió revisar el carro antes de cada viaje largo.`;
+
+const esc = s => (s || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;");
+
+function parsePassages(raw) {
+  return raw
+    .split(/(?=──\s*TEXTO\s+\d+:)/i)
+    .map(section => section.trim())
+    .filter(Boolean)
+    .reduce((acc, section) => {
+      const lines = section.split("\n");
+      const header = (lines.shift() || "").trim();
+      const match = header.match(/^──\s*TEXTO\s+(\d+):\s*(.*?)\s*──$/i);
+      if (!match) return acc;
+
+      const key = match[1];
+      acc[key] = {
+        label: `Texto ${key}`,
+        title: match[2].trim(),
+        body: lines.join("\n").trim(),
+      };
+      return acc;
+    }, {});
+}
+
+const PASSAGES = parsePassages(PASSAGE);
+
+function getQuestionPassage(q) {
+  if (q.text && PASSAGES[String(q.text)]) return PASSAGES[String(q.text)];
+  const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+  if (match && PASSAGES[match[1]]) return PASSAGES[match[1]];
+  return Object.values(PASSAGES)[0] || null;
+}
+
+function renderPassageCard(q) {
+  const passage = getQuestionPassage(q);
+  if (!passage) return "";
+
+  const paragraphs = passage.body
+    .split(/\n\s*\n/)
+    .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+
+  return `<div class="passage-card">
+    <div class="passage-label">${esc(passage.label)}</div>
+    <div class="passage-title">${esc(passage.title)}</div>
+    <div class="passage-body">${paragraphs}</div>
+  </div>`;
+}
 
 // ══════════════════════════════════════════════
 // NORMALIZE & CHECK
@@ -633,10 +693,7 @@ function renderQ() {
   if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
 
   if (q.passage) {
-    html += `<div class="passage-card">
-      <div class="passage-label">Textos — La semana sin pantallas · La avería en la autopista</div>
-      ${PASSAGE}
-    </div>`;
+    html += renderPassageCard(q);
   }
 
   html += `<p class="qprompt">${q.prompt}</p>`;

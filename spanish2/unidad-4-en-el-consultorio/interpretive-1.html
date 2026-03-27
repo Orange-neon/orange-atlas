@@ -109,11 +109,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 /* passage box */
 .passage-card{
   background:var(--s1);border:1px solid rgba(52,211,153,.12);
-  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
-  font-size:.87rem;color:#888;line-height:2.1;
-  font-family:'Lora',serif;font-style:italic;
+  border-radius:.75rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  color:#b6b6c8;line-height:1.9;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
 }
-.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.55rem;font-family:'Inter',sans-serif}
+.passage-title{
+  font-family:'Lora',serif;font-size:1.08rem;font-weight:700;
+  color:#f5f5ff;line-height:1.35;margin-bottom:.85rem;
+}
+.passage-body{
+  font-family:'Lora',serif;font-size:.96rem;line-height:1.95;
+  color:#c4c4d8;
+}
+.passage-body p + p{margin-top:1rem}
 
 /* prompt */
 .qprompt{
@@ -341,6 +350,57 @@ Cuando Valentina era niña, su familia tenía una rutina muy estricta por las ma
 
 La abuela de Marcos siempre supo cómo tratar los resfriados de la familia sin ir a la farmacia. Cada vez que alguien se enfermaba, ella hervía agua con jengibre rallado, miel y jugo de limón, y le daba la mezcla caliente al enfermo dos veces al día. Siempre decía que los medicamentos de la farmacia eran útiles en casos graves, pero que los remedios naturales podían aliviar los síntomas más rápido en casos leves. Un invierno, Marcos tuvo una fiebre bastante alta y se negó a tomar el remedio porque le parecía demasiado amargo. Su abuela insistió pacientemente, y después de dos días, la fiebre bajó. Marcos no estaba del todo seguro si fue el remedio o simplemente el tiempo lo que lo curó, pero desde entonces aprendió a respetar las tradiciones de su abuela. Hoy en día, cuando sus amigos se enferman, Marcos les recomienda el mismo remedio y les explica cómo prepararlo.`;
 
+const esc = s => (s || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;");
+
+function parsePassages(raw) {
+  return raw
+    .split(/(?=──\s*TEXTO\s+\d+:)/i)
+    .map(section => section.trim())
+    .filter(Boolean)
+    .reduce((acc, section) => {
+      const lines = section.split("\n");
+      const header = (lines.shift() || "").trim();
+      const match = header.match(/^──\s*TEXTO\s+(\d+):\s*(.*?)\s*──$/i);
+      if (!match) return acc;
+
+      const key = match[1];
+      acc[key] = {
+        label: `Texto ${key}`,
+        title: match[2].trim(),
+        body: lines.join("\n").trim(),
+      };
+      return acc;
+    }, {});
+}
+
+const PASSAGES = parsePassages(PASSAGE);
+
+function getQuestionPassage(q) {
+  if (q.text && PASSAGES[String(q.text)]) return PASSAGES[String(q.text)];
+  const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+  if (match && PASSAGES[match[1]]) return PASSAGES[match[1]];
+  return Object.values(PASSAGES)[0] || null;
+}
+
+function renderPassageCard(q) {
+  const passage = getQuestionPassage(q);
+  if (!passage) return "";
+
+  const paragraphs = passage.body
+    .split(/\n\s*\n/)
+    .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+
+  return `<div class="passage-card">
+    <div class="passage-label">${esc(passage.label)}</div>
+    <div class="passage-title">${esc(passage.title)}</div>
+    <div class="passage-body">${paragraphs}</div>
+  </div>`;
+}
+
 // ══════════════════════════════════════════════
 // NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
 // ══════════════════════════════════════════════
@@ -407,6 +467,7 @@ const QS = [
   // 5 — Cause and effect: Valentina's sick day
   { id:5, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 1,
     prompt:"What did Valentina's mother do when Valentina came home feeling sick?",
     ch:["A) She took Valentina to the doctor immediately.",
         "B) She gave her chamomile tea and sent her to bed.",
@@ -440,6 +501,7 @@ const QS = [
   // 8 — Supporting detail: frequency
   { id:8, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 2,
     prompt:"How often did the grandmother give her remedy to the sick person?",
     ch:["A) Once a day, in the morning.",
         "B) Three times a day, before meals.",
@@ -451,6 +513,7 @@ const QS = [
   // 9 — Cause and effect: why Marcos refused
   { id:9, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 2,
     prompt:"Why did Marcos refuse to take his grandmother's remedy at first?",
     ch:["A) He didn't believe in natural remedies.",
         "B) He thought he wasn't sick enough to need it.",
@@ -473,6 +536,7 @@ const QS = [
   // 11 — Supporting detail: what Marcos does today
   { id:11, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 2,
     prompt:"What does Marcos do today when his friends get sick?",
     ch:["A) He takes them to his grandmother so she can treat them.",
         "B) He recommends they go to the pharmacy for medicine.",
@@ -508,6 +572,7 @@ const QS = [
   // 14 — "aliviar" (MC)
   { id:14, sec:"Vocabulary in Context", type:"mc",
     passage: true,
+    text: 2,
     prompt:"The grandmother says natural remedies 'podían aliviar los síntomas más rápido en casos leves.'\n\nBased on context, what does aliviar most likely mean?",
     ch:["A) to cure completely and permanently",
         "B) to worsen",
@@ -527,6 +592,7 @@ const QS = [
   // 16 — "amargo" (free response)
   { id:16, sec:"Vocabulary in Context", type:"free",
     passage: true,
+    text: 2,
     prompt:"Marcos 'se negó a tomar el remedio porque le parecía demasiado amargo.'\n\nThe remedy contains ginger, lemon, and honey — three strong, sharp flavors. Based on this context, what does amargo most likely mean in English?\n\nWrite your answer in English: ______",
     acc:["bitter","too bitter","very bitter","bad tasting","bad taste","unpleasant","unpleasant tasting","sour","harsh"],
     disp:"bitter",
@@ -638,10 +704,7 @@ function renderQ() {
 
   // passage
   if (q.passage) {
-    html += `<div class="passage-card">
-      <div class="passage-label">Textos — Familia Herrera · Remedios de la abuela</div>
-      ${PASSAGE}
-    </div>`;
+    html += renderPassageCard(q);
   }
 
   // prompt

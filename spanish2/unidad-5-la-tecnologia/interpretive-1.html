@@ -109,11 +109,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 /* passage box */
 .passage-card{
   background:var(--s1);border:1px solid rgba(52,211,153,.12);
-  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
-  font-size:.87rem;color:#888;line-height:2.1;
-  font-family:'Lora',serif;font-style:italic;
+  border-radius:.75rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  color:#b6b6c8;line-height:1.9;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
 }
-.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.55rem;font-family:'Inter',sans-serif}
+.passage-title{
+  font-family:'Lora',serif;font-size:1.08rem;font-weight:700;
+  color:#f5f5ff;line-height:1.35;margin-bottom:.85rem;
+}
+.passage-body{
+  font-family:'Lora',serif;font-size:.96rem;line-height:1.95;
+  color:#c4c4d8;
+}
+.passage-body p + p{margin-top:1rem}
 
 /* prompt */
 .qprompt{
@@ -341,6 +350,57 @@ Cuando Isabel tenía doce años, su familia vivía en un pueblo pequeño donde n
 
 Cuando Sebastián entró a la secundaria, sus padres le regalaron su primer móvil. Al principio, lo usaba principalmente para textear con sus amigos y navegar por las redes sociales por las noches. Con el tiempo, empezó a revisar el móvil cada vez con más frecuencia — durante las comidas, antes de dormir y hasta en clase. Sus calificaciones empezaron a bajar, aunque él insistía en que podía hacer varias cosas a la vez. Un profesor le explicó que el cerebro humano no está diseñado para concentrarse en múltiples pantallas al mismo tiempo, y que cada vez que Sebastián miraba el móvil, tardaba varios minutos en volver a concentrarse. Sebastián no quería creerlo, pero decidió hacer un experimento: durante una semana, dejó el móvil en su mochila durante las clases. Al final de la semana, sus notas habían mejorado notablemente. Desde entonces, Sebastián apaga el móvil antes de estudiar y lo prende solo cuando termina.`;
 
+const esc = s => (s || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;");
+
+function parsePassages(raw) {
+  return raw
+    .split(/(?=──\s*TEXTO\s+\d+:)/i)
+    .map(section => section.trim())
+    .filter(Boolean)
+    .reduce((acc, section) => {
+      const lines = section.split("\n");
+      const header = (lines.shift() || "").trim();
+      const match = header.match(/^──\s*TEXTO\s+(\d+):\s*(.*?)\s*──$/i);
+      if (!match) return acc;
+
+      const key = match[1];
+      acc[key] = {
+        label: `Texto ${key}`,
+        title: match[2].trim(),
+        body: lines.join("\n").trim(),
+      };
+      return acc;
+    }, {});
+}
+
+const PASSAGES = parsePassages(PASSAGE);
+
+function getQuestionPassage(q) {
+  if (q.text && PASSAGES[String(q.text)]) return PASSAGES[String(q.text)];
+  const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+  if (match && PASSAGES[match[1]]) return PASSAGES[match[1]];
+  return Object.values(PASSAGES)[0] || null;
+}
+
+function renderPassageCard(q) {
+  const passage = getQuestionPassage(q);
+  if (!passage) return "";
+
+  const paragraphs = passage.body
+    .split(/\n\s*\n/)
+    .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+
+  return `<div class="passage-card">
+    <div class="passage-label">${esc(passage.label)}</div>
+    <div class="passage-title">${esc(passage.title)}</div>
+    <div class="passage-body">${paragraphs}</div>
+  </div>`;
+}
+
 // ══════════════════════════════════════════════
 // NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
 // ══════════════════════════════════════════════
@@ -418,6 +478,7 @@ const QS = [
   // 6 — Supporting detail: what the teacher said
   { id:6, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 2,
     prompt:"What did Sebastián's teacher explain to him?",
     ch:["A) That using a phone in class was against school rules.",
         "B) That the human brain cannot focus on multiple screens at once, and each phone check cost minutes of concentration.",
@@ -440,6 +501,7 @@ const QS = [
   // 8 — Supporting detail: Isabel's job
   { id:8, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 1,
     prompt:"What does Isabel do today as an adult?",
     ch:["A) She works as a librarian and teaches people how to use computers.",
         "B) She designs apps for rural communities that still lack easy internet access.",
@@ -451,6 +513,7 @@ const QS = [
   // 9 — Cause and effect: Sebastián's experiment result
   { id:9, sec:"Comprehension", type:"mc",
     passage: true,
+    text: 2,
     prompt:"What happened at the end of Sebastián's one-week experiment?",
     ch:["A) His teachers noticed and congratulated him publicly.",
         "B) His grades had improved noticeably.",
@@ -638,10 +701,7 @@ function renderQ() {
 
   // passage
   if (q.passage) {
-    html += `<div class="passage-card">
-      <div class="passage-label">Textos — Sin internet · El precio del móvil</div>
-      ${PASSAGE}
-    </div>`;
+    html += renderPassageCard(q);
   }
 
   // prompt

@@ -93,11 +93,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 
 .passage-card{
   background:var(--s1);border:1px solid rgba(52,211,153,.12);
-  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
-  font-size:.87rem;color:#888;line-height:2.1;
-  font-family:'Lora',serif;font-style:italic;
+  border-radius:.75rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  color:#b6b6c8;line-height:1.9;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
 }
-.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.55rem;font-family:'Inter',sans-serif}
+.passage-title{
+  font-family:'Lora',serif;font-size:1.08rem;font-weight:700;
+  color:#f5f5ff;line-height:1.35;margin-bottom:.85rem;
+}
+.passage-body{
+  font-family:'Lora',serif;font-size:.96rem;line-height:1.95;
+  color:#c4c4d8;
+}
+.passage-body p + p{margin-top:1rem}
 
 .qprompt{
   font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
@@ -301,6 +310,57 @@ Elena soñaba con ser famosa en las redes sociales. Cada tarde, grababa videos e
 ── TEXTO 2: La llanta ponchada ──
 
 El sábado pasado, Claudia conducía por la carretera cuando sintió que el volante empezó a temblar de manera extraña. Detuvo el carro en el lado de la autopista y vio que la llanta delantera estaba completamente ponchada. Claudia buscó el número de un taller mecánico en su móvil, pero la batería estaba casi agotada y la pantalla se apagó antes de que pudiera hacer la llamada. Por suerte, un conductor amable se detuvo y le prestó su cargador portátil para que pudiera encender el móvil de nuevo. Claudia encontró una gasolinera a dos kilómetros, llamó al mecánico y esperó treinta minutos al lado del carro. El mecánico llegó, revisó los frenos y los faros además de la llanta, y le explicó: «Navega con cuidado por esta carretera — la velocidad máxima aquí es setenta, pero muchos conductores la ignoran y provocan accidentes.» Mientras el mecánico arreglaba la rueda, Claudia se prometió a sí misma llevar siempre un cargador y revisar las llantas antes de cada viaje largo. Cuando por fin llegó a su destino, llamó a su familia para contarles lo que había pasado y todos dijeron que había manejado la situación con mucha calma.`;
+
+const esc = s => (s || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;");
+
+function parsePassages(raw) {
+  return raw
+    .split(/(?=──\s*TEXTO\s+\d+:)/i)
+    .map(section => section.trim())
+    .filter(Boolean)
+    .reduce((acc, section) => {
+      const lines = section.split("\n");
+      const header = (lines.shift() || "").trim();
+      const match = header.match(/^──\s*TEXTO\s+(\d+):\s*(.*?)\s*──$/i);
+      if (!match) return acc;
+
+      const key = match[1];
+      acc[key] = {
+        label: `Texto ${key}`,
+        title: match[2].trim(),
+        body: lines.join("\n").trim(),
+      };
+      return acc;
+    }, {});
+}
+
+const PASSAGES = parsePassages(PASSAGE);
+
+function getQuestionPassage(q) {
+  if (q.text && PASSAGES[String(q.text)]) return PASSAGES[String(q.text)];
+  const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+  if (match && PASSAGES[match[1]]) return PASSAGES[match[1]];
+  return Object.values(PASSAGES)[0] || null;
+}
+
+function renderPassageCard(q) {
+  const passage = getQuestionPassage(q);
+  if (!passage) return "";
+
+  const paragraphs = passage.body
+    .split(/\n\s*\n/)
+    .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+
+  return `<div class="passage-card">
+    <div class="passage-label">${esc(passage.label)}</div>
+    <div class="passage-title">${esc(passage.title)}</div>
+    <div class="passage-body">${paragraphs}</div>
+  </div>`;
+}
 
 // ══════════════════════════════════════════════
 // NORMALIZE & CHECK
@@ -594,10 +654,7 @@ function renderQ() {
   if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
 
   if (q.passage) {
-    html += `<div class="passage-card">
-      <div class="passage-label">Textos — La influencer arrepentida · La llanta ponchada</div>
-      ${PASSAGE}
-    </div>`;
+    html += renderPassageCard(q);
   }
 
   html += `<p class="qprompt">${q.prompt}</p>`;
