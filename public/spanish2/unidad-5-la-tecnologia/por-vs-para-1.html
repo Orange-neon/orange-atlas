@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen XVII — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+  --border:rgba(255,255,255,0.07);
+  --text:#ccccd8;--dim:#3e3e52;
+  --accent:#a78bfa;--accentd:#7c3aed;
+  --green:#34d399;--red:#f87171;
+  --warn:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+/* ══ SCREENS ══ */
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ══ LANDING ══ */
+#s-landing{
+  align-items:center;justify-content:center;padding:3rem 1.5rem;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 80% 70%,rgba(52,211,153,0.05) 0%,transparent 50%);
+}
+.land-inner{max-width:580px;width:100%;text-align:center}
+.land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+.land-title{font-family:'Lora',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+.land-title em{font-style:italic;color:var(--accent)}
+.land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+.land-sub strong{color:#888;font-weight:500}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+.info-card{
+  background:var(--s1);border:1px solid var(--border);border-radius:.6rem;
+  padding:1.1rem .8rem;text-align:center;
+}
+.info-n{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+.rules-box{
+  background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+  border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+  font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+}
+.rules-box li{margin-left:1rem;margin-bottom:.15rem}
+.rules-box strong{color:#a0a0c8;font-weight:600}
+
+.btn-main{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);
+  color:#fff;border:none;padding:1rem 3.5rem;border-radius:.45rem;
+  font-size:.88rem;font-weight:600;cursor:pointer;letter-spacing:.1em;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
+  box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+/* ══ EXAM SCREEN ══ */
+#s-exam{flex-direction:column}
+
+/* top bar */
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2rem;background:rgba(6,6,12,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;flex-shrink:0;
+}
+.tb-left{display:flex;flex-direction:column}
+.tb-qnum{font-family:'Lora',serif;font-size:.95rem;font-weight:700;color:#fff}
+.tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
+.tb-timer{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:500;
+  color:var(--accent);transition:color .3s;
+}
+.tb-timer.warn{color:var(--warn)}
+.tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-icon{font-size:.9rem}
+
+/* progress */
+#progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+#progbar{height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0%;transition:width .4s}
+
+/* question area */
+#qarea{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.5rem 3rem;
+}
+.qwrap{max-width:700px;width:100%}
+
+/* type badge */
+.qtype-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+}
+
+/* section label */
+.qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* passage box */
+.passage-card{
+  background:var(--s1);border:1px solid rgba(52,211,153,.12);
+  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  font-size:.87rem;color:#888;line-height:2.1;
+  font-family:'Lora',serif;font-style:italic;
+}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+
+/* prompt */
+.qprompt{
+  font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
+  color:#ddd;line-height:1.85;margin-bottom:1.4rem;
+  white-space:pre-line;
+}
+.qpool{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:.35rem;padding:.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+  color:#bbb;letter-spacing:.05em;margin-bottom:1rem;
+}
+
+/* choices */
+.choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.choice-btn{
+  text-align:left;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+  padding:.75rem 1rem;font-size:.88rem;color:#888;
+  cursor:pointer;transition:all .13s;line-height:1.5;
+  font-family:'Inter',sans-serif;
+}
+.choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+.choice-btn.sel{
+  border-color:rgba(167,139,250,.55);color:#ede9fe;
+  background:rgba(167,139,250,.08);
+}
+
+/* free input */
+.free-wrap{margin-bottom:1.4rem}
+.free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.free-input{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+  padding:.8rem 1rem;font-size:1rem;color:var(--text);
+  font-family:'IBM Plex Mono',monospace;outline:none;
+  letter-spacing:.04em;transition:border-color .2s,background .2s;
+}
+.free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+
+/* accent toolbar */
+.accent-bar{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;margin-bottom:.9rem}
+.accent-label{font-size:.58rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-right:.2rem;flex-shrink:0}
+.accent-btn{
+  background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+  color:#c4b5fd;border-radius:.28rem;padding:.28rem .52rem;
+  font-size:.95rem;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  cursor:pointer;transition:background .12s,border-color .12s;line-height:1;
+}
+.accent-btn:hover{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.45);color:#ede9fe}
+
+/* next button */
+.btn-next{
+  background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+  padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+  cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all .2s;width:100%;
+}
+.btn-next.ready{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+  border-color:transparent;cursor:pointer;
+  box-shadow:0 0 30px rgba(109,40,217,.3);
+}
+.btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+.btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+/* question transition */
+.qwrap{animation:qfade .35s ease}
+@keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ RESULTS SCREEN ══ */
+#s-results{flex-direction:column}
+
+#res-header{
+  background:var(--s1);border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem;text-align:center;flex-shrink:0;
+}
+.res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+.res-score{font-family:'Lora',serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+.res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+.res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+.res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:'IBM Plex Mono',monospace}
+
+#res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+.res-q{
+  background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;
+  margin-bottom:.8rem;border:1px solid var(--border);
+}
+.res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+.res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+.res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.res-num{
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+.res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+.res-prompt{font-family:'Lora',serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+.res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+.res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:'IBM Plex Mono',monospace}
+.res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+.res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+.res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+.res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+.res-exp-btn{
+  background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+  padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;
+  margin-left:2.1rem;transition:all .13s;
+}
+.res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+.res-exp-box{
+  display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+}
+.res-exp-box.open{display:block}
+
+/* mc reveal */
+.res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+.res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+.res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+.res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+/* timeout banner */
+#timeout-banner{
+  display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+  border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+  text-align:center;margin-bottom:1.5rem;
+}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+@media(max-width:540px){
+  #topbar{padding:.6rem 1rem}
+  .tb-timer{font-size:1.1rem}
+  .info-grid{grid-template-columns:repeat(3,1fr)}
+  .info-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div class="screen active" id="s-landing">
+<div class="land-inner">
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XVII</p>
+  <h1 class="land-title">Por<br><em>vs. Para</em></h1>
+  <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-n">20</div>
+      <div class="info-l">preguntas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n" style="color:var(--warn)">17:00</div>
+      <div class="info-l">minutos</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n">5</div>
+      <div class="info-l">tipos</div>
+    </div>
+  </div>
+
+  <div class="rules-box">
+    <strong>Reglas del examen:</strong>
+    <ul>
+      <li>Una pregunta a la vez — no puedes volver atrás</li>
+      <li>El examen termina automáticamente cuando el tiempo llega a cero</li>
+      <li>Las respuestas libres se evalúan al final</li>
+      <li>No hay pistas sobre el verbo ni el tiempo en las conjugaciones</li>
+    </ul>
+  </div>
+
+  <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+</div>
+</div>
+
+<!-- ══════════ EXAM ══════════ -->
+<div class="screen" id="s-exam">
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-qnum">Por vs. Para</div>
+      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+    </div>
+    <div class="tb-timer" id="timer">
+      <span class="timer-icon">⏱</span>
+      <span id="tdisp">17:00</span>
+    </div>
+  </div>
+  <div id="progbar-wrap"><div id="progbar"></div></div>
+  <div id="qarea">
+    <div class="qwrap" id="qwrap"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div class="screen" id="s-results">
+  <div id="res-header">
+    <div class="res-kicker" id="res-kicker">Resultado Final</div>
+    <div class="res-score" id="res-score"></div>
+    <div class="res-pct" id="res-pct"></div>
+    <div class="res-msg" id="res-msg"></div>
+    <div class="res-time" id="res-time"></div>
+  </div>
+  <div id="res-body">
+    <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+    <div id="res-list"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// PASSAGE
+// ══════════════════════════════════════════════
+const PASSAGE = `El verano pasado, Marta viajó a México para visitar a su familia. Salió de casa muy temprano por la mañana para llegar al aeropuerto a tiempo. En el avión, habló con una señora que viajaba por negocios. «Llevo tres años trabajando para una empresa en la Ciudad de México», dijo la señora. «¿Y usted?». «Yo viajo para ver a mis abuelos — los visito una vez por año». Al llegar, su primo la esperaba. «Te compré este libro por si te aburres en el vuelo de regreso», dijo él. «¡Gracias! Es perfecto para el viaje». Esa semana, Marta caminó por el centro histórico, comió tacos por primera vez en años y se quedó muy contenta por haber ido.`;
+
+// ══════════════════════════════════════════════
+// NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
+// ══════════════════════════════════════════════
+const nm = s => (s||"").toLowerCase().trim().replace(/\s+/g," ");
+const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+// ══════════════════════════════════════════════
+// QUESTIONS — Por vs. Para
+//
+// USOS DE PARA:                    USOS DE POR:
+//  • destino / dirección           • causa / razón (because of)
+//  • propósito / meta (in order to)• duración de tiempo
+//  • destinatario (for someone)    • movimiento a través de / por un lugar
+//  • deadline (para el lunes)      • intercambio (exchange)
+//  • opinión (para mí...)          • frecuencia (por semana)
+//  • empleo (trabajar para)        • medio (por teléfono, por correo)
+//                                  • en nombre de / en lugar de
+//                                  • por + infinitivo = because of having
+// ══════════════════════════════════════════════
+const QS = [
+
+  // 1 — fill in: purpose (para)
+  { id:1, sec:"Por o Para", type:"free",
+    prompt:"Estudié toda la noche ______ sacar una buena nota en el examen.\n\n(¿por o para? — indica propósito / meta)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = propósito o meta (in order to). 'Estudié... para sacar una buena nota' — el infinitivo después indica la intención. POR sería incorrecto aquí: 'por + infinitivo' indica causa de algo ya ocurrido, no una meta futura." },
+
+  // 2 — fill in: cause (por)
+  { id:2, sec:"Por o Para", type:"free",
+    prompt:"No pude dormir ______ el ruido de la calle.\n\n(¿por o para? — indica la causa o razón)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = causa o razón (because of). 'No pude dormir por el ruido' — el ruido es la causa del insomnio. PARA indicaría destino o propósito, lo cual no tiene sentido con un sustantivo como 'el ruido' en este contexto." },
+
+  // 3 — fill in: recipient (para)
+  { id:3, sec:"Por o Para", type:"free",
+    prompt:"Compré estas flores ______ mi mamá — hoy es su cumpleaños.\n\n(¿por o para? — indica destinatario)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = destinatario (for someone). Las flores son para mi mamá — ella es la persona que las va a recibir. POR en este contexto significaría 'en nombre de' o 'en lugar de', lo cual cambia completamente el sentido." },
+
+  // 4 — fill in: duration (por)
+  { id:4, sec:"Por o Para", type:"free",
+    prompt:"Viví en España ______ dos años antes de regresar a mi país.\n\n(¿por o para? — indica duración de tiempo)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = duración de tiempo. 'Viví en España por dos años' — indica cuánto tiempo duró la acción. PARA con tiempo indica un deadline o fecha límite (para el lunes), no una duración." },
+
+  // 5 — fill in: movement through (por)
+  { id:5, sec:"Por o Para", type:"free",
+    prompt:"Caminamos ______ el parque durante una hora — hacía un día precioso.\n\n(¿por o para? — indica movimiento a través de un lugar)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = movimiento a través de / por un lugar. 'Caminamos por el parque' indica que el movimiento ocurre dentro o a lo largo del parque. PARA indicaría destino: 'caminamos para el parque' significaría que íbamos con destino al parque, no dentro de él." },
+
+  // 6 — fill in: deadline (para)
+  { id:6, sec:"Por o Para", type:"free",
+    prompt:"El informe tiene que estar listo ______ el viernes a las tres.\n\n(¿por o para? — indica fecha límite / deadline)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = fecha límite (deadline). 'Listo para el viernes' indica que la acción debe completarse antes de esa fecha. POR con tiempo indica duración ('por tres horas'), no un límite de entrega." },
+
+  // 7 — fill in: exchange (por)
+  { id:7, sec:"Por o Para", type:"free",
+    prompt:"Te doy mi mochila vieja ______ tu cargador — la necesito más que la mochila.\n\n(¿por o para? — indica intercambio)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = intercambio (in exchange for). 'Te doy X por Y' — das una cosa a cambio de otra. PARA no se usa para expresar intercambio en español." },
+
+  // 8 — fill in: opinion (para)
+  { id:8, sec:"Por o Para", type:"free",
+    prompt:"______ mí, la mejor época del año para viajar es el otoño.\n\n(¿por o para? — indica opinión personal)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = opinión personal (in my opinion / for me). 'Para mí' introduce un punto de vista subjetivo. 'Por mí' tiene un significado diferente: 'por mí no hay problema' = 'as far as I'm concerned' o 'on my behalf', que es distinto a dar una opinión." },
+
+  // 9 — fill in: frequency (por)
+  { id:9, sec:"Por o Para", type:"free",
+    prompt:"Mi abuela llama a toda la familia dos veces ______ semana — es muy dedicada.\n\n(¿por o para? — indica frecuencia)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = frecuencia (per). 'Dos veces por semana' — por indica la unidad de medida de tiempo en expresiones de frecuencia. PARA no se usa con frecuencia en español." },
+
+  // 10 — fill in: means of communication (por)
+  { id:10, sec:"Por o Para", type:"free",
+    prompt:"Te mando los archivos ______ correo electrónico esta tarde.\n\n(¿por o para? — indica el medio de comunicación o transmisión)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = medio (by means of). 'Por correo electrónico' indica el canal o medio usado para enviar algo. También: por teléfono, por mensaje, por internet. PARA indicaría destino, no medio." },
+
+  // 11 — fill in: employment (para)
+  { id:11, sec:"Por o Para", type:"free",
+    prompt:"Llevo cinco años trabajando ______ una empresa de tecnología en la ciudad.\n\n(¿por o para? — indica empleo / trabajar a favor de alguien)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = empleo o servicio (to work for). 'Trabajar para una empresa' indica que la empresa es el empleador. POR aquí significaría 'en lugar de' — 'trabajé por ella' = 'I worked in her place/on her behalf', no 'I work for the company'." },
+
+  // 12 — fill in: on behalf of (por)
+  { id:12, sec:"Por o Para", type:"free",
+    prompt:"El jefe estaba enfermo, así que yo firmé los documentos ______ él.\n\n(¿por o para? — indica en nombre de / en lugar de alguien)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = en nombre de / en lugar de (on behalf of). 'Firmé por él' indica que actuaste en su lugar. PARA aquí significaría que los documentos eran para él como destinatario, no que lo reemplazaste." },
+
+  // 13 — fill in: por + inf = because of having (por)
+  { id:13, sec:"Por o Para", type:"free",
+    prompt:"Me castigaron ______ llegar tarde a clase tres veces esta semana.\n\n(¿por o para? — indica causa de algo ya ocurrido)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR + infinitivo = a causa de haber hecho algo (because of having done). 'Me castigaron por llegar tarde' — el llegar tarde fue la causa del castigo, algo ya ocurrido. PARA + infinitivo indica propósito hacia el futuro: 'estudié para aprender'." },
+
+  // 14 — fill in: destination (para)
+  { id:14, sec:"Por o Para", type:"free",
+    prompt:"Mañana salimos temprano ______ la playa — el viaje dura unas tres horas.\n\n(¿por o para? — indica destino)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = destino (heading to). 'Salimos para la playa' indica el punto de destino del viaje. POR aquí indicaría movimiento a través de ese lugar: 'pasamos por la playa' = we passed through/by the beach." },
+
+  // 15 — tricky: por vs para (both feel possible — test understanding)
+  { id:15, sec:"Por o Para", type:"free",
+    prompt:"Este regalo es ______ ti — sé que te gustan los libros de aventuras.\n\n(¿por o para? — indica destinatario)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA = destinatario. 'Es para ti' — tú eres quien va a recibir el regalo. 'Es por ti' cambiaría el significado completamente: 'it's because of you' o 'it's thanks to you', no que el regalo es tuyo." },
+
+  // 16 — fill in: time of day (por)
+  { id:16, sec:"Por o Para", type:"free",
+    prompt:"Generalmente estudio ______ la noche porque hay más silencio en casa.\n\n(¿por o para? — indica parte del día)",
+    acc:["por"],
+    disp:"por",
+    exp:"POR = parte del día. 'Por la mañana', 'por la tarde', 'por la noche' son expresiones fijas con POR. No se dice 'para la noche' para indicar un hábito durante esa parte del día." },
+
+  // 17 — fill in: in order to — tricky infinitive context
+  { id:17, sec:"Por o Para", type:"free",
+    prompt:"Ahorré dinero durante un año ______ poder comprar un carro nuevo.\n\n(¿por o para? — indica propósito o meta futura)",
+    acc:["para"],
+    disp:"para",
+    exp:"PARA + infinitivo = propósito o meta (in order to). 'Ahorré dinero para poder comprar' — el ahorro tiene como meta la compra futura. POR + infinitivo indicaría causa de algo pasado: 'me felicitaron por ahorrar tanto'." },
+
+  // 18 — Comprensión Lectora (MC)
+  { id:18, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"En el texto, Marta sale temprano de casa para llegar al aeropuerto a tiempo. ¿Qué uso de PARA representa esto?",
+    ch:["A) Destinatario — el aeropuerto recibe algo.",
+        "B) Propósito o meta — salió con la intención de llegar a tiempo.",
+        "C) Fecha límite — tenía que estar allí antes de una hora específica.",
+        "D) Opinión — para ella, era importante llegar a tiempo."],
+    cor:"B",
+    exp:"'Salió para llegar al aeropuerto a tiempo' — PARA + infinitivo indica propósito o meta (in order to). El destino físico sería 'salió para el aeropuerto' (sin infinitivo). Aquí el infinitivo 'llegar' lo convierte en propósito." },
+
+  // 19 — Comprensión Lectora (MC)
+  { id:19, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"La señora del avión dice 'llevo tres años trabajando para una empresa'. ¿Podría reemplazarse PARA por POR aquí sin cambiar el significado?",
+    ch:["A) Sí — POR y PARA son intercambiables con 'trabajar'.",
+        "B) No — 'trabajar por' significa trabajar en lugar de alguien, no como empleado.",
+        "C) Sí — POR también indica empleo en español.",
+        "D) No — 'trabajar por' no existe en español."],
+    cor:"B",
+    exp:"'Trabajar para' = trabajar como empleado de alguien. 'Trabajar por' = trabajar en lugar de alguien (sustituyéndolo). No son intercambiables: 'trabajo por mi jefe' significa que lo reemplazas, no que él es tu empleador. La distinción es importante." },
+
+  // 20 — Comprensión Lectora (MC)
+  { id:20, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"El primo dice 'te compré este libro por si te aburres'. ¿Qué uso de POR aparece aquí?",
+    ch:["A) Intercambio — compró el libro a cambio de algo.",
+        "B) Causa — se aburrió y por eso lo compró.",
+        "C) 'Por si' = just in case — indica precaución ante una posibilidad.",
+        "D) Duración — lo compró en poco tiempo."],
+    cor:"C",
+    exp:"'Por si' es una expresión fija que significa 'just in case' — indica precaución ante una situación que podría ocurrir. No es intercambio (no dio nada a cambio), no es causa pasada (ella no se había aburrido todavía), y no es duración." },
+];
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  answers: {},   // id → letter (mc) or string (free)
+  secsLeft: 17 * 60,
+  tick: null,
+  timedOut: false,
+  startSecs: 0,
+};
+
+// ══════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════
+function startTimer() {
+  document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+  ST.tick = setInterval(() => {
+    ST.secsLeft--;
+    const d = document.getElementById("tdisp");
+    const t = document.getElementById("timer");
+    d.textContent = fmtT(ST.secsLeft);
+    if (ST.secsLeft <= 60) t.classList.add("crit");
+    else if (ST.secsLeft <= 180) t.classList.add("warn");
+    if (ST.secsLeft <= 0) {
+      clearInterval(ST.tick);
+      ST.timedOut = true;
+      showResults();
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ() {
+  const q = QS[ST.idx];
+  const wrap = document.getElementById("qwrap");
+
+  // progress
+  document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
+  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+
+  // build HTML
+  let html = "";
+
+  // section label + type badge
+  const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+  const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+  html += `<div class="qsec-label">${q.sec}</div>`;
+  html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+  // pool
+  if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
+
+  // passage
+  if (q.passage) {
+    html += `<div class="passage-card">
+      <div class="passage-label">Texto — El viaje de Marta</div>
+      ${PASSAGE}
+    </div>`;
+  }
+
+  // prompt
+  html += `<p class="qprompt">${q.prompt}</p>`;
+
+  // input
+  if (q.type === "mc") {
+    html += `<div class="choices-grid">`;
+    q.ch.forEach(c => {
+      html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="free-wrap">
+      <div class="free-label">Escribe la forma correcta</div>
+      <input class="free-input" id="freeinp" placeholder="tu respuesta…"
+        oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+      <div class="accent-bar">
+        <span class="accent-label">Insertar:</span>
+        ${['á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ'].map(c=>`<button class="accent-btn" onclick="insertAccent('${c}')">${c}</button>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // next button
+  const isLast = ST.idx === QS.length - 1;
+  html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+    ${isLast ? "Entregar Examen →" : "Siguiente →"}
+  </button>`;
+
+  // inject with animation
+  wrap.style.animation = "none";
+  wrap.offsetHeight; // reflow
+  wrap.style.animation = "";
+  wrap.innerHTML = html;
+
+  // restore previous answer if somehow re-rendered (shouldn't happen, but safe)
+  const prev = ST.answers[q.id];
+  if (prev !== undefined) {
+    if (q.type === "mc") {
+      const btn = document.getElementById(`cb${prev}`);
+      if (btn) btn.classList.add("sel");
+      enableNext();
+    } else {
+      const inp = document.getElementById("freeinp");
+      if (inp) { inp.value = prev; enableNext(); }
+    }
+  }
+
+  // focus free input
+  if (q.type === "free") {
+    setTimeout(() => {
+      const inp = document.getElementById("freeinp");
+      if (inp) inp.focus();
+    }, 50);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════
+function pickMC(letter) {
+  const q = QS[ST.idx];
+  q.ch.forEach(c => {
+    const b = document.getElementById(`cb${c[0]}`);
+    if (b) b.classList.remove("sel");
+  });
+  const btn = document.getElementById(`cb${letter}`);
+  if (btn) btn.classList.add("sel");
+  ST.answers[q.id] = letter;
+  enableNext();
+}
+
+function insertAccent(ch) {
+  const inp = document.getElementById("freeinp");
+  if (!inp) return;
+  const s = inp.selectionStart, e = inp.selectionEnd;
+  inp.value = inp.value.slice(0,s) + ch + inp.value.slice(e);
+  inp.selectionStart = inp.selectionEnd = s + ch.length;
+  inp.focus();
+  freeTyped();
+}
+
+function freeTyped() {
+  const inp = document.getElementById("freeinp");
+  ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+  if (inp && inp.value.trim().length > 0) enableNext();
+  else disableNext();
+}
+
+function enableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.add("ready");
+  if (b) b.disabled = false;
+}
+function disableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.remove("ready");
+  if (b) b.disabled = true;
+}
+
+function tryNext() {
+  const q = QS[ST.idx];
+  // save free input if not already saved
+  if (q.type === "free") {
+    const inp = document.getElementById("freeinp");
+    if (inp) ST.answers[q.id] = inp.value;
+  }
+  if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+
+  ST.idx++;
+  if (ST.idx >= QS.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+// ══════════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════════
+function showResults() {
+  clearInterval(ST.tick);
+  const elapsed = 17 * 60 - ST.secsLeft;
+
+  // score
+  let score = 0;
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    if (q.type === "mc") { if (ans === q.cor) score++; }
+    else { if (cf(ans, q.acc)) score++; }
+  });
+  const pct = Math.round((score / QS.length) * 100);
+
+  // switch screens
+  document.getElementById("s-exam").classList.remove("active");
+  document.getElementById("s-results").classList.add("active");
+  window.scrollTo(0, 0);
+
+  // header
+  const hdr = document.getElementById("res-header");
+  hdr.style.background = pct >= 80
+    ? "linear-gradient(135deg,#052e16,#064e3b)"
+    : pct >= 55
+    ? "linear-gradient(135deg,#431407,#78350f)"
+    : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+  document.getElementById("res-score").textContent = `${score}/20`;
+  document.getElementById("res-pct").textContent =
+    `Opción múltiple: ${QS.filter(q=>q.type==="mc").reduce((a,q)=>a+(ST.answers[q.id]===q.cor?1:0),0)}/${QS.filter(q=>q.type==="mc").length}` +
+    `  ·  Respuesta libre: ${QS.filter(q=>q.type==="free").reduce((a,q)=>a+(cf(ST.answers[q.id]||"",q.acc)?1:0),0)}/${QS.filter(q=>q.type==="free").length}`;
+  const msgs = [[90,"Dominio excepcional."],[75,"Comprensión muy sólida."],[55,"Comprensión parcial — repasa los contextos."],[0,"Hay trabajo por hacer."]];
+  document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  document.getElementById("res-time").textContent = ST.timedOut
+    ? "⚠ Tiempo agotado"
+    : `Tiempo: ${fmtT(elapsed)}`;
+
+  if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+  // build result cards
+  const list = document.getElementById("res-list");
+  list.innerHTML = "";
+
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+    const card = document.createElement("div");
+    card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+
+    const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+    let html = `<div class="res-q-top">
+      <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+      <div>
+        <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+        <p class="res-prompt">${q.pool ? `<span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#666;display:block;margin-bottom:.4rem">${q.pool}</span>` : ""}${q.prompt}</p>
+      </div>
+    </div>`;
+
+    if (q.type === "mc") {
+      html += `<div class="res-mc-choices">`;
+      q.ch.forEach(c => {
+        const l = c[0];
+        const isRight = l === q.cor;
+        const isYours = l === ans;
+        let cls = "";
+        if (isRight) cls = "rc-right";
+        else if (isYours && !isRight) cls = "rc-wrong";
+        html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="res-ans-row">`;
+      if (ans) {
+        html += `<span class="res-chip yours ${ok ? "ok" : "bad"}">Tu respuesta: ${ans}</span>`;
+      } else {
+        html += `<span class="res-chip yours bad">Sin respuesta</span>`;
+      }
+      if (!ok) {
+        html += `<span class="res-chip correct">Correcto: ${q.disp}</span>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+    <div class="res-exp-box" id="rexp${q.id}">
+      ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+    </div>`;
+
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function togE(id) {
+  const b = document.getElementById(`rexp${id}`);
+  const btn = b.previousElementSibling;
+  b.classList.toggle("open");
+  btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+// ══════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════
+function startExam() {
+  ST.startSecs = Date.now();
+  document.getElementById("s-landing").classList.remove("active");
+  document.getElementById("s-exam").classList.add("active");
+  window.scrollTo(0, 0);
+  startTimer();
+  renderQ();
+}
+</script>
+</body>
+</html>

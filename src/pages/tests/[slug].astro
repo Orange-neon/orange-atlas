@@ -1,0 +1,67 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import ExamPlayer from "../../components/ExamPlayer.astro";
+import TestLayout from "../../layouts/TestLayout.astro";
+
+export async function getStaticPaths() {
+  const tests = await getCollection("tests");
+
+  return tests.map((test) => ({
+    params: { slug: test.slug },
+    props: { test },
+  }));
+}
+
+interface Props {
+  test: CollectionEntry<"tests">;
+}
+
+const { test } = Astro.props;
+const { Content } = await test.render();
+const questions = test.data.questionsJson ? JSON.parse(test.data.questionsJson) : null;
+const passages = test.data.passagesJson ? JSON.parse(test.data.passagesJson) : null;
+---
+
+{
+  questions ? (
+    <ExamPlayer
+      title={test.data.title}
+      duration={test.data.duration}
+      difficulty={test.data.difficulty}
+      description={test.data.description}
+      examCode={test.data.examCode}
+      heroTitle={test.data.heroTitle}
+      heroAccent={test.data.heroAccent}
+      topbarTitle={test.data.topbarTitle}
+      questionCount={test.data.questionCount}
+      sourceCount={test.data.sourceCount}
+      extraStatValue={test.data.extraStatValue}
+      extraStatLabel={test.data.extraStatLabel}
+      rules={test.data.rules}
+      infographicTitle={test.data.infographicTitle}
+      infographicSrc={test.data.infographicSrc}
+      audioTitle={test.data.audioTitle}
+      audioDescription={test.data.audioDescription}
+      audioSrc={test.data.audioSrc}
+      passages={passages}
+      questions={questions}
+    />
+  ) : (
+    <TestLayout
+      title={test.data.title}
+      duration={test.data.duration}
+      difficulty={test.data.difficulty}
+      description={test.data.description}
+      examCode={test.data.examCode}
+      questionCount={test.data.questionCount}
+      sourceCount={test.data.sourceCount}
+      infographicTitle={test.data.infographicTitle}
+      infographicSrc={test.data.infographicSrc}
+      audioTitle={test.data.audioTitle}
+      audioDescription={test.data.audioDescription}
+      audioSrc={test.data.audioSrc}
+    >
+      <Content />
+    </TestLayout>
+  )
+}

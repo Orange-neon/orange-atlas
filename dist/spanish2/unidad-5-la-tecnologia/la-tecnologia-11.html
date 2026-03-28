@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen XI — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+  --border:rgba(255,255,255,0.07);
+  --text:#ccccd8;--dim:#3e3e52;
+  --accent:#a78bfa;--accentd:#7c3aed;
+  --green:#34d399;--red:#f87171;
+  --warn:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+/* ══ SCREENS ══ */
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ══ LANDING ══ */
+#s-landing{
+  align-items:center;justify-content:center;padding:3rem 1.5rem;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 80% 70%,rgba(52,211,153,0.05) 0%,transparent 50%);
+}
+.land-inner{max-width:580px;width:100%;text-align:center}
+.land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+.land-title{font-family:'Lora',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+.land-title em{font-style:italic;color:var(--accent)}
+.land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+.land-sub strong{color:#888;font-weight:500}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+.info-card{
+  background:var(--s1);border:1px solid var(--border);border-radius:.6rem;
+  padding:1.1rem .8rem;text-align:center;
+}
+.info-n{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+.rules-box{
+  background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+  border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+  font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+}
+.rules-box li{margin-left:1rem;margin-bottom:.15rem}
+.rules-box strong{color:#a0a0c8;font-weight:600}
+
+.btn-main{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);
+  color:#fff;border:none;padding:1rem 3.5rem;border-radius:.45rem;
+  font-size:.88rem;font-weight:600;cursor:pointer;letter-spacing:.1em;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
+  box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+/* ══ EXAM SCREEN ══ */
+#s-exam{flex-direction:column}
+
+/* top bar */
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2rem;background:rgba(6,6,12,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;flex-shrink:0;
+}
+.tb-left{display:flex;flex-direction:column}
+.tb-qnum{font-family:'Lora',serif;font-size:.95rem;font-weight:700;color:#fff}
+.tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
+.tb-timer{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:500;
+  color:var(--accent);transition:color .3s;
+}
+.tb-timer.warn{color:var(--warn)}
+.tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-icon{font-size:.9rem}
+
+/* progress */
+#progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+#progbar{height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0%;transition:width .4s}
+
+/* question area */
+#qarea{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.5rem 3rem;
+}
+.qwrap{max-width:700px;width:100%}
+
+/* type badge */
+.qtype-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+}
+
+/* section label */
+.qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* passage box */
+.passage-card{
+  background:var(--s1);border:1px solid rgba(52,211,153,.12);
+  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  font-size:.87rem;color:#888;line-height:2.1;
+  font-family:'Lora',serif;font-style:italic;
+}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+
+/* prompt */
+.qprompt{
+  font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
+  color:#ddd;line-height:1.85;margin-bottom:1.4rem;
+  white-space:pre-line;
+}
+.qpool{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:.35rem;padding:.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+  color:#bbb;letter-spacing:.05em;margin-bottom:1rem;
+}
+
+/* choices */
+.choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.choice-btn{
+  text-align:left;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+  padding:.75rem 1rem;font-size:.88rem;color:#888;
+  cursor:pointer;transition:all .13s;line-height:1.5;
+  font-family:'Inter',sans-serif;
+}
+.choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+.choice-btn.sel{
+  border-color:rgba(167,139,250,.55);color:#ede9fe;
+  background:rgba(167,139,250,.08);
+}
+
+/* free input */
+.free-wrap{margin-bottom:1.4rem}
+.free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.free-input{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+  padding:.8rem 1rem;font-size:1rem;color:var(--text);
+  font-family:'IBM Plex Mono',monospace;outline:none;
+  letter-spacing:.04em;transition:border-color .2s,background .2s;
+}
+.free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+
+/* accent toolbar */
+.accent-bar{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;margin-bottom:.9rem}
+.accent-label{font-size:.58rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-right:.2rem;flex-shrink:0}
+.accent-btn{
+  background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+  color:#c4b5fd;border-radius:.28rem;padding:.28rem .52rem;
+  font-size:.95rem;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  cursor:pointer;transition:background .12s,border-color .12s;line-height:1;
+}
+.accent-btn:hover{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.45);color:#ede9fe}
+
+/* next button */
+.btn-next{
+  background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+  padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+  cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all .2s;width:100%;
+}
+.btn-next.ready{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+  border-color:transparent;cursor:pointer;
+  box-shadow:0 0 30px rgba(109,40,217,.3);
+}
+.btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+.btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+/* question transition */
+.qwrap{animation:qfade .35s ease}
+@keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ RESULTS SCREEN ══ */
+#s-results{flex-direction:column}
+
+#res-header{
+  background:var(--s1);border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem;text-align:center;flex-shrink:0;
+}
+.res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+.res-score{font-family:'Lora',serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+.res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+.res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+.res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:'IBM Plex Mono',monospace}
+
+#res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+.res-q{
+  background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;
+  margin-bottom:.8rem;border:1px solid var(--border);
+}
+.res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+.res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+.res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.res-num{
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+.res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+.res-prompt{font-family:'Lora',serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+.res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+.res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:'IBM Plex Mono',monospace}
+.res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+.res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+.res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+.res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+.res-exp-btn{
+  background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+  padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;
+  margin-left:2.1rem;transition:all .13s;
+}
+.res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+.res-exp-box{
+  display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+}
+.res-exp-box.open{display:block}
+
+/* mc reveal */
+.res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+.res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+.res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+.res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+/* timeout banner */
+#timeout-banner{
+  display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+  border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+  text-align:center;margin-bottom:1.5rem;
+}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+@media(max-width:540px){
+  #topbar{padding:.6rem 1rem}
+  .tb-timer{font-size:1.1rem}
+  .info-grid{grid-template-columns:repeat(3,1fr)}
+  .info-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div class="screen active" id="s-landing">
+<div class="land-inner">
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XII</p>
+  <h1 class="land-title">Mezcla de<br><em>Vocabulario</em></h1>
+  <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-n">20</div>
+      <div class="info-l">preguntas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n" style="color:var(--warn)">17:00</div>
+      <div class="info-l">minutos</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n">5</div>
+      <div class="info-l">tipos</div>
+    </div>
+  </div>
+
+  <div class="rules-box">
+    <strong>Reglas del examen:</strong>
+    <ul>
+      <li>Una pregunta a la vez — no puedes volver atrás</li>
+      <li>El examen termina automáticamente cuando el tiempo llega a cero</li>
+      <li>Las respuestas libres se evalúan al final</li>
+      <li>No hay pistas sobre el verbo ni el tiempo en las conjugaciones</li>
+    </ul>
+  </div>
+
+  <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+</div>
+</div>
+
+<!-- ══════════ EXAM ══════════ -->
+<div class="screen" id="s-exam">
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-qnum">Mezcla de Vocabulario</div>
+      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+    </div>
+    <div class="tb-timer" id="timer">
+      <span class="timer-icon">⏱</span>
+      <span id="tdisp">17:00</span>
+    </div>
+  </div>
+  <div id="progbar-wrap"><div id="progbar"></div></div>
+  <div id="qarea">
+    <div class="qwrap" id="qwrap"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div class="screen" id="s-results">
+  <div id="res-header">
+    <div class="res-kicker" id="res-kicker">Resultado Final</div>
+    <div class="res-score" id="res-score"></div>
+    <div class="res-pct" id="res-pct"></div>
+    <div class="res-msg" id="res-msg"></div>
+    <div class="res-time" id="res-time"></div>
+  </div>
+  <div id="res-body">
+    <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+    <div id="res-list"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// PASSAGE
+// ══════════════════════════════════════════════
+const PASSAGE = `El lunes por la tarde, Lucía llegó a casa después de un largo día. Quería subir un video a sus redes sociales, pero su cámara web no funcionaba. Abrió los archivos del video en su ordenador, pero los íconos estaban en desorden y tardó diez minutos en encontrar el que necesitaba. Mientras editaba el texto de la descripción, le llegaron tres mensajes de correo basura. Los borró sin abrirlos. Por fin, grabó una nueva introducción con su cámara digital, editó el video y lo subió. Antes de apagar el ordenador, guardó todo en la memoria USB. «Por fin terminé», dijo.`;
+
+// ══════════════════════════════════════════════
+// NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
+// ══════════════════════════════════════════════
+const nm = s => (s||"").toLowerCase().trim().replace(/\s+/g," ");
+const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+// ══════════════════════════════════════════════
+// QUESTIONS
+// ARTICLE RULE: if the sentence already has el/la/los/las before the blank,
+// accepted answers omit the article.
+// ══════════════════════════════════════════════
+const QS = [
+
+  // 1 — El Intruso (MC) — mix old car + new tech
+  { id:1, sec:"El Intruso", type:"mc",
+    pool:"la cámara web · el micrófono · los altavoces · el volante",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) la cámara web — es la única que captura imagen.",
+        "B) el micrófono — es el único que captura sonido de entrada.",
+        "C) los altavoces — son los únicos que reproducen sonido de salida.",
+        "D) el volante — los otros tres son periféricos de la computadora."],
+    cor:"D",
+    exp:"La cámara web, el micrófono y los altavoces son periféricos tecnológicos de la computadora. El volante es la rueda que controla la dirección del carro — pertenece al dominio automovilístico." },
+
+  // 2 — El Intruso (MC) — mix of new vocab verbs + car verb
+  { id:2, sec:"El Intruso", type:"mc",
+    pool:"textear · chatear · escanear · aparcar",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) textear — es el único que se hace desde el móvil.",
+        "B) chatear — es el único que ocurre en tiempo real.",
+        "C) escanear — es el único que convierte papel en digital.",
+        "D) aparcar — los otros tres son acciones del dominio digital."],
+    cor:"D",
+    exp:"Textear, chatear y escanear son acciones digitales. Aparcar significa estacionar el carro — pertenece al dominio automovilístico. Es el intruso de dominio." },
+
+  // 3 — El Intruso (MC) — new additions
+  { id:3, sec:"El Intruso", type:"mc",
+    pool:"los archivos · la memoria USB · los íconos · la bocina",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) los archivos — son los únicos que contienen información guardada.",
+        "B) la memoria USB — es el único dispositivo físico de almacenamiento.",
+        "C) los íconos — son los únicos que son imágenes en pantalla.",
+        "D) la bocina — los otros tres son del mundo de la computadora."],
+    cor:"D",
+    exp:"Los archivos, la memoria USB y los íconos son todos del dominio informático. La bocina es el instrumento de sonido del carro — del dominio automovilístico. Es el intruso de dominio." },
+
+  // 4 — El Intruso (MC) — redes sociales, IA, ordenador vs. car term
+  { id:4, sec:"El Intruso", type:"mc",
+    pool:"las redes sociales · el ordenador · la inteligencia artificial · la llanta",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) las redes sociales — son las únicas usadas para comunicarse con amigos.",
+        "B) el ordenador — es el único dispositivo físico del grupo.",
+        "C) la inteligencia artificial — es la única que describe una tecnología, no un objeto.",
+        "D) la llanta — los otros tres son del dominio digital o tecnológico."],
+    cor:"D",
+    exp:"Las redes sociales, el ordenador y la inteligencia artificial son todos del mundo tecnológico y digital. La llanta es la cubierta de goma de la rueda del carro — del dominio automovilístico. Es el intruso de dominio." },
+
+  // 5 — Comprensión Lectora (MC)
+  { id:5, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Por qué tardó Lucía diez minutos en encontrar el archivo del video?",
+    ch:["A) Porque la memoria USB estaba desconectada.",
+        "B) Porque los íconos estaban en desorden.",
+        "C) Porque el ordenador estaba apagado.",
+        "D) Porque había borrado el archivo por error."],
+    cor:"B",
+    exp:"El texto dice: 'los íconos estaban en desorden y tardó diez minutos en encontrar el que necesitaba.' No fue la memoria USB, ni el ordenador apagado, ni un archivo borrado — fue el desorden de los íconos en la pantalla." },
+
+  // 6 — Comprensión Lectora (MC)
+  { id:6, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Qué hizo Lucía con los mensajes de correo basura?",
+    ch:["A) Los guardó en una carpeta especial.",
+        "B) Los respondió para pedir que pararan.",
+        "C) Los borró sin abrirlos.",
+        "D) Los subió a sus redes sociales como ejemplo."],
+    cor:"C",
+    exp:"El texto dice: 'Le llegaron tres mensajes de correo basura. Los borró sin abrirlos.' No los guardó, no los respondió, y no los subió a redes sociales — simplemente los borró directamente." },
+
+  // 7 — ¿Qué palabra es? (new: redes sociales)
+  { id:7, sec:"¿Qué palabra es?", type:"free",
+    prompt:"Las plataformas de internet donde publicas fotos y mensajes para que tus amigos los vean y comenten.",
+    acc:["las redes sociales","redes sociales"],
+    disp:"las redes sociales",
+    exp:"Las redes sociales son plataformas como Instagram o TikTok donde se comparte contenido con amigos. 'Publicas fotos y mensajes' + 'amigos los ven y comentan' describen exactamente las redes sociales. No confundir con el sitio web (genérico) ni con el correo electrónico (privado y no público)." },
+
+  // 8 — ¿Qué palabra es? (old: cinturón de seguridad)
+  { id:8, sec:"¿Qué palabra es?", type:"free",
+    prompt:"La banda de tela que te pones sobre el cuerpo antes de manejar para protegerte en un accidente.",
+    acc:["el cinturón de seguridad","cinturón de seguridad"],
+    disp:"el cinturón de seguridad",
+    exp:"El cinturón de seguridad es la banda de tela que cruza el cuerpo del conductor y los pasajeros. 'Banda de tela', 'antes de manejar' y 'protegerte en accidente' lo distinguen del volante, del acelerador y de los frenos." },
+
+  // 9 — ¿Qué palabra es? (new: editar texto)
+  { id:9, sec:"¿Qué palabra es?", type:"free",
+    prompt:"La acción de cambiar, corregir o modificar el contenido de un documento — por ejemplo, cambiar el tipo de letra o corregir errores.",
+    acc:["editar texto","editar el texto"],
+    disp:"editar texto",
+    exp:"Editar texto es la acción de modificar el contenido de un documento digital. 'Cambiar, corregir o modificar' + 'tipo de letra' y 'corregir errores' la describen. Es una expresión del vocabulario de esta lección — no confundir con guardar (conservar) ni con borrar (eliminar)." },
+
+  // 10 — ¿Qué palabra es? (old: limpiaparabrisas)
+  { id:10, sec:"¿Qué palabra es?", type:"free",
+    prompt:"El mecanismo en la parte delantera del carro que se mueve de lado a lado para limpiar el agua de la lluvia del cristal.",
+    acc:["el limpiaparabrisas","limpiaparabrisas"],
+    disp:"el limpiaparabrisas",
+    exp:"El limpiaparabrisas es el mecanismo que limpia el parabrisas cuando llueve. 'Se mueve de lado a lado' y 'limpiar el agua de la lluvia del cristal' lo distinguen del parabrisas (el cristal en sí) y de los faros (las luces)." },
+
+  // 11 — Contexto Conversacional (free) — new: cámara web
+  // "mi" before blank — no article in sentence, but "mi" replaces it → accept without article
+  { id:11, sec:"Contexto Conversacional", type:"free",
+    prompt:"— No te veo bien en la videollamada. La imagen sale muy borrosa.\n— Es que mi ______ es muy vieja. Voy a comprar una nueva.\n— La mía también era mala antes de cambiarla.",
+    acc:["cámara web"],
+    disp:"cámara web",
+    exp:"La oración ya tiene 'mi' antes del espacio — un posesivo reemplaza al artículo, así que la respuesta es solo 'cámara web' sin artículo. 'No te veo bien', 'imagen borrosa' y 'videollamada' apuntan a la cámara web — el dispositivo que captura imagen en la computadora." },
+
+  // 12 — Conjugación: pretérito yo (grabar)
+  { id:12, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Ayer ______ un video corto con mi cámara digital para el proyecto de la clase.",
+    acc:["grabé"],
+    disp:"grabé",
+    exp:"Pretérito, primera persona singular de 'grabar' (regular -ar → -é). 'Ayer' confirma pretérito. Yo grabé → terminación -é con tilde obligatoria. Sin tilde ('grabe') es presente de subjuntivo — incorrecto aquí." },
+
+  // 13 — Conjugación: imperfecto él (funcionar)
+  { id:13, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Antes de la actualización, el micrófono siempre ______ mal en las videollamadas.",
+    acc:["funcionaba"],
+    disp:"funcionaba",
+    exp:"Imperfecto, tercera persona singular de 'funcionar' (regular -ar → -aba). El sujeto es 'el micrófono' (él/ello). 'Antes de la actualización' + 'siempre' indican un estado habitual en el pasado → imperfecto. Él funcionaba → terminación -aba. 'Funcionó' (pretérito) indicaría una sola vez, contradiciendo 'siempre'." },
+
+  // 14 — Conjugación: pretérito tú (subir)
+  { id:14, sec:"Conjugación en Contexto", type:"free",
+    prompt:"— ¿Ya ______ las fotos a las redes sociales?\n— Sí, las subí hace un momento.\n— ¡Qué rápido!",
+    acc:["subiste"],
+    disp:"subiste",
+    exp:"Pretérito, segunda persona singular (tú) de 'subir' (regular -ir → -iste). La pregunta '¿ya...?' pregunta por una acción completada en el pasado → pretérito. Tú subiste → terminación -iste. No confundir con 'subes' (presente) ni 'subías' (imperfecto)." },
+
+  // 15 — Conjugación: mandato tú (borrar)
+  // Context: article is not in the sentence before the verb — verb only
+  { id:15, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Tu amigo tiene cien mensajes de correo basura en su bandeja. Le dices: «______ todos esos mensajes — no sirven para nada.»",
+    acc:["borra"],
+    disp:"borra",
+    exp:"Mandato afirmativo de tú de 'borrar' (regular -ar). Das una instrucción directa a tu amigo (tú). Mandato afirmativo de tú para -ar: forma de él/ella en presente → él borra → ¡borra! 'Borras' es el presente indicativo. 'Borrar' es el infinitivo. Solo 'borra' es el mandato correcto." },
+
+  // 16 — Contexto Conversacional (free) — old: gasolinera
+  // "la" already in sentence → answer without article
+  { id:16, sec:"Contexto Conversacional", type:"free",
+    prompt:"— El carro tiene muy poca gasolina.\n— Para en la ______ que está en la próxima salida de la autopista.\n— Bien, ya la veo.",
+    acc:["gasolinera"],
+    disp:"gasolinera",
+    exp:"La oración ya tiene 'la' antes del espacio, así que la respuesta es solo 'gasolinera' sin artículo. El contexto — 'muy poca gasolina', 'para', 'salida de la autopista' — describe claramente una situación donde se necesita recargar el tanque. La gasolinera es el único lugar del vocabulario donde se compra gasolina." },
+
+  // 17 — Contexto Conversacional (free) — new: ordenador / computadora portátil
+  { id:17, sec:"Contexto Conversacional", type:"free",
+    prompt:"— ¿Con qué escribes los trabajos de la escuela en casa?\n— Con mi ______. Lo tengo siempre en la mochila porque es portátil.\n— Yo también tengo uno así.",
+    acc:["ordenador","computadora portátil","computadora","laptop"],
+    disp:"ordenador / computadora portátil",
+    exp:"'Con qué escribes', 'siempre en la mochila' y 'portátil' apuntan a un ordenador o computadora portátil (laptop). La pregunta usa 'mi' como posesivo, así que no es necesario el artículo. Todos los sinónimos del vocabulario son válidos: ordenador, computadora portátil, computadora." },
+
+  // 18 — ¿Qué palabra es? (old: velocidad máxima)
+  { id:18, sec:"¿Qué palabra es?", type:"free",
+    prompt:"El límite de velocidad en una calle o carretera que no puedes superar — si lo haces, la policía te puede multar.",
+    acc:["la velocidad máxima","velocidad máxima"],
+    disp:"la velocidad máxima",
+    exp:"La velocidad máxima es el límite legal de velocidad señalizado en las carreteras. 'Límite de velocidad', 'no puedes superar' y 'la policía te multa' son las claves. No confundir con el acelerador (el pedal) ni con el velocímetro (el instrumento que mide la velocidad actual)." },
+
+  // 19 — Contexto Conversacional (free) — new: inteligencia artificial
+  { id:19, sec:"Contexto Conversacional", type:"free",
+    prompt:"— Este asistente escribe correos, traduce textos y responde preguntas en segundos.\n— Es porque usa ______. Los programas modernos aprenden solos.\n— Es increíble lo que puede hacer.",
+    acc:["inteligencia artificial","la inteligencia artificial","IA","ia"],
+    disp:"inteligencia artificial / IA",
+    exp:"'Escribe, traduce y responde preguntas', 'programas que aprenden solos' describen la inteligencia artificial. Después de 'usa', el artículo es opcional: ambas formas son correctas. También se acepta la abreviación IA." },
+
+  // 20 — Conjugación: imperfecto nosotros (textear)
+  { id:20, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Antes de tener redes sociales, mis amigos y yo siempre ______ para comunicarnos cuando no podíamos hablar por teléfono.",
+    acc:["texteábamos"],
+    disp:"texteábamos",
+    exp:"Imperfecto, primera persona plural (nosotros) de 'textear' (regular -ar → -ábamos). 'Antes de tener redes sociales' + 'siempre' indican hábito en el pasado → imperfecto. Nosotros texteábamos → terminación -ábamos con tilde obligatoria. Sin tilde ('texteabamos') es incorrecto." },
+];
+
+// ══════════════════════════════════════════════
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  answers: {},   // id → letter (mc) or string (free)
+  secsLeft: 17 * 60,
+  tick: null,
+  timedOut: false,
+  startSecs: 0,
+};
+
+// ══════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════
+function startTimer() {
+  document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+  ST.tick = setInterval(() => {
+    ST.secsLeft--;
+    const d = document.getElementById("tdisp");
+    const t = document.getElementById("timer");
+    d.textContent = fmtT(ST.secsLeft);
+    if (ST.secsLeft <= 60) t.classList.add("crit");
+    else if (ST.secsLeft <= 180) t.classList.add("warn");
+    if (ST.secsLeft <= 0) {
+      clearInterval(ST.tick);
+      ST.timedOut = true;
+      showResults();
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ() {
+  const q = QS[ST.idx];
+  const wrap = document.getElementById("qwrap");
+
+  // progress
+  document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
+  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+
+  // build HTML
+  let html = "";
+
+  // section label + type badge
+  const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+  const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+  html += `<div class="qsec-label">${q.sec}</div>`;
+  html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+  // pool
+  if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
+
+  // passage
+  if (q.passage) {
+    html += `<div class="passage-card">
+      <div class="passage-label">Texto — El video de Lucía</div>
+      ${PASSAGE}
+    </div>`;
+  }
+
+  // prompt
+  html += `<p class="qprompt">${q.prompt}</p>`;
+
+  // input
+  if (q.type === "mc") {
+    html += `<div class="choices-grid">`;
+    q.ch.forEach(c => {
+      html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="free-wrap">
+      <div class="free-label">Escribe la forma correcta</div>
+      <input class="free-input" id="freeinp" placeholder="tu respuesta…"
+        oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+      <div class="accent-bar">
+        <span class="accent-label">Insertar:</span>
+        ${['á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ'].map(c=>`<button class="accent-btn" onclick="insertAccent('${c}')">${c}</button>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // next button
+  const isLast = ST.idx === QS.length - 1;
+  html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+    ${isLast ? "Entregar Examen →" : "Siguiente →"}
+  </button>`;
+
+  // inject with animation
+  wrap.style.animation = "none";
+  wrap.offsetHeight; // reflow
+  wrap.style.animation = "";
+  wrap.innerHTML = html;
+
+  // restore previous answer if somehow re-rendered (shouldn't happen, but safe)
+  const prev = ST.answers[q.id];
+  if (prev !== undefined) {
+    if (q.type === "mc") {
+      const btn = document.getElementById(`cb${prev}`);
+      if (btn) btn.classList.add("sel");
+      enableNext();
+    } else {
+      const inp = document.getElementById("freeinp");
+      if (inp) { inp.value = prev; enableNext(); }
+    }
+  }
+
+  // focus free input
+  if (q.type === "free") {
+    setTimeout(() => {
+      const inp = document.getElementById("freeinp");
+      if (inp) inp.focus();
+    }, 50);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════
+function pickMC(letter) {
+  const q = QS[ST.idx];
+  q.ch.forEach(c => {
+    const b = document.getElementById(`cb${c[0]}`);
+    if (b) b.classList.remove("sel");
+  });
+  const btn = document.getElementById(`cb${letter}`);
+  if (btn) btn.classList.add("sel");
+  ST.answers[q.id] = letter;
+  enableNext();
+}
+
+function insertAccent(ch) {
+  const inp = document.getElementById("freeinp");
+  if (!inp) return;
+  const s = inp.selectionStart, e = inp.selectionEnd;
+  inp.value = inp.value.slice(0,s) + ch + inp.value.slice(e);
+  inp.selectionStart = inp.selectionEnd = s + ch.length;
+  inp.focus();
+  freeTyped();
+}
+
+function freeTyped() {
+  const inp = document.getElementById("freeinp");
+  ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+  if (inp && inp.value.trim().length > 0) enableNext();
+  else disableNext();
+}
+
+function enableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.add("ready");
+  if (b) b.disabled = false;
+}
+function disableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.remove("ready");
+  if (b) b.disabled = true;
+}
+
+function tryNext() {
+  const q = QS[ST.idx];
+  // save free input if not already saved
+  if (q.type === "free") {
+    const inp = document.getElementById("freeinp");
+    if (inp) ST.answers[q.id] = inp.value;
+  }
+  if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+
+  ST.idx++;
+  if (ST.idx >= QS.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+// ══════════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════════
+function showResults() {
+  clearInterval(ST.tick);
+  const elapsed = 17 * 60 - ST.secsLeft;
+
+  // score
+  let score = 0;
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    if (q.type === "mc") { if (ans === q.cor) score++; }
+    else { if (cf(ans, q.acc)) score++; }
+  });
+  const pct = Math.round((score / QS.length) * 100);
+
+  // switch screens
+  document.getElementById("s-exam").classList.remove("active");
+  document.getElementById("s-results").classList.add("active");
+  window.scrollTo(0, 0);
+
+  // header
+  const hdr = document.getElementById("res-header");
+  hdr.style.background = pct >= 80
+    ? "linear-gradient(135deg,#052e16,#064e3b)"
+    : pct >= 55
+    ? "linear-gradient(135deg,#431407,#78350f)"
+    : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+  document.getElementById("res-score").textContent = `${score}/20`;
+  document.getElementById("res-pct").textContent =
+    `Opción múltiple: ${QS.filter(q=>q.type==="mc").reduce((a,q)=>a+(ST.answers[q.id]===q.cor?1:0),0)}/${QS.filter(q=>q.type==="mc").length}` +
+    `  ·  Respuesta libre: ${QS.filter(q=>q.type==="free").reduce((a,q)=>a+(cf(ST.answers[q.id]||"",q.acc)?1:0),0)}/${QS.filter(q=>q.type==="free").length}`;
+  const msgs = [[90,"Dominio excepcional."],[75,"Comprensión muy sólida."],[55,"Comprensión parcial — repasa los contextos."],[0,"Hay trabajo por hacer."]];
+  document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  document.getElementById("res-time").textContent = ST.timedOut
+    ? "⚠ Tiempo agotado"
+    : `Tiempo: ${fmtT(elapsed)}`;
+
+  if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+  // build result cards
+  const list = document.getElementById("res-list");
+  list.innerHTML = "";
+
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+    const card = document.createElement("div");
+    card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+
+    const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+    let html = `<div class="res-q-top">
+      <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+      <div>
+        <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+        <p class="res-prompt">${q.pool ? `<span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#666;display:block;margin-bottom:.4rem">${q.pool}</span>` : ""}${q.prompt}</p>
+      </div>
+    </div>`;
+
+    if (q.type === "mc") {
+      html += `<div class="res-mc-choices">`;
+      q.ch.forEach(c => {
+        const l = c[0];
+        const isRight = l === q.cor;
+        const isYours = l === ans;
+        let cls = "";
+        if (isRight) cls = "rc-right";
+        else if (isYours && !isRight) cls = "rc-wrong";
+        html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="res-ans-row">`;
+      if (ans) {
+        html += `<span class="res-chip yours ${ok ? "ok" : "bad"}">Tu respuesta: ${ans}</span>`;
+      } else {
+        html += `<span class="res-chip yours bad">Sin respuesta</span>`;
+      }
+      if (!ok) {
+        html += `<span class="res-chip correct">Correcto: ${q.disp}</span>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+    <div class="res-exp-box" id="rexp${q.id}">
+      ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+    </div>`;
+
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function togE(id) {
+  const b = document.getElementById(`rexp${id}`);
+  const btn = b.previousElementSibling;
+  b.classList.toggle("open");
+  btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+// ══════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════
+function startExam() {
+  ST.startSecs = Date.now();
+  document.getElementById("s-landing").classList.remove("active");
+  document.getElementById("s-exam").classList.add("active");
+  window.scrollTo(0, 0);
+  startTimer();
+  renderQ();
+}
+</script>
+</body>
+</html>

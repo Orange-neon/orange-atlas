@@ -1,0 +1,836 @@
+---
+interface Question {
+  id: number;
+  sec: string;
+  type: "mc" | "free";
+  media?: "infographic" | "audio";
+  passage?: boolean;
+  text?: string | number;
+  prompt: string;
+  ch?: string[];
+  cor?: string;
+  exp?: string;
+  eng?: boolean;
+  acc?: string[];
+  disp?: string;
+}
+
+interface Passage {
+  label: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  title: string;
+  duration: number;
+  difficulty: string;
+  description: string;
+  examCode?: string;
+  heroTitle?: string;
+  heroAccent?: string;
+  topbarTitle?: string;
+  questionCount?: number;
+  sourceCount?: number;
+  extraStatValue?: string | number;
+  extraStatLabel?: string;
+  rules?: string[];
+  infographicTitle?: string;
+  infographicSrc?: string;
+  audioTitle?: string;
+  audioDescription?: string;
+  audioSrc?: string;
+  passages?: Record<string, Passage>;
+  questions: Question[];
+}
+
+const {
+  title,
+  duration,
+  difficulty,
+  description,
+  examCode,
+  heroTitle,
+  heroAccent,
+  topbarTitle,
+  questionCount,
+  sourceCount,
+  extraStatValue,
+  extraStatLabel,
+  rules,
+  infographicTitle,
+  infographicSrc,
+  audioTitle,
+  audioDescription,
+  audioSrc,
+  passages = {},
+  questions,
+} = Astro.props;
+
+const totalQuestions = questionCount ?? questions.length;
+const infoQuestions = questions.filter((question) => question.media === "infographic");
+const audioQuestions = questions.filter((question) => question.media === "audio");
+const totalSources =
+  sourceCount ??
+  [infographicSrc ? "infographic" : null, audioSrc ? "audio" : null].filter(Boolean).length;
+const rulesList =
+  rules ??
+  [
+    infoQuestions.length
+      ? `Preguntas 1–${infoQuestions.length}: Lee el infográfico con atención — desplázalo para ver todos los datos`
+      : null,
+    audioQuestions.length
+      ? `Preguntas ${infoQuestions.length + 1}–${infoQuestions.length + audioQuestions.length}: Escucha el audio — puedes reproducirlo cuantas veces quieras`
+      : null,
+    "Una pregunta a la vez — no puedes volver atrás",
+    "Preguntas de vocabulario: escribe una frase corta en inglés con el significado de la palabra",
+  ].filter(Boolean);
+const introHeading = heroTitle ?? title;
+const introAccent = heroAccent ?? "";
+const pageTitle = `${title} | Orange Atlas`;
+const audioMeta = [audioTitle, audioDescription].filter(Boolean).join(" · ");
+const displayModePills = infoQuestions.length > 0 || audioQuestions.length > 0;
+const thirdStatValue = extraStatValue ?? totalSources;
+const thirdStatLabel = extraStatLabel ?? (extraStatValue !== undefined ? "tipos" : "fuentes");
+const resolvedTopbarTitle = topbarTitle ?? title;
+const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png" />
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      :root{
+        --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+        --border:rgba(255,255,255,0.07);
+        --text:#ccccd8;--dim:#3e3e52;
+        --accent:#a78bfa;--accentd:#7c3aed;
+        --green:#34d399;--red:#f87171;
+        --warn:#fb923c;
+        --teal:#22d3ee;
+      }
+      html{scroll-behavior:smooth}
+      body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+      .screen{display:none;min-height:100vh}
+      .screen[hidden]{display:none!important}
+      .screen.active{display:flex;flex-direction:column}
+
+      #s-landing{
+        align-items:center;justify-content:center;padding:3rem 1.5rem;
+        background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+                   radial-gradient(ellipse 50% 60% at 80% 70%,rgba(34,211,238,0.05) 0%,transparent 50%);
+      }
+      .land-inner{max-width:580px;width:100%;text-align:center}
+      .land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+      .land-title{font-family:"Lora",serif;font-size:clamp(2.4rem,7vw,4.2rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+      .land-title em{font-style:italic;color:var(--accent)}
+      .land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+      .land-sub strong{color:#888;font-weight:500}
+
+      .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+      .info-card{background:var(--s1);border:1px solid var(--border);border-radius:.6rem;padding:1.1rem .8rem;text-align:center}
+      .info-n{font-family:"Lora",serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+      .info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+      .rules-box{
+        background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+        border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+        font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+      }
+      .rules-box li{margin-left:1rem;margin-bottom:.15rem}
+      .rules-box strong{color:#a0a0c8;font-weight:600}
+
+      .mode-pills{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+      .mode-pill{
+        display:flex;align-items:center;gap:.45rem;
+        font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+        padding:.4rem .9rem;border-radius:2rem;border:1px solid;
+      }
+      .mode-pill.infographic{color:var(--green);border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+      .mode-pill.audio{color:var(--teal);border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.06)}
+
+      .btn-main{
+        background:linear-gradient(135deg,#6d28d9,#4f46e5);
+        color:#fff;border:none;padding:1rem 3.5rem;border-radius:.45rem;
+        font-size:.88rem;font-weight:600;cursor:pointer;letter-spacing:.1em;
+        text-transform:uppercase;font-family:"Inter",sans-serif;
+        box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+      }
+      .btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+      #s-exam{flex-direction:column}
+
+      #topbar{
+        display:flex;justify-content:space-between;align-items:center;
+        padding:.7rem 2rem;background:rgba(6,6,12,.97);
+        backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+        position:sticky;top:0;z-index:50;flex-shrink:0;
+      }
+      .tb-left{display:flex;flex-direction:column}
+      .tb-qnum{font-family:"Lora",serif;font-size:.95rem;font-weight:700;color:#fff}
+      .tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
+      .tb-timer{
+        display:flex;align-items:center;gap:.5rem;
+        font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:500;
+        color:var(--accent);transition:color .3s;
+      }
+      .tb-timer.warn{color:var(--warn)}
+      .tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+      .timer-icon{font-size:.9rem}
+
+      #progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+      #progbar{height:100%;width:0%;transition:width .4s}
+
+      #audio-bar{
+        display:none;
+        background:rgba(34,211,238,.04);
+        border-bottom:1px solid rgba(34,211,238,.12);
+        padding:.9rem 1.5rem;flex-shrink:0;
+      }
+      .audio-bar-inner{max-width:700px;width:100%;margin:0 auto}
+      .audio-bar-label{
+        font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+        color:var(--teal);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;
+      }
+      .audio-bar-meta{font-size:.72rem;color:var(--dim);margin-bottom:.55rem}
+      #test-audio{
+        width:100%;height:36px;border-radius:.3rem;outline:none;
+        accent-color:var(--teal);
+      }
+      .audio-hint{font-size:.65rem;color:var(--dim);margin-top:.35rem;font-style:italic}
+
+      #qarea{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1.5rem 3rem}
+      .qwrap{max-width:700px;width:100%}
+
+      .qtype-badge{
+        display:inline-block;font-size:.58rem;font-weight:700;
+        letter-spacing:.12em;text-transform:uppercase;
+        padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+      }
+      .qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+      .passage-card{
+        background:var(--s1);border:1px solid rgba(52,211,153,.12);
+        border-radius:.75rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+        color:#b6b6c8;line-height:1.9;
+        box-shadow:0 14px 40px rgba(0,0,0,.18);
+      }
+      .passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.55rem;font-family:"Inter",sans-serif}
+      .passage-title{
+        font-family:"Lora",serif;font-size:1.08rem;font-weight:700;
+        color:#f5f5ff;line-height:1.35;margin-bottom:.85rem;
+      }
+      .passage-body{
+        font-family:"Lora",serif;font-size:.96rem;line-height:1.95;
+        color:#c4c4d8;
+      }
+      .passage-body p + p{margin-top:1rem}
+
+      .infographic-wrap{margin-bottom:1.4rem}
+      .infographic-label{
+        font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+        color:var(--green);margin-bottom:.55rem;display:flex;align-items:center;gap:.4rem;
+      }
+      .infographic-frame{
+        width:100%;height:500px;
+        border:1px solid rgba(52,211,153,.15);
+        border-radius:.6rem;overflow:hidden;display:block;
+        background:#e8e4da;
+      }
+      .infographic-scroll-hint{
+        font-size:.63rem;color:var(--dim);margin-top:.35rem;font-style:italic;text-align:center;
+      }
+
+      .qprompt{
+        font-family:"Lora",serif;font-size:clamp(1rem,2.5vw,1.15rem);
+        color:#ddd;line-height:1.85;margin-bottom:1.4rem;
+        white-space:pre-line;
+      }
+      .choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+      .choice-btn{
+        text-align:left;background:rgba(255,255,255,.025);
+        border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+        padding:.75rem 1rem;font-size:.88rem;color:#888;
+        cursor:pointer;transition:all .13s;line-height:1.5;
+        font-family:"Inter",sans-serif;
+      }
+      .choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+      .choice-btn.sel{border-color:rgba(167,139,250,.55);color:#ede9fe;background:rgba(167,139,250,.08)}
+
+      .free-wrap{margin-bottom:1.4rem}
+      .free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+      .free-input{
+        width:100%;background:rgba(255,255,255,.03);
+        border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+        padding:.8rem 1rem;font-size:1rem;color:var(--text);
+        font-family:"IBM Plex Mono",monospace;outline:none;
+        letter-spacing:.04em;transition:border-color .2s,background .2s;
+      }
+      .free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+      .free-eng-note{
+        font-size:.63rem;color:rgba(167,139,250,.6);margin-top:.35rem;font-style:italic;
+      }
+
+      .btn-next{
+        background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+        padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+        cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+        font-family:"Inter",sans-serif;transition:all .2s;width:100%;
+      }
+      .btn-next.ready{
+        background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+        border-color:transparent;cursor:pointer;
+        box-shadow:0 0 30px rgba(109,40,217,.3);
+      }
+      .btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+      .btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+      .qwrap{animation:qfade .35s ease}
+      @keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+      #s-results{flex-direction:column}
+      #res-header{background:var(--s1);border-bottom:1px solid var(--border);padding:2.5rem 2rem;text-align:center;flex-shrink:0}
+      .res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+      .res-score{font-family:"Lora",serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+      .res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+      .res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+      .res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:"IBM Plex Mono",monospace}
+
+      #res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+      .res-q{background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;margin-bottom:.8rem;border:1px solid var(--border)}
+      .res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+      .res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+      .res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+      .res-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
+      .res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+      .res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+      .res-prompt{font-family:"Lora",serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+      .res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+      .res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:"IBM Plex Mono",monospace}
+      .res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+      .res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+      .res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+      .res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+      .res-exp-btn{
+        background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+        padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+        font-family:"Inter",sans-serif;letter-spacing:.07em;text-transform:uppercase;
+        margin-left:2.1rem;transition:all .13s;
+      }
+      .res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+      .res-exp-box{
+        display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+        background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+        border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+      }
+      .res-exp-box.open{display:block}
+
+      .res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+      .res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+      .res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+      .res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+      .res-section-divider{
+        font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+        color:var(--dim);padding:.5rem 0 .9rem;border-top:1px solid var(--border);
+        margin-top:.5rem;display:flex;align-items:center;gap:.6rem;
+      }
+      .res-section-divider::after{content:"";flex:1;height:1px;background:var(--border)}
+
+      #timeout-banner{
+        display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+        border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+        text-align:center;margin-bottom:1.5rem;
+      }
+
+      ::-webkit-scrollbar{width:5px}
+      ::-webkit-scrollbar-track{background:var(--bg)}
+      ::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+      @media(max-width:540px){
+        #topbar{padding:.6rem 1rem}
+        .tb-timer{font-size:1.1rem}
+        .info-n{font-size:1.5rem}
+        .infographic-frame{height:380px}
+        #audio-bar{padding:.7rem 1rem}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen active" id="s-landing">
+      <div class="land-inner">
+        <p class="land-kicker">{examCode ? `${examCode} · ` : ""}Senderos 2 · Lección 5</p>
+        <h1 class="land-title">
+          {introHeading}
+          {introAccent && <><br /><em>{introAccent}</em></>}
+        </h1>
+        <p class="land-sub">{totalQuestions} preguntas. <strong>{String(duration).padStart(2, "0")}:00</strong><br />{totalSources} fuentes — una pregunta a la vez.</p>
+
+        {displayModePills && (
+          <div class="mode-pills">
+            {infoQuestions.length > 0 && (
+              <div class="mode-pill infographic">📊 Preguntas 1–{infoQuestions.length} · Infografía</div>
+            )}
+            {audioQuestions.length > 0 && (
+              <div class="mode-pill audio">🎧 Preguntas {infoQuestions.length + 1}–{infoQuestions.length + audioQuestions.length} · Audio</div>
+            )}
+          </div>
+        )}
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-n">{totalQuestions}</div>
+            <div class="info-l">preguntas</div>
+          </div>
+          <div class="info-card">
+            <div class="info-n" style="color:var(--warn)">{String(duration).padStart(2, "0")}:00</div>
+            <div class="info-l">minutos</div>
+          </div>
+          <div class="info-card">
+            <div class="info-n">{thirdStatValue}</div>
+            <div class="info-l">{thirdStatLabel}</div>
+          </div>
+        </div>
+
+        <div class="rules-box">
+          <strong>Reglas del examen:</strong>
+          <ul>
+            {rulesList.map((rule) => <li>{rule}</li>)}
+          </ul>
+        </div>
+
+        <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+      </div>
+    </div>
+
+    <div class="screen" id="s-exam" hidden>
+      <div id="topbar">
+        <div class="tb-left">
+          <div class="tb-qnum" id="tb-mode">{resolvedTopbarTitle}</div>
+          <div class="tb-qof" id="qof">Pregunta 1 de {totalQuestions}</div>
+        </div>
+        <div class="tb-timer" id="timer">
+          <span class="timer-icon">⏱</span>
+          <span id="tdisp">{String(duration).padStart(2, "0")}:00</span>
+        </div>
+      </div>
+      <div id="progbar-wrap"><div id="progbar"></div></div>
+
+      <div id="audio-bar">
+        <div class="audio-bar-inner">
+          <div class="audio-bar-label">🎧 Audio</div>
+          <div class="audio-bar-meta">{audioMeta}</div>
+          <audio id="test-audio" controls preload="auto">
+            {audioSrc && <source src={audioSrc} type="audio/mpeg" />}
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+          <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p>
+        </div>
+      </div>
+
+      <div id="qarea">
+        <div class="qwrap" id="qwrap"></div>
+      </div>
+    </div>
+
+    <div class="screen" id="s-results" hidden>
+      <div id="res-header">
+        <div class="res-kicker" id="res-kicker">Resultado Final</div>
+        <div class="res-score" id="res-score"></div>
+        <div class="res-pct" id="res-pct"></div>
+        <div class="res-msg" id="res-msg"></div>
+        <div class="res-time" id="res-time"></div>
+      </div>
+      <div id="res-body">
+        <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+        <div id="res-list"></div>
+      </div>
+    </div>
+
+    <script is:inline define:vars={{
+      questions,
+      duration,
+      totalQuestions,
+      passages,
+      infographicTitle: infographicTitle ?? "Infografía",
+      infographicSrc: infographicSrc ?? "",
+      audioSrc: audioSrc ?? "",
+      audioTitle: audioTitle ?? "Audio",
+      audioMeta,
+      defaultTopbarTitle: resolvedTopbarTitle,
+      hasMediaQuestions,
+    }}>
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${q.eng ? '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>' : ""}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    </script>
+  </body>
+</html>
