@@ -1,0 +1,370 @@
+---
+title: "Interpretive 8"
+duration: 25
+difficulty: "Interpretivo mixto"
+description: "Prueba interpretiva de Senderos 2 Lección 5 con una infografía sobre el mundo de los carros y un audio publicitario sobre la tableta TechMax Pro."
+examCode: "Examen XXII"
+heroTitle: "Infografía & Audio"
+heroAccent: "Interpretivos"
+questionCount: 20
+sourceCount: 2
+rules:
+  - "Preguntas 1–10: Lee el infográfico con atención — desplázalo para ver todos los datos"
+  - "Preguntas 11–20: Escucha el audio — puedes reproducirlo cuantas veces quieras"
+  - "Una pregunta a la vez — no puedes volver atrás"
+  - "Preguntas de vocabulario: escribe una frase corta en inglés con el significado de la palabra"
+infographicTitle: "El mundo de los carros"
+infographicSrc: "/orange-atlas/assets/infografico-el-coche.html"
+audioTitle: "TechMax Pro"
+audioDescription: "Anuncio publicitario · Tableta TechMax Pro"
+audioSrc: "/orange-atlas/assets/techmax.mp3"
+questionsJson: |
+  [
+    {
+      "id": 1,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "¿Cuál es la idea principal de este infográfico?",
+      "ch": [
+        "A) Explicar cómo funciona el motor de un carro eléctrico paso a paso.",
+        "B) Presentar datos sobre la producción, seguridad, marcas y historia del automóvil en el mundo.",
+        "C) Advertir sobre los peligros del teléfono al volante y cómo evitarlos.",
+        "D) Comparar los precios de carros nuevos y usados en los Estados Unidos."
+      ],
+      "cor": "B",
+      "exp": "El infográfico cubre múltiples dimensiones del mundo del automóvil: producción global, carros eléctricos, accidentes de tráfico, reglas de seguridad, marcas más vendidas, tipos de combustible, datos adicionales sobre precios y distracciones, y una línea del tiempo histórica. Su propósito es un panorama completo — no solo la seguridad, ni solo los precios, ni explicar motores. Las opciones A, C y D capturan solo una sección específica del infográfico, no la idea principal."
+    },
+    {
+      "id": 2,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Según el infográfico, ¿cuántos vehículos nuevos se producen cada año en todo el mundo?",
+      "ch": [
+        "A) 18 millones — el porcentaje de carros eléctricos vendidos en 2024",
+        "B) 32,000 — el precio promedio de un carro hace diez años en dólares",
+        "C) 85 millones — más de 233,000 carros por día",
+        "D) 233 millones — la producción total en la última década"
+      ],
+      "cor": "C",
+      "exp": "El infográfico dice: «85M de vehículos nuevos se producen cada año en todo el mundo — eso es más de 233,000 carros por día.» La trampa más sofisticada es la opción D — 233,000 es el número de carros por día, no por año ni en una década. El infográfico presenta ambos datos en el mismo recuadro, y un lector apresurado puede confundir la cifra diaria con la anual. La opción A recicla el 18% de carros eléctricos, que es un porcentaje, no una cantidad de producción."
+    },
+    {
+      "id": 3,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Según el infográfico, ¿qué tipo de combustible prefiere la mayoría de los conductores?",
+      "ch": [
+        "A) Eléctrico — porque es el que más crece cada año",
+        "B) Híbrido — porque combina gasolina y electricidad",
+        "C) Diésel — porque es más eficiente en viajes largos",
+        "D) Gasolina — con un 52% de preferencia"
+      ],
+      "cor": "D",
+      "exp": "La gráfica circular «¿Qué tipo de combustible prefieren?» muestra gasolina con 52% — la mayoría. La trampa es la opción A — el infográfico menciona que los carros eléctricos 'crecen rápidamente' y que el 18% de los vendidos en 2024 son eléctricos, lo que puede llevar a pensar que son los más preferidos. Sin embargo, 'crecer rápidamente' no significa ser el más popular actualmente. Las opciones B y C son datos reales de la gráfica (15% cada uno) pero representan porcentajes mucho menores."
+    },
+    {
+      "id": 4,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Según el infográfico, ¿cuántas veces más probable es tener un accidente si envías mensajes de texto mientras conduces?",
+      "ch": [
+        "A) 2 veces — el riesgo aumenta el doble al textear",
+        "B) 12 veces — la edad promedio de los carros en EE.UU.",
+        "C) 23 veces — es la distracción más peligrosa al volante",
+        "D) 30 veces — el porcentaje de accidentes por exceso de velocidad"
+      ],
+      "cor": "C",
+      "exp": "El infográfico dice en los datos adicionales: «23× más probable que tengas un accidente si envías mensajes de texto mientras conduces.» La trampa más fuerte es la opción D — 30% aparece en la regla número 3 sobre velocidad excesiva, y los estudiantes que recuerdan el número 30 pueden confundirlo con la estadística del teléfono. La opción B es otro dato real del infográfico (12 años = edad promedio de carros en EE.UU.) aplicado al contexto equivocado."
+    },
+    {
+      "id": 5,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Según el dato importante del infográfico, ¿cuánto reduce el cinturón de seguridad el riesgo de muerte en un accidente?",
+      "ch": [
+        "A) Un 20% — el porcentaje de accidentes graves causados por fatiga",
+        "B) Un 30% — la velocidad excesiva como causa de accidentes mortales",
+        "C) Un 45% — según el dato importante del infográfico",
+        "D) Un 52% — el porcentaje de conductores que prefieren gasolina"
+      ],
+      "cor": "C",
+      "exp": "El recuadro de dato importante dice: «Usar el cinturón de seguridad reduce el riesgo de muerte en un 45%.» Las opciones A, B y D reciclan porcentajes reales del infográfico aplicados a contextos completamente diferentes: 20% es la fatiga al volante, 30% es la velocidad excesiva, y 52% es la preferencia por gasolina. Este tipo de pregunta requiere que el estudiante lea el contexto de cada cifra, no solo el número."
+    },
+    {
+      "id": 6,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Según la gráfica de marcas más vendidas, ¿qué marca de carros vendió más unidades en el mundo?",
+      "ch": [
+        "A) Volkswagen — 9.2 millones de unidades vendidas",
+        "B) Toyota — 10.5 millones de unidades vendidas",
+        "C) Hyundai / Kia — 7.3 millones de unidades vendidas",
+        "D) General Motors — 6.2 millones de unidades vendidas"
+      ],
+      "cor": "B",
+      "exp": "La barra más larga en la gráfica de marcas corresponde a Toyota con 10.5 millones de unidades. La trampa es la opción A — Volkswagen con 9.2 millones es el segundo más vendido y es una marca muy conocida que muchos estudiantes pueden asociar instintivamente con el éxito global. Identificar la barra más larga con precisión, no la más famosa, es la habilidad clave."
+    },
+    {
+      "id": 7,
+      "sec": "Infografía — Comprensión",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Según la línea del tiempo del infográfico, ¿qué hizo Volvo en 1959 con el cinturón de seguridad de tres puntos?",
+      "ch": [
+        "A) Lo vendió como accesorio opcional en todos sus modelos de lujo.",
+        "B) Lo patentó y cobró derechos de uso a todas las compañías del mundo.",
+        "C) Lo inventó y decidió compartir la patente gratis con todas las compañías para salvar vidas.",
+        "D) Lo adoptó después de que el gobierno sueco lo hiciera obligatorio por ley."
+      ],
+      "cor": "C",
+      "exp": "La línea del tiempo dice: «Volvo inventó el cinturón de seguridad de tres puntos y decidió compartir la patente gratis con todas las compañías para salvar vidas.» La trampa es la opción B — hablar de 'patente' puede llevar a pensar en cobrar derechos, cuando en realidad Volvo hizo exactamente lo contrario: la compartió gratis. Las opciones A y D añaden detalles (accesorio opcional, obligación gubernamental) que no aparecen en el infográfico."
+    },
+    {
+      "id": 8,
+      "sec": "Infografía — Vocabulario",
+      "type": "free",
+      "media": "infographic",
+      "eng": true,
+      "prompt": "En la línea del tiempo del infográfico, sobre el lanzamiento del Tesla Model S en 2012:\n\n«Tesla lanzó el Model S, un carro eléctrico de lujo con más de 400 kilómetros de autonomía. Demostró que los carros eléctricos pueden ser rápidos y elegantes.»\n\nThe infographic describes a key feature of this electric car — one that tells you how far it can travel on a single charge before needing to be recharged.\n\nBased on context, what does autonomía most likely mean in English?\n\nWrite a short English phrase: ______",
+      "acc": [
+        "range",
+        "driving range",
+        "battery range",
+        "distance on a charge",
+        "how far it can go",
+        "miles per charge",
+        "kilometers per charge",
+        "distance per charge",
+        "range per charge",
+        "travel range",
+        "electric range",
+        "mileage",
+        "maximum distance",
+        "how far before recharging",
+        "distance before recharge"
+      ],
+      "disp": "range / driving range",
+      "exp": "Context clues: the sentence gives a specific number — '400 kilómetros' — paired with 'autonomía.' For an electric car, the most critical specification is how far it can go on a single charge before needing to be plugged in. This is exactly what 'autonomía' describes. Students may also recognize 'autónomo' (autonomous/independent) as a related word — autonomía describes the car's ability to go independently for a certain distance. The 2024-2025 section about 'carros autónomos' (self-driving cars) uses the same root, reinforcing the connection."
+    },
+    {
+      "id": 9,
+      "sec": "Infografía — Vocabulario",
+      "type": "free",
+      "media": "infographic",
+      "eng": true,
+      "prompt": "En la línea del tiempo del infográfico, sobre el Ford Modelo T en 1908:\n\n«Henry Ford creó el Modelo T, el primer carro accesible para la clase media. Su sistema de producción en masa cambió la industria para siempre.»\n\nBefore the Model T, cars were only owned by the very wealthy. The infographic presents the Modelo T as a turning point — the moment ordinary people could own one.\n\nBased on context, what does accesible most likely mean in English in this context?\n\nWrite a short English phrase: ______",
+      "acc": [
+        "affordable",
+        "accessible",
+        "within reach",
+        "attainable",
+        "available to everyone",
+        "for everyone",
+        "cheap enough",
+        "cheap",
+        "inexpensive",
+        "reasonably priced",
+        "affordable for regular people",
+        "something regular people could buy",
+        "something the middle class could afford",
+        "not just for the rich"
+      ],
+      "disp": "affordable / accessible / within reach",
+      "exp": "Context clues: the Model T is described as the first car for 'la clase media' (the middle class), and the sentence frames it as a breakthrough that 'cambió la industria para siempre' (changed the industry forever). Before this, cars were luxury items. 'Accesible' is a false cognate trap — in English 'accessible' usually means 'easy to reach or use,' but here in Spanish it means 'affordable' or 'within economic reach.' The class context (middle class, mass production to lower costs) confirms the economic meaning."
+    },
+    {
+      "id": 10,
+      "sec": "Infografía — Estructura",
+      "type": "mc",
+      "media": "infographic",
+      "prompt": "Which text structure or structures BEST describe this infographic? Choose the most complete answer.",
+      "ch": [
+        "A) Sequence only — it presents the history of the automobile in chronological order.",
+        "B) Cause and Effect only — it explains why accidents happen and how to prevent them.",
+        "C) Informational with multiple structures: it combines statistics and data (informational), safety advice (problem/solution), and a historical timeline (sequence).",
+        "D) Compare and Contrast — it compares electric cars with gasoline cars throughout."
+      ],
+      "cor": "C",
+      "exp": "This infographic uses multiple text structures simultaneously — which is common in real-world infographics. The main data sections (85M cars, 18% electric, 1.35M deaths) are purely informational. The safety rules section ('Conduce con seguridad') follows a problem/solution structure: the problem is unsafe driving, the solution is five rules. The timeline at the bottom is a clear sequence structure. Option A is too narrow — sequence is only one part. Option B is too narrow — cause/effect appears in the safety tips but is not the dominant structure. Option D overstates the electric vs. gasoline comparison, which appears in only one chart."
+    },
+    {
+      "id": 11,
+      "sec": "Audio — Comprensión",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "What is the main purpose of this audio?",
+      "ch": [
+        "A) To share a personal review of a tablet the speaker has been using for several weeks.",
+        "B) To compare the TechMax Pro with other tablets currently on the market.",
+        "C) To persuade listeners to buy the TechMax Pro tablet through an advertisement.",
+        "D) To explain step by step how to set up and use the TechMax Pro for the first time."
+      ],
+      "cor": "C",
+      "exp": "Every element of the audio is designed to persuade: rhetorical questions ('¿Estás cansado de...?'), superlative claims ('tan rápido que...'), a direct target audience pitch, a limited-time discount (20% this weekend), and a special offer for the first 50 customers. This is an advertisement, not a personal review — the speaker never says they personally used the tablet, and no balanced criticism is offered. Option A is a trap because the language sounds similar to a personal review, but the discount and store information confirm it is a commercial."
+    },
+    {
+      "id": 12,
+      "sec": "Audio — Comprensión",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "According to the audio, how long does the TechMax Pro battery last on a single charge?",
+      "ch": [
+        "A) Eight hours — enough for a full school day.",
+        "B) Ten hours — with moderate use of apps and streaming.",
+        "C) Fourteen hours — without needing to find an outlet.",
+        "D) Twenty hours — according to lab testing conditions."
+      ],
+      "cor": "C",
+      "exp": "The audio says: 'La TechMax Pro dura hasta catorce horas con una sola carga. Puedes usarla todo el día sin buscar un enchufe.' Fourteen hours is the stated figure. Options A, B, and D are invented numbers that sound plausible for a tablet battery — none appear in the audio. The phrase 'sin buscar un enchufe' (without looking for an outlet) reinforces the all-day use claim."
+    },
+    {
+      "id": 13,
+      "sec": "Audio — Comprensión",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "According to the audio, which group of people is SPECIFICALLY called out as a target audience for the TechMax Pro?",
+      "ch": [
+        "A) Professional graphic designers who need color-accurate screens.",
+        "B) Remote workers who spend all day in video meetings.",
+        "C) Students — who can take notes, record lessons, and organize documents.",
+        "D) Gamers who need a fast processor for running multiple games at once."
+      ],
+      "cor": "C",
+      "exp": "The audio says: '¿Eres estudiante? ¡Esta tableta es ideal para ti! Puedes tomar apuntes en clase con el lápiz digital incluido, grabar las lecciones de tus profesores y organizar todos tus documentos en un solo lugar.' Students are explicitly called out with a direct question. Options A, B, and D are plausible tablet audiences but are never mentioned in the audio. The audio also mentions people who like to draw or design, but students are the specific group addressed by name."
+    },
+    {
+      "id": 14,
+      "sec": "Audio — Comprensión",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "What special offer is available to the FIRST fifty customers who visit ElectroMundo this weekend?",
+      "ch": [
+        "A) A free digital pencil to use with the tablet.",
+        "B) A 20% discount on the total purchase price.",
+        "C) A free protective case for the tablet.",
+        "D) A free one-year warranty extension on the device."
+      ],
+      "cor": "C",
+      "exp": "The audio says: 'los primeros cincuenta clientes recibirán una funda protectora completamente gratis.' The free protective case is for the first 50 customers specifically. Option B is a trap — the 20% discount is available to ALL customers this weekend, not just the first 50. Option A is tempting because the digital pencil is mentioned in the audio, but it is described as already 'included' with the tablet, not as a special weekend promotion. Option D is invented."
+    },
+    {
+      "id": 15,
+      "sec": "Audio — Comprensión",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "According to the audio, what can the TechMax Pro's screen do that makes it useful for artists and designers?",
+      "ch": [
+        "A) It automatically adjusts brightness based on the lighting in the room.",
+        "B) It responds precisely to every movement of the hand.",
+        "C) It can project images onto a wall for group presentations.",
+        "D) It has a special drawing mode that activates when the pencil is detected."
+      ],
+      "cor": "B",
+      "exp": "The audio says: '¿Prefieres dibujar o diseñar? La pantalla responde con precisión a cada movimiento de tu mano.' Precision response to hand movement is the feature highlighted for artists and designers. Options A, C, and D all sound like plausible high-tech features but are never mentioned in the audio. This question also tests whether students can connect the question about artists ('dibujar o diseñar') to the corresponding detail in the audio."
+    },
+    {
+      "id": 16,
+      "sec": "Audio — Vocabulario",
+      "type": "free",
+      "media": "audio",
+      "eng": true,
+      "prompt": "En el audio: «La TechMax Pro dura hasta catorce horas con una sola carga. Puedes usarla todo el día sin buscar un enchufe.»\n\nThe speaker is reassuring listeners about battery life — you can use the tablet all day without having to look for something. The word «enchufe» names the thing you would normally need to find when your battery runs low.\n\nBased on context, what does enchufe most likely mean in English?\n\nWrite a short English phrase: ______",
+      "acc": [
+        "outlet",
+        "plug",
+        "power outlet",
+        "electrical outlet",
+        "socket",
+        "power socket",
+        "wall outlet",
+        "charger",
+        "charging point",
+        "power source",
+        "wall plug",
+        "electric plug",
+        "power plug",
+        "charging outlet"
+      ],
+      "disp": "outlet / plug / power outlet",
+      "exp": "Context clues: the sentence is about battery life and the ability to use the tablet all day without needing something. When a battery runs low, the thing you look for is an electrical outlet or plug to charge it. 'Enchufe' comes from 'enchufar' (to plug in), which describes connecting a device to electricity. Students who recognize that the scenario is about charging and that 'enchufe' is the thing you need to avoid looking for can deduce the meaning. 'Outlet,' 'plug,' and 'socket' are all correct."
+    },
+    {
+      "id": 17,
+      "sec": "Audio — Vocabulario",
+      "type": "free",
+      "media": "audio",
+      "eng": true,
+      "prompt": "En el audio: «Puedes tomar apuntes en clase con el lápiz digital incluido, grabar las lecciones de tus profesores y organizar todos tus documentos en un solo lugar.»\n\nThe speaker is listing things a student can do in class with the tablet. «Apuntes» is the first action — something students do during a lesson, paired with the digital pencil as the tool.\n\nBased on context, what does tomar apuntes most likely mean in English?\n\nWrite a short English phrase: ______",
+      "acc": [
+        "take notes",
+        "write notes",
+        "take note",
+        "jot down notes",
+        "note-taking",
+        "taking notes",
+        "writing notes",
+        "making notes",
+        "make notes",
+        "write things down",
+        "write down",
+        "annotate",
+        "notes"
+      ],
+      "disp": "take notes",
+      "exp": "Context clues: students do this during class, using a digital pencil, while listening to their teachers. The action is paired with 'grabar las lecciones' (record lessons) and 'organizar documentos' (organize documents) — all academic tasks. 'Apuntes' are handwritten notes taken during class. 'Tomar' here means 'to take' in the sense of 'to make/do.' The digital pencil as the tool used for this action confirms it is a writing activity. 'Take notes' is the most natural English equivalent."
+    },
+    {
+      "id": 18,
+      "sec": "Audio — Estructura",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "Which text type and structure BEST describes the TechMax Pro audio?",
+      "ch": [
+        "A) Informational / Expository — it presents factual information about a product in a neutral tone.",
+        "B) Narrative — it tells a personal story about someone who used the tablet and changed their life.",
+        "C) Persuasive / Advertisement — it uses rhetorical questions, emotional appeals, and a limited-time offer to convince listeners to buy.",
+        "D) Instructional / How-To — it gives step-by-step directions for using the tablet's features."
+      ],
+      "cor": "C",
+      "exp": "The audio uses classic advertising techniques: rhetorical questions to create a problem ('¿Estás cansado de...?'), enthusiastic claims ('¡No te preocupes!'), a targeted appeal to students, urgency ('este fin de semana'), a discount (20%), and a scarcity offer (first 50 customers). This is a persuasive text — specifically an advertisement. Option A is wrong because the tone is far from neutral; it is clearly promotional. Option B is wrong because no personal story is told. Option D is wrong because the audio never explains how to use the tablet step by step."
+    },
+    {
+      "id": 19,
+      "sec": "Audio — Inferencia",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "The audio uses rhetorical questions like '¿Estás cansado de cargar una computadora pesada?' and '¿Eres estudiante?' What is the most likely purpose of these questions?",
+      "ch": [
+        "A) To gather information about the listener's lifestyle before making a recommendation.",
+        "B) To create a sense of personal connection and make the listener feel the product is made for them.",
+        "C) To warn listeners about the dangers of using heavy laptops over long periods.",
+        "D) To test the listener's knowledge about technology before explaining the product."
+      ],
+      "cor": "B",
+      "exp": "Rhetorical questions in advertising are not meant to be answered — they are designed to make the listener identify with a problem or situation, creating a feeling that the product is the solution for them specifically. '¿Estás cansado de...?' implies: 'you have this problem — we have the solution.' '¿Eres estudiante?' directly targets a specific audience. This is a classic advertising persuasion technique. Options A, C, and D all attribute informational or educational purposes to what is purely a persuasive device."
+    },
+    {
+      "id": 20,
+      "sec": "Audio — Inferencia",
+      "type": "mc",
+      "media": "audio",
+      "prompt": "The audio never mentions any negative aspects or limitations of the TechMax Pro. What can we logically infer from this?",
+      "ch": [
+        "A) The TechMax Pro has no flaws — it is a perfect product in every way.",
+        "B) The speaker tested the product extensively and found nothing negative to report.",
+        "C) As an advertisement, the audio is designed to highlight only positive features — any limitations are intentionally omitted.",
+        "D) The price and storage capacity were not mentioned because they are irrelevant to the target audience."
+      ],
+      "cor": "C",
+      "exp": "This question tests whether students understand the nature of advertising as a text type. Advertisements, by design, present only positive information about a product — they are not objective reviews. The absence of any criticism is not evidence that the product is perfect; it is evidence of the text's persuasive purpose. Option A takes the advertisement at face value rather than critically. Option B implies a personal testing process that the audio never describes. Option D makes a specific claim about price and storage that is not supported by anything in the audio."
+    }
+  ]
+---
+
+Esta prueba se renderiza con el reproductor interactivo de Astro y toma sus preguntas desde el frontmatter de este mismo archivo Markdown.
