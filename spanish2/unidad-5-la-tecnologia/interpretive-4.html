@@ -98,8 +98,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
   display:none;
   background:rgba(34,211,238,.04);
   border-bottom:1px solid rgba(34,211,238,.12);
-  padding:.9rem 2rem;flex-shrink:0;
+  padding:.9rem 1.5rem;flex-shrink:0;
 }
+.audio-bar-inner{max-width:700px;width:100%;margin:0 auto}
 .audio-bar-label{
   font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
   color:var(--teal);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;
@@ -317,13 +318,15 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 
   <!-- Persistent audio bar — shown only for Q11–20 -->
   <div id="audio-bar">
-    <div class="audio-bar-label">🎧 Audio</div>
-    <div class="audio-bar-meta">Camila · Reseña de computadora nueva · Canal de tecnología</div>
-    <audio id="camila-audio" controls preload="auto">
-      <source src="/orange-atlas/assets/camila.mp3" type="audio/mpeg">
-      Tu navegador no soporta el elemento de audio.
-    </audio>
-    <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p>
+    <div class="audio-bar-inner">
+      <div class="audio-bar-label">🎧 Audio</div>
+      <div class="audio-bar-meta">Camila · Reseña de computadora nueva · Canal de tecnología</div>
+      <audio id="camila-audio" controls preload="auto">
+        <source src="/orange-atlas/assets/camila.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+      <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p>
+    </div>
   </div>
 
   <div id="qarea">
