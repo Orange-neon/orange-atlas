@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Infográfico — Las redes sociales: ¿beneficio o perjuicio?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0e17;
+  --paper:#faf8f2;
+  --pro:#0d6e4a;
+  --pro-light:#e6f4ef;
+  --pro-mid:#1cb87a;
+  --con:#b82a0d;
+  --con-light:#fceee9;
+  --con-mid:#e8401c;
+  --mid:#6b6870;
+  --rule:rgba(15,14,23,.12);
+  --neutral:#f0ede5;
+}
+html{background:#d6d2c8}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  max-width:960px;
+  margin:2rem auto;
+  box-shadow:0 8px 60px rgba(0,0,0,.22);
+}
+
+/* ══════════════════════════════
+   HEADER — full bleed, centered
+═══════════════════════════════ */
+.header{
+  background:var(--ink);
+  padding:2.6rem 3rem 0;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent,transparent 18px,
+    rgba(255,255,255,.025) 18px,rgba(255,255,255,.025) 19px);
+}
+.eyebrow{
+  font-family:'Syne',sans-serif;
+  font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;
+  color:rgba(250,248,242,.4);margin-bottom:.65rem;position:relative;
+}
+.header-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,5.5vw,3.4rem);
+  font-weight:800;line-height:1;
+  color:var(--paper);position:relative;
+}
+.header-title .pro-word{color:var(--pro-mid)}
+.header-title .con-word{color:var(--con-mid)}
+
+.header-sub{
+  font-size:.85rem;font-weight:300;
+  color:rgba(250,248,242,.55);
+  max-width:520px;margin:.85rem auto 0;
+  line-height:1.65;position:relative;
+}
+
+/* Split color bar under header */
+.header-split-bar{
+  display:flex;margin-top:2rem;position:relative;
+}
+.split-tab{
+  flex:1;padding:.55rem .8rem;
+  font-family:'Syne',sans-serif;
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-align:center;
+}
+.split-tab.pro{background:var(--pro);color:var(--pro-light)}
+.split-tab.con{background:var(--con);color:var(--con-light)}
+
+/* ══════════════════════════════
+   HERO STAT STRIP (center seam)
+═══════════════════════════════ */
+.hero-strip{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  background:var(--ink);
+  color:var(--paper);
+  align-items:center;
+}
+.hero-half{
+  padding:1.4rem 1.6rem;
+  text-align:center;
+}
+.hero-n{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:800;line-height:1;display:block;
+}
+.hero-desc{
+  font-size:.72rem;font-weight:300;
+  color:rgba(250,248,242,.55);
+  margin-top:.3rem;line-height:1.4;
+}
+.hero-divider{
+  width:1px;background:rgba(250,248,242,.12);
+  align-self:stretch;
+}
+.hero-center{
+  padding:1rem 1.4rem;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  border-left:1px solid rgba(250,248,242,.1);
+  border-right:1px solid rgba(250,248,242,.1);
+}
+.hero-center-label{
+  font-family:'Syne',sans-serif;
+  font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(250,248,242,.4);margin-bottom:.3rem;
+}
+.hero-center-n{
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:1.5rem;color:var(--paper);
+}
+.hero-center-sub{
+  font-size:.62rem;color:rgba(250,248,242,.5);
+  margin-top:.15rem;text-align:center;line-height:1.3;
+}
+
+/* ══════════════════════════════
+   MAIN SPLIT BODY
+═══════════════════════════════ */
+.split-body{
+  display:grid;
+  grid-template-columns:1fr 4px 1fr;
+  min-height:500px;
+}
+.side{padding:2rem 2rem 2.2rem}
+.side.pro{background:var(--pro-light)}
+.side.con{background:var(--con-light)}
+.seam{
+  background:linear-gradient(to bottom,var(--pro) 0%,var(--con) 100%);
+  position:relative;
+}
+.seam::after{
+  content:'VS';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:.55rem;
+  letter-spacing:.15em;
+  background:var(--paper);
+  color:var(--mid);
+  padding:.35rem .4rem;
+  border-radius:2px;
+  box-shadow:0 0 0 3px var(--paper);
+}
+
+/* Side headings */
+.side-heading{
+  font-family:'Syne',sans-serif;
+  font-size:.95rem;font-weight:800;
+  letter-spacing:.04em;text-transform:uppercase;
+  margin-bottom:1.3rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.side-heading .pip{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;
+}
+.side.pro .side-heading{color:var(--pro)}
+.side.con .side-heading{color:var(--con)}
+
+/* Point cards */
+.point{
+  display:flex;align-items:flex-start;gap:.75rem;
+  margin-bottom:1rem;
+  padding:.8rem .9rem;
+  border-radius:3px;
+}
+.side.pro .point{background:rgba(28,184,122,.1);border-left:3px solid var(--pro-mid)}
+.side.con .point{background:rgba(232,64,28,.1);border-left:3px solid var(--con-mid)}
+.point-icon{
+  font-size:1rem;flex-shrink:0;margin-top:.05rem;line-height:1;
+}
+.point-verb{
+  font-family:'Syne',sans-serif;
+  font-weight:700;font-size:.82rem;
+  display:block;margin-bottom:.2rem;
+}
+.side.pro .point-verb{color:var(--pro)}
+.side.con .point-verb{color:var(--con)}
+.point-detail{
+  font-size:.74rem;color:var(--mid);line-height:1.5;
+}
+
+/* Mini bar inside side */
+.side-stat{
+  margin-top:1.4rem;
+  padding-top:1.1rem;
+  border-top:1px solid rgba(15,14,23,.1);
+}
+.side-stat-label{
+  font-family:'Syne',sans-serif;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:.8rem;
+}
+.mini-bar-item{margin-bottom:.65rem}
+.mini-bar-row{
+  display:flex;justify-content:space-between;
+  font-size:.7rem;margin-bottom:.25rem;
+}
+.mini-bar-row span:last-child{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;
+}
+.bar-track{height:8px;background:rgba(15,14,23,.08);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;animation:barGrow .9s ease forwards;transform-origin:left}
+@keyframes barGrow{from{width:0%}to{width:var(--w)}}
+
+/* ══════════════════════════════
+   BOTTOM: shared data row
+═══════════════════════════════ */
+.bottom-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--rule);
+  border-top:1px solid var(--rule);
+}
+.bottom-cell{
+  background:var(--paper);
+  padding:1.3rem 1.1rem 1.2rem;
+  position:relative;
+}
+.bottom-cell::after{
+  content:attr(data-tag);
+  position:absolute;top:.6rem;right:.75rem;
+  font-size:.46rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mid);font-weight:500;
+}
+.bottom-n{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.6rem,4vw,2.4rem);
+  font-weight:800;line-height:1;display:block;
+  margin-bottom:.3rem;
+}
+.bottom-desc{font-size:.72rem;color:var(--mid);line-height:1.45}
+.c-pro{color:var(--pro-mid)}
+.c-con{color:var(--con-mid)}
+.c-neu{color:#e8b41c}
+.c-ink{color:var(--ink)}
+
+/* ══════════════════════════════
+   VERDICT ROW
+═══════════════════════════════ */
+.verdict{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:3px solid var(--ink);
+}
+.verdict-half{
+  padding:1.1rem 1.6rem 1.2rem;
+  font-size:.78rem;line-height:1.55;
+}
+.verdict-half.pro{background:var(--pro);color:var(--pro-light)}
+.verdict-half.con{background:var(--con);color:var(--con-light)}
+.verdict-label{
+  font-family:'Syne',sans-serif;
+  font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;
+  opacity:.65;margin-bottom:.4rem;
+}
+.verdict-text strong{font-weight:600}
+
+/* ══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+.footer{
+  background:var(--ink);color:rgba(250,248,242,.4);
+  font-size:.6rem;letter-spacing:.05em;
+  padding:.85rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer strong{color:rgba(250,248,242,.65)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="eyebrow">Infográfico · Unidad 5 · La Tecnología</p>
+  <h1 class="header-title">Las redes sociales:<br><span class="pro-word">¿beneficio</span> o <span class="con-word">perjuicio?</span></h1>
+  <p class="header-sub">Un análisis de los efectos positivos y negativos del uso de las redes sociales entre adolescentes de 13 a 18 años en América Latina y España.</p>
+  <div class="header-split-bar">
+    <div class="split-tab pro">✓ &nbsp; Beneficios — a favor</div>
+    <div class="split-tab con">✗ &nbsp; Perjuicios — en contra</div>
+  </div>
+</div>
+
+<!-- HERO STAT STRIP -->
+<div class="hero-strip">
+  <div class="hero-half">
+    <span class="hero-n" style="color:var(--pro-mid)">67%</span>
+    <p class="hero-desc">de los jóvenes dice que las redes sociales les ayudan a mantenerse conectados con familiares y amigos</p>
+  </div>
+  <div class="hero-center">
+    <span class="hero-center-label">usuarios</span>
+    <span class="hero-center-n">4,900M</span>
+    <p class="hero-center-sub">de personas<br>en el mundo</p>
+  </div>
+  <div class="hero-half">
+    <span class="hero-n" style="color:var(--con-mid)">41%</span>
+    <p class="hero-desc">reporta sentirse peor con respecto a su propia imagen después de usar redes sociales por más de dos horas</p>
+  </div>
+</div>
+
+<!-- MAIN SPLIT -->
+<div class="split-body">
+
+  <!-- PRO SIDE -->
+  <div class="side pro">
+    <p class="side-heading">
+      <span class="pip" style="background:var(--pro-mid)"></span>
+      Beneficios
+    </p>
+
+    <div class="point">
+      <div class="point-icon">🌐</div>
+      <div>
+        <span class="point-verb">Conecta comunidades dispersas.</span>
+        <span class="point-detail">Las plataformas digitales permiten mantener vínculos afectivos con personas que viven lejos, reduciendo el aislamiento geográfico.</span>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-icon">📢</div>
+      <div>
+        <span class="point-verb">Amplifica voces marginadas.</span>
+        <span class="point-detail">Movimientos sociales como el activismo juvenil han crecido gracias a la difusión masiva que ofrecen estas redes sin costo alguno.</span>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-icon">📚</div>
+      <div>
+        <span class="point-verb">Facilita el aprendizaje informal.</span>
+        <span class="point-detail">Tutoriales, podcasts y contenido educativo están al alcance de cualquier usuario. El conocimiento ya no está limitado al aula.</span>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-icon">💼</div>
+      <div>
+        <span class="point-verb">Crea oportunidades laborales.</span>
+        <span class="point-detail">Plataformas como LinkedIn o incluso TikTok han permitido que jóvenes desarrollen carreras como creadores de contenido o emprendedores digitales.</span>
+      </div>
+    </div>
+
+    <!-- PRO MINI BARS -->
+    <div class="side-stat">
+      <p class="side-stat-label">¿En qué ayudan más?</p>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Mantenerse informado</span>
+          <span style="color:var(--pro)">74%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:74%;background:var(--pro-mid)"></div>
+        </div>
+      </div>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Conectar con amigos</span>
+          <span style="color:var(--pro)">67%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:67%;background:var(--pro-mid)"></div>
+        </div>
+      </div>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Aprender algo nuevo</span>
+          <span style="color:var(--pro)">51%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:51%;background:var(--pro-mid)"></div>
+        </div>
+      </div>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Expresarse creativamente</span>
+          <span style="color:var(--pro)">43%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:43%;background:var(--pro-mid)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEAM -->
+  <div class="seam"></div>
+
+  <!-- CON SIDE -->
+  <div class="side con">
+    <p class="side-heading">
+      <span class="pip" style="background:var(--con-mid)"></span>
+      Perjuicios
+    </p>
+
+    <div class="point">
+      <div class="point-icon">🧠</div>
+      <div>
+        <span class="point-verb">Daña la salud mental.</span>
+        <span class="point-detail">La comparación constante con la imagen idealizada que otros proyectan en línea genera sentimientos de inferioridad y baja autoestima.</span>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-icon">⏰</div>
+      <div>
+        <span class="point-verb">Genera adicción al desplazamiento.</span>
+        <span class="point-detail">El diseño de los algoritmos está pensado para fomentar el uso prolongado — o <em>scroll</em> interminable — dificultando que el usuario se desconecte.</span>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-icon">😰</div>
+      <div>
+        <span class="point-verb">Promueve el acoso en línea.</span>
+        <span class="point-detail">El anonimato y la distancia física facilitan el ciberacoso, que afecta desproporcionadamente a adolescentes y jóvenes vulnerables.</span>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-icon">🌀</div>
+      <div>
+        <span class="point-verb">Propaga desinformación rápidamente.</span>
+        <span class="point-detail">Las noticias falsas — o <em>bulos</em> — se comparten seis veces más rápido que la información verídica en plataformas como X o Facebook.</span>
+      </div>
+    </div>
+
+    <!-- CON MINI BARS -->
+    <div class="side-stat">
+      <p class="side-stat-label">¿Qué efectos negativos reportan?</p>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Ansiedad o estrés</span>
+          <span style="color:var(--con)">62%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:62%;background:var(--con-mid)"></div>
+        </div>
+      </div>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Problemas para dormir</span>
+          <span style="color:var(--con)">55%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:55%;background:var(--con-mid)"></div>
+        </div>
+      </div>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Baja en rendimiento escolar</span>
+          <span style="color:var(--con)">38%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:38%;background:var(--con-mid)"></div>
+        </div>
+      </div>
+
+      <div class="mini-bar-item">
+        <div class="mini-bar-row">
+          <span>Conflictos con familia</span>
+          <span style="color:var(--con)">29%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:29%;background:var(--con-mid)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /split-body -->
+
+<!-- BOTTOM STATS -->
+<div class="bottom-row">
+  <div class="bottom-cell" data-tag="tiempo diario">
+    <span class="bottom-n c-con">3.2 h</span>
+    <p class="bottom-desc">Tiempo promedio que un adolescente pasa en redes sociales cada día — más que en cualquier actividad física.</p>
+  </div>
+  <div class="bottom-cell" data-tag="plataforma">
+    <span class="bottom-n c-ink">TikTok</span>
+    <p class="bottom-desc">La plataforma con mayor crecimiento entre jóvenes de 13–18 años, con un promedio de 90 min de uso diario.</p>
+  </div>
+  <div class="bottom-cell" data-tag="regulación">
+    <span class="bottom-n c-neu">16+</span>
+    <p class="bottom-desc">Edad mínima propuesta por varios gobiernos europeos para acceder a redes sociales sin el consentimiento parental.</p>
+  </div>
+  <div class="bottom-cell" data-tag="uso consciente">
+    <span class="bottom-n c-pro">2× mejor</span>
+    <p class="bottom-desc">Los jóvenes que limitan su uso a menos de 1 hora al día reportan el doble de bienestar emocional que los demás.</p>
+  </div>
+</div>
+
+<!-- VERDICT ROW -->
+<div class="verdict">
+  <div class="verdict-half pro">
+    <p class="verdict-label">La conclusión — a favor</p>
+    <p class="verdict-text">Las redes sociales son una herramienta poderosa. Úsalas con <strong>intención y límites claros</strong>: busca comunidades que te inspiren, aprende de creadores con propósito y <strong>desconéctate</strong> cuando sientas que te afectan negativamente.</p>
+  </div>
+  <div class="verdict-half con">
+    <p class="verdict-label">La conclusión — en contra</p>
+    <p class="verdict-text">Sin regulación personal ni parental, las redes pueden <strong>perjudicar seriamente</strong> el bienestar de los jóvenes. <strong>Establece horarios</strong>, desactiva notificaciones y recuerda: la vida real siempre es más importante que la virtual.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Fuente: <strong>Estudio Iberoamericano de Salud Digital Juvenil</strong> · Muestra: 3,800 adolescentes de 13–18 años · Año: 2024</span>
+  <span>Unidad 5 · La Tecnología</span>
+</div>
+
+</body>
+</html>
