@@ -25,105 +25,105 @@ questionsJson: |
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué porcentaje de estudiantes usa el móvil al menos una vez durante la clase?",
+      "prompt": "Si juntas el 78% que usa el móvil en clase, las 14 revisiones por jornada y el 52% que admite problemas de concentración, ¿qué interpretación resume MEJOR el mensaje central del infográfico?",
       "ch": [
-        "A) 52% — los que admiten que les dificulta concentrarse",
-        "B) 63% — los que lo usan para revisar redes sociales",
-        "C) 78% — los que lo usan al menos una vez durante la clase",
-        "D) 89% — los profesores que dicen que afecta la atención"
+        "A) El móvil casi no influye en la experiencia escolar porque la mayoría lo usa solo unas pocas veces",
+        "B) El uso del móvil ya es una parte normal del día escolar, pero esa normalidad viene acompañada de costos reales para la atención",
+        "C) Los estudiantes usan el móvil principalmente con fines académicos y por eso los profesores exageran el problema",
+        "D) El infográfico demuestra que prohibir totalmente los teléfonos es la única postura razonable"
       ],
-      "cor": "C",
-      "exp": "El infográfico indica claramente: «78% de los estudiantes usa el móvil al menos una vez durante la clase.» Las otras opciones usan números reales del infográfico pero se refieren a datos diferentes: 52% = dificultad de concentración, 63% = uso más frecuente (redes sociales), 89% = profesores. Este tipo de trampa — usar cifras reales del texto para referirse a otro dato — es muy común en exámenes interpretativos."
+      "cor": "B",
+      "exp": "La clave está en combinar tres datos, no en leer uno solo. El móvil aparece como algo cotidiano y extendido durante la jornada escolar, pero el propio infográfico también muestra consecuencias en la concentración. B recoge ambas ideas. A contradice la frecuencia de uso. C ignora que los usos sociales son mayores que los académicos. D convierte el infográfico en una postura absoluta que no sostiene."
     },
     {
       "id": 2,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuántas veces revisa el móvil un estudiante típico durante la jornada escolar?",
+      "prompt": "La gráfica de usos en clase muestra 63% para redes sociales y 54% para textear, frente a 38% para buscar información académica y 17% para apps educativas. ¿Qué conclusión está mejor respaldada?",
       "ch": [
-        "A) 45 veces — una por cada minuto de clase",
-        "B) 14 veces — el promedio durante la jornada escolar",
-        "C) 17 veces — según las aplicaciones educativas",
-        "D) 91 veces — uno por cada estudiante encuestado"
+        "A) El uso del móvil en clase se orienta más a la interacción social que al trabajo académico",
+        "B) Los estudiantes usan el móvil casi exclusivamente para aprender durante la clase",
+        "C) Las aplicaciones educativas son la razón principal por la que los estudiantes sacan el móvil",
+        "D) Los cuatro usos aparecen prácticamente empatados en frecuencia"
       ],
-      "cor": "B",
-      "exp": "El infográfico dice: «14× — veces que un estudiante revisa el móvil durante la jornada escolar.» Las otras opciones reciclan números del infográfico con contextos incorrectos: 45 es el tiempo en minutos (no la cantidad de revisiones), 17% es el porcentaje que usa apps educativas, y 91% es el porcentaje que revisa el móvil antes de entrar a la escuela."
+      "cor": "A",
+      "exp": "La lectura comparativa importa aquí: los dos usos sociales son claramente más altos que los dos usos académicos. Por eso A es la mejor síntesis. B y C contradicen los porcentajes. D borra una diferencia bastante evidente entre las barras."
     },
     {
       "id": 3,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de barras, ¿para qué usan el móvil en clase con mayor frecuencia los estudiantes?",
+      "prompt": "Si el 44% apoya permitir el móvil con reglas, mientras 31% quiere prohibirlo totalmente y 25% permitirlo sin restricciones, ¿qué postura estudiantil parece dominar?",
       "ch": [
-        "A) Usar aplicaciones educativas (17%)",
-        "B) Buscar información académica (38%)",
-        "C) Textear con amigos (54%)",
-        "D) Revisar redes sociales (63%)"
+        "A) Un apoyo claro a uno de los extremos: prohibirlo o dejarlo libre sin condiciones",
+        "B) Una preferencia por un punto intermedio que combine acceso con control",
+        "C) Una división exacta entre las tres posturas",
+        "D) La idea de que los estudiantes prefieren que no exista ninguna política sobre el tema"
       ],
-      "cor": "D",
-      "exp": "La barra más alta corresponde a «Revisar redes sociales» con 63%. Es una trampa clásica porque «Textear con amigos» (54%) es la segunda barra — y textear durante la clase es lo que los estudiantes suelen imaginar primero. Las opciones A y B representan usos académicos o educativos que podrían parecer más comunes, pero los datos muestran lo contrario."
+      "cor": "B",
+      "exp": "El dato más alto no favorece ninguno de los extremos, sino una opción intermedia: permitir con reglas. Eso sugiere que la postura dominante no es el todo o nada, sino el uso regulado. A, C y D contradicen la distribución real del gráfico."
     },
     {
       "id": 4,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el gráfico circular, ¿qué postura tiene el mayor porcentaje de estudiantes respecto al uso del móvil en clase?",
+      "prompt": "¿Por qué el recreo se presenta como «el momento de mayor uso del día» aunque después de la escuela aparezca un 98%?",
       "ch": [
-        "A) Prohibirlos totalmente (31%)",
-        "B) Permitirlos con reglas (44%)",
-        "C) Permitirlos sin restricciones (25%)",
-        "D) Que los profesores decidan caso por caso"
+        "A) Porque el infográfico distingue entre los momentos dentro de la jornada escolar y lo que ocurre una vez terminada",
+        "B) Porque el 98% es un error y debería ser más bajo que el 96%",
+        "C) Porque el infográfico considera que el recreo dura más tiempo que la salida",
+        "D) Porque los estudiantes solo pueden usar el móvil legalmente durante el recreo"
       ],
-      "cor": "B",
-      "exp": "El segmento más grande del gráfico circular corresponde a «Permitirlos con reglas» con 44%. La opción A es tentadora porque «prohibir» puede parecer la postura más común para quienes imaginan que los estudiantes apoyan reglas estrictas — pero solo el 31% apoya la prohibición total. La opción D no aparece en el gráfico — es un distractor inventado que suena razonable."
+      "cor": "A",
+      "exp": "Esta pregunta exige leer el marco, no solo el número más alto. El recreo se presenta como el punto máximo de uso dentro del día escolar; el 98% ocurre ya al salir. B inventa un error. C y D añaden razones que el infográfico nunca menciona."
     },
     {
       "id": 5,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué momento describe explícitamente como «el momento de mayor uso del día»?",
+      "prompt": "Si 3 de 5 estudiantes se sentirían ansiosos sin el móvil, pero quienes lo guardan en clase reportan el doble de facilidad para recordar, ¿qué tensión revela mejor el infográfico?",
       "ch": [
-        "A) Antes de entrar a la escuela, a las 7:30 a.m. (91%)",
-        "B) Durante la primera hora de clase, 8:00–9:00 a.m. (47%)",
-        "C) Durante el recreo, a las 10:15 a.m. (96%)",
-        "D) Al salir de la escuela, a las 3:15 p.m. (98%)"
+        "A) Que una práctica puede beneficiar el aprendizaje aunque emocionalmente resulte incómoda al principio",
+        "B) Que guardar el móvil empeora tanto la memoria como el bienestar emocional",
+        "C) Que la ansiedad estudiantil se debe principalmente a las tareas académicas",
+        "D) Que los estudiantes recuerdan mejor solo cuando usan aplicaciones educativas"
       ],
-      "cor": "C",
-      "exp": "El infográfico escribe literalmente sobre el recreo: «Es el momento de mayor uso del día.» La trampa aquí es la opción D — al salir el porcentaje es 98%, numéricamente mayor que el 96% del recreo. Sin embargo, el infográfico llama explícitamente al recreo «el momento de mayor uso.» Esta diferencia puede explicarse porque el 98% al salir ocurre después de la jornada escolar, fuera del contexto académico. Leer con precisión — no solo buscar el número más alto — es la habilidad clave aquí."
+      "cor": "A",
+      "exp": "El infográfico pone en tensión dos ideas: separarse del móvil puede generar ansiedad, pero también puede mejorar la memoria y la atención. A recoge ese contraste. B invierte el sentido del dato sobre memoria. C y D introducen causas que el infográfico no ofrece."
     },
     {
       "id": 6,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según los datos adicionales del infográfico, ¿qué efecto tuvo guardar el móvil durante las clases?",
+      "prompt": "¿Qué interpretación es más precisa al relacionar las 14 revisiones por jornada con los 45 minutos totales de uso?",
       "ch": [
-        "A) Los estudiantes se sintieron más ansiosos y reportaron menos motivación para estudiar.",
-        "B) Sus profesores les dieron mejores calificaciones al final del semestre.",
-        "C) Reportaron el doble de facilidad para recordar lo aprendido.",
-        "D) Usaron más aplicaciones educativas en casa después de la escuela."
+        "A) Que el problema se reduce a una sola revisión larga al día",
+        "B) Que las distracciones no son solo miradas rápidas: acumuladas, ocupan casi el tiempo de una clase completa",
+        "C) Que los estudiantes pasan poco tiempo real con el móvil, aunque lo revisan muchas veces",
+        "D) Que revisar el móvil 14 veces significa usarlo exactamente durante 14 minutos"
       ],
-      "cor": "C",
-      "exp": "El infográfico dice: «Los estudiantes que guardaron el móvil durante las clases reportaron el doble de facilidad para recordar lo aprendido.» La opción A confunde este dato con el de la ansiedad (3 de 5 estudiantes se sentirían ansiosos sin el móvil), que es un efecto diferente de una situación diferente. Las opciones B y D son inventadas — el infográfico no menciona calificaciones del semestre ni el uso posterior en casa."
+      "cor": "B",
+      "exp": "La combinación de frecuencia y tiempo total sugiere una interrupción repetida y acumulativa, no un gesto insignificante. B traduce mejor esa lectura. A y C minimizan los datos. D confunde número de revisiones con minutos de uso."
     },
     {
       "id": 7,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuánto tiempo promedio pasa un estudiante usando el móvil durante la jornada escolar?",
+      "prompt": "Si una directora quisiera defender una política moderada usando este infográfico, ¿qué propuesta estaría mejor respaldada por los datos?",
       "ch": [
-        "A) 14 minutos — el número de veces que lo revisa",
-        "B) 29 minutos — los que ven videos o escuchan música",
-        "C) 38 minutos — los que buscan información académica",
-        "D) 45 minutos — equivalente a casi una clase completa"
+        "A) Permitir el móvil sin restricciones durante todas las clases porque la mayoría ya lo usa",
+        "B) Eliminar por completo cualquier presencia del móvil incluso fuera de las clases",
+        "C) Mantener límites claros durante el tiempo de instrucción, pero no tratar todo uso del móvil como idéntico",
+        "D) Reemplazar los libros por aplicaciones educativas en todos los cursos"
       ],
-      "cor": "D",
-      "exp": "El infográfico dice: «45 min — Tiempo promedio que los estudiantes pasan en el móvil durante la jornada escolar — equivalente a casi una clase completa.» Las otras opciones reciclan cifras del infográfico en contextos equivocados: 14 es el número de revisiones (no minutos), 29% y 38% son porcentajes de la gráfica de barras. Esta es una trampa de «número real, contexto incorrecto.»"
+      "cor": "C",
+      "exp": "El apoyo mayor a 'permitir con reglas', los problemas de concentración y la mejora de memoria al guardar el móvil apuntan a una posición regulada, no extrema. C es la opción que mejor sintetiza esos datos. A y B se van a los extremos. D extrapola un cambio curricular que el infográfico no propone."
     },
     {
       "id": 8,
@@ -215,105 +215,105 @@ questionsJson: |
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿cuál fue la primera impresión de Camila cuando encendió la computadora?",
+      "prompt": "¿Qué hace que la reseña de Camila suene más creíble que un simple anuncio?",
       "ch": [
-        "A) Le decepcionó el tamaño de la pantalla comparado con otras computadoras que había probado.",
-        "B) Le sorprendió lo rápida que era — los programas abrían casi instantáneamente.",
-        "C) Le costó mucho trabajo encenderla porque el sistema tardaba en iniciarse.",
-        "D) Le pareció que la pantalla era demasiado brillante y le cansaba la vista."
+        "A) Que insiste en que la computadora es perfecta y no menciona ninguna limitación",
+        "B) Que combina elogios concretos con una crítica específica y luego da una recomendación matizada",
+        "C) Que compara el modelo con cinco computadoras rivales del mercado",
+        "D) Que centra casi todo el audio en el precio y los descuentos disponibles"
       ],
       "cor": "B",
-      "exp": "Camila dice: «cuando la encendí por primera vez, me sorprendió lo rápida que era — los programas abrían casi instantáneamente.» La opción A inventa una decepción sobre la pantalla que Camila nunca expresa. La opción C confunde «rápida» con «lenta» — Camila elogia la velocidad de inicio. La opción D inventa una queja sobre el brillo que no aparece en la reseña."
+      "exp": "Camila no suena como publicidad pura porque no solo elogia; también menciona un detalle que no la convenció y termina con una recomendación condicionada. Esa combinación de pros, una crítica concreta y un consejo matizado hace que B sea la mejor respuesta. A describe un anuncio más que una reseña. C y D no ocurren en el audio."
     },
     {
       "id": 12,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿qué fue lo que MÁS le gustó a Camila de la computadora?",
+      "prompt": "¿Por qué su recomendación final de probar la computadora antes de comprarla sigue lógicamente de todo el audio?",
       "ch": [
-        "A) La velocidad con la que abrían los programas al encenderla.",
-        "B) La calidad de la pantalla — los colores eran increíblemente claros.",
-        "C) La memoria — podía guardar miles de archivos, fotos y videos sin problema.",
-        "D) La duración de la batería durante horas de uso intenso."
+        "A) Porque Camila cree que el rendimiento general de la computadora es malo",
+        "B) Porque, aunque el desempeño le parece fuerte, la comodidad física puede depender de cada usuario",
+        "C) Porque la computadora solo funciona bien con ciertos programas especializados",
+        "D) Porque sospecha que la batería puede fallar después de unas semanas"
       ],
-      "cor": "C",
-      "exp": "Camila dice explícitamente: «Lo que más me gustó fue la memoria.» Esta es la trampa más difícil de la sección de audio: las opciones A, B y D son todas cosas que Camila menciona positivamente — la velocidad, la pantalla nítida, la batería — haciendo que cualquiera pueda parecer correcta. La clave es la frase «lo que más» — Camila destaca la memoria por encima de todos los demás atributos positivos."
+      "cor": "B",
+      "exp": "Su consejo final no nace de dudas sobre velocidad, memoria o batería, sino de una cuestión de tamaño y comodidad. El problema del ratón pequeño y el ajuste inicial al teclado hacen que la experiencia física pueda variar según la persona. Por eso B es la opción más completa."
     },
     {
       "id": 13,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿qué problema tuvo Camila con el teclado al principio?",
+      "prompt": "¿Qué combinación de detalles apoya mejor la idea de que esta computadora sirve para estudiantes y personas que trabajan desde casa?",
       "ch": [
-        "A) Las teclas hacían demasiado ruido y le molestaba al escribir en lugares públicos.",
-        "B) El teclado no funcionaba bien con caracteres especiales del español.",
-        "C) Le costó acostumbrarse al tamaño de las teclas, aunque el teclado era cómodo.",
-        "D) El teclado se desconectaba frecuentemente durante sesiones largas de escritura."
+        "A) Los colores nítidos de la pantalla y la posibilidad de jugar con gráficos exigentes",
+        "B) El teclado cómodo, la memoria amplia y el buen rendimiento para editar texto y navegar por internet",
+        "C) El ratón pequeño y la rapidez con que se abre el sistema al principio",
+        "D) La batería larga y el tamaño de las teclas para personas mayores"
       ],
-      "cor": "C",
-      "exp": "Camila dice: «El teclado era muy cómodo para escribir, aunque al principio me costó acostumbrarme al tamaño de las teclas.» Este es un detalle de matiz: el teclado fue en general positivo, pero con un período de ajuste inicial específico sobre el tamaño de las teclas. La opción C captura ese matiz. Las opciones A, B y D son todos problemas inventados que no aparecen en la reseña."
+      "cor": "B",
+      "exp": "Camila justifica esa recomendación con un conjunto de funciones prácticas: escribir con comodidad, guardar muchos archivos y trabajar bien con tareas cotidianas como editar texto o navegar. B es la única opción que reúne esos elementos de productividad diaria. A y D añaden públicos o usos que ella no prioriza. C mezcla una ventaja con una queja."
     },
     {
       "id": 14,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "¿Qué fue lo único que Camila menciona que no le gustó de la computadora?",
+      "prompt": "Cuando Camila dice que lo que más le gustó fue la memoria, ¿qué sugiere eso sobre cómo evalúa la computadora?",
       "ch": [
-        "A) La pantalla mostraba los colores de forma poco precisa en interiores con poca luz.",
-        "B) La batería se agotaba muy rápidamente al descargar aplicaciones.",
-        "C) El ratón incluido le parecía demasiado pequeño para sus manos.",
-        "D) La computadora era muy lenta para navegar por internet con varias pestañas abiertas."
+        "A) Que le interesan sobre todo los efectos visuales llamativos por encima de la utilidad diaria",
+        "B) Que juzga la computadora principalmente por su capacidad para tareas prácticas y almacenamiento real de trabajo",
+        "C) Que le importa más el diseño exterior que el funcionamiento",
+        "D) Que considera la velocidad de encendido irrelevante"
       ],
-      "cor": "C",
-      "exp": "Camila dice: «había una cosa que no me convenció: el ratón que venía incluido me parecía demasiado pequeño para mis manos.» Las opciones A y D contradicen directamente cosas que Camila elogió (la pantalla nítida, la velocidad al navegar). La opción B contradice su comentario sobre la batería — dice que navegó durante horas sin que se agotara. La opción C es la única crítica real de la reseña."
+      "cor": "B",
+      "exp": "Escoger la memoria como su aspecto favorito indica una prioridad práctica: poder guardar archivos, fotos y videos sin problema. Eso apunta a una valoración orientada al uso real y productivo, no solo a lo vistoso. A y C contradicen esa prioridad. D va demasiado lejos, porque Camila sí valora la rapidez."
     },
     {
       "id": 15,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿para quiénes dice Camila que es ideal esta computadora?",
+      "prompt": "¿Cómo funciona en la reseña el comentario de Camila sobre el tamaño de las teclas?",
       "ch": [
-        "A) Solamente para diseñadores gráficos y programadores profesionales.",
-        "B) Para estudiantes y personas que trabajan desde casa.",
-        "C) Para personas mayores que necesitan una pantalla grande y teclas cómodas.",
-        "D) Para jugadores que necesitan mucha velocidad y alta calidad de gráficos."
+        "A) Presenta una incomodidad inicial, pero la enmarca como un ajuste menor dentro de una valoración positiva del teclado",
+        "B) Demuestra que el teclado es un defecto grave que hace inútil la computadora",
+        "C) Explica por qué Camila decide no recomendar el producto",
+        "D) Sugiere que el problema principal era que las teclas dejaban de responder"
       ],
-      "cor": "B",
-      "exp": "Camila dice: «creo que esta computadora es ideal para estudiantes y personas que trabajan desde casa, porque funciona muy bien tanto para editar texto como para navegar por la red.» Las opciones A, C y D inventan públicos específicos que Camila nunca menciona. La opción D es especialmente tentadora porque Camila elogió la velocidad — pero «rápida» en el contexto de sus comentarios no está relacionada con juegos."
+      "cor": "A",
+      "exp": "Camila aclara que el teclado era cómodo, aunque al principio tuvo que adaptarse al tamaño de las teclas. Eso convierte la observación en un matiz, no en un defecto central. B, C y D exageran o cambian por completo lo que ella dice."
     },
     {
       "id": 16,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿qué pudo hacer Camila durante horas sin que se agotara la batería?",
+      "prompt": "Cuando Camila dice que descargó varias aplicaciones y navegó durante horas sin que se agotara la batería, ¿qué beneficio está destacando realmente?",
       "ch": [
-        "A) Editar fotos y videos de alta resolución de manera continua.",
-        "B) Descargar varias aplicaciones y navegar por internet.",
-        "C) Ver películas en línea y escuchar música al mismo tiempo.",
-        "D) Hacer videollamadas largas con amigos y familiares."
+        "A) Que la computadora solo funciona bien si se usa con pocas aplicaciones abiertas",
+        "B) Que puede sostener un uso cotidiano prolongado sin depender de estar conectada enseguida a la corriente",
+        "C) Que la batería es ideal únicamente para ver películas y escuchar música",
+        "D) Que navegar por internet consume menos energía que cualquier otra actividad posible"
       ],
       "cor": "B",
-      "exp": "Camila dice: «También descargué varias aplicaciones y navegué por internet durante horas sin que la batería se agotara.» Las opciones A, C y D son actividades plausibles para una computadora, pero ninguna es lo que Camila menciona específicamente. Esta pregunta requiere recordar el detalle preciso de lo que hizo, no solo que la batería duró mucho."
+      "exp": "La frase traduce la batería en una ventaja concreta para el usuario: poder trabajar o usar la computadora durante bastante tiempo sin preocuparse enseguida por cargarla. B interpreta ese beneficio mejor que las otras opciones, que limitan o distorsionan lo que Camila quiso destacar."
     },
     {
       "id": 17,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "¿Cuál es la recomendación final de Camila sobre esta computadora?",
+      "prompt": "¿Cuál describe mejor la valoración final de Camila sobre esta computadora?",
       "ch": [
-        "A) Que la compren lo antes posible porque el precio podría subir pronto.",
-        "B) Que esperen a la próxima versión porque este modelo todavía tiene problemas.",
-        "C) Que la prueben antes de comprarla para ver si el tamaño les resulta cómodo.",
-        "D) Que solo la compren si ya tienen experiencia con computadoras similares."
+        "A) Muy negativa: el problema de comodidad invalida todas las demás ventajas",
+        "B) Ambigua: no queda claro si la recomienda o no",
+        "C) Claramente positiva, pero con una advertencia ergonómica que depende del usuario",
+        "D) Entusiasta solo para jugadores y diseñadores profesionales"
       ],
       "cor": "C",
-      "exp": "Camila dice: «les recomiendo probarla antes de comprarla para ver si el tamaño les resulta cómodo.» Esta recomendación conecta con su única crítica — el ratón era pequeño para sus manos — sugiriendo que la comodidad de tamaño puede variar según la persona. La opción B es tentadora porque reconoce que hay una limitación, pero Camila nunca sugiere esperar a una versión futura ni llama al ratón un problema importante."
+      "exp": "Camila elogia velocidad, pantalla, memoria y batería, y además recomienda el equipo para ciertos usuarios. Su única reserva importante es de comodidad y tamaño. Eso produce una valoración general positiva, pero no ciega. Por eso C recoge mejor el tono final."
     },
     {
       "id": 18,

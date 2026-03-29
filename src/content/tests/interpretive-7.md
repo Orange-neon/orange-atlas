@@ -25,105 +25,105 @@ questionsJson: |
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "¿Cuál es la idea principal de este infográfico?",
+      "prompt": "Al reunir datos de adopción empresarial, productividad, inversión global y una línea del tiempo, ¿cómo presenta mejor el infográfico a la inteligencia artificial?",
       "ch": [
-        "A) Explicar cómo funciona técnicamente la inteligencia artificial paso a paso.",
-        "B) Presentar datos sobre el uso, el impacto y el futuro de la inteligencia artificial en el mundo.",
-        "C) Advertir sobre los peligros de la inteligencia artificial para los trabajadores.",
-        "D) Comparar el uso de la IA entre diferentes generaciones de usuarios."
+        "A) Como una moda técnica limitada a unos pocos especialistas",
+        "B) Como una transformación amplia con impacto económico, laboral e histórico, no solo técnico",
+        "C) Como un problema exclusivo del sector educativo",
+        "D) Como una tecnología cuyo efecto principal es reemplazar por completo a los trabajadores"
       ],
       "cor": "B",
-      "exp": "El infográfico combina estadísticas de adopción empresarial (77%), productividad (40%), inversión global ($200B), industrias que más la usan, cómo la usa la gente, datos adicionales sobre empleo y economía, y una línea del tiempo histórica. Su propósito es dar un panorama amplio — uso, impacto y futuro — no explicar cómo funciona técnicamente, no solo advertir sobre peligros, y no comparar generaciones. Las opciones A, C y D son demasiado estrechas o no aparecen como enfoque principal."
+      "exp": "El infográfico no se queda en explicar qué es la IA; la ubica en empresas, empleo, inversión, productividad e historia. Eso la presenta como un cambio estructural más amplio. B recoge mejor esa lectura. A, C y D reducen demasiado el alcance del material."
     },
     {
       "id": 2,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué porcentaje de empresas ya está usando o adoptando la inteligencia artificial en sus operaciones diarias?",
+      "prompt": "Si el 77% de las empresas ya usa o adopta IA, pero los sectores van de 84% en tecnología a 41% en educación e investigación, ¿qué conclusión es más precisa?",
       "ch": [
-        "A) 40% — el aumento en productividad de los trabajadores que usan IA",
-        "B) 63% — las empresas en el sector de salud y medicina",
-        "C) 77% — las empresas que ya usan o están adoptando la IA",
-        "D) 84% — las empresas del sector de tecnología y software"
+        "A) La adopción de IA es amplia, pero no ocurre con la misma intensidad en todos los sectores",
+        "B) La IA solo importa realmente en tecnología y software",
+        "C) La educación es el sector que más rápidamente está adoptando IA",
+        "D) Todas las industrias aparecen prácticamente empatadas en su uso de IA"
       ],
-      "cor": "C",
-      "exp": "El infográfico indica en los datos principales: «77% de las empresas ya usa o está adoptando la inteligencia artificial en sus operaciones diarias.» La trampa más sofisticada es la opción D — 84% es el porcentaje de la industria de tecnología y software que usa IA, no el porcentaje global de empresas. El 40% es el aumento en productividad, y el 63% corresponde al sector de salud. Leer el contexto de cada cifra, no solo el número, es la habilidad clave."
+      "cor": "A",
+      "exp": "El 77% general muestra expansión amplia, pero la gráfica por sectores revela diferencias claras entre industrias. A capta mejor esa combinación de adopción extendida y desigual. B y C exageran un solo sector. D contradice los porcentajes."
     },
     {
       "id": 3,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de «¿Cómo usa la gente la IA?», ¿para qué la usan más las personas?",
+      "prompt": "Si el uso más común entre la gente es la creación de contenido y escritura (35%), seguido de automatización y análisis de datos, ¿qué sugiere mejor esa distribución?",
       "ch": [
-        "A) Análisis de datos — 25%",
-        "B) Automatización de tareas — 26%",
-        "C) Atención al cliente — 14%",
-        "D) Creación de contenido y escritura — 35%"
+        "A) Que la experiencia cotidiana de la IA para muchas personas se relaciona más con productividad y creación que con atención al cliente",
+        "B) Que la atención al cliente domina claramente la forma en que la gente usa la IA",
+        "C) Que la IA se utiliza casi exclusivamente para investigación científica avanzada",
+        "D) Que la automatización de tareas ya superó por mucho a la escritura y la creación"
       ],
-      "cor": "D",
-      "exp": "La gráfica circular muestra que «Creación de contenido y escritura» es el uso más común con 35%. La trampa clásica es la opción B — «Automatización de tareas» con 26% es el segundo uso más frecuente y suena más técnico e industrial, lo que puede llevar a pensar que es el más común. Sin embargo, el segmento más grande del gráfico corresponde claramente a la creación de contenido. Las opciones A y C son porcentajes reales pero más pequeños."
+      "cor": "A",
+      "exp": "La gráfica muestra que la gente se encuentra con la IA sobre todo en tareas de producir, redactar y agilizar trabajo, no principalmente en servicio al cliente. A interpreta mejor la distribución. B, C y D contradicen el gráfico o exageran un uso específico."
     },
     {
       "id": 4,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de barras de industrias, ¿qué sector usa la inteligencia artificial con mayor frecuencia?",
+      "prompt": "¿Por qué el dato de que ChatGPT llegó a 100 millones de usuarios en 2 meses es importante dentro del infográfico?",
       "ch": [
-        "A) Salud y medicina — 63%",
-        "B) Finanzas y banca — 72%",
-        "C) Educación e investigación — 41%",
-        "D) Tecnología y software — 84%"
+        "A) Porque muestra que la etapa reciente de la IA no solo trae avances técnicos, sino también una adopción masiva y muy rápida por parte del público",
+        "B) Porque demuestra que todas las aplicaciones futuras de IA tendrán exactamente el mismo crecimiento",
+        "C) Porque significa que TikTok e Instagram dejaron de existir después de ese momento",
+        "D) Porque prueba que la IA solo se volvió útil desde el lanzamiento de ChatGPT"
       ],
-      "cor": "D",
-      "exp": "La barra más larga en la gráfica de industrias corresponde a «Tecnología y software» con 84%. La trampa es la opción B — «Finanzas y banca» con 72% es la segunda barra más larga, y los estudiantes que asocian la IA con los bancos o el dinero pueden elegirla intuitivamente. La opción A (63%) y la C (41%) son datos reales pero representan industrias con menor adopción. Identificar la barra más alta visualmente es la habilidad clave."
+      "cor": "A",
+      "exp": "La línea del tiempo incluye hitos técnicos anteriores, pero este dato resalta algo distinto: la entrada acelerada de la IA en la vida cotidiana del público general. A recoge mejor esa diferencia. B, C y D convierten el dato en afirmaciones absolutas que el infográfico no hace."
     },
     {
       "id": 5,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el dato sorprendente del infográfico, ¿en cuánto tiempo alcanzó ChatGPT 100 millones de usuarios?",
+      "prompt": "Si se crearán 97 millones de empleos y podrían desaparecer 55 millones, ¿qué lectura es más precisa sobre el efecto laboral de la IA?",
       "ch": [
-        "A) En 6 meses — superando el récord anterior de TikTok.",
-        "B) En 2 meses — convirtiéndose en la aplicación de crecimiento más rápido en la historia.",
-        "C) En 2 semanas — después de una campaña de marketing global masiva.",
-        "D) En 1 año — creciendo de manera constante desde su lanzamiento."
+        "A) Que el cambio será totalmente negativo porque solo traerá pérdida de empleo",
+        "B) Que el impacto laboral parece transformador y disruptivo, pero no se presenta como simplemente destructivo",
+        "C) Que la IA no cambiará casi nada en el trabajo porque las cifras se compensan exactamente",
+        "D) Que solo los estudiantes se verán afectados por estos cambios"
       ],
       "cor": "B",
-      "exp": "El infográfico dice: «ChatGPT alcanzó 100 millones de usuarios en solo 2 meses después de su lanzamiento — es la aplicación con el crecimiento más rápido en la historia, superando a TikTok e Instagram.» La trampa es la opción A — TikTok aparece mencionado en el infográfico como la aplicación que ChatGPT superó, lo que puede llevar a confundir el tiempo de TikTok con el de ChatGPT. La opción C inventa una campaña de marketing no mencionada. La D contradice la idea de crecimiento 'récord'."
+      "exp": "El infográfico muestra ganadores y perdedores, creación y desaparición de puestos. Eso apunta a un mercado en transformación, no a un escenario solo de desastre ni de estabilidad. B interpreta mejor esa complejidad. A, C y D simplifican demasiado."
     },
     {
       "id": 6,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según los datos adicionales del infográfico, ¿cuántos nuevos empleos se crearán gracias a la IA y la automatización para 2030?",
+      "prompt": "¿Por qué es significativo que el 65% de los estudiantes ya use IA generativa para trabajos académicos?",
       "ch": [
-        "A) 15.7 millones — el mismo número que los empleos que desaparecerán.",
-        "B) 55 millones — los empleos actuales que podrían desaparecer.",
-        "C) 65 millones — el porcentaje de estudiantes que usan IA para tareas.",
-        "D) 97 millones — los nuevos empleos que se crearán para 2030."
+        "A) Porque sugiere que el impacto de la IA en la educación ya está ocurriendo ahora, no solo en un futuro lejano",
+        "B) Porque demuestra que todos los trabajos escolares hechos con IA son automáticamente deshonestos",
+        "C) Porque significa que el sector educativo ya supera al tecnológico en adopción de IA",
+        "D) Porque indica que la única función educativa de la IA es corregir exámenes"
       ],
-      "cor": "D",
-      "exp": "El infográfico indica: «97M de nuevos empleos van a ser creados por la IA y la automatización para el año 2030, aunque 55 millones de empleos actuales van a desaparecer.» La trampa más fuerte es la opción B — 55 millones es un dato real del mismo infográfico, pero corresponde a los empleos que desaparecerán, no a los que se crearán. Los estudiantes que recuerdan el número pero no el contexto pueden confundirlos. La opción A inventa una igualdad entre creación y destrucción de empleos."
+      "cor": "A",
+      "exp": "El infográfico usa ese dato para mostrar que la transformación no es solo empresarial o futura; ya está entrando en la vida académica cotidiana. A es la lectura más fiel. B exagera la parte de integridad académica. C y D no se apoyan en los datos."
     },
     {
       "id": 7,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué porcentaje de estudiantes admite usar herramientas de IA generativa para sus trabajos académicos?",
+      "prompt": "Si tuvieras que convertir todo el infográfico en una recomendación implícita para el lector, ¿cuál sería la mejor?",
       "ch": [
-        "A) 41% — los estudiantes en el sector de educación e investigación.",
-        "B) 65% — los que admiten usar IA generativa para trabajos académicos.",
-        "C) 77% — los que ya adoptan IA en sus operaciones diarias.",
-        "D) 97% — los nuevos empleos creados en el sector estudiantil."
+        "A) Resistirse por completo a la IA porque cualquier uso produce más daños que beneficios",
+        "B) Celebrar la IA sin reservas, porque el progreso técnico elimina todas las preocupaciones",
+        "C) Seguir aprendiendo y adaptándose críticamente a una tecnología que ya está cambiando muchos ámbitos",
+        "D) Esperar a que la IA desaparezca como otras modas digitales"
       ],
-      "cor": "B",
-      "exp": "El infográfico dice: «65% de los estudiantes admite que usa herramientas de IA generativa para sus trabajos académicos, lo que genera preguntas importantes sobre la integridad académica.» La trampa es la opción A — 41% es el porcentaje real de la industria de educación e investigación que usa IA, y suena relacionado con estudiantes. Sin embargo, ese dato se refiere a industrias, no al comportamiento estudiantil. Las opciones C y D reciclan números reales del infográfico pero de contextos completamente diferentes."
+      "cor": "C",
+      "exp": "El infográfico mezcla oportunidades, productividad, inversión, educación y cambios laborales, pero también preguntas sobre integridad y reemplazo de empleos. Eso empuja hacia una postura de adaptación crítica, no de entusiasmo ciego ni rechazo total. Por eso C es la mejor síntesis."
     },
     {
       "id": 8,
@@ -195,90 +195,90 @@ questionsJson: |
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What is the main purpose of Juan's audio segment?",
+      "prompt": "¿Qué hace que la reseña de Juan suene más confiable que una simple promoción?",
       "ch": [
-        "A) To compare the smartphone he received with his previous phone.",
-        "B) To explain how to set up a new smartphone for the first time.",
-        "C) To share his personal experience with a smartphone he received as a birthday gift.",
-        "D) To warn listeners about a defective phone he had to exchange."
+        "A) Que evita por completo mencionar cualquier limitación del teléfono",
+        "B) Que equilibra varios elogios con una desventaja concreta y una recomendación para un usuario específico",
+        "C) Que compara el teléfono con muchos modelos de la competencia",
+        "D) Que dedica la mayor parte del audio a hablar del precio"
       ],
-      "cor": "C",
-      "exp": "Juan says he received the phone as a birthday gift ('que me regalaron para mi cumpleaños') and shares his impressions: thinness, screen, camera, internet speed, battery, one complaint, and a recommendation. He does not compare it to a previous phone, explain setup, or describe a return or defect. This is a personal evaluative review. Option D is a distractor because Juan does mention one complaint, but his overall conclusion is positive — he recommends the phone."
+      "cor": "B",
+      "exp": "Juan no solo enumera ventajas; también reconoce una limitación real y matiza para quién recomienda el teléfono. Esa mezcla de entusiasmo y reserva concreta suena más propia de una reseña honesta que de una publicidad. A, C y D no describen el audio."
     },
     {
       "id": 12,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What impressed Juan the moment he took the phone out of the box?",
+      "prompt": "¿Por qué es significativo que lo primero que impresione a Juan sea lo delgado y ligero del teléfono?",
       "ch": [
-        "A) The camera quality and how natural the colors looked in photos.",
-        "B) The internet connection speed — videos loaded instantly.",
-        "C) How thin and light it was — he could barely feel it in his hand.",
-        "D) The touchscreen responsiveness and the brightness of the icons."
+        "A) Porque destaca una experiencia inmediata de comodidad y portabilidad antes incluso de hablar del rendimiento",
+        "B) Porque demuestra que la cámara del teléfono era mala",
+        "C) Porque significa que Juan solo valora apariencias y no funciones",
+        "D) Porque implica que el teléfono no tenía batería cuando lo sacó de la caja"
       ],
-      "cor": "C",
-      "exp": "Juan says: 'Cuando lo saqué de la caja, me impresionó lo delgado y ligero que era — casi no sentía que lo tenía en la mano.' The thinness and lightness is the first impression when he took it out of the box. Option D is a careful reading trap: Juan does mention the touchscreen and icons right after, but they were not what impressed him when he first took it out — the physical sensation of thinness and weight was. Options A and B are features he describes later in the review."
+      "cor": "A",
+      "exp": "La primera impresión es física y táctil: cómo se siente en la mano. Eso introduce la idea de portabilidad y comodidad desde el principio. A capta mejor esa función. B, C y D no se deducen del audio."
     },
     {
       "id": 13,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "According to Juan, what was impressive about the camera?",
+      "prompt": "Si Juan destaca colores naturales y fotos definidas incluso con poca luz, ¿qué beneficio para el usuario está sugiriendo?",
       "ch": [
-        "A) It had a zoom function that worked perfectly even from far away.",
-        "B) The colors looked natural and images were sharp even in low light.",
-        "C) It could record slow-motion video with studio-quality sound.",
-        "D) It automatically edited photos to remove backgrounds."
+        "A) Que el teléfono sirve bien para tomar fotos cotidianas incluso cuando las condiciones no son perfectas",
+        "B) Que la cámara solo funciona bien en estudios profesionales",
+        "C) Que las fotos salen mejor si se editan automáticamente después",
+        "D) Que el modo de video es más importante que la fotografía"
       ],
-      "cor": "B",
-      "exp": "Juan says: 'la calidad era impresionante — los colores se veían muy naturales y las imágenes salían muy definidas incluso con poca luz.' Two specific details: natural colors AND sharp images even in low light. Option C is a trap — Juan does mention video recording, but he describes the sound quality ('se escuchaba muy claro'), not slow motion. Options A and D add features Juan never mentions."
+      "cor": "A",
+      "exp": "La mención de la poca luz es clave: Juan no está describiendo un escenario ideal, sino una prueba más exigente. Eso sugiere utilidad real en situaciones normales. A interpreta mejor ese beneficio. B, C y D añaden cosas que él no dice."
     },
     {
       "id": 14,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "According to Juan, what did he love MOST about the phone?",
+      "prompt": "Cuando Juan dice que lo que más le encantó fue la velocidad de internet, ¿qué parece revelar sobre sus prioridades como usuario?",
       "ch": [
-        "A) The camera quality and how clearly it recorded videos.",
-        "B) How thin and light it felt in his hand from the start.",
-        "C) The internet connection speed — he could watch videos online without waiting.",
-        "D) The battery life — it lasted all day even with heavy social media use."
+        "A) Que valora mucho la rapidez en experiencias como ver videos y usar redes sin esperar",
+        "B) Que prefiere el teléfono solo para llamadas cortas",
+        "C) Que casi no usa aplicaciones ni contenido en línea",
+        "D) Que considera la cámara irrelevante"
       ],
-      "cor": "C",
-      "exp": "Juan says: 'Lo que más me encantó fue la velocidad de la conexión a internet — pude ver videos en línea sin esperar ni un segundo.' The phrase 'lo que más me encantó' explicitly marks this as his favorite feature. Options A, B, and D are all things Juan praises, making this a precision reading question — the answer is not what sounds most impressive, but what Juan himself identifies as his favorite with that specific phrase."
+      "cor": "A",
+      "exp": "Su ejemplo concreto es poder ver videos en línea sin esperar. Eso sugiere que la fluidez en conectividad importa mucho para su uso diario. B y C contradicen el audio. D exagera, porque también elogia bastante la cámara."
     },
     {
       "id": 15,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What was Juan's ONE complaint about the phone?",
+      "prompt": "¿Qué sugiere mejor la queja de Juan sobre el espacio de almacenamiento?",
       "ch": [
-        "A) The touchscreen was not very responsive when he used it with wet hands.",
-        "B) The camera struggled in very dark conditions despite being impressive overall.",
-        "C) There was not enough storage space for all his songs and apps.",
-        "D) The battery did not last as long when he used it for video recording."
+        "A) Que el teléfono es malo para todos los usuarios sin excepción",
+        "B) Que algunas personas con muchas canciones, apps o archivos pueden sentir más esa limitación que otras",
+        "C) Que el teléfono no permite sacar fotos ni grabar videos",
+        "D) Que Juan borró archivos porque el sistema operativo se dañó"
       ],
-      "cor": "C",
-      "exp": "Juan says: 'había algo que me frustró un poco: el teléfono no tenía suficiente espacio de almacenamiento para todas mis canciones y aplicaciones. Tuve que borrar algunas cosas para poder descargar más.' Storage is his only complaint. Options A and B contradict the audio — Juan praised the touchscreen and the camera specifically in low light. Option D is a plausible distractor about battery life, but Juan praised battery life with no qualification — he never says it was worse during video."
+      "cor": "B",
+      "exp": "La queja no elimina todas las ventajas del teléfono, pero sí muestra que cierto tipo de usuario, uno que guarda mucho contenido, puede quedarse corto de memoria. B interpreta mejor ese matiz. A, C y D exageran o inventan consecuencias."
     },
     {
       "id": 16,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Who does Juan recommend this phone for, and what does he suggest people consider before buying?",
+      "prompt": "¿Por qué la recomendación final de Juan distingue entre jóvenes que usan redes y toman fotos, y usuarios que necesitan mucha memoria?",
       "ch": [
-        "A) For anyone who needs a fast phone — but check the price first.",
-        "B) For young people who use social media and like taking photos — but if they need lots of storage, look for another model.",
-        "C) For athletes and travelers — but make sure the battery is compatible with your charger.",
-        "D) For students who study online — but only if they already have cloud storage."
+        "A) Porque presenta un teléfono cuyas fortalezas y limitación no afectan igual a todos los compradores",
+        "B) Porque demuestra que el teléfono fue diseñado exclusivamente para influencers profesionales",
+        "C) Porque quiere decir que la memoria deja de importar si la batería dura mucho",
+        "D) Porque intenta evitar hablar de la velocidad de internet al final"
       ],
-      "cor": "B",
-      "exp": "Juan says: 'pienso que este teléfono es perfecto para jóvenes que usan mucho las redes sociales y les gusta sacar fotos, pero si necesitan guardar muchos archivos, tal vez deberían buscar otro modelo con más memoria.' Both parts of the answer must be correct: the audience (young social media and photo users) AND the caveat (storage needs). Options A, C, and D all invent details Juan never mentions — price, athletes, travelers, charger compatibility, and cloud storage do not appear in the audio."
+      "cor": "A",
+      "exp": "Juan cierra la reseña adaptando su consejo al tipo de usuario. Para algunos, las ventajas pesan más; para quienes necesitan mucho espacio, la limitación puede importar más. A capta esa recomendación matizada. B, C y D no reflejan el cierre real."
     },
     {
       "id": 17,

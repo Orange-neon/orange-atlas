@@ -25,105 +25,105 @@ questionsJson: |
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "¿Cuál es la idea principal de este infográfico?",
+      "prompt": "Si juntas el dato de que 1 de cada 3 jóvenes sufrió fraude, que 72% reutiliza contraseñas y que 58% nunca revisó su privacidad, ¿qué advertencia central comunica mejor el infográfico?",
       "ch": [
-        "A) Explicar cómo crear contraseñas seguras paso a paso.",
-        "B) Presentar datos sobre las amenazas en línea y cómo protegerse de ellas.",
-        "C) Comparar el uso de redes sociales entre jóvenes de distintos países.",
-        "D) Mostrar las estadísticas de uso de internet en América Latina."
+        "A) Que los peligros en línea son raros y suelen afectar solo a usuarios expertos",
+        "B) Que muchas amenazas se vuelven más probables porque los hábitos inseguros son comunes, no excepcionales",
+        "C) Que el único riesgo serio en internet es olvidar una contraseña",
+        "D) Que los jóvenes ya saben protegerse y el problema real son solo los hackers profesionales"
       ],
       "cor": "B",
-      "exp": "El infográfico combina estadísticas sobre amenazas (phishing, acoso, robo de contraseñas), datos de comportamiento de los jóvenes (72% reutiliza contraseñas, 63% acepta solicitudes de desconocidos), y una sección de protección con cinco consejos. Su propósito no es solo enseñar contraseñas, comparar países, ni hablar de uso general de internet — es presentar el panorama de riesgos y dar orientación práctica sobre cómo protegerse. La opción A es demasiado estrecha; C y D no aparecen en ninguna parte del infográfico."
+      "exp": "El infográfico no presenta el riesgo como algo aislado: muestra amenazas frecuentes y comportamientos cotidianos que aumentan la exposición. B sintetiza mejor esa combinación. A y D contradicen el tono de alerta. C reduce demasiado un panorama mucho más amplio."
     },
     {
       "id": 2,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué le ha pasado a 1 de cada 3 jóvenes durante el último año?",
+      "prompt": "¿Por qué es especialmente preocupante que el 72% use la misma contraseña en varias cuentas?",
       "ch": [
-        "A) Ha cambiado su contraseña al menos una vez por recomendación de una aplicación.",
-        "B) Ha sido víctima de algún fraude o engaño en internet.",
-        "C) Ha bloqueado a un desconocido en sus redes sociales.",
-        "D) Ha reportado una cuenta falsa a la plataforma correspondiente."
+        "A) Porque si una cuenta cae, esa misma clave puede abrir la puerta a varias otras",
+        "B) Porque eso hace imposible recordar la contraseña correcta",
+        "C) Porque las plataformas obligan legalmente a compartir la contraseña con amigos",
+        "D) Porque una contraseña repetida siempre tiene más de doce caracteres"
       ],
-      "cor": "B",
-      "exp": "El infográfico dice: «1 de 3 jóvenes ha sido víctima de algún fraude o engaño en internet durante el último año.» Las opciones A, C y D son acciones plausibles relacionadas con la seguridad en línea, pero ninguna aparece en el infográfico. La trampa aquí es confundir una estadística alarmante con una acción preventiva — el dato describe algo que ya ocurrió, no algo que los jóvenes hicieron para protegerse."
+      "cor": "A",
+      "exp": "La preocupación no es solo repetir una clave por pereza, sino el efecto en cadena: una brecha en una cuenta puede comprometer muchas más. A capta esa lógica de vulnerabilidad acumulada. B, C y D inventan consecuencias o condiciones que no aparecen."
     },
     {
       "id": 3,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué hace el 72% de los jóvenes con sus contraseñas?",
+      "prompt": "Si el phishing es la amenaza más común y los ataques aparecen por redes sociales, mensajes y correo, ¿qué interpretación es más precisa?",
       "ch": [
-        "A) Usa contraseñas de más de 12 caracteres en sus cuentas principales.",
-        "B) Cambia sus contraseñas cada tres meses por seguridad.",
-        "C) Utiliza la misma contraseña para múltiples cuentas.",
-        "D) Comparte sus contraseñas con amigos de confianza."
+        "A) Que el riesgo digital suele llegar por canales cotidianos de comunicación, no solo por sitios extraños o poco conocidos",
+        "B) Que solo el correo electrónico representa un peligro real para los jóvenes",
+        "C) Que las redes sociales casi no tienen relación con los ataques cibernéticos",
+        "D) Que el acoso en línea es más frecuente que cualquier forma de engaño digital"
       ],
-      "cor": "C",
-      "exp": "El infográfico indica: «72% utiliza la misma contraseña para múltiples cuentas, lo que aumenta su vulnerabilidad.» El dato incluye la consecuencia: mayor vulnerabilidad. La trampa es la opción A — el consejo número 1 del infográfico menciona contraseñas largas, lo que puede llevar a pensar que eso es lo que hacen los jóvenes, cuando en realidad es lo opuesto: el problema es precisamente que no crean contraseñas únicas y largas."
+      "cor": "A",
+      "exp": "La combinación de amenaza principal y canales de ataque sugiere algo importante: el riesgo suele entrar por espacios normales de interacción diaria. A recoge esa idea. B y C contradicen los datos del gráfico de canales. D contradice la barra más alta de amenazas."
     },
     {
       "id": 4,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de amenazas más comunes, ¿cuál es la amenaza más frecuente que enfrentan los jóvenes?",
+      "prompt": "¿Qué mensaje transmiten juntos el dato de los 4 minutos para vulnerar una contraseña débil y la lista de consejos de protección?",
       "ch": [
-        "A) Acoso cibernético — 48%",
-        "B) Virus o malware — 33%",
-        "C) Phishing o correos falsos — 71%",
-        "D) Fraude en compras en línea — 21%"
+        "A) Que la seguridad importa poco porque los ataques exitosos son inevitables",
+        "B) Que las decisiones preventivas deben tomarse antes del problema, porque algunos riesgos actúan muy rápido",
+        "C) Que cambiar la foto de perfil es más importante que revisar la privacidad",
+        "D) Que los hackers solo atacan cuentas con pocas publicaciones"
       ],
-      "cor": "C",
-      "exp": "La barra más larga en la gráfica de amenazas corresponde a «Phishing (correos falsos)» con 71%. La trampa más fuerte es la opción A — el acoso cibernético con 48% es un tema muy discutido en el contexto juvenil, por lo que muchos estudiantes podrían seleccionarlo intuitivamente. Sin embargo, el dato del infográfico es claro: el phishing es la amenaza número uno. Leer las barras con cuidado, no asumir según el tema, es la habilidad clave."
+      "cor": "B",
+      "exp": "La rapidez del ataque hace que la prevención sea urgente. El infográfico no invita a reaccionar tarde, sino a preparar contraseñas, privacidad y criterio antes de exponerse. B traduce mejor esa idea. A, C y D no se sostienen en los datos."
     },
     {
       "id": 5,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿a través de qué medio ocurren más ataques cibernéticos contra los jóvenes?",
+      "prompt": "¿Por qué es significativo el dato de que un perfil totalmente público vuelve 10 veces más probable el acoso en línea?",
       "ch": [
-        "A) Correo electrónico — 24%",
-        "B) Mensajes de texto — 31%",
-        "C) Redes sociales — 45%",
-        "D) Aplicaciones de juegos en línea — no especificado"
+        "A) Porque muestra que la configuración de privacidad influye no solo en el robo de datos, sino también en el riesgo social",
+        "B) Porque demuestra que todos los perfiles públicos siempre terminan en fraude económico",
+        "C) Porque implica que la privacidad no afecta en nada la experiencia digital",
+        "D) Porque sugiere que compartir la ubicación es más seguro que publicar fotos"
       ],
-      "cor": "C",
-      "exp": "La sección «¿Dónde ocurren los ataques?» muestra que las redes sociales son el medio principal con 45%, seguido de mensajes de texto (31%) y correo electrónico (24%). La trampa es la opción B — los mensajes de texto son el segundo canal, y muchos estudiantes pueden confundirlos con el primero si no leen los porcentajes con atención. La opción D es un distractor inventado que no aparece en el infográfico."
+      "cor": "A",
+      "exp": "El dato conecta la privacidad con un daño social concreto: el acoso. Eso amplía la idea de seguridad más allá de las contraseñas o del fraude. A es la lectura más completa. B, C y D introducen absolutos o comparaciones que el infográfico no hace."
     },
     {
       "id": 6,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuánto tiempo promedio tarda un hacker en acceder a una cuenta con contraseña débil?",
+      "prompt": "Si una escuela quisiera usar este infográfico para dar un consejo práctico a sus estudiantes, ¿qué recomendación estaría mejor respaldada?",
       "ch": [
-        "A) 4 segundos — suficiente para comprometer la información",
-        "B) 4 minutos — suficiente para comprometer la información",
-        "C) 40 minutos — el tiempo promedio de un ataque de fuerza bruta",
-        "D) 4 horas — el tiempo necesario para un ataque sofisticado"
+        "A) Pasar menos tiempo en internet, pero sin cambiar configuraciones ni contraseñas",
+        "B) Enfocarse en hábitos concretos de seguridad: privacidad, contraseñas únicas y sospecha ante mensajes presionantes",
+        "C) Prohibir todas las redes sociales porque ningún uso puede ser seguro",
+        "D) Confiar en que las plataformas detectarán automáticamente todos los riesgos"
       ],
       "cor": "B",
-      "exp": "El infográfico dice: «4 min — es el tiempo promedio que tarda un hacker en acceder a una cuenta con contraseña débil. Un segundo es suficiente para comprometer tu información.» La trampa sofisticada es la opción A — el dato menciona «un segundo es suficiente» dentro de la misma frase, lo que puede confundir a quien no lee con cuidado. El dato principal es 4 minutos para el acceso. Las opciones C y D usan el número 4 pero con unidades de tiempo incorrectas."
+      "exp": "El infográfico insiste en conductas concretas: revisar privacidad, no aceptar desconocidos, crear contraseñas fuertes, desconfiar de enlaces y mensajes urgentes. B recoge mejor esa orientación práctica. A deja fuera justo lo más central. C y D son extremos que el material no sostiene."
     },
     {
       "id": 7,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuántas veces más probable es que un joven sea víctima de acoso en línea si su perfil en redes sociales es completamente público?",
+      "prompt": "¿Qué interpretación general del problema presenta mejor el infográfico?",
       "ch": [
-        "A) 2 veces más probable que con un perfil privado.",
-        "B) 5 veces más probable que la media nacional.",
-        "C) 10 veces más probable que con un perfil privado.",
-        "D) 64 veces más probable según datos de ciberseguridad."
+        "A) El verdadero peligro está en usar internet demasiado tiempo, no en cómo se usa",
+        "B) El mayor riesgo no es la tecnología en sí, sino la combinación de amenazas reales con hábitos poco protegidos",
+        "C) Los jóvenes son víctimas únicamente porque los adultos no entienden las redes sociales",
+        "D) La seguridad digital depende casi por completo de tener un teléfono más nuevo"
       ],
-      "cor": "C",
-      "exp": "El infográfico indica: «10× más probable que un joven sea víctima de acoso en línea si sus perfiles en redes sociales son completamente públicos y sin restricciones.» La trampa es la opción D — 64% es un dato real del infográfico (porcentaje de adolescentes que compartió su ubicación en tiempo real con desconocidos), pero no corresponde a esta estadística. Los estudiantes que recuerdan haber visto el número 64 pueden confundirlo. Las opciones A y B son inventadas."
+      "cor": "B",
+      "exp": "El infográfico combina amenazas externas con decisiones personales que aumentan o reducen la vulnerabilidad. Eso hace que B sea la mejor síntesis. A simplifica demasiado el problema. C y D inventan causas que el material no propone."
     },
     {
       "id": 8,
@@ -199,90 +199,90 @@ questionsJson: |
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What is the main purpose of Mateo's audio segment?",
+      "prompt": "¿Qué establece Mateo como criterio principal de evaluación desde el comienzo de su reseña?",
       "ch": [
-        "A) To compare two different wireless headphone brands he tested.",
-        "B) To explain how to set up and pair wireless headphones with a phone.",
-        "C) To share his personal experience with wireless headphones he bought last week.",
-        "D) To warn listeners about a defective product he had to return."
+        "A) El precio y las promociones del producto",
+        "B) La función central del producto: cómo suenan los auriculares cuando los usa",
+        "C) La cantidad de colores en que se venden",
+        "D) La rapidez con que se abre la caja al comprarlos"
       ],
-      "cor": "C",
-      "exp": "Mateo says he bought the headphones last week ('que compré la semana pasada') and shares his impressions over time — sound quality, comfort, battery, complaints, and a recommendation. He does not compare brands, explain setup, or describe a return. This is a personal evaluative review. Option D is a strong distractor because Mateo does mention complaints, but his overall conclusion is positive — he recommends them."
+      "cor": "B",
+      "exp": "La primera impresión fuerte de Mateo es la calidad del sonido. Eso marca desde el inicio que su evaluación se centra en el desempeño del producto en su función principal: escuchar música y audio. A, C y D no organizan la reseña."
     },
     {
       "id": 12,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What impressed Mateo the first time he put on the headphones?",
+      "prompt": "Cuando Mateo dice que la batería duró todo el día incluso con podcasts y llamadas, ¿qué está sugiriendo realmente?",
       "ch": [
-        "A) The charging case design and how quickly the battery charged.",
-        "B) The sound quality — the music was very clear and the bass was powerful.",
-        "C) The noise cancellation blocked all sound from the outside completely.",
-        "D) The touch controls were intuitive and easy to use right away."
+        "A) Que la batería solo funciona bien cuando no se usan funciones exigentes",
+        "B) Que el rendimiento se mantiene incluso bajo usos variados y cotidianos, no solo en condiciones ideales",
+        "C) Que escuchar podcasts consume menos batería que dejar los auriculares apagados",
+        "D) Que las llamadas telefónicas no cuentan como uso real de la batería"
       ],
       "cor": "B",
-      "exp": "Mateo says: 'Cuando me los puse por primera vez, me impresionó la calidad del sonido. La música se escuchaba muy clara y el bajo era potente.' The sound quality — clear music and powerful bass — is what impressed him first. Option C is a trap: noise cancellation is mentioned right after as something that 'worked perfectly,' but the first impression was specifically about sound quality. Option D contradicts the audio: Mateo says touch controls were hard to use at first."
+      "exp": "La palabra 'incluso' es clave: Mateo está diciendo que la batería respondió bien aun cuando la sometió a actividades distintas y algo exigentes. Eso convierte la duración en una ventaja de uso real, no teórica. A, C y D distorsionan esa idea."
     },
     {
       "id": 13,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "According to Mateo, how long did the battery last?",
+      "prompt": "¿Cómo presenta Mateo sus dos quejas para que no parezcan defectos decisivos?",
       "ch": [
-        "A) About four hours — enough for a school day without charging.",
-        "B) All day, even while listening to podcasts and taking several calls.",
-        "C) About two hours — less than advertised on the box.",
-        "D) All day, but only if he did not take any phone calls."
+        "A) Las describe como problemas graves que anulan todas las ventajas del producto",
+        "B) Las conecta con situaciones manejables: una se puede prevenir con funda y la otra mejora con la costumbre",
+        "C) Las usa para decir que piensa devolver los auriculares de inmediato",
+        "D) Las menciona solo para criticar a la tienda donde los compró"
       ],
       "cor": "B",
-      "exp": "Mateo says: 'La batería duró todo el día, incluso cuando escuché podcasts y tomé varias llamadas.' The key detail is 'incluso' (even) — the battery lasted all day even with the more demanding uses of podcasts and calls. Option D is a careful reading trap: it changes 'even while taking calls' to 'only if he didn't take calls' — the opposite of what Mateo says. Options A and C are invented details."
+      "exp": "Las dos críticas aparecen como inconvenientes controlables, no como fallas destructivas. El estuche resbaladizo se resuelve con una funda, y los controles táctiles son difíciles solo al principio. Eso hace que B sea la mejor lectura. A, C y D exageran o inventan consecuencias."
     },
     {
       "id": 14,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What are Mateo's TWO complaints about the headphones?",
+      "prompt": "¿Por qué la combinación de ser ligeros y tener sonido excelente justifica que Mateo los recomiende para deportistas y amantes de la música?",
       "ch": [
-        "A) The battery and the Bluetooth connection — both were inconsistent.",
-        "B) The sound quality at high volume and the price — too expensive for what they offer.",
-        "C) The charging case is slippery and the touch controls are hard to use at first.",
-        "D) The fit and the microphone quality during phone calls."
+        "A) Porque une una ventaja de comodidad física con una ventaja de experiencia auditiva",
+        "B) Porque demuestra que los auriculares fueron diseñados solo para corredores profesionales",
+        "C) Porque implica que no sirven para escuchar otra cosa que no sea música",
+        "D) Porque muestra que el estuche de carga es la parte más importante del producto"
       ],
-      "cor": "C",
-      "exp": "Mateo says: 'hay algo que no me gustó tanto: el estuche de carga es muy resbaladizo y se me cayó dos veces. También, los controles táctiles son un poco difíciles de usar al principio.' These are his only two negatives. Options A, B, and D all invent complaints that Mateo never mentions — the Bluetooth connection is actually praised ('fue instantánea y nunca se desconectó'), and no mention is made of price, microphone, or fit."
+      "cor": "A",
+      "exp": "Mateo relaciona directamente dos necesidades con dos fortalezas: comodidad para moverse y buena calidad de audio para disfrutar lo que se escucha. A recoge esa lógica. B, C y D añaden restricciones o prioridades que el audio no plantea."
     },
     {
       "id": 15,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Who does Mateo say these headphones are perfect for?",
+      "prompt": "¿Qué efecto tiene en la reseña que Mateo recomiende comprar una funda protectora para el estuche?",
       "ch": [
-        "A) Students who study in noisy libraries and need to concentrate.",
-        "B) Remote workers who take many video calls throughout the day.",
-        "C) Athletes and music lovers, because they are lightweight and have excellent sound.",
-        "D) Travelers who need long battery life for international flights."
+        "A) Convierte una queja en un problema sin solución posible",
+        "B) Muestra que la principal función de los auriculares es el accesorio extra",
+        "C) Presenta la crítica como algo manejable y refuerza que su valoración general sigue siendo positiva",
+        "D) Demuestra que los auriculares no pueden usarse sin comprar productos adicionales costosos"
       ],
       "cor": "C",
-      "exp": "Mateo says: 'creo que estos auriculares son perfectos para deportistas y amantes de la música, porque son ligeros y tienen un sonido excelente.' He names the audience specifically and gives two reasons. Options A, B, and D are plausible distractors — all are contexts where headphones would be useful — but Mateo does not mention them. His focus on being lightweight ('ligeros') and excellent sound ('sonido excelente') points specifically to athletic use and music appreciation."
+      "exp": "Sugerir una funda hace que el defecto del estuche resbaladizo parezca solucionable y relativamente menor. Eso encaja con una reseña mayormente positiva. A y D exageran el problema. B cambia por completo el foco del audio."
     },
     {
       "id": 16,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What additional purchase does Mateo suggest for anyone who buys these headphones?",
+      "prompt": "¿Cuál describe mejor la opinión global de Mateo sobre los auriculares al final de la reseña?",
       "ch": [
-        "A) A longer charging cable, because the included one is too short.",
-        "B) A protective cover for the charging case, because it is very slippery.",
-        "C) A second pair to keep as a backup in case one breaks.",
-        "D) A wireless charger pad for faster charging at home."
+        "A) Muy negativa, porque las dos quejas hacen imposible recomendarlos",
+        "B) Mayormente positiva, con objeciones menores que no cambian su recomendación final",
+        "C) Completamente neutral, porque no toma postura sobre el producto",
+        "D) Indecisa, porque nunca aclara para quién podrían servir"
       ],
       "cor": "B",
-      "exp": "Mateo says: 'les sugiero comprar una funda protectora para el estuche.' He recommends a protective cover ('funda protectora') specifically for the charging case — directly connected to his complaint that it is slippery ('resbaladizo') and that he dropped it twice. Options A, C, and D are reasonable product accessories but are never mentioned by Mateo."
+      "exp": "Mateo acumula varios elogios, identifica un público claro y termina llamándolos una gran opción. Sus dos críticas existen, pero están presentadas como limitaciones pequeñas y manejables. Por eso B resume mejor su valoración final."
     },
     {
       "id": 17,

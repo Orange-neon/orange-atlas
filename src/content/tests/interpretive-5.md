@@ -25,105 +25,105 @@ questionsJson: |
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué porcentaje de jóvenes reporta sentirse peor respecto a su propia imagen después de usar redes sociales por más de dos horas?",
+      "prompt": "Al dividir la información en beneficios y perjuicios, ¿qué idea general parece querer transmitir el infográfico?",
       "ch": [
-        "A) 29% — los que tienen conflictos con la familia",
-        "B) 38% — los que reportan baja en el rendimiento escolar",
-        "C) 41% — los que se sienten peor con su imagen personal",
-        "D) 67% — los que dicen que las redes los ayudan a conectarse"
+        "A) Que las redes sociales son totalmente positivas si se usan desde una edad temprana",
+        "B) Que las redes sociales producen efectos mixtos y no se entienden bien desde una sola postura extrema",
+        "C) Que todos los problemas de los adolescentes empiezan exclusivamente en las redes",
+        "D) Que los beneficios son demasiado pequeños para merecer atención"
       ],
-      "cor": "C",
-      "exp": "El lado derecho del strip central del infográfico indica: «41% reporta sentirse peor con respecto a su propia imagen después de usar redes sociales por más de dos horas.» La trampa aquí es la opción D — 67% es un dato real del infográfico, pero se refiere a los jóvenes que sienten un beneficio (conexión con otros), no un perjuicio. Las opciones A y B también son datos reales del infográfico pero corresponden a efectos negativos completamente diferentes."
+      "cor": "B",
+      "exp": "La estructura misma del infográfico ya comunica un mensaje: no presenta las redes como algo puramente bueno ni puramente malo. Organiza evidencia para ambos lados. B interpreta mejor esa intención. A, C y D convierten el contenido en algo unilateral que el diseño del infográfico precisamente evita."
     },
     {
       "id": 2,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de barras del lado de los beneficios, ¿en qué ayudan más las redes sociales según los jóvenes encuestados?",
+      "prompt": "Si el beneficio más reportado es mantenerse informado (74%) y el perjuicio más reportado es ansiedad o estrés (62%), ¿qué lectura es más precisa?",
       "ch": [
-        "A) Expresarse creativamente (43%)",
-        "B) Aprender algo nuevo (51%)",
-        "C) Conectar con amigos (67%)",
-        "D) Mantenerse informado (74%)"
+        "A) Las redes solo sirven para entretener, no para informar",
+        "B) La misma herramienta puede aportar valor informativo mientras también afecta el bienestar emocional",
+        "C) La ansiedad aparece únicamente en usuarios que nunca se informan",
+        "D) El infográfico demuestra que los beneficios superan por completo cualquier costo emocional"
       ],
-      "cor": "D",
-      "exp": "La barra más larga en la sección de beneficios corresponde a «Mantenerse informado» con 74%. La trampa clásica es la opción C — «Conectar con amigos» con 67% es la segunda barra más larga y es lo que muchos asocian intuitivamente con las redes sociales. Las opciones A y B son barras reales pero más cortas. Leer la barra más alta, no la más obvia temáticamente, es la habilidad clave."
+      "cor": "B",
+      "exp": "La dificultad aquí está en aceptar dos verdades al mismo tiempo: las redes pueden ayudar a informarse y, a la vez, relacionarse con malestar emocional. B recoge mejor esa lectura equilibrada. A y C contradicen los datos. D exagera porque el infográfico no invita a descartar los costos."
     },
     {
       "id": 3,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de barras del lado de los perjuicios, ¿cuál es el efecto negativo más reportado por los adolescentes?",
+      "prompt": "¿Qué muestran juntos el 67% que dice que las redes ayudan a conectar con amigos y el 41% que se siente peor con su imagen tras más de dos horas de uso?",
       "ch": [
-        "A) Conflictos con la familia (29%)",
-        "B) Baja en rendimiento escolar (38%)",
-        "C) Problemas para dormir (55%)",
-        "D) Ansiedad o estrés (62%)"
+        "A) Que las redes fortalecen la conexión y la autoestima por igual",
+        "B) Que una misma plataforma puede mejorar la conexión social y, bajo ciertas condiciones, empeorar la percepción personal",
+        "C) Que solo quienes usan redes más de dos horas tienen amigos",
+        "D) Que la conexión con amigos desaparece por completo cuando aumenta el tiempo de uso"
       ],
-      "cor": "D",
-      "exp": "La barra más larga en la sección de perjuicios corresponde a «Ansiedad o estrés» con 62%. La trampa es la opción C — «Problemas para dormir» con 55% es la segunda barra y puede parecer más dramática o relacionada con la tecnología que la ansiedad. Las opciones A y B son datos reales pero mucho más bajos. El detalle visual de qué barra es más larga — no cuál suena más grave — es lo que determina la respuesta."
+      "cor": "B",
+      "exp": "Esta pregunta obliga a unir un beneficio y un perjuicio. El infográfico no dice que una cosa elimine la otra; más bien muestra que ambas pueden coexistir. B es la lectura más fina. A elimina el costo. C y D inventan relaciones absolutas que no aparecen."
     },
     {
       "id": 4,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuántas horas en promedio pasa un adolescente en redes sociales cada día?",
+      "prompt": "¿Qué inferencia está mejor respaldada si se comparan las 3.2 horas diarias promedio con el dato de que limitar el uso a menos de una hora se asocia con el doble de bienestar emocional?",
       "ch": [
-        "A) 1.5 horas — el límite que los expertos suelen recomendar",
-        "B) 2.0 horas — el umbral después del cual baja el bienestar",
-        "C) 3.2 horas — más que cualquier actividad física",
-        "D) 4.9 horas — el número de usuarios mundiales en miles de millones"
+        "A) Que el problema principal no es la existencia de las redes, sino la cantidad de tiempo que ocupan",
+        "B) Que cualquier uso de redes sociales daña automáticamente el bienestar",
+        "C) Que todos los adolescentes podrían mejorar si dejaran de usar internet por completo",
+        "D) Que una hora exacta de uso garantiza cero efectos negativos"
       ],
-      "cor": "C",
-      "exp": "El infográfico indica: «3.2 h — Tiempo promedio que un adolescente pasa en redes sociales cada día — más que en cualquier actividad física.» La trampa más sofisticada es la opción D: 4,900 millones es el número de usuarios globales, no horas. El número aparece en el strip central y puede confundirse si el estudiante no lee el contexto completo de cada cifra."
+      "cor": "A",
+      "exp": "El contraste entre 3.2 horas y el beneficio asociado a menos de una hora sugiere que la cantidad de uso importa mucho. El infográfico no exige una eliminación total de las redes, sino una lectura más crítica del tiempo invertido. B, C y D son conclusiones demasiado absolutas."
     },
     {
       "id": 5,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué edad mínima han propuesto varios gobiernos europeos para acceder a redes sociales sin el consentimiento de un adulto?",
+      "prompt": "¿Por qué resulta significativo que el infográfico incluya tanto la propuesta europea de 16+ como el dato de que las noticias falsas se comparten seis veces más rápido?",
       "ch": [
-        "A) 13 años — la edad mínima actual de la mayoría de las plataformas",
-        "B) 14 años — la edad recomendada en algunos estudios de bienestar juvenil",
-        "C) 16 años — propuesta por varios gobiernos europeos",
-        "D) 18 años — la mayoría de edad legal en casi todos los países"
+        "A) Porque muestra que el debate sobre redes sociales va más allá del gusto personal y entra en temas de política y responsabilidad pública",
+        "B) Porque demuestra que todos los gobiernos europeos ya prohibieron las redes sociales",
+        "C) Porque sugiere que la única razón para subir la edad mínima es mejorar el rendimiento escolar",
+        "D) Porque indica que la desinformación ocurre solo entre menores de 16 años"
       ],
-      "cor": "C",
-      "exp": "El infográfico dice en la franja de datos inferiores: «16+ — Edad mínima propuesta por varios gobiernos europeos para acceder a redes sociales sin el consentimiento parental.» La trampa es la opción A — 13 años es la edad mínima actual de muchas plataformas, lo que hace que suene como la respuesta oficial. Sin embargo, el infográfico no pregunta por la norma actual sino por la propuesta legislativa europea."
+      "cor": "A",
+      "exp": "Estos datos amplían el tema: ya no se trata solo de sentimientos o hábitos individuales, sino también de regulación, ciudadanía digital y circulación de información falsa. A recoge ese salto de escala. B, C y D añaden afirmaciones que el infográfico no sostiene."
     },
     {
       "id": 6,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuántas veces más rápido se comparten las noticias falsas que la información verídica en plataformas como X o Facebook?",
+      "prompt": "Si tuvieras que resumir el consejo implícito del infográfico en una sola idea, ¿cuál sería la mejor?",
       "ch": [
-        "A) 2 veces más rápido que la información real",
-        "B) 4 veces más rápido que los artículos verificados",
-        "C) 6 veces más rápido que la información verídica",
-        "D) 10 veces más rápido según estudios de desinformación"
+        "A) Usar redes sociales sin límites porque conectan e informan",
+        "B) Eliminar por completo las redes sociales de la vida adolescente",
+        "C) Mantener una relación más consciente y limitada con las redes, sin ignorar sus beneficios reales",
+        "D) Confiar en que las plataformas resolverán por sí solas los efectos negativos"
       ],
       "cor": "C",
-      "exp": "El infográfico indica: «Las noticias falsas — o bulos — se comparten seis veces más rápido que la información verídica en plataformas como X o Facebook.» Las opciones A, B y D son números plausibles inventados que suenan razonables, lo que hace difícil recordar el dato exacto sin haber leído el infográfico con atención."
+      "exp": "El infográfico reconoce beneficios auténticos, pero también advierte sobre ansiedad, sueño, rendimiento, imagen corporal y desinformación. Eso apunta a un uso más deliberado y limitado, no a celebración acrítica ni a prohibición total. Por eso C es la mejor síntesis."
     },
     {
       "id": 7,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué diferencia de bienestar emocional existe entre los jóvenes que limitan su uso a menos de una hora diaria y los que no lo hacen?",
+      "prompt": "¿Qué descripción resume mejor la relación entre los beneficios y los perjuicios presentados?",
       "ch": [
-        "A) Tienen un 38% menos de problemas en su rendimiento académico.",
-        "B) Duermen 55% más horas cada noche comparados con los demás.",
-        "C) Reportan el doble de bienestar emocional que los que no limitan su uso.",
-        "D) Son 3 veces menos propensos a sufrir conflictos con sus familias."
+        "A) Los beneficios son imaginarios, mientras que los perjuicios están completamente comprobados",
+        "B) Ambos lados presentan efectos reales, lo que convierte el tema en un equilibrio complejo y no en una respuesta simple",
+        "C) Los perjuicios solo aparecen en adultos, no en adolescentes",
+        "D) Los beneficios y los perjuicios se anulan entre sí y por eso no importa el tiempo de uso"
       ],
-      "cor": "C",
-      "exp": "El infográfico dice en la franja inferior: «2× mejor — Los jóvenes que limitan su uso a menos de 1 hora al día reportan el doble de bienestar emocional que los demás.» Las opciones A y B reciclan porcentajes reales del infográfico (38% rendimiento escolar, 55% problemas de sueño) pero los aplican a un contexto completamente diferente. La opción D inventa la cifra de 3 veces — no aparece en ninguna parte del infográfico."
+      "cor": "B",
+      "exp": "El diseño y los datos del infográfico insisten en la complejidad: hay conexión, información y creatividad, pero también estrés, sueño y rendimiento. B capta esa lectura equilibrada. A, C y D niegan parte de la evidencia presentada."
     },
     {
       "id": 8,
@@ -219,105 +219,105 @@ questionsJson: |
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿por qué salió Antonio de casa temprano el sábado por la mañana?",
+      "prompt": "¿Qué función cumple al principio del audio el detalle de que Antonio tenía que estar en el trabajo a las nueve?",
       "ch": [
-        "A) Quería evitar el tráfico porque la carretera estaba muy congestionada los sábados.",
-        "B) Tenía que estar en el trabajo a las nueve y salió con tiempo de sobra.",
-        "C) Necesitaba pasar por una gasolinera antes de llegar al trabajo.",
-        "D) Su jefa le había pedido que llegara una hora antes de su horario habitual."
+        "A) Explica por qué decidió revisar la presión de las llantas antes de salir",
+        "B) Introduce una presión de tiempo que hace que la avería se sienta más urgente",
+        "C) Demuestra que Antonio había salido tarde de casa por descuido",
+        "D) Sugiere que la jefa le había dado permiso para llegar tarde"
       ],
       "cor": "B",
-      "exp": "Antonio dice: «salí de casa temprano porque tenía que estar en el trabajo a las nueve.» La opción A inventa la razón del tráfico, que Antonio nunca menciona. La opción C inventa una parada en la gasolinera — no aparece en el audio. La opción D es tentadora porque implica presión del trabajo, pero Antonio no menciona que su jefa le pidiera llegar antes."
+      "exp": "Ese dato no es un detalle neutro: crea tensión desde el inicio. La avería ya no es solo un problema mecánico, sino una amenaza directa a su obligación laboral. A, C y D añaden circunstancias que el audio no menciona."
     },
     {
       "id": 12,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿qué tipo de ruido empezó a hacer el carro de repente?",
+      "prompt": "¿Por qué es importante que Antonio describa el ruido como «golpe... golpe... golpe» y añada que se asustó muchísimo?",
       "ch": [
-        "A) Un silbido agudo y constante que venía del motor del carro.",
-        "B) Un zumbido suave que solo se escuchaba cuando frenaba.",
-        "C) Un golpe repetitivo y muy fuerte que lo asustó muchísimo.",
-        "D) Un chirrido de fricción que aumentaba al acelerar en la carretera."
+        "A) Porque convierte el problema en algo vívido y hace sentir que no parecía una molestia menor",
+        "B) Porque prueba que Antonio sabía exactamente qué pieza del carro había fallado",
+        "C) Porque indica que el ruido venía del motor y no de una llanta",
+        "D) Porque muestra que Antonio exagera para hacer la historia más divertida"
       ],
-      "cor": "C",
-      "exp": "Antonio describe el ruido como: «un ruido muy extraño — era como un golpe... golpe... golpe. Muy fuerte. Me asusté muchísimo.» La clave está en la onomatopeya repetida y el adjetivo «fuerte» (loud), más la reacción emocional de asustarse. Las opciones A, B y D describen tipos de ruidos automotrices plausibles pero inventados — ninguno coincide con la descripción específica de Antonio."
+      "cor": "A",
+      "exp": "La repetición del sonido y la reacción emocional aumentan la sensación de alarma. El oyente entiende que Antonio percibió algo serio e inesperado. B y C inventan un diagnóstico que él no tenía en ese momento. D contradice el tono del relato."
     },
     {
       "id": 13,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿qué descubrió Antonio cuando se bajó del carro a revisar?",
+      "prompt": "¿Qué revela mejor la secuencia de llamar primero a su papá, luego a su amigo y solo después al servicio de asistencia?",
       "ch": [
-        "A) Que el motor estaba sobrecalentado y había humo saliendo del capó.",
-        "B) Que se le había acabado la gasolina en la orilla de la carretera.",
-        "C) Que el parachoques trasero estaba dañado por un golpe reciente.",
-        "D) Que una llanta estaba completamente desinflada."
+        "A) Que Antonio quería evitar por completo cualquier ayuda profesional",
+        "B) Que intentó resolver la situación primero con su red personal antes de pasar a una solución formal",
+        "C) Que no sabía que existían grúas o asistencia en carretera",
+        "D) Que su amigo fue quien finalmente cambió la llanta"
       ],
-      "cor": "D",
-      "exp": "Antonio dice: «podía ver claramente que una llanta estaba completamente desinflada. ¡Pinchada!» El detalle «podía ver claramente» señala algo visible a simple vista — una llanta desinflada coincide perfectamente. Las opciones A, B y C son problemas automotrices reales que podrían causar ruidos, pero ninguno aparece en el relato de Antonio."
+      "cor": "B",
+      "exp": "La secuencia muestra una lógica clara: Antonio primero busca ayuda cercana y familiar, y solo cuando eso no funciona acude al servicio profesional. Eso hace que B sea la interpretación más precisa. A exagera. C y D contradicen la historia."
     },
     {
       "id": 14,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿a quién llamó Antonio primero cuando se quedó varado en la carretera?",
+      "prompt": "¿Qué añade al relato la mención de los cuarenta y cinco minutos de espera con el sol ya muy fuerte?",
       "ch": [
-        "A) A su mejor amigo, para pedirle que fuera a recogerlo.",
-        "B) A una grúa, porque sabía que necesitaría ayuda profesional.",
-        "C) A su jefa, para avisarle que llegaría tarde.",
-        "D) A su papá, aunque este no contestó el teléfono."
+        "A) Un detalle físico que intensifica la incomodidad y el estrés de la espera",
+        "B) La prueba de que Antonio estuvo esperando mucho menos de lo normal",
+        "C) Una explicación de por qué la jefa ya sabía lo que había pasado",
+        "D) Una pista de que el técnico se perdió en la carretera"
       ],
-      "cor": "D",
-      "exp": "Antonio dice: «Llamé a mi papá primero, pero no contestó.» La secuencia exacta es: papá (no contestó) → mejor amigo (no tenía carro) → servicio de asistencia. Las opciones A, B y C invierten el orden o inventan acciones. La opción C es tentadora porque llegar tarde al trabajo sí es consecuencia del evento, pero Antonio no llama a su jefa en ningún momento del relato."
+      "cor": "A",
+      "exp": "El sol fuerte convierte la espera en una experiencia corporal y no solo cronológica. El oyente siente mejor el cansancio y la frustración de Antonio. B contradice la insistencia en la espera larga. C y D son inventos."
     },
     {
       "id": 15,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿cuánto tiempo tuvo que esperar Antonio a que llegara el servicio de asistencia en carretera?",
+      "prompt": "Cuando el técnico dice que la llanta «no tenía remedio», ¿por qué ese detalle es importante para la estructura del relato?",
       "ch": [
-        "A) Quince minutos — aunque el sol ya estaba muy fuerte.",
-        "B) Treinta minutos — el tiempo promedio de espera en carretera.",
-        "C) Cuarenta y cinco minutos — con el sol ya muy fuerte.",
-        "D) Una hora completa — porque el técnico estaba muy lejos."
+        "A) Porque transforma la esperanza de una reparación rápida en la necesidad de una solución mayor",
+        "B) Porque demuestra que Antonio había elegido mal la ruta hacia el trabajo",
+        "C) Porque implica que el técnico no sabía realmente cómo reparar llantas",
+        "D) Porque significa que el resto del carro estaba también destruido"
       ],
-      "cor": "C",
-      "exp": "Antonio dice: «Me dijeron que llegarían en cuarenta y cinco minutos. Cuarenta y cinco minutos esperando ahí, con el sol ya muy fuerte.» La repetición enfática del tiempo (dos veces «cuarenta y cinco minutos») y la mención del sol son los detalles que confirman la opción C. Las otras opciones usan tiempos distintos que suenan plausibles para una espera en carretera pero no corresponden al audio."
+      "cor": "A",
+      "exp": "Hasta ese momento todavía podría parecer un contratiempo solucionable en poco tiempo. Decir que la llanta no tiene remedio cambia la gravedad del problema y ayuda a explicar por qué todo se complica más. B, C y D no se derivan del audio."
     },
     {
       "id": 16,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿qué le dijo el técnico a Antonio sobre la llanta dañada?",
+      "prompt": "¿Por qué la reacción de la jefa funciona bien como cierre del audio?",
       "ch": [
-        "A) Que podía repararla en el momento si tenía los materiales necesarios.",
-        "B) Que estaba demasiado dañada para repararla — necesitaba una llanta nueva.",
-        "C) Que debía llevarla a un taller especializado antes del mediodía.",
-        "D) Que el problema era el neumático interior y que la llanta exterior estaba bien."
+        "A) Porque resuelve parcialmente la tensión laboral que se había planteado desde el inicio",
+        "B) Porque demuestra que a la jefa no le importaba el trabajo de Antonio",
+        "C) Porque cambia el tema del audio hacia una crítica de las oficinas",
+        "D) Porque confirma que Antonio no llegó realmente tarde"
       ],
-      "cor": "B",
-      "exp": "Antonio dice: «el técnico revisó el carro y me dijo que la llanta no tenía remedio — estaba demasiado dañada para repararla.» La frase «no tenía remedio» (there was no fixing it) es el dato clave. La opción A contradice directamente esto. Las opciones C y D inventan detalles técnicos que Antonio nunca menciona."
+      "cor": "A",
+      "exp": "El audio abre con una obligación laboral clara y termina volviendo a ella. La comprensión de la jefa no elimina lo estresante de lo ocurrido, pero sí suaviza la consecuencia que más preocupaba a Antonio. B, C y D no corresponden al final real."
     },
     {
       "id": 17,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "Según el audio, ¿cómo reaccionó la jefa de Antonio cuando llegó tarde al trabajo?",
+      "prompt": "¿Cuál describe mejor la experiencia completa de Antonio en el audio?",
       "ch": [
-        "A) Estaba muy enojada y le dio una advertencia formal por el retraso.",
-        "B) No le dijo nada porque ya sabía lo que había pasado por otros compañeros.",
-        "C) No estaba muy contenta, pero fue comprensiva cuando Antonio le explicó todo.",
-        "D) Le pidió que compensara las horas perdidas trabajando el fin de semana siguiente."
+        "A) Una mañana rutinaria que nunca llega a convertirse en un verdadero problema",
+        "B) Una cadena de dificultades que va aumentando, pero termina con alivio parcial en lugar de desastre total",
+        "C) Una historia principalmente cómica sobre errores menores en la carretera",
+        "D) Una crítica al servicio de asistencia por resolver demasiado rápido la situación"
       ],
-      "cor": "C",
-      "exp": "Antonio dice: «Mi jefa no estaba muy contenta, como puedes imaginar. Tuve que explicarle todo y, por suerte, ella fue comprensiva.» La respuesta captura tanto la reacción inicial negativa («no estaba muy contenta») como el resultado positivo («fue comprensiva»). La trampa es la opción A — «no estaba muy contenta» puede llevar a pensar que la consecuencia fue negativa, cuando en realidad la jefa terminó siendo comprensiva. Las opciones B y D son inventadas."
+      "cor": "B",
+      "exp": "El relato arranca como un trayecto normal, sube en tensión con el ruido, la llanta dañada, la espera y la llegada tarde, y termina con una consecuencia menos dura de la que Antonio temía. B captura mejor ese arco. A minimiza demasiado. C cambia el tono. D contradice la larga espera y el problema con la llanta."
     },
     {
       "id": 18,

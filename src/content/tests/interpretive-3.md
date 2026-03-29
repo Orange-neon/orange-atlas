@@ -36,165 +36,165 @@ questionsJson: |
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "¿Cuál es la idea principal del Texto 1?",
+      "prompt": "¿Qué idea en común une mejor los dos textos?",
       "ch": [
-        "A) Elena se hizo famosa en internet gracias a sus videos de alta calidad.",
-        "B) Las redes sociales son peligrosas para la salud de todos los jóvenes del mundo.",
-        "C) La búsqueda de fama en las redes sociales le causó problemas a Elena hasta que tomó la decisión de cambiar sus prioridades.",
-        "D) La madre de Elena le prohibió usar el móvil hasta que sus notas mejoraran."
+        "A) Los dos celebran principalmente la ayuda inesperada de otras personas en la carretera",
+        "B) Los dos presentan una llamada de atención que obliga a la protagonista a reevaluar sus hábitos o decisiones",
+        "C) Los dos argumentan que los móviles nunca deben usarse fuera de casa",
+        "D) Los dos demuestran que la fama y los viajes son siempre experiencias negativas"
       ],
-      "cor": "C",
-      "exp": "El texto sigue la trayectoria de Elena: deseo de fama → crecimiento inicial → consecuencias negativas (notas, aislamiento) → momento de conciencia → decisión de cambiar. La opción A contradice el final del texto — Elena abandonó las redes. La opción B hace una generalización universal que el texto nunca apoya. La opción D exagera la acción de la madre — ella dio un consejo, no impuso una prohibición."
+      "cor": "B",
+      "exp": "En el Texto 1, Elena despierta cuando reconoce lo que ha perdido; en el Texto 2, Claudia aprende durante una emergencia y cambia sus futuros hábitos. Ambos textos giran alrededor de un momento de reajuste. A solo aplica en parte al segundo. C y D son demasiado absolutas y no reflejan el mensaje real."
     },
     {
       "id": 2,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "¿Cuál es la idea principal del Texto 2?",
+      "prompt": "¿Qué sugiere mejor el consejo de la madre cuando dice que el tiempo de Elena vale más de lo que cree?",
       "ch": [
-        "A) Los mecánicos siempre cobran demasiado cuando ayudan a conductores en la autopista.",
-        "B) Claudia tuvo una emergencia vial que resolvió con ayuda de otros y que la llevó a tomar mejores hábitos.",
-        "C) Es muy peligroso conducir por la autopista porque los conductores ignoran la velocidad máxima.",
-        "D) La batería de los móviles modernos no dura suficiente para situaciones de emergencia."
+        "A) Que Elena debería concentrarse solo en hacer videos de mejor calidad",
+        "B) Que la fama digital le está haciendo subestimar el valor de su vida fuera de la pantalla",
+        "C) Que la madre piensa que Elena no tiene suficiente talento para redes sociales",
+        "D) Que el problema principal de Elena es no saber usar bien su micrófono"
       ],
       "cor": "B",
-      "exp": "El texto muestra cómo Claudia enfrentó una avería (llanta ponchada, móvil sin batería), encontró soluciones (el conductor amable, el mecánico), y al final tomó decisiones para el futuro (el cargador, revisar llantas). La opción C toma el consejo del mecánico como la idea central, pero es solo un detalle. La opción D inventa una crítica a los teléfonos que el texto no hace — el móvil funcionó bien una vez recargado. La opción A inventa información sobre el precio del servicio."
+      "exp": "La madre no habla de tecnología en términos técnicos; habla del valor del tiempo y de la vida real que Elena está dejando de lado. B recoge ese cambio de perspectiva. A, C y D inventan críticas que la madre nunca hace."
     },
     {
       "id": 3,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿qué problemas comenzó a tener Elena a medida que crecía su fama?",
+      "prompt": "¿Qué función cumple el detalle de que Elena llevaba tres semanas sin llamar a su mejor amiga ni leer un libro?",
       "ch": [
-        "A) Su cámara web se descompuso y ya no podía grabar sus videos.",
-        "B) Sus seguidores empezaron a criticarla y ella se puso muy triste.",
-        "C) Dejó de salir con sus amigos y sus notas empezaron a bajar.",
-        "D) Sus padres le quitaron el móvil porque llegaba tarde a la escuela."
+        "A) Sirve como una medida concreta de hasta qué punto sus prioridades se habían distorsionado",
+        "B) Demuestra que su mejor amiga vivía muy lejos y no podía visitarla",
+        "C) Explica por qué sus seguidores dejaron de crecer tan rápidamente",
+        "D) Indica que Elena había decidido tomarse unas vacaciones de las redes"
       ],
-      "cor": "C",
-      "exp": "El texto dice directamente: 'Elena pasaba tantas horas frente a la pantalla que dejó de salir con sus amigos y sus notas empezaron a caer en picada.' La opción A inventa un problema técnico no mencionado. La opción B inventa críticas de los seguidores — el texto solo dice que crecían rápidamente. La opción D inventa una sanción de los padres; la madre solo ofreció un consejo."
+      "cor": "A",
+      "exp": "Las tres semanas sin llamar ni leer convierten un problema general en una evidencia concreta. El lector ve exactamente cuánto ha cambiado la vida de Elena. B, C y D añaden causas o consecuencias que el texto no menciona."
     },
     {
       "id": 4,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿qué le dijo exactamente la madre a Elena?",
+      "prompt": "¿Por qué es importante la frase \"Aunque le costó mucho trabajo al principio\" cerca del final del Texto 1?",
       "ch": [
-        "A) Le dijo que borrara todas sus redes sociales o le quitaría el móvil.",
-        "B) Le dijo que apagara el micrófono y saliera a tomar aire fresco, porque el tiempo suyo valía más de lo que creía.",
-        "C) Le explicó que las redes sociales eran malas para su salud mental y que debía dejar de usarlas.",
-        "D) Le pidió que estudiara al menos dos horas antes de empezar a grabar videos."
+        "A) Porque muestra que el cambio fue instantáneo y no requirió ningún esfuerzo real",
+        "B) Porque deja claro que recuperar una vida más rica fuera de la pantalla fue valioso, pero no fácil al comienzo",
+        "C) Porque indica que Elena quería volver a las redes sociales después de unos días",
+        "D) Porque demuestra que la madre controlaba todos sus movimientos después de la crisis"
       ],
       "cor": "B",
-      "exp": "El texto cita directamente las palabras de la madre: «Apaga ese micrófono y sal a tomar aire fresco — este tiempo tuyo vale más de lo que crees.» La opción A añade una amenaza que no aparece en el texto. La opción C parafrasea la idea general pero inventa el tema específico de la salud mental. La opción D inventa un acuerdo sobre el estudio que nunca se menciona."
+      "exp": "El texto no romantiza el cambio; reconoce que separarse de un hábito muy absorbente cuesta. Eso hace que el descubrimiento final resulte más creíble. A contradice el texto. C y D inventan consecuencias adicionales."
     },
     {
       "id": 5,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿qué hizo Elena cuando se dio cuenta de que llevaba tres semanas sin llamar a su mejor amiga ni leer un libro?",
+      "prompt": "¿Qué inferencia es más sólida sobre por qué Elena borra las aplicaciones de redes sociales?",
       "ch": [
-        "A) Llamó inmediatamente a su amiga y le pidió disculpas por no haber estado en contacto.",
-        "B) Decidió grabar menos videos — solo tres por semana en lugar de todos los días.",
-        "C) Borró las aplicaciones de redes sociales de su móvil y reservó más tiempo para lo que antes le daba alegría.",
-        "D) Le pidió a su madre que le ayudara a crear un horario para equilibrar los videos y sus amistades."
+        "A) Actúa solamente por miedo a un castigo inmediato de su madre",
+        "B) Su decisión nace de un momento de autorreconocimiento, no solo de la presión externa",
+        "C) Quiere crear misterio para que sus seguidores la extrañen más",
+        "D) Necesita liberar espacio de almacenamiento para grabar videos mejores"
       ],
-      "cor": "C",
-      "exp": "El texto dice: 'decidió borrar las aplicaciones de sus redes sociales del móvil y guardar más tiempo para las cosas que antes le daban alegría.' La opción A suena lógica pero el texto no menciona esa llamada. La opción B inventa una reducción gradual — Elena eliminó las apps por completo. La opción D inventa la participación de la madre en crear un horario; la madre ya no aparece después de su consejo."
+      "cor": "B",
+      "exp": "La madre le da una advertencia importante, pero Elena cambia de verdad cuando ella misma reconoce la magnitud de lo que ha perdido. Esa conciencia personal sostiene la decisión. A reduce demasiado su agencia. C y D inventan motivaciones ajenas al texto."
     },
     {
       "id": 6,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿qué descubrió Elena después de borrar las aplicaciones de redes sociales?",
+      "prompt": "¿Qué hace que el problema del móvil en el Texto 2 sea más grave que una simple molestia técnica?",
       "ch": [
-        "A) Que extrañaba mucho a sus seguidores y quería volver a publicar contenido.",
-        "B) Que era más fácil hacer amigos nuevos sin la distracción de las pantallas.",
-        "C) Que la vida fuera de la pantalla era más rica e interesante de lo que recordaba.",
-        "D) Que tenía más tiempo libre pero no sabía cómo aprovecharlo bien."
+        "A) Que Claudia se aburrió durante la espera y por eso se sintió muy frustrada",
+        "B) Que la batería baja la deja vulnerable en una situación de carretera cuando necesita pedir ayuda",
+        "C) Que el móvil era un modelo viejo y por eso no merecía confianza",
+        "D) Que el taller mecánico no aceptaba llamadas desde ciertos teléfonos"
       ],
-      "cor": "C",
-      "exp": "El texto dice exactamente: 'Elena descubrió que la vida fuera de la pantalla era más rica e interesante de lo que recordaba.' La opción A contradice directamente el arco de Elena — no hay señales de que quisiera regresar a las redes. La opción B inventa el tema de hacer amigos nuevos. La opción D inventa la idea de no saber qué hacer con el tiempo libre — el texto implica lo contrario, ya que Elena volvió a actividades que ya disfrutaba."
+      "cor": "B",
+      "exp": "El móvil no falla en un contexto trivial: Claudia está detenida al lado de la autopista con una llanta ponchada. Eso convierte la batería casi agotada en un problema de vulnerabilidad real. A minimiza la situación. C y D inventan causas que el texto no menciona."
     },
     {
       "id": 7,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿por qué no pudo Claudia llamar al mecánico de inmediato?",
+      "prompt": "¿Qué revela mejor la ayuda del conductor que le presta un cargador a Claudia?",
       "ch": [
-        "A) No tenía señal de red en esa parte de la autopista.",
-        "B) La batería de su móvil estaba casi agotada y la pantalla se apagó antes de hacer la llamada.",
-        "C) No sabía el número de ningún mecánico de la zona.",
-        "D) Su móvil se había caído al suelo durante la avería y la pantalla se rompió."
+        "A) Que la tecnología por sí sola resolvió completamente la situación",
+        "B) Que la solución surge de la combinación entre ayuda humana y herramientas tecnológicas",
+        "C) Que el conductor era mecánico y por eso supo arreglar la rueda en ese momento",
+        "D) Que Claudia no había pensado en encender de nuevo el móvil hasta que él se lo dijo"
       ],
       "cor": "B",
-      "exp": "El texto dice: 'la batería estaba casi agotada y la pantalla se apagó antes de que pudiera hacer la llamada.' La opción A inventa un problema de señal no mencionado. La opción C inventa una razón plausible pero que no aparece en el texto — Claudia sí buscó el número, el problema fue que el teléfono se apagó. La opción D inventa daño físico al móvil, que no se menciona."
+      "exp": "El cargador no reemplaza la acción humana; la hace posible. Sin la ayuda del conductor, Claudia no puede usar el móvil para contactar al mecánico. Eso hace de B la mejor respuesta. A exagera el papel de la tecnología. C y D inventan detalles que no aparecen."
     },
     {
       "id": 8,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿cómo pudo Claudia volver a encender su móvil?",
+      "prompt": "¿Por qué importa que el mecánico advierta sobre la velocidad máxima y los conductores que la ignoran?",
       "ch": [
-        "A) Encontró una gasolinera cercana donde le prestaron un cargador.",
-        "B) Un conductor que pasaba por ahí se detuvo y le prestó su cargador portátil.",
-        "C) Esperó a que el mecánico llegara, porque él siempre llevaba cargadores en su taller.",
-        "D) Caminó hasta la gasolinera y usó un enchufe del baño para cargarlo."
+        "A) Porque amplía el problema de una llanta ponchada a un contexto mayor de riesgo vial",
+        "B) Porque demuestra que Claudia iba conduciendo demasiado rápido",
+        "C) Porque cambia el tema del relato hacia la compra de un carro nuevo",
+        "D) Porque sugiere que la llanta se ponchó solamente por exceso de velocidad"
       ],
-      "cor": "B",
-      "exp": "El texto dice: 'un conductor amable se detuvo y le prestó su cargador portátil para que pudiera encender el móvil de nuevo.' La gasolinera aparece después y por otra razón (encontrar al mecánico), no como fuente del cargador. La opción C inventa la llegada del mecánico con cargador. La opción D inventa el viaje a pie y el uso de un enchufe — Claudia esperó al lado del carro."
+      "cor": "A",
+      "exp": "El comentario del mecánico coloca la experiencia de Claudia dentro de un entorno más amplio de peligro en carretera. Ya no es solo un incidente individual, sino una llamada de atención sobre conducir con cuidado. B y D convierten una advertencia general en una acusación concreta que el texto no hace. C cambia el enfoque del relato."
     },
     {
       "id": 9,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "¿Cuál es el orden correcto de los eventos del Texto 2?",
+      "prompt": "¿Por qué la familia concluye que Claudia manejó la situación con mucha calma?",
       "ch": [
-        "A) Llamó al mecánico → el volante empezó a temblar → un conductor la ayudó → la llanta se ponchó → llegó a su destino.",
-        "B) El volante tembló → detuvo el carro → vio la llanta ponchada → el móvil se apagó → un conductor le prestó un cargador → llamó al mecánico → el mecánico arregló la rueda → llegó a su destino.",
-        "C) La llanta se ponchó → el mecánico llegó → Claudia encontró el cargador → el volante tembló → llamó a su familia.",
-        "D) El móvil se apagó → Claudia detuvo el carro → un conductor la ayudó → el mecánico llegó → la llanta se ponchó."
+        "A) Porque arregló la llanta ella sola sin ayuda de nadie",
+        "B) Porque, a pesar del susto y de los obstáculos, fue resolviendo el problema paso a paso sin entrar en pánico",
+        "C) Porque llegó a su destino exactamente a tiempo y sin ninguna demora",
+        "D) Porque ignoró la advertencia del mecánico y siguió conduciendo igual"
       ],
       "cor": "B",
-      "exp": "La secuencia correcta del texto: volante tembla → se detiene → ve la llanta ponchada → intenta llamar pero el móvil se apaga → conductor amable presta cargador → Claudia llama al mecánico → espera → mecánico llega y arregla la rueda + da consejo → Claudia llega a su destino → llama a su familia. La opción A comienza con la llamada al mecánico, que ocurre después de varios pasos. Las opciones C y D invierten eventos clave."
+      "exp": "El texto muestra una cadena ordenada de decisiones: se detiene, busca ayuda, acepta el cargador, llama al mecánico, espera y luego continúa. Esa conducta controlada explica la reacción de su familia. A y C contradicen el relato. D inventa una conducta opuesta a la prudencia que muestra Claudia."
     },
     {
       "id": 10,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿qué revisó el mecánico cuando llegó?",
+      "prompt": "¿Qué mensaje común comparten mejor los finales del Texto 1 y del Texto 2?",
       "ch": [
-        "A) El motor, el aceite y el parabrisas.",
-        "B) Solo la llanta ponchada, porque eso era lo que Claudia le había pedido.",
-        "C) Los frenos, los faros y la llanta.",
-        "D) El volante, el cinturón de seguridad y la batería del carro."
+        "A) Que la mejor solución es abandonar por completo la tecnología",
+        "B) Que las experiencias incómodas pueden convertirse en cambios preventivos y más conscientes",
+        "C) Que los consejos de adultos siempre deben aceptarse sin prueba alguna",
+        "D) Que la amistad es más importante que cualquier tipo de preparación"
       ],
-      "cor": "C",
-      "exp": "El texto dice: 'el mecánico llegó, revisó los frenos y los faros además de la llanta.' La opción A usa vocabulario del texto (aceite, parabrisas) pero esas cosas no fueron lo que revisó. La opción B contradice el texto — el mecánico revisó más de lo pedido. La opción D combina palabras de la lección (volante, cinturón, batería) que aparecen en el vocabulario pero no en la lista de lo que revisó el mecánico."
+      "cor": "B",
+      "exp": "Elena cambia sus hábitos después de una crisis personal, y Claudia cambia los suyos después de una avería estresante. En ambos casos, la experiencia conduce a una forma más preventiva y consciente de actuar. A y C son demasiado extremas. D introduce una idea secundaria que no organiza los finales."
     },
     {
       "id": 11,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿qué se prometió Claudia a sí misma mientras el mecánico arreglaba la rueda?",
+      "prompt": "¿Qué detalle final muestra con mayor claridad que Claudia aprendió una lección de prevención y no solo de reacción?",
       "ch": [
-        "A) Nunca más viajar sola por autopistas desconocidas.",
-        "B) Llevar siempre un cargador y revisar las llantas antes de cada viaje largo.",
-        "C) Llevar una llanta de repuesto en el baúl del carro para emergencias futuras.",
-        "D) Descargar una aplicación especializada en mecánica para identificar problemas del carro."
+        "A) Que llama a su familia para contarles lo ocurrido cuando llega",
+        "B) Que decide llevar siempre un cargador y revisar las llantas antes de cada viaje largo",
+        "C) Que espera treinta minutos junto al carro antes de que llegue el mecánico",
+        "D) Que encuentra una gasolinera a dos kilómetros usando el móvil"
       ],
       "cor": "B",
-      "exp": "El texto dice exactamente: 'Claudia se prometió a sí misma llevar siempre un cargador y revisar las llantas antes de cada viaje largo.' La opción A exagera — el texto no dice que evitara viajar sola. La opción C es una solución lógica para el problema pero no es lo que el texto menciona. La opción D usa vocabulario del texto (aplicación, descargar) para construir un distractor plausible que no aparece."
+      "exp": "Ese doble propósito mira hacia el futuro: llevar cargador y revisar llantas antes de salir. No solo resuelve la crisis actual, sino que intenta prevenir otra. A, C y D son detalles del relato, pero no expresan tan claramente esa lección preventiva."
     },
     {
       "id": 12,

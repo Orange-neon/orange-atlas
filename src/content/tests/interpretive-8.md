@@ -25,105 +25,105 @@ questionsJson: |
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "¿Cuál es la idea principal de este infográfico?",
+      "prompt": "El infográfico mezcla datos de producción, preferencias de combustible, reglas de seguridad y una línea del tiempo histórica. ¿Qué conclusión interpreta MEJOR por qué reúne todos esos elementos en una sola fuente?",
       "ch": [
-        "A) Explicar cómo funciona el motor de un carro eléctrico paso a paso.",
-        "B) Presentar datos sobre la producción, seguridad, marcas y historia del automóvil en el mundo.",
-        "C) Advertir sobre los peligros del teléfono al volante y cómo evitarlos.",
-        "D) Comparar los precios de carros nuevos y usados en los Estados Unidos."
+        "A) Que el objetivo principal es convencer al lector de dejar de usar carros de gasolina de inmediato.",
+        "B) Que el automóvil se presenta como un fenómeno a la vez industrial, social y de seguridad, no solo como un producto de consumo.",
+        "C) Que la venta global de marcas determina directamente las leyes de tránsito en todos los países.",
+        "D) Que los carros modernos son necesariamente menos seguros que los carros del pasado."
       ],
       "cor": "B",
-      "exp": "El infográfico cubre múltiples dimensiones del mundo del automóvil: producción global, carros eléctricos, accidentes de tráfico, reglas de seguridad, marcas más vendidas, tipos de combustible, datos adicionales sobre precios y distracciones, y una línea del tiempo histórica. Su propósito es un panorama completo — no solo la seguridad, ni solo los precios, ni explicar motores. Las opciones A, C y D capturan solo una sección específica del infográfico, no la idea principal."
+      "exp": "Esta es una pregunta de síntesis, no de un solo dato. El infográfico no trata los carros solamente como objetos de compra: presenta producción mundial, preferencias de combustible, seguridad vial y evolución histórica. Eso sugiere que quiere mostrar el automóvil como un sistema amplio que afecta economía, tecnología y vida social. La opción A exagera un posible sesgo contra la gasolina que el infográfico no expresa. La C inventa una relación causal entre ventas y leyes. La D usa la presencia de datos de seguridad para sacar una conclusión absoluta que el infográfico nunca afirma."
     },
     {
       "id": 2,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuántos vehículos nuevos se producen cada año en todo el mundo?",
+      "prompt": "Si 85 millones de vehículos nuevos se producen cada año y el 18% de los vendidos en 2024 son eléctricos, ¿qué estimación razonable se puede hacer si aplicas ese porcentaje a una producción anual de 85 millones?",
       "ch": [
-        "A) 18 millones — el porcentaje de carros eléctricos vendidos en 2024",
-        "B) 32,000 — el precio promedio de un carro hace diez años en dólares",
-        "C) 85 millones — más de 233,000 carros por día",
-        "D) 233 millones — la producción total en la última década"
+        "A) Aproximadamente 15 millones de vehículos eléctricos",
+        "B) Aproximadamente 1.5 millones de vehículos eléctricos",
+        "C) Aproximadamente 47 millones de vehículos eléctricos",
+        "D) Aproximadamente 70 millones de vehículos eléctricos"
       ],
-      "cor": "C",
-      "exp": "El infográfico dice: «85M de vehículos nuevos se producen cada año en todo el mundo — eso es más de 233,000 carros por día.» La trampa más sofisticada es la opción D — 233,000 es el número de carros por día, no por año ni en una década. El infográfico presenta ambos datos en el mismo recuadro, y un lector apresurado puede confundir la cifra diaria con la anual. La opción A recicla el 18% de carros eléctricos, que es un porcentaje, no una cantidad de producción."
+      "cor": "A",
+      "exp": "Esta pregunta obliga a combinar dos datos y hacer una estimación. El 18% de 85 millones es 15.3 millones, así que la mejor aproximación es 15 millones. La opción B desplaza el decimal y subestima enormemente la cifra. Las opciones C y D implicarían que casi la mitad o la enorme mayoría de la producción ya es eléctrica, algo que contradice claramente el 18% dado por el infográfico. La dificultad aquí está en pasar del dato visual al cálculo mental razonable."
     },
     {
       "id": 3,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿qué tipo de combustible prefiere la mayoría de los conductores?",
+      "prompt": "La gráfica de combustibles muestra gasolina con 52%, mientras que los demás combustibles juntos suman 48%. ¿Qué interpretación es la MÁS precisa?",
       "ch": [
-        "A) Eléctrico — porque es el que más crece cada año",
-        "B) Híbrido — porque combina gasolina y electricidad",
-        "C) Diésel — porque es más eficiente en viajes largos",
-        "D) Gasolina — con un 52% de preferencia"
+        "A) La gasolina sigue siendo la opción individual dominante, pero las alternativas en conjunto ya representan casi la otra mitad.",
+        "B) El mercado ya abandonó claramente la gasolina como opción principal.",
+        "C) El diésel y el híbrido juntos superan por amplio margen a la gasolina.",
+        "D) Todos los combustibles están casi empatados de forma individual."
       ],
-      "cor": "D",
-      "exp": "La gráfica circular «¿Qué tipo de combustible prefieren?» muestra gasolina con 52% — la mayoría. La trampa es la opción A — el infográfico menciona que los carros eléctricos 'crecen rápidamente' y que el 18% de los vendidos en 2024 son eléctricos, lo que puede llevar a pensar que son los más preferidos. Sin embargo, 'crecer rápidamente' no significa ser el más popular actualmente. Las opciones B y C son datos reales de la gráfica (15% cada uno) pero representan porcentajes mucho menores."
+      "cor": "A",
+      "exp": "La pregunta ya no pide solo localizar el 52%; pide interpretar lo que significa en contexto. Gasolina es la preferencia individual más alta, pero no aplasta al resto del mercado: las otras opciones juntas están muy cerca. La opción B exagera el declive de la gasolina. La C inventa una ventaja 'por amplio margen' que no existe. La D ignora que 52% es bastante mayor que cualquier otra categoría individual. Esta es una lectura de proporciones, no solo de etiquetas."
     },
     {
       "id": 4,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el infográfico, ¿cuántas veces más probable es tener un accidente si envías mensajes de texto mientras conduces?",
+      "prompt": "Al leer juntos el dato de «23× más probable» y la sección «Conduce con seguridad», ¿qué mensaje transmite el infográfico con más fuerza?",
       "ch": [
-        "A) 2 veces — el riesgo aumenta el doble al textear",
-        "B) 12 veces — la edad promedio de los carros en EE.UU.",
-        "C) 23 veces — es la distracción más peligrosa al volante",
-        "D) 30 veces — el porcentaje de accidentes por exceso de velocidad"
+        "A) Que el mayor problema en la carretera es que los fabricantes construyen carros inseguros.",
+        "B) Que gran parte del peligro vial está vinculada a comportamientos del conductor que sí pueden modificarse.",
+        "C) Que usar cinturón basta para anular el riesgo de distraerse con el teléfono.",
+        "D) Que la única solución real para los accidentes es reemplazar los carros viejos."
       ],
-      "cor": "C",
-      "exp": "El infográfico dice en los datos adicionales: «23× más probable que tengas un accidente si envías mensajes de texto mientras conduces.» La trampa más fuerte es la opción D — 30% aparece en la regla número 3 sobre velocidad excesiva, y los estudiantes que recuerdan el número 30 pueden confundirlo con la estadística del teléfono. La opción B es otro dato real del infográfico (12 años = edad promedio de carros en EE.UU.) aplicado al contexto equivocado."
+      "cor": "B",
+      "exp": "La combinación del dato 23× y la lista de reglas de seguridad apunta a una idea central: muchas decisiones del conductor elevan o reducen el riesgo. El infográfico sí menciona factores de vehículo e historia, pero aquí el énfasis está en conducta prevenible: no textear, no conducir con fatiga, no exceder la velocidad, usar cinturón. La A desplaza la culpa hacia los fabricantes sin apoyo textual. La C confunde una medida de reducción de daño con una licencia para ignorar otras reglas. La D inventa una solución que el infográfico no propone."
     },
     {
       "id": 5,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según el dato importante del infográfico, ¿cuánto reduce el cinturón de seguridad el riesgo de muerte en un accidente?",
+      "prompt": "¿Por qué resulta significativo que el infográfico incluya tanto la regla de usar cinturón como advertencias sobre fatiga, velocidad y mensajes de texto?",
       "ch": [
-        "A) Un 20% — el porcentaje de accidentes graves causados por fatiga",
-        "B) Un 30% — la velocidad excesiva como causa de accidentes mortales",
-        "C) Un 45% — según el dato importante del infográfico",
-        "D) Un 52% — el porcentaje de conductores que prefieren gasolina"
+        "A) Porque distingue entre medidas que ayudan a prevenir accidentes y medidas que reducen el daño si un accidente ocurre de todos modos.",
+        "B) Porque demuestra que el cinturón es más importante que todas las demás reglas juntas.",
+        "C) Porque sugiere que el cinturón es realmente útil solo en carros eléctricos o híbridos.",
+        "D) Porque implica que la fatiga y el exceso de velocidad son factores secundarios poco relevantes."
       ],
-      "cor": "C",
-      "exp": "El recuadro de dato importante dice: «Usar el cinturón de seguridad reduce el riesgo de muerte en un 45%.» Las opciones A, B y D reciclan porcentajes reales del infográfico aplicados a contextos completamente diferentes: 20% es la fatiga al volante, 30% es la velocidad excesiva, y 52% es la preferencia por gasolina. Este tipo de pregunta requiere que el estudiante lea el contexto de cada cifra, no solo el número."
+      "cor": "A",
+      "exp": "Aquí la dificultad está en entender función, no recordar una cifra. No textear, no conducir con sueño y no exceder la velocidad buscan evitar el accidente. El cinturón, en cambio, actúa incluso si el accidente ya ocurrió, reduciendo la probabilidad de muerte. Esa diferencia entre prevención y mitigación es una lectura más profunda del diseño del infográfico. Las opciones B, C y D convierten un contraste útil en afirmaciones absolutas o irrelevantes que el texto no respalda."
     },
     {
       "id": 6,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la gráfica de marcas más vendidas, ¿qué marca de carros vendió más unidades en el mundo?",
+      "prompt": "Según la gráfica de marcas, ¿qué descripción del liderazgo de Toyota es la MÁS precisa?",
       "ch": [
-        "A) Volkswagen — 9.2 millones de unidades vendidas",
-        "B) Toyota — 10.5 millones de unidades vendidas",
-        "C) Hyundai / Kia — 7.3 millones de unidades vendidas",
-        "D) General Motors — 6.2 millones de unidades vendidas"
+        "A) Domina por un margen tan enorme que ninguna otra marca se le acerca.",
+        "B) Lidera la gráfica, pero su ventaja sobre Volkswagen es relativamente pequeña comparada con su ventaja sobre General Motors.",
+        "C) Está prácticamente empatada con Hyundai / Kia si se redondean las cifras.",
+        "D) Queda detrás de Volkswagen, aunque por encima de General Motors."
       ],
       "cor": "B",
-      "exp": "La barra más larga en la gráfica de marcas corresponde a Toyota con 10.5 millones de unidades. La trampa es la opción A — Volkswagen con 9.2 millones es el segundo más vendido y es una marca muy conocida que muchos estudiantes pueden asociar instintivamente con el éxito global. Identificar la barra más larga con precisión, no la más famosa, es la habilidad clave."
+      "exp": "Toyota sí encabeza la gráfica con 10.5 millones, pero la pregunta obliga a comparar márgenes, no solo posiciones. Su ventaja sobre Volkswagen es de 1.3 millones, mientras que sobre General Motors es de 4.3 millones. Por eso la opción B es la lectura más fina. La A exagera; la C distorsiona demasiado las cifras; la D simplemente contradice el orden del gráfico. Esta pregunta exige cuantificar relaciones, no solo identificar la barra más alta."
     },
     {
       "id": 7,
       "sec": "Infografía — Comprensión",
       "type": "mc",
       "media": "infographic",
-      "prompt": "Según la línea del tiempo del infográfico, ¿qué hizo Volvo en 1959 con el cinturón de seguridad de tres puntos?",
+      "prompt": "¿Qué evento de la línea del tiempo se presenta menos como un logro comercial y más como una decisión de seguridad pública con impacto mundial?",
       "ch": [
-        "A) Lo vendió como accesorio opcional en todos sus modelos de lujo.",
-        "B) Lo patentó y cobró derechos de uso a todas las compañías del mundo.",
-        "C) Lo inventó y decidió compartir la patente gratis con todas las compañías para salvar vidas.",
-        "D) Lo adoptó después de que el gobierno sueco lo hiciera obligatorio por ley."
+        "A) La creación del Ford Modelo T para la clase media.",
+        "B) La decisión de Volvo de compartir gratis la patente del cinturón de tres puntos.",
+        "C) El lanzamiento del Tesla Model S con más de 400 kilómetros de autonomía.",
+        "D) El avance reciente de los carros autónomos."
       ],
-      "cor": "C",
-      "exp": "La línea del tiempo dice: «Volvo inventó el cinturón de seguridad de tres puntos y decidió compartir la patente gratis con todas las compañías para salvar vidas.» La trampa es la opción B — hablar de 'patente' puede llevar a pensar en cobrar derechos, cuando en realidad Volvo hizo exactamente lo contrario: la compartió gratis. Las opciones A y D añaden detalles (accesorio opcional, obligación gubernamental) que no aparecen en el infográfico."
+      "cor": "B",
+      "exp": "El dato clave no es solo la invención del cinturón, sino que Volvo compartió la patente gratis para salvar vidas. Eso enmarca el evento como una decisión ética y de seguridad pública, no simplemente como una innovación comercial. El Modelo T también tuvo gran impacto social, pero se presenta más como expansión del acceso al automóvil. Tesla y los carros autónomos aparecen como hitos tecnológicos. La opción B es la única que resalta explícitamente una acción hecha en beneficio general."
     },
     {
       "id": 8,
@@ -198,75 +198,75 @@ questionsJson: |
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What is the main purpose of this audio?",
+      "prompt": "Which detail most clearly shows that the audio is trying to create immediate buying pressure rather than simply describe the tablet?",
       "ch": [
-        "A) To share a personal review of a tablet the speaker has been using for several weeks.",
-        "B) To compare the TechMax Pro with other tablets currently on the market.",
-        "C) To persuade listeners to buy the TechMax Pro tablet through an advertisement.",
-        "D) To explain step by step how to set up and use the TechMax Pro for the first time."
+        "A) The mention of the included digital pencil",
+        "B) The claim that the battery lasts up to fourteen hours",
+        "C) The explanation that students can organize documents in one place",
+        "D) The weekend-only 20% discount plus a free case for the first fifty customers"
       ],
-      "cor": "C",
-      "exp": "Every element of the audio is designed to persuade: rhetorical questions ('¿Estás cansado de...?'), superlative claims ('tan rápido que...'), a direct target audience pitch, a limited-time discount (20% this weekend), and a special offer for the first 50 customers. This is an advertisement, not a personal review — the speaker never says they personally used the tablet, and no balanced criticism is offered. Option A is a trap because the language sounds similar to a personal review, but the discount and store information confirm it is a commercial."
+      "cor": "D",
+      "exp": "Several details sound promotional, but the strongest signal of buying pressure is urgency plus scarcity: 20% off only this weekend and a free case only for the first fifty customers. That combination tries to push the listener to act now. The digital pencil, battery life, and student-use examples are feature descriptions; they help sell the product, but they do not create the same immediate pressure to purchase. This is what makes D the most diagnostic answer."
     },
     {
       "id": 12,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "According to the audio, how long does the TechMax Pro battery last on a single charge?",
+      "prompt": "What benefit is the speaker trying to emphasize with the phrase «Puedes usarla todo el día sin buscar un enchufe»?",
       "ch": [
-        "A) Eight hours — enough for a full school day.",
-        "B) Ten hours — with moderate use of apps and streaming.",
-        "C) Fourteen hours — without needing to find an outlet.",
-        "D) Twenty hours — according to lab testing conditions."
+        "A) That the tablet is designed mainly for use near public charging stations",
+        "B) That the battery is being framed as reliable enough for uninterrupted portable use",
+        "C) That the package includes a charger powerful enough to refill the battery instantly",
+        "D) That the tablet consumes less electricity than a smartphone"
       ],
-      "cor": "C",
-      "exp": "The audio says: 'La TechMax Pro dura hasta catorce horas con una sola carga. Puedes usarla todo el día sin buscar un enchufe.' Fourteen hours is the stated figure. Options A, B, and D are invented numbers that sound plausible for a tablet battery — none appear in the audio. The phrase 'sin buscar un enchufe' (without looking for an outlet) reinforces the all-day use claim."
+      "cor": "B",
+      "exp": "The phrase does more than repeat a number; it translates battery life into a listener benefit. 'Without looking for an outlet' makes the audience imagine carrying and using the tablet all day without interruption. The ad is selling freedom and portability, not charging-station dependence, a special charger, or comparative energy efficiency. This makes B the most accurate interpretation of the line's persuasive purpose."
     },
     {
       "id": 13,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "According to the audio, which group of people is SPECIFICALLY called out as a target audience for the TechMax Pro?",
+      "prompt": "The advertisement explicitly addresses students. Which combination of features is used to justify that specific pitch?",
       "ch": [
-        "A) Professional graphic designers who need color-accurate screens.",
-        "B) Remote workers who spend all day in video meetings.",
-        "C) Students — who can take notes, record lessons, and organize documents.",
-        "D) Gamers who need a fast processor for running multiple games at once."
+        "A) Fast processor, gaming performance, and projector mode for presentations",
+        "B) Digital pencil, the ability to record lessons, and organizing documents in one place",
+        "C) A weekend discount, a free case, and a long warranty extension",
+        "D) Color-accurate screen, studio-quality speakers, and cloud backup"
       ],
-      "cor": "C",
-      "exp": "The audio says: '¿Eres estudiante? ¡Esta tableta es ideal para ti! Puedes tomar apuntes en clase con el lápiz digital incluido, grabar las lecciones de tus profesores y organizar todos tus documentos en un solo lugar.' Students are explicitly called out with a direct question. Options A, B, and D are plausible tablet audiences but are never mentioned in the audio. The audio also mentions people who like to draw or design, but students are the specific group addressed by name."
+      "cor": "B",
+      "exp": "This question is harder because it asks for a three-part match, not just the audience label. The student appeal is supported by three academic-use details named in sequence: take notes with the included digital pencil, record teachers' lessons, and organize documents in one place. The other options mix in plausible tablet features, but those details are not the ones the ad uses to build the student argument. Correctly answering requires tracking the structure of the pitch, not just one remembered phrase."
     },
     {
       "id": 14,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "What special offer is available to the FIRST fifty customers who visit ElectroMundo this weekend?",
+      "prompt": "How do the two promotions in the ad work together?",
       "ch": [
-        "A) A free digital pencil to use with the tablet.",
-        "B) A 20% discount on the total purchase price.",
-        "C) A free protective case for the tablet.",
-        "D) A free one-year warranty extension on the device."
+        "A) Both promotions are limited only to the first fifty customers.",
+        "B) One offer is time-limited for all weekend buyers, while the other is quantity-limited to the first fifty customers.",
+        "C) One promotion applies only to students, and the other applies only to artists and designers.",
+        "D) Both offers are permanent store policies rather than temporary promotions."
       ],
-      "cor": "C",
-      "exp": "The audio says: 'los primeros cincuenta clientes recibirán una funda protectora completamente gratis.' The free protective case is for the first 50 customers specifically. Option B is a trap — the 20% discount is available to ALL customers this weekend, not just the first 50. Option A is tempting because the digital pencil is mentioned in the audio, but it is described as already 'included' with the tablet, not as a special weekend promotion. Option D is invented."
+      "cor": "B",
+      "exp": "The advertisement layers two different kinds of urgency. The 20% discount is available during a limited time window ('este fin de semana'), so it is time-based. The free protective case is limited by quantity ('los primeros cincuenta clientes'), so it is scarcity-based. That combination intensifies pressure from two angles: buy soon, and don't be too late. The other options misunderstand or invent the conditions."
     },
     {
       "id": 15,
       "sec": "Audio — Comprensión",
       "type": "mc",
       "media": "audio",
-      "prompt": "According to the audio, what can the TechMax Pro's screen do that makes it useful for artists and designers?",
+      "prompt": "Why does the advertisement shift from student tasks to «¿Prefieres dibujar o diseñar?» later in the audio?",
       "ch": [
-        "A) It automatically adjusts brightness based on the lighting in the room.",
-        "B) It responds precisely to every movement of the hand.",
-        "C) It can project images onto a wall for group presentations.",
-        "D) It has a special drawing mode that activates when the pencil is detected."
+        "A) To show the same tablet can be repositioned for another audience by matching a different feature to a different need",
+        "B) To admit that the tablet is actually stronger for artists than for students",
+        "C) To suggest that students should stop taking notes and focus on design instead",
+        "D) To compare the TechMax Pro with a separate model made for creative professionals"
       ],
-      "cor": "B",
-      "exp": "The audio says: '¿Prefieres dibujar o diseñar? La pantalla responde con precisión a cada movimiento de tu mano.' Precision response to hand movement is the feature highlighted for artists and designers. Options A, C, and D all sound like plausible high-tech features but are never mentioned in the audio. This question also tests whether students can connect the question about artists ('dibujar o diseñar') to the corresponding detail in the audio."
+      "cor": "A",
+      "exp": "The ad first targets students with note-taking and organization, then pivots to artists and designers by attaching a different feature to a different need: screen precision for creative work. That shift broadens the product's appeal and makes the tablet seem versatile. The ad is not admitting a weakness for students, telling students to change priorities, or comparing models. This is a comprehension question about how the advertiser structures the pitch to reach multiple audiences."
     },
     {
       "id": 16,

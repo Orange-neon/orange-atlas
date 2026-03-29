@@ -36,75 +36,75 @@ questionsJson: |
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "What is the main idea of Texto 1?",
+      "prompt": "Which statement BEST captures the contrast between how technology shapes Isabel in Texto 1 and Sebastián in Texto 2?",
       "ch": [
-        "A) Isabel's town was poor and had no modern buildings.",
-        "B) Growing up without easy internet access shaped Isabel's work ethic and eventually her career.",
-        "C) Libraries are the best place to do homework because they have computers.",
-        "D) The internet saves time and makes students lazy."
+        "A) Both texts show that technology automatically improves students' habits as soon as they have access to it.",
+        "B) Limited access pushes Isabel to become resourceful, while constant access forces Sebastián to relearn self-control.",
+        "C) Isabel and Sebastián both solve their problems by rejecting technology completely.",
+        "D) The main point of both texts is that schools should replace homework with digital tools."
       ],
       "cor": "B",
-      "exp": "The passage traces how limited technology → careful habits → career in technology for rural communities. Option A is an over-generalization (the passage only mentions no internet, not poverty). Option C is too narrow — it's one detail. Option D misrepresents the passage's tone; Isabel's efficiency increased, but the text doesn't call students lazy."
+      "exp": "Texto 1 shows scarcity leading Isabel to become organized and purposeful; Texto 2 shows abundance leading Sebastián to lose focus until he creates boundaries. Option B captures that contrast precisely. Option A is too absolute and ignores Sebastián's problem. Option C is false because neither character abandons technology entirely. Option D invents a school-policy message the texts do not present."
     },
     {
       "id": 2,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "What is the main idea of Texto 2?",
+      "prompt": "What inference is MOST strongly supported about why Isabel later designs apps for rural communities?",
       "ch": [
-        "A) Sebastián's parents gave him a phone too early.",
-        "B) Social media is harmful to all teenagers.",
-        "C) Sebastián's overuse of his phone hurt his grades until he tested a new strategy and changed his habits.",
-        "D) A teacher convinced Sebastián to stop using his phone completely."
+        "A) She mainly chose that work because the librarians taught her programming when she was twelve.",
+        "B) Her own experience with limited internet access likely made her want to solve similar problems for others.",
+        "C) She only works in technology because the new wireless network made school feel easier and more fun.",
+        "D) She designs apps mostly for students in big cities who already have many devices."
       ],
-      "cor": "C",
-      "exp": "The passage shows a progression: phone given → overuse → falling grades → teacher's explanation → experiment → improvement → new habit. Option A is an inference not supported by the text. Option B makes a universal claim the text never makes. Option D overstates — the teacher explained something; Sebastián chose to experiment on his own."
+      "cor": "B",
+      "exp": "The passage ends by linking Isabel's childhood obstacle to her adult work: she now designs apps for communities that still face the kind of access problem she once lived through. That makes B the strongest inference. A invents a programming backstory. C reduces her career choice to convenience rather than lived experience. D directly contradicts the text's focus on rural communities."
     },
     {
       "id": 3,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "According to Texto 1, why did Isabel sometimes have to copy information by hand?",
+      "prompt": "Why does Texto 1 include the detail that there were only three computers for all the students in town?",
       "ch": [
-        "A) The library didn't allow students to print anything.",
-        "B) All three computers were occupied when she arrived.",
-        "C) Her teacher required handwritten notes.",
-        "D) The computers were too slow to load the websites she needed."
+        "A) To prove that handwritten work is usually better than digital research",
+        "B) To emphasize how limited access created a bottleneck, making the later improvement much more dramatic",
+        "C) To show that the library preferred students to work alone rather than online",
+        "D) To suggest the machines were old and constantly broken"
       ],
       "cor": "B",
-      "exp": "The text says: 'cuando todas estaban ocupadas, Isabel tenía que copiar la información a mano.' All three machines being taken is the direct cause. Option A invents a printing rule. Option C invents a teacher requirement. Option D invents a speed problem — the text doesn't mention slow computers."
+      "exp": "The 'three machines' detail is not just a fact to memorize; it helps readers feel how scarce access was. That scarcity explains the waiting, the copying by hand, and why wireless access later changes everything so dramatically. A and C invent lessons the passage never states. D adds a technical problem the text never mentions."
     },
     {
       "id": 4,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "According to Texto 1, what specific change happened after the library got wireless internet?",
+      "prompt": "What larger point is illustrated when tasks that once took Isabel two hours later took only twenty minutes?",
       "ch": [
-        "A) Isabel got her own laptop and stopped going to the library.",
-        "B) The library bought more computers so fewer students had to wait.",
-        "C) Tasks that used to take two hours could now be done in twenty minutes.",
-        "D) Isabel's grades improved immediately and she won a scholarship."
+        "A) Faster typing matters more than internet access when students do research",
+        "B) A change in infrastructure can radically improve efficiency and access for many students at once",
+        "C) Wireless internet mainly benefits students who already work quickly",
+        "D) The library became unnecessary as soon as internet improved"
       ],
-      "cor": "C",
-      "exp": "The text says: 'lo que antes le tomaba dos horas ahora lo hacía en veinte minutos.' Option A invents a laptop — the text doesn't say she got one. Option B invents more computers — the change was wireless internet, not more machines. Option D invents a scholarship not mentioned anywhere."
+      "cor": "B",
+      "exp": "The time drop from two hours to twenty minutes shows how infrastructure changes do more than save minutes; they expand opportunity and remove barriers. B captures that broader implication. A shifts the focus to typing, which the passage does not mention. C is too narrow. D goes too far because the library still matters in the story."
     },
     {
       "id": 5,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "According to Texto 2, what caused Sebastián's grades to drop?",
+      "prompt": "What does the teacher's explanation in Texto 2 suggest about Sebastián's belief that he could do many things at once?",
       "ch": [
-        "A) He stopped doing homework because he was texting friends all night.",
-        "B) His teachers gave harder exams after he got his phone.",
-        "C) He began checking his phone constantly, including during class, which broke his concentration.",
-        "D) The social media apps he used were designed to be addictive."
+        "A) The teacher agrees some students can multitask, but Sebastián was not one of them",
+        "B) Sebastián's confidence in multitasking was misleading because each phone check carried a hidden concentration cost",
+        "C) The real problem was that Sebastián did not study enough hours at home",
+        "D) His grades dropped only because he used the phone late at night"
       ],
-      "cor": "C",
-      "exp": "The text says he checked his phone 'durante las comidas, antes de dormir y hasta en clase' and that each look caused several minutes of lost concentration. Option A is partially plausible but the text never says he stopped doing homework. Option B is not mentioned. Option D is an interpretation not stated in the text — the word 'addictive' (adictivo) doesn't appear."
+      "cor": "B",
+      "exp": "The teacher explains that the brain is not designed to focus on multiple screens at once and that every phone check costs several minutes of renewed concentration. That directly undercuts Sebastián's belief that he was handling everything fine. A softens the teacher's point too much. C and D replace the text's focus on attention with claims the passage does not make."
     },
     {
       "id": 6,
@@ -112,30 +112,30 @@ questionsJson: |
       "type": "mc",
       "passage": true,
       "text": 2,
-      "prompt": "What did Sebastián's teacher explain to him?",
+      "prompt": "Why does Texto 2 mention that Sebastián checked his phone during meals, before sleeping, and even in class?",
       "ch": [
-        "A) That using a phone in class was against school rules.",
-        "B) That the human brain cannot focus on multiple screens at once, and each phone check cost minutes of concentration.",
-        "C) That social media was bad for mental health.",
-        "D) That Sebastián needed to study more hours each night."
+        "A) To show that the problem had spread into multiple parts of his day rather than staying limited to one moment",
+        "B) To prove his parents had stopped monitoring him completely",
+        "C) To compare weekend phone habits with weekday phone habits",
+        "D) To imply that meals were the main reason his grades dropped"
       ],
-      "cor": "B",
-      "exp": "The text says: 'el cerebro humano no está diseñado para concentrarse en múltiples pantallas al mismo tiempo, y que cada vez que Sebastián miraba el móvil, tardaba varios minutos en volver a concentrarse.' Option A invents a school rule. Option C is never mentioned. Option D is never said — the teacher explained the science, not a study-hours requirement."
+      "cor": "A",
+      "exp": "Listing meals, bedtime, and class broadens the problem beyond one bad habit. The phone is interrupting social time, rest, and academic focus. That is why A is the best answer. B is not stated. C invents a comparison the passage never makes. D wrongly treats meals as the central cause."
     },
     {
       "id": 7,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "Which sequence of events from Texto 2 is correct?",
+      "prompt": "What BEST explains why Sebastián's one-week experiment changed his mind more effectively than the teacher's explanation alone?",
       "ch": [
-        "A) Grades dropped → teacher explained → experiment → grades improved → new habit formed.",
-        "B) Phone received → experiment → grades dropped → teacher explained → habit changed.",
-        "C) Teacher explained → experiment → phone received → grades improved.",
-        "D) Grades improved → experiment → grades dropped → phone received."
+        "A) The experiment embarrassed him in front of his classmates",
+        "B) The experiment gave him personal proof that changing one habit could improve his performance",
+        "C) His teacher graded the experiment and rewarded him for participating",
+        "D) His parents took the phone away for the whole week"
       ],
-      "cor": "A",
-      "exp": "The correct order: received phone → overuse began → grades dropped → teacher explained the science → Sebastián ran one-week experiment → grades improved notably → new permanent habit. Option A captures this correctly (skipping the first step but maintaining the right order of events after the problem began). Options B, C, and D all reverse or scramble the sequence."
+      "cor": "B",
+      "exp": "The teacher gave Sebastián a theory about distraction, but the experiment made that theory real. Once he saw his own grades improve, the lesson became harder to dismiss. A and C invent classroom consequences. D never happens in the passage."
     },
     {
       "id": 8,
@@ -143,15 +143,15 @@ questionsJson: |
       "type": "mc",
       "passage": true,
       "text": 1,
-      "prompt": "What does Isabel do today as an adult?",
+      "prompt": "What broader theme connects Texto 1 and Texto 2 most effectively?",
       "ch": [
-        "A) She works as a librarian and teaches people how to use computers.",
-        "B) She designs apps for rural communities that still lack easy internet access.",
-        "C) She teaches technology classes at the school she attended as a child.",
-        "D) She works for the government to build internet towers in small towns."
+        "A) Technology is always harmful when students depend on it too much",
+        "B) Outcomes depend not just on having technology, but on how access and attention are managed",
+        "C) Rural communities should avoid adopting new digital tools until students are older",
+        "D) Students learn best only when all devices are removed from their lives"
       ],
       "cor": "B",
-      "exp": "The text says: 'Isabel trabaja para una empresa de tecnología y diseña aplicaciones para comunidades rurales que todavía no tienen acceso fácil a internet.' Option A is a plausible distractor connected to the library, but her job is at a tech company, not a library. Options C and D are not in the text."
+      "exp": "Texto 1 is not anti-technology; better access transforms Isabel's opportunities. Texto 2 is not anti-technology either; Sebastián succeeds once he controls when he uses his phone. B captures that balanced message. A and D are too absolute. C invents a warning the passages never give."
     },
     {
       "id": 9,
@@ -159,45 +159,45 @@ questionsJson: |
       "type": "mc",
       "passage": true,
       "text": 2,
-      "prompt": "What happened at the end of Sebastián's one-week experiment?",
+      "prompt": "Which final detail most clearly transforms Texto 1 from a childhood memory into a purpose-driven life story?",
       "ch": [
-        "A) His teachers noticed and congratulated him publicly.",
-        "B) His grades had improved noticeably.",
-        "C) He decided the experiment was too hard and went back to his old habits.",
-        "D) His friends stopped texting him because he never replied."
+        "A) Isabel had to wait her turn to use a computer",
+        "B) Isabel sometimes copied information by hand",
+        "C) Isabel now designs apps for rural communities with limited internet access",
+        "D) Isabel could not believe the wireless network made such a difference"
       ],
-      "cor": "B",
-      "exp": "The text says: 'sus notas habían mejorado notablemente.' Option A invents teacher recognition not mentioned. Option C directly contradicts the text — he changed his habits permanently. Option D is never mentioned."
+      "cor": "C",
+      "exp": "The final career detail turns the passage from a memory about inconvenience into a story about how experience shaped mission. A, B, and D are important events, but they remain part of her childhood situation rather than its long-term outcome."
     },
     {
       "id": 10,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "According to Texto 1, what specific skill did Isabel develop because of her limited access to technology?",
+      "prompt": "Why does the author place the teacher's explanation immediately before Sebastián's experiment?",
       "ch": [
-        "A) She learned to type very fast on old computers.",
-        "B) She memorized large amounts of information.",
-        "C) She learned to manage her time very carefully.",
-        "D) She learned to repair computers when they broke down."
+        "A) To show that the explanation gave him an idea he could then test in real life",
+        "B) To prove the teacher could predict exactly how much his grades would rise",
+        "C) To suggest all teachers should assign scientific experiments about phones",
+        "D) To show Sebastián believed the teacher instantly and needed no evidence"
       ],
-      "cor": "C",
-      "exp": "The text says: 'Isabel aprendió a organizar su tiempo con mucho cuidado.' Options A, B, and D all sound plausible but none appear in the text. This is a reading precision trap — the answer is stated explicitly but students may guess based on what seems logical rather than what the text actually says."
+      "cor": "A",
+      "exp": "The teacher's explanation acts almost like a hypothesis: checking the phone disrupts concentration. Sebastián then tests that idea by leaving the phone in his backpack. A captures that cause-and-effect structure. B and C overstate the teacher's role. D contradicts the text because Sebastián does not fully believe the explanation at first."
     },
     {
       "id": 11,
       "sec": "Comprehension",
       "type": "mc",
       "passage": true,
-      "prompt": "What is Sebastián's new habit described at the end of Texto 2?",
+      "prompt": "What more moderate lesson about technology is suggested by Sebastián's new habit at the end of Texto 2?",
       "ch": [
-        "A) He turns his phone off for the entire day and only checks it at night.",
-        "B) He turns his phone off while studying and turns it back on when he finishes.",
-        "C) He only uses his phone on weekends.",
-        "D) He deleted all his social media apps."
+        "A) The healthiest option is to stop using a phone entirely",
+        "B) Setting boundaries around specific activities can be more effective than banning technology completely",
+        "C) Students should only use phones on weekends if they want better grades",
+        "D) Social media apps are the only real problem with modern devices"
       ],
       "cor": "B",
-      "exp": "The text says: 'Sebastián apaga el móvil antes de estudiar y lo prende solo cuando termina.' He turns it off before studying and turns it back on when done — not all day, not only weekends, and no mention of deleting apps. Options A, C, and D all overstate or change the described habit."
+      "exp": "Sebastián does not reject the phone completely; he uses it deliberately. Turning it off before studying and back on afterward suggests boundary-setting, not total prohibition. A, C, and D turn a balanced habit into absolute rules the text never states."
     },
     {
       "id": 12,

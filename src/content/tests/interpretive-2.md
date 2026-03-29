@@ -36,165 +36,165 @@ questionsJson: |
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "¿Cuál es la idea principal del Texto 1?",
+      "prompt": "¿Qué hace que el desafío de la profesora en el Texto 1 sea pedagógicamente efectivo?",
       "ch": [
-        "A) Mateo no podía estudiar sin su teléfono porque lo necesitaba para buscar información.",
-        "B) Una semana sin pantallas le enseñó a Mateo algo valioso sobre sí mismo y cambió sus hábitos permanentemente.",
-        "C) Las redes sociales son peligrosas para todos los estudiantes de secundaria.",
-        "D) La profesora de Mateo le prohibió usar el móvil en clase para siempre."
+        "A) Castiga a Mateo por usar demasiado el móvil y le demuestra que la disciplina externa siempre funciona mejor",
+        "B) Obliga a Mateo a descubrir por experiencia propia algo sobre sus hábitos, en lugar de solo escuchar una advertencia",
+        "C) Le permite a la profesora reducir el tiempo que la clase pasa usando computadoras en la escuela",
+        "D) Fue diseñado principalmente para que Mateo escribiera un diario más largo y detallado"
       ],
       "cor": "B",
-      "exp": "El texto muestra una cadena de causa y efecto: el desafío de la profesora → incomodidad inicial → descubrimiento positivo → cambio permanente de hábitos. La opción A es incorrecta porque el texto nunca menciona que Mateo necesitara el teléfono para estudiar. La opción C hace una generalización que el texto nunca apoya. La opción D exagera — la profesora propuso un reto de una semana, no una prohibición permanente."
+      "exp": "La profesora no solo le dice a Mateo que cambie; le propone una experiencia que lo obliga a observarse. Esa vivencia produce incomodidad inicial, descubrimiento y luego cambio real. Por eso B es la mejor respuesta. A convierte el reto en castigo. C inventa un objetivo escolar distinto. D confunde el diario, que fue una consecuencia del reto, con su propósito principal."
     },
     {
       "id": 2,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "¿Cuál es la idea principal del Texto 2?",
+      "prompt": "¿Qué lección más amplia deja el Texto 2 sobre la relación entre tecnología y preparación?",
       "ch": [
-        "A) Los mecánicos siempre encuentran más problemas de los esperados en los carros.",
-        "B) La familia Mendoza tuvo una avería en la autopista que reveló la importancia de revisar el carro antes de viajar.",
-        "C) Las aplicaciones de mapas son más útiles que los mecánicos cuando el carro no funciona.",
-        "D) La batería del carro de don Ramón siempre tenía problemas porque era muy vieja."
+        "A) Las aplicaciones de mapas reemplazan por completo la necesidad de revisar un carro antes de salir",
+        "B) Las herramientas digitales pueden ayudar en una emergencia, pero no sustituyen el mantenimiento preventivo",
+        "C) Cuando un carro falla, lo mejor es depender solo de la suerte y esperar ayuda",
+        "D) Los problemas mecánicos suelen deberse principalmente al uso de demasiada tecnología"
       ],
       "cor": "B",
-      "exp": "El texto muestra cómo una avería inesperada obligó a la familia a buscar ayuda, y al final don Ramón aprendió la lección de revisar el carro con anticipación. La opción A es una generalización no apoyada por el texto. La opción C exagera el papel de la aplicación — fue útil para encontrar la gasolinera, pero el mecánico fue quien resolvió el problema. La opción D inventa información sobre la edad de la batería que no aparece en el texto."
+      "exp": "El texto muestra dos cosas a la vez: la utilidad del móvil y la aplicación de mapas en el momento del problema, y la importancia de revisar el carro antes del viaje. B une correctamente ambas ideas. A exagera el valor de la tecnología. C contradice la forma activa en que la familia busca ayuda. D no aparece en el texto."
     },
     {
       "id": 3,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿por qué Mateo no quería participar en el desafío de la profesora al principio?",
+      "prompt": "Cuando Mateo siente que su teléfono era casi una parte de su propio cuerpo, ¿qué sugiere mejor esa frase?",
       "ch": [
-        "A) Pensaba que una semana era demasiado tiempo para completar una tarea escolar.",
-        "B) Sentía que su teléfono era casi una parte de su propio cuerpo.",
-        "C) Sus padres le habían dicho que no podía apagar el móvil por razones de seguridad.",
-        "D) Creía que desconectarse del internet iba a afectar negativamente sus calificaciones."
+        "A) Que Mateo veía el móvil como un objeto útil, pero fácil de dejar cuando quisiera",
+        "B) Que su dependencia emocional y habitual del dispositivo era más fuerte de lo que él mismo quería admitir",
+        "C) Que tenía un problema físico en la mano y necesitaba el móvil constantemente",
+        "D) Que su profesora le había exigido llevar el teléfono encima durante toda la semana"
       ],
       "cor": "B",
-      "exp": "El texto dice directamente: 'sentía que su teléfono era casi una parte de su propio cuerpo.' Las opciones A, C y D inventan razones que no aparecen en el texto. La opción A reformula 'una semana' como algo relacionado con una tarea, lo cual cambia el contexto. La opción C inventa la participación de los padres. La opción D inventa una preocupación académica no mencionada."
+      "exp": "La comparación no es literal; muestra apego y dependencia. Mateo siente que desconectarse es casi como perder una extensión de sí mismo, lo que explica su resistencia inicial. A minimiza esa dependencia. C toma la frase literalmente. D inventa una instrucción que nunca aparece."
     },
     {
       "id": 4,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿qué hizo la profesora con el diario de Mateo?",
+      "prompt": "¿Por qué es significativo que la profesora comparta el diario de Mateo con la clase?",
       "ch": [
-        "A) Lo corrigió y le devolvió una nota baja porque era muy corto.",
-        "B) Lo publicó en el sitio web de la escuela para que toda la comunidad pudiera leerlo.",
-        "C) Lo compartió con la clase porque pensaba que la experiencia de Mateo podía inspirar a otros.",
-        "D) Se lo entregó a los padres de Mateo como evidencia de su progreso académico."
+        "A) Porque transforma una experiencia personal en evidencia que puede persuadir a otros estudiantes",
+        "B) Porque necesitaba completar una tarea administrativa sobre el uso de diarios en clase",
+        "C) Porque quería avergonzar a Mateo para que no volviera a usar el móvil tanto",
+        "D) Porque el diario demostraba que Mateo escribía mejor que todos sus compañeros"
       ],
-      "cor": "C",
-      "exp": "El texto dice: 'Su profesora leyó el diario de Mateo y lo compartió con la clase porque pensaba que la experiencia suya podía inspirar a otros estudiantes.' Las opciones A, B y D inventan detalles que no están en el texto. La opción B es un distractor tentador porque 'compartir' se asocia hoy con publicar en línea, pero el texto especifica que lo compartió con la clase, no en un sitio web."
+      "cor": "A",
+      "exp": "La profesora cree que el relato de Mateo puede inspirar a otros precisamente porque nace de una experiencia real, no de una idea abstracta. A recoge ese valor persuasivo. B, C y D inventan motivos que el texto no menciona."
     },
     {
       "id": 5,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿por qué no podía continuar su viaje la familia Mendoza?",
+      "prompt": "¿Por qué el texto menciona tanto que el móvil tenía batería casi llena como que el hijo sugirió usar la aplicación de mapas?",
       "ch": [
-        "A) Hubo un accidente en la autopista y la policía cerró la carretera.",
-        "B) El tráfico era tan intenso que tuvieron que detenerse en una gasolinera.",
-        "C) El carro empezó a hacer un ruido extraño y el motor dejó de funcionar.",
-        "D) Se les acabó la gasolina porque olvidaron llenar el tanque antes de salir."
+        "A) Para mostrar que la familia usaba la tecnología solo por entretenimiento durante el viaje",
+        "B) Para subrayar que la tecnología resultó útil cuando se aplicó de forma concreta para resolver el problema",
+        "C) Para sugerir que el mecánico no habría podido ayudarlos sin la aplicación",
+        "D) Para demostrar que el problema real del carro era la falta de cobertura en la autopista"
       ],
-      "cor": "C",
-      "exp": "El texto dice que el carro 'empezó a hacer un ruido extraño' y que cuando don Ramón intentó arrancarlo 'el carro no funcionaba.' Las opciones A, B y D inventan causas no mencionadas. La opción D es un distractor especialmente tentador porque la gasolina es un problema común de carros y el texto menciona una gasolinera — pero esa gasolinera aparece más tarde, como el lugar donde ir, no como la causa del problema."
+      "cor": "B",
+      "exp": "La batería casi llena permitió la llamada, y la aplicación ayudó a localizar ayuda cercana. El texto usa esos detalles para mostrar que la tecnología puede ser valiosa cuando responde a una necesidad concreta. A reduce su función a entretenimiento. C exagera el papel de la app. D inventa un problema de cobertura que no aparece."
     },
     {
       "id": 6,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿cuáles fueron los problemas que el mecánico identificó en el carro de la familia Mendoza?",
+      "prompt": "¿Qué revela mejor el hecho de que el mecánico encontrara varios problemas además de la batería dañada?",
       "ch": [
-        "A) La batería estaba dañada, los limpiaparabrisas estaban en mal estado y el cinturón de seguridad no funcionaba bien.",
-        "B) Los frenos no funcionaban y la llanta trasera necesitaba cambio inmediato.",
-        "C) El motor necesitaba aceite nuevo y los faros estaban completamente quemados.",
-        "D) La bocina no funcionaba y el parabrisas estaba roto por un golpe."
+        "A) Que el carro ya no tenía solución y debía ser reemplazado de inmediato",
+        "B) Que el verdadero problema del viaje fue solo el cinturón de seguridad del asiento trasero",
+        "C) Que la avería expuso una falta más amplia de mantenimiento, no solo un fallo aislado",
+        "D) Que el hijo menor había provocado sin querer los daños del carro"
       ],
-      "cor": "A",
-      "exp": "El texto menciona exactamente: la batería dañada, los limpiaparabrisas en mal estado y el cinturón de seguridad del asiento trasero. Las opciones B, C y D mezclan vocabulario del texto (frenos, aceite, faros, parabrisas) con problemas que no se describen — una trampa clásica de examen donde las palabras conocidas pueden desviar al lector de lo que el texto realmente dice."
+      "cor": "C",
+      "exp": "El hallazgo de varios problemas cambia el sentido del episodio: no fue una mala suerte completamente aislada, sino una señal de descuido preventivo. A va demasiado lejos. B minimiza el resto de los problemas. D inventa una causa inexistente."
     },
     {
       "id": 7,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "¿Cuál es el orden correcto de los eventos del Texto 1?",
+      "prompt": "¿Qué secuencia resume mejor el cambio interior de Mateo en el Texto 1?",
       "ch": [
-        "A) La profesora compartió el diario → Mateo no quería hacerlo → comenzó el desafío → notó cambios → escribió en el diario.",
-        "B) Mateo pasaba horas en internet → la profesora le dio el desafío → al principio no quería → notó cambios positivos → escribió en el diario → la profesora lo compartió → nuevo hábito permanente.",
-        "C) Mateo apagó el móvil → la profesora le dio el desafío → escribió en el diario → no quería revisarlo → cambió sus hábitos.",
-        "D) La profesora compartió el diario → Mateo cambió sus hábitos → la semana terminó → el desafío comenzó."
+        "A) Dependencia del móvil -> resistencia al reto -> descubrimiento de beneficios -> reflexión escrita -> hábitos nuevos",
+        "B) Reflexión escrita -> resistencia al reto -> dependencia del móvil -> hábito nuevo -> beneficios inesperados",
+        "C) Hábito nuevo -> reto de la profesora -> dependencia del móvil -> escritura del diario -> beneficios",
+        "D) Dependencia del móvil -> beneficios inesperados -> resistencia al reto -> hábito nuevo -> diario compartido"
       ],
-      "cor": "B",
-      "exp": "La secuencia correcta del texto: Mateo pasaba horas en internet → la profesora propuso el desafío → Mateo no quería al principio → durante los primeros días notó cambios → al final escribió en el diario → la profesora lo compartió → hábito nuevo permanente. La opción A empieza con el final del texto. La opción C invierte el orden del desafío y el apagado del móvil. La opción D pone las consecuencias antes de las causas."
+      "cor": "A",
+      "exp": "El texto presenta primero la dependencia, luego la resistencia inicial, después el descubrimiento gradual de beneficios, la reflexión al escribir el diario y finalmente el cambio duradero. A sigue esa evolución interna con precisión. Las otras opciones mezclan causas y consecuencias."
     },
     {
       "id": 8,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿qué cosas positivas notó Mateo durante los primeros días del desafío?",
+      "prompt": "¿Qué sugieren juntos los finales de ambos textos sobre los hábitos previos a un problema?",
       "ch": [
-        "A) Sus calificaciones mejoraron de inmediato y sus profesores lo felicitaron.",
-        "B) Tenía más tiempo para leer y para estar con sus amigos en persona.",
-        "C) Dormía mejor por las noches y se despertaba con más energía.",
-        "D) Descubrió que podía usar las computadoras de la biblioteca para compensar."
+        "A) Que las crisis importantes aparecen al azar y no guardan relación con las rutinas diarias",
+        "B) Que pequeñas prácticas preventivas pueden importar mucho antes de que aparezca un problema mayor",
+        "C) Que la tecnología solo sirve cuando falla algo en el mundo real",
+        "D) Que los maestros y los mecánicos suelen resolver por completo los errores de los demás"
       ],
       "cor": "B",
-      "exp": "El texto dice: 'empezó a notar algo curioso: tenía más tiempo para leer y para salir con sus amigos en persona.' Las opciones A, C y D son distractores plausibles pero ninguno aparece en el texto. La opción A inventa una reacción de los profesores. La opción C inventa información sobre el sueño. La opción D contradice el espíritu del desafío — el punto era desconectarse, no buscar otra pantalla."
+      "exp": "Mateo cambia sus rutinas nocturnas antes de que vuelvan sus viejos hábitos, y don Ramón promete revisar el carro antes de viajes largos. En ambos casos, el texto valora la prevención. A niega esa idea central. C y D reducen demasiado el papel de la tecnología o de otras personas."
     },
     {
       "id": 9,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿por qué pudo don Ramón llamar al mecánico sin problema?",
+      "prompt": "¿Por qué es lógico que el hijo sugiera usar la aplicación de mapas incluso después de llamar al mecánico?",
       "ch": [
-        "A) Encontró una cabina telefónica cerca de la autopista.",
-        "B) Su hijo tenía un móvil con carga completa y se lo prestó a su padre.",
-        "C) El móvil de don Ramón tenía la batería casi llena en ese momento.",
-        "D) Un conductor que pasaba por ahí se detuvo y le prestó su teléfono."
+        "A) Porque el mecánico se negó a ir si no le enviaban una ubicación exacta",
+        "B) Porque la aplicación les permitía localizar una ayuda concreta cercana en vez de quedarse esperando sin orientación",
+        "C) Porque el móvil ya no tenía suficiente batería para seguir haciendo llamadas",
+        "D) Porque la familia quería entretenerse mientras llegaba el mecánico"
       ],
-      "cor": "C",
-      "exp": "El texto dice: 'Don Ramón llamó a un mecánico desde su móvil, que tenía la batería casi llena por suerte.' Las opciones A, B y D inventan situaciones no mencionadas. La opción B es especialmente engañosa porque el hijo sí aparece hablando en el texto — es tentador asumir que él prestó el teléfono — pero el texto no dice eso; el móvil que tenía la batería llena era el de don Ramón."
+      "cor": "B",
+      "exp": "Llamar al mecánico resuelve una parte del problema, pero usar la aplicación de mapas les da una referencia concreta y cercana para actuar. La familia deja de estar pasiva y gana orientación. A y C inventan condiciones no mencionadas. D contradice el tono de urgencia del pasaje."
     },
     {
       "id": 10,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 1, ¿cuáles son los nuevos hábitos nocturnos de Mateo al final del texto?",
+      "prompt": "¿Qué tiene de significativo que Mateo no quiera revisar las redes sociales de inmediato cuando vuelve a prender el móvil?",
       "ch": [
-        "A) Escribe en su diario cada noche y lee un libro antes de dormir.",
-        "B) Apaga el televisor y el cargador de su móvil antes de acostarse, y solo lo prende por la mañana.",
-        "C) Usa el móvil solo treinta minutos por la noche para textear con sus amigos.",
-        "D) Deja el móvil en otra habitación y desconecta el router antes de dormir."
+        "A) Indica que olvidó la contraseña de sus cuentas mientras estuvo desconectado",
+        "B) Sugiere que la semana cambió su impulso automático hacia el teléfono, no solo su capacidad de obedecer una regla",
+        "C) Demuestra que ya no le interesan en absoluto sus amistades ni la comunicación digital",
+        "D) Significa que piensa apagar el móvil para siempre"
       ],
       "cor": "B",
-      "exp": "El texto dice exactamente: 'Mateo apaga el televisor y el cargador de su móvil antes de acostarse, y solo lo prende por la mañana.' La opción A combina el diario (que sí aparece en el texto) con leer libros (que no se menciona como hábito nocturno nuevo) — una trampa de mezcla de detalles. La opción C inventa un límite de treinta minutos. La opción D cambia el cargador por el router, un detalle que no aparece."
+      "exp": "Ese detalle importa porque muestra un cambio interno: Mateo ya no corre automáticamente a las redes. No es solo cumplimiento del reto; es una nueva relación con el dispositivo. A, C y D exageran o inventan consecuencias que el texto nunca afirma."
     },
     {
       "id": 11,
       "sec": "Comprensión",
       "type": "mc",
       "passage": true,
-      "prompt": "Según el Texto 2, ¿qué prometió hacer don Ramón después de la experiencia en la autopista?",
+      "prompt": "¿Qué función cumple la promesa final de don Ramón en la estructura del Texto 2?",
       "ch": [
-        "A) Llevar el carro al mecánico todos los meses sin excepción.",
-        "B) Comprar un carro nuevo con mejor tecnología para el próximo viaje familiar.",
-        "C) Revisar el carro antes de cada viaje largo.",
-        "D) Descargar más aplicaciones de tecnología para emergencias futuras."
+        "A) Preparar al lector para una secuela sobre la compra de otro carro",
+        "B) Mostrar que la avería se convierte en una lección de prevención y no solo en una molestia pasajera",
+        "C) Indicar que el mecánico le exigió un contrato de mantenimiento permanente",
+        "D) Sugerir que la familia ya no volverá a viajar por carretera"
       ],
-      "cor": "C",
-      "exp": "El texto dice: 'don Ramón prometió revisar el carro antes de cada viaje largo.' Las opciones A, B y D inventan promesas. La opción A exagera la frecuencia — el texto dice 'antes de cada viaje largo,' no 'todos los meses.' La opción B inventa la compra de un carro nuevo. La opción D usa vocabulario del texto (aplicaciones) para inventar una promesa que no aparece."
+      "cor": "B",
+      "exp": "La promesa de revisar el carro antes de cada viaje largo cierra el relato con una lección aprendida. El problema deja de ser solo anécdota y se convierte en advertencia preventiva. A, C y D inventan consecuencias que el texto no sugiere."
     },
     {
       "id": 12,
