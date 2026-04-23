@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Interpretive 4 | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">Examen XXII · Senderos 2 · Lección 5</p> <h1 class="land-title"> Infografía &amp; Audio <br><em>Interpretivos</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>2 fuentes — una pregunta a la vez.</p> <div class="mode-pills"> <div class="mode-pill infographic">📊 Preguntas 1–10 · Infografía</div> <div class="mode-pill audio">🎧 Preguntas 11–20 · Audio</div> </div> <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">2</div> <div class="info-l">fuentes</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Preguntas 1–10: Lee el infográfico con atención — desplázalo para ver todos los datos</li><li>Preguntas 11–20: Escucha el audio de Camila — puedes reproducirlo cuantas veces quieras</li><li>Una pregunta a la vez — no puedes volver atrás</li><li>Preguntas de vocabulario: escribe una frase corta en inglés con el significado de la palabra</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">Interpretive 4</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta">Camila · Reseña de computadora nueva · Canal de tecnología</div> <audio id="test-audio" controls preload="auto"> <source src="/orange-atlas/assets/camila.mp3" type="audio/mpeg">
+Tu navegador no soporta el elemento de audio.
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si juntas el 78% que usa el móvil en clase, las 14 revisiones por jornada y el 52% que admite problemas de concentración, ¿qué interpretación resume MEJOR el mensaje central del infográfico?","ch":["A) El móvil casi no influye en la experiencia escolar porque la mayoría lo usa solo unas pocas veces","B) El uso del móvil ya es una parte normal del día escolar, pero esa normalidad viene acompañada de costos reales para la atención","C) Los estudiantes usan el móvil principalmente con fines académicos y por eso los profesores exageran el problema","D) El infográfico demuestra que prohibir totalmente los teléfonos es la única postura razonable"],"cor":"B","exp":"La clave está en combinar tres datos, no en leer uno solo. El móvil aparece como algo cotidiano y extendido durante la jornada escolar, pero el propio infográfico también muestra consecuencias en la concentración. B recoge ambas ideas. A contradice la frecuencia de uso. C ignora que los usos sociales son mayores que los académicos. D convierte el infográfico en una postura absoluta que no sostiene."},{"id":2,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"La gráfica de usos en clase muestra 63% para redes sociales y 54% para textear, frente a 38% para buscar información académica y 17% para apps educativas. ¿Qué conclusión está mejor respaldada?","ch":["A) El uso del móvil en clase se orienta más a la interacción social que al trabajo académico","B) Los estudiantes usan el móvil casi exclusivamente para aprender durante la clase","C) Las aplicaciones educativas son la razón principal por la que los estudiantes sacan el móvil","D) Los cuatro usos aparecen prácticamente empatados en frecuencia"],"cor":"A","exp":"La lectura comparativa importa aquí: los dos usos sociales son claramente más altos que los dos usos académicos. Por eso A es la mejor síntesis. B y C contradicen los porcentajes. D borra una diferencia bastante evidente entre las barras."},{"id":3,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si el 44% apoya permitir el móvil con reglas, mientras 31% quiere prohibirlo totalmente y 25% permitirlo sin restricciones, ¿qué postura estudiantil parece dominar?","ch":["A) Un apoyo claro a uno de los extremos: prohibirlo o dejarlo libre sin condiciones","B) Una preferencia por un punto intermedio que combine acceso con control","C) Una división exacta entre las tres posturas","D) La idea de que los estudiantes prefieren que no exista ninguna política sobre el tema"],"cor":"B","exp":"El dato más alto no favorece ninguno de los extremos, sino una opción intermedia: permitir con reglas. Eso sugiere que la postura dominante no es el todo o nada, sino el uso regulado. A, C y D contradicen la distribución real del gráfico."},{"id":4,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"¿Por qué el recreo se presenta como «el momento de mayor uso del día» aunque después de la escuela aparezca un 98%?","ch":["A) Porque el infográfico distingue entre los momentos dentro de la jornada escolar y lo que ocurre una vez terminada","B) Porque el 98% es un error y debería ser más bajo que el 96%","C) Porque el infográfico considera que el recreo dura más tiempo que la salida","D) Porque los estudiantes solo pueden usar el móvil legalmente durante el recreo"],"cor":"A","exp":"Esta pregunta exige leer el marco, no solo el número más alto. El recreo se presenta como el punto máximo de uso dentro del día escolar; el 98% ocurre ya al salir. B inventa un error. C y D añaden razones que el infográfico nunca menciona."},{"id":5,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si 3 de 5 estudiantes se sentirían ansiosos sin el móvil, pero quienes lo guardan en clase reportan el doble de facilidad para recordar, ¿qué tensión revela mejor el infográfico?","ch":["A) Que una práctica puede beneficiar el aprendizaje aunque emocionalmente resulte incómoda al principio","B) Que guardar el móvil empeora tanto la memoria como el bienestar emocional","C) Que la ansiedad estudiantil se debe principalmente a las tareas académicas","D) Que los estudiantes recuerdan mejor solo cuando usan aplicaciones educativas"],"cor":"A","exp":"El infográfico pone en tensión dos ideas: separarse del móvil puede generar ansiedad, pero también puede mejorar la memoria y la atención. A recoge ese contraste. B invierte el sentido del dato sobre memoria. C y D introducen causas que el infográfico no ofrece."},{"id":6,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"¿Qué interpretación es más precisa al relacionar las 14 revisiones por jornada con los 45 minutos totales de uso?","ch":["A) Que el problema se reduce a una sola revisión larga al día","B) Que las distracciones no son solo miradas rápidas: acumuladas, ocupan casi el tiempo de una clase completa","C) Que los estudiantes pasan poco tiempo real con el móvil, aunque lo revisan muchas veces","D) Que revisar el móvil 14 veces significa usarlo exactamente durante 14 minutos"],"cor":"B","exp":"La combinación de frecuencia y tiempo total sugiere una interrupción repetida y acumulativa, no un gesto insignificante. B traduce mejor esa lectura. A y C minimizan los datos. D confunde número de revisiones con minutos de uso."},{"id":7,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si una directora quisiera defender una política moderada usando este infográfico, ¿qué propuesta estaría mejor respaldada por los datos?","ch":["A) Permitir el móvil sin restricciones durante todas las clases porque la mayoría ya lo usa","B) Eliminar por completo cualquier presencia del móvil incluso fuera de las clases","C) Mantener límites claros durante el tiempo de instrucción, pero no tratar todo uso del móvil como idéntico","D) Reemplazar los libros por aplicaciones educativas en todos los cursos"],"cor":"C","exp":"El apoyo mayor a 'permitir con reglas', los problemas de concentración y la mejora de memoria al guardar el móvil apuntan a una posición regulada, no extrema. C es la opción que mejor sintetiza esos datos. A y B se van a los extremos. D extrapola un cambio curricular que el infográfico no propone."},{"id":8,"sec":"Infografía — Vocabulario","type":"free","media":"infographic","eng":true,"prompt":"En el infográfico: «89% de los profesores encuestados creen que el móvil afecta negativamente la atención de sus estudiantes.»\n\nThe infographic gathered opinions from teachers to report this statistic. The word encuestados appears right after «profesores» and describes what was done to them in order to collect their opinions.\n\nBased on context, what does encuestados most likely mean in English?\n\nWrite a short English phrase: ______","acc":["surveyed","polled","asked","questioned","interviewed","who were surveyed","who were polled","who were asked","who were interviewed","who responded","who participated","who were questioned"],"disp":"surveyed / polled","exp":"Context: the infographic gathers data from a sample of 1,240 students — a survey. The same method was used with teachers. 'Encuestados' comes from 'encuesta' (survey/poll). Recognizing that the infographic is data-based helps confirm that teachers were surveyed, not simply 'mentioned' or 'observed.' The number (89%) further confirms this is a measured response from a group, not a general claim."},{"id":9,"sec":"Infografía — Vocabulario","type":"free","media":"infographic","eng":true,"prompt":"En el infográfico: «3 de 5 estudiantes dicen que se sentirían ansiosos si tuvieran que dejar el móvil fuera del salón de clases todo el día.»\n\nThe infographic describes a hypothetical situation — leaving the phone outside the classroom all day — and the emotional reaction students expect to have. The word ansiosos describes this feeling.\n\nBased on context, what does ansiosos most likely mean in English?\n\nWrite a short English phrase: ______","acc":["anxious","nervous","worried","stressed","uneasy","on edge","tense","uncomfortable","scared","afraid","anxious/nervous","nervous/worried","uneasy/anxious","stressed out","stressed-out","panicked"],"disp":"anxious / nervous / worried","exp":"Context: the situation (forced separation from the phone for an entire school day) is presented as something uncomfortable — an emotional negative reaction. The 'sentirían' (would feel) signals this is a strong emotional state, not a mild inconvenience. 'Ansiosos' maps directly to 'anxious' in English — a feeling of worry or unease about something. This is also a vocabulary word related to the unit theme of technology dependence."},{"id":10,"sec":"Infografía — Vocabulario","type":"free","media":"infographic","eng":true,"prompt":"En el infográfico: «52% admite que el móvil les dificulta concentrarse en clase.»\n\nThe infographic is describing an obstacle that the phone creates for students. «Concentrarse» means 'to concentrate/focus,' and the mobile phone does something to that ability.\n\nBased on context, what does dificulta most likely mean in English?\n\nWrite a short English phrase: ______","acc":["makes it difficult","makes it hard","makes harder","makes it harder","makes it harder to","makes concentration hard","makes concentrating harder","makes concentrating difficult","creates difficulty","complicates","hinders","makes it tough","makes harder to concentrate","makes it difficult to concentrate","makes it hard to concentrate","makes it harder to concentrate","makes concentration harder","makes it difficult to focus","makes it hard to focus","makes focusing harder","makes it harder to focus"],"disp":"makes it difficult / makes it harder","exp":"Context: «les dificulta concentrarse» — the phone does something TO concentrating. Since 'concentrarse' means 'to concentrate,' the only logical meaning of 'dificulta' is that it creates difficulty with that action. 'Dificultar' comes from 'difícil' (difficult) — to make something harder. It is the opposite of 'facilitar' (to make easier), which appears elsewhere in the infographic in «el doble de facilidad para recordar.»"},{"id":11,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Qué hace que la reseña de Camila suene más creíble que un simple anuncio?","ch":["A) Que insiste en que la computadora es perfecta y no menciona ninguna limitación","B) Que combina elogios concretos con una crítica específica y luego da una recomendación matizada","C) Que compara el modelo con cinco computadoras rivales del mercado","D) Que centra casi todo el audio en el precio y los descuentos disponibles"],"cor":"B","exp":"Camila no suena como publicidad pura porque no solo elogia; también menciona un detalle que no la convenció y termina con una recomendación condicionada. Esa combinación de pros, una crítica concreta y un consejo matizado hace que B sea la mejor respuesta. A describe un anuncio más que una reseña. C y D no ocurren en el audio."},{"id":12,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Por qué su recomendación final de probar la computadora antes de comprarla sigue lógicamente de todo el audio?","ch":["A) Porque Camila cree que el rendimiento general de la computadora es malo","B) Porque, aunque el desempeño le parece fuerte, la comodidad física puede depender de cada usuario","C) Porque la computadora solo funciona bien con ciertos programas especializados","D) Porque sospecha que la batería puede fallar después de unas semanas"],"cor":"B","exp":"Su consejo final no nace de dudas sobre velocidad, memoria o batería, sino de una cuestión de tamaño y comodidad. El problema del ratón pequeño y el ajuste inicial al teclado hacen que la experiencia física pueda variar según la persona. Por eso B es la opción más completa."},{"id":13,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Qué combinación de detalles apoya mejor la idea de que esta computadora sirve para estudiantes y personas que trabajan desde casa?","ch":["A) Los colores nítidos de la pantalla y la posibilidad de jugar con gráficos exigentes","B) El teclado cómodo, la memoria amplia y el buen rendimiento para editar texto y navegar por internet","C) El ratón pequeño y la rapidez con que se abre el sistema al principio","D) La batería larga y el tamaño de las teclas para personas mayores"],"cor":"B","exp":"Camila justifica esa recomendación con un conjunto de funciones prácticas: escribir con comodidad, guardar muchos archivos y trabajar bien con tareas cotidianas como editar texto o navegar. B es la única opción que reúne esos elementos de productividad diaria. A y D añaden públicos o usos que ella no prioriza. C mezcla una ventaja con una queja."},{"id":14,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"Cuando Camila dice que lo que más le gustó fue la memoria, ¿qué sugiere eso sobre cómo evalúa la computadora?","ch":["A) Que le interesan sobre todo los efectos visuales llamativos por encima de la utilidad diaria","B) Que juzga la computadora principalmente por su capacidad para tareas prácticas y almacenamiento real de trabajo","C) Que le importa más el diseño exterior que el funcionamiento","D) Que considera la velocidad de encendido irrelevante"],"cor":"B","exp":"Escoger la memoria como su aspecto favorito indica una prioridad práctica: poder guardar archivos, fotos y videos sin problema. Eso apunta a una valoración orientada al uso real y productivo, no solo a lo vistoso. A y C contradicen esa prioridad. D va demasiado lejos, porque Camila sí valora la rapidez."},{"id":15,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Cómo funciona en la reseña el comentario de Camila sobre el tamaño de las teclas?","ch":["A) Presenta una incomodidad inicial, pero la enmarca como un ajuste menor dentro de una valoración positiva del teclado","B) Demuestra que el teclado es un defecto grave que hace inútil la computadora","C) Explica por qué Camila decide no recomendar el producto","D) Sugiere que el problema principal era que las teclas dejaban de responder"],"cor":"A","exp":"Camila aclara que el teclado era cómodo, aunque al principio tuvo que adaptarse al tamaño de las teclas. Eso convierte la observación en un matiz, no en un defecto central. B, C y D exageran o cambian por completo lo que ella dice."},{"id":16,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"Cuando Camila dice que descargó varias aplicaciones y navegó durante horas sin que se agotara la batería, ¿qué beneficio está destacando realmente?","ch":["A) Que la computadora solo funciona bien si se usa con pocas aplicaciones abiertas","B) Que puede sostener un uso cotidiano prolongado sin depender de estar conectada enseguida a la corriente","C) Que la batería es ideal únicamente para ver películas y escuchar música","D) Que navegar por internet consume menos energía que cualquier otra actividad posible"],"cor":"B","exp":"La frase traduce la batería en una ventaja concreta para el usuario: poder trabajar o usar la computadora durante bastante tiempo sin preocuparse enseguida por cargarla. B interpreta ese beneficio mejor que las otras opciones, que limitan o distorsionan lo que Camila quiso destacar."},{"id":17,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Cuál describe mejor la valoración final de Camila sobre esta computadora?","ch":["A) Muy negativa: el problema de comodidad invalida todas las demás ventajas","B) Ambigua: no queda claro si la recomienda o no","C) Claramente positiva, pero con una advertencia ergonómica que depende del usuario","D) Entusiasta solo para jugadores y diseñadores profesionales"],"cor":"C","exp":"Camila elogia velocidad, pantalla, memoria y batería, y además recomienda el equipo para ciertos usuarios. Su única reserva importante es de comodidad y tamaño. Eso produce una valoración general positiva, pero no ciega. Por eso C recoge mejor el tono final."},{"id":18,"sec":"Audio — Vocabulario","type":"free","media":"audio","eng":true,"prompt":"En el audio: «la pantalla mostraba los colores de una forma increíblemente nítida.»\n\nCamila is describing the visual quality of the screen — something she was impressed by. The adverb «increíblemente» (incredibly) signals this is a strong positive quality of the display.\n\nBased on context, what does nítida most likely mean in English?\n\nWrite a short English phrase: ______","acc":["sharp","clear","crisp","vivid","precise","detailed","defined","bright","clean","high quality","high-quality","well defined","well-defined","perfectly clear","crystal clear","very clear","very sharp","very crisp","extremely clear","extremely sharp"],"disp":"sharp / clear / crisp","exp":"Context: Camila is impressed by the screen's color quality — the adverb 'incredibly' signals this is an outstanding positive feature. 'Nítida' describes a quality of visual precision and clarity. In photography and display technology, 'nítido' is often used the way 'sharp' or 'crisp' is used in English — to describe an image with well-defined detail and no blurriness. Students who know 'nitidez' (clarity) can connect the root."},{"id":19,"sec":"Audio — Vocabulario","type":"free","media":"audio","eng":true,"prompt":"En el audio: «navegué por internet durante horas sin que la batería se agotara.»\n\nCamila is praising how long the battery lasted. The phrase «sin que» means 'without' — so the battery did NOT do whatever «se agotara» means, even after hours of heavy use.\n\nBased on context, what does se agotara most likely mean in English?\n\nWrite a short English phrase: ______","acc":["running out","dying","draining","depleting","getting low","going dead","dying out","going out","wearing out","running low","getting used up","exhausting","going empty","losing charge","losing power","losing battery","ran out","going to zero","getting drained","draining completely"],"disp":"running out / dying / draining","exp":"Context: the key structure is 'sin que' (without) + the subjunctive 'se agotara.' This means the battery did NOT 'se agotar' — it held up for hours. 'Agotar' means to use up / exhaust a resource completely. For a battery, this means dying or draining to zero. This verb was also in the infographic: 'la batería estaba casi agotada' (the battery was almost dead) — recognizing it in a different conjugation (subjunctive past) is the challenge here."},{"id":20,"sec":"Audio — Vocabulario","type":"free","media":"audio","eng":true,"prompt":"En el audio: «había una cosa que no me convenció: el ratón que venía incluido me parecía demasiado pequeño.»\n\nThis sentence introduces Camila's only negative comment. Everything before it was positive. The phrase «no me convenció» signals a shift to something she was not fully satisfied with.\n\nBased on context, what does convenció most likely mean in English?\n\nWrite a short English phrase: ______","acc":["convinced","won over","won me over","impressed","persuaded","sold me","fully impressed","fully satisfied","fully pleased","fully convinced","won over completely","persuaded me","convinced me","sold on it","impressed me","satisfied me","pleased me","convinced her"],"disp":"convinced / won me over / impressed","exp":"Context: 'no me convenció' literally means 'it didn't convince/win me over.' The shift from positive (speed, screen, memory, battery) to this phrase signals the turn to her one criticism. 'Convencer' in Spanish works the same way 'convince' or 'win over' does in English — it implies full persuasion or satisfaction. Students who know 'convencer' → 'to convince' can work backwards from 'no me convenció' = 'it didn't convince me / didn't win me over.' The specific answer they fill in should be the positive meaning of 'convenció' (convinced/won over/impressed)."}];
+const duration = 25;
+const totalQuestions = 20;
+const passages = null;
+const infographicTitle = "El móvil en la escuela";
+const infographicSrc = "/orange-atlas/assets/infografico-movil-escuela.html";
+const audioSrc = "/orange-atlas/assets/camila.mp3";
+const audioTitle = "Camila";
+const audioMeta = "Camila · Reseña de computadora nueva · Canal de tecnología";
+const defaultTopbarTitle = "Interpretive 4";
+const hasMediaQuestions = true;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    })();</script> </body> </html>

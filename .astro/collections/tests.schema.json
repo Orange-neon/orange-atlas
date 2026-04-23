@@ -1,0 +1,87 @@
+{
+  "$ref": "#/definitions/tests",
+  "definitions": {
+    "tests": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "difficulty": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "examCode": {
+          "type": "string"
+        },
+        "heroTitle": {
+          "type": "string"
+        },
+        "heroAccent": {
+          "type": "string"
+        },
+        "topbarTitle": {
+          "type": "string"
+        },
+        "questionCount": {
+          "type": "number"
+        },
+        "sourceCount": {
+          "type": "number"
+        },
+        "extraStatValue": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "extraStatLabel": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "infographicTitle": {
+          "type": "string"
+        },
+        "infographicSrc": {
+          "type": "string"
+        },
+        "audioTitle": {
+          "type": "string"
+        },
+        "audioDescription": {
+          "type": "string"
+        },
+        "audioSrc": {
+          "type": "string"
+        },
+        "passagesJson": {
+          "type": "string"
+        },
+        "questionsJson": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "duration",
+        "difficulty",
+        "description"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

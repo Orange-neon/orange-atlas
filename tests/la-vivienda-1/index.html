@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>El Gran Traslado | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">La Vivienda I · Senderos 2 · Lección 5</p> <h1 class="land-title"> El Gran <br><em>Traslado</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>1 fuentes — una pregunta a la vez.</p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">1</div> <div class="info-l">tipo</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Usa el contexto para inferir el significado</li><li>Escribe las respuestas de vocabulario en español cuando se indique</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">El Gran Traslado</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto"> 
+Tu navegador no soporta el elemento de audio.
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la lavadora","B) la secadora","C) el lavaplatos","D) el sillón"],"cor":"D","exp":"La lavadora, la secadora y el lavaplatos son electrodomésticos que realizan tareas del hogar. El sillón es un mueble de descanso de la sala — no comparte ninguna función ni categoría con los otros tres."},{"id":2,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el comedor","B) la sala","C) el dormitorio","D) la tostadora"],"cor":"D","exp":"El comedor, la sala y el dormitorio son cuartos o espacios físicos dentro de una casa. La tostadora es un electrodoméstico de cocina — es un objeto, no un espacio de la vivienda."},{"id":3,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) barrer el suelo","B) pasar la aspiradora","C) limpiar la casa","D) alquilar"],"cor":"D","exp":"Barrer el suelo, pasar la aspiradora y limpiar la casa son quehaceres domésticos — acciones de limpieza del hogar. Alquilar es un verbo financiero que describe pagar por una vivienda; no tiene relación con los quehaceres."},{"id":4,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el tenedor","B) el cuchillo","C) la cuchara","D) la almohada"],"cor":"D","exp":"El tenedor, el cuchillo y la cuchara son cubiertos que se usan para comer en la mesa. La almohada es un objeto blando del dormitorio que se usa para dormir — pertenece a una categoría completamente distinta."},{"id":5,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el altillo","B) el sótano","C) el balcón","D) el congelador"],"cor":"D","exp":"El altillo, el sótano y el balcón son partes estructurales de una vivienda — espacios físicos dentro o alrededor del edificio. El congelador es un electrodoméstico de cocina; no es una parte de la estructura de la casa."},{"id":6,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el barrio","B) las afueras","C) el edificio de apartamentos","D) la cafetera"],"cor":"D","exp":"El barrio, las afueras y el edificio de apartamentos son términos relacionados con el entorno urbano y los tipos de vivienda. La cafetera es un electrodoméstico de cocina — no tiene ninguna relación con el tema de la vivienda o el vecindario."},{"id":7,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la persona que vive al lado de tu casa o en tu mismo edificio.","acc":["el vecino","la vecina","vecino","vecina"],"disp":"el vecino / la vecina","exp":"Vecino/a comparte raíz con 'vecindad' y 'vecindario'. La definición describe proximidad residencial — vivir en el mismo edificio o junto a alguien. No confundir con 'el ama de casa', que describe un rol dentro del hogar, no una relación de proximidad."},{"id":8,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio que se encuentra debajo de la casa, bajo el nivel del suelo, donde muchas familias guardan sus cosas.","acc":["el sótano","sótano"],"disp":"el sótano","exp":"La clave contextual es 'debajo de la casa, bajo el nivel del suelo'. Eso elimina el altillo (que está en la parte superior) y el garaje (que está al nivel del suelo). El sótano es el único espacio subterráneo de la vivienda en esta lección."},{"id":9,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuarto donde la familia se sienta alrededor de una mesa para comer juntos.","acc":["el comedor","comedor"],"disp":"el comedor","exp":"Comedor viene del verbo 'comer'. El sufijo '-dor' en español indica el lugar donde se realiza una acción — igual que 'dormitorio' viene de 'dormir'. La mención de la mesa y el acto de comer confirman la respuesta y la distinguen de la sala o la cocina."},{"id":10,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble del dormitorio, grande y cerrado, donde cuelgas y guardas tu ropa.","acc":["el armario","armario"],"disp":"el armario","exp":"El armario es el equivalente al clóset en muchos países hispanohablantes. La clave está en 'guardar ropa' dentro de un espacio 'cerrado'. Diferéncialo de la cómoda (que tiene cajones) y del estante (que tiene repisas abiertas para libros u objetos)."},{"id":11,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de llevar todas tus pertenencias a una nueva casa o apartamento de forma permanente.","acc":["mudarse"],"disp":"mudarse","exp":"Mudarse es el verbo reflexivo que describe cambiar de residencia de manera definitiva. La palabra 'permanente' es la clave que lo distingue de simplemente mover objetos. No confundir con 'alquilar' (que es el acto financiero) ni con 'arreglar' (ordenar cosas en casa)."},{"id":12,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio al aire libre, conectado a la casa, donde se pueden cultivar plantas, flores o árboles.","acc":["el jardín","jardín"],"disp":"el jardín","exp":"Jardín tiene un cognado directo con el inglés 'garden'. La clave es 'al aire libre' y 'cultivar plantas' — eso lo distingue del patio (generalmente pavimentado, sin vegetación) y del balcón (elevado, pequeño y sin tierra para cultivar)."},{"id":13,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico que usa agua y movimiento para dejar la ropa limpia.","acc":["la lavadora","lavadora"],"disp":"la lavadora","exp":"Lavadora viene del verbo 'lavar'. El sufijo '-dora' indica el instrumento que realiza la acción. Diferénciala de la secadora (que seca, no lava) y del lavaplatos (que lava platos, no ropa). La mención de 'ropa limpia' es la pista determinante."},{"id":14,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la cantidad de dinero que se paga mensualmente para vivir en un lugar que pertenece a otra persona.","acc":["el alquiler","alquiler"],"disp":"el alquiler","exp":"Alquiler es el sustantivo derivado del verbo 'alquilar'. Las claves son 'pago mensual' y 'lugar que pertenece a otra persona' — lo que lo diferencia de ser propietario. No confundir con 'la vivienda' (que es el concepto general de la casa) ni con 'mudarse'."},{"id":15,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de usar una máquina que aspira el polvo y la suciedad del suelo o de la alfombra.","acc":["pasar la aspiradora"],"disp":"pasar la aspiradora","exp":"La aspiradora viene del verbo 'aspirar' — literalmente, una máquina que inhala el polvo. La expresión verbal correcta y completa es 'pasar la aspiradora', no simplemente 'aspirar'. La mención de 'máquina' y 'alfombra' elimina opciones como barrer (que usa escoba) o sacudir."},{"id":16,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico grande que mantiene los alimentos frescos a temperatura baja, pero sin llegar a congelarlos.","acc":["el refrigerador","refrigerador","el refri","refri"],"disp":"el refrigerador / el refri","exp":"Refrigerador comparte raíz con 'refrigerar' y el inglés 'refrigerator'. La clave contextual es 'frío, pero sin congelar' — eso lo distingue directamente del congelador (que sí congela los alimentos). En el habla coloquial se usa también 'el refri'."},{"id":17,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de colocar los platos, vasos, cubiertos y servilletas en la mesa antes de una comida.","acc":["poner la mesa"],"disp":"poner la mesa","exp":"Poner la mesa es una expresión verbal fija. La clave está en 'antes de comer' y en el listado de objetos que se colocan. No confundir con 'quitar la mesa' (recoger después de comer) ni con 'lavar los platos' (limpiarlos). Debe escribirse completa."},{"id":18,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el corredor estrecho dentro de la casa que conecta los distintos cuartos entre sí.","acc":["el pasillo","pasillo"],"disp":"el pasillo","exp":"Pasillo comparte raíz con 'pasar' — es el espacio por donde se pasa de un cuarto a otro. La clave es 'corredor estrecho que conecta los cuartos', lo que lo distingue de la entrada (zona de acceso principal a la casa) y de la escalera (que conecta pisos, no cuartos)."},{"id":19,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de aplicar calor y presión sobre la ropa con un instrumento especial para eliminar las arrugas.","acc":["planchar la ropa"],"disp":"planchar la ropa","exp":"Planchar es el verbo. Las claves contextuales son 'calor', 'presión' y 'eliminar arrugas' — eso apunta directamente a esta acción y la diferencia de 'lavar la ropa' (limpiarla con agua), 'colgar la ropa' (ponerla a secar) o 'recoger la ropa' (levantarla del suelo)."},{"id":20,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble largo y acolchado de la sala donde varias personas pueden sentarse o recostarse juntas.","acc":["el sofá","sofá"],"disp":"el sofá","exp":"Sofá es un cognado del inglés 'sofa'. La clave es 'largo', 'varias personas' y 'la sala' — lo que lo distingue del sillón (individual y de una sola persona) y de la silla (sin acolchado y sin posibilidad de recostarse)."}];
+const duration = 25;
+const totalQuestions = 20;
+const passages = null;
+const infographicTitle = "Infografía";
+const infographicSrc = "";
+const audioSrc = "";
+const audioTitle = "Audio";
+const audioMeta = "";
+const defaultTopbarTitle = "El Gran Traslado";
+const hasMediaQuestions = false;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    })();</script> </body> </html>

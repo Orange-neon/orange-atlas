@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Infográfico — El móvil en la escuela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0e17;
+  --paper:#faf8f2;
+  --accent:#e8401c;
+  --accent2:#1c6ce8;
+  --accent3:#1cb87a;
+  --accent4:#e8b41c;
+  --mid:#6b6870;
+  --rule:rgba(15,14,23,.12);
+}
+html{background:#e8e4da}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  max-width:900px;
+  margin:2rem auto;
+  padding:0;
+  box-shadow:0 8px 60px rgba(0,0,0,.18);
+}
+
+/* ── HEADER ── */
+.header{
+  background:var(--ink);
+  color:var(--paper);
+  padding:2.8rem 3rem 2.2rem;
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:'';
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,transparent 18px,
+    rgba(255,255,255,.03) 18px,rgba(255,255,255,.03) 19px
+  );
+}
+.header-eyebrow{
+  font-family:'Syne',sans-serif;
+  font-size:.65rem;letter-spacing:.35em;
+  text-transform:uppercase;color:rgba(250,248,242,.45);
+  margin-bottom:.7rem;position:relative;
+}
+.header-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.9rem,5vw,3rem);
+  font-weight:800;line-height:1;
+  position:relative;
+}
+.header-title em{
+  font-style:normal;
+  color:var(--accent);
+}
+.header-sub{
+  margin-top:.9rem;
+  font-size:.88rem;font-weight:300;
+  color:rgba(250,248,242,.6);
+  max-width:480px;line-height:1.6;
+  position:relative;
+}
+.header-badge{
+  position:absolute;right:3rem;top:50%;transform:translateY(-50%);
+  width:90px;height:90px;
+  border:3px solid var(--accent);
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;
+  text-align:center;
+  font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(250,248,242,.7);
+  line-height:1.3;
+}
+.header-badge strong{
+  font-size:1.4rem;font-weight:800;color:var(--accent);display:block;
+}
+
+/* ── BODY ── */
+.body{padding:2.5rem 3rem 3rem}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-family:'Syne',sans-serif;
+  font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--mid);border-bottom:1px solid var(--rule);
+  padding-bottom:.4rem;margin-bottom:1.4rem;
+}
+
+/* ── BIG STAT ROW ── */
+.big-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);
+  border:1px solid var(--rule);
+  margin-bottom:2.5rem;
+}
+.big-stat{
+  background:var(--paper);
+  padding:1.5rem 1.2rem 1.3rem;
+  position:relative;
+}
+.big-stat::after{
+  content:attr(data-label);
+  position:absolute;top:.7rem;right:.8rem;
+  font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mid);font-weight:500;
+}
+.big-stat-n{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,6vw,3.8rem);
+  font-weight:800;line-height:1;
+  display:block;
+}
+.big-stat-desc{
+  font-size:.8rem;font-weight:300;
+  color:var(--mid);margin-top:.35rem;line-height:1.45;
+}
+.c-red{color:var(--accent)}
+.c-blue{color:var(--accent2)}
+.c-green{color:var(--accent3)}
+.c-yellow{color:var(--accent4)}
+
+/* ── TWO COLUMN MIDDLE ── */
+.mid-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+
+/* ── BAR CHART ── */
+.bar-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1.1rem;
+}
+.bar-item{margin-bottom:.85rem}
+.bar-label{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.78rem;margin-bottom:.3rem;
+}
+.bar-label span:last-child{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;
+}
+.bar-track{
+  height:10px;background:rgba(15,14,23,.08);border-radius:2px;overflow:hidden;
+}
+.bar-fill{
+  height:100%;border-radius:2px;
+  animation:barGrow .8s ease forwards;
+  transform-origin:left;
+}
+@keyframes barGrow{from{width:0%}to{width:var(--w)}}
+
+/* ── DONUT ── */
+.donut-wrap{text-align:center}
+.donut-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1rem;
+}
+.donut-svg{display:block;margin:0 auto}
+.donut-legend{
+  display:flex;flex-direction:column;gap:.5rem;
+  margin-top:1rem;font-size:.76rem;
+}
+.legend-item{display:flex;align-items:center;gap:.5rem}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── CALLOUT BOXES ── */
+.callouts{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem}
+.callout{
+  border-left:3px solid;
+  padding:.9rem 1rem .8rem;
+  background:rgba(15,14,23,.03);
+}
+.callout-num{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;line-height:1;
+  margin-bottom:.25rem;
+}
+.callout-text{font-size:.78rem;color:var(--mid);line-height:1.5}
+
+/* ── TIMELINE ── */
+.timeline-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1.1rem;
+}
+.timeline{position:relative;padding-left:1.8rem}
+.timeline::before{
+  content:'';position:absolute;left:.4rem;top:.4rem;bottom:.4rem;
+  width:2px;background:var(--rule);
+}
+.tl-item{position:relative;margin-bottom:1rem}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-1.42rem;top:.25rem;
+  width:12px;height:12px;border-radius:50%;
+  border:2px solid var(--paper);
+  box-shadow:0 0 0 1px currentColor;
+}
+.tl-time{
+  font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--mid);
+  margin-bottom:.1rem;
+}
+.tl-desc{font-size:.8rem;line-height:1.5;color:var(--ink)}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--ink);color:rgba(250,248,242,.45);
+  font-size:.62rem;letter-spacing:.05em;
+  padding:.9rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer strong{color:rgba(250,248,242,.7)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-eyebrow">Infográfico · Unidad 5 · La Tecnología</p>
+  <h1 class="header-title">El <em>móvil</em> en la escuela</h1>
+  <p class="header-sub">¿Aliado o distracción? Datos sobre el uso del teléfono celular durante la jornada escolar entre estudiantes de secundaria.</p>
+  <div class="header-badge">
+    <strong>1,240</strong>
+    estudiantes encuestados
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- BIG 3 STATS -->
+  <p class="sec-label">Datos principales</p>
+  <div class="big-stats">
+    <div class="big-stat" data-label="uso diario">
+      <span class="big-stat-n c-red">78%</span>
+      <p class="big-stat-desc">de los estudiantes usa el móvil al menos una vez durante la clase</p>
+    </div>
+    <div class="big-stat" data-label="promedio">
+      <span class="big-stat-n c-blue">14×</span>
+      <p class="big-stat-desc">veces que un estudiante revisa el móvil durante la jornada escolar</p>
+    </div>
+    <div class="big-stat" data-label="impacto">
+      <span class="big-stat-n c-green">52%</span>
+      <p class="big-stat-desc">admite que el móvil les dificulta concentrarse en clase</p>
+    </div>
+  </div>
+
+  <!-- MIDDLE ROW: bar chart + donut -->
+  <div class="mid-row">
+
+    <!-- BAR CHART -->
+    <div>
+      <p class="bar-title">¿Para qué usan el móvil en clase?</p>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Revisar redes sociales</span>
+          <span class="c-red">63%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:63%;background:var(--accent)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Textear con amigos</span>
+          <span class="c-blue">54%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:54%;background:var(--accent2)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Buscar información académica</span>
+          <span class="c-green">38%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:38%;background:var(--accent3)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Ver videos o escuchar música</span>
+          <span class="c-yellow">29%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:29%;background:var(--accent4)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Usar aplicaciones educativas</span>
+          <span>17%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:17%;background:var(--mid)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DONUT: opinions -->
+    <div class="donut-wrap">
+      <p class="donut-title">Opinión sobre los móviles en clase</p>
+      <!-- SVG donut chart -->
+      <svg class="donut-svg" width="170" height="170" viewBox="0 0 170 170">
+        <!-- background circle -->
+        <circle cx="85" cy="85" r="60" fill="none" stroke="#eee" stroke-width="28"/>
+        <!-- segments: circumference = 2π×60 ≈ 376.99 -->
+        <!-- Prohibirlos totalmente: 31% = 116.9 -->
+        <circle cx="85" cy="85" r="60" fill="none"
+          stroke="#e8401c" stroke-width="28"
+          stroke-dasharray="116.9 260.1"
+          stroke-dashoffset="94.25"
+          transform="rotate(-90 85 85)"/>
+        <!-- Permitirlos con reglas: 44% = 165.9 -->
+        <circle cx="85" cy="85" r="60" fill="none"
+          stroke="#1c6ce8" stroke-width="28"
+          stroke-dasharray="165.9 211.1"
+          stroke-dashoffset="-22.65"
+          transform="rotate(-90 85 85)"/>
+        <!-- Permitirlos sin restricciones: 25% = 94.2 -->
+        <circle cx="85" cy="85" r="60" fill="none"
+          stroke="#1cb87a" stroke-width="28"
+          stroke-dasharray="94.2 282.8"
+          stroke-dashoffset="-188.55"
+          transform="rotate(-90 85 85)"/>
+        <!-- center text -->
+        <text x="85" y="80" text-anchor="middle" font-family="Syne,sans-serif" font-size="11" font-weight="700" fill="#0f0e17">¿Qué</text>
+        <text x="85" y="94" text-anchor="middle" font-family="Syne,sans-serif" font-size="11" font-weight="700" fill="#0f0e17">prefieren?</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:var(--accent)"></div>
+          <span><strong>31%</strong> — Prohibirlos totalmente</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:var(--accent2)"></div>
+          <span><strong>44%</strong> — Permitirlos con reglas</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:var(--accent3)"></div>
+          <span><strong>25%</strong> — Sin restricciones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALLOUT BOXES -->
+  <p class="sec-label">Datos adicionales</p>
+  <div class="callouts">
+    <div class="callout" style="border-color:var(--accent)">
+      <div class="callout-num c-red">45 min</div>
+      <p class="callout-text">Tiempo promedio que los estudiantes pasan en el móvil durante la jornada escolar — equivalente a casi una clase completa.</p>
+    </div>
+    <div class="callout" style="border-color:var(--accent2)">
+      <div class="callout-num c-blue">3 de 5</div>
+      <p class="callout-text">estudiantes dicen que se sentirían <em>ansiosos</em> si tuvieran que dejar el móvil fuera del salón de clases todo el día.</p>
+    </div>
+    <div class="callout" style="border-color:var(--accent3)">
+      <div class="callout-num c-green">89%</div>
+      <p class="callout-text">de los profesores encuestados creen que el móvil afecta negativamente la atención de sus estudiantes.</p>
+    </div>
+    <div class="callout" style="border-color:var(--accent4)">
+      <div class="callout-num c-yellow">2×</div>
+      <p class="callout-text">Los estudiantes que guardaron el móvil durante las clases reportaron el doble de facilidad para recordar lo aprendido.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE: un día escolar típico -->
+  <p class="sec-label">Un día escolar típico — cuándo revisan el móvil</p>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent2)"></div>
+      <p class="tl-time">Antes de entrar — 7:30 a.m.</p>
+      <p class="tl-desc">El <strong>91%</strong> revisa el móvil en los minutos antes de que empiece la primera clase.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent)"></div>
+      <p class="tl-time">Durante la primera hora — 8:00–9:00</p>
+      <p class="tl-desc">El <strong>47%</strong> lo revisa al menos una vez, principalmente para leer mensajes o notificaciones.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent4)"></div>
+      <p class="tl-time">Recreo — 10:15 a.m.</p>
+      <p class="tl-desc">El <strong>96%</strong> saca el móvil en cuanto empieza el recreo. Es el momento de mayor uso del día.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent)"></div>
+      <p class="tl-time">Durante clases de la tarde — 1:00–3:00</p>
+      <p class="tl-desc">El uso aumenta: el <strong>61%</strong> lo revisa durante las clases de la tarde, especialmente en materias que no les gustan.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent3)"></div>
+      <p class="tl-time">Al salir — 3:15 p.m.</p>
+      <p class="tl-desc">El <strong>98%</strong> revisa el móvil en los primeros 5 minutos después de salir de la escuela.</p>
+    </div>
+
+  </div>
+
+</div><!-- /body -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Fuente: <strong>Encuesta Nacional de Tecnología Educativa</strong> · Muestra: 1,240 estudiantes de secundaria · Año: 2024</span>
+  <span>Unidad 5 · La Tecnología</span>
+</div>
+
+</body>
+</html>

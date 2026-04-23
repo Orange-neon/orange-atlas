@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Interpretive 3 | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">Examen XXI · Senderos 2 · Lección 5</p> <h1 class="land-title"> Lectura <br><em>Interpretiva</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>2 fuentes — una pregunta a la vez.</p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">5</div> <div class="info-l">tipos</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Las respuestas libres se evalúan al final</li><li>Usa el contexto del texto para responder — no busques en el diccionario</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">Lectura Interpretiva</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto"> 
+Tu navegador no soporta el elemento de audio.
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué idea en común une mejor los dos textos?","ch":["A) Los dos celebran principalmente la ayuda inesperada de otras personas en la carretera","B) Los dos presentan una llamada de atención que obliga a la protagonista a reevaluar sus hábitos o decisiones","C) Los dos argumentan que los móviles nunca deben usarse fuera de casa","D) Los dos demuestran que la fama y los viajes son siempre experiencias negativas"],"cor":"B","exp":"En el Texto 1, Elena despierta cuando reconoce lo que ha perdido; en el Texto 2, Claudia aprende durante una emergencia y cambia sus futuros hábitos. Ambos textos giran alrededor de un momento de reajuste. A solo aplica en parte al segundo. C y D son demasiado absolutas y no reflejan el mensaje real."},{"id":2,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué sugiere mejor el consejo de la madre cuando dice que el tiempo de Elena vale más de lo que cree?","ch":["A) Que Elena debería concentrarse solo en hacer videos de mejor calidad","B) Que la fama digital le está haciendo subestimar el valor de su vida fuera de la pantalla","C) Que la madre piensa que Elena no tiene suficiente talento para redes sociales","D) Que el problema principal de Elena es no saber usar bien su micrófono"],"cor":"B","exp":"La madre no habla de tecnología en términos técnicos; habla del valor del tiempo y de la vida real que Elena está dejando de lado. B recoge ese cambio de perspectiva. A, C y D inventan críticas que la madre nunca hace."},{"id":3,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué función cumple el detalle de que Elena llevaba tres semanas sin llamar a su mejor amiga ni leer un libro?","ch":["A) Sirve como una medida concreta de hasta qué punto sus prioridades se habían distorsionado","B) Demuestra que su mejor amiga vivía muy lejos y no podía visitarla","C) Explica por qué sus seguidores dejaron de crecer tan rápidamente","D) Indica que Elena había decidido tomarse unas vacaciones de las redes"],"cor":"A","exp":"Las tres semanas sin llamar ni leer convierten un problema general en una evidencia concreta. El lector ve exactamente cuánto ha cambiado la vida de Elena. B, C y D añaden causas o consecuencias que el texto no menciona."},{"id":4,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Por qué es importante la frase \"Aunque le costó mucho trabajo al principio\" cerca del final del Texto 1?","ch":["A) Porque muestra que el cambio fue instantáneo y no requirió ningún esfuerzo real","B) Porque deja claro que recuperar una vida más rica fuera de la pantalla fue valioso, pero no fácil al comienzo","C) Porque indica que Elena quería volver a las redes sociales después de unos días","D) Porque demuestra que la madre controlaba todos sus movimientos después de la crisis"],"cor":"B","exp":"El texto no romantiza el cambio; reconoce que separarse de un hábito muy absorbente cuesta. Eso hace que el descubrimiento final resulte más creíble. A contradice el texto. C y D inventan consecuencias adicionales."},{"id":5,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué inferencia es más sólida sobre por qué Elena borra las aplicaciones de redes sociales?","ch":["A) Actúa solamente por miedo a un castigo inmediato de su madre","B) Su decisión nace de un momento de autorreconocimiento, no solo de la presión externa","C) Quiere crear misterio para que sus seguidores la extrañen más","D) Necesita liberar espacio de almacenamiento para grabar videos mejores"],"cor":"B","exp":"La madre le da una advertencia importante, pero Elena cambia de verdad cuando ella misma reconoce la magnitud de lo que ha perdido. Esa conciencia personal sostiene la decisión. A reduce demasiado su agencia. C y D inventan motivaciones ajenas al texto."},{"id":6,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué hace que el problema del móvil en el Texto 2 sea más grave que una simple molestia técnica?","ch":["A) Que Claudia se aburrió durante la espera y por eso se sintió muy frustrada","B) Que la batería baja la deja vulnerable en una situación de carretera cuando necesita pedir ayuda","C) Que el móvil era un modelo viejo y por eso no merecía confianza","D) Que el taller mecánico no aceptaba llamadas desde ciertos teléfonos"],"cor":"B","exp":"El móvil no falla en un contexto trivial: Claudia está detenida al lado de la autopista con una llanta ponchada. Eso convierte la batería casi agotada en un problema de vulnerabilidad real. A minimiza la situación. C y D inventan causas que el texto no menciona."},{"id":7,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué revela mejor la ayuda del conductor que le presta un cargador a Claudia?","ch":["A) Que la tecnología por sí sola resolvió completamente la situación","B) Que la solución surge de la combinación entre ayuda humana y herramientas tecnológicas","C) Que el conductor era mecánico y por eso supo arreglar la rueda en ese momento","D) Que Claudia no había pensado en encender de nuevo el móvil hasta que él se lo dijo"],"cor":"B","exp":"El cargador no reemplaza la acción humana; la hace posible. Sin la ayuda del conductor, Claudia no puede usar el móvil para contactar al mecánico. Eso hace de B la mejor respuesta. A exagera el papel de la tecnología. C y D inventan detalles que no aparecen."},{"id":8,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Por qué importa que el mecánico advierta sobre la velocidad máxima y los conductores que la ignoran?","ch":["A) Porque amplía el problema de una llanta ponchada a un contexto mayor de riesgo vial","B) Porque demuestra que Claudia iba conduciendo demasiado rápido","C) Porque cambia el tema del relato hacia la compra de un carro nuevo","D) Porque sugiere que la llanta se ponchó solamente por exceso de velocidad"],"cor":"A","exp":"El comentario del mecánico coloca la experiencia de Claudia dentro de un entorno más amplio de peligro en carretera. Ya no es solo un incidente individual, sino una llamada de atención sobre conducir con cuidado. B y D convierten una advertencia general en una acusación concreta que el texto no hace. C cambia el enfoque del relato."},{"id":9,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Por qué la familia concluye que Claudia manejó la situación con mucha calma?","ch":["A) Porque arregló la llanta ella sola sin ayuda de nadie","B) Porque, a pesar del susto y de los obstáculos, fue resolviendo el problema paso a paso sin entrar en pánico","C) Porque llegó a su destino exactamente a tiempo y sin ninguna demora","D) Porque ignoró la advertencia del mecánico y siguió conduciendo igual"],"cor":"B","exp":"El texto muestra una cadena ordenada de decisiones: se detiene, busca ayuda, acepta el cargador, llama al mecánico, espera y luego continúa. Esa conducta controlada explica la reacción de su familia. A y C contradicen el relato. D inventa una conducta opuesta a la prudencia que muestra Claudia."},{"id":10,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué mensaje común comparten mejor los finales del Texto 1 y del Texto 2?","ch":["A) Que la mejor solución es abandonar por completo la tecnología","B) Que las experiencias incómodas pueden convertirse en cambios preventivos y más conscientes","C) Que los consejos de adultos siempre deben aceptarse sin prueba alguna","D) Que la amistad es más importante que cualquier tipo de preparación"],"cor":"B","exp":"Elena cambia sus hábitos después de una crisis personal, y Claudia cambia los suyos después de una avería estresante. En ambos casos, la experiencia conduce a una forma más preventiva y consciente de actuar. A y C son demasiado extremas. D introduce una idea secundaria que no organiza los finales."},{"id":11,"sec":"Comprensión","type":"mc","passage":true,"prompt":"¿Qué detalle final muestra con mayor claridad que Claudia aprendió una lección de prevención y no solo de reacción?","ch":["A) Que llama a su familia para contarles lo ocurrido cuando llega","B) Que decide llevar siempre un cargador y revisar las llantas antes de cada viaje largo","C) Que espera treinta minutos junto al carro antes de que llegue el mecánico","D) Que encuentra una gasolinera a dos kilómetros usando el móvil"],"cor":"B","exp":"Ese doble propósito mira hacia el futuro: llevar cargador y revisar llantas antes de salir. No solo resuelve la crisis actual, sino que intenta prevenir otra. A, C y D son detalles del relato, pero no expresan tan claramente esa lección preventiva."},{"id":12,"sec":"Vocabulario en Contexto","type":"mc","passage":true,"prompt":"En el Texto 1: «sus notas empezaron a caer en picada.»\n\nAntes de esta frase, el texto describe que Elena pasaba horas frente a la pantalla y que había dejado de salir con sus amigos. El contexto muestra que algo negativo estaba ocurriendo en su vida académica.\n\nSegún el contexto, ¿qué significa probablemente caer en picada?","ch":["A) mejorar de manera inesperada y muy rápida","B) bajar muy rápido y de forma drástica","C) mantenerse igual sin ningún cambio notable","D) subir lentamente después de mucho esfuerzo"],"cor":"B","exp":"Claves de contexto: Elena pasaba demasiado tiempo en las pantallas y dejaba de hacer otras cosas — esto establece un patrón de deterioro. 'Caer en picada' describe una caída rápida e intensa. La imagen de 'caer' ya sugiere movimiento hacia abajo, y 'en picada' (como un avión que cae en vertical) intensifica esa idea. La opción A (mejorar) contradice el tono negativo del contexto. La opción C (mantenerse igual) contradice el verbo 'caer.' La opción D (subir lentamente) invierte el significado por completo."},{"id":13,"sec":"Vocabulario en Contexto","type":"mc","passage":true,"prompt":"En el Texto 1: «sus seguidores crecían rápidamente y ella estaba muy emocionada.»\n\nElena subía videos a internet y su presencia en las redes sociales se hacía más grande. La palabra «crecían» indica que el número de algo aumentaba.\n\nSegún el contexto, ¿qué son probablemente los seguidores en este caso?","ch":["A) Los profesores que observaban el progreso académico de Elena","B) Las personas que miran el contenido de alguien en las redes sociales","C) Los amigos personales de Elena que vivían cerca de su casa","D) Los patrocinadores que pagaban a Elena por publicar sus videos"],"cor":"B","exp":"Claves de contexto: Elena subía videos a internet, usaba redes sociales, y el número de 'seguidores' crecía — esto sugiere una audiencia digital. En el contexto de redes sociales, 'seguir' a alguien significa suscribirse a su contenido. La opción A (profesores) contradice el contexto digital y personal. La opción C (amigos) contradice el texto, que más adelante dice que Elena dejó de salir con sus amigos — los seguidores son algo diferente. La opción D (patrocinadores) es una conclusión no apoyada por ninguna pista del texto."},{"id":14,"sec":"Vocabulario en Contexto","type":"mc","passage":true,"prompt":"En el Texto 2: «vio que la llanta delantera estaba completamente ponchada.»\n\nAntes de esta frase, el volante empezó a temblar y Claudia detuvo el carro en la autopista. El mecánico tuvo que venir a «arreglar la rueda.»\n\nSegún estas claves de contexto, ¿qué significa probablemente ponchada?","ch":["A) demasiado inflada — con demasiado aire adentro","B) completamente nueva — recién instalada en el carro","C) sin aire — desinflada o rota de manera que no puede usarse","D) demasiado vieja — con mucho desgaste por el uso"],"cor":"C","exp":"Claves de contexto: el volante temblaba (síntoma clásico de llanta desinflada), Claudia tuvo que detenerse, y el mecánico vino a 'arreglar la rueda.' Todos estos detalles apuntan a un daño que impide continuar. La opción A (demasiado inflada) es el problema opuesto — demasiado aire no suele causar la detención total del vehículo. La opción B (nueva) contradice el contexto de emergencia. La opción D (vieja) no explica por qué el volante temblaba de repente ese día en particular."},{"id":15,"sec":"Vocabulario en Contexto","type":"free","passage":true,"prompt":"In Texto 2: «Claudia buscó el número de un taller mecánico en su móvil, pero la batería estaba casi agotada y la pantalla se apagó antes de que pudiera hacer la llamada.»\n\nThe screen turned off and Claudia could not complete her call. She needed to borrow a charger to turn the phone back on.\n\nBased on these context clues, what does agotada most likely mean in English?\n\nWrite your answer in English: ______","acc":["dead","drained","exhausted","empty","depleted","run out","almost dead","nearly dead","used up","finished","out of battery","low","dying","out of charge","run down","discharged","nearly drained","nearly exhausted","nearly depleted","nearly empty"],"disp":"dead / drained / exhausted","exp":"Context: the battery was in such bad shape that the screen shut off mid-task. Claudia needed a charger to turn it back on — confirming the battery had no power left. 'Agotada' comes from 'agotar' — to use up completely, to exhaust a resource. It applies to both people (exhausted/drained) and objects like batteries (dead/depleted). The key context clue is the screen turning off: something partially charged would not go dark that quickly."},{"id":16,"sec":"Vocabulario en Contexto","type":"free","passage":true,"prompt":"En el Texto 2: «Claudia se prometió a sí misma llevar siempre un cargador y revisar las llantas antes de cada viaje largo.»\n\nEl texto muestra que Claudia tomó una decisión firme después de su experiencia difícil. La frase describe un compromiso personal que ella hace consigo misma.\n\n¿Qué significa probablemente «se prometió a sí misma» en este contexto?\n\nEscribe un sinónimo o explicación en español: ______","acc":["decidió","juró","se comprometió","hizo una promesa","tomó una decisión","decidió firmemente","se comprometió consigo misma","se juró","prometió","tomó la decisión","hizo un compromiso","se propuso","se propuso a sí misma","prometió firmemente","se comprometió a","decidió con firmeza","hizo un propósito"],"disp":"decidió / se comprometió / juró","exp":"Claves de contexto: después de una experiencia difícil, Claudia toma una decisión personal y firme sobre sus futuros hábitos. 'Prometerse a sí misma' es hacer una promesa interna — no a otra persona, sino a uno mismo. Los mejores sinónimos en español son: decidió firmemente, se comprometió, se juró. La palabra 'promesa' implica un nivel de seriedad mayor que simplemente 'pensar' o 'querer' — muestra intención y determinación."},{"id":17,"sec":"Estructura del Texto","type":"mc","passage":true,"prompt":"¿Qué estructura textual describe MEJOR el Texto 1?","ch":["A) Secuencia — el texto explica paso a paso cómo crear y subir videos a las redes sociales.","B) Comparación y contraste — el texto compara la vida de Elena con la de otros estudiantes que no usan redes sociales.","C) Causa y efecto — el deseo de fama de Elena causó una cadena de consecuencias negativas que finalmente la llevaron a un cambio positivo.","D) Problema y solución — Elena tenía adicción a las redes sociales y la solución fue que su madre le quitó el micrófono."],"cor":"C","exp":"La estructura dominante es causa y efecto: deseo de fama → horas frente a pantalla → aislamiento y notas bajas → momento de conciencia → decisión de cambiar → vida más rica. La opción A es incorrecta — no hay instrucciones técnicas. La opción B inventa una comparación con otros estudiantes que no existe. La opción D es tentadora porque hay un problema implícito, pero la solución no fue que la madre le quitara el micrófono — fue la propia decisión de Elena al darse cuenta de lo que había perdido. Una 'trampa de agente': el cambio vino de Elena, no de su madre."},{"id":18,"sec":"Estructura del Texto","type":"mc","passage":true,"prompt":"¿Cuáles DOS estructuras textuales aplican MEJOR al Texto 2? (Elige la mejor respuesta.)","ch":["A) Comparación/contraste y secuencia — compara la conducción segura con la peligrosa, y describe los eventos en orden cronológico.","B) Problema/solución y causa/efecto — la avería es el problema central; la ayuda del conductor y el mecánico son la solución; la experiencia causa que Claudia adopte nuevos hábitos permanentes.","C) Secuencia y descripción — el texto lista los eventos en orden y describe detalladamente los problemas del carro.","D) Problema/solución solamente — hay un problema claro (la llanta) y una solución clara (el mecánico), sin efectos adicionales que importen."],"cor":"B","exp":"El Texto 2 combina Problema/Solución (llanta ponchada + móvil sin batería → ayuda del conductor + mecánico → problema resuelto) y Causa/Efecto (la avería causó necesidad de ayuda → el mecánico identificó más problemas → la experiencia causó una promesa de nuevos hábitos). La opción A es tentadora: los eventos SÍ están en orden cronológico y el mecánico SÍ menciona la velocidad peligrosa — pero la Secuencia y la Comparación/Contraste no son las estructuras dominantes del texto. La opción D es demasiado reducida: el texto va mucho más allá de la reparación de la llanta."},{"id":19,"sec":"Inferencia","type":"mc","passage":true,"prompt":"Basándote en el Texto 1, ¿qué podemos inferir sobre lo que valora la madre de Elena?","ch":["A) La madre valora la tecnología y quería que Elena usara mejor sus herramientas digitales para tener más éxito.","B) La madre valora las experiencias del mundo real y las conexiones personales por encima de la fama digital.","C) La madre estaba celosa del éxito de Elena en las redes sociales y quería sabotearlo.","D) La madre pensaba que Elena debía enfocarse solamente en los estudios y no tener tiempo para nada más."],"cor":"B","exp":"Las palabras de la madre — 'Apaga ese micrófono y sal a tomar aire fresco — este tiempo tuyo vale más de lo que crees' — muestran que ella cree que el tiempo de Elena tiene un valor superior al de la fama en línea. 'Salir a tomar aire fresco' es una metáfora de experiencias físicas y reales, no virtuales. La opción A invierte su posición: ella quiere que Elena se aleje de la tecnología, no que la use mejor. La opción C no tiene ningún apoyo en el texto. La opción D exagera — la madre no menciona los estudios en su consejo; habla de valor personal y tiempo, no de calificaciones."},{"id":20,"sec":"Inferencia","type":"mc","passage":true,"prompt":"Basándote en el Texto 2, ¿qué podemos inferir sobre el carácter de Claudia?","ch":["A) Claudia es irresponsable porque no revisó el carro antes de salir ni llevaba cargador.","B) Claudia es alguien que aprende de sus experiencias, acepta la ayuda de otros y toma decisiones para mejorar.","C) Claudia depende demasiado de la tecnología y sin su móvil no habría podido resolver nada.","D) Claudia es impaciente porque llamó a su familia en cuanto llegó a su destino en lugar de descansar primero."],"cor":"B","exp":"El texto muestra que Claudia reaccionó con calma ante una emergencia, aceptó la ayuda del conductor amable, llamó al mecánico con eficiencia, y al final se hizo una promesa personal de mejorar sus hábitos. Su familia también comentó que 'había manejado la situación con mucha calma.' La opción A la juzga duramente por no haber revisado el carro antes — pero el texto no la presenta así; la omisión fue un error, no un rasgo de carácter permanente. La opción C exagera su dependencia tecnológica; el móvil fue una herramienta, no el único recurso. La opción D malinterpreta la llamada a su familia — compartir noticias con la familia es un acto social normal, no impaciencia."}];
+const duration = 25;
+const totalQuestions = 20;
+const passages = {"1":{"label":"Texto 1","title":"La influencer arrepentida","body":"Elena soñaba con ser famosa en las redes sociales. Cada tarde, grababa videos en su cuarto con su cámara web y su micrófono, y los subía a internet con mucho cuidado. Al principio, sus seguidores crecían rápidamente y ella estaba muy emocionada. Sin embargo, con el tiempo, Elena pasaba tantas horas frente a la pantalla que dejó de salir con sus amigos y sus notas empezaron a caer en picada. Su madre le dijo: «Apaga ese micrófono y sal a tomar aire fresco — este tiempo tuyo vale más de lo que crees.» Elena no quería escucharla, pero un día se dio cuenta de que llevaba tres semanas sin llamar a su mejor amiga ni sin leer un libro. Entonces decidió borrar las aplicaciones de sus redes sociales del móvil y guardar más tiempo para las cosas que antes le daban alegría. Aunque le costó mucho trabajo al principio, Elena descubrió que la vida fuera de la pantalla era más rica e interesante de lo que recordaba."},"2":{"label":"Texto 2","title":"La llanta ponchada","body":"El sábado pasado, Claudia conducía por la carretera cuando sintió que el volante empezó a temblar de manera extraña. Detuvo el carro en el lado de la autopista y vio que la llanta delantera estaba completamente ponchada. Claudia buscó el número de un taller mecánico en su móvil, pero la batería estaba casi agotada y la pantalla se apagó antes de que pudiera hacer la llamada. Por suerte, un conductor amable se detuvo y le prestó su cargador portátil para que pudiera encender el móvil de nuevo. Claudia encontró una gasolinera a dos kilómetros, llamó al mecánico y esperó treinta minutos al lado del carro. El mecánico llegó, revisó los frenos y los faros además de la llanta, y le explicó: «Navega con cuidado por esta carretera — la velocidad máxima aquí es setenta, pero muchos conductores la ignoran y provocan accidentes.» Mientras el mecánico arreglaba la rueda, Claudia se prometió a sí misma llevar siempre un cargador y revisar las llantas antes de cada viaje largo. Cuando por fin llegó a su destino, llamó a su familia para contarles lo que había pasado y todos dijeron que había manejado la situación con mucha calma."}};
+const infographicTitle = "Infografía";
+const infographicSrc = "";
+const audioSrc = "";
+const audioTitle = "Audio";
+const audioMeta = "";
+const defaultTopbarTitle = "Lectura Interpretiva";
+const hasMediaQuestions = false;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    })();</script> </body> </html>

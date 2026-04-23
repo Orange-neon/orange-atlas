@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Interpretive 6 | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">Examen XX · Senderos 2 · Lección 5</p> <h1 class="land-title"> Infografía &amp; Audio <br><em>Interpretivos</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>2 fuentes — una pregunta a la vez.</p> <div class="mode-pills"> <div class="mode-pill infographic">📊 Preguntas 1–10 · Infografía</div> <div class="mode-pill audio">🎧 Preguntas 11–20 · Audio</div> </div> <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">2</div> <div class="info-l">fuentes</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Preguntas 1–10: Lee el infográfico con atención — desplázalo para ver todos los datos</li><li>Preguntas 11–20: Escucha el audio de Mateo — puedes reproducirlo cuantas veces quieras</li><li>Una pregunta a la vez — no puedes volver atrás</li><li>Preguntas de vocabulario: escribe una frase corta en inglés con el significado de la palabra</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">Interpretive 6</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta">Mateo · Reseña de auriculares inalámbricos · Opinión personal</div> <audio id="test-audio" controls preload="auto"> <source src="/orange-atlas/assets/mateo.mp3" type="audio/mpeg">
+Tu navegador no soporta el elemento de audio.
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si juntas el dato de que 1 de cada 3 jóvenes sufrió fraude, que 72% reutiliza contraseñas y que 58% nunca revisó su privacidad, ¿qué advertencia central comunica mejor el infográfico?","ch":["A) Que los peligros en línea son raros y suelen afectar solo a usuarios expertos","B) Que muchas amenazas se vuelven más probables porque los hábitos inseguros son comunes, no excepcionales","C) Que el único riesgo serio en internet es olvidar una contraseña","D) Que los jóvenes ya saben protegerse y el problema real son solo los hackers profesionales"],"cor":"B","exp":"El infográfico no presenta el riesgo como algo aislado: muestra amenazas frecuentes y comportamientos cotidianos que aumentan la exposición. B sintetiza mejor esa combinación. A y D contradicen el tono de alerta. C reduce demasiado un panorama mucho más amplio."},{"id":2,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"¿Por qué es especialmente preocupante que el 72% use la misma contraseña en varias cuentas?","ch":["A) Porque si una cuenta cae, esa misma clave puede abrir la puerta a varias otras","B) Porque eso hace imposible recordar la contraseña correcta","C) Porque las plataformas obligan legalmente a compartir la contraseña con amigos","D) Porque una contraseña repetida siempre tiene más de doce caracteres"],"cor":"A","exp":"La preocupación no es solo repetir una clave por pereza, sino el efecto en cadena: una brecha en una cuenta puede comprometer muchas más. A capta esa lógica de vulnerabilidad acumulada. B, C y D inventan consecuencias o condiciones que no aparecen."},{"id":3,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si el phishing es la amenaza más común y los ataques aparecen por redes sociales, mensajes y correo, ¿qué interpretación es más precisa?","ch":["A) Que el riesgo digital suele llegar por canales cotidianos de comunicación, no solo por sitios extraños o poco conocidos","B) Que solo el correo electrónico representa un peligro real para los jóvenes","C) Que las redes sociales casi no tienen relación con los ataques cibernéticos","D) Que el acoso en línea es más frecuente que cualquier forma de engaño digital"],"cor":"A","exp":"La combinación de amenaza principal y canales de ataque sugiere algo importante: el riesgo suele entrar por espacios normales de interacción diaria. A recoge esa idea. B y C contradicen los datos del gráfico de canales. D contradice la barra más alta de amenazas."},{"id":4,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"¿Qué mensaje transmiten juntos el dato de los 4 minutos para vulnerar una contraseña débil y la lista de consejos de protección?","ch":["A) Que la seguridad importa poco porque los ataques exitosos son inevitables","B) Que las decisiones preventivas deben tomarse antes del problema, porque algunos riesgos actúan muy rápido","C) Que cambiar la foto de perfil es más importante que revisar la privacidad","D) Que los hackers solo atacan cuentas con pocas publicaciones"],"cor":"B","exp":"La rapidez del ataque hace que la prevención sea urgente. El infográfico no invita a reaccionar tarde, sino a preparar contraseñas, privacidad y criterio antes de exponerse. B traduce mejor esa idea. A, C y D no se sostienen en los datos."},{"id":5,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"¿Por qué es significativo el dato de que un perfil totalmente público vuelve 10 veces más probable el acoso en línea?","ch":["A) Porque muestra que la configuración de privacidad influye no solo en el robo de datos, sino también en el riesgo social","B) Porque demuestra que todos los perfiles públicos siempre terminan en fraude económico","C) Porque implica que la privacidad no afecta en nada la experiencia digital","D) Porque sugiere que compartir la ubicación es más seguro que publicar fotos"],"cor":"A","exp":"El dato conecta la privacidad con un daño social concreto: el acoso. Eso amplía la idea de seguridad más allá de las contraseñas o del fraude. A es la lectura más completa. B, C y D introducen absolutos o comparaciones que el infográfico no hace."},{"id":6,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"Si una escuela quisiera usar este infográfico para dar un consejo práctico a sus estudiantes, ¿qué recomendación estaría mejor respaldada?","ch":["A) Pasar menos tiempo en internet, pero sin cambiar configuraciones ni contraseñas","B) Enfocarse en hábitos concretos de seguridad: privacidad, contraseñas únicas y sospecha ante mensajes presionantes","C) Prohibir todas las redes sociales porque ningún uso puede ser seguro","D) Confiar en que las plataformas detectarán automáticamente todos los riesgos"],"cor":"B","exp":"El infográfico insiste en conductas concretas: revisar privacidad, no aceptar desconocidos, crear contraseñas fuertes, desconfiar de enlaces y mensajes urgentes. B recoge mejor esa orientación práctica. A deja fuera justo lo más central. C y D son extremos que el material no sostiene."},{"id":7,"sec":"Infografía — Comprensión","type":"mc","media":"infographic","prompt":"¿Qué interpretación general del problema presenta mejor el infográfico?","ch":["A) El verdadero peligro está en usar internet demasiado tiempo, no en cómo se usa","B) El mayor riesgo no es la tecnología en sí, sino la combinación de amenazas reales con hábitos poco protegidos","C) Los jóvenes son víctimas únicamente porque los adultos no entienden las redes sociales","D) La seguridad digital depende casi por completo de tener un teléfono más nuevo"],"cor":"B","exp":"El infográfico combina amenazas externas con decisiones personales que aumentan o reducen la vulnerabilidad. Eso hace que B sea la mejor síntesis. A simplifica demasiado el problema. C y D inventan causas que el material no propone."},{"id":8,"sec":"Infografía — Vocabulario","type":"free","media":"infographic","eng":true,"prompt":"En el infográfico, dentro de la sección «Desconfía de los enlaces sospechosos»:\n\n«El phishing — o suplantación de identidad — ocurre con frecuencia por correo y mensajes.»\n\nThe infographic places «suplantación de identidad» right after «phishing» using a dash — signaling it is an explanation or equivalent term. The section is about fake emails and messages pretending to be something they are not.\n\nBased on context, what does suplantación de identidad most likely mean in English?\n\nWrite a short English phrase: ______","acc":["identity theft","identity fraud","impersonation","identity impersonation","stealing identity","fake identity","pretending to be someone else","identity scam","identity deception","identity spoofing","spoofing","phishing","identity crime","identity stealing"],"disp":"identity theft / impersonation","exp":"Context clues: the term appears as a direct synonym/explanation of 'phishing,' which involves fake emails pretending to be from trusted sources. 'Suplantación' comes from 'suplantar' (to impersonate/replace). 'Identidad' = identity. Together: pretending to be someone else to steal information. Students who recognize 'identidad' as 'identity' can work backward to understand the full phrase. The section header 'Desconfía de los enlaces sospechosos' (Distrust suspicious links) also provides context about deceptive digital communication."},{"id":9,"sec":"Infografía — Vocabulario","type":"free","media":"infographic","eng":true,"prompt":"En el infográfico, en la sección de señales de advertencia:\n\n«Un mensaje te exige actuar de inmediato o amenaza con consecuencias graves. Esta táctica de presión es característica de los estafadores.»\n\nThe infographic describes people who use pressure tactics to trick victims into acting immediately — they send fake urgent messages to steal information or money.\n\nBased on context, what does estafadores most likely mean in English?\n\nWrite a short English phrase: ______","acc":["scammers","fraudsters","con artists","swindlers","cheaters","criminals","hackers","thieves","online criminals","liars","deceivers","tricksters","people who scam","people who cheat","bad actors","cybercriminals"],"disp":"scammers / fraudsters","exp":"Context clues: estafadores use 'tácticas de presión' (pressure tactics), send messages demanding immediate action, and threaten grave consequences. All of these behaviors describe people who deceive others to steal money or information. 'Estafa' = scam/fraud in Spanish; 'estafador' = the person who commits the scam. Students who recognize the word 'estafa' within 'estafadores' can connect it to 'scam.' The broader context of the infographic (online safety, fraud) further confirms this."},{"id":10,"sec":"Infografía — Inferencia","type":"mc","media":"infographic","prompt":"The infographic shows that 63% of teens accept friend requests from strangers, 58% have never checked their privacy settings, and 64% have shared their real-time location with someone who is not a close contact. What can we logically infer from these three statistics together?","ch":["A) Most teenagers are aware of online dangers but choose to ignore them.","B) Social media platforms are designed to make privacy settings impossible to find.","C) A majority of teens engage in behaviors that increase their vulnerability online, possibly without realizing the risk.","D) Teenagers share more personal information online than adults do."],"cor":"C","exp":"The three statistics all point to the same pattern: widespread risky behavior (accepting strangers, ignoring privacy settings, sharing location). Option C captures this without overstating or adding information not in the infographic. Option A adds a claim about awareness that the infographic never states — the data shows behavior, not intent. Option B blames platform design, which is not mentioned. Option D makes a comparison with adults that the infographic never makes."},{"id":11,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Qué establece Mateo como criterio principal de evaluación desde el comienzo de su reseña?","ch":["A) El precio y las promociones del producto","B) La función central del producto: cómo suenan los auriculares cuando los usa","C) La cantidad de colores en que se venden","D) La rapidez con que se abre la caja al comprarlos"],"cor":"B","exp":"La primera impresión fuerte de Mateo es la calidad del sonido. Eso marca desde el inicio que su evaluación se centra en el desempeño del producto en su función principal: escuchar música y audio. A, C y D no organizan la reseña."},{"id":12,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"Cuando Mateo dice que la batería duró todo el día incluso con podcasts y llamadas, ¿qué está sugiriendo realmente?","ch":["A) Que la batería solo funciona bien cuando no se usan funciones exigentes","B) Que el rendimiento se mantiene incluso bajo usos variados y cotidianos, no solo en condiciones ideales","C) Que escuchar podcasts consume menos batería que dejar los auriculares apagados","D) Que las llamadas telefónicas no cuentan como uso real de la batería"],"cor":"B","exp":"La palabra 'incluso' es clave: Mateo está diciendo que la batería respondió bien aun cuando la sometió a actividades distintas y algo exigentes. Eso convierte la duración en una ventaja de uso real, no teórica. A, C y D distorsionan esa idea."},{"id":13,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Cómo presenta Mateo sus dos quejas para que no parezcan defectos decisivos?","ch":["A) Las describe como problemas graves que anulan todas las ventajas del producto","B) Las conecta con situaciones manejables: una se puede prevenir con funda y la otra mejora con la costumbre","C) Las usa para decir que piensa devolver los auriculares de inmediato","D) Las menciona solo para criticar a la tienda donde los compró"],"cor":"B","exp":"Las dos críticas aparecen como inconvenientes controlables, no como fallas destructivas. El estuche resbaladizo se resuelve con una funda, y los controles táctiles son difíciles solo al principio. Eso hace que B sea la mejor lectura. A, C y D exageran o inventan consecuencias."},{"id":14,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Por qué la combinación de ser ligeros y tener sonido excelente justifica que Mateo los recomiende para deportistas y amantes de la música?","ch":["A) Porque une una ventaja de comodidad física con una ventaja de experiencia auditiva","B) Porque demuestra que los auriculares fueron diseñados solo para corredores profesionales","C) Porque implica que no sirven para escuchar otra cosa que no sea música","D) Porque muestra que el estuche de carga es la parte más importante del producto"],"cor":"A","exp":"Mateo relaciona directamente dos necesidades con dos fortalezas: comodidad para moverse y buena calidad de audio para disfrutar lo que se escucha. A recoge esa lógica. B, C y D añaden restricciones o prioridades que el audio no plantea."},{"id":15,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Qué efecto tiene en la reseña que Mateo recomiende comprar una funda protectora para el estuche?","ch":["A) Convierte una queja en un problema sin solución posible","B) Muestra que la principal función de los auriculares es el accesorio extra","C) Presenta la crítica como algo manejable y refuerza que su valoración general sigue siendo positiva","D) Demuestra que los auriculares no pueden usarse sin comprar productos adicionales costosos"],"cor":"C","exp":"Sugerir una funda hace que el defecto del estuche resbaladizo parezca solucionable y relativamente menor. Eso encaja con una reseña mayormente positiva. A y D exageran el problema. B cambia por completo el foco del audio."},{"id":16,"sec":"Audio — Comprensión","type":"mc","media":"audio","prompt":"¿Cuál describe mejor la opinión global de Mateo sobre los auriculares al final de la reseña?","ch":["A) Muy negativa, porque las dos quejas hacen imposible recomendarlos","B) Mayormente positiva, con objeciones menores que no cambian su recomendación final","C) Completamente neutral, porque no toma postura sobre el producto","D) Indecisa, porque nunca aclara para quién podrían servir"],"cor":"B","exp":"Mateo acumula varios elogios, identifica un público claro y termina llamándolos una gran opción. Sus dos críticas existen, pero están presentadas como limitaciones pequeñas y manejables. Por eso B resume mejor su valoración final."},{"id":17,"sec":"Audio — Vocabulario","type":"free","media":"audio","eng":true,"prompt":"En el audio: «el estuche de carga es muy resbaladizo y se me cayó dos veces.»\n\nMateo is describing the charging case — the small container that holds and charges the headphones. He dropped it twice because of this quality.\n\nBased on context, what does resbaladizo most likely mean in English?\n\nWrite a short English phrase: ______","acc":["slippery","slick","hard to hold","hard to grip","smooth","too smooth","very smooth","glossy","slippery to hold","easy to drop","hard to keep","difficult to hold","can't grip it","slides out","slides"],"disp":"slippery / slick / hard to grip","exp":"Context clues: Mateo dropped the charging case twice precisely because it is 'resbaladizo.' The cause-and-effect relationship (resbaladizo → se me cayó) tells you this describes a physical property that causes things to slip from your hands. 'Resbaladizo' comes from 'resbalar' (to slip/slide), which students may recognize from 'resbalarse' (to fall/slip). 'Slippery' is the most direct translation; 'hard to grip' or 'slick' are also strong answers."},{"id":18,"sec":"Audio — Vocabulario","type":"free","media":"audio","eng":true,"prompt":"En el audio: «creo que estos auriculares son perfectos para deportistas y amantes de la música, porque son ligeros y tienen un sonido excelente.»\n\nMateo is explaining why he recommends these headphones specifically for athletes. He pairs the word with 'sonido excelente' as the two key reasons — one about weight, one about sound.\n\nBased on context, what does ligeros most likely mean in English?\n\nWrite a short English phrase: ______","acc":["lightweight","light","not heavy","very light","light weight","light and comfortable","easy to wear","featherlight","feather light","low weight","light on the head","barely weigh anything"],"disp":"lightweight / light","exp":"Context clues: Mateo recommends these for 'deportistas' (athletes) — and the reason he gives is 'porque son ligeros.' For athletes, a product being lightweight is a key selling point. 'Ligero' is the Spanish adjective for light in weight. Students who recognize the pair — athletes + this quality — can deduce it describes weight, not color, size, or price. The contrast with heavy sports equipment or bulky headphones also supports the inference."},{"id":19,"sec":"Audio — Estructura","type":"mc","media":"audio","prompt":"Which text structure BEST describes Mateo's audio?","ch":["A) Cause and Effect — he explains how the headphones caused problems in his daily routine.","B) Compare and Contrast — he compares these headphones to his previous pair.","C) Pros and Cons / Evaluative — he describes positive features and two negatives, then gives a recommendation.","D) Problem / Solution — the headphones had serious problems and he found ways to fix them."],"cor":"C","exp":"Mateo's review follows a classic evaluative structure: positive first impression (sound quality) → more positives (comfort, battery, connectivity) → two complaints (slippery case, touch controls) → recommendation with target audience and practical tip (buy a protective case). He never compares these to a previous pair, doesn't describe problems he had to solve, and the headphones did not cause disruptions to his routine — they mostly impressed him. Option D is tempting because he mentions problems, but problems in an evaluation are different from problems in a problem/solution structure."},{"id":20,"sec":"Audio — Inferencia","type":"mc","media":"audio","prompt":"By the end of the audio, what can we logically infer about Mateo's overall opinion of the headphones?","ch":["A) He regrets the purchase because the slippery case ruined his experience.","B) He is mostly positive about them and would recommend them, despite two minor complaints.","C) He is unsure whether to recommend them because the touch controls are too difficult.","D) He thinks the sound quality alone makes them worth buying at any price."],"cor":"B","exp":"Mateo describes many positives, calls them 'perfectos' for his target audience, and his final line is 'esta es una gran opción' — a great option. His two complaints are presented as minor and manageable (the case issue is solved by buying a cover; the touch controls are only hard 'at first'). Option A overstates the impact of the slippery case. Option C contradicts the audio: he recommends them clearly. Option D is an overstatement — he never mentions price or says sound alone justifies the purchase."}];
+const duration = 25;
+const totalQuestions = 20;
+const passages = null;
+const infographicTitle = "La seguridad en línea";
+const infographicSrc = "/orange-atlas/assets/infografico-seguridad-en-linea.html";
+const audioSrc = "/orange-atlas/assets/mateo.mp3";
+const audioTitle = "Mateo";
+const audioMeta = "Mateo · Reseña de auriculares inalámbricos · Opinión personal";
+const defaultTopbarTitle = "Interpretive 6";
+const hasMediaQuestions = true;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    })();</script> </body> </html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Infográfico — El mundo de los automóviles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0e17;
+  --paper:#faf8f2;
+  --accent:#e8401c;
+  --accent2:#1c6ce8;
+  --accent3:#1cb87a;
+  --accent4:#e8b41c;
+  --mid:#6b6870;
+  --rule:rgba(15,14,23,.12);
+}
+html{background:#e8e4da}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  max-width:900px;
+  margin:2rem auto;
+  padding:0;
+  box-shadow:0 8px 60px rgba(0,0,0,.18);
+}
+
+/* ── HEADER ── */
+.header{
+  background:var(--ink);
+  color:var(--paper);
+  padding:2.8rem 3rem 2.2rem;
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:'';
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,transparent 18px,
+    rgba(255,255,255,.03) 18px,rgba(255,255,255,.03) 19px
+  );
+}
+.header-eyebrow{
+  font-family:'Syne',sans-serif;
+  font-size:.65rem;letter-spacing:.35em;
+  text-transform:uppercase;color:rgba(250,248,242,.45);
+  margin-bottom:.7rem;position:relative;
+}
+.header-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.9rem,5vw,3rem);
+  font-weight:800;line-height:1;
+  position:relative;
+}
+.header-title em{
+  font-style:normal;
+  color:var(--accent4);
+}
+.header-sub{
+  margin-top:.9rem;
+  font-size:.88rem;font-weight:300;
+  color:rgba(250,248,242,.6);
+  max-width:500px;line-height:1.6;
+  position:relative;
+}
+.header-badge{
+  position:absolute;right:3rem;top:50%;transform:translateY(-50%);
+  width:90px;height:90px;
+  border:3px solid var(--accent4);
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;
+  text-align:center;
+  font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(250,248,242,.7);
+  line-height:1.3;
+}
+.header-badge strong{
+  font-size:1.4rem;font-weight:800;color:var(--accent4);display:block;
+}
+
+/* ── BODY ── */
+.body{padding:2.5rem 3rem 3rem}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-family:'Syne',sans-serif;
+  font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--mid);border-bottom:1px solid var(--rule);
+  padding-bottom:.4rem;margin-bottom:1.4rem;
+}
+
+/* ── BIG STAT ROW ── */
+.big-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);
+  border:1px solid var(--rule);
+  margin-bottom:2.5rem;
+}
+.big-stat{
+  background:var(--paper);
+  padding:1.5rem 1.2rem 1.3rem;
+  position:relative;
+}
+.big-stat::after{
+  content:attr(data-label);
+  position:absolute;top:.7rem;right:.8rem;
+  font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mid);font-weight:500;
+}
+.big-stat-n{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,6vw,3.8rem);
+  font-weight:800;line-height:1;
+  display:block;
+}
+.big-stat-desc{
+  font-size:.8rem;font-weight:300;
+  color:var(--mid);margin-top:.35rem;line-height:1.45;
+}
+.c-red{color:var(--accent)}
+.c-blue{color:var(--accent2)}
+.c-green{color:var(--accent3)}
+.c-yellow{color:var(--accent4)}
+
+/* ── TWO COLUMN MIDDLE ── */
+.mid-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+
+/* ── COMMANDS PANEL ── */
+.commands-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1.1rem;
+}
+.command-item{
+  display:flex;align-items:flex-start;gap:.75rem;
+  margin-bottom:.9rem;
+  padding:.75rem .85rem;
+  border:1px solid var(--rule);
+  background:rgba(15,14,23,.02);
+  position:relative;
+}
+.command-item::before{
+  content:attr(data-num);
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:1.05rem;
+  min-width:1.4rem;
+  color:var(--rule);
+  line-height:1;
+  margin-top:.05rem;
+}
+.command-verb{
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:.88rem;
+  display:block;
+  margin-bottom:.15rem;
+}
+.command-detail{
+  font-size:.75rem;
+  color:var(--mid);
+  line-height:1.45;
+}
+
+/* ── BAR CHART ── */
+.bar-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1.1rem;
+}
+.bar-item{margin-bottom:.85rem}
+.bar-label{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.78rem;margin-bottom:.3rem;
+}
+.bar-label span:last-child{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;
+}
+.bar-track{
+  height:10px;background:rgba(15,14,23,.08);border-radius:2px;overflow:hidden;
+}
+.bar-fill{
+  height:100%;border-radius:2px;
+  animation:barGrow .8s ease forwards;
+  transform-origin:left;
+}
+@keyframes barGrow{from{width:0%}to{width:var(--w)}}
+
+/* ── DONUT ── */
+.donut-wrap{text-align:center}
+.donut-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1rem;
+}
+.donut-svg{display:block;margin:0 auto}
+.donut-legend{
+  display:flex;flex-direction:column;gap:.5rem;
+  margin-top:1rem;font-size:.76rem;
+  text-align:left;
+}
+.legend-item{display:flex;align-items:center;gap:.5rem}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── CALLOUT BOXES ── */
+.callouts{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem}
+.callout{
+  border-left:3px solid;
+  padding:.9rem 1rem .8rem;
+  background:rgba(15,14,23,.03);
+}
+.callout-num{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;line-height:1;
+  margin-bottom:.25rem;
+}
+.callout-text{font-size:.78rem;color:var(--mid);line-height:1.5}
+
+/* ── TIMELINE ── */
+.timeline-title{
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;
+  margin-bottom:1.1rem;
+}
+.timeline{position:relative;padding-left:1.8rem}
+.timeline::before{
+  content:'';position:absolute;left:.4rem;top:.4rem;bottom:.4rem;
+  width:2px;background:var(--rule);
+}
+.tl-item{position:relative;margin-bottom:1rem}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-1.42rem;top:.25rem;
+  width:12px;height:12px;border-radius:50%;
+  border:2px solid var(--paper);
+  box-shadow:0 0 0 1px currentColor;
+}
+.tl-time{
+  font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--mid);
+  margin-bottom:.1rem;
+}
+.tl-desc{font-size:.8rem;line-height:1.5;color:var(--ink)}
+
+/* ── ALERT BANNER ── */
+.alert-banner{
+  background:var(--accent);
+  color:var(--paper);
+  padding:.75rem 1.2rem;
+  display:flex;align-items:center;gap:.9rem;
+  margin-bottom:2.5rem;
+  font-size:.82rem;
+  line-height:1.5;
+}
+.alert-icon{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:1.1rem;
+  flex-shrink:0;
+  border:2px solid rgba(250,248,242,.5);
+  width:32px;height:32px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.alert-banner strong{font-weight:700}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--ink);color:rgba(250,248,242,.45);
+  font-size:.62rem;letter-spacing:.05em;
+  padding:.9rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer strong{color:rgba(250,248,242,.7)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-eyebrow">Infográfico · Unidad 4 · Los transportes</p>
+  <h1 class="header-title">El mundo de los <em>automóviles</em></h1>
+  <p class="header-sub">¿Cuánto sabes sobre los carros que usamos cada día? Datos importantes sobre la industria automotriz, la seguridad vial y el futuro de los vehículos eléctricos.</p>
+  <div class="header-badge">
+    <strong>1.400M</strong>
+    carros en<br>el mundo
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- BIG 3 STATS -->
+  <p class="sec-label">Datos principales</p>
+  <div class="big-stats">
+    <div class="big-stat" data-label="producción">
+      <span class="big-stat-n c-yellow">85M</span>
+      <p class="big-stat-desc">de vehículos nuevos se producen cada año en todo el mundo — eso es más de 230.000 carros por día</p>
+    </div>
+    <div class="big-stat" data-label="eléctricos">
+      <span class="big-stat-n c-green">18%</span>
+      <p class="big-stat-desc">de todos los carros vendidos en 2024 son eléctricos — un número que crece rápidamente cada año</p>
+    </div>
+    <div class="big-stat" data-label="accidentes">
+      <span class="big-stat-n c-red">1,35M</span>
+      <p class="big-stat-desc">personas mueren cada año en accidentes de tráfico en el mundo, según la Organización Mundial de la Salud</p>
+    </div>
+  </div>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">
+    <div class="alert-icon">!</div>
+    <span><strong>Dato importante:</strong> Los accidentes de tráfico son la primera causa de muerte entre los jóvenes de 15 a 29 años en todo el mundo. Usar el cinturón de seguridad reduce el riesgo de muerte en un 45%.</span>
+  </div>
+
+  <!-- MIDDLE ROW: commands + bar chart -->
+  <div class="mid-row">
+
+    <!-- COMMANDS / IMPERATIVES -->
+    <div>
+      <p class="commands-title">Conduce con seguridad — cinco reglas esenciales</p>
+
+      <div class="command-item" data-num="01">
+        <div>
+          <span class="command-verb c-yellow">Siempre usa el cinturón de seguridad.</span>
+          <span class="command-detail">El cinturón es la protección más importante dentro de un carro. Todos los pasajeros deben usarlo, sin excepción.</span>
+        </div>
+      </div>
+
+      <div class="command-item" data-num="02">
+        <div>
+          <span class="command-verb c-red">Nunca uses el teléfono mientras conduces.</span>
+          <span class="command-detail">Enviar un mensaje de texto mientras conduces aumenta el riesgo de accidente 23 veces. Mantén los ojos en el camino.</span>
+        </div>
+      </div>
+
+      <div class="command-item" data-num="03">
+        <div>
+          <span class="command-verb c-blue">Respeta los límites de velocidad.</span>
+          <span class="command-detail">La velocidad excesiva es responsable del 30% de los accidentes mortales. Conduce despacio en zonas escolares y residenciales.</span>
+        </div>
+      </div>
+
+      <div class="command-item" data-num="04">
+        <div>
+          <span class="command-verb c-green">Revisa tu carro regularmente.</span>
+          <span class="command-detail">Verifica los frenos, las llantas y las luces cada mes. Un carro bien mantenido es un carro más seguro para todos.</span>
+        </div>
+      </div>
+
+      <div class="command-item" data-num="05">
+        <div>
+          <span class="command-verb c-yellow">No conduzcas si estás cansado.</span>
+          <span class="command-detail">La fatiga al volante causa el 20% de los accidentes graves. Si tienes sueño, detente y descansa antes de continuar.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAR CHART: marcas más vendidas -->
+    <div>
+      <p class="bar-title">Las marcas de carros más vendidas del mundo</p>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Toyota</span>
+          <span class="c-red">10,5M</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:100%;background:var(--accent)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Volkswagen</span>
+          <span class="c-blue">9,2M</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:88%;background:var(--accent2)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Hyundai / Kia</span>
+          <span class="c-yellow">7,3M</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:70%;background:var(--accent4)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>General Motors</span>
+          <span class="c-green">6,2M</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:59%;background:var(--accent3)"></div>
+        </div>
+      </div>
+
+      <div class="bar-item">
+        <div class="bar-label">
+          <span>Ford</span>
+          <span>4,4M</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="--w:42%;background:var(--mid)"></div>
+        </div>
+      </div>
+
+      <!-- DONUT below bar chart -->
+      <div class="donut-wrap" style="margin-top:1.8rem">
+        <p class="donut-title">¿Qué tipo de combustible prefieren?</p>
+        <svg class="donut-svg" width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="52" fill="none" stroke="#eee" stroke-width="24"/>
+          <!-- Gasolina: 52% → 2π×52×0.52 ≈ 169.8 -->
+          <circle cx="75" cy="75" r="52" fill="none"
+            stroke="#e8b41c" stroke-width="24"
+            stroke-dasharray="169.8 156.7"
+            stroke-dashoffset="81.7"
+            transform="rotate(-90 75 75)"/>
+          <!-- Eléctrico: 18% → 58.8 -->
+          <circle cx="75" cy="75" r="52" fill="none"
+            stroke="#1cb87a" stroke-width="24"
+            stroke-dasharray="58.8 267.7"
+            stroke-dashoffset="-88.1"
+            transform="rotate(-90 75 75)"/>
+          <!-- Híbrido: 15% → 49 -->
+          <circle cx="75" cy="75" r="52" fill="none"
+            stroke="#1c6ce8" stroke-width="24"
+            stroke-dasharray="49 277.5"
+            stroke-dashoffset="-146.9"
+            transform="rotate(-90 75 75)"/>
+          <!-- Diésel: 15% → 49 -->
+          <circle cx="75" cy="75" r="52" fill="none"
+            stroke="#e8401c" stroke-width="24"
+            stroke-dasharray="49 277.5"
+            stroke-dashoffset="-195.9"
+            transform="rotate(-90 75 75)"/>
+          <text x="75" y="70" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="#0f0e17">Tipo de</text>
+          <text x="75" y="82" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="#0f0e17">motor</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--accent4)"></div>
+            <span><strong>52%</strong> — Gasolina</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--accent3)"></div>
+            <span><strong>18%</strong> — Eléctrico</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--accent2)"></div>
+            <span><strong>15%</strong> — Híbrido</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--accent)"></div>
+            <span><strong>15%</strong> — Diésel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALLOUT BOXES -->
+  <p class="sec-label">Datos adicionales</p>
+  <div class="callouts">
+    <div class="callout" style="border-color:var(--accent4)">
+      <div class="callout-num c-yellow">$48.000</div>
+      <p class="callout-text">es el precio promedio de un carro nuevo en los Estados Unidos en 2024. Hace diez años, el precio promedio era de solo $32.000.</p>
+    </div>
+    <div class="callout" style="border-color:var(--accent)">
+      <div class="callout-num c-red">23×</div>
+      <p class="callout-text">más probable que tengas un accidente si envías mensajes de texto mientras conduces. Es la distracción más peligrosa al volante.</p>
+    </div>
+    <div class="callout" style="border-color:var(--accent3)">
+      <div class="callout-num c-green">$600</div>
+      <p class="callout-text">al año es lo que ahorra una persona que tiene un carro eléctrico en comparación con un carro de gasolina en costos de combustible.</p>
+    </div>
+    <div class="callout" style="border-color:var(--accent2)">
+      <div class="callout-num c-blue">12 años</div>
+      <p class="callout-text">es la edad promedio de los carros en las carreteras de los Estados Unidos. Muchas personas prefieren reparar su carro en vez de comprar uno nuevo.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE: historia del automóvil -->
+  <p class="sec-label">La historia del automóvil — momentos importantes</p>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent4)"></div>
+      <p class="tl-time">1886 — El primer automóvil</p>
+      <p class="tl-desc">Karl Benz inventó el primer carro con motor de gasolina en Alemania. Tenía solo <strong>tres ruedas</strong> y podía alcanzar 16 kilómetros por hora.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent)"></div>
+      <p class="tl-time">1908 — El Ford Modelo T</p>
+      <p class="tl-desc">Henry Ford creó el Modelo T, el primer carro <strong>accesible para la clase media</strong>. Su sistema de producción en masa cambió la industria para siempre.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent2)"></div>
+      <p class="tl-time">1959 — El cinturón de seguridad</p>
+      <p class="tl-desc">Volvo inventó el cinturón de seguridad de tres puntos y decidió <strong>compartir la patente gratis</strong> con todas las compañías para salvar vidas.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent3)"></div>
+      <p class="tl-time">1997 — El primer híbrido moderno</p>
+      <p class="tl-desc">Toyota lanzó el Prius en Japón — el primer carro <strong>híbrido producido en masa</strong>. Combinaba un motor de gasolina con un motor eléctrico.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent4)"></div>
+      <p class="tl-time">2012 — Tesla cambia el mercado</p>
+      <p class="tl-desc">Tesla lanzó el Model S, un carro eléctrico de lujo con más de <strong>400 kilómetros de autonomía</strong>. Demostró que los carros eléctricos pueden ser rápidos y elegantes.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="color:var(--accent2)"></div>
+      <p class="tl-time">2024–2025 — La era de los carros autónomos</p>
+      <p class="tl-desc">Empresas como Waymo y Cruise ofrecen <strong>taxis sin conductor</strong> en ciudades de los Estados Unidos. El futuro de la conducción autónoma ya está aquí.</p>
+    </div>
+
+  </div>
+
+</div><!-- /body -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Fuentes: <strong>Organización Mundial de la Salud, Asociación Internacional de Fabricantes de Automóviles</strong> · Datos de 2024</span>
+  <span>Unidad 4 · Los transportes</span>
+</div>
+
+</body>
+</html>

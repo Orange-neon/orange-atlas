@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen VIII — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+  --border:rgba(255,255,255,0.07);
+  --text:#ccccd8;--dim:#3e3e52;
+  --accent:#a78bfa;--accentd:#7c3aed;
+  --green:#34d399;--red:#f87171;
+  --warn:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+/* ══ SCREENS ══ */
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ══ LANDING ══ */
+#s-landing{
+  align-items:center;justify-content:center;padding:3rem 1.5rem;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 80% 70%,rgba(52,211,153,0.05) 0%,transparent 50%);
+}
+.land-inner{max-width:580px;width:100%;text-align:center}
+.land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+.land-title{font-family:'Lora',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+.land-title em{font-style:italic;color:var(--accent)}
+.land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+.land-sub strong{color:#888;font-weight:500}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+.info-card{
+  background:var(--s1);border:1px solid var(--border);border-radius:.6rem;
+  padding:1.1rem .8rem;text-align:center;
+}
+.info-n{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+.rules-box{
+  background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+  border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+  font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+}
+.rules-box li{margin-left:1rem;margin-bottom:.15rem}
+.rules-box strong{color:#a0a0c8;font-weight:600}
+
+.btn-main{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);
+  color:#fff;border:none;padding:1rem 3.5rem;border-radius:.45rem;
+  font-size:.88rem;font-weight:600;cursor:pointer;letter-spacing:.1em;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
+  box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+/* ══ EXAM SCREEN ══ */
+#s-exam{flex-direction:column}
+
+/* top bar */
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2rem;background:rgba(6,6,12,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;flex-shrink:0;
+}
+.tb-left{display:flex;flex-direction:column}
+.tb-qnum{font-family:'Lora',serif;font-size:.95rem;font-weight:700;color:#fff}
+.tb-qof{font-size:.6rem;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+.tb-timer{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:500;
+  color:var(--accent);transition:color .3s;
+}
+.tb-timer.warn{color:var(--warn)}
+.tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-icon{font-size:.9rem}
+
+/* progress */
+#progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+#progbar{height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0%;transition:width .4s}
+
+/* question area */
+#qarea{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.5rem 3rem;
+}
+.qwrap{max-width:700px;width:100%}
+
+/* type badge */
+.qtype-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+}
+
+/* section label */
+.qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* passage box */
+.passage-card{
+  background:var(--s1);border:1px solid rgba(52,211,153,.12);
+  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  font-size:.87rem;color:#888;line-height:2.1;
+  font-family:'Lora',serif;font-style:italic;
+}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+
+/* prompt */
+.qprompt{
+  font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
+  color:#ddd;line-height:1.85;margin-bottom:1.4rem;
+  white-space:pre-line;
+}
+.qpool{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:.35rem;padding:.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+  color:#bbb;letter-spacing:.05em;margin-bottom:1rem;
+}
+
+/* choices */
+.choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.choice-btn{
+  text-align:left;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+  padding:.75rem 1rem;font-size:.88rem;color:#888;
+  cursor:pointer;transition:all .13s;line-height:1.5;
+  font-family:'Inter',sans-serif;
+}
+.choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+.choice-btn.sel{
+  border-color:rgba(167,139,250,.55);color:#ede9fe;
+  background:rgba(167,139,250,.08);
+}
+
+/* free input */
+.free-wrap{margin-bottom:1.4rem}
+.free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.free-input{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+  padding:.8rem 1rem;font-size:1rem;color:var(--text);
+  font-family:'IBM Plex Mono',monospace;outline:none;
+  letter-spacing:.04em;transition:border-color .2s,background .2s;
+}
+.free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+
+/* next button */
+.btn-next{
+  background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+  padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+  cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all .2s;width:100%;
+}
+.btn-next.ready{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+  border-color:transparent;cursor:pointer;
+  box-shadow:0 0 30px rgba(109,40,217,.3);
+}
+.btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+.btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+/* question transition */
+.qwrap{animation:qfade .35s ease}
+@keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ RESULTS SCREEN ══ */
+#s-results{flex-direction:column}
+
+#res-header{
+  background:var(--s1);border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem;text-align:center;flex-shrink:0;
+}
+.res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+.res-score{font-family:'Lora',serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+.res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+.res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+.res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:'IBM Plex Mono',monospace}
+
+#res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+.res-q{
+  background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;
+  margin-bottom:.8rem;border:1px solid var(--border);
+}
+.res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+.res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+.res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.res-num{
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+.res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+.res-prompt{font-family:'Lora',serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+.res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+.res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:'IBM Plex Mono',monospace}
+.res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+.res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+.res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+.res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+.res-exp-btn{
+  background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+  padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;
+  margin-left:2.1rem;transition:all .13s;
+}
+.res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+.res-exp-box{
+  display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+}
+.res-exp-box.open{display:block}
+
+/* mc reveal */
+.res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+.res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+.res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+.res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+/* timeout banner */
+#timeout-banner{
+  display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+  border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+  text-align:center;margin-bottom:1.5rem;
+}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+@media(max-width:540px){
+  #topbar{padding:.6rem 1rem}
+  .tb-timer{font-size:1.1rem}
+  .info-grid{grid-template-columns:repeat(3,1fr)}
+  .info-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div class="screen active" id="s-landing">
+<div class="land-inner">
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen X</p>
+  <h1 class="land-title">Lista<br><em>Actualizada</em></h1>
+  <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-n">20</div>
+      <div class="info-l">preguntas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n" style="color:var(--warn)">17:00</div>
+      <div class="info-l">minutos</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n">5</div>
+      <div class="info-l">tipos</div>
+    </div>
+  </div>
+
+  <div class="rules-box">
+    <strong>Reglas del examen:</strong>
+    <ul>
+      <li>Una pregunta a la vez — no puedes volver atrás</li>
+      <li>El examen termina automáticamente cuando el tiempo llega a cero</li>
+      <li>Las respuestas libres se evalúan al final</li>
+      <li>No hay pistas sobre el verbo ni el tiempo en las conjugaciones</li>
+    </ul>
+  </div>
+
+  <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+</div>
+</div>
+
+<!-- ══════════ EXAM ══════════ -->
+<div class="screen" id="s-exam">
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-qnum">Lista Actualizada</div>
+      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+    </div>
+    <div class="tb-timer" id="timer">
+      <span class="timer-icon">⏱</span>
+      <span id="tdisp">17:00</span>
+    </div>
+  </div>
+  <div id="progbar-wrap"><div id="progbar"></div></div>
+  <div id="qarea">
+    <div class="qwrap" id="qwrap"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div class="screen" id="s-results">
+  <div id="res-header">
+    <div class="res-kicker" id="res-kicker">Resultado Final</div>
+    <div class="res-score" id="res-score"></div>
+    <div class="res-pct" id="res-pct"></div>
+    <div class="res-msg" id="res-msg"></div>
+    <div class="res-time" id="res-time"></div>
+  </div>
+  <div id="res-body">
+    <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+    <div id="res-list"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// PASSAGE
+// ══════════════════════════════════════════════
+const PASSAGE = `El jueves por la tarde, Carlos quería grabar un video para sus redes sociales. Primero usó la cámara web de su ordenador, pero los altavoces hacían un ruido raro. Luego intentó textear a su amigo para pedirle ayuda, pero el móvil estaba lento y los mensajes no llegaban. Por fin, grabó el video con la cámara digital. Lo editó, borró las partes malas y lo subió a internet. Después, revisó su correo y encontró diez mensajes de correo basura. Los borró todos. Al final del día, guardó todos los archivos en su memoria USB para no perderlos.`;
+
+// ══════════════════════════════════════════════
+// NORMALIZE & CHECK
+// ══════════════════════════════════════════════
+const nm = s => (s||"").toLowerCase().trim()
+  .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^a-z\s]/g,"").replace(/\s+/g," ");
+const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+// ══════════════════════════════════════════════
+// QUESTIONS  — all words from the updated vocab list
+// ══════════════════════════════════════════════
+const QS = [
+
+  // 1 — El Intruso (MC)
+  { id:1, sec:"El Intruso", type:"mc",
+    pool:"la cámara web · la cámara digital · el micrófono · el volante",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) la cámara web — es la única que se usa solo con la computadora.",
+        "B) la cámara digital — es la única que funciona de forma independiente.",
+        "C) el micrófono — es el único que capta sonido, no imagen.",
+        "D) el volante — los otros tres son dispositivos tecnológicos."],
+    cor:"D",
+    exp:"La cámara web, la cámara digital y el micrófono son todos dispositivos tecnológicos usados para capturar sonido o imagen. El volante es el control de dirección del automóvil — no tiene ninguna relación con la tecnología. Es el intruso de dominio." },
+
+  // 2 — El Intruso (MC)
+  { id:2, sec:"El Intruso", type:"mc",
+    pool:"los archivos · la memoria USB · los íconos · los frenos",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) los archivos — son los únicos que contienen información.",
+        "B) la memoria USB — es el único dispositivo físico de almacenamiento.",
+        "C) los íconos — son los únicos que son imágenes en pantalla.",
+        "D) los frenos — los otros tres son del mundo de la computadora."],
+    cor:"D",
+    exp:"Los archivos, la memoria USB y los íconos son todos del dominio informático. Los frenos son el sistema de frenado del automóvil — del dominio automovilístico. Es el intruso de dominio sin ambigüedad." },
+
+  // 3 — El Intruso (MC)
+  { id:3, sec:"El Intruso", type:"mc",
+    pool:"textear · navegar · chatear · aparcar",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) textear — es el único que se hace exclusivamente desde el móvil.",
+        "B) navegar — es el único que describe moverse por internet.",
+        "C) chatear — es el único que requiere otra persona en tiempo real.",
+        "D) aparcar — los otros tres son actividades digitales."],
+    cor:"D",
+    exp:"Textear, navegar y chatear son acciones del mundo digital — se hacen con el móvil o la computadora. Aparcar significa estacionar el carro — es del dominio automovilístico. Es el intruso semántico." },
+
+  // 4 — El Intruso (MC)
+  { id:4, sec:"El Intruso", type:"mc",
+    pool:"el correo basura · las redes sociales · la inteligencia artificial · la bocina",
+    prompt:"¿Cuál es el intruso?",
+    ch:["A) el correo basura — es el único que llega sin ser pedido.",
+        "B) las redes sociales — son las únicas para compartir con amigos.",
+        "C) la inteligencia artificial — es la única que describe una tecnología, no un servicio.",
+        "D) la bocina — los otros tres son del mundo digital o tecnológico."],
+    cor:"D",
+    exp:"El correo basura, las redes sociales y la inteligencia artificial son todos del dominio digital y tecnológico. La bocina es el instrumento de sonido del automóvil — del dominio automovilístico. Es el intruso de dominio." },
+
+  // 5 — Comprensión Lectora (MC)
+  { id:5, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Por qué Carlos no usó la cámara web para grabar el video final?",
+    ch:["A) Porque la cámara web estaba rota.",
+        "B) Porque los altavoces hacían un ruido raro.",
+        "C) Porque el ordenador estaba apagado.",
+        "D) Porque el micrófono no funcionaba."],
+    cor:"B",
+    exp:"El texto dice: 'usó la cámara web de su ordenador, pero los altavoces hacían un ruido raro.' Ese fue el problema que lo obligó a cambiar a la cámara digital. La cámara web no estaba rota — el problema era el sonido de los altavoces." },
+
+  // 6 — Comprensión Lectora (MC)
+  { id:6, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Qué hizo Carlos con sus archivos al final del día?",
+    ch:["A) Los subió a sus redes sociales.",
+        "B) Los borró porque eran correo basura.",
+        "C) Los guardó en su memoria USB.",
+        "D) Los imprimió para tenerlos en papel."],
+    cor:"C",
+    exp:"El texto dice: 'guardó todos los archivos en su memoria USB para no perderlos.' No los subió a redes sociales (eso lo hizo con el video), no los borró, y no los imprimió — los guardó en la memoria USB como respaldo." },
+
+  // 7 — ¿Qué palabra es?
+  { id:7, sec:"¿Qué palabra es?", type:"free",
+    prompt:"Las pequeñas imágenes o dibujos que ves en la pantalla de la computadora y que representan programas o archivos.",
+    acc:["los iconos","iconos","los íconos","íconos"],
+    disp:"los íconos",
+    exp:"Los íconos son las imágenes pequeñas en la interfaz de la computadora que representan programas, carpetas o archivos. Haces clic en ellos para abrirlos. No confundir con los archivos (el contenido en sí) ni con la pantalla (donde se muestran)." },
+
+  // 8 — ¿Qué palabra es?
+  { id:8, sec:"¿Qué palabra es?", type:"free",
+    prompt:"Escribir mensajes cortos desde el móvil para comunicarte con alguien.",
+    acc:["textear"],
+    disp:"textear",
+    exp:"Textear es el verbo que describe el acto de enviar mensajes de texto desde el móvil. 'Mensajes cortos desde el móvil' lo distingue de chatear (que puede hacerse también desde la computadora) y de llamar (que es por voz, no texto)." },
+
+  // 9 — ¿Qué palabra es?
+  { id:9, sec:"¿Qué palabra es?", type:"free",
+    prompt:"La tecnología que permite a las computadoras aprender, pensar y resolver problemas como si fueran personas.",
+    acc:["la inteligencia artificial","inteligencia artificial","la IA","IA","ia"],
+    disp:"la inteligencia artificial / IA",
+    exp:"La inteligencia artificial (IA) es la rama de la informática que desarrolla sistemas capaces de aprender y razonar. 'Aprender, pensar y resolver problemas como personas' describe exactamente la IA. También se acepta la abreviación IA." },
+
+  // 10 — ¿Qué palabra es?
+  { id:10, sec:"¿Qué palabra es?", type:"free",
+    prompt:"Los dispositivos conectados a la computadora que producen el sonido — la música, los videos y las videollamadas se escuchan a través de ellos.",
+    acc:["los altavoces","altavoces"],
+    disp:"los altavoces",
+    exp:"Los altavoces son los dispositivos de salida de audio de la computadora. 'Producen el sonido' y 'se escuchan a través de ellos' los distinguen del micrófono (que capta sonido, no lo produce) y de la cámara web (que captura imagen). Siempre en plural: los altavoces." },
+
+  // 11 — Conjugación: pretérito yo
+  { id:11, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Ayer ______ todas mis fotos del viaje en la memoria USB antes de formatear la computadora.",
+    acc:["guarde","guardé"],
+    disp:"guardé",
+    exp:"Pretérito, primera persona singular de 'guardar' (regular -ar). 'Ayer' confirma pretérito. Yo guardé → terminación -é. Sin tilde ('guarde') es presente de subjuntivo — incorrecto aquí. El contexto 'antes de formatear' indica una acción puntual y completada." },
+
+  // 12 — Conjugación: pretérito él
+  { id:12, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Mi hermano ______ el video con su cámara digital y después lo editó en la computadora.",
+    acc:["grabo","grabó"],
+    disp:"grabó",
+    exp:"Pretérito, tercera persona singular de 'grabar' (regular -ar). El sujeto es 'mi hermano' (él). La secuencia 'grabó... y después lo editó' muestra dos acciones pasadas y completadas → pretérito. Él grabó → terminación -ó. Sin tilde ('grabo') es primera persona del presente — incorrecto." },
+
+  // 13 — Conjugación: imperfecto tú
+  { id:13, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Cuando eras estudiante, ¿______ mucho por las noches para hacer los trabajos de la escuela?",
+    acc:["navegabas","navegabas"],
+    disp:"navegabas",
+    exp:"Imperfecto, segunda persona singular (tú) de 'navegar' (regular -ar → -abas). 'Cuando eras estudiante' establece un contexto habitual en el pasado → imperfecto. Tú navegabas → terminación -abas. 'Navegaste' (pretérito) indicaría una sola vez específica, pero la pregunta es sobre un hábito general." },
+
+  // 14 — Conjugación: mandato tú
+  { id:14, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Tu amigo no puede escucharte en la videollamada. Le dices: «______ tus altavoces — creo que están apagados.»",
+    acc:["revisa","prende","enciende"],
+    disp:"revisa / prende",
+    exp:"Mandato afirmativo de tú. El contexto pide hacer algo con los altavoces. Tres verbos del vocabulario son válidos: 'revisar' → revisa (comprobar que funcionen), 'prender' → prende (encenderlos), 'encender' → enciende (sinónimo de prender). Todos son mandatos afirmativos de tú correctos para esta situación." },
+
+  // 15 — Conjugación: pretérito nosotros
+  { id:15, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Ayer mis compañeros y yo ______ toda la presentación y la subimos al sitio web de la clase.",
+    acc:["grabamos"],
+    disp:"grabamos",
+    exp:"Pretérito, primera persona plural (nosotros) de 'grabar' (regular -ar). 'Ayer' confirma pretérito. La forma nosotros del pretérito de -ar es -amos: grabamos. La trampa es que 'grabamos' es idéntica en presente y pretérito — solo 'ayer' confirma que es pretérito. El contexto 'y la subimos' (también pretérito) lo corrobora." },
+
+  // 16 — Conjugación: imperfecto ella
+  { id:16, sec:"Conjugación en Contexto", type:"free",
+    prompt:"Antes de tener cámara digital, mi madre siempre ______ las fotos de la familia con una cámara de rollo.",
+    acc:["grababa","tomaba","sacaba"],
+    disp:"grababa / tomaba",
+    exp:"Imperfecto, tercera persona singular (ella) de verbos de acción habitual. 'Antes de tener' + 'siempre' = hábito en el pasado → imperfecto. Terminación -aba. Verbos válidos del vocabulario: 'grabar' → grababa. También son naturales 'tomar' o 'sacar' (fotos), aunque si la respuesta viene del vocabulario, 'grababa' es la forma más directa." },
+
+  // 17 — Contexto Conversacional
+  { id:17, sec:"Contexto Conversacional", type:"free",
+    prompt:"— ¿Puedes limpiar mi correo? Tengo cientos de mensajes que no pedí.\n— Claro, voy a ______ todo el ______. No sirve para nada.\n— Gracias, así es más fácil encontrar los mensajes importantes.",
+    acc:["borrar el correo basura","borrar","eliminar","borrar los mensajes"],
+    disp:"borrar el correo basura",
+    exp:"El contexto — 'mensajes que no pedí' y 'no sirve para nada' — describe el correo basura (spam). La acción correcta es 'borrar' (del vocabulario). Se acepta cualquier respuesta que incluya 'borrar' o 'eliminar' y capture la idea de limpiar los mensajes no deseados." },
+
+  // 18 — Contexto Conversacional
+  { id:18, sec:"Contexto Conversacional", type:"free",
+    prompt:"— El texto de mi documento está todo desordenado. Necesito cambiar el tipo de letra y el formato.\n— Usa ese programa — es perfecto para ______.\n— Ah, ¿sí? ¿Cómo se llama?",
+    acc:["editar texto","editar el texto"],
+    disp:"editar texto",
+    exp:"'Cambiar el tipo de letra y el formato' describe exactamente la función de editar texto — una expresión del vocabulario de esta lección. Es la única frase que encaja semánticamente: no es 'guardar', 'borrar' ni 'descargar', sino modificar el contenido y formato de un documento." },
+
+  // 19 — Contexto Conversacional
+  { id:19, sec:"Contexto Conversacional", type:"free",
+    prompt:"— ¿Dónde guardas tus documentos cuando vas de la escuela a casa?\n— Los paso a mi ______. Así los tengo en todos los ordenadores.\n— ¿No usas la nube?",
+    acc:["memoria usb","la memoria usb","memoria USB","la memoria USB","lapiz de usb","lápiz de USB","el lapiz de usb"],
+    disp:"la memoria USB",
+    exp:"El contexto — 'pasar documentos de un lugar a otro', 'tenerlos en todos los ordenadores' y ser un objeto físico que se lleva — describe perfectamente la memoria USB. No es la red (necesita internet), no es el correo (es para mensajes), y no es el sitio web (es un lugar en línea). La memoria USB es el dispositivo portátil de almacenamiento." },
+
+  // 20 — Contexto Conversacional
+  { id:20, sec:"Contexto Conversacional", type:"free",
+    prompt:"— No te veo bien en la videollamada. La imagen sale muy borrosa.\n— Es que mi ______ es muy vieja. Tengo que comprar una nueva.\n— La mía también era así hasta que la cambié.",
+    acc:["camara web","cámara web","la camara web","la cámara web"],
+    disp:"la cámara web",
+    exp:"'No te veo', 'imagen borrosa' y 'videollamada' apuntan al dispositivo que captura la imagen en la computadora: la cámara web. No es la cámara digital (que es independiente, no para videollamadas en vivo) ni el micrófono (que capta sonido, no imagen)." },
+];
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  answers: {},   // id → letter (mc) or string (free)
+  secsLeft: 17 * 60,
+  tick: null,
+  timedOut: false,
+  startSecs: 0,
+};
+
+// ══════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════
+function startTimer() {
+  document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+  ST.tick = setInterval(() => {
+    ST.secsLeft--;
+    const d = document.getElementById("tdisp");
+    const t = document.getElementById("timer");
+    d.textContent = fmtT(ST.secsLeft);
+    if (ST.secsLeft <= 60) t.classList.add("crit");
+    else if (ST.secsLeft <= 180) t.classList.add("warn");
+    if (ST.secsLeft <= 0) {
+      clearInterval(ST.tick);
+      ST.timedOut = true;
+      showResults();
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ() {
+  const q = QS[ST.idx];
+  const wrap = document.getElementById("qwrap");
+
+  // progress
+  document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
+  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+
+  // build HTML
+  let html = "";
+
+  // section label + type badge
+  const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+  const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+  html += `<div class="qsec-label">${q.sec}</div>`;
+  html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+  // pool
+  if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
+
+  // passage
+  if (q.passage) {
+    html += `<div class="passage-card">
+      <div class="passage-label">Texto — El video de Carlos</div>
+      ${PASSAGE}
+    </div>`;
+  }
+
+  // prompt
+  html += `<p class="qprompt">${q.prompt}</p>`;
+
+  // input
+  if (q.type === "mc") {
+    html += `<div class="choices-grid">`;
+    q.ch.forEach(c => {
+      html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="free-wrap">
+      <div class="free-label">Escribe la forma correcta</div>
+      <input class="free-input" id="freeinp" placeholder="tu respuesta…"
+        oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+    </div>`;
+  }
+
+  // next button
+  const isLast = ST.idx === QS.length - 1;
+  html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+    ${isLast ? "Entregar Examen →" : "Siguiente →"}
+  </button>`;
+
+  // inject with animation
+  wrap.style.animation = "none";
+  wrap.offsetHeight; // reflow
+  wrap.style.animation = "";
+  wrap.innerHTML = html;
+
+  // restore previous answer if somehow re-rendered (shouldn't happen, but safe)
+  const prev = ST.answers[q.id];
+  if (prev !== undefined) {
+    if (q.type === "mc") {
+      const btn = document.getElementById(`cb${prev}`);
+      if (btn) btn.classList.add("sel");
+      enableNext();
+    } else {
+      const inp = document.getElementById("freeinp");
+      if (inp) { inp.value = prev; enableNext(); }
+    }
+  }
+
+  // focus free input
+  if (q.type === "free") {
+    setTimeout(() => {
+      const inp = document.getElementById("freeinp");
+      if (inp) inp.focus();
+    }, 50);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════
+function pickMC(letter) {
+  const q = QS[ST.idx];
+  q.ch.forEach(c => {
+    const b = document.getElementById(`cb${c[0]}`);
+    if (b) b.classList.remove("sel");
+  });
+  const btn = document.getElementById(`cb${letter}`);
+  if (btn) btn.classList.add("sel");
+  ST.answers[q.id] = letter;
+  enableNext();
+}
+
+function freeTyped() {
+  const inp = document.getElementById("freeinp");
+  ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+  if (inp && inp.value.trim().length > 0) enableNext();
+  else disableNext();
+}
+
+function enableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.add("ready");
+  if (b) b.disabled = false;
+}
+function disableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.remove("ready");
+  if (b) b.disabled = true;
+}
+
+function tryNext() {
+  const q = QS[ST.idx];
+  // save free input if not already saved
+  if (q.type === "free") {
+    const inp = document.getElementById("freeinp");
+    if (inp) ST.answers[q.id] = inp.value;
+  }
+  if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+
+  ST.idx++;
+  if (ST.idx >= QS.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+// ══════════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════════
+function showResults() {
+  clearInterval(ST.tick);
+  const elapsed = 17 * 60 - ST.secsLeft;
+
+  // score
+  let score = 0;
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    if (q.type === "mc") { if (ans === q.cor) score++; }
+    else { if (cf(ans, q.acc)) score++; }
+  });
+  const pct = Math.round((score / QS.length) * 100);
+
+  // switch screens
+  document.getElementById("s-exam").classList.remove("active");
+  document.getElementById("s-results").classList.add("active");
+  window.scrollTo(0, 0);
+
+  // header
+  const hdr = document.getElementById("res-header");
+  hdr.style.background = pct >= 80
+    ? "linear-gradient(135deg,#052e16,#064e3b)"
+    : pct >= 55
+    ? "linear-gradient(135deg,#431407,#78350f)"
+    : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+  document.getElementById("res-score").textContent = `${score}/20`;
+  document.getElementById("res-pct").textContent =
+    `Opción múltiple: ${QS.filter(q=>q.type==="mc").reduce((a,q)=>a+(ST.answers[q.id]===q.cor?1:0),0)}/${QS.filter(q=>q.type==="mc").length}` +
+    `  ·  Respuesta libre: ${QS.filter(q=>q.type==="free").reduce((a,q)=>a+(cf(ST.answers[q.id]||"",q.acc)?1:0),0)}/${QS.filter(q=>q.type==="free").length}`;
+  const msgs = [[90,"Dominio excepcional."],[75,"Comprensión muy sólida."],[55,"Comprensión parcial — repasa los contextos."],[0,"Hay trabajo por hacer."]];
+  document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  document.getElementById("res-time").textContent = ST.timedOut
+    ? "⚠ Tiempo agotado"
+    : `Tiempo: ${fmtT(elapsed)}`;
+
+  if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+  // build result cards
+  const list = document.getElementById("res-list");
+  list.innerHTML = "";
+
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+    const card = document.createElement("div");
+    card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+
+    const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+    let html = `<div class="res-q-top">
+      <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+      <div>
+        <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+        <p class="res-prompt">${q.pool ? `<span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#666;display:block;margin-bottom:.4rem">${q.pool}</span>` : ""}${q.prompt}</p>
+      </div>
+    </div>`;
+
+    if (q.type === "mc") {
+      html += `<div class="res-mc-choices">`;
+      q.ch.forEach(c => {
+        const l = c[0];
+        const isRight = l === q.cor;
+        const isYours = l === ans;
+        let cls = "";
+        if (isRight) cls = "rc-right";
+        else if (isYours && !isRight) cls = "rc-wrong";
+        html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="res-ans-row">`;
+      if (ans) {
+        html += `<span class="res-chip yours ${ok ? "ok" : "bad"}">Tu respuesta: ${ans}</span>`;
+      } else {
+        html += `<span class="res-chip yours bad">Sin respuesta</span>`;
+      }
+      if (!ok) {
+        html += `<span class="res-chip correct">Correcto: ${q.disp}</span>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+    <div class="res-exp-box" id="rexp${q.id}">
+      ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+    </div>`;
+
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function togE(id) {
+  const b = document.getElementById(`rexp${id}`);
+  const btn = b.previousElementSibling;
+  b.classList.toggle("open");
+  btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+// ══════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════
+function startExam() {
+  ST.startSecs = Date.now();
+  document.getElementById("s-landing").classList.remove("active");
+  document.getElementById("s-exam").classList.add("active");
+  window.scrollTo(0, 0);
+  startTimer();
+  renderQ();
+}
+</script>
+</body>
+</html>

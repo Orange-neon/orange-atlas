@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Infográfico — El mundo de los influencers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1028;
+  --paper:#fdfbff;
+  --purple:#7c3aed;
+  --pink:#ec4899;
+  --cyan:#06b6d4;
+  --orange:#f59e0b;
+  --green:#10b981;
+  --mid:#7c7891;
+  --light-bg:#f3f0f9;
+  --rule:rgba(124,58,237,.12);
+  --grad1:linear-gradient(135deg,#7c3aed,#ec4899);
+  --grad2:linear-gradient(135deg,#06b6d4,#10b981);
+}
+html{background:#e8e0f0}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  max-width:900px;
+  margin:2rem auto;
+  padding:0;
+  box-shadow:0 8px 60px rgba(0,0,0,.18);
+}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,#1a1028 0%,#2d1b4e 40%,#4c1d95 100%);
+  color:#fff;
+  padding:3rem 3rem 2.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  width:300px;height:300px;
+  background:radial-gradient(circle,rgba(236,72,153,.25),transparent 70%);
+  top:-80px;right:-40px;
+  border-radius:50%;
+}
+.hero::after{
+  content:'';position:absolute;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(6,182,212,.2),transparent 70%);
+  bottom:-60px;left:20%;
+  border-radius:50%;
+}
+.hero-tag{
+  display:inline-block;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:100px;
+  padding:.3rem .9rem;
+  font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+  margin-bottom:1rem;position:relative;z-index:1;
+}
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2rem,5.5vw,3.2rem);
+  font-weight:700;line-height:1.05;
+  position:relative;z-index:1;
+}
+.hero h1 .grad-text{
+  background:var(--grad1);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-desc{
+  margin-top:1rem;
+  font-size:.88rem;font-weight:300;
+  color:rgba(255,255,255,.55);
+  max-width:520px;line-height:1.65;
+  position:relative;z-index:1;
+}
+.hero-icons{
+  position:absolute;right:3rem;bottom:2rem;
+  display:flex;gap:.6rem;z-index:1;
+}
+.hero-icon{
+  width:44px;height:44px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;
+  color:#fff;
+}
+
+/* ── CONTENT ── */
+.content{padding:2.5rem 3rem 2rem}
+
+/* ── PILL LABEL ── */
+.pill-label{
+  display:inline-block;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--purple);
+  background:rgba(124,58,237,.08);
+  border-radius:100px;
+  padding:.3rem .8rem;
+  margin-bottom:1.2rem;
+}
+
+/* ── STAT CARDS ── */
+.stat-cards{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:.8rem;margin-bottom:2.5rem;
+}
+.stat-card{
+  border-radius:12px;
+  padding:1.3rem 1rem 1.1rem;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+}
+.stat-card::before{
+  content:'';position:absolute;inset:0;
+  background:inherit;opacity:.85;
+}
+.stat-card-n{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  font-weight:700;line-height:1;
+  position:relative;z-index:1;
+}
+.stat-card-desc{
+  font-size:.72rem;font-weight:300;
+  color:rgba(255,255,255,.8);
+  margin-top:.3rem;line-height:1.45;
+  position:relative;z-index:1;
+}
+.stat-card-icon{
+  position:absolute;right:.7rem;top:.7rem;
+  font-size:1.3rem;opacity:.3;z-index:1;
+}
+
+/* ── QUOTE BLOCK ── */
+.quote-block{
+  background:var(--light-bg);
+  border-radius:16px;
+  padding:1.5rem 1.8rem;
+  margin-bottom:2.5rem;
+  display:flex;align-items:flex-start;gap:1.2rem;
+  position:relative;
+}
+.quote-mark{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:3rem;font-weight:700;
+  line-height:1;
+  background:var(--grad1);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  flex-shrink:0;
+}
+.quote-text{
+  font-size:.88rem;line-height:1.7;
+  font-style:italic;font-weight:300;
+  color:var(--ink);
+}
+.quote-text strong{font-weight:600;font-style:normal}
+.quote-attr{
+  font-size:.7rem;color:var(--mid);margin-top:.5rem;
+  font-style:normal;
+}
+
+/* ── TWO COL ── */
+.two-col{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2.2rem;margin-bottom:2.5rem;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;font-weight:700;
+  margin-bottom:1rem;
+}
+.compare-table{
+  width:100%;border-collapse:collapse;
+  font-size:.78rem;
+}
+.compare-table thead{
+  background:var(--ink);color:#fff;
+}
+.compare-table th{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;font-size:.7rem;
+  letter-spacing:.05em;text-transform:uppercase;
+  padding:.6rem .7rem;text-align:left;
+}
+.compare-table td{
+  padding:.6rem .7rem;
+  border-bottom:1px solid var(--rule);
+}
+.compare-table tr:nth-child(even){
+  background:var(--light-bg);
+}
+.compare-table .highlight{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+}
+
+/* ── RANKING LIST ── */
+.ranking-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;font-weight:700;
+  margin-bottom:1rem;
+}
+.rank-item{
+  display:flex;align-items:center;gap:.7rem;
+  padding:.65rem .8rem;
+  border-radius:10px;
+  margin-bottom:.5rem;
+  background:var(--light-bg);
+  transition:transform .2s;
+}
+.rank-item:hover{transform:translateX(4px)}
+.rank-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1.1rem;
+  min-width:1.6rem;
+  text-align:center;
+}
+.rank-bar{
+  flex:1;height:8px;
+  background:rgba(124,58,237,.1);
+  border-radius:4px;overflow:hidden;
+}
+.rank-bar-fill{
+  height:100%;border-radius:4px;
+  animation:rankGrow .6s ease forwards;
+}
+@keyframes rankGrow{from{width:0}to{width:var(--w)}}
+.rank-info{
+  text-align:right;min-width:3.2rem;
+}
+.rank-cat{font-size:.75rem;font-weight:500;flex:1.5}
+.rank-pct{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:.85rem;
+}
+
+/* ── ICON GRID ── */
+.icon-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:.8rem;margin-bottom:2.5rem;
+}
+.icon-card{
+  background:var(--light-bg);
+  border-radius:14px;
+  padding:1.3rem 1rem;
+  text-align:center;
+  border:1px solid transparent;
+  transition:border-color .2s,transform .2s;
+}
+.icon-card:hover{
+  border-color:var(--purple);
+  transform:translateY(-2px);
+}
+.icon-card-emoji{font-size:1.8rem;margin-bottom:.6rem;display:block}
+.icon-card-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.82rem;font-weight:700;
+  margin-bottom:.3rem;
+}
+.icon-card-text{
+  font-size:.72rem;color:var(--mid);line-height:1.5;
+}
+
+/* ── NARRATIVE BLOCK ── */
+.narrative{
+  margin-bottom:2.5rem;
+  columns:2;column-gap:2rem;
+}
+.narrative-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;font-weight:700;
+  margin-bottom:.8rem;
+  column-span:all;
+}
+.narrative p{
+  font-size:.8rem;line-height:1.7;
+  color:#4a4458;
+  margin-bottom:.8rem;
+  text-align:justify;
+}
+.narrative p .hl{
+  background:linear-gradient(180deg,transparent 55%,rgba(124,58,237,.15) 55%);
+  font-weight:500;
+}
+
+/* ── PROS & CONS ── */
+.proscons{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;margin-bottom:2.5rem;
+  border-radius:14px;overflow:hidden;
+}
+.pros,.cons{padding:1.3rem 1.2rem}
+.pros{background:rgba(16,185,129,.06);border-right:1px solid rgba(16,185,129,.15)}
+.cons{background:rgba(236,72,153,.06)}
+.proscons-heading{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.85rem;font-weight:700;
+  margin-bottom:.8rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+.pc-item{
+  font-size:.78rem;line-height:1.6;
+  color:#4a4458;
+  margin-bottom:.5rem;
+  padding-left:1.2rem;
+  position:relative;
+}
+.pc-item::before{
+  content:attr(data-icon);
+  position:absolute;left:0;top:0;
+  font-size:.75rem;
+}
+
+/* ── GRADIENT BANNER ── */
+.grad-banner{
+  background:var(--grad1);
+  border-radius:14px;
+  padding:1.5rem 1.8rem;
+  color:#fff;
+  margin-bottom:2.5rem;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.grad-banner-icon{
+  font-size:2rem;flex-shrink:0;
+}
+.grad-banner-text{
+  font-size:.85rem;line-height:1.6;
+}
+.grad-banner-text strong{font-weight:600}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--ink);
+  color:rgba(255,255,255,.4);
+  font-size:.6rem;letter-spacing:.04em;
+  padding:.9rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border-radius:0 0 0 0;
+}
+.footer strong{color:rgba(255,255,255,.65)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Infográfico · Unidad 6 · Las redes sociales</div>
+  <h1>El poder de los<br><span class="grad-text">influencers</span></h1>
+  <p class="hero-desc">¿Cómo cambian los influencers la forma en que compramos, pensamos y vivimos? Un análisis con datos reales sobre el impacto de las redes sociales en la vida de los jóvenes.</p>
+  <div class="hero-icons">
+    <div class="hero-icon" style="background:rgba(236,72,153,.3)">📸</div>
+    <div class="hero-icon" style="background:rgba(124,58,237,.3)">🎵</div>
+    <div class="hero-icon" style="background:rgba(6,182,212,.3)">📱</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- STAT CARDS -->
+  <span class="pill-label">Datos clave del fenómeno</span>
+  <div class="stat-cards">
+    <div class="stat-card" style="background:var(--grad1)">
+      <div class="stat-card-icon">📱</div>
+      <div class="stat-card-n">50M+</div>
+      <div class="stat-card-desc">personas en el mundo se consideran influencers</div>
+    </div>
+    <div class="stat-card" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">
+      <div class="stat-card-icon">💰</div>
+      <div class="stat-card-n">$21B</div>
+      <div class="stat-card-desc">es el valor de la industria del marketing de influencers en 2024</div>
+    </div>
+    <div class="stat-card" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">
+      <div class="stat-card-icon">👁️</div>
+      <div class="stat-card-n">72%</div>
+      <div class="stat-card-desc">de los jóvenes sigue a por lo menos un influencer cada día</div>
+    </div>
+    <div class="stat-card" style="background:linear-gradient(135deg,#10b981,#06b6d4)">
+      <div class="stat-card-icon">🛒</div>
+      <div class="stat-card-n">61%</div>
+      <div class="stat-card-desc">ha comprado algo porque un influencer lo recomendó</div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <div class="quote-mark">"</div>
+    <div>
+      <p class="quote-text">Los influencers tienen <strong>más influencia</strong> que la televisión tradicional en las decisiones de compra de los jóvenes. Hoy en día, un video de 30 segundos en TikTok es <strong>más poderoso</strong> que un comercial de televisión.</p>
+      <p class="quote-attr">— Estudio Global de Medios Digitales, 2024</p>
+    </div>
+  </div>
+
+  <!-- TWO COL: Comparison + Ranking -->
+  <div class="two-col">
+
+    <!-- COMPARISON TABLE -->
+    <div>
+      <p class="compare-title">Comparación: tipos de influencers</p>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Seguidores</th>
+            <th>Engagement</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="highlight" style="color:var(--purple)">Nano</td>
+            <td>1K – 10K</td>
+            <td>5–8%</td>
+            <td>$10 – $100</td>
+          </tr>
+          <tr>
+            <td class="highlight" style="color:var(--pink)">Micro</td>
+            <td>10K – 100K</td>
+            <td>3–5%</td>
+            <td>$100 – $1K</td>
+          </tr>
+          <tr>
+            <td class="highlight" style="color:var(--cyan)">Macro</td>
+            <td>100K – 1M</td>
+            <td>1–3%</td>
+            <td>$1K – $10K</td>
+          </tr>
+          <tr>
+            <td class="highlight" style="color:var(--orange)">Mega</td>
+            <td>1M – 10M</td>
+            <td>0.5–1%</td>
+            <td>$10K – $100K</td>
+          </tr>
+          <tr>
+            <td class="highlight" style="color:var(--green)">Celebridad</td>
+            <td>10M+</td>
+            <td>&lt;0.5%</td>
+            <td>$100K+</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:.65rem;color:var(--mid);margin-top:.5rem;line-height:1.5"><em>Es interesante que los nano-influencers tienen <strong>más engagement</strong> que las celebridades, aunque tienen menos seguidores.</em></p>
+    </div>
+
+    <!-- RANKING -->
+    <div>
+      <p class="ranking-title">Las plataformas más populares</p>
+
+      <div class="rank-item">
+        <div class="rank-num" style="color:var(--pink)">1</div>
+        <div class="rank-cat">Instagram</div>
+        <div class="rank-bar"><div class="rank-bar-fill" style="--w:92%;background:var(--grad1)"></div></div>
+        <div class="rank-info"><span class="rank-pct" style="color:var(--pink)">92%</span></div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num" style="color:var(--ink)">2</div>
+        <div class="rank-cat">TikTok</div>
+        <div class="rank-bar"><div class="rank-bar-fill" style="--w:87%;background:linear-gradient(90deg,#06b6d4,#ec4899)"></div></div>
+        <div class="rank-info"><span class="rank-pct">87%</span></div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num" style="color:var(--cyan)">3</div>
+        <div class="rank-cat">YouTube</div>
+        <div class="rank-bar"><div class="rank-bar-fill" style="--w:68%;background:linear-gradient(90deg,#ef4444,#f59e0b)"></div></div>
+        <div class="rank-info"><span class="rank-pct">68%</span></div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num" style="color:var(--purple)">4</div>
+        <div class="rank-cat">X (Twitter)</div>
+        <div class="rank-bar"><div class="rank-bar-fill" style="--w:31%;background:var(--ink)"></div></div>
+        <div class="rank-info"><span class="rank-pct">31%</span></div>
+      </div>
+
+      <div class="rank-item">
+        <div class="rank-num" style="color:var(--green)">5</div>
+        <div class="rank-cat">Facebook</div>
+        <div class="rank-bar"><div class="rank-bar-fill" style="--w:24%;background:var(--grad2)"></div></div>
+        <div class="rank-info"><span class="rank-pct">24%</span></div>
+      </div>
+
+      <p style="font-size:.65rem;color:var(--mid);margin-top:.8rem;line-height:1.5"><em>Instagram es la plataforma <strong>más usada</strong> por los influencers, pero TikTok está creciendo <strong>más rápidamente</strong> que todas las demás.</em></p>
+    </div>
+  </div>
+
+  <!-- ICON GRID: Categorías -->
+  <span class="pill-label">Las categorías más seguidas</span>
+  <div class="icon-grid">
+    <div class="icon-card">
+      <span class="icon-card-emoji">💄</span>
+      <div class="icon-card-title">Belleza y moda</div>
+      <p class="icon-card-text">La categoría más grande. Los tutoriales de maquillaje y las reseñas de ropa son los contenidos más vistos.</p>
+    </div>
+    <div class="icon-card">
+      <span class="icon-card-emoji">🏋️</span>
+      <div class="icon-card-title">Fitness y salud</div>
+      <p class="icon-card-text">Los influencers de fitness son tan populares como los de belleza entre las personas de 18 a 30 años.</p>
+    </div>
+    <div class="icon-card">
+      <span class="icon-card-emoji">🎮</span>
+      <div class="icon-card-title">Videojuegos</div>
+      <p class="icon-card-text">Los gamers ganan más dinero que muchos influencers de otras categorías gracias a las donaciones en vivo.</p>
+    </div>
+    <div class="icon-card">
+      <span class="icon-card-emoji">🍳</span>
+      <div class="icon-card-title">Comida y cocina</div>
+      <p class="icon-card-text">Los videos de recetas rápidas son más compartidos que cualquier otro tipo de contenido en las redes.</p>
+    </div>
+    <div class="icon-card">
+      <span class="icon-card-emoji">✈️</span>
+      <div class="icon-card-title">Viajes</div>
+      <p class="icon-card-text">El 45% de los jóvenes elige su destino de vacaciones basándose en las fotos de influencers de viajes.</p>
+    </div>
+    <div class="icon-card">
+      <span class="icon-card-emoji">📚</span>
+      <div class="icon-card-title">Educación</div>
+      <p class="icon-card-text">Los "edutubers" están creciendo rápidamente. Son menos famosos pero más respetados que otros influencers.</p>
+    </div>
+  </div>
+
+  <!-- NARRATIVE TEXT -->
+  <span class="pill-label">¿Qué dice la investigación?</span>
+  <div class="narrative">
+    <p class="narrative-title" style="column-span:all">La vida detrás de la pantalla: realidad vs. ficción</p>
+    <p>Según un estudio reciente, el <span class="hl">87% de los influencers</span> dice que su trabajo es más difícil de lo que la gente piensa. Muchos trabajan más de 10 horas al día creando contenido, editando videos y respondiendo a sus seguidores. Sin embargo, la mayoría de las personas cree que ser influencer es más fácil que tener un trabajo tradicional.</p>
+    <p>La salud mental es un problema serio en esta industria. El <span class="hl">63% de los creadores</span> de contenido ha experimentado ansiedad o estrés por la presión de publicar constantemente. Los comentarios negativos afectan a los influencers más jóvenes con mayor frecuencia que a los más experimentados.</p>
+    <p>Además, la realidad financiera es menos glamurosa de lo que parece. Solo el <span class="hl">4% de los influencers</span> gana suficiente dinero para vivir exclusivamente de las redes sociales. La gran mayoría necesita otro trabajo para pagar sus gastos. Es un mundo más competitivo que nunca.</p>
+    <p>Por otro lado, los influencers que son más auténticos y transparentes tienen <span class="hl">mejores resultados</span> que los que solo muestran una vida perfecta. Los seguidores jóvenes valoran la honestidad tanto como el contenido de calidad.</p>
+  </div>
+
+  <!-- PROS & CONS -->
+  <span class="pill-label">Ventajas y desventajas</span>
+  <div class="proscons">
+    <div class="pros">
+      <p class="proscons-heading" style="color:var(--green)">✅ Aspectos positivos</p>
+      <p class="pc-item" data-icon="→">Los influencers pueden inspirar a los jóvenes a aprender cosas nuevas y a ser más creativos.</p>
+      <p class="pc-item" data-icon="→">Algunos influencers usan su plataforma para hablar sobre problemas sociales importantes.</p>
+      <p class="pc-item" data-icon="→">Es posible descubrir productos mejores y más baratos gracias a las reseñas honestas.</p>
+      <p class="pc-item" data-icon="→">Los jóvenes pueden conectarse con personas que tienen los mismos intereses en todo el mundo.</p>
+    </div>
+    <div class="cons">
+      <p class="proscons-heading" style="color:var(--pink)">⚠️ Aspectos negativos</p>
+      <p class="pc-item" data-icon="→">Muchos influencers muestran una vida irreal, lo cual puede causar inseguridad en los jóvenes.</p>
+      <p class="pc-item" data-icon="→">El consumismo aumenta cuando los jóvenes quieren comprar todo lo que ven en las redes.</p>
+      <p class="pc-item" data-icon="→">Es difícil distinguir entre una recomendación sincera y la publicidad pagada.</p>
+      <p class="pc-item" data-icon="→">Pasar demasiado tiempo viendo influencers puede ser peor para la salud mental que otras actividades.</p>
+    </div>
+  </div>
+
+  <!-- GRADIENT BANNER -->
+  <div class="grad-banner">
+    <div class="grad-banner-icon">🤔</div>
+    <div class="grad-banner-text">
+      <strong>Para reflexionar:</strong> Antes de seguir a un influencer, es importante preguntarse: ¿Esta persona me hace sentir mejor o peor sobre mi vida? ¿Sus recomendaciones son genuinas o son publicidad? Ser un consumidor crítico es más importante que nunca en la era digital.
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Fuentes: <strong>Informe Global de Marketing Digital</strong> · <strong>Pew Research Center</strong> · Datos de 2024</span>
+  <span>Unidad 6 · Las redes sociales</span>
+</div>
+
+</body>
+</html>

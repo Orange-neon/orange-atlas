@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Examen XVI — Senderos 2 Lección 5</title>
+<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06060c;--s1:#0f0f18;--s2:#15151f;
+  --border:rgba(255,255,255,0.07);
+  --text:#ccccd8;--dim:#3e3e52;
+  --accent:#a78bfa;--accentd:#7c3aed;
+  --green:#34d399;--red:#f87171;
+  --warn:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+
+/* ══ SCREENS ══ */
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ══ LANDING ══ */
+#s-landing{
+  align-items:center;justify-content:center;padding:3rem 1.5rem;
+  background:radial-gradient(ellipse 70% 50% at 20% 40%,rgba(167,139,250,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 50% 60% at 80% 70%,rgba(52,211,153,0.05) 0%,transparent 50%);
+}
+.land-inner{max-width:580px;width:100%;text-align:center}
+.land-kicker{font-size:.55rem;letter-spacing:.65em;color:var(--dim);text-transform:uppercase;margin-bottom:1.8rem}
+.land-title{font-family:'Lora',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:#fff;line-height:.95;margin-bottom:.8rem}
+.land-title em{font-style:italic;color:var(--accent)}
+.land-sub{color:#4a4a62;font-size:.88rem;line-height:1.9;margin-bottom:2.5rem}
+.land-sub strong{color:#888;font-weight:500}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2.5rem}
+.info-card{
+  background:var(--s1);border:1px solid var(--border);border-radius:.6rem;
+  padding:1.1rem .8rem;text-align:center;
+}
+.info-n{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.info-l{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem}
+
+.rules-box{
+  background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);
+  border-radius:.5rem;padding:.85rem 1.1rem;text-align:left;
+  font-size:.78rem;color:#7070a0;line-height:1.8;margin-bottom:2rem;
+}
+.rules-box li{margin-left:1rem;margin-bottom:.15rem}
+.rules-box strong{color:#a0a0c8;font-weight:600}
+
+.btn-main{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);
+  color:#fff;border:none;padding:1rem 3.5rem;border-radius:.45rem;
+  font-size:.88rem;font-weight:600;cursor:pointer;letter-spacing:.1em;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
+  box-shadow:0 0 40px rgba(109,40,217,.3);transition:transform .15s,box-shadow .15s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(109,40,217,.45)}
+
+/* ══ EXAM SCREEN ══ */
+#s-exam{flex-direction:column}
+
+/* top bar */
+#topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2rem;background:rgba(6,6,12,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;flex-shrink:0;
+}
+.tb-left{display:flex;flex-direction:column}
+.tb-qnum{font-family:'Lora',serif;font-size:.95rem;font-weight:700;color:#fff}
+.tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
+.tb-timer{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:500;
+  color:var(--accent);transition:color .3s;
+}
+.tb-timer.warn{color:var(--warn)}
+.tb-timer.crit{color:var(--red);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.timer-icon{font-size:.9rem}
+
+/* progress */
+#progbar-wrap{height:3px;background:rgba(255,255,255,0.04);flex-shrink:0}
+#progbar{height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0%;transition:width .4s}
+
+/* question area */
+#qarea{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.5rem 3rem;
+}
+.qwrap{max-width:700px;width:100%}
+
+/* type badge */
+.qtype-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.12rem .5rem;border-radius:.2rem;margin-bottom:.9rem;
+}
+
+/* section label */
+.qsec-label{font-size:.62rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* passage box */
+.passage-card{
+  background:var(--s1);border:1px solid rgba(52,211,153,.12);
+  border-radius:.6rem;padding:1.2rem 1.4rem;margin-bottom:1.4rem;
+  font-size:.87rem;color:#888;line-height:2.1;
+  font-family:'Lora',serif;font-style:italic;
+}
+.passage-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.65rem;font-style:normal;font-family:'Inter',sans-serif}
+
+/* prompt */
+.qprompt{
+  font-family:'Lora',serif;font-size:clamp(1rem,2.5vw,1.18rem);
+  color:#ddd;line-height:1.85;margin-bottom:1.4rem;
+  white-space:pre-line;
+}
+.qpool{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:.35rem;padding:.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
+  color:#bbb;letter-spacing:.05em;margin-bottom:1rem;
+}
+
+/* choices */
+.choices-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.4rem}
+.choice-btn{
+  text-align:left;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);border-radius:.45rem;
+  padding:.75rem 1rem;font-size:.88rem;color:#888;
+  cursor:pointer;transition:all .13s;line-height:1.5;
+  font-family:'Inter',sans-serif;
+}
+.choice-btn:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);color:#ccc}
+.choice-btn.sel{
+  border-color:rgba(167,139,250,.55);color:#ede9fe;
+  background:rgba(167,139,250,.08);
+}
+
+/* free input */
+.free-wrap{margin-bottom:1.4rem}
+.free-label{font-size:.65rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.free-input{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);border-radius:.45rem;
+  padding:.8rem 1rem;font-size:1rem;color:var(--text);
+  font-family:'IBM Plex Mono',monospace;outline:none;
+  letter-spacing:.04em;transition:border-color .2s,background .2s;
+}
+.free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
+
+/* accent toolbar */
+.accent-bar{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;margin-bottom:.9rem}
+.accent-label{font-size:.58rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-right:.2rem;flex-shrink:0}
+.accent-btn{
+  background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);
+  color:#c4b5fd;border-radius:.28rem;padding:.28rem .52rem;
+  font-size:.95rem;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  cursor:pointer;transition:background .12s,border-color .12s;line-height:1;
+}
+.accent-btn:hover{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.45);color:#ede9fe}
+
+/* next button */
+.btn-next{
+  background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
+  padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+  cursor:not-allowed;letter-spacing:.08em;text-transform:uppercase;
+  font-family:'Inter',sans-serif;transition:all .2s;width:100%;
+}
+.btn-next.ready{
+  background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;
+  border-color:transparent;cursor:pointer;
+  box-shadow:0 0 30px rgba(109,40,217,.3);
+}
+.btn-next.ready:hover{box-shadow:0 0 50px rgba(109,40,217,.45);transform:translateY(-1px)}
+.btn-next.last{background:linear-gradient(135deg,#be185d,#9d174d)!important}
+
+/* question transition */
+.qwrap{animation:qfade .35s ease}
+@keyframes qfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ RESULTS SCREEN ══ */
+#s-results{flex-direction:column}
+
+#res-header{
+  background:var(--s1);border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem;text-align:center;flex-shrink:0;
+}
+.res-kicker{font-size:.58rem;letter-spacing:.45em;color:var(--dim);text-transform:uppercase;margin-bottom:.5rem}
+.res-score{font-family:'Lora',serif;font-size:clamp(4rem,12vw,7rem);font-weight:700;color:#fff;line-height:1}
+.res-pct{font-size:1rem;color:rgba(255,255,255,.55);margin-top:.3rem}
+.res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
+.res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:'IBM Plex Mono',monospace}
+
+#res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+.res-q{
+  background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;
+  margin-bottom:.8rem;border:1px solid var(--border);
+}
+.res-q.rq-ok{border-color:rgba(52,211,153,.25)}
+.res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+.res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.res-num{
+  width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
+.res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+.res-prompt{font-family:'Lora',serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
+.res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
+.res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:'IBM Plex Mono',monospace}
+.res-chip.yours{background:rgba(255,255,255,.05);color:#888}
+.res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
+.res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+.res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+.res-exp-btn{
+  background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
+  padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;
+  margin-left:2.1rem;transition:all .13s;
+}
+.res-exp-btn:hover{color:#ccc;border-color:rgba(255,255,255,.18)}
+.res-exp-box{
+  display:none;margin-top:.6rem;padding:.8rem .95rem;margin-left:2.1rem;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
+  border-radius:.4rem;font-size:.79rem;color:#888;line-height:1.85;
+}
+.res-exp-box.open{display:block}
+
+/* mc reveal */
+.res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
+.res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
+.res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
+.res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+
+/* timeout banner */
+#timeout-banner{
+  display:none;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2);
+  border-radius:.5rem;padding:.7rem 1rem;font-size:.8rem;color:#fb923c;
+  text-align:center;margin-bottom:1.5rem;
+}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1a1a28;border-radius:3px}
+
+@media(max-width:540px){
+  #topbar{padding:.6rem 1rem}
+  .tb-timer{font-size:1.1rem}
+  .info-grid{grid-template-columns:repeat(3,1fr)}
+  .info-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div class="screen active" id="s-landing">
+<div class="land-inner">
+  <p class="land-kicker">Senderos 2 · Lección 5 · Examen XVI</p>
+  <h1 class="land-title">Mandatos III<br><em>con Pronombres</em></h1>
+  <p class="land-sub">Veinte preguntas. <strong>Diecisiete minutos.</strong><br>Una pregunta a la vez — sin poder regresar.</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-n">20</div>
+      <div class="info-l">preguntas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n" style="color:var(--warn)">17:00</div>
+      <div class="info-l">minutos</div>
+    </div>
+    <div class="info-card">
+      <div class="info-n">5</div>
+      <div class="info-l">tipos</div>
+    </div>
+  </div>
+
+  <div class="rules-box">
+    <strong>Reglas del examen:</strong>
+    <ul>
+      <li>Una pregunta a la vez — no puedes volver atrás</li>
+      <li>El examen termina automáticamente cuando el tiempo llega a cero</li>
+      <li>Las respuestas libres se evalúan al final</li>
+      <li>No hay pistas sobre el verbo ni el tiempo en las conjugaciones</li>
+    </ul>
+  </div>
+
+  <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+</div>
+</div>
+
+<!-- ══════════ EXAM ══════════ -->
+<div class="screen" id="s-exam">
+  <div id="topbar">
+    <div class="tb-left">
+      <div class="tb-qnum">Mandatos III con Pronombres</div>
+      <div class="tb-qof" id="qof">Pregunta 1 de 20</div>
+    </div>
+    <div class="tb-timer" id="timer">
+      <span class="timer-icon">⏱</span>
+      <span id="tdisp">17:00</span>
+    </div>
+  </div>
+  <div id="progbar-wrap"><div id="progbar"></div></div>
+  <div id="qarea">
+    <div class="qwrap" id="qwrap"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div class="screen" id="s-results">
+  <div id="res-header">
+    <div class="res-kicker" id="res-kicker">Resultado Final</div>
+    <div class="res-score" id="res-score"></div>
+    <div class="res-pct" id="res-pct"></div>
+    <div class="res-msg" id="res-msg"></div>
+    <div class="res-time" id="res-time"></div>
+  </div>
+  <div id="res-body">
+    <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+    <div id="res-list"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// PASSAGE
+// ══════════════════════════════════════════════
+const PASSAGE = `El jueves por la tarde, Valeria ayudaba a su primo Tomás a prepararse para un viaje en carro. «Ponme el GPS en el móvil», dijo Tomás. «Ya te lo puse», respondió Valeria. «¿Y el cinturón? Abróchame el del asiento de atrás — está trabado». «No te lo abrocho — hazlo tú mismo, no es difícil». Tomás se rio. Antes de salir, Valeria dijo: «Prométeme que manejas con cuidado». «Te lo prometo», dijo Tomás. «Y no me texteen mientras manejas — no les contestes a nadie». «No te preocupes — no lo hago nunca». Valeria se quedó más tranquila.`;
+
+// ══════════════════════════════════════════════
+// NORMALIZE & CHECK  (accents count — only strip case & extra whitespace)
+// ══════════════════════════════════════════════
+const nm = s => (s||"").toLowerCase().trim().replace(/\s+/g," ");
+const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+const fmtT = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+// ══════════════════════════════════════════════
+// QUESTIONS — Mandatos III con pronombres (all new verbs & contexts)
+//
+// §I  Afirmativo tú + 1 pronombre  (regla 1-2-3)    Q1–Q7
+// §II Afirmativo tú + 2 pronombres (regla 1-2-3-4)  Q8–Q11
+// §III Negativo tú + 1 pronombre                    Q12–Q15
+// §IV Negativo tú + 2 pronombres                    Q16–Q17
+// §V  Comprensión Lectora (MC)                       Q18–Q20
+// ══════════════════════════════════════════════
+const QS = [
+
+  // ── §I Afirmativo + 1 pronombre ─────────────────────────────────────────
+
+  // 1 — ciérrala
+  { id:1, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"Saliste del carro pero dejaste la puerta abierta. Tu amigo te dice que la cierres.\n\nVerbo: cerrar · pronombre: la\nEscribe el mandato completo: ______",
+    acc:["ciérrala"],
+    disp:"ciérrala",
+    exp:"cerrar → mandato tú = cierra (cambio de raíz e→ie). Añades 'la': cierra + la → ciérrala.\nRegla 1-2-3: cié-rra-la → tilde en la 3ª sílaba desde el final ('cié')." },
+
+  // 2 — cónducelo  (fill-in-the-blank dialogue)
+  { id:2, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"— ¿Quién va a manejar el carro al taller?\n— ______ tú — conoces mejor esa parte de la ciudad.\n— Está bien, yo lo llevo.\n\nVerbo: conducir · pronombre: lo",
+    acc:["condúcelo"],
+    disp:"condúcelo",
+    exp:"conducir → mandato tú = conduce. Añades 'lo': conduce + lo → condúcelo.\nRegla 1-2-3: con-dú-ce-lo → tilde en la 3ª sílaba desde el final ('dú')." },
+
+  // 3 — abróchalo
+  { id:3, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"Tu hermanito no se ha puesto el cinturón de seguridad. Le dices que se lo abroche.\n\nVerbo: abrochar · pronombre: lo\nEscribe el mandato completo: ______",
+    acc:["abróchalo"],
+    disp:"abróchalo",
+    exp:"abrochar → mandato tú = abrocha. Añades 'lo': abrocha + lo → abróchalo.\nRegla 1-2-3: a-bró-cha-lo → tilde en la 3ª sílaba desde el final ('bró')." },
+
+  // 4 — prométemelo… wait, this is §I so just 1 pronoun — promételo
+  { id:4, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"— ¿De verdad vas a manejar con más cuidado desde ahora?\n— Sí, sí, te lo juro.\n— Entonces ______ — quiero escucharlo de verdad.\n\nVerbo: prometer · pronombre: lo",
+    acc:["promételo"],
+    disp:"promételo",
+    exp:"prometer → mandato tú = promete. Añades 'lo': promete + lo → promételo.\nRegla 1-2-3: pro-mé-te-lo → tilde en la 3ª sílaba desde el final ('mé')." },
+
+  // 5 — póntelo
+  { id:5, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"Tu amigo olvidó ponerse el cinturón de seguridad antes de salir. Le dices que se lo ponga.\n\nVerbo: ponerse · pronombre: lo\nEscribe el mandato completo: ______",
+    acc:["póntelo"],
+    disp:"póntelo",
+    exp:"ponerse → mandato tú reflexivo = ponte. Añades 'lo': ponte + lo → póntelo.\nRegla 1-2-3: pón-te-lo → tilde en la 3ª sílaba desde el final ('pón').\nNota: 'te' aquí es el pronombre reflexivo, 'lo' es el objeto directo." },
+
+  // 6 — síguela  (fill-in-the-blank)
+  { id:6, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"— No sé por dónde ir — nunca he venido a esta parte de la ciudad.\n— ¿Ves esa señal azul? ______ hasta llegar a la autopista.\n— Perfecto, ya la veo.\n\nVerbo: seguir · pronombre: la",
+    acc:["síguela"],
+    disp:"síguela",
+    exp:"seguir → mandato tú = sigue (cambio ortográfico: segu → sigu). Añades 'la': sigue + la → síguela.\nRegla 1-2-3: sí-gue-la → tilde en la 3ª sílaba desde el final ('sí')." },
+
+  // 7 — devuélvela
+  { id:7, sec:"Afirmativo + 1 pronombre", type:"free",
+    prompt:"Tu amigo todavía tiene tu llave del carro de la semana pasada. Le dices que te la devuelva.\n\nVerbo: devolver · pronombre: la\nEscribe el mandato completo: ______",
+    acc:["devuélvela"],
+    disp:"devuélvela",
+    exp:"devolver → mandato tú = devuelve (cambio de raíz o→ue). Añades 'la': devuelve + la → devuélvela.\nRegla 1-2-3: de-vuél-ve-la → tilde en la 3ª sílaba desde el final ('vuél')." },
+
+  // ── §II Afirmativo + 2 pronombres ───────────────────────────────────────
+
+  // 8 — ciérramela
+  { id:8, sec:"Afirmativo + 2 pronombres", type:"free",
+    prompt:"Tienes las manos ocupadas y la puerta del carro sigue abierta. Le pides a tu amigo que te la cierre.\n\nVerbo: cerrar · IO: me · DO: la\nEscribe el mandato completo: ______",
+    acc:["ciérramela"],
+    disp:"ciérramela",
+    exp:"cerrar → mandato tú = cierra. IO 'me' + DO 'la': cierra + me + la → ciérramela.\nRegla 1-2-3-4: cié-rra-me-la → tilde en la 4ª sílaba desde el final ('cié')." },
+
+  // 9 — abróchámelo  (fill-in-the-blank)
+  { id:9, sec:"Afirmativo + 2 pronombres", type:"free",
+    prompt:"— Este cinturón está muy difícil de cerrar — siempre se traba.\n— ______ yo — sé el truco para que no se trabe.\n— Gracias, siempre me cuesta trabajo.\n\nVerbo: abrochar · IO: me · DO: lo",
+    acc:["abróchámelo","abróchamelo"],
+    disp:"abróchámelo",
+    exp:"abrochar → mandato tú = abrocha. IO 'me' + DO 'lo': abrocha + me + lo → abróchámelo.\nRegla 1-2-3-4: a-bró-cha-me-lo → tilde en la 4ª sílaba desde el final ('bró')." },
+
+  // 10 — prométemelo
+  { id:10, sec:"Afirmativo + 2 pronombres", type:"free",
+    prompt:"No confías en que tu amigo vaya a devolverte el carro a tiempo. Le pides que te lo prometa.\n\nVerbo: prometer · IO: me · DO: lo\nEscribe el mandato completo: ______",
+    acc:["prométemelo"],
+    disp:"prométemelo",
+    exp:"prometer → mandato tú = promete. IO 'me' + DO 'lo': promete + me + lo → prométemelo.\nRegla 1-2-3-4: pro-mé-te-me-lo → tilde en la 4ª sílaba desde el final ('mé')." },
+
+  // 11 — devuélvemela  (fill-in-the-blank)
+  { id:11, sec:"Afirmativo + 2 pronombres", type:"free",
+    prompt:"— Oye, todavía tienes mi llave del carro.\n— Ah, es verdad. ¿La necesitas ahora?\n— Sí, ______ hoy mismo, por favor.\n\nVerbo: devolver · IO: me · DO: la",
+    acc:["devuélvemela"],
+    disp:"devuélvemela",
+    exp:"devolver → mandato tú = devuelve. IO 'me' + DO 'la': devuelve + me + la → devuélvemela.\nRegla 1-2-3-4: de-vuél-ve-me-la → tilde en la 4ª sílaba desde el final ('vuél')." },
+
+  // ── §III Negativo + 1 pronombre ─────────────────────────────────────────
+
+  // 12 — no la cierres
+  { id:12, sec:"Negativo + pronombre", type:"free",
+    prompt:"El mecánico todavía necesita acceso al carro. Dile que no cierre la puerta.\n\nVerbo: cerrar (subjuntivo tú) · pronombre: la\nEscribe el mandato completo: ______",
+    acc:["no la cierres"],
+    disp:"no la cierres",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'cerrar' → subjuntivo tú = cierres (cambio de raíz e→ie se mantiene en subjuntivo).\nPronombre 'la' va ANTES: no la cierres." },
+
+  // 13 — no lo conduzcas  (fill-in-the-blank)
+  { id:13, sec:"Negativo + pronombre", type:"free",
+    prompt:"— Quiero manejar el carro nuevo de tu papá.\n— ______ sin permiso — se va a enojar mucho.\n— Tienes razón, mejor le pregunto primero.\n\nVerbo: conducir (subjuntivo tú) · pronombre: lo",
+    acc:["no lo conduzcas"],
+    disp:"no lo conduzcas",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'conducir' → subjuntivo tú = conduzcas (c → zc en subjuntivo).\nPronombre 'lo' va ANTES: no lo conduzcas." },
+
+  // 14 — no lo sigas
+  { id:14, sec:"Negativo + pronombre", type:"free",
+    prompt:"Ese carro delante de ustedes está manejando muy peligrosamente. Le dices al conductor que no lo siga.\n\nVerbo: seguir (subjuntivo tú) · pronombre: lo\nEscribe el mandato completo: ______",
+    acc:["no lo sigas"],
+    disp:"no lo sigas",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'seguir' → subjuntivo tú = sigas (e→i en subjuntivo, ortografía gu→g: sigues → sigas).\nPronombre 'lo' va ANTES: no lo sigas." },
+
+  // 15 — no me la devuelvas  (fill-in-the-blank)
+  // Wait — this has 2 pronouns, move to §IV. Replace with 1 pronoun version.
+  { id:15, sec:"Negativo + pronombre", type:"free",
+    prompt:"— Te presté mi llave de repuesto pero ya la encontré.\n— ¿Te la devuelvo ahora?\n— No, ______ todavía — quédatela por si acaso.\n\nVerbo: devolver (subjuntivo tú) · pronombre: la",
+    acc:["no la devuelvas"],
+    disp:"no la devuelvas",
+    exp:"Mandato negativo tú: no + pronombre + subjuntivo.\n'devolver' → subjuntivo tú = devuelvas (o→ue se mantiene en subjuntivo).\nPronombre 'la' va ANTES: no la devuelvas." },
+
+  // ── §IV Negativo + 2 pronombres ─────────────────────────────────────────
+
+  // 16 — no me lo prometas
+  { id:16, sec:"Negativo + 2 pronombres", type:"free",
+    prompt:"Tu amigo promete demasiado y nunca cumple. Cuando intenta prometerte algo, le dices que no te lo prometa.\n\nVerbo: prometer (subjuntivo tú) · IO: me · DO: lo\nEscribe el mandato completo: ______",
+    acc:["no me lo prometas"],
+    disp:"no me lo prometas",
+    exp:"Mandato negativo tú con doble pronombre: no + IO + DO + subjuntivo.\nIO 'me' + DO 'lo' + 'prometas' (subjuntivo tú de prometer): no me lo prometas.\nOrden: no → me (IO) → lo (DO) → prometas." },
+
+  // 17 — no me la cierres  (fill-in-the-blank)
+  { id:17, sec:"Negativo + 2 pronombres", type:"free",
+    prompt:"— Voy a cerrar la ventana del carro — hace frío.\n— ______ todavía — necesito sacar el brazo para señalar.\n— Ah, está bien, avísame cuando termines.\n\nVerbo: cerrar (subjuntivo tú) · IO: me · DO: la",
+    acc:["no me la cierres"],
+    disp:"no me la cierres",
+    exp:"Mandato negativo tú con doble pronombre: no + IO + DO + subjuntivo.\nIO 'me' + DO 'la' + 'cierres' (subjuntivo tú de cerrar): no me la cierres.\nOrden: no → me (IO) → la (DO) → cierres." },
+
+  // ── §V Comprensión Lectora ───────────────────────────────────────────────
+
+  // 18 — MC
+  { id:18, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Qué le pidió Valeria a Tomás justo antes de que saliera?",
+    ch:["A) Que le mandara un mensaje cuando llegara.",
+        "B) Que le prometiera que iba a manejar con cuidado.",
+        "C) Que no usara el GPS mientras manejaba.",
+        "D) Que la llamara si tenía algún problema en la carretera."],
+    cor:"B",
+    exp:"El texto dice: '«Prométeme que manejas con cuidado».' Valeria le pidió a Tomás que le prometiera manejar con cuidado. No le pidió que la llamara, que no usara el GPS, ni que le mandara un mensaje." },
+
+  // 19 — MC
+  { id:19, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Qué respondió Tomás cuando Valeria le dijo 'Prométeme que manejas con cuidado'?",
+    ch:["A) «No te lo puedo prometer — hay mucho tráfico».",
+        "B) «Te lo prometo».",
+        "C) «Prométemelo tú primero».",
+        "D) «Ya te lo prometí ayer»." ],
+    cor:"B",
+    exp:"El texto dice: '«Te lo prometo», dijo Tomás.' Es la forma correcta con doble pronombre en primera persona (no un mandato): te (IO) + lo (DO) + prometo. Respondió de manera afirmativa y directa." },
+
+  // 20 — MC
+  { id:20, sec:"Comprensión Lectora", type:"mc",
+    passage: true,
+    prompt:"¿Por qué Valeria le dijo a Tomás 'no les contestes a nadie'?",
+    ch:["A) Porque Tomás no tenía señal en la carretera.",
+        "B) Porque los amigos de Tomás molestaban demasiado.",
+        "C) Porque no quería que Tomás texteara mientras manejaba.",
+        "D) Porque el móvil de Tomás estaba casi sin batería."],
+    cor:"C",
+    exp:"El texto dice: '«No me texteen mientras manejas — no les contestes a nadie».' El contexto es claro: Valeria no quería que Tomás contestara mensajes al volante porque es peligroso. No fue un problema de señal, de batería ni de los amigos en particular." },
+];
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  answers: {},   // id → letter (mc) or string (free)
+  secsLeft: 17 * 60,
+  tick: null,
+  timedOut: false,
+  startSecs: 0,
+};
+
+// ══════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════
+function startTimer() {
+  document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+  ST.tick = setInterval(() => {
+    ST.secsLeft--;
+    const d = document.getElementById("tdisp");
+    const t = document.getElementById("timer");
+    d.textContent = fmtT(ST.secsLeft);
+    if (ST.secsLeft <= 60) t.classList.add("crit");
+    else if (ST.secsLeft <= 180) t.classList.add("warn");
+    if (ST.secsLeft <= 0) {
+      clearInterval(ST.tick);
+      ST.timedOut = true;
+      showResults();
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════
+// RENDER QUESTION
+// ══════════════════════════════════════════════
+function renderQ() {
+  const q = QS[ST.idx];
+  const wrap = document.getElementById("qwrap");
+
+  // progress
+  document.getElementById("progbar").style.width = `${(ST.idx / QS.length) * 100}%`;
+  document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+
+  // build HTML
+  let html = "";
+
+  // section label + type badge
+  const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+  const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+  html += `<div class="qsec-label">${q.sec}</div>`;
+  html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+  // pool
+  if (q.pool) html += `<div class="qpool">${q.pool}</div>`;
+
+  // passage
+  if (q.passage) {
+    html += `<div class="passage-card">
+      <div class="passage-label">Texto — Valeria y Tomás</div>
+      ${PASSAGE}
+    </div>`;
+  }
+
+  // prompt
+  html += `<p class="qprompt">${q.prompt}</p>`;
+
+  // input
+  if (q.type === "mc") {
+    html += `<div class="choices-grid">`;
+    q.ch.forEach(c => {
+      html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="free-wrap">
+      <div class="free-label">Escribe la forma correcta</div>
+      <input class="free-input" id="freeinp" placeholder="tu respuesta…"
+        oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+      <div class="accent-bar">
+        <span class="accent-label">Insertar:</span>
+        ${['á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ'].map(c=>`<button class="accent-btn" onclick="insertAccent('${c}')">${c}</button>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // next button
+  const isLast = ST.idx === QS.length - 1;
+  html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+    ${isLast ? "Entregar Examen →" : "Siguiente →"}
+  </button>`;
+
+  // inject with animation
+  wrap.style.animation = "none";
+  wrap.offsetHeight; // reflow
+  wrap.style.animation = "";
+  wrap.innerHTML = html;
+
+  // restore previous answer if somehow re-rendered (shouldn't happen, but safe)
+  const prev = ST.answers[q.id];
+  if (prev !== undefined) {
+    if (q.type === "mc") {
+      const btn = document.getElementById(`cb${prev}`);
+      if (btn) btn.classList.add("sel");
+      enableNext();
+    } else {
+      const inp = document.getElementById("freeinp");
+      if (inp) { inp.value = prev; enableNext(); }
+    }
+  }
+
+  // focus free input
+  if (q.type === "free") {
+    setTimeout(() => {
+      const inp = document.getElementById("freeinp");
+      if (inp) inp.focus();
+    }, 50);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════════════════
+function pickMC(letter) {
+  const q = QS[ST.idx];
+  q.ch.forEach(c => {
+    const b = document.getElementById(`cb${c[0]}`);
+    if (b) b.classList.remove("sel");
+  });
+  const btn = document.getElementById(`cb${letter}`);
+  if (btn) btn.classList.add("sel");
+  ST.answers[q.id] = letter;
+  enableNext();
+}
+
+function insertAccent(ch) {
+  const inp = document.getElementById("freeinp");
+  if (!inp) return;
+  const s = inp.selectionStart, e = inp.selectionEnd;
+  inp.value = inp.value.slice(0,s) + ch + inp.value.slice(e);
+  inp.selectionStart = inp.selectionEnd = s + ch.length;
+  inp.focus();
+  freeTyped();
+}
+
+function freeTyped() {
+  const inp = document.getElementById("freeinp");
+  ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+  if (inp && inp.value.trim().length > 0) enableNext();
+  else disableNext();
+}
+
+function enableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.add("ready");
+  if (b) b.disabled = false;
+}
+function disableNext() {
+  const b = document.getElementById("btnnext");
+  if (b) b.classList.remove("ready");
+  if (b) b.disabled = true;
+}
+
+function tryNext() {
+  const q = QS[ST.idx];
+  // save free input if not already saved
+  if (q.type === "free") {
+    const inp = document.getElementById("freeinp");
+    if (inp) ST.answers[q.id] = inp.value;
+  }
+  if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+
+  ST.idx++;
+  if (ST.idx >= QS.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+// ══════════════════════════════════════════════
+// RESULTS
+// ══════════════════════════════════════════════
+function showResults() {
+  clearInterval(ST.tick);
+  const elapsed = 17 * 60 - ST.secsLeft;
+
+  // score
+  let score = 0;
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    if (q.type === "mc") { if (ans === q.cor) score++; }
+    else { if (cf(ans, q.acc)) score++; }
+  });
+  const pct = Math.round((score / QS.length) * 100);
+
+  // switch screens
+  document.getElementById("s-exam").classList.remove("active");
+  document.getElementById("s-results").classList.add("active");
+  window.scrollTo(0, 0);
+
+  // header
+  const hdr = document.getElementById("res-header");
+  hdr.style.background = pct >= 80
+    ? "linear-gradient(135deg,#052e16,#064e3b)"
+    : pct >= 55
+    ? "linear-gradient(135deg,#431407,#78350f)"
+    : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+  document.getElementById("res-score").textContent = `${score}/20`;
+  document.getElementById("res-pct").textContent =
+    `Opción múltiple: ${QS.filter(q=>q.type==="mc").reduce((a,q)=>a+(ST.answers[q.id]===q.cor?1:0),0)}/${QS.filter(q=>q.type==="mc").length}` +
+    `  ·  Respuesta libre: ${QS.filter(q=>q.type==="free").reduce((a,q)=>a+(cf(ST.answers[q.id]||"",q.acc)?1:0),0)}/${QS.filter(q=>q.type==="free").length}`;
+  const msgs = [[90,"Dominio excepcional."],[75,"Comprensión muy sólida."],[55,"Comprensión parcial — repasa los contextos."],[0,"Hay trabajo por hacer."]];
+  document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n])=>pct>=n)[1]}`;
+  document.getElementById("res-time").textContent = ST.timedOut
+    ? "⚠ Tiempo agotado"
+    : `Tiempo: ${fmtT(elapsed)}`;
+
+  if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+  // build result cards
+  const list = document.getElementById("res-list");
+  list.innerHTML = "";
+
+  QS.forEach(q => {
+    const ans = ST.answers[q.id] || "";
+    const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+    const card = document.createElement("div");
+    card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+
+    const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+    let html = `<div class="res-q-top">
+      <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+      <div>
+        <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+        <p class="res-prompt">${q.pool ? `<span style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#666;display:block;margin-bottom:.4rem">${q.pool}</span>` : ""}${q.prompt}</p>
+      </div>
+    </div>`;
+
+    if (q.type === "mc") {
+      html += `<div class="res-mc-choices">`;
+      q.ch.forEach(c => {
+        const l = c[0];
+        const isRight = l === q.cor;
+        const isYours = l === ans;
+        let cls = "";
+        if (isRight) cls = "rc-right";
+        else if (isYours && !isRight) cls = "rc-wrong";
+        html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="res-ans-row">`;
+      if (ans) {
+        html += `<span class="res-chip yours ${ok ? "ok" : "bad"}">Tu respuesta: ${ans}</span>`;
+      } else {
+        html += `<span class="res-chip yours bad">Sin respuesta</span>`;
+      }
+      if (!ok) {
+        html += `<span class="res-chip correct">Correcto: ${q.disp}</span>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+    <div class="res-exp-box" id="rexp${q.id}">
+      ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+    </div>`;
+
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function togE(id) {
+  const b = document.getElementById(`rexp${id}`);
+  const btn = b.previousElementSibling;
+  b.classList.toggle("open");
+  btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+}
+
+// ══════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════
+function startExam() {
+  ST.startSecs = Date.now();
+  document.getElementById("s-landing").classList.remove("active");
+  document.getElementById("s-exam").classList.add("active");
+  window.scrollTo(0, 0);
+  startTimer();
+  renderQ();
+}
+</script>
+</body>
+</html>
