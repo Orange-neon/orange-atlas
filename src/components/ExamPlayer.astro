@@ -279,6 +279,21 @@ const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
       .free-eng-note{
         font-size:.63rem;color:rgba(167,139,250,.6);margin-top:.35rem;font-style:italic;
       }
+      .accent-buttons{
+        display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap;
+      }
+      .accent-btn{
+        background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);
+        color:#a78bfa;padding:.4rem .6rem;border-radius:.35rem;font-size:.85rem;
+        font-weight:600;cursor:pointer;transition:all .15s;font-family:"Inter",sans-serif;
+        min-width:2rem;text-align:center;
+      }
+      .accent-btn:hover{
+        background:rgba(167,139,250,.22);border-color:rgba(167,139,250,.5);color:#c4b5fd;
+      }
+      .accent-btn:active{
+        transform:scale(.95);
+      }
 
       .btn-next{
         background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
@@ -608,7 +623,24 @@ const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
             <div class="free-label">${labelText}</div>
             <input class="free-input" id="freeinp" placeholder="${placeholderText}"
               oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
-            ${q.eng ? '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>' : ""}
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
           </div>`;
         }
 
@@ -621,6 +653,17 @@ const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
         wrap.offsetHeight;
         wrap.style.animation = "";
         wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
 
         const prev = ST.answers[q.id];
         if (prev !== undefined) {
@@ -662,6 +705,19 @@ const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
         ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
         if (inp && inp.value.trim().length > 0) enableNext();
         else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
       }
 
       function enableNext() {
