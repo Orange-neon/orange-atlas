@@ -1,0 +1,216 @@
+---
+title: "Un Techo Para Dos"
+duration: 25
+difficulty: "Vocabulario"
+description: "Vocabulario de la vivienda — Lección 6 de Senderos 2. Fresh angles and new scenarios across the full unit — rooms, appliances, chores, furniture, and housing concepts."
+examCode: "La Vivienda VIII"
+heroTitle: "Un Techo"
+heroAccent: "Para Dos"
+topbarTitle: "Un Techo Para Dos"
+questionCount: 20
+sourceCount: 1
+extraStatValue: 1
+extraStatLabel: "tipo"
+rules:
+  - "Una pregunta a la vez — no puedes volver atrás"
+  - "El examen termina automáticamente cuando el tiempo llega a cero"
+  - "Usa el contexto para inferir el significado"
+  - "Escribe las respuestas de vocabulario en español cuando se indique"
+questionsJson: |
+  [
+    {
+      "id": 1,
+      "sec": "Vocabulario en Contexto",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el comedor", "B) la lavadora", "C) el altillo", "D) el sótano"],
+      "cor": "B",
+      "exp": "A dining room, attic, and basement are all spaces — physical places inside or attached to a house. A washing machine is an appliance — an electric machine that does a task. It's not a space, so it doesn't belong in this group."
+    },
+    {
+      "id": 2,
+      "sec": "Vocabulario en Contexto",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el cuadro", "B) el cartel", "C) la pintura", "D) la mesita de noche"],
+      "cor": "D",
+      "exp": "A picture, poster, and painting are all decorative objects that hang on walls. A nightstand is a small piece of furniture that sits on the floor next to the bed — it doesn't hang on a wall and has nothing to do with wall decoration. It doesn't belong in this group."
+    },
+    {
+      "id": 3,
+      "sec": "Vocabulario en Contexto",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la taza", "B) el vaso", "C) la manta", "D) la copa"],
+      "cor": "C",
+      "exp": "A cup, glass, and wine glass are all vessels used for drinking at the table — they hold liquid. A blanket is a soft textile used to stay warm in bed — it has nothing to do with drinking or the table. It doesn't belong in this group."
+    },
+    {
+      "id": 4,
+      "sec": "Vocabulario en Contexto",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) colgar la ropa", "B) la pared", "C) recoger la ropa", "D) planchar la ropa"],
+      "cor": "B",
+      "exp": "Hanging clothes, picking up clothes, and ironing clothes are all chores related to taking care of clothing — they are actions. A wall is a structural surface of the building — it's not a task or an action. It doesn't belong in a group of clothing chores."
+    },
+    {
+      "id": 5,
+      "sec": "Vocabulario en Contexto",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el ama de casa", "B) el garaje", "C) el patio", "D) el jardín"],
+      "cor": "A",
+      "exp": "A garage, patio, and garden are all physical spaces connected to a home — places you can go or store things. A homemaker is a person, a role — not a place. It doesn't belong in a group of physical spaces."
+    },
+    {
+      "id": 6,
+      "sec": "Vocabulario en Contexto",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el sótano", "B) el altillo", "C) el balcón", "D) cocinar"],
+      "cor": "D",
+      "exp": "A basement, attic, and balcony are all physical spaces — parts of a building where you can be or store things. 'Cocinar' is a verb — an action you perform inside the kitchen. It's not a space, so it doesn't belong in this group."
+    },
+    {
+      "id": 7,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es más largo que el sillón y más grande que una silla. Varias personas pueden sentarse juntas en él. Está en la sala.",
+      "acc": ["el sofá", "sofá"],
+      "disp": "el sofá",
+      "exp": "The comparison clue 'más largo que el sillón' and 'varias personas' are what distinguish a sofa from an armchair (one person only) and a regular chair (no cushioning). A sofa is the large, cushioned seating piece in the living room designed for multiple people. 'Sofá' is a cognate of the English 'sofa' — but the accent is required: 'sofá,' not 'sofa.'"
+    },
+    {
+      "id": 8,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Para llegar, bajas las escaleras. Está en el nivel más bajo de la casa y no tiene mucha luz natural.",
+      "acc": ["el sótano", "sótano"],
+      "disp": "el sótano",
+      "exp": "The action clue 'bajas las escaleras' (you go down stairs) and 'nivel más bajo' (lowest level) confirm this is underground. A basement is below ground — you descend to reach it. This is the direct opposite of the altillo (attic), which you reach by going up. Low natural light is also a typical feature of a basement. The accent is required: 'sótano.'"
+    },
+    {
+      "id": 9,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "La pagas cada mes, como el agua o el internet. Sin ella, los electrodomésticos no funcionan y los cuartos están oscuros.",
+      "acc": ["la luz", "luz"],
+      "disp": "la luz",
+      "exp": "The clues 'pagas cada mes' (monthly payment) and 'electrodomésticos no funcionan' (appliances stop working) point to electricity. In everyday Spanish, 'la luz' means both light and electricity — when someone says 'pagar la luz,' they mean paying the electric bill. This is different from 'la lámpara,' which is the specific physical object that produces light."
+    },
+    {
+      "id": 10,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "No es un vaso normal. Tiene una base larga y delgada. La usas para beber vino en una cena especial.",
+      "acc": ["la copa", "copa"],
+      "disp": "la copa",
+      "exp": "The key distinguishing clue is 'base larga y delgada' — a long, thin stem. That's what makes a wine glass different from a vaso (no stem, used for water or juice) and a taza (has a handle, used for hot drinks like coffee or tea). A copa is used for wine or other beverages at formal or special meals."
+    },
+    {
+      "id": 11,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Tiene una puerta grande. Los carros duermen aquí cuando no están en la calle. Está unido a la casa o muy cerca de ella.",
+      "acc": ["el garaje", "garaje"],
+      "disp": "el garaje",
+      "exp": "The clues 'puerta grande' and 'los carros' confirm a garage. The phrase 'los carros duermen aquí' is a creative way of saying cars are parked and stored there. This is different from the patio (no large door, no cars — it's for people) and the sótano (underground storage, not designed for vehicles). 'Garaje' is a cognate of the English 'garage.'"
+    },
+    {
+      "id": 12,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "No va a la oficina. Cada día se queda en casa para cocinar, limpiar y cuidar a la familia.",
+      "acc": ["el ama de casa", "ama de casa"],
+      "disp": "el ama de casa",
+      "exp": "The negative clue 'no va a la oficina' tells you this person doesn't have a job outside the home. The list of daily tasks — cooking, cleaning, caring for the family — defines the role of a homemaker. Remember: even though 'ama' is a feminine noun, it takes the masculine article 'el' in singular because it starts with a stressed 'a,' just like 'el agua' and 'el águila.'"
+    },
+    {
+      "id": 13,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "La ropa está en el suelo del dormitorio. La levantas y la llevas al armario o a la lavadora.",
+      "acc": ["recoger la ropa"],
+      "disp": "recoger la ropa",
+      "exp": "The key clues are 'está en el suelo' (it's on the floor) and 'la levantas' (you pick it up). Picking up clothes means taking them off the floor and putting them where they belong — in the closet or the washing machine. This is different from 'colgar la ropa' (hanging wet clothes to dry on a line) and 'planchar la ropa' (ironing out wrinkles). Write the full expression."
+    },
+    {
+      "id": 14,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Hace frío en la noche. Te metes en la cama y la pones encima de tu cuerpo para estar caliente.",
+      "acc": ["la manta", "manta", "la cobija", "cobija"],
+      "disp": "la manta / la cobija",
+      "exp": "The clues 'frío,' 'cama,' and 'encima de tu cuerpo' all point to a blanket. A blanket covers your whole body to keep you warm in bed. This is different from the almohada (which supports your head, not your whole body) and the alfombra (which covers the floor, not your body). Both 'la manta' and 'la cobija' are accepted — they are regional synonyms for the same object."
+    },
+    {
+      "id": 15,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "La lavadora, el refrigerador, la estufa y la secadora son ejemplos de esto. Son máquinas eléctricas que ayudan con las tareas del hogar.",
+      "acc": ["el electrodoméstico", "electrodoméstico", "los electrodomésticos", "electrodomésticos"],
+      "disp": "el electrodoméstico",
+      "exp": "The clue 'máquinas eléctricas que ayudan con las tareas del hogar' is the definition itself. 'Electrodoméstico' is a compound word: 'electro-' (electric) plus 'doméstico' (domestic/home). The four examples — washing machine, refrigerator, stove, dryer — are all appliances. The accent is required: 'electrodoméstico,' not 'electrodomestico.'"
+    },
+    {
+      "id": 16,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "El sábado, papá barre, mamá lava los platos y tú pasas la aspiradora. Los tres están haciendo cosas diferentes, pero todas son para la casa. ¿Qué están haciendo todos?",
+      "acc": ["hacer quehaceres domésticos", "los quehaceres domésticos", "quehaceres domésticos"],
+      "disp": "hacer quehaceres domésticos",
+      "exp": "The scenario shows every family member doing a different household task — sweeping, washing dishes, vacuuming. 'Hacer quehaceres domésticos' is the general umbrella expression for doing household chores. It covers all of these individual tasks together. 'Quehaceres' means tasks or chores, and 'domésticos' means related to the home. Write the full expression."
+    },
+    {
+      "id": 17,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Tu camisa tiene arrugas. Usas un objeto de metal que se calienta mucho para dejarla lisa y perfecta antes de salir.",
+      "acc": ["planchar la ropa"],
+      "disp": "planchar la ropa",
+      "exp": "The key clues are 'arrugas' (wrinkles) and 'objeto de metal que se calienta' — a clothes iron. Ironing uses heat and pressure to smooth out wrinkles in fabric. This is different from 'lavar la ropa' (cleaning clothes with water) and 'colgar la ropa' (hanging clothes up to dry). Write the full expression: 'planchar la ropa,' not just 'planchar.'"
+    },
+    {
+      "id": 18,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "La alfombra está sucia. Puedes barrer el suelo de madera con una escoba, pero para la alfombra necesitas una máquina que aspira el polvo.",
+      "acc": ["pasar la aspiradora"],
+      "disp": "pasar la aspiradora",
+      "exp": "The contrast clue 'puedes barrer el suelo de madera, pero para la alfombra necesitas una máquina' eliminates sweeping and confirms vacuuming. A vacuum cleaner is the right tool for carpets and rugs because a broom can't get deep into the fibers. 'Aspiradora' comes from 'aspirar' — to inhale or suction. Write the full expression: 'pasar la aspiradora,' not just 'aspirar.'"
+    },
+    {
+      "id": 19,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "No es solo una casa. No es solo un apartamento. Es la palabra general para cualquier lugar donde vive una persona o una familia.",
+      "acc": ["la vivienda", "vivienda"],
+      "disp": "la vivienda",
+      "exp": "The clue 'palabra general' is the key — this is the umbrella term that covers all types of homes, not just one specific kind. 'Vivienda' comes from the verb 'vivir' (to live). When talking about housing as a concept or social issue, Spanish speakers use 'la vivienda.' It's different from 'el barrio' (the neighborhood around a home) and 'el edificio de apartamentos' (one specific type of building)."
+    },
+    {
+      "id": 20,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Está fuera de la casa. Tu familia pone una mesa y sillas aquí para comer en el verano. El suelo es de cemento, no de tierra ni de plantas.",
+      "acc": ["el patio", "patio"],
+      "disp": "el patio",
+      "exp": "The clues 'fuera de la casa,' 'mesa y sillas,' and 'suelo de cemento' confirm a patio. The hard surface distinguishes it from the jardín (which has soil and plants) and the balcón (which is elevated on an apartment building, not at ground level). 'Patio' is a direct cognate of the English 'patio' — same spelling, same meaning."
+    }
+  ]
+---
