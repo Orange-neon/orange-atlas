@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Las Llaves de Casa | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">La Vivienda VI · Senderos 2 · Lección 5</p> <h1 class="land-title"> Las Llaves <br><em>de Casa</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>1 fuentes — una pregunta a la vez.</p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">1</div> <div class="info-l">tipo</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Usa el contexto para inferir el significado</li><li>Escribe las respuestas de vocabulario en español cuando se indique</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">Las Llaves de Casa</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto"> 
+Tu navegador no soporta el elemento de audio.
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el armario","B) alquilar","C) el estante","D) la cómoda"],"cor":"B","exp":"A closet, bookcase, and dresser are all pieces of furniture — physical objects that hold or store things inside a room. 'Alquilar' is a verb meaning to rent — it's a financial action, not an object. It doesn't belong in a group of furniture."},{"id":2,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) barrer el suelo","B) lavar el suelo","C) limpiar la casa","D) el pasillo"],"cor":"D","exp":"Sweeping the floor, washing the floor, and cleaning the house are all household chores — actions you do to keep the home clean. A hallway is a physical space inside a house, not a chore. It's a place, not an action, so it doesn't belong in this group."},{"id":3,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) mudarse","B) alquilar","C) el vecino","D) el alquiler"],"cor":"C","exp":"Moving, renting (verb), and rent (noun) are all words related to the process of getting or changing a home — they describe actions or costs tied to housing. A neighbor is a person who lives near you. A neighbor is not part of the process of moving or renting, so the word doesn't belong in this group."},{"id":4,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la lavadora","B) la secadora","C) el alquiler","D) el lavaplatos"],"cor":"C","exp":"A washing machine, clothes dryer, and dishwasher are all electrodomésticos — electric appliances that perform a household task. Rent is a monthly payment for a place to live — it's a financial concept, not an appliance. It doesn't belong in a group of machines."},{"id":5,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la sala","B) el dormitorio","C) el jardín","D) poner la mesa"],"cor":"D","exp":"A living room, bedroom, and garden are all spaces — physical places that are part of or connected to a home. 'Poner la mesa' means to set the table — it's an action, a household chore, not a physical space. It doesn't belong in a group of places."},{"id":6,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la alfombra","B) las cortinas","C) la pared","D) la manta"],"cor":"C","exp":"A rug, curtains, and a blanket are all soft fabric or textile objects found in a home. A wall is a hard, structural surface that forms the boundary of a room — it's part of the building itself, not a textile or fabric object. It doesn't belong in this group."},{"id":7,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuarto principal de la casa donde la familia descansa, habla y mira televisión juntos.","acc":["la sala","sala"],"disp":"la sala","exp":"The key clues are 'descansar' (to rest), 'hablar' (to talk), and 'mirar televisión' — these are all social, relaxing activities. The living room is the main shared space in a home. It's different from the comedor, where the family eats, and the dormitorio, where people sleep."},{"id":8,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuarto privado de la casa donde duermes. Normalmente tiene una cama, un armario y una mesita de noche.","acc":["el dormitorio","dormitorio"],"disp":"el dormitorio","exp":"The key clues are 'privado' (private) and 'duermes' (you sleep). The bedroom is the personal sleeping space. It contains a bed, closet, and nightstand. 'Dormitorio' comes from the verb 'dormir' — the -orio suffix indicates the place where the action happens, just like 'laboratorio' comes from 'laborar.'"},{"id":9,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el verbo que describes cuando pagas dinero cada mes para vivir en una casa o apartamento que no es tuyo.","acc":["alquilar"],"disp":"alquilar","exp":"The key clues are 'pagar dinero cada mes' (pay money monthly) and 'que no es tuyo' (that doesn't belong to you). 'Alquilar' is the verb — the action of renting. This is different from 'el alquiler,' which is the noun — the monthly rent payment itself. Be careful not to confuse the verb and the noun."},{"id":10,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de limpiar el suelo usando una escoba para mover y quitar la suciedad y el polvo.","acc":["barrer el suelo"],"disp":"barrer el suelo","exp":"The key clues are 'escoba' (broom) and 'mover la suciedad' (move the dirt). Sweeping uses a broom, which sets it apart from 'lavar el suelo' (washing the floor with water) and 'pasar la aspiradora' (vacuuming with a machine). Write the full expression — 'barrer el suelo,' not just 'barrer.'"},{"id":11,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de usar agua y un trapeador para limpiar bien el suelo de la cocina o de otro cuarto.","acc":["lavar el suelo"],"disp":"lavar el suelo","exp":"The key clues are 'agua' (water) and 'trapeador' (mop). Washing the floor uses water and a mop, which is more thorough than sweeping. This is different from 'barrer el suelo' (using a dry broom) and 'pasar la aspiradora' (using a vacuum on carpets). Write the full expression."},{"id":12,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la expresión que usas para decir que vas a limpiar toda la casa — los cuartos, los muebles, el suelo y todo.","acc":["limpiar la casa"],"disp":"limpiar la casa","exp":"The key clue is 'toda la casa' — this is the general, umbrella expression for cleaning the whole house. It's broader than any specific chore like barrer, sacudir, or lavar. When someone says they are going to 'limpiar la casa,' it means a full top-to-bottom cleaning session. Write the full expression."},{"id":13,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la persona que vive en el mismo edificio que tú o en la casa de al lado.","acc":["el vecino","la vecina","vecino","vecina"],"disp":"el vecino / la vecina","exp":"The key clue is 'mismo edificio' or 'casa de al lado' — someone who lives physically close to you. 'Vecino/a' is related to 'vecindad' and 'vecindario' (neighborhood). This is different from 'el ama de casa,' which describes a role inside the home, not a relationship between neighbors."},{"id":14,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de llevar todas tus cosas a una nueva casa para vivir allí de manera permanente.","acc":["mudarse"],"disp":"mudarse","exp":"The key clues are 'nueva casa' (new house) and 'de manera permanente' (permanently). 'Mudarse' is a reflexive verb meaning to relocate your home. It's different from 'alquilar' (the financial act of renting) and 'arreglar' (tidying up inside the home). The reflexive form is required — 'mudarse,' not 'mudar.'"},{"id":15,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el dinero fijo que pagas cada mes para vivir en un lugar que pertenece a otra persona.","acc":["el alquiler","alquiler"],"disp":"el alquiler","exp":"The key clues are 'dinero fijo' (fixed amount of money) and 'cada mes' (every month). 'El alquiler' is the noun — the monthly rent payment. This is different from 'alquilar,' the verb meaning the action of renting. Think of it like 'run' vs. 'a run' in English — same root, different grammatical role."},{"id":16,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio con árboles, flores o plantas que está fuera de la casa. La familia lo cuida y lo riega con agua.","acc":["el jardín","jardín"],"disp":"el jardín","exp":"The key clues are 'árboles, flores o plantas' and 'regar con agua' (water with water). A garden has living plants that need care — this distinguishes it from the patio (paved, no plants) and the balcón (elevated, small, on an apartment building). 'Jardín' is a direct cognate with the English 'garden.' The accent is required."},{"id":17,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble grande del dormitorio, con puertas, donde cuelgas tu ropa en ganchos.","acc":["el armario","armario"],"disp":"el armario","exp":"The key clues are 'puertas' (doors) and 'cuelgas la ropa en ganchos' (you hang clothes on hangers). A closet has doors and hanging space — this distinguishes it from the cómoda (has drawers, no hanging space) and the estante (has open shelves for books, not clothes). 'Armario' is the equivalent of a wardrobe or closet."},{"id":18,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio largo y estrecho dentro de la casa. Conecta el dormitorio, el baño y los otros cuartos entre sí.","acc":["el pasillo","pasillo"],"disp":"el pasillo","exp":"The key clues are 'largo y estrecho' (long and narrow) and 'conecta los cuartos' (connects the rooms). A hallway is the transition space between rooms on the same floor. It's different from the escalera (which connects floors, not rooms) and the entrada (which is the main entry point into the house)."},{"id":19,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico más grande de la cocina. Guarda la comida fría para que no se dañe, pero sin congelarla.","acc":["el refrigerador","refrigerador","el refri","refri"],"disp":"el refrigerador / el refri","exp":"The key clues are 'más grande de la cocina' (largest in the kitchen) and 'frío sin congelar' (cold but not frozen). A refrigerator keeps food cold enough to stay fresh, but not frozen solid — that's the job of the congelador (freezer). In informal speech, Spanish speakers often shorten 'refrigerador' to 'el refri.' Both answers are accepted."},{"id":20,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la máquina que usa agua caliente y movimiento para dejar limpia toda tu ropa sucia.","acc":["la lavadora","lavadora"],"disp":"la lavadora","exp":"The key clues are 'agua caliente' (hot water) and 'ropa sucia' (dirty clothes). A washing machine cleans clothes — this is different from the secadora (which dries clothes after washing) and the lavaplatos (which washes dishes, not clothes). 'Lavadora' comes from 'lavar' — the -dora suffix indicates the machine or tool that performs the action."}];
+const duration = 25;
+const totalQuestions = 20;
+const passages = null;
+const infographicTitle = "Infografía";
+const infographicSrc = "";
+const audioSrc = "";
+const audioTitle = "Audio";
+const audioMeta = "";
+const defaultTopbarTitle = "Las Llaves de Casa";
+const hasMediaQuestions = false;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    })();</script> </body> </html>
