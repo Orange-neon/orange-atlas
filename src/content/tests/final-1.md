@@ -1,0 +1,492 @@
+---
+title: "El Gran Repaso Final"
+duration: 45
+difficulty: "Vocabulario"
+description: "Repaso completo del semestre 2 — vocabulario del cuerpo, la salud, la tecnología, el coche y la vivienda; gramática en contexto; y cultura hispana."
+examCode: "Repaso Final"
+heroTitle: "El Gran Repaso"
+heroAccent: "Final"
+topbarTitle: "El Gran Repaso Final"
+questionCount: 50
+sourceCount: 5
+extraStatValue: 4
+extraStatLabel: "tipos"
+rules:
+  - "Una pregunta a la vez — no puedes volver atrás"
+  - "El examen termina automáticamente cuando el tiempo llega a cero"
+  - "Usa el contexto para inferir el significado"
+  - "Escribe las respuestas de vocabulario en español cuando se indique"
+questionsJson: |
+  [
+    {
+      "id": 1,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la nariz", "B) la rodilla", "C) los labios", "D) la boca"],
+      "cor": "B",
+      "exp": "The nose, lips, and mouth are all parts of the face. The knee is a joint found in the leg — it has nothing to do with facial features. It belongs in a group of leg joints or body joints, not in a group of face parts."
+    },
+    {
+      "id": 2,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el hospital", "B) la aspirina", "C) la pastilla", "D) el antibiótico"],
+      "cor": "A",
+      "exp": "Aspirin, a pill or tablet, and an antibiotic are all medicines — substances you take to treat illness. A hospital is a building, a medical facility. It is a place, not a medicine, so it doesn't belong in a group of medications."
+    },
+    {
+      "id": 3,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) toser", "B) estornudar", "C) tener fiebre", "D) recetar"],
+      "cor": "D",
+      "exp": "Coughing, sneezing, and having a fever are all symptoms or involuntary reactions a sick patient experiences. 'Recetar' means to prescribe — it is something a doctor actively does for a patient, not something a patient suffers. It doesn't belong in a group of patient symptoms."
+    },
+    {
+      "id": 4,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el teclado", "B) el ratón", "C) descargar", "D) los altavoces"],
+      "cor": "C",
+      "exp": "A keyboard, a mouse, and speakers are all hardware — physical pieces of technology you can touch and hold. 'Descargar' means to download — it is a digital action performed on a device, not a physical object. It doesn't belong in a group of hardware components."
+    },
+    {
+      "id": 5,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el taller", "B) el correo electrónico", "C) chatear", "D) textear"],
+      "cor": "A",
+      "exp": "Email, chatting online, and texting are all forms of digital communication — ways people send messages using technology. A repair shop is a physical place where vehicles are fixed — it has nothing to do with digital communication. It doesn't belong in this group."
+    },
+    {
+      "id": 6,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) manejar", "B) el volante", "C) arrancar", "D) estacionar"],
+      "cor": "B",
+      "exp": "Driving, starting the engine, and parking are all actions — things a driver does with a vehicle. A steering wheel is a noun — a physical part of the car. It is an object, not an action, so it doesn't belong in a group of driving actions."
+    },
+    {
+      "id": 7,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el mecánico", "B) la carretera", "C) el taller", "D) la gasolinera"],
+      "cor": "A",
+      "exp": "A highway, a repair shop, and a gas station are all places — physical locations associated with cars and driving. A mechanic is a person — a professional who fixes vehicles. A person is not a place, so the mechanic doesn't belong in a group of car-related locations."
+    },
+    {
+      "id": 8,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la garganta", "B) el corazón", "C) la muñeca", "D) el estómago"],
+      "cor": "C",
+      "exp": "The throat, the heart, and the stomach are all internal organs — body parts located inside the body that you cannot see from the outside. The wrist is an external joint you can see and touch. It belongs in a group of joints or limbs, not internal organs."
+    },
+    {
+      "id": 9,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la clínica", "B) el accidente", "C) la farmacia", "D) el consultorio"],
+      "cor": "B",
+      "exp": "A clinic, a pharmacy, and a doctor's office are all medical places — physical locations you go to for healthcare. An accident is an event — something that happens unexpectedly, not a place you go. It doesn't belong in a group of medical facilities."
+    },
+    {
+      "id": 10,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el correo basura", "B) las redes sociales", "C) el wifi", "D) la tos"],
+      "cor": "D",
+      "exp": "Spam, social media, and wifi are all technology concepts — things related to the internet and digital life. A cough is a health symptom — something your body does when you are sick. It has nothing to do with technology, so it doesn't belong in this group."
+    },
+    {
+      "id": 11,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la palabra correcta: 'Compré estas flores _____ mi mamá porque es su cumpleaños.'",
+      "ch": ["A) de", "B) para", "C) en", "D) por"],
+      "cor": "B",
+      "exp": "The correct answer is 'para.' The flowers are a gift with a specific recipient — Mom. 'Para' is used to indicate the recipient of something (PERFECTOS: R = Recipient). 'Por' indicates exchange, reason, or means — not a recipient. 'De' and 'en' are prepositions that don't fit this context at all."
+    },
+    {
+      "id": 12,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: 'Ayer, yo _____ al médico porque me dolía la garganta.'",
+      "ch": ["A) voy", "B) iba", "C) iré", "D) fui"],
+      "cor": "D",
+      "exp": "The correct answer is 'fui,' the preterite form of 'ir.' The trigger word 'ayer' (yesterday) signals a single, completed action in the past — preterite territory. 'Voy' is present tense. 'Iba' is imperfect, used for ongoing or habitual past actions. 'Iré' is future tense. Only 'fui' correctly places this action as completed yesterday."
+    },
+    {
+      "id": 13,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: 'De niña, mi abuela siempre me _____ sopa cuando estaba enferma.'",
+      "ch": ["A) hacía", "B) hizo", "C) hace", "D) hará"],
+      "cor": "A",
+      "exp": "The correct answer is 'hacía,' the imperfect form of 'hacer.' Two clues signal the imperfect: 'de niña' (as a child — background life context) and 'siempre' (always — a classic imperfect trigger word indicating a habitual repeated action). 'Hizo' is preterite for a single completed action. 'Hace' is present. 'Hará' is future. Only imperfect fits repeated past."
+    },
+    {
+      "id": 14,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: '_____ la medicina ahora — el médico dijo que era importante.'",
+      "ch": ["A) Tomás", "B) Tome", "C) Toma", "D) Tomas"],
+      "cor": "C",
+      "exp": "The correct answer is 'toma,' the affirmative tú command of 'tomar.' To form an affirmative tú command, take the tú present tense form (tomas) and drop the -s: tomas → toma. 'Tomás' is a proper name. 'Tome' is the formal Usted command — used with adults or strangers, not with a peer. 'Tomas' is simply the present tense tú form, which is a statement, not a command."
+    },
+    {
+      "id": 15,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: 'No _____ el archivo todavía — lo necesitamos mañana.'",
+      "ch": ["A) borra", "B) borres", "C) borré", "D) borras"],
+      "cor": "B",
+      "exp": "The correct answer is 'borres,' the negative tú command of 'borrar.' To form a negative tú command: take the yo form (borro), drop the -o, and add the opposite ending (-es for -ar verbs). So: borro → borr → borres. 'Borra' is the affirmative tú command — only used for positive commands. 'Borré' is first-person preterite. 'Borras' is simple present tense, not a command."
+    },
+    {
+      "id": 16,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: 'Señor, por favor _____ este formulario antes de ver al médico.'",
+      "ch": ["A) llena", "B) llenan", "C) llené", "D) llene"],
+      "cor": "D",
+      "exp": "The correct answer is 'llene,' the formal Usted command of 'llenar.' To form a formal command: take the yo form (lleno), drop the -o, and add the opposite ending (-e for -ar verbs). So: lleno → llen → llene. 'Llena' is the affirmative tú command — too informal for 'Señor.' 'Llenan' is the ellos/ustedes present tense. 'Llené' is first-person preterite."
+    },
+    {
+      "id": 17,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige el pronombre relativo correcto: 'La enfermera _____ me ayudó habla tres idiomas.'",
+      "ch": ["A) que", "B) lo que", "C) cuya", "D) quien"],
+      "cor": "A",
+      "exp": "The correct answer is 'que.' In this sentence, 'que' replaces 'la enfermera' as the subject of the relative clause and means 'who' or 'that.' 'Que' works for both people and things as the subject of a relative clause. 'Quien' is also for people but is used after a preposition (e.g., 'a quien'). 'Lo que' refers to an idea or situation, not a specific person. 'Cuya' is a possessive relative adjective (whose), which doesn't fit here."
+    },
+    {
+      "id": 18,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la palabra correcta: 'Fui a la gasolinera _____ llenar el depósito antes del viaje.'",
+      "ch": ["A) de", "B) con", "C) para", "D) por"],
+      "cor": "C",
+      "exp": "The correct answer is 'para.' Here, 'para' followed by an infinitive (llenar) expresses purpose — the reason you went to the gas station was in order to fill the tank. This matches PERFECTOS: P = Purpose (in order to do something). 'Por' followed by an infinitive can express cause, but not purpose with a clear destination in mind. 'De' and 'con' don't fit this structure."
+    },
+    {
+      "id": 19,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: 'Mientras el médico me _____ la temperatura, yo escuché música.'",
+      "ch": ["A) toma", "B) tomaba", "C) tomó", "D) tomará"],
+      "cor": "B",
+      "exp": "The correct answer is 'tomaba,' the imperfect form of 'tomar.' The word 'mientras' (while) signals that this action was the ongoing background when another completed action (escuché — preterite) occurred. The doctor was in the middle of taking the temperature — an ongoing process, not a single completed event. 'Tomó' (preterite) would incorrectly imply the action was finished at that moment. 'Toma' is present. 'Tomará' is future."
+    },
+    {
+      "id": 20,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "Elige la forma correcta del verbo: 'El médico recomienda que tú _____ mucha agua y descanses en cama.'",
+      "ch": ["A) bebe", "B) bebes", "C) bebiste", "D) bebas"],
+      "cor": "D",
+      "exp": "The correct answer is 'bebas,' the present subjunctive form of 'beber.' The trigger is 'recomienda que' — recommendations fall under WEIRDOS (R = Requests/Recommendations), which require the subjunctive in the subordinate clause. To conjugate: take the yo form (bebo), drop the -o, add the opposite ending (-as for -er verbs): bebo → beb → bebas. 'Bebe' and 'bebes' are indicative. 'Bebiste' is preterite."
+    },
+    {
+      "id": 21,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "En la noche del 5 de enero, ¿qué dejan los niños afuera para los Reyes Magos y sus animales?",
+      "ch": ["A) Leche y galletas", "B) Zapatos y zanahorias", "C) Pan y flores", "D) Juguetes y agua"],
+      "cor": "B",
+      "exp": "Children leave shoes and carrots outside on the night of January 5th. The shoes are for the Three Kings to fill with gifts, and the carrots are for their horses. This is the Hispanic tradition that contrasts directly with the American custom of leaving milk and cookies for Santa Claus. The class notes specifically mention 'shoes and carrots under the tree' as the Three Kings tradition."
+    },
+    {
+      "id": 22,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "En la canción que se canta a los niños cuando se lastiman — 'Sana sana…' — ¿de qué animal se habla?",
+      "ch": ["A) Un gato", "B) Un perro", "C) Una rana", "D) Un pato"],
+      "cor": "C",
+      "exp": "The full song goes: 'Sana sana, colita de rana, si no sanas hoy, ¡sanarás mañana!' The animal is una rana — a frog. Specifically, the song refers to 'colita de rana,' meaning a little frog's tail. This is a traditional Spanish-language song sung to comfort young children when they get hurt, similar to kissing a boo-boo better in English-speaking cultures."
+    },
+    {
+      "id": 23,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Qué celebra México el 16 de septiembre?",
+      "ch": ["A) Su independencia de España", "B) La Batalla de Puebla contra Francia", "C) El día de la raza", "D) La revolución mexicana"],
+      "cor": "A",
+      "exp": "September 16th is Mexico's Independence Day — the day Mexico declared independence from Spain. It is celebrated with El Grito (¡Viva México!) in the Zócalo in Mexico City at midnight. This is a very common source of confusion: May 5th (Cinco de Mayo) celebrates the Battle of Puebla against France, which happened over 40 years after independence. The two events are completely different."
+    },
+    {
+      "id": 24,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cuál es la definición correcta de 'Chicano/a'?",
+      "ch": ["A) Cualquier persona que habla español", "B) Persona de un país hispanohablante, incluida España", "C) Latino/a que vive en España", "D) Hijo/a de padres mexicanos nacido/a en los Estados Unidos"],
+      "cor": "D",
+      "exp": "A Chicano/a is specifically a person whose parents are from Mexico but who was born in the United States. This is different from Hispano/a (anyone who speaks Spanish, from any Spanish-speaking country including Spain) and Latino/a (Spanish speakers from all countries except Spain). The term 'Chicano/a' is tied specifically to Mexican-American identity and was popularized during the civil rights movement."
+    },
+    {
+      "id": 25,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Qué evento histórico representa el 5 de mayo en México?",
+      "ch": ["A) La independencia de México de España", "B) La victoria de México sobre Francia en la Batalla de Puebla", "C) El inicio de la revolución mexicana", "D) La firma de la constitución mexicana"],
+      "cor": "B",
+      "exp": "Cinco de Mayo commemorates Mexico's victory over France at the Battle of Puebla on May 5, 1862. The Mexican army won despite being outnumbered approximately 2:1. It is emphatically NOT Mexico's Independence Day — the class notes explicitly state 'NOT INDEPENDENCE DAY' in caps. Independence Day is September 16th. The Battle of Puebla was fought more than 40 years after independence was declared."
+    },
+    {
+      "id": 26,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿De dónde viene la influencia de los arcos, los azulejos de colores y los patios centrales en la arquitectura hispana?",
+      "ch": ["A) Del Imperio Árabe", "B) De los mayas", "C) De los romanos", "D) De los aztecas"],
+      "cor": "A",
+      "exp": "The architectural influence comes from the Arabic Empire. The chain of cultural transmission is: the Arabic Empire colonized Spain → Spain colonized the Americas → Arabic architectural style (arches, colorful tiles, central patios with fountains) spread throughout Latin America. This is why you see Moorish-style arches and bright tilework in Mexican and Latin American homes. The class notes specifically trace this lineage."
+    },
+    {
+      "id": 27,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cómo son las farmacias en muchos países hispanohablantes, comparadas con las de los Estados Unidos?",
+      "ch": ["A) Son más caras y requieren más documentos", "B) Solo venden productos naturales", "C) Siempre requieren una receta para cualquier medicina", "D) Son más baratas y el acceso a la medicina es mucho más fácil"],
+      "cor": "D",
+      "exp": "In many Spanish-speaking countries, clinical sessions are extremely cheap and the pharmacy is often in the same building as the clinic. The staff are highly trained pharmacists who can recommend medications directly — they are not doctors, but they are knowledgeable. Compared to the United States, it is much cheaper and easier to access medicine. Many medications that require a prescription in the US can be purchased directly in Hispanic pharmacies."
+    },
+    {
+      "id": 28,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "Dentro del pan de reyes hay un objeto especial escondido. ¿Qué es?",
+      "ch": ["A) Una moneda de oro", "B) Un anillo de plata", "C) Una figura pequeña del niño Jesús", "D) Una zanahoria miniatura"],
+      "cor": "C",
+      "exp": "Hidden inside the pan de reyes (also called rosca de reyes) is a tiny figurine of baby Jesus. Whoever finds the figurine in their slice of bread is expected to throw a party on February 2nd (Día de la Candelaria). The bread itself is a sweet ring-shaped bread decorated with dried fruit on top, shared on January 6th, the last day of holiday celebrations."
+    },
+    {
+      "id": 29,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cuál de estos bailes es conocido por ser muy íntimo, donde los bailarines se tocan mucho?",
+      "ch": ["A) La cumbia", "B) El merengue", "C) La salsa", "D) La bachata"],
+      "cor": "D",
+      "exp": "According to the class notes, bachata is described as 'very touchy' — dancers hold each other closely throughout the dance. By contrast: cumbia is danced without touching (hands up, move hips); merengue is fast-paced with short quick steps; and salsa has a structured footwork pattern (1-2-3, pause, 5-6-7, pause) with hands up. Bachata is the most physically intimate of the four dances covered in class."
+    },
+    {
+      "id": 30,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Por qué el 5 de mayo se celebra más en los Estados Unidos que en México?",
+      "ch": ["A) Porque México prefiere no recordar ese día", "B) Porque los americanos usaron esa victoria como inspiración durante la Guerra Civil", "C) Porque la batalla ocurrió en territorio americano", "D) Porque Francia atacó a los Estados Unidos ese mismo año"],
+      "cor": "B",
+      "exp": "The class notes explain that Americans used the Mexican victory at Puebla as inspiration for the Union side during the American Civil War, which was happening simultaneously in 1862. Because of this historical connection, Cinco de Mayo became a bigger commercial and cultural celebration in the United States than in Mexico itself. In Mexico, it is observed but is not a major national holiday the way Independence Day (September 16th) is."
+    },
+    {
+      "id": 31,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte del brazo que doblas cuando levantas algo pesado o cuando apoyas el brazo en una mesa.",
+      "acc": ["el codo", "codo"],
+      "disp": "el codo",
+      "exp": "The clues 'doblas' (you bend) and 'brazo' (arm) identify a joint in the arm. The elbow is the only joint in the arm that bends this way. It is different from la muñeca (the wrist, which connects the hand to the forearm and rotates) and el hombro (the shoulder, which connects the entire arm to the body). 'Codo' is also used in the Spanish expression 'hablar por los codos' — to talk too much."
+    },
+    {
+      "id": 32,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte de la cara que está entre los ojos y la boca. La usas para respirar y para oler.",
+      "acc": ["la nariz", "nariz"],
+      "disp": "la nariz",
+      "exp": "The location clue 'entre los ojos y la boca' (between the eyes and the mouth) places this feature centrally on the face. The two functions — breathing and smelling — confirm the nose. 'La nariz' shares its Latin root 'nasus' with the English word 'nasal.' It is different from la boca (which opens to speak and eat) and los ojos (which are used to see). The accent is required: 'nariz,' not 'naris.'"
+    },
+    {
+      "id": 33,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte del cuerpo que no puedes ver desde afuera. Está dentro de la cabeza y es la que realmente procesa los sonidos para que puedas escuchar.",
+      "acc": ["el oído", "oído"],
+      "disp": "el oído",
+      "exp": "The key clue is 'no puedes ver desde afuera' — the inner ear is hidden inside the skull and is invisible. This distinguishes it from 'la oreja,' which is the visible outer ear — the curved flap of skin on the side of your head. Both relate to hearing, but 'el oído' is the internal organ that processes sound waves, while 'la oreja' is purely the external structure. The accent is required: 'oído,' not 'oido.'"
+    },
+    {
+      "id": 34,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Son las estructuras duras que están dentro del cuerpo. Le dan forma y soporte a todo el cuerpo. Un adulto tiene 206 de ellos.",
+      "acc": ["los huesos", "huesos"],
+      "disp": "los huesos",
+      "exp": "Three clues converge: 'duras' (hard), 'dentro del cuerpo' (inside the body), and 'forma y soporte' (shape and support). The specific fact that an adult has 206 of them is an additional identifier. 'Los huesos' is always plural when referring to bones in general. Interestingly, 'hueso' in Spanish also refers to the hard pit inside fruits like avocados or peaches — same hardness, different context."
+    },
+    {
+      "id": 35,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la articulación que conecta la parte baja de la pierna con el pie. Se puede torcer fácilmente cuando corres o saltas.",
+      "acc": ["el tobillo", "tobillo"],
+      "disp": "el tobillo",
+      "exp": "The clue 'conecta la parte baja de la pierna con el pie' (connects the lower leg to the foot) identifies the ankle. The verb 'torcerse' (to sprain) is directly linked to this body part in the vocabulary list: 'torcerse el tobillo' is the specific expression for spraining your ankle. This is different from la rodilla (the knee, which connects the upper and lower leg) and la muñeca (the wrist, which connects the hand to the forearm)."
+    },
+    {
+      "id": 36,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el papel oficial que el médico escribe y te da para que puedas comprar una medicina específica en la farmacia.",
+      "acc": ["la receta", "receta"],
+      "disp": "la receta",
+      "exp": "The clues 'papel oficial que el médico escribe' (official paper the doctor writes) and 'para comprar una medicina en la farmacia' describe a prescription. Important note: 'la receta' in Spanish also means a cooking recipe — same word, two very different contexts. In the medical context it always means prescription. This is different from 'el medicamento' (the medication itself) and 'la pastilla' (the pill form of medicine)."
+    },
+    {
+      "id": 37,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es una señal que da el cuerpo para indicar que algo no está bien — como el dolor, la fiebre o la tos.",
+      "acc": ["el síntoma", "síntoma"],
+      "disp": "el síntoma",
+      "exp": "The clue 'señal que da el cuerpo' (signal the body gives) and the three examples — pain, fever, cough — define a symptom. 'Síntoma' is a cognate of the English 'symptom.' It is different from 'la enfermedad' (the illness itself — e.g., the flu) and 'el medicamento' (the treatment). A symptom is what signals that something is wrong, not the illness or the cure. The accent is required: 'síntoma,' not 'sintoma.'"
+    },
+    {
+      "id": 38,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la acción en que el aire sale de manera muy rápida y fuerte por la nariz y la boca al mismo tiempo. Pasa mucho cuando tienes alergias o un resfriado.",
+      "acc": ["estornudar"],
+      "disp": "estornudar",
+      "exp": "The clues 'aire sale muy rápido y fuerte' (air comes out fast and forcefully) and 'alergias o resfriado' (allergies or a cold) describe sneezing. 'Estornudar' is different from 'toser' (to cough — which produces a rough sound from the throat but is more controlled and repetitive) and 'respirar' (to breathe — slow, steady, and normal). In the preterite: estornudé. The -ar ending makes conjugation straightforward."
+    },
+    {
+      "id": 39,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el lugar del hospital al que vas cuando algo muy urgente y grave te ocurre — por ejemplo, un accidente, una fractura o un dolor muy fuerte.",
+      "acc": ["la sala de emergencias", "sala de emergencias", "la sala de emergencia", "sala de emergencia"],
+      "disp": "la sala de emergencias",
+      "exp": "The clues 'urgente y grave' (urgent and serious) and the examples — accident, fracture, severe pain — describe an emergency room. This is different from 'el consultorio' (a regular doctor's office for routine appointments, where you need a prior appointment) and 'la clínica' (a small medical center for non-emergency care). The ER is the highest-urgency medical location — you go without an appointment when something serious happens. Write the full expression."
+    },
+    {
+      "id": 40,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es una medicina pequeña y sólida, generalmente redonda u ovalada, que tragas entera con un vaso de agua.",
+      "acc": ["la pastilla", "pastilla"],
+      "disp": "la pastilla",
+      "exp": "The clues 'pequeña y sólida' (small and solid), 'redonda u ovalada' (round or oval), and 'tragas con agua' (you swallow with water) define a pill or tablet. This is different from 'el medicamento' (the general term for any medication — could be liquid, cream, injection, or pill) and 'el antibiótico' (a specific type of medication that fights bacterial infections, which often comes in pill form but is not defined by its shape)."
+    },
+    {
+      "id": 41,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es lo que haces cuando quieres eliminar un archivo, una foto o un mensaje de tu dispositivo para que no esté más.",
+      "acc": ["borrar"],
+      "disp": "borrar",
+      "exp": "The clue 'eliminar' (eliminate) and 'para que no esté más' (so it no longer exists) confirm this is the action of deleting. 'Borrar' literally means to erase — it is used both for erasing pencil marks on paper and for deleting digital files. This is different from 'descargar' (to download — add something to your device) and 'editar texto' (to edit a text file — modify it, not eliminate it). In the preterite: borré (note the accent)."
+    },
+    {
+      "id": 42,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte del ordenador que tiene todas las letras, los números y los símbolos. La usas para escribir textos, mensajes y documentos.",
+      "acc": ["el teclado", "teclado"],
+      "disp": "el teclado",
+      "exp": "The clues 'letras, números y símbolos' and 'usas para escribir' identify the keyboard. 'Teclado' comes from 'tecla' — a key, like a piano key or a keyboard key. This is different from 'el ratón' (the mouse — used to click and move a cursor, not to type), 'la pantalla' (the screen — the display you look at), and 'el micrófono' (the microphone — captures voice, not typed input)."
+    },
+    {
+      "id": 43,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el mensaje de audio que alguien te deja en el teléfono cuando llamas y la persona no contesta.",
+      "acc": ["el correo de voz", "correo de voz"],
+      "disp": "el correo de voz",
+      "exp": "The clues 'mensaje de audio' (audio message) and 'cuando la persona no contesta' (when the person doesn't answer) define voicemail. 'Correo de voz' literally translates as 'voice mail' — 'correo' means mail or message, and 'voz' means voice. This is different from 'el correo electrónico' (email — text-based, not audio) and 'el correo basura' (spam — unwanted messages, also text-based). Write the full expression."
+    },
+    {
+      "id": 44,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la acción de copiar un archivo, una canción o una aplicación de internet a tu dispositivo para tenerla guardada localmente.",
+      "acc": ["descargar"],
+      "disp": "descargar",
+      "exp": "The clues 'copiar de internet a tu dispositivo' (copy from the internet to your device) and 'tenerla guardada' (have it saved locally) define downloading. 'Descargar' literally means to unload or offload — you are pulling something from the internet and loading it onto your device. This is the opposite of 'subir' (to upload — send from your device to the internet). In the preterite: descargué (note: -gar verb requires spelling change to maintain the hard g sound)."
+    },
+    {
+      "id": 45,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es un aparato pequeño y portátil que conectas al puerto del ordenador para guardar archivos y llevarlos contigo a otro lugar.",
+      "acc": ["la memoria de USB", "memoria de USB", "el lápiz de USB", "lápiz de USB"],
+      "disp": "la memoria de USB / el lápiz de USB",
+      "exp": "The clues 'pequeño y portátil' (small and portable) and 'llevar archivos a otro lugar' (take files somewhere else) describe a USB flash drive. Both 'la memoria de USB' and 'el lápiz de USB' are accepted — they are two common names for the same object in Spanish. 'Lápiz de USB' literally means 'USB pencil' because of its slim, pen-like shape. Both names are used equally in different Spanish-speaking regions."
+    },
+    {
+      "id": 46,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la acción de dejar el vehículo en un lugar específico y apagar el motor. Lo haces cuando llegas a tu destino.",
+      "acc": ["estacionar"],
+      "disp": "estacionar",
+      "exp": "The clues 'dejar el vehículo en un lugar' (leave the vehicle in a spot) and 'cuando llegas a tu destino' (when you arrive at your destination) define parking. 'Estacionar' is the standard term for parking a car in most of Latin America. This is different from 'arrancar' (to start the engine — the opposite action done at the beginning of a trip) and 'manejar' or 'conducir' (to drive — the ongoing action between starting and parking). In the preterite: estacioné."
+    },
+    {
+      "id": 47,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el espacio de almacenamiento en la parte trasera del vehículo donde guardas las maletas, las compras y otras cosas grandes.",
+      "acc": ["el baúl", "baúl"],
+      "disp": "el baúl",
+      "exp": "The clues 'parte trasera del vehículo' (back of the vehicle) and 'guardar maletas' (store suitcases) describe the trunk of a car. 'El baúl' means both a car trunk and a large storage chest — the same word for both in Spanish. This is different from 'el volante' (the steering wheel — at the front, used to steer) and 'el parabrisas' (the windshield — also at the front, made of glass). The accent is required: 'baúl,' not 'baul.'"
+    },
+    {
+      "id": 48,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la acción que haces en la gasolinera: añades gasolina al vehículo hasta que el depósito no puede recibir más.",
+      "acc": ["llenar el tanque"],
+      "disp": "llenar el tanque",
+      "exp": "The clues 'gasolinera' (gas station) and 'gasolina hasta que el depósito no puede recibir más' (gas until the tank can hold no more) define filling up the tank. 'Llenar' means to fill, and 'el tanque' is the fuel tank. This is a two-word expression — write both words: 'llenar el tanque.' This is different from 'arrancar' (start the engine — what you do after filling up) and 'estacionar' (park — what you do when you arrive at a destination)."
+    },
+    {
+      "id": 49,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el objeto circular que está enfrente del conductor, dentro del vehículo. Lo mueves hacia la izquierda o la derecha para controlar la dirección.",
+      "acc": ["el volante", "volante"],
+      "disp": "el volante",
+      "exp": "The clues 'circular,' 'enfrente del conductor' (in front of the driver), and 'controlar la dirección' (control the direction) define the steering wheel. 'Volante' comes from 'volar' (to fly) — the spinning, turning motion resembles flight. This is different from 'el parabrisas' (the windshield — the glass panel in front of the driver that you look through, not touch) and 'la llanta' (the tire — the rubber circular part on the outside of the car)."
+    },
+    {
+      "id": 50,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la persona que trabaja en un taller y que sabe cómo reparar los vehículos cuando algo no funciona bien.",
+      "acc": ["el mecánico", "mecánico", "la mecánica", "mecánica"],
+      "disp": "el mecánico / la mecánica",
+      "exp": "The clues 'trabaja en un taller' (works in a repair shop) and 'reparar los vehículos' (repair vehicles) define a mechanic. 'Mecánico' is a direct cognate of the English 'mechanic.' Both masculine (el mecánico) and feminine (la mecánica) forms are accepted. This is different from 'la policía' (the police — who enforce traffic laws but don't fix cars) and 'el conductor' (the driver — the person who operates the car, not repairs it)."
+    }
+  ]
+---
