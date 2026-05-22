@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>La Casa y la Mesa | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">Repaso Mixto I · Senderos 2 · Lección 5</p> <h1 class="land-title"> La Casa <br><em>y la Mesa</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>2 fuentes — una pregunta a la vez.</p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">2</div> <div class="info-l">temas</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Usa el contexto para inferir el significado</li><li>Escribe las respuestas de vocabulario en español cuando se indique</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">La Casa y la Mesa</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto"> 
+Tu navegador no soporta el elemento de audio.
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de los siguientes objetos NO pertenece a la mesa formal?","ch":["A) la cucharita para el postre","B) la lavadora","C) el platillo","D) el tenedor de ensalada"],"cor":"B","exp":"A dessert spoon, saucer, and salad fork are all objects placed on or around a formal dining table. A washing machine is a large kitchen appliance used to clean clothes — it has nothing to do with table settings or dining. It doesn't belong in this group."},{"id":2,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de los siguientes grupos de objetos está completamente en el lado DERECHO de los platos en una mesa formal?","ch":["A) el tenedor de proteína y el tenedor de ensalada","B) la servilleta y el cuchillito para la mantequilla","C) el platito para pan y la cucharita para el postre","D) el cuchillo para proteína y la cuchara para la sopa"],"cor":"D","exp":"The protein knife and soup spoon are both placed on the RIGHT side of the plates in a formal setting. The two forks are on the left (on the napkin). The bread plate and butter knife are in the upper left. The dessert spoon is horizontal above the plates. Only the knife and soup spoon share the same right-side placement."},{"id":3,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras NO es un quehacer doméstico?","ch":["A) el altillo","B) barrer el suelo","C) sacar la basura","D) planchar la ropa"],"cor":"A","exp":"Sweeping the floor, taking out the trash, and ironing clothes are all household chores — tasks you do to keep the home clean and running. An attic is a physical space at the top of a house where families store things. It's a place, not a task, so it doesn't belong in a group of chores."},{"id":4,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de los siguientes objetos NO está relacionado con BEBER?","ch":["A) la taza","B) la copa","C) el cuchillo para proteína","D) el vaso"],"cor":"C","exp":"A cup, wine glass, and water glass are all drinking vessels — objects designed to hold and deliver liquid to your mouth. A protein knife is a sharp cutting utensil used to slice meat during the main course — you never drink from it. It has no connection to drinking, so it doesn't belong in this group."},{"id":5,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras NO está relacionada con el concepto de VIVIR o de PAGAR por un lugar?","ch":["A) el alquiler","B) el cuadro","C) mudarse","D) alquilar"],"cor":"B","exp":"Rent (the payment), moving, and to rent (the action) are all concepts tied to obtaining or changing where you live — they relate to housing decisions and costs. A picture or painting is a decorative wall object inside the home. It has no connection to housing decisions or payments, so it doesn't belong in this group."},{"id":6,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de los siguientes objetos NO es un mueble?","ch":["A) el armario","B) la cómoda","C) el estante","D) la servilleta"],"cor":"D","exp":"A closet, dresser, and bookcase are all muebles — large pieces of furniture that occupy a room and hold or store things. A napkin is a small cloth or paper object placed on a formal table — it's not furniture. You unfold it onto your lap during a meal. It doesn't belong in a group of furniture."},{"id":7,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuarto donde la familia se sienta a comer. Es el lugar donde están la mesa y las sillas que se usan para las comidas.","acc":["el comedor","comedor"],"disp":"el comedor","exp":"The relative pronoun 'donde' tells you this is a place — specifically the place where eating happens. 'Comedor' comes from 'comer,' and the -dor suffix marks it as the place where that action occurs. This is different from the cocina (where food is prepared, not eaten at a table) and the sala (where the family relaxes, not formally dines)."},{"id":8,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el plato que está en la posición más alta en la mesa formal — el que está encima de los otros dos platos y que contiene líquido.","acc":["el plato de sopa","plato de sopa"],"disp":"el plato de sopa","exp":"The stacked relative clauses 'el que está encima de los otros dos' and 'que contiene líquido' both point to the soup plate. It is the smallest and topmost of the three stacked plates, and its deeper shape holds liquid without spilling. Soup is the first course in a formal dinner, so its plate sits on top — it's removed first."},{"id":9,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la persona que vive en la casa o en el apartamento que está al lado del tuyo.","acc":["el vecino","la vecina","vecino","vecina"],"disp":"el vecino / la vecina","exp":"The relative clause 'que está al lado del tuyo' defines the relationship of physical proximity — someone who lives right next to you. 'Vecino/a' is related to 'vecindad' and 'vecindario.' It's different from 'el ama de casa,' which describes a domestic role, not a relationship of physical closeness between neighbors."},{"id":10,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el tenedor que está más lejos del plato y que usas primero, antes que el otro tenedor.","acc":["el tenedor de ensalada","tenedor de ensalada"],"disp":"el tenedor de ensalada","exp":"Two relative clauses guide the answer: 'el que está más lejos del plato' (outermost) and 'que usas primero' (used first). In formal dining, the rule is to work from the outside in. The salad fork is always on the outermost left — farthest from the plate — because the salad course comes before the main protein course."},{"id":11,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico que guarda la comida a una temperatura tan baja que la convierte en hielo.","acc":["el congelador","congelador"],"disp":"el congelador","exp":"The relative clause 'que la convierte en hielo' (that turns it into ice) is the key distinguisher. A freezer converts food to solid ice — unlike the refrigerador, which keeps food cold but never freezes it. 'Congelador' comes from 'congelar' (to freeze), and the -dor suffix marks it as the machine that performs that action."},{"id":12,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el objeto pequeño y plano que está debajo de la taza, cuyo propósito es proteger la mesa del calor y de los líquidos que se derraman.","acc":["el platillo","platillo"],"disp":"el platillo","exp":"The possessive relative pronoun 'cuyo propósito' (whose purpose) is the key structure here — it describes what the platillo is designed to do. A saucer exists to protect the table surface and catch any drips from the cup above it. It's different from the platito para pan (which is in the upper left and holds bread, not a cup) and the plato de sopa (which holds food, not a cup)."},{"id":13,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio de la casa donde guardas el carro y donde también puedes guardar herramientas y otras cosas.","acc":["el garaje","garaje"],"disp":"el garaje","exp":"The repeated 'donde' establishes two functions: storing the car and storing tools. A garage is the only space in a home designed primarily for vehicles. This rules out the sótano (underground storage, not built for cars), the patio (open outdoor space for people), and the jardín (an outdoor area for plants)."},{"id":14,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es lo que haces cuando tomas un trapo y limpias los muebles y los estantes que tienen una capa de polvo gris encima.","acc":["sacudir","quitar el polvo"],"disp":"sacudir / quitar el polvo","exp":"The structure 'lo que haces cuando' sets this up as an action. The clue 'trapo' (cloth or duster) and 'capa de polvo gris' (thin layer of gray dust) confirm dusting. A broom (barrer) moves dirt on the floor; a vacuum (pasar la aspiradora) suctions from carpets. Dusting with a cloth targets surfaces like shelves and furniture. Both 'sacudir' and 'quitar el polvo' are accepted regional synonyms."},{"id":15,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el objeto que tiene un pie largo y delgado, que se usa para el vino y que es más alto que el vaso de agua en la mesa formal.","acc":["la copa","copa"],"disp":"la copa","exp":"Three relative clauses stack up to define the copa: 'que tiene un pie largo' (has a stem), 'que se usa para el vino' (used for wine), and 'que es más alto que el vaso' (taller than the water glass). No other object on the table has all three of these characteristics. In a formal setting, the copa is positioned to the left of or slightly behind the vaso in the upper right cluster."},{"id":16,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble que tiene muchos cajones apilados y que usas para guardar la ropa que no necesitas colgar.","acc":["la cómoda","cómoda"],"disp":"la cómoda","exp":"The two relative clauses 'que tiene cajones apilados' (has stacked drawers) and 'que usas para ropa que no necesitas colgar' (for clothes you don't hang) define the dresser precisely. Folded items like t-shirts and socks go in the cómoda's drawers. This is different from the armario (which has doors and hanging space for jackets and dress shirts) and the estante (which has open shelves for books, not clothing)."},{"id":17,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la zona donde vives, la que conoces bien porque caminas por sus calles cada día para ir a la escuela o a las tiendas.","acc":["el barrio","barrio"],"disp":"el barrio","exp":"The relative clause 'la que conoces bien' (the one you know well) and 'caminas por sus calles cada día' (walk its streets daily) describe the immediate, familiar area around your home. A neighborhood is your local zone — closer and more personal than 'las afueras' (the suburbs far from the city center) and more specific than 'la vivienda' (housing as a general concept)."},{"id":18,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuchillo pequeño que usas para untar la mantequilla en el pan, cuyo borde no es muy afilado porque no necesita cortar nada duro.","acc":["el cuchillito para la mantequilla","cuchillito para la mantequilla"],"disp":"el cuchillito para la mantequilla","exp":"The possessive relative pronoun 'cuyo borde no es muy afilado' (whose blade is not very sharp) is the functional clue — you spread butter, you don't cut through tough food, so a dull edge is enough. 'Cuchillito' is the diminutive of 'cuchillo' — a very small knife. It rests on the platito para pan in the upper left of a formal place setting and is used throughout the meal as bread is served."},{"id":19,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es lo que haces cuando la familia termina de comer — recoges los platos, los vasos y los cubiertos que están sucios en la mesa.","acc":["quitar la mesa"],"disp":"quitar la mesa","exp":"The structure 'lo que haces cuando la familia termina de comer' frames this as the post-meal action. The relative clause 'que están sucios en la mesa' confirms you are removing used items from the table. Clearing the table comes after eating and before washing dishes — it is the direct opposite of 'poner la mesa,' which happens before the meal begins. Write the full expression."},{"id":20,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la cucharita que está en posición horizontal arriba de los platos y que usas al final de la cena, cuando llega algo dulce.","acc":["la cucharita para el postre","cucharita para el postre"],"disp":"la cucharita para el postre","exp":"Two relative clauses guide the answer: 'que está en posición horizontal arriba de los platos' (placed horizontally above the main plates) and 'que usas al final cuando llega algo dulce' (used last, for something sweet). In a formal place setting, the dessert spoon is pre-set above the plates, handle to the right, so it's ready when the dessert course arrives. 'Cucharita' is the diminutive of 'cuchara' — a small spoon."}];
+const duration = 25;
+const totalQuestions = 20;
+const passages = null;
+const infographicTitle = "Infografía";
+const infographicSrc = "";
+const audioSrc = "";
+const audioTitle = "Audio";
+const audioMeta = "";
+const defaultTopbarTitle = "La Casa y la Mesa";
+const hasMediaQuestions = false;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const QS = questions;
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+
+      function startExam() {
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? "Audio — Interpretivo"
+            : q.media === "infographic"
+              ? "Infografía — Interpretiva"
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="Infográfico: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${q.prompt}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${!q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+        </button>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function showResults() {
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        let score = 0;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          if (q.type === "mc") {
+            if (ans === q.cor) score++;
+          } else if (cf(ans, q.acc)) {
+            score++;
+          }
+        });
+        const pct = Math.round((score / QS.length) * 100);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? "⚠ Tiempo agotado"
+          : `Tiempo: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        QS.forEach(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 Infografía — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${q.prompt}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
+              : `<span class="res-chip yours bad">No answer</span>`;
+            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.togE = togE;
+    })();</script> </body> </html>
