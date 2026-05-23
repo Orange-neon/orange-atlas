@@ -11774,10 +11774,12 @@ function zh() {
                         children: [g.jsx(Wn, {
                             variant: "hero",
                             size: "xl",
+                            onClick: () => window.location.href = "../orange-atlas/spanish2/index.html",
                             children: "Start Practicing"
                         }), g.jsx(Wn, {
                             variant: "outline",
                             size: "xl",
+                            onClick: () => window.location.href = "../orange-atlas/spanish2/index.html",
                             children: "Explore Subjects"
                         })]
                     }), g.jsxs("div", {
@@ -11999,10 +12001,12 @@ function zh() {
                         children: [g.jsx(Wn, {
                             variant: "hero",
                             size: "xl",
+                            onClick: () => window.location.href = "../orange-atlas/spanish2/index.html",
                             children: "Get Started Now"
                         }), g.jsx(Wn, {
                             variant: "outline",
                             size: "xl",
+                            onClick: () => window.location.href = "../orange-atlas/spanish2/index.html",
                             children: "View Sample Tests"
                         })]
                     })]
@@ -12024,7 +12028,7 @@ function zh() {
                         })]
                     }), g.jsx("p", {
                         className: "text-sm text-foreground-muted",
-                        children: "© 2024 Orange Atlas. All rights reserved."
+                        children: "© 2026 Orange Atlas. All rights reserved."
                     })]
                 })
             })

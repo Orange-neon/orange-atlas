@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Examen Avanzado — Senderos 2 Lección 5</title>
-<link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png">
+<link rel="icon" href="../../assets/orangeAtlas.png" type="image/png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -851,6 +851,123 @@ function startExam() {
   renderQuestion();
   window.scrollTo(0, 0);
 }
+</script>
+
+<script type="module" src="../../assets/legacy-progress.js"></script>
+<script>
+(function(){
+  if (window.__orangeAtlasLegacyBridge) return;
+  window.__orangeAtlasLegacyBridge = true;
+
+  const normalize = s => (s || "").toLowerCase().trim()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z\s]/g, "").replace(/\s+/g, " ");
+  const checkFreeAnswer = (input, accepted) => (accepted || []).map(normalize).some(a => a === normalize(input));
+  const addStat = (bucket, key, ok) => {
+    const statKey = key || "Uncategorized";
+    bucket[statKey] = bucket[statKey] || { correct: 0, total: 0 };
+    bucket[statKey].total += 1;
+    if (ok) bucket[statKey].correct += 1;
+  };
+  const slugify = value => (value || "")
+    .toLowerCase()
+    .replace(/\.html$/, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  const pageBits = location.pathname.split("/").filter(Boolean);
+  const fileSlug = slugify(pageBits[pageBits.length - 1] || document.title || "legacy-test");
+  const isUnit4 = location.pathname.includes("unidad-4-");
+  const testSlug = isUnit4 ? "unidad-4-" + fileSlug : fileSlug;
+  const unit = isUnit4 ? "Unidad 4 - En el Consultorio" : "Unidad 5 - La Tecnologia";
+  const testTitle = (document.querySelector(".landing-title,h1")?.textContent || document.title || testSlug).trim();
+
+  function getQuestions(){
+    if (typeof flowQuestions !== "undefined") return flowQuestions;
+    if (typeof QS !== "undefined") return QS;
+    if (typeof QUESTIONS !== "undefined") return QUESTIONS;
+    return [];
+  }
+  function getState(){
+    if (typeof ST !== "undefined") return ST;
+    if (typeof state !== "undefined") return state;
+    return {};
+  }
+  function getAnswers(activeState){
+    return activeState.answers || activeState.ans || {};
+  }
+  function getElapsed(activeState){
+    if (typeof TEST_DURATION_SECONDS !== "undefined" && typeof activeState.secsLeft === "number") {
+      return Math.max(0, TEST_DURATION_SECONDS - activeState.secsLeft);
+    }
+    if (activeState.startSecs && activeState.startSecs > 1000000) {
+      return Math.max(0, Math.round((Date.now() - activeState.startSecs) / 1000));
+    }
+    return 0;
+  }
+  function buildPayload(){
+    const questions = getQuestions();
+    const activeState = getState();
+    const answers = getAnswers(activeState);
+    const sectionStats = {};
+    const typeStats = {};
+    const mediaStats = {};
+    let score = 0;
+    const questionResults = questions.map(q => {
+      const ans = answers[q.id] || "";
+      const type = q.type === "free" ? "free" : "mc";
+      const correctAnswer = q.cor || q.correct || "";
+      const ok = type === "mc" ? ans === correctAnswer : checkFreeAnswer(ans, q.acc || q.accepted || []);
+      const section = q.secTitle || q.sec || "Uncategorized";
+      const media = q.media || (q.passage || q.showPassage ? "passage" : "none");
+      if (ok) score += 1;
+      addStat(sectionStats, section, ok);
+      addStat(typeStats, type === "mc" ? "Multiple choice" : "Free response", ok);
+      addStat(mediaStats, media, ok);
+      return { id: q.id, section, type, media, correct: ok };
+    });
+    const total = questions.length || 1;
+    return {
+      testSlug,
+      testTitle,
+      course: "Spanish 2",
+      unit,
+      score,
+      total,
+      percent: Math.round((score / total) * 100),
+      elapsedSeconds: getElapsed(activeState),
+      timedOut: Boolean(activeState.timedOut),
+      sectionStats,
+      typeStats,
+      mediaStats,
+      questionResults,
+      source: "legacy-static"
+    };
+  }
+  function sendAttempt(){
+    const payload = buildPayload();
+    let tries = 0;
+    const deliver = () => {
+      if (window.orangeAtlasLegacyTrack) {
+        window.orangeAtlasLegacyTrack(payload);
+        return;
+      }
+      if (tries++ < 30) setTimeout(deliver, 150);
+    };
+    deliver();
+  }
+  function patchResultFunction(name){
+    if (typeof window[name] !== "function" || window[name].__oaPatched) return;
+    const original = window[name];
+    window[name] = function(){
+      const result = original.apply(this, arguments);
+      setTimeout(sendAttempt, 0);
+      return result;
+    };
+    window[name].__oaPatched = true;
+  }
+  patchResultFunction("showResults");
+  patchResultFunction("finishExam");
+})();
 </script>
 </body>
 </html>

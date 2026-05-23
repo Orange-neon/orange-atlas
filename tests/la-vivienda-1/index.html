@@ -1,8 +1,20 @@
-<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>El Gran Traslado | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CujTh-4P.css"></head> <body> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">La Vivienda I · Senderos 2 · Lección 5</p> <h1 class="land-title"> El Gran <br><em>Traslado</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>1 fuentes — una pregunta a la vez.</p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">1</div> <div class="info-l">tipo</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Usa el contexto para inferir el significado</li><li>Escribe las respuestas de vocabulario en español cuando se indique</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">El Gran Traslado</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto"> 
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>El Gran Traslado | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="apple-touch-icon" href="/orange-atlas/assets/orangeAtlas.png"><style>.oa-auth-nav[data-astro-cid-amj3u3q3]{position:fixed;top:.8rem;right:.8rem;z-index:2000;display:flex;align-items:center;gap:.45rem;max-width:min(calc(100vw - 1.6rem),36rem);padding:.35rem;border:1px solid rgba(255,255,255,.13);border-radius:.55rem;background:#08080cd1;box-shadow:0 14px 34px #00000057;backdrop-filter:blur(16px);font-family:Inter,Manrope,system-ui,sans-serif}.oa-auth-nav__link[data-astro-cid-amj3u3q3],.oa-auth-nav__button[data-astro-cid-amj3u3q3],.oa-auth-nav__setup[data-astro-cid-amj3u3q3]{min-height:2rem;border-radius:.38rem;padding:0 .68rem;font-size:.75rem;font-weight:800;letter-spacing:.04em;text-decoration:none;white-space:nowrap}.oa-auth-nav__link[data-astro-cid-amj3u3q3]{display:inline-flex;align-items:center;color:#ffd1a6;border:1px solid rgba(255,116,51,.32);background:#ff743317}.oa-auth-nav__button[data-astro-cid-amj3u3q3]{border:1px solid rgba(255,116,51,.34);color:#111;background:linear-gradient(135deg,#ff7433,#ffbd78);cursor:pointer;font-family:inherit}.oa-auth-nav__button[data-astro-cid-amj3u3q3].secondary{color:#f8efe8;border-color:#ffffff26;background:#ffffff0f}.oa-auth-nav__button[data-astro-cid-amj3u3q3][aria-busy=true]{opacity:.72;cursor:wait}.oa-auth-nav__profile[data-astro-cid-amj3u3q3]{display:inline-flex;align-items:center;gap:.45rem;min-width:0;color:#f8efe8;font-size:.78rem;font-weight:800}.oa-auth-nav__profile[data-astro-cid-amj3u3q3][hidden]{display:none}.oa-auth-nav__profile[data-astro-cid-amj3u3q3] img[data-astro-cid-amj3u3q3]{width:1.85rem;height:1.85rem;border-radius:50%;object-fit:cover;background:#ffffff1f}.oa-auth-nav__profile[data-astro-cid-amj3u3q3] span[data-astro-cid-amj3u3q3]{max-width:9.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.oa-auth-nav__setup[data-astro-cid-amj3u3q3]{display:inline-flex;align-items:center;color:#ffbd78;border:1px solid rgba(255,189,120,.28);background:#ffbd7817}.oa-auth-nav__setup[data-astro-cid-amj3u3q3][hidden]{display:none}@media(max-width:620px){.oa-auth-nav[data-astro-cid-amj3u3q3]{left:.8rem;right:.8rem;justify-content:flex-end}.oa-auth-nav__profile[data-astro-cid-amj3u3q3] span[data-astro-cid-amj3u3q3]{max-width:7rem}}
+</style>
+<link rel="stylesheet" href="/orange-atlas/_astro/_slug_.DCcbTdgE.css"></head> <body> <div class="oa-auth-nav" data-auth-nav data-astro-cid-amj3u3q3> <a class="oa-auth-nav__link" href="/orange-atlas/analytics/" data-astro-cid-amj3u3q3>Analytics</a> <button class="oa-auth-nav__button" type="button" data-auth-action="sign-in" data-astro-cid-amj3u3q3>Sign in</button> <span class="oa-auth-nav__profile" data-auth-profile hidden data-astro-cid-amj3u3q3> <img data-auth-photo alt="" data-astro-cid-amj3u3q3> <span data-auth-name data-astro-cid-amj3u3q3></span> </span> <button class="oa-auth-nav__button secondary" type="button" data-auth-action="sign-out" hidden data-astro-cid-amj3u3q3>
+Sign out
+</button> <span class="oa-auth-nav__setup" data-auth-setup hidden data-astro-cid-amj3u3q3>Firebase setup needed</span> </div>  <script type="module" src="/orange-atlas/_astro/AuthNav.astro_astro_type_script_index_0_lang.DhGSnfog.js"></script> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">La Vivienda I · Senderos 2 · Lección 5</p> <h1 class="land-title"> El Gran <br><em>Traslado</em> </h1> <p class="land-sub">20 preguntas. <strong>25:00</strong><br>1 fuentes — una pregunta a la vez.</p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">20</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">25:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">1</div> <div class="info-l">tipo</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Usa el contexto para inferir el significado</li><li>Escribe las respuestas de vocabulario en español cuando se indique</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">El Gran Traslado</div> <div class="tb-qof" id="qof">Pregunta 1 de 20</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">25:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto"> 
 Tu navegador no soporta el elemento de audio.
-</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la lavadora","B) la secadora","C) el lavaplatos","D) el sillón"],"cor":"D","exp":"La lavadora, la secadora y el lavaplatos son electrodomésticos que realizan tareas del hogar. El sillón es un mueble de descanso de la sala — no comparte ninguna función ni categoría con los otros tres."},{"id":2,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el comedor","B) la sala","C) el dormitorio","D) la tostadora"],"cor":"D","exp":"El comedor, la sala y el dormitorio son cuartos o espacios físicos dentro de una casa. La tostadora es un electrodoméstico de cocina — es un objeto, no un espacio de la vivienda."},{"id":3,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) barrer el suelo","B) pasar la aspiradora","C) limpiar la casa","D) alquilar"],"cor":"D","exp":"Barrer el suelo, pasar la aspiradora y limpiar la casa son quehaceres domésticos — acciones de limpieza del hogar. Alquilar es un verbo financiero que describe pagar por una vivienda; no tiene relación con los quehaceres."},{"id":4,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el tenedor","B) el cuchillo","C) la cuchara","D) la almohada"],"cor":"D","exp":"El tenedor, el cuchillo y la cuchara son cubiertos que se usan para comer en la mesa. La almohada es un objeto blando del dormitorio que se usa para dormir — pertenece a una categoría completamente distinta."},{"id":5,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el altillo","B) el sótano","C) el balcón","D) el congelador"],"cor":"D","exp":"El altillo, el sótano y el balcón son partes estructurales de una vivienda — espacios físicos dentro o alrededor del edificio. El congelador es un electrodoméstico de cocina; no es una parte de la estructura de la casa."},{"id":6,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el barrio","B) las afueras","C) el edificio de apartamentos","D) la cafetera"],"cor":"D","exp":"El barrio, las afueras y el edificio de apartamentos son términos relacionados con el entorno urbano y los tipos de vivienda. La cafetera es un electrodoméstico de cocina — no tiene ninguna relación con el tema de la vivienda o el vecindario."},{"id":7,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la persona que vive al lado de tu casa o en tu mismo edificio.","acc":["el vecino","la vecina","vecino","vecina"],"disp":"el vecino / la vecina","exp":"Vecino/a comparte raíz con 'vecindad' y 'vecindario'. La definición describe proximidad residencial — vivir en el mismo edificio o junto a alguien. No confundir con 'el ama de casa', que describe un rol dentro del hogar, no una relación de proximidad."},{"id":8,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio que se encuentra debajo de la casa, bajo el nivel del suelo, donde muchas familias guardan sus cosas.","acc":["el sótano","sótano"],"disp":"el sótano","exp":"La clave contextual es 'debajo de la casa, bajo el nivel del suelo'. Eso elimina el altillo (que está en la parte superior) y el garaje (que está al nivel del suelo). El sótano es el único espacio subterráneo de la vivienda en esta lección."},{"id":9,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuarto donde la familia se sienta alrededor de una mesa para comer juntos.","acc":["el comedor","comedor"],"disp":"el comedor","exp":"Comedor viene del verbo 'comer'. El sufijo '-dor' en español indica el lugar donde se realiza una acción — igual que 'dormitorio' viene de 'dormir'. La mención de la mesa y el acto de comer confirman la respuesta y la distinguen de la sala o la cocina."},{"id":10,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble del dormitorio, grande y cerrado, donde cuelgas y guardas tu ropa.","acc":["el armario","armario"],"disp":"el armario","exp":"El armario es el equivalente al clóset en muchos países hispanohablantes. La clave está en 'guardar ropa' dentro de un espacio 'cerrado'. Diferéncialo de la cómoda (que tiene cajones) y del estante (que tiene repisas abiertas para libros u objetos)."},{"id":11,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de llevar todas tus pertenencias a una nueva casa o apartamento de forma permanente.","acc":["mudarse"],"disp":"mudarse","exp":"Mudarse es el verbo reflexivo que describe cambiar de residencia de manera definitiva. La palabra 'permanente' es la clave que lo distingue de simplemente mover objetos. No confundir con 'alquilar' (que es el acto financiero) ni con 'arreglar' (ordenar cosas en casa)."},{"id":12,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio al aire libre, conectado a la casa, donde se pueden cultivar plantas, flores o árboles.","acc":["el jardín","jardín"],"disp":"el jardín","exp":"Jardín tiene un cognado directo con el inglés 'garden'. La clave es 'al aire libre' y 'cultivar plantas' — eso lo distingue del patio (generalmente pavimentado, sin vegetación) y del balcón (elevado, pequeño y sin tierra para cultivar)."},{"id":13,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico que usa agua y movimiento para dejar la ropa limpia.","acc":["la lavadora","lavadora"],"disp":"la lavadora","exp":"Lavadora viene del verbo 'lavar'. El sufijo '-dora' indica el instrumento que realiza la acción. Diferénciala de la secadora (que seca, no lava) y del lavaplatos (que lava platos, no ropa). La mención de 'ropa limpia' es la pista determinante."},{"id":14,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la cantidad de dinero que se paga mensualmente para vivir en un lugar que pertenece a otra persona.","acc":["el alquiler","alquiler"],"disp":"el alquiler","exp":"Alquiler es el sustantivo derivado del verbo 'alquilar'. Las claves son 'pago mensual' y 'lugar que pertenece a otra persona' — lo que lo diferencia de ser propietario. No confundir con 'la vivienda' (que es el concepto general de la casa) ni con 'mudarse'."},{"id":15,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de usar una máquina que aspira el polvo y la suciedad del suelo o de la alfombra.","acc":["pasar la aspiradora"],"disp":"pasar la aspiradora","exp":"La aspiradora viene del verbo 'aspirar' — literalmente, una máquina que inhala el polvo. La expresión verbal correcta y completa es 'pasar la aspiradora', no simplemente 'aspirar'. La mención de 'máquina' y 'alfombra' elimina opciones como barrer (que usa escoba) o sacudir."},{"id":16,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico grande que mantiene los alimentos frescos a temperatura baja, pero sin llegar a congelarlos.","acc":["el refrigerador","refrigerador","el refri","refri"],"disp":"el refrigerador / el refri","exp":"Refrigerador comparte raíz con 'refrigerar' y el inglés 'refrigerator'. La clave contextual es 'frío, pero sin congelar' — eso lo distingue directamente del congelador (que sí congela los alimentos). En el habla coloquial se usa también 'el refri'."},{"id":17,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de colocar los platos, vasos, cubiertos y servilletas en la mesa antes de una comida.","acc":["poner la mesa"],"disp":"poner la mesa","exp":"Poner la mesa es una expresión verbal fija. La clave está en 'antes de comer' y en el listado de objetos que se colocan. No confundir con 'quitar la mesa' (recoger después de comer) ni con 'lavar los platos' (limpiarlos). Debe escribirse completa."},{"id":18,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el corredor estrecho dentro de la casa que conecta los distintos cuartos entre sí.","acc":["el pasillo","pasillo"],"disp":"el pasillo","exp":"Pasillo comparte raíz con 'pasar' — es el espacio por donde se pasa de un cuarto a otro. La clave es 'corredor estrecho que conecta los cuartos', lo que lo distingue de la entrada (zona de acceso principal a la casa) y de la escalera (que conecta pisos, no cuartos)."},{"id":19,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de aplicar calor y presión sobre la ropa con un instrumento especial para eliminar las arrugas.","acc":["planchar la ropa"],"disp":"planchar la ropa","exp":"Planchar es el verbo. Las claves contextuales son 'calor', 'presión' y 'eliminar arrugas' — eso apunta directamente a esta acción y la diferencia de 'lavar la ropa' (limpiarla con agua), 'colgar la ropa' (ponerla a secar) o 'recoger la ropa' (levantarla del suelo)."},{"id":20,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble largo y acolchado de la sala donde varias personas pueden sentarse o recostarse juntas.","acc":["el sofá","sofá"],"disp":"el sofá","exp":"Sofá es un cognado del inglés 'sofa'. La clave es 'largo', 'varias personas' y 'la sala' — lo que lo distingue del sillón (individual y de una sola persona) y de la silla (sin acolchado y sin posibilidad de recostarse)."}];
+</audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div class="progress-save-card" id="progress-save-card"> <div class="progress-save-title" id="progress-save-title">Save your progress</div> <p class="progress-save-copy" id="progress-save-copy">
+Sign in with Google to keep this attempt in your analytics dashboard.
+</p> <div class="progress-save-actions"> <button class="progress-save-btn" type="button" data-auth-action="sign-in" id="progress-signin-btn">
+Sign in with Google
+</button> <a class="progress-save-link" href="/orange-atlas/analytics/" id="progress-analytics-link">View analytics</a> </div> </div> <div id="res-list"></div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la lavadora","B) la secadora","C) el lavaplatos","D) el sillón"],"cor":"D","exp":"La lavadora, la secadora y el lavaplatos son electrodomésticos que realizan tareas del hogar. El sillón es un mueble de descanso de la sala — no comparte ninguna función ni categoría con los otros tres."},{"id":2,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el comedor","B) la sala","C) el dormitorio","D) la tostadora"],"cor":"D","exp":"El comedor, la sala y el dormitorio son cuartos o espacios físicos dentro de una casa. La tostadora es un electrodoméstico de cocina — es un objeto, no un espacio de la vivienda."},{"id":3,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) barrer el suelo","B) pasar la aspiradora","C) limpiar la casa","D) alquilar"],"cor":"D","exp":"Barrer el suelo, pasar la aspiradora y limpiar la casa son quehaceres domésticos — acciones de limpieza del hogar. Alquilar es un verbo financiero que describe pagar por una vivienda; no tiene relación con los quehaceres."},{"id":4,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el tenedor","B) el cuchillo","C) la cuchara","D) la almohada"],"cor":"D","exp":"El tenedor, el cuchillo y la cuchara son cubiertos que se usan para comer en la mesa. La almohada es un objeto blando del dormitorio que se usa para dormir — pertenece a una categoría completamente distinta."},{"id":5,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el altillo","B) el sótano","C) el balcón","D) el congelador"],"cor":"D","exp":"El altillo, el sótano y el balcón son partes estructurales de una vivienda — espacios físicos dentro o alrededor del edificio. El congelador es un electrodoméstico de cocina; no es una parte de la estructura de la casa."},{"id":6,"sec":"Vocabulario en Contexto","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el barrio","B) las afueras","C) el edificio de apartamentos","D) la cafetera"],"cor":"D","exp":"El barrio, las afueras y el edificio de apartamentos son términos relacionados con el entorno urbano y los tipos de vivienda. La cafetera es un electrodoméstico de cocina — no tiene ninguna relación con el tema de la vivienda o el vecindario."},{"id":7,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la persona que vive al lado de tu casa o en tu mismo edificio.","acc":["el vecino","la vecina","vecino","vecina"],"disp":"el vecino / la vecina","exp":"Vecino/a comparte raíz con 'vecindad' y 'vecindario'. La definición describe proximidad residencial — vivir en el mismo edificio o junto a alguien. No confundir con 'el ama de casa', que describe un rol dentro del hogar, no una relación de proximidad."},{"id":8,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio que se encuentra debajo de la casa, bajo el nivel del suelo, donde muchas familias guardan sus cosas.","acc":["el sótano","sótano"],"disp":"el sótano","exp":"La clave contextual es 'debajo de la casa, bajo el nivel del suelo'. Eso elimina el altillo (que está en la parte superior) y el garaje (que está al nivel del suelo). El sótano es el único espacio subterráneo de la vivienda en esta lección."},{"id":9,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el cuarto donde la familia se sienta alrededor de una mesa para comer juntos.","acc":["el comedor","comedor"],"disp":"el comedor","exp":"Comedor viene del verbo 'comer'. El sufijo '-dor' en español indica el lugar donde se realiza una acción — igual que 'dormitorio' viene de 'dormir'. La mención de la mesa y el acto de comer confirman la respuesta y la distinguen de la sala o la cocina."},{"id":10,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble del dormitorio, grande y cerrado, donde cuelgas y guardas tu ropa.","acc":["el armario","armario"],"disp":"el armario","exp":"El armario es el equivalente al clóset en muchos países hispanohablantes. La clave está en 'guardar ropa' dentro de un espacio 'cerrado'. Diferéncialo de la cómoda (que tiene cajones) y del estante (que tiene repisas abiertas para libros u objetos)."},{"id":11,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de llevar todas tus pertenencias a una nueva casa o apartamento de forma permanente.","acc":["mudarse"],"disp":"mudarse","exp":"Mudarse es el verbo reflexivo que describe cambiar de residencia de manera definitiva. La palabra 'permanente' es la clave que lo distingue de simplemente mover objetos. No confundir con 'alquilar' (que es el acto financiero) ni con 'arreglar' (ordenar cosas en casa)."},{"id":12,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio al aire libre, conectado a la casa, donde se pueden cultivar plantas, flores o árboles.","acc":["el jardín","jardín"],"disp":"el jardín","exp":"Jardín tiene un cognado directo con el inglés 'garden'. La clave es 'al aire libre' y 'cultivar plantas' — eso lo distingue del patio (generalmente pavimentado, sin vegetación) y del balcón (elevado, pequeño y sin tierra para cultivar)."},{"id":13,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico que usa agua y movimiento para dejar la ropa limpia.","acc":["la lavadora","lavadora"],"disp":"la lavadora","exp":"Lavadora viene del verbo 'lavar'. El sufijo '-dora' indica el instrumento que realiza la acción. Diferénciala de la secadora (que seca, no lava) y del lavaplatos (que lava platos, no ropa). La mención de 'ropa limpia' es la pista determinante."},{"id":14,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la cantidad de dinero que se paga mensualmente para vivir en un lugar que pertenece a otra persona.","acc":["el alquiler","alquiler"],"disp":"el alquiler","exp":"Alquiler es el sustantivo derivado del verbo 'alquilar'. Las claves son 'pago mensual' y 'lugar que pertenece a otra persona' — lo que lo diferencia de ser propietario. No confundir con 'la vivienda' (que es el concepto general de la casa) ni con 'mudarse'."},{"id":15,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de usar una máquina que aspira el polvo y la suciedad del suelo o de la alfombra.","acc":["pasar la aspiradora"],"disp":"pasar la aspiradora","exp":"La aspiradora viene del verbo 'aspirar' — literalmente, una máquina que inhala el polvo. La expresión verbal correcta y completa es 'pasar la aspiradora', no simplemente 'aspirar'. La mención de 'máquina' y 'alfombra' elimina opciones como barrer (que usa escoba) o sacudir."},{"id":16,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el electrodoméstico grande que mantiene los alimentos frescos a temperatura baja, pero sin llegar a congelarlos.","acc":["el refrigerador","refrigerador","el refri","refri"],"disp":"el refrigerador / el refri","exp":"Refrigerador comparte raíz con 'refrigerar' y el inglés 'refrigerator'. La clave contextual es 'frío, pero sin congelar' — eso lo distingue directamente del congelador (que sí congela los alimentos). En el habla coloquial se usa también 'el refri'."},{"id":17,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de colocar los platos, vasos, cubiertos y servilletas en la mesa antes de una comida.","acc":["poner la mesa"],"disp":"poner la mesa","exp":"Poner la mesa es una expresión verbal fija. La clave está en 'antes de comer' y en el listado de objetos que se colocan. No confundir con 'quitar la mesa' (recoger después de comer) ni con 'lavar los platos' (limpiarlos). Debe escribirse completa."},{"id":18,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el corredor estrecho dentro de la casa que conecta los distintos cuartos entre sí.","acc":["el pasillo","pasillo"],"disp":"el pasillo","exp":"Pasillo comparte raíz con 'pasar' — es el espacio por donde se pasa de un cuarto a otro. La clave es 'corredor estrecho que conecta los cuartos', lo que lo distingue de la entrada (zona de acceso principal a la casa) y de la escalera (que conecta pisos, no cuartos)."},{"id":19,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de aplicar calor y presión sobre la ropa con un instrumento especial para eliminar las arrugas.","acc":["planchar la ropa"],"disp":"planchar la ropa","exp":"Planchar es el verbo. Las claves contextuales son 'calor', 'presión' y 'eliminar arrugas' — eso apunta directamente a esta acción y la diferencia de 'lavar la ropa' (limpiarla con agua), 'colgar la ropa' (ponerla a secar) o 'recoger la ropa' (levantarla del suelo)."},{"id":20,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el mueble largo y acolchado de la sala donde varias personas pueden sentarse o recostarse juntas.","acc":["el sofá","sofá"],"disp":"el sofá","exp":"Sofá es un cognado del inglés 'sofa'. La clave es 'largo', 'varias personas' y 'la sala' — lo que lo distingue del sillón (individual y de una sola persona) y de la silla (sin acolchado y sin posibilidad de recostarse)."}];
 const duration = 25;
 const totalQuestions = 20;
+const testSlug = "la-vivienda-1";
+const testTitle = "El Gran Traslado";
+const course = "Spanish 2";
+const unit = "Unidad 6 - La Vivienda";
 const passages = null;
 const infographicTitle = "Infografía";
 const infographicSrc = "";
@@ -51,6 +63,133 @@ const hasMediaQuestions = false;
         tick: null,
         timedOut: false,
       };
+      let latestAttemptPayload = null;
+      let saveInFlight = false;
+      let savedAttemptId = null;
+
+      function addStat(bucket, key, ok) {
+        const statKey = key || "Uncategorized";
+        if (!bucket[statKey]) bucket[statKey] = { correct: 0, total: 0 };
+        bucket[statKey].total++;
+        if (ok) bucket[statKey].correct++;
+      }
+
+      function setProgressCard(mode, detail) {
+        const card = document.getElementById("progress-save-card");
+        const titleEl = document.getElementById("progress-save-title");
+        const copyEl = document.getElementById("progress-save-copy");
+        const signInBtn = document.getElementById("progress-signin-btn");
+        const analyticsLink = document.getElementById("progress-analytics-link");
+        if (!card || !titleEl || !copyEl || !signInBtn || !analyticsLink) return;
+
+        card.classList.add("show");
+        analyticsLink.classList.remove("show");
+        signInBtn.hidden = true;
+
+        if (mode === "unconfigured") {
+          titleEl.textContent = "Progress tracking needs Firebase setup";
+          copyEl.textContent = "Add the PUBLIC_FIREBASE_* values to enable Google sign-in and saved analytics.";
+          return;
+        }
+
+        if (mode === "signed-out") {
+          titleEl.textContent = "Save your progress";
+          copyEl.textContent = "Sign in with Google to keep this attempt in your analytics dashboard.";
+          signInBtn.hidden = false;
+          return;
+        }
+
+        if (mode === "saving") {
+          titleEl.textContent = "Saving progress";
+          copyEl.textContent = "Your attempt is being added to your analytics dashboard.";
+          return;
+        }
+
+        if (mode === "saved") {
+          titleEl.textContent = "Progress saved";
+          copyEl.textContent = "This attempt is now included in your mastery and improvement analytics.";
+          analyticsLink.classList.add("show");
+          return;
+        }
+
+        titleEl.textContent = "Progress was not saved";
+        copyEl.textContent = detail || "There was a problem saving this attempt. Your score above is still available on this page.";
+      }
+
+      function buildAttemptPayload(score, pct, elapsed) {
+        const sectionStats = {};
+        const typeStats = {};
+        const mediaStats = {};
+        const questionResults = QS.map(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+          const media = q.media || "none";
+          addStat(sectionStats, q.sec, ok);
+          addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
+          addStat(mediaStats, media, ok);
+          return {
+            id: q.id,
+            section: q.sec || "Uncategorized",
+            type: q.type,
+            media,
+            correct: ok,
+          };
+        });
+
+        return {
+          testSlug,
+          testTitle,
+          course,
+          unit,
+          score,
+          total: QS.length,
+          percent: pct,
+          elapsedSeconds: elapsed,
+          timedOut: ST.timedOut,
+          sectionStats,
+          typeStats,
+          mediaStats,
+          questionResults,
+          source: "astro",
+        };
+      }
+
+      async function saveLatestAttempt() {
+        if (!latestAttemptPayload || savedAttemptId || saveInFlight) return;
+
+        const progress = window.orangeAtlasProgress;
+        if (!progress || !progress.isFirebaseConfigured || !progress.isFirebaseConfigured()) {
+          setProgressCard("unconfigured");
+          return;
+        }
+
+        if (!progress.getCurrentUser || !progress.getCurrentUser()) {
+          setProgressCard("signed-out");
+          return;
+        }
+
+        saveInFlight = true;
+        setProgressCard("saving");
+
+        try {
+          const result = await progress.saveAttempt(latestAttemptPayload);
+          if (result && result.status === "saved") {
+            savedAttemptId = result.id;
+            setProgressCard("saved");
+          } else {
+            setProgressCard("signed-out");
+          }
+        } catch (error) {
+          console.warn("Unable to save Orange Atlas attempt", error);
+          setProgressCard("error");
+        } finally {
+          saveInFlight = false;
+        }
+      }
+
+      window.addEventListener("orange-atlas-auth-change", () => {
+        if (latestAttemptPayload && !savedAttemptId) saveLatestAttempt();
+      });
 
       function startExam() {
         const landing = document.getElementById("s-landing");
@@ -290,6 +429,7 @@ const hasMediaQuestions = false;
           }
         });
         const pct = Math.round((score / QS.length) * 100);
+        latestAttemptPayload = buildAttemptPayload(score, pct, elapsed);
 
         const exam = document.getElementById("s-exam");
         const results = document.getElementById("s-results");
@@ -341,6 +481,7 @@ const hasMediaQuestions = false;
           : `Tiempo: ${fmtT(elapsed)}`;
 
         if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+        saveLatestAttempt();
 
         const list = document.getElementById("res-list");
         list.innerHTML = "";

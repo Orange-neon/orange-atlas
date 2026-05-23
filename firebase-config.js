@@ -1,0 +1,1 @@
+window.__ORANGE_ATLAS_FIREBASE_CONFIG__ = {"apiKey":"AIzaSyCJ38gx2bzbpYqvs5Cl_Tuj5nwp9zaEx7Q","authDomain":"orange-atlas.firebaseapp.com","projectId":"orange-atlas","storageBucket":"orange-atlas.firebasestorage.app","messagingSenderId":"144179919259","appId":"1:144179919259:web:83f48e801ee310b413c93e","measurementId":"G-XGSXGNSZ8Z"};
