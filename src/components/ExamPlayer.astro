@@ -94,6 +94,10 @@ const thirdStatValue = extraStatValue ?? totalSources;
 const thirdStatLabel = extraStatLabel ?? (extraStatValue !== undefined ? "tipos" : "fuentes");
 const resolvedTopbarTitle = topbarTitle ?? title;
 const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const iconHref = `${basePath}assets/orangeAtlas.png`;
 ---
 
 <!DOCTYPE html>
@@ -102,7 +106,8 @@ const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
-    <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png" />
+    <link rel="icon" href={iconHref} type="image/png" />
+    <link rel="apple-touch-icon" href={iconHref} />
     <style is:global>
       @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
 

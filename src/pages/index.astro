@@ -1,3 +1,12 @@
+---
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const iconHref = `${basePath}assets/orangeAtlas.png`;
+const scriptHref = `${basePath}assets/index-js.js`;
+const stylesheetHref = `${basePath}assets/index-css.css`;
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,8 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Orange Atlas - Your comprehensive hub for quality academic practice tests across subjects" />
     <title>Orange Atlas - Academic Practice Hub</title>
-    <script type="module" crossorigin src="assets/index-js.js"></script>
-    <link rel="stylesheet" crossorigin href="assets/index-css.css">
+    <link rel="icon" href={iconHref} type="image/png" />
+    <link rel="apple-touch-icon" href={iconHref} />
+    <script is:inline type="module" crossorigin src={scriptHref}></script>
+    <link rel="stylesheet" crossorigin href={stylesheetHref}>
   </head>
   <body>
     <div id="root"></div>
