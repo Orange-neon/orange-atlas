@@ -16,6 +16,12 @@
         "description": {
           "type": "string"
         },
+        "course": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
         "examCode": {
           "type": "string"
         },

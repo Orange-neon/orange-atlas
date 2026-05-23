@@ -1,0 +1,244 @@
+---
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const analyticsHref = `${basePath}analytics/`;
+---
+
+<div class="oa-auth-nav" data-auth-nav>
+  <a class="oa-auth-nav__link" href={analyticsHref}>Analytics</a>
+  <button class="oa-auth-nav__button" type="button" data-auth-action="sign-in">Sign in</button>
+  <span class="oa-auth-nav__profile" data-auth-profile hidden>
+    <img data-auth-photo alt="" />
+    <span data-auth-name></span>
+  </span>
+  <button class="oa-auth-nav__button secondary" type="button" data-auth-action="sign-out" hidden>
+    Sign out
+  </button>
+  <span class="oa-auth-nav__setup" data-auth-setup hidden>Firebase setup needed</span>
+</div>
+
+<style>
+  .oa-auth-nav {
+    position: fixed;
+    top: 0.8rem;
+    right: 0.8rem;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    max-width: min(calc(100vw - 1.6rem), 36rem);
+    padding: 0.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 0.55rem;
+    background: rgba(8, 8, 12, 0.82);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(16px);
+    font-family: Inter, Manrope, system-ui, sans-serif;
+  }
+
+  .oa-auth-nav__link,
+  .oa-auth-nav__button,
+  .oa-auth-nav__setup {
+    min-height: 2rem;
+    border-radius: 0.38rem;
+    padding: 0 0.68rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .oa-auth-nav__link {
+    display: inline-flex;
+    align-items: center;
+    color: #ffd1a6;
+    border: 1px solid rgba(255, 116, 51, 0.32);
+    background: rgba(255, 116, 51, 0.09);
+  }
+
+  .oa-auth-nav__button {
+    border: 1px solid rgba(255, 116, 51, 0.34);
+    color: #111;
+    background: linear-gradient(135deg, #ff7433, #ffbd78);
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .oa-auth-nav__button.secondary {
+    color: #f8efe8;
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .oa-auth-nav__button[aria-busy="true"] {
+    opacity: 0.72;
+    cursor: wait;
+  }
+
+  .oa-auth-nav__profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
+    color: #f8efe8;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .oa-auth-nav__profile[hidden] {
+    display: none;
+  }
+
+  .oa-auth-nav__profile img {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .oa-auth-nav__profile span {
+    max-width: 9.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .oa-auth-nav__setup {
+    display: inline-flex;
+    align-items: center;
+    color: #ffbd78;
+    border: 1px solid rgba(255, 189, 120, 0.28);
+    background: rgba(255, 189, 120, 0.09);
+  }
+
+  .oa-auth-nav__setup[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 620px) {
+    .oa-auth-nav {
+      left: 0.8rem;
+      right: 0.8rem;
+      justify-content: flex-end;
+    }
+
+    .oa-auth-nav__profile span {
+      max-width: 7rem;
+    }
+  }
+</style>
+
+<script>
+  import {
+    completeRedirectSignIn,
+    getCurrentUser,
+    isFirebaseConfigured,
+    loadUserAttempts,
+    saveAttempt,
+    signInWithGoogle,
+    signOutGoogle,
+    subscribeToAuth,
+  } from "../lib/progress";
+
+  const authWindow = window as typeof window & {
+    __orangeAtlasAuthBooted?: boolean;
+    __orangeAtlasUser?: ReturnType<typeof getCurrentUser>;
+    orangeAtlasProgress?: Record<string, unknown>;
+  };
+
+  function profileFromUser(user: ReturnType<typeof getCurrentUser>) {
+    if (!user) return null;
+    return {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+    };
+  }
+
+  function updateAuthNav(user: ReturnType<typeof getCurrentUser>) {
+    const configured = isFirebaseConfigured();
+    document.querySelectorAll<HTMLElement>("[data-auth-nav]").forEach((nav) => {
+      const signIn = nav.querySelector<HTMLElement>('[data-auth-action="sign-in"]');
+      const signOut = nav.querySelector<HTMLElement>('[data-auth-action="sign-out"]');
+      const profile = nav.querySelector<HTMLElement>("[data-auth-profile]");
+      const setup = nav.querySelector<HTMLElement>("[data-auth-setup]");
+      const name = nav.querySelector<HTMLElement>("[data-auth-name]");
+      const photo = nav.querySelector<HTMLImageElement>("[data-auth-photo]");
+
+      if (!configured) {
+        if (signIn) signIn.hidden = true;
+        if (signOut) signOut.hidden = true;
+        if (profile) profile.hidden = true;
+        if (setup) setup.hidden = false;
+        return;
+      }
+
+      if (setup) setup.hidden = true;
+      if (signIn) signIn.hidden = Boolean(user);
+      if (signOut) signOut.hidden = !user;
+      if (profile) profile.hidden = !user;
+      if (name) name.textContent = user?.displayName || user?.email || "Signed in";
+      if (photo && user?.photoURL) photo.src = user.photoURL;
+    });
+  }
+
+  function publishAuthChange(user: ReturnType<typeof getCurrentUser>) {
+    authWindow.__orangeAtlasUser = user;
+    updateAuthNav(user);
+    window.dispatchEvent(
+      new CustomEvent("orange-atlas-auth-change", {
+        detail: {
+          configured: isFirebaseConfigured(),
+          user: profileFromUser(user),
+        },
+      }),
+    );
+  }
+
+  authWindow.orangeAtlasProgress = {
+    isFirebaseConfigured,
+    getCurrentUser: () => authWindow.__orangeAtlasUser ?? getCurrentUser(),
+    signInWithGoogle,
+    signOutGoogle,
+    saveAttempt,
+    loadUserAttempts,
+  };
+
+  if (!authWindow.__orangeAtlasAuthBooted) {
+    authWindow.__orangeAtlasAuthBooted = true;
+
+    completeRedirectSignIn().catch((error) => {
+      console.warn("Unable to complete Orange Atlas sign-in redirect", error);
+    });
+
+    subscribeToAuth((user) => publishAuthChange(user));
+
+    document.addEventListener("click", async (event) => {
+      const actionEl = (event.target as HTMLElement).closest<HTMLElement>("[data-auth-action]");
+      if (!actionEl) return;
+
+      const action = actionEl.dataset.authAction;
+      if (action !== "sign-in" && action !== "sign-out") return;
+
+      event.preventDefault();
+      actionEl.setAttribute("aria-busy", "true");
+
+      try {
+        if (action === "sign-in") await signInWithGoogle();
+        if (action === "sign-out") await signOutGoogle();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Authentication failed.";
+        window.dispatchEvent(new CustomEvent("orange-atlas-auth-error", { detail: { message } }));
+        console.warn("Orange Atlas authentication error", error);
+      } finally {
+        actionEl.removeAttribute("aria-busy");
+      }
+    });
+  }
+
+  updateAuthNav(authWindow.__orangeAtlasUser ?? getCurrentUser());
+</script>

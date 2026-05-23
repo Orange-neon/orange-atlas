@@ -10,7 +10,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "astro": "^5.0.0"
+    "astro": "^5.0.0",
+    "firebase": "^12.13.0"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"

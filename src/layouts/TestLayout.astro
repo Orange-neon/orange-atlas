@@ -1,4 +1,6 @@
 ---
+import AuthNav from "../components/AuthNav.astro";
+
 interface Props {
   title: string;
   duration: number;
@@ -439,6 +441,8 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
     </style>
   </head>
   <body>
+    <AuthNav />
+
     <section class="screen" id="s-landing">
       <div class="land-inner">
         <p class="land-kicker">{examCode ? `${examCode} · ` : ""}Orange Atlas · Content-First Test</p>

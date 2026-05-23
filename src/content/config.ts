@@ -7,6 +7,8 @@ const tests = defineCollection({
     duration: z.number(),
     difficulty: z.string(),
     description: z.string(),
+    course: z.string().optional(),
+    unit: z.string().optional(),
     examCode: z.string().optional(),
     heroTitle: z.string().optional(),
     heroAccent: z.string().optional(),
