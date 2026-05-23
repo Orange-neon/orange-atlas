@@ -51,6 +51,7 @@ export interface AttemptPayload {
   typeStats: Record<string, BucketStat>;
   mediaStats: Record<string, BucketStat>;
   questionResults: QuestionResult[];
+  source?: string;
 }
 
 export interface StoredAttempt extends AttemptPayload {

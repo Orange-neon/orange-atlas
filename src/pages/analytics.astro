@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { basename, join, relative } from "node:path";
 import AuthNav from "../components/AuthNav.astro";
 import { DEFAULT_COURSE, inferUnitFromSlug } from "../lib/testMeta";
 
@@ -7,8 +9,67 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}assets/orangeAtlas.png`;
+const unitOrder: Record<string, number> = {
+  "Unidad 4 - En el Consultorio": 4,
+  "Unidad 5 - La Tecnologia": 5,
+  "Unidad 6 - La Vivienda": 6,
+  "Semester 2 Final Review": 7,
+};
+const getSeriesInfo = (slug: string) => {
+  const match = slug.match(/^(.*?)-(\d+)$/);
+  return {
+    group: match ? match[1] : slug,
+    sequence: match ? Number(match[2]) : 0,
+  };
+};
+const legacyRoot = join(process.cwd(), "public", "spanish2");
+const legacyFiles: string[] = [];
+const walkLegacyFiles = (dir: string) => {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) walkLegacyFiles(fullPath);
+    else if (entry.isFile() && entry.name.endsWith(".html")) legacyFiles.push(fullPath);
+  }
+};
+if (existsSync(legacyRoot)) walkLegacyFiles(legacyRoot);
+const legacyTestMetadata = legacyFiles.map((filePath) => {
+  const source = readFileSync(filePath, "utf8");
+  const relativePath = relative(join(process.cwd(), "public"), filePath).replaceAll("\\", "/");
+  const fileSlug = basename(filePath, ".html")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  const isUnit4 = relativePath.includes("unidad-4-");
+  const slug = isUnit4 ? `unidad-4-${fileSlug}` : fileSlug;
+  const unit = isUnit4 ? "Unidad 4 - En el Consultorio" : "Unidad 5 - La Tecnologia";
+  const titleMatch = source.match(/<title>(.*?)<\/title>/i);
+  const h1Match = source.match(/<h1[^>]*>(.*?)<\/h1>/is);
+  const sections = Array.from(
+    new Set(
+      [...source.matchAll(/\b(?:sec|secTitle|title):\s*"([^"]+)"/g)]
+        .map((match) => match[1])
+        .filter((section) => section.length < 64),
+    ),
+  );
+  const questionCount = (source.match(/\bid:\s*\d+/g) ?? []).length || 20;
+  const series = getSeriesInfo(slug);
+
+  return {
+    slug,
+    title: (titleMatch?.[1] ?? h1Match?.[1] ?? slug).replace(/<[^>]+>/g, "").trim(),
+    course: DEFAULT_COURSE,
+    unit,
+    unitOrder: unitOrder[unit] ?? 99,
+    difficulty: "Legacy static test",
+    href: `${basePath}${relativePath}`,
+    questionCount,
+    sections,
+    source: "legacy-static",
+    ...series,
+  };
+});
 const tests = await getCollection("tests");
-const testMetadata = tests
+const astroTestMetadata = tests
   .filter((test) => Boolean(test.data.questionsJson))
   .map((test) => {
     const questions = JSON.parse(test.data.questionsJson ?? "[]");
@@ -16,17 +77,26 @@ const testMetadata = tests
       new Set(questions.map((question: { sec?: string }) => question.sec || "Uncategorized")),
     );
 
+    const unit = test.data.unit ?? inferUnitFromSlug(test.slug);
+    const series = getSeriesInfo(test.slug);
+
     return {
       slug: test.slug,
       title: test.data.title,
       course: test.data.course ?? DEFAULT_COURSE,
-      unit: test.data.unit ?? inferUnitFromSlug(test.slug),
+      unit,
+      unitOrder: unitOrder[unit] ?? 99,
       difficulty: test.data.difficulty,
       href: `${basePath}tests/${test.slug}/`,
       questionCount: test.data.questionCount ?? questions.length,
       sections,
+      source: "astro",
+      ...series,
     };
   });
+const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
+  (a, b) => a.unitOrder - b.unitOrder || a.group.localeCompare(b.group) || a.sequence - b.sequence,
+);
 ---
 
 <!doctype html>
@@ -38,7 +108,7 @@ const testMetadata = tests
     <title>Analytics | Orange Atlas</title>
     <link rel="icon" href={iconHref} type="image/png" />
     <link rel="apple-touch-icon" href={iconHref} />
-    <style>
+    <style is:global>
       @import url("https://fonts.googleapis.com/css2?family=Besley:opsz,wght@6..32,600;6..32,800&family=Manrope:wght@400;500;700;800&display=swap");
 
       :root {
@@ -120,6 +190,10 @@ const testMetadata = tests
 
       .hero {
         padding: 2.4rem 0 2rem;
+      }
+
+      .hero[hidden] {
+        display: none;
       }
 
       .eyebrow,
@@ -220,7 +294,7 @@ const testMetadata = tests
 
       .overview {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: 1.25fr repeat(3, minmax(0, 1fr));
         gap: 0.75rem;
       }
 
@@ -229,6 +303,11 @@ const testMetadata = tests
         border-radius: 0.55rem;
         background: rgba(255, 255, 255, 0.045);
         padding: 0.95rem;
+      }
+
+      .stat.average-card {
+        background: linear-gradient(145deg, rgba(255, 116, 51, 0.2), rgba(255, 255, 255, 0.05));
+        border-color: rgba(255, 116, 51, 0.42);
       }
 
       .stat-value {
@@ -275,15 +354,32 @@ const testMetadata = tests
         gap: 0.55rem;
       }
 
+      .test-grid,
+      .practice-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0.75rem;
+      }
+
       .mini-card {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 0.65rem;
         align-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 6.2rem;
+        border: 1px solid rgba(255, 116, 51, 0.22);
         border-radius: 0.5rem;
         background: rgba(255, 255, 255, 0.04);
-        padding: 0.72rem;
+        padding: 0.9rem;
+        color: inherit;
+        text-decoration: none;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      a.mini-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 116, 51, 0.62);
+        background: rgba(255, 116, 51, 0.09);
       }
 
       .mini-title {
@@ -323,31 +419,144 @@ const testMetadata = tests
       }
 
       .trend {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
-        gap: 0.65rem;
-        align-items: end;
-        min-height: 180px;
+        min-height: 260px;
       }
 
-      .bar-wrap {
-        display: grid;
-        align-items: end;
+      .chart-wrap {
+        position: relative;
+        min-height: 260px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 0.55rem;
+        background: #000;
+        padding: 0.75rem;
+        overflow: hidden;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+          inset 0 -34px 90px rgba(255, 116, 51, 0.08);
+      }
+
+      .line-chart {
+        display: block;
+        width: 100%;
+        height: 240px;
+        overflow: visible;
+      }
+
+      .chart-line {
+        fill: none;
+        stroke: #ff9a4a;
+        stroke-width: 2.35;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: drop-shadow(0 0 5px rgba(255, 116, 51, 0.42));
+      }
+
+      .chart-line-glow {
+        fill: none;
+        stroke: #ff7433;
+        stroke-width: 7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.18;
+        filter: blur(5px);
+      }
+
+      .chart-area-group {
+        filter: drop-shadow(0 -3px 12px rgba(255, 116, 51, 0.18));
+      }
+
+      .chart-area-slice {
+        opacity: 0.95;
+      }
+
+      .chart-grid-line {
+        stroke: rgba(255, 255, 255, 0.12);
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+      }
+
+      .chart-dot {
+        fill: var(--gold);
+        stroke: #0b0b0b;
+        stroke-width: 3.5;
+      }
+
+      .chart-dot.origin {
+        fill: #0b0b0b;
+        stroke: var(--orange);
+      }
+
+      .chart-label,
+      .chart-axis {
+        fill: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .chart-axis {
+        fill: var(--subtle);
+      }
+
+      .test-card,
+      .practice-card {
+        min-height: 9.4rem;
+        display: flex;
+        flex-direction: column;
         gap: 0.45rem;
-        min-height: 160px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.04);
+        color: inherit;
+        padding: 0.92rem;
+        text-decoration: none;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
       }
 
-      .bar {
-        min-height: 0.35rem;
-        border-radius: 0.35rem 0.35rem 0.15rem 0.15rem;
-        background: linear-gradient(180deg, var(--gold), var(--orange));
+      .test-card.live,
+      .practice-card {
+        border: 1px solid rgba(255, 116, 51, 0.24);
       }
 
-      .bar-label {
+      .test-card.live:hover,
+      .test-card.live:focus-visible,
+      .practice-card:hover,
+      .practice-card:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(255, 116, 51, 0.62);
+        background: rgba(255, 116, 51, 0.09);
+        outline: none;
+      }
+
+      .practice-kicker {
+        color: var(--gold);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .test-name,
+      .practice-title {
+        color: var(--text);
+        font-family: "Besley", Georgia, serif;
+        font-size: 1.03rem;
+        line-height: 1.16;
+        letter-spacing: 0;
+      }
+
+      .test-note,
+      .practice-note {
+        flex: 1;
         color: var(--muted);
-        font-size: 0.72rem;
-        text-align: center;
-        line-height: 1.25;
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+
+      .open,
+      .practice-open {
+        color: var(--gold);
+        font-size: 0.88rem;
+        font-weight: 700;
       }
 
       .empty {
@@ -399,7 +608,7 @@ const testMetadata = tests
         <p class="eyebrow">Progress Analytics</p>
         <h1>Know what is mastered and what needs work.</h1>
         <p class="hero-copy">
-          Signed-in attempts from the Astro test player become score trends, skill mastery, recent misses, and targeted next-test suggestions.
+          Signed-in attempts from all supported Spanish 2 tests become score trends, skill mastery, recent misses, and targeted next-test suggestions.
         </p>
         <p class="status-pill" id="auth-state">Checking sign-in</p>
       </section>
@@ -412,13 +621,13 @@ const testMetadata = tests
 
       <section class="dashboard" id="analytics-dashboard" hidden>
         <div class="overview" aria-label="Progress overview">
+          <div class="stat average-card">
+            <div class="stat-value" id="stat-average">0%</div>
+            <div class="stat-label">Average score</div>
+          </div>
           <div class="stat">
             <div class="stat-value" id="stat-attempts">0</div>
             <div class="stat-label">Attempts</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value" id="stat-average">0%</div>
-            <div class="stat-label">Average score</div>
           </div>
           <div class="stat">
             <div class="stat-value" id="stat-mastered">0</div>
@@ -433,9 +642,35 @@ const testMetadata = tests
         <section class="panel">
           <div class="panel-head">
             <h2>Score Trend</h2>
-            <span class="panel-kicker">Recent attempts</span>
+            <span class="panel-kicker">Charted over time</span>
           </div>
           <div class="trend" id="score-trend"></div>
+        </section>
+
+        <div class="grid-two">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Unit Performance</h2>
+              <span class="panel-kicker">Course map</span>
+            </div>
+            <div class="mini-list" id="unit-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Format Breakdown</h2>
+              <span class="panel-kicker">Question types</span>
+            </div>
+            <div class="mini-list" id="type-list"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Source Breakdown</h2>
+            <span class="panel-kicker">Text, media, and standard questions</span>
+          </div>
+          <div class="mini-list" id="media-list"></div>
         </section>
 
         <div class="grid-two">
@@ -479,7 +714,7 @@ const testMetadata = tests
             <h2>Recommended Next Tests</h2>
             <span class="panel-kicker">Based on weak areas</span>
           </div>
-          <div class="mini-list" id="recommendations"></div>
+          <div class="test-grid practice-list" id="recommendations"></div>
         </section>
       </section>
     </main>
@@ -494,8 +729,10 @@ const testMetadata = tests
 
       const tests = JSON.parse(document.getElementById("test-metadata")?.textContent || "[]");
       const testsBySlug = new Map(tests.map((test) => [test.slug, test]));
+      const unitOrder = ["Unidad 4 - En el Consultorio", "Unidad 5 - La Tecnologia", "Unidad 6 - La Vivienda", "Semester 2 Final Review"];
       const gate = document.getElementById("analytics-gate");
       const dashboard = document.getElementById("analytics-dashboard");
+      const hero = document.querySelector(".hero");
       const authState = document.getElementById("auth-state");
       const gateTitle = document.getElementById("gate-title");
       const gateCopy = document.getElementById("gate-copy");
@@ -557,6 +794,19 @@ const testMetadata = tests
         return [...map.values()].map((item) => ({ ...item, percent: pct(item.correct, item.total) }));
       }
 
+      function aggregateObjectStats(attempts, key) {
+        const map = new Map();
+        attempts.forEach((attempt) => {
+          const stats = attempt[key] || {};
+          Object.entries(stats).forEach(([name, stat]) => {
+            addBucket(map, name, Number(stat.correct) || 0, Number(stat.total) || 0);
+          });
+        });
+        return [...map.values()]
+          .map((item) => ({ ...item, percent: pct(item.correct, item.total) }))
+          .sort((a, b) => a.percent === b.percent ? b.total - a.total : b.percent - a.percent);
+      }
+
       function renderList(id, items, emptyText) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -577,21 +827,108 @@ const testMetadata = tests
         </article>`;
       }
 
+      function withReviewParam(href, questionId) {
+        if (!href) return "#";
+        const joiner = href.includes("?") ? "&" : "?";
+        return `${href}${joiner}review=${encodeURIComponent(questionId)}`;
+      }
+
+      function testCard(test, chip, subtitle = "") {
+        return `<a class="test-card live practice-card" href="${esc(test.href)}" aria-label="Open ${esc(test.title)}">
+          <p class="practice-kicker">${esc(chip)} Practice</p>
+          <h3 class="test-name practice-title">${esc(test.title)}</h3>
+          <p class="test-note practice-note">${esc(subtitle || `${test.unit} - ${test.questionCount} questions`)}</p>
+          <p class="open practice-open">Start Test -></p>
+        </a>`;
+      }
+
       function renderTrend(attempts) {
         const el = document.getElementById("score-trend");
         if (!el) return;
         const trend = sortRecent(attempts).reverse().slice(-12);
-        if (!trend.length) {
-          el.innerHTML = `<p class="empty">Complete a test while signed in to start a score trend.</p>`;
-          return;
-        }
-        el.innerHTML = trend.map((attempt) => {
-          const value = Math.max(4, Math.min(100, Number(attempt.percent) || 0));
-          return `<div class="bar-wrap" title="${esc(attempt.testTitle)} - ${value}%">
-            <div class="bar" style="height:${value}%"></div>
-            <div class="bar-label">${value}%<br>${esc(formatDate(attempt))}</div>
-          </div>`;
+        const width = 760;
+        const height = 240;
+        const padX = 44;
+        const padTop = 18;
+        const padBottom = 42;
+        const plotW = width - padX * 2;
+        const plotH = height - padTop - padBottom;
+        const baseY = height - padBottom;
+        const points = [
+          {
+            attempt: null,
+            value: 0,
+            x: padX,
+            y: baseY,
+            label: "0",
+            title: "Time 0 - 0%",
+            isOrigin: true,
+          },
+          ...trend.map((attempt, index) => {
+            const x = padX + ((index + 1) / trend.length) * plotW;
+            const value = Math.max(0, Math.min(100, Number(attempt.percent) || 0));
+            const y = padTop + (1 - value / 100) * plotH;
+            return {
+              attempt,
+              value,
+              x,
+              y,
+              label: formatDate(attempt),
+              title: `${attempt.testTitle} - ${value}%`,
+              isOrigin: false,
+            };
+          }),
+        ];
+        const linePath = points.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`).join(" ");
+        const areaGradients = [];
+        const areaSlices = [];
+        points.slice(1).forEach((point, segmentIndex) => {
+          const previous = points[segmentIndex];
+          const steps = Math.max(4, Math.ceil(Math.abs(point.x - previous.x) / 18));
+          for (let step = 0; step < steps; step++) {
+            const t0 = step / steps;
+            const t1 = (step + 1) / steps;
+            const x0 = previous.x + (point.x - previous.x) * t0;
+            const x1 = previous.x + (point.x - previous.x) * t1;
+            const y0 = previous.y + (point.y - previous.y) * t0;
+            const y1 = previous.y + (point.y - previous.y) * t1;
+            const gradientTop = Math.max(padTop, (y0 + y1) / 2);
+            const gradientId = `scoreAreaGradient-${segmentIndex}-${step}`;
+            areaGradients.push(`<linearGradient id="${gradientId}" x1="0" y1="${gradientTop.toFixed(1)}" x2="0" y2="${baseY}" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ff7433" stop-opacity="0.58" />
+              <stop offset="16%" stop-color="#ff7433" stop-opacity="0.22" />
+              <stop offset="36%" stop-color="#ff7433" stop-opacity="0.06" />
+              <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+            </linearGradient>`);
+            areaSlices.push(`<path class="chart-area-slice" d="M ${x0.toFixed(1)} ${y0.toFixed(1)} L ${x1.toFixed(1)} ${y1.toFixed(1)} L ${x1.toFixed(1)} ${baseY} L ${x0.toFixed(1)} ${baseY} Z" fill="url(#${gradientId})" />`);
+          }
+        });
+        const gridLines = [0, 25, 50, 75, 100].map((value) => {
+          const y = padTop + (1 - value / 100) * plotH;
+          return `<line class="chart-grid-line" x1="${padX}" y1="${y.toFixed(1)}" x2="${width - padX}" y2="${y.toFixed(1)}" />`;
         }).join("");
+        const labels = points.map((point, index) => {
+          const showLabel = points.length <= 7 || index === 0 || index === points.length - 1 || index % 2 === 0;
+          return `${showLabel ? `<text class="chart-label" x="${point.x}" y="${height - 13}" text-anchor="middle">${esc(point.label)}</text>` : ""}
+            <circle class="chart-dot${point.isOrigin ? " origin" : ""}" cx="${point.x}" cy="${point.y}" r="${point.isOrigin ? 4.5 : 5.5}">
+              <title>${esc(point.title)}</title>
+            </circle>
+            <text class="chart-label" x="${point.x}" y="${Math.max(14, point.y - 10)}" text-anchor="middle">${point.value}%</text>`;
+        }).join("");
+        el.innerHTML = `<div class="chart-wrap">
+          <svg class="line-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Score trend chart">
+            <defs>
+              ${areaGradients.join("")}
+            </defs>
+            ${gridLines}
+            <text class="chart-axis" x="6" y="${padTop + 5}">100%</text>
+            <text class="chart-axis" x="13" y="${height - padBottom}">0%</text>
+            <g class="chart-area-group">${areaSlices.join("")}</g>
+            <path class="chart-line-glow" d="${linePath}" />
+            <path class="chart-line" d="${linePath}" />
+            ${labels}
+          </svg>
+        </div>`;
       }
 
       function renderRecentAttempts(attempts) {
@@ -618,47 +955,89 @@ const testMetadata = tests
           });
         });
 
-        const items = misses.slice(0, 8).map(({ attempt, question }) => `<article class="mini-card">
+        const items = misses.slice(0, 8).map(({ attempt, question }) => {
+          const test = testsBySlug.get(attempt.testSlug);
+          const href = withReviewParam(test?.href, question.id);
+          return `<a class="mini-card" href="${esc(href)}" aria-label="Review ${esc(attempt.testTitle)} question ${esc(question.id)}">
           <div>
             <div class="mini-title">${esc(question.section)}</div>
             <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
           </div>
-          <div class="score-chip bad">Review</div>
-        </article>`);
+          <span class="score-chip bad">Review</span>
+        </a>`;
+        });
         renderList("recent-misses", items, "Missed question tags will appear after saved attempts.");
+      }
+
+      function nextInSeries(test, attempted) {
+        if (!test) return null;
+        return tests.find((candidate) =>
+          candidate.group === test.group
+          && candidate.sequence > test.sequence
+          && !attempted.has(candidate.slug)
+        ) || tests.find((candidate) => candidate.slug === test.slug);
+      }
+
+      function firstUntakenInNextUnit(currentUnit, attempted) {
+        const currentIndex = unitOrder.indexOf(currentUnit);
+        if (currentIndex === -1) return null;
+        for (let i = currentIndex + 1; i < unitOrder.length; i++) {
+          const found = tests.find((test) => test.unit === unitOrder[i] && !attempted.has(test.slug));
+          if (found) return found;
+        }
+        return null;
       }
 
       function renderRecommendations(attempts, weakSections, weakUnits) {
         const attempted = new Set(attempts.map((attempt) => attempt.testSlug));
-        const scored = tests.map((test) => {
-          const sectionMatch = test.sections.some((section) => weakSections.includes(section));
-          const unitMatch = weakUnits.includes(test.unit);
-          const unattempted = !attempted.has(test.slug);
-          return {
-            ...test,
-            rank: (sectionMatch ? 6 : 0) + (unitMatch ? 3 : 0) + (unattempted ? 2 : 0),
-            sectionMatch,
-            unattempted,
-          };
-        })
-          .filter((test) => test.rank > 0)
-          .sort((a, b) => b.rank - a.rank || a.title.localeCompare(b.title))
-          .slice(0, 5);
+        const recommendations = [];
+        const seen = new Set();
 
-        const fallback = tests
-          .filter((test) => !attempted.has(test.slug))
-          .slice(0, 5)
-          .map((test) => ({ ...test, unattempted: true }));
-        const recommendations = scored.length ? scored : fallback;
-        const items = recommendations.map((test) => `<a class="mini-card" href="${esc(test.href)}">
-          <div>
-            <div class="mini-title">${esc(test.title)}</div>
-            <div class="mini-sub">${esc(test.unit)} - ${test.questionCount} questions</div>
-          </div>
-          <div class="score-chip mid">${test.unattempted ? "Start" : "Retry"}</div>
-        </a>`);
+        sortRecent(attempts)
+          .filter((attempt) => Number(attempt.percent) < 70 || weakUnits.includes(attempt.unit))
+          .forEach((attempt) => {
+            const source = testsBySlug.get(attempt.testSlug);
+            const next = nextInSeries(source, attempted);
+            if (next && !seen.has(next.slug)) {
+              seen.add(next.slug);
+              recommendations.push({
+                test: next,
+                chip: next.slug === source?.slug ? "Retry" : "Next",
+                reason: `${attempt.testTitle} is a focus area at ${Number(attempt.percent) || 0}%.`,
+              });
+            }
+          });
 
-        renderList("recommendations", items, "All tracked tests have saved attempts. Retry a focus-area test to raise mastery.");
+        const masteredByUnit = new Map();
+        attempts.forEach((attempt) => {
+          if (Number(attempt.percent) >= 85) {
+            masteredByUnit.set(attempt.unit, (masteredByUnit.get(attempt.unit) || 0) + 1);
+          }
+        });
+        masteredByUnit.forEach((count, unit) => {
+          if (count < 2) return;
+          const nextUnitTest = firstUntakenInNextUnit(unit, attempted);
+          if (nextUnitTest && !seen.has(nextUnitTest.slug)) {
+            seen.add(nextUnitTest.slug);
+            recommendations.push({
+              test: nextUnitTest,
+              chip: "Advance",
+              reason: `${unit} has ${count} mastered attempts.`,
+            });
+          }
+        });
+
+        const items = recommendations.slice(0, 6).map(({ test, chip, reason }) => testCard(
+          test,
+          chip,
+          `${reason} ${test.questionCount} questions.`,
+        ));
+
+        renderList(
+          "recommendations",
+          items,
+          "No recommendations yet. Complete at least one test so Orange Atlas can recommend the next version, a retry, or the next unit.",
+        );
       }
 
       function renderDashboard(attempts) {
@@ -669,6 +1048,8 @@ const testMetadata = tests
         const average = pct(totalScore, totalQuestions);
         const sections = aggregateSections(attempts);
         const units = aggregateUnits(attempts);
+        const typeStats = aggregateObjectStats(attempts, "typeStats");
+        const mediaStats = aggregateObjectStats(attempts, "mediaStats");
         const mastered = sections.filter((item) => item.total >= 8 && item.percent >= 85);
         const weak = sections.filter((item) => item.total >= 5 && item.percent < 70).sort((a, b) => a.percent - b.percent);
         const weakUnits = units.filter((unit) => unit.percent < 70).map((unit) => unit.key);
@@ -679,6 +1060,23 @@ const testMetadata = tests
         document.getElementById("stat-focus").textContent = String(weak.length);
 
         renderTrend(attemptsSorted);
+        renderList(
+          "unit-list",
+          units
+            .sort((a, b) => unitOrder.indexOf(a.key) - unitOrder.indexOf(b.key))
+            .map((item) => metricCard(item.key, `${item.correct}/${item.total} correct`, item.percent)),
+          "Unit performance appears after saved attempts.",
+        );
+        renderList(
+          "type-list",
+          typeStats.map((item) => metricCard(item.key, `${item.correct}/${item.total} correct`, item.percent)),
+          "Question-type performance appears after saved attempts.",
+        );
+        renderList(
+          "media-list",
+          mediaStats.map((item) => metricCard(item.key, `${item.correct}/${item.total} correct`, item.percent)),
+          "Source and media performance appears after saved attempts.",
+        );
         renderList(
           "mastered-list",
           mastered.slice(0, 8).map((item) => metricCard(item.key, `${item.correct}/${item.total} correct`, item.percent, "good")),
@@ -695,6 +1093,7 @@ const testMetadata = tests
       }
 
       function showGate(title, copy, canSignIn) {
+        if (hero) hero.hidden = false;
         if (dashboard) dashboard.hidden = true;
         if (gate) gate.hidden = false;
         if (gateTitle) gateTitle.textContent = title;
@@ -712,6 +1111,7 @@ const testMetadata = tests
         if (authState) authState.textContent = "Loading analytics";
         try {
           const attempts = await loadUserAttempts();
+          if (hero) hero.hidden = true;
           if (gate) gate.hidden = true;
           if (dashboard) dashboard.hidden = false;
           if (authState) authState.textContent = `${attempts.length} saved attempt${attempts.length === 1 ? "" : "s"}`;
@@ -736,6 +1136,7 @@ const testMetadata = tests
           return;
         }
 
+        if (hero) hero.hidden = true;
         loadAnalytics();
       });
     </script>
