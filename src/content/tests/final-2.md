@@ -1,0 +1,487 @@
+---
+title: "El Reto Final"
+duration: 50
+difficulty: "Vocabulario"
+description: "Repaso final avanzado del semestre 2 — vocabulario del cuerpo, la salud, la tecnología y el coche; gramática en contexto con diálogos largos y modos mixtos; y cultura hispana."
+examCode: "Repaso Final II"
+heroTitle: "El Reto"
+heroAccent: "Final"
+topbarTitle: "El Reto Final"
+questionCount: 50
+sourceCount: 5
+extraStatValue: 4
+extraStatLabel: "tipos"
+rules:
+  - "Una pregunta a la vez — no puedes volver atrás"
+  - "El examen termina automáticamente cuando el tiempo llega a cero"
+  - "Usa el contexto para inferir el significado"
+  - "Escribe las respuestas de vocabulario en español cuando se indique"
+questionsJson: |
+  [
+    {
+      "id": 1,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la rodilla", "B) la garganta", "C) la muñeca", "D) el tobillo"],
+      "cor": "B",
+      "exp": "The knee, wrist, and ankle are all joints — connection points between bones where the body bends or rotates. The throat is an internal passage connecting the mouth to the lungs and stomach — it is not a joint at all. It belongs in a group of internal body parts, not in a group of joints."
+    },
+    {
+      "id": 2,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la aspirina", "B) el antibiótico", "C) el medicamento", "D) el consultorio"],
+      "cor": "D",
+      "exp": "Aspirin, an antibiotic, and medication are all medicines — substances taken or prescribed to treat illness. A doctor's office is a place — the physical location where you go for medical appointments. It is not a substance or treatment, so it doesn't belong in a group of medicines."
+    },
+    {
+      "id": 3,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) recetar", "B) caerse", "C) lastimarse", "D) torcerse el tobillo"],
+      "cor": "A",
+      "exp": "Falling, injuring oneself, and spraining one's ankle are all involuntary reflexive events — things that happen accidentally to a patient's body. Prescribing is an intentional professional action performed by a doctor — it is something a medical provider does deliberately, not something a patient suffers. It doesn't belong in a group of accidental patient experiences."
+    },
+    {
+      "id": 4,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el micrófono", "B) la cámara web", "C) descargar", "D) los altavoces"],
+      "cor": "C",
+      "exp": "A microphone, webcam, and speakers are all hardware — physical technology components you can touch, plug in, and hold. Downloading is a digital action — a process that occurs inside a device without producing a physical object. It doesn't belong in a group of physical hardware components."
+    },
+    {
+      "id": 5,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el correo de voz", "B) borrar", "C) descargar", "D) textear"],
+      "cor": "A",
+      "exp": "Deleting, downloading, and texting are all verbs — digital actions you perform on a device. Voicemail is a noun — it names a specific type of audio message left on a phone when someone doesn't answer. It is an object or concept, not an action, so it doesn't belong in a group of digital action verbs."
+    },
+    {
+      "id": 6,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) arrancar", "B) estacionar", "C) conducir", "D) el volante"],
+      "cor": "D",
+      "exp": "Starting the engine, parking, and driving are all actions — verbs that describe things a driver does when operating a vehicle. A steering wheel is a physical object — a circular part inside the car used to control direction. It is a noun, not an action, so it doesn't belong in a group of driving verbs."
+    },
+    {
+      "id": 7,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) la gasolinera", "B) el mecánico", "C) la carretera", "D) el taller"],
+      "cor": "B",
+      "exp": "A gas station, highway, and repair shop are all places — physical locations associated with cars and driving. A mechanic is a person — a professional trained to repair vehicles. A person is not a place, so the mechanic doesn't belong in a group of car-related locations."
+    },
+    {
+      "id": 8,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el corazón", "B) el estómago", "C) el codo", "D) los huesos"],
+      "cor": "C",
+      "exp": "The heart, stomach, and bones are all internal structures — body parts located inside the body that you cannot see or touch from the outside. The elbow is an external joint on the arm — visible and touchable. It belongs in a group of external joints or limbs, not internal body structures."
+    },
+    {
+      "id": 9,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) el correo electrónico", "B) chatear", "C) las redes sociales", "D) la impresora"],
+      "cor": "D",
+      "exp": "Email, chatting online, and social media are all forms of digital communication — ways of sending messages or interacting with others through technology. A printer is a hardware device that produces physical paper copies of documents — it is not a communication tool between people. It doesn't belong in a group of digital communication channels."
+    },
+    {
+      "id": 10,
+      "sec": "Vocabulario: Odd One Out",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?",
+      "ch": ["A) dar una inyección", "B) enfermarse", "C) caerse", "D) darse con"],
+      "cor": "A",
+      "exp": "Getting sick, falling, and crashing into something are all involuntary events — things that happen accidentally to a person without planning or intent. Giving an injection is an intentional, skilled action performed by a healthcare professional on a patient — it is not something that just happens to someone. It doesn't belong in a group of involuntary or accidental experiences."
+    },
+    {
+      "id": 11,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Mamá, acabo de llamar a la clínica y el doctor puede verme esta tarde. — ¡Menos mal! Es bueno que lo _____ hoy, porque llevas tres días con fiebre alta y no has mejorado nada. — Tienes razón. Me siento muy mal.",
+      "ch": ["A) ves", "B) veas", "C) veías", "D) viste"],
+      "cor": "B",
+      "exp": "'Veas' is the present subjunctive of 'ver.' The trigger is 'es bueno que' — an impersonal expression conveying emotion or judgment (WEIRDOS: I = Impersonal Expressions / E = Emotions). Two different subjects are present (it is good / that you go), so subjunctive is required. To conjugate: yo form of ver → veo → drop -o → ve- → add subjunctive ending (-as for tú) → veas. 'Ves' is present indicative. 'Veías' is imperfect. 'Viste' is preterite. Only 'veas' is present subjunctive."
+    },
+    {
+      "id": 12,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— ¿Por qué llegaste tan tarde al consultorio esta mañana? — Es que _____ el carro en el taller desde ayer por la noche y no me lo devolvieron hasta las diez. — ¡Qué molestia! ¿Y al final lo arreglaron bien? — Sí, pero fue un día muy largo.",
+      "ch": ["A) dejé", "B) dejaba", "C) dejo", "D) dejaré"],
+      "cor": "A",
+      "exp": "'Dejé' is the preterite of 'dejar.' Leaving the car at the shop is presented as a single completed past action — a specific event that happened and is done. The time references 'desde ayer por la noche' and the completed narrative confirm this is preterite. 'Dejaba' (imperfect) would imply a habitual or ongoing action rather than a single event. 'Dejo' is present tense. 'Dejaré' is future. The preterite is the only form that correctly places this as a completed singular past action."
+    },
+    {
+      "id": 13,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Disculpe, señor. La velocidad máxima en esta zona es de 60 kilómetros por hora. — Lo siento, oficial, no vi el cartel. Estaba buscando la gasolinera. — _____ más despacio de ahora en adelante. Si no, tendré que multarlo. — Sí, señor. Entendido.",
+      "ch": ["A) Manejas", "B) Manejabas", "C) Maneje", "D) Maneja"],
+      "cor": "C",
+      "exp": "'Maneje' is the formal Usted command of 'manejar.' The police officer addresses the driver as 'señor' — a formal register that requires the Usted command, not the tú command. To form a formal command: yo form → manejo → drop -o → manej- → add opposite ending (-e for -ar verbs) → maneje. 'Maneja' is the affirmative tú command — too informal for this official interaction. 'Manejas' is present tense indicative. 'Manejabas' is imperfect. Neither fits a command in a formal police stop."
+    },
+    {
+      "id": 14,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Oye, ¿cuánto tiempo tienes que seguir tomando ese antibiótico? — El médico dijo que lo tengo que tomar _____ diez días completos, aunque me sienta mucho mejor antes de terminar. — Sí, es muy importante terminarlo. Si paras antes, la infección puede volver más fuerte. — Lo sé, lo sé.",
+      "ch": ["A) por", "B) para", "C) desde", "D) en"],
+      "cor": "A",
+      "exp": "'Por' expresses duration of time — how long an action continues — which is one of its core uses (DREAMS: D = Duration). 'Tomar por diez días' means to take it for a span of ten days. 'Para' expresses purpose, deadlines, or destinations — not ongoing duration of an action. 'Desde' means 'since' (from a starting point to now, used with present or imperfect). 'En' does not fit this duration structure. Only 'por' correctly expresses how long the medication must be taken."
+    },
+    {
+      "id": 15,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Oye, voy a apagar el wifi un momento. ¿Estás haciendo algo importante? — ¡No lo _____ ahora! Estoy descargando el programa nuevo del consultorio y si lo interrumpes, tengo que empezar todo de cero. — Ay, perdona. Avísame cuando termines. — Te digo en diez minutos.",
+      "ch": ["A) apaga", "B) apagues", "C) apagaste", "D) apagas"],
+      "cor": "B",
+      "exp": "'Apagues' is the negative tú command of 'apagar.' To form a negative tú command: (1) take the yo form: apago, (2) drop the -o: apag-, (3) add the opposite subjunctive ending for -ar verbs: -es. However, 'apagar' is a -gar verb, which requires a spelling change before -e to preserve the hard g sound: g → gu. So: apag + ues = apagues. 'Apaga' is the affirmative tú command — only used for positive commands, not negative. 'Apagaste' is preterite. 'Apagas' is present indicative. Only 'apagues' is the negative tú command."
+    },
+    {
+      "id": 16,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— ¿Quién es el señor mayor que está junto a la entrada del taller? — Es el dueño del negocio _____ arregló mi coche cuando tuve el accidente el año pasado. — ¡Ah, qué bueno! ¿Y es de confianza? — Muy bueno. Lo recomiendo completamente.",
+      "ch": ["A) cuyo", "B) quien", "C) que", "D) lo que"],
+      "cor": "C",
+      "exp": "'Que' is the correct relative pronoun here. It refers back to 'el negocio' — a thing, not a person — and introduces a relative clause identifying which business repaired the car. 'Que' works for both people and things as the subject or object of a relative clause. 'Quien' is used for people — but only after a preposition (e.g., 'con quien') or set off by commas. 'Cuyo' is possessive (whose) and would need a following noun. 'Lo que' refers to abstract ideas or concepts, not a specific noun antecedent like 'el negocio.'"
+    },
+    {
+      "id": 17,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Fui al consultorio ayer y el médico me explicó muchísimas cosas sobre mi condición. — ¿Entendiste todo? — La verdad, no. _____ más me confundió fue toda la explicación sobre los efectos secundarios del medicamento. — Puedes llamar a la clínica mañana y pedir que te lo expliquen de nuevo.",
+      "ch": ["A) Quien", "B) Lo que", "C) Que", "D) Cuyo"],
+      "cor": "B",
+      "exp": "'Lo que' means 'what' or 'that which' and refers to an abstract concept or idea — in this case, 'what confused me most.' There is no specific noun antecedent before it; instead, 'lo que' introduces the whole concept of the most confusing part. 'Quien' is for people (not ideas). 'Que' needs a specific noun antecedent directly before it. 'Cuyo' is possessive. 'Lo que' is the only form that correctly refers to a situation or concept rather than a specific person or thing named earlier in the sentence."
+    },
+    {
+      "id": 18,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Oye, ¿este cargador es tuyo o es de Carlos? — Es _____, gracias. Lo estaba buscando por todas partes desde esta mañana y estaba muy frustrado. — Lo encontré debajo del teclado, al lado del ratón. — ¡Menos mal! Lo necesito para el portátil esta tarde.",
+      "ch": ["A) suya", "B) nuestro", "C) tuya", "D) mío"],
+      "cor": "D",
+      "exp": "'Mío' is the stressed possessive adjective meaning 'mine,' used after the verb 'ser.' It must agree in gender and number with the noun it refers to — 'el cargador' is masculine singular, so the correct form is 'mío.' 'Suya' is feminine singular (belongs to él/ella/usted). 'Nuestro' is masculine but means 'ours,' not 'mine.' 'Tuya' is feminine singular and refers to something belonging to 'tú.' Only 'mío' is masculine singular and first-person singular. Stressed possessives always come after the noun or after 'ser.'"
+    },
+    {
+      "id": 19,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— ¿Has probado el nuevo programa de computación que lanzaron la semana pasada? — Sí, pero no estoy seguro de que _____ compatible con todos los sistemas operativos. Mi ordenador es bastante viejo. — Puedes entrar al sitio web del programa y verificarlo antes de descargarlo. — Buena idea, lo hago ahora mismo.",
+      "ch": ["A) está", "B) esté", "C) estaba", "D) estuvo"],
+      "cor": "B",
+      "exp": "'Esté' is the present subjunctive of 'estar.' The trigger is 'no estoy seguro de que' — expressing doubt or uncertainty, a classic WEIRDOS trigger (D = Doubt/Denial). To conjugate 'estar' in the present subjunctive: estar is an irregular subjunctive verb — esté, estés, esté, estemos, estén. 'Está' is present indicative, used when there is no doubt. 'Estaba' is imperfect. 'Estuvo' is preterite. Only 'esté' reflects the uncertainty and doubt the speaker is expressing about compatibility."
+    },
+    {
+      "id": 20,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— ¿Qué pasó exactamente cuando tuviste el accidente ayer? — _____ por la carretera a velocidad normal cuando, de repente, un carro salió de una calle lateral sin mirar y me golpeó por el lado izquierdo. — ¡Qué susto más grande! ¿Y las llantas aguantaron? — Las de adelante sí, pero la trasera izquierda se pinchó completamente.",
+      "ch": ["A) Circulaba", "B) Circulé", "C) Circulo", "D) Circularé"],
+      "cor": "A",
+      "exp": "'Circulaba' is the imperfect form of 'circular.' This sentence contains the classic preterite-imperfect contrast: the imperfect describes the ongoing background action (driving along normally) that was in progress when 'de repente' (suddenly) signals the preterite interruption (a car came out and hit). The imperfect sets the unfinished scene; the preterite cuts through it. 'Circulé' (preterite) would incorrectly imply that driving was a single completed event rather than the continuous background. 'Circulo' is present. 'Circularé' is future."
+    },
+    {
+      "id": 21,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— ¿Cómo le mandaste todos los documentos del accidente a la compañía de seguros? — Se los envié _____ correo electrónico porque la oficina del seguro quedaba muy lejos y no podía ir en persona ese día. — ¿Y ya te respondieron con la información del mecánico? — Sí, me contestaron ayer mismo por la tarde.",
+      "ch": ["A) en", "B) de", "C) por", "D) para"],
+      "cor": "C",
+      "exp": "'Por' is correct here. When talking about the means or channel through which something is communicated or transmitted, Spanish uses 'por' (DREAMS: M = Means). 'Enviar por correo electrónico' = to send by/via email. The same pattern applies to: por teléfono (by phone), por mensaje (by text), por correo (by mail). 'Para' would express purpose or a destination — not the means of transmission. 'En' and 'de' don't fit this channel-of-communication structure. Think: the email is the channel the documents travel through."
+    },
+    {
+      "id": 22,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Mi hijo lleva casi una semana sin poder dormir bien. Está muy cansado y le duele la cabeza cada mañana. — ¡Qué pena! Es necesario que _____ al médico cuanto antes — el insomnio puede ser síntoma de algo más serio. — Tienes razón. Voy a llamar al consultorio esta tarde para pedir una cita urgente. — Bien, espero que todo esté bien.",
+      "ch": ["A) va", "B) fue", "C) iba", "D) vaya"],
+      "cor": "D",
+      "exp": "'Vaya' is the present subjunctive of 'ir.' The trigger is 'es necesario que' — an impersonal expression of necessity, which is a classic WEIRDOS trigger (I = Impersonal Expressions). Two different subjects are present (it is necessary / that he go), so subjunctive is required. 'Ir' is irregular in the subjunctive: vaya, vayas, vaya, vayamos, vayan. 'Va' is present indicative. 'Fue' is preterite. 'Iba' is imperfect. Only 'vaya' is present subjunctive and correctly expresses the necessity in a subordinate clause."
+    },
+    {
+      "id": 23,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— Señor, por favor, no _____ el teléfono en esta área. Está completamente prohibido por razones de seguridad del hospital. — Disculpe, no lo sabía. Lo guardo ahora mismo. — Gracias por su comprensión. Puede usarlo en la sala de espera del primer piso. — De acuerdo, muchas gracias.",
+      "ch": ["A) uses", "B) use", "C) usas", "D) usó"],
+      "cor": "B",
+      "exp": "'Use' is the negative formal Usted command of 'usar.' The context — addressing someone as 'señor' in an official hospital setting — requires the Usted command, not the tú command. To form a formal command: yo form → uso → drop -o → us- → add opposite ending (-e for -ar verbs) → use. Negative formal: 'No use.' 'Uses' is the negative tú command — too informal for 'señor.' 'Usas' is present indicative, not a command. 'Usó' is preterite. The formal register of the hospital staff member's speech makes the Usted command the only acceptable answer."
+    },
+    {
+      "id": 24,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— ¿Conoces a la doctora nueva que empezó esta semana en la clínica del barrio? — Sí, es la señora _____ especialidad es la ortopedia, ¿verdad? La vi el lunes en el pasillo. — Exacto. Dicen que es excelente para los problemas de rodilla y tobillo. — Qué bueno, porque tengo un paciente que la necesita urgentemente.",
+      "ch": ["A) que", "B) quien", "C) cuya", "D) lo que"],
+      "cor": "C",
+      "exp": "'Cuya' is the possessive relative pronoun meaning 'whose.' It connects 'la señora' to 'especialidad' — her specialty is what belongs to her. 'Cuya' must agree in gender and number with the noun that follows it (not the noun before it): 'especialidad' is feminine singular → cuya. If the noun were masculine, it would be 'cuyo.' 'Que' introduces a relative clause but cannot express possession. 'Quien' is for people but cannot show possession. 'Lo que' refers to abstract ideas. Only 'cuya' correctly expresses 'whose specialty.'"
+    },
+    {
+      "id": 25,
+      "sec": "Gramática en Contexto",
+      "type": "mc",
+      "prompt": "— El mecánico dice que mi coche puede estar listo esta tarde, pero todavía no está seguro. — ¡Ojalá que lo _____ a tiempo! Lo necesito para llevar a mi mamá al médico mañana por la mañana temprano. — Espero que sí. ¿Y si no está listo? — Tendré que pedir un taxi, supongo. No hay otra opción.",
+      "ch": ["A) termine", "B) terminó", "C) terminaba", "D) termina"],
+      "cor": "A",
+      "exp": "'Termine' is the present subjunctive of 'terminar.' 'Ojalá que' is a fixed WEIRDOS expression (O = Ojalá) that ALWAYS requires the subjunctive with no exceptions — regardless of context, tense, or subject. To conjugate: terminar → yo termino → drop -o → termin- → add subjunctive ending (-e for -ar verbs, 3rd person singular) → termine. 'Terminó' is preterite (completed past). 'Terminaba' is imperfect (ongoing past). 'Termina' is present indicative. Only 'termine' is present subjunctive, as required after 'ojalá que.'"
+    },
+    {
+      "id": 26,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Por qué muchas casas hispanas tradicionales tienen un solo interruptor de luz para todo un piso en lugar de interruptores individuales para cada cuarto?",
+      "ch": ["A) Porque las paredes de cemento hacen muy difícil pasar el cableado eléctrico dentro de ellas", "B) Porque las leyes de construcción en España y Latinoamérica lo requieren así por seguridad", "C) Porque las familias hispanas prefieren siempre usar lámparas portátiles en todos los cuartos", "D) Porque los focos modernos de bajo consumo no necesitan más de un interruptor por área"],
+      "cor": "A",
+      "exp": "The class notes explain that traditional Hispanic homes are built with cement walls — far denser and harder than the drywall used in American homes. Running electrical wiring through cement is extremely difficult and expensive, so homes were historically built with just one main switch per floor. As a result, many families rely on lámparas (portable lamps) to light individual rooms rather than ceiling-mounted fixtures wired to multiple switches throughout the house."
+    },
+    {
+      "id": 27,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cómo llaman muchas personas en España a su propio idioma, en vez de decir 'español'?",
+      "ch": ["A) Ibérico", "B) Andaluz", "C) Castellano", "D) Latino"],
+      "cor": "C",
+      "exp": "Many people in Spain refer to their language as 'Castellano' rather than 'Español.' The name comes from the region of Castile (Castilla) in central Spain — the area where the standard dialect originated and spread. The term is especially meaningful in Spain because the country has other recognized regional languages (Catalan, Basque, Galician), so calling the national language 'Castellano' distinguishes it from those. In Latin America and internationally, 'Español' is the more common term."
+    },
+    {
+      "id": 28,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "Completa la segunda parte de la canción tradicional: 'Sana sana, colita de rana, si no sanas hoy...'",
+      "ch": ["A) ¡sana con el amor de tu mamá!", "B) ¡sanarás mañana!", "C) ¡descansa y todo pasará!", "D) ¡el médico te dará una pastilla!"],
+      "cor": "B",
+      "exp": "The complete song is: 'Sana sana, colita de rana, si no sanas hoy, ¡sanarás mañana!' The ending uses the future tense of 'sanar' (to heal) — reassuring the child that if they don't heal today, they will certainly heal tomorrow. The song is sung while rubbing or kissing a minor injury to comfort a young child. It is one of the most recognized comfort traditions in the Spanish-speaking world. 'Colita de rana' means a little frog's tail — a playful, nonsensical rhyme element."
+    },
+    {
+      "id": 29,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cuál es la diferencia correcta entre los términos 'hispano/a' y 'latino/a' según las definiciones de clase?",
+      "ch": ["A) Los dos términos significan exactamente lo mismo — no hay diferencia entre ellos", "B) 'Latino' incluye a España; 'hispano' excluye a España", "C) 'Hispano' es solo para personas de México; 'latino' es para todos los demás", "D) 'Hispano' incluye a España; 'latino' excluye a España"],
+      "cor": "D",
+      "exp": "According to class definitions: Hispano/a = anyone from a Spanish-speaking country, including Spain. Latino/a = anyone from a Spanish-speaking country in the Americas, specifically excluding Spain. A person from Spain is Hispano but NOT Latino. A person from Mexico is both Hispano and Latino. A Chicano/a is a separate, more specific identity: a person whose parents are from Mexico but who was born in the United States. These three terms are related but not interchangeable, and the Spain-inclusion distinction is the critical differentiator between Hispano and Latino."
+    },
+    {
+      "id": 30,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "En la Batalla de Puebla el 5 de mayo de 1862, ¿en qué proporción estaban en desventaja los soldados mexicanos frente al ejército francés?",
+      "ch": ["A) Los mexicanos tenían aproximadamente la mitad — proporción 2 a 1 en favor de Francia", "B) Los mexicanos tenían un tercio — proporción 3 a 1 en favor de Francia", "C) Los dos ejércitos tenían exactamente el mismo número de soldados", "D) México tenía más soldados que Francia pero perdió en recursos"],
+      "cor": "A",
+      "exp": "The class notes state that the odds at the Battle of Puebla were 2:1 in France's favor — France had approximately twice as many soldiers as Mexico. Despite this significant disadvantage, Mexico won the battle. This is what makes the victory historically remarkable and worth celebrating. Critical reminder: Cinco de Mayo is NOT Mexico's Independence Day — that is September 16th. The Battle of Puebla was a single military event in 1862, more than 40 years after independence from Spain was declared in 1810."
+    },
+    {
+      "id": 31,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Qué objeto está escondido dentro del pan de reyes, y qué obligación tiene la persona que lo encuentra?",
+      "ch": ["A) Una moneda de oro — tiene que cantar una canción tradicional para todos", "B) Un anillo de plata — según la tradición, se casará ese mismo año", "C) Una figura pequeña del niño Jesús — tiene que organizar una fiesta el 2 de febrero", "D) Una zanahoria miniatura — tiene que dejar zapatos afuera esa misma noche"],
+      "cor": "C",
+      "exp": "Hidden inside the rosca de reyes (pan de reyes) is a small figurine of baby Jesus. Whoever finds it in their slice of bread must throw a party on February 2nd — Día de la Candelaria. The class notes also mention 'tamales' in connection with February 2nd. The bread itself is ring-shaped, sweet, and topped with dried fruit. It is shared on January 6th (Día de Reyes), the last day of the Christmas holiday cycle, commemorating the arrival of the Three Kings."
+    },
+    {
+      "id": 32,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "En el baile de la salsa, ¿cuál es el patrón de tiempo correcto para los pasos según lo que se estudió en clase?",
+      "ch": ["A) Se cuentan ocho tiempos iguales sin pausa: 1-2-3-4-5-6-7-8", "B) Se cuentan ocho tiempos con pausa en el cuatro y en el ocho: 1-2-3-(pausa)-5-6-7-(pausa)", "C) El patrón empieza en el dos: 2-3-4-(pausa)-6-7-8-(pausa)", "D) Solo se mueven las caderas — los pies no siguen ningún patrón fijo"],
+      "cor": "B",
+      "exp": "The class notes describe salsa's footwork as: 1, 2, 3, SILENT (pause on 4), 5, 6, 7, SILENT (pause on 8). Beats 4 and 8 are silent — you do not step on them. The notes also mention: hands up, a marching quality, and stepping in threes toward the center. This distinguishes salsa from merengue (fast-paced, no pauses, short rapid steps) and cumbia (no touching, hands up, hips move but pattern differs). The silent beats are the most commonly tested detail because they are unique to salsa."
+    },
+    {
+      "id": 33,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cuál de las siguientes características describe mejor el diseño de las casas hispanas tradicionales, con influencia árabe transmitida a través de España?",
+      "ch": ["A) Puertas grandes que dan directamente a la sala y techos muy altos de madera tallada", "B) Jardines traseros con piscinas, parrillas y piso de madera al aire libre", "C) Ventanas enormes en todas las paredes exteriores para maximizar la luz natural", "D) Patio central rodeado de arcos, con fuente y azulejos de colores brillantes"],
+      "cor": "D",
+      "exp": "The class traces the architectural chain: Arabic Empire → colonized Spain → Spain colonized the Americas → Arabic style spread throughout Latin America. Key features include: a central patio surrounded by arches, a fountain, bright-colored decorative tiles (from Arabic craft tradition), and a preference for tile floors over wood. Additional details: you do not enter directly into the living room (there is a wall buffer), roofs are flat (sometimes with another room or dogs on top), and a bidet is standard in bathrooms."
+    },
+    {
+      "id": 34,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "En la cultura latinoamericana, ¿qué producto casero famoso se considera el remedio universal — útil para casi cualquier tipo de problema físico?",
+      "ch": ["A) El Vick VapoRub", "B) El té de manzanilla con miel", "C) El jugo de naranja con jengibre", "D) La aspirina de baja dosis"],
+      "cor": "A",
+      "exp": "The class notes specifically highlight Vick VapoRub as the iconic Latin medicine cure-all — used 'for everything.' While many natural remedies are mentioned (tea, orange juice, lemon, honey, ginger, spices, pepper — especially for throat problems), VapoRub holds a uniquely universal status in Latin households. The class notes also note that the best medicine of all is 'love,' but VapoRub is the product most associated with Latino home medicine. It is applied to the chest, back, nose, feet, and more depending on the ailment."
+    },
+    {
+      "id": 35,
+      "sec": "Cultura Hispana",
+      "type": "mc",
+      "prompt": "¿Cuál es la capital de Honduras?",
+      "ch": ["A) Managua", "B) San Salvador", "C) Tegucigalpa", "D) San José"],
+      "cor": "C",
+      "exp": "Tegucigalpa is the capital of Honduras. The other options are all capitals of neighboring Central American countries: Managua is the capital of Nicaragua, San Salvador is the capital of El Salvador, and San José is the capital of Costa Rica. Tegucigalpa is one of the most challenging capital names to spell and pronounce in the region — it derives from a Nahuatl phrase and is often nicknamed 'Tegus' by locals. Panama's capital (Panamá) and Guatemala's capital (Guatemala City) round out the Central American capitals studied in class."
+    },
+    {
+      "id": 36,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte del cuerpo que empieza en el hombro y termina en la mano. Tiene una articulación importante en el medio que te permite doblarla para cargar cosas.",
+      "acc": ["el brazo", "brazo"],
+      "disp": "el brazo",
+      "exp": "The clues 'empieza en el hombro y termina en la mano' (starts at the shoulder, ends at the hand) and 'articulación en el medio' (joint in the middle — the elbow) describe the arm as a whole limb. 'El brazo' covers the entire upper limb. It is different from 'la mano' (just the hand at the end), 'el codo' (just the elbow joint in the middle), and 'la muñeca' (just the wrist connecting forearm to hand). In Spanish slang, 'ser un codo' means to be stingy — the elbow is associated with tightfistedness."
+    },
+    {
+      "id": 37,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte del cuerpo debajo de la cadera que usas para caminar, correr y subir escaleras. Tiene una articulación importante en el medio que se puede lastimar fácilmente.",
+      "acc": ["la pierna", "pierna"],
+      "disp": "la pierna",
+      "exp": "The clues 'debajo de la cadera' (below the hip), 'caminar y correr,' and 'articulación en el medio' (the knee joint) define the leg. 'La pierna' covers the entire lower limb from hip to foot. It is different from 'el pie' (just the foot), 'la rodilla' (just the knee joint), and 'el tobillo' (just the ankle). From this unit's health vocabulary, 'romperse la pierna' (to break one's leg) uses 'romperse' in its reflexive form to mean breaking a body part — not breaking an external object."
+    },
+    {
+      "id": 38,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte del cuerpo que está entre los hombros y la cabeza. La mueves cuando miras a la izquierda o a la derecha, y también cuando dices que sí o que no.",
+      "acc": ["el cuello", "cuello"],
+      "disp": "el cuello",
+      "exp": "The location 'entre los hombros y la cabeza' and the movement clues — turning left/right and nodding — describe the neck. 'El cuello' is the external, visible structure. This is different from 'la garganta,' which is the internal throat passage you cannot see — 'el cuello' is outside, 'la garganta' is inside. In Spanish, 'cuello' also means the collar or neckline of a shirt — the same word covers both the body part and the corresponding part of clothing. No accent needed: 'cuello,' not 'cuéllo.'"
+    },
+    {
+      "id": 39,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Son las estructuras blancas y duras que están dentro de la boca. El dentista las cuida y las usas para masticar la comida. Se pueden romper si muerdes algo muy duro.",
+      "acc": ["los dientes", "dientes"],
+      "disp": "los dientes",
+      "exp": "Three clues converge: 'blancas y duras' (white and hard), 'el dentista las cuida' (the dentist cares for them), and 'masticar la comida' (chew food). The health vocabulary includes 'sacar un diente' — to pull out a tooth — performed by a dentist. 'Los dientes' is typically used in the plural when referring to teeth in general. They are different from 'los labios' (the soft outer lips) and 'la boca' (the entire mouth as a whole). The related professional is 'el/la dentista,' not 'el doctor.'"
+    },
+    {
+      "id": 40,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Son las dos partes suaves y de color rosado que forman el borde exterior de la boca. Las ves claramente cuando alguien habla, sonríe o canta.",
+      "acc": ["los labios", "labios"],
+      "disp": "los labios",
+      "exp": "The clues 'suaves' (soft), 'borde exterior de la boca' (outer edge of the mouth), and 'cuando alguien habla o sonríe' (when someone speaks or smiles) define the lips. They form the visible outer border of the mouth and are always referenced in the plural — 'los labios.' They are different from 'la boca' (the entire mouth including interior space, teeth, and tongue) and 'los dientes' (the hard white structures inside). The English word 'labial' (as in lip balm or labial consonants) shares this root."
+    },
+    {
+      "id": 41,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es una enfermedad que viene en el invierno y que causa fiebre alta, dolor en todo el cuerpo y mucho cansancio. Es más seria y dura más tiempo que un simple resfriado.",
+      "acc": ["la gripe", "gripe", "la gripa", "gripa"],
+      "disp": "la gripe / la gripa",
+      "exp": "The key distinguishing clue is 'más seria que un simple resfriado' along with 'fiebre alta' and 'dolor en todo el cuerpo.' The flu is significantly more severe and longer-lasting than a cold. 'La gripe' is used in Spain and many countries; 'la gripa' is common in Mexico and parts of Latin America — both are accepted. It is a near-cognate of the English 'grippe,' an older term for influenza. Unlike a bacterial infection, the flu is viral — antibiotics don't treat it. Natural remedies and rest are the primary approaches in the cultural context from class."
+    },
+    {
+      "id": 42,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es cuando bacterias o gérmenes entran en una parte del cuerpo y la dañan. El médico muchas veces receta un antibiótico específico para curarla.",
+      "acc": ["la infección", "infección"],
+      "disp": "la infección",
+      "exp": "The clues 'bacterias o gérmenes' and 'antibiótico para curarla' define an infection. Antibiotics specifically fight bacterial infections — mentioning an antibiotic as the treatment is the strongest contextual clue. 'La infección' is a cognate of the English 'infection.' It is different from 'el síntoma' (a symptom — a sign that something is wrong, not the problem itself) and 'la enfermedad' (illness in general, which could be viral, bacterial, or chronic). The accent is required: 'infección,' not 'infeccion.'"
+    },
+    {
+      "id": 43,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es una enfermedad muy común y leve. La nariz está tapada o con líquido, tienes algo de tos y cansancio, pero no hay fiebre alta ni dolor fuerte en todo el cuerpo.",
+      "acc": ["el resfriado", "resfriado"],
+      "disp": "el resfriado",
+      "exp": "The critical clue is 'no hay fiebre alta' — this distinguishes a cold from the flu (la gripe), which does produce high fever and intense body aches throughout. A cold is milder and more common — stuffy or runny nose and mild cough are the signature symptoms. 'El resfriado' comes from 'resfriarse' (to get cold or chilled) — reflecting the folk belief that cold exposure causes illness. The cultural notes mention natural remedies like tea, lemon, honey, and ginger as typical treatments for this type of mild illness."
+    },
+    {
+      "id": 44,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el verbo reflexivo que describes cuando pierdes el equilibrio de repente y terminas en el suelo sin haberlo planeado.",
+      "acc": ["caerse"],
+      "disp": "caerse",
+      "exp": "The key clues are 'sin haberlo planeado' (without having planned it) and 'terminas en el suelo' (you end up on the floor). 'Caerse' is reflexive — the -se indicates the action happens to yourself involuntarily. The class notes list the preterite conjugation as 'me caí' (I fell). This is different from 'darse con' (crash your body into a specific object) and 'lastimarse' (injure yourself — which is often the consequence of falling but is not the fall itself). The reflexive infinitive is required: write 'caerse,' not just 'caer.'"
+    },
+    {
+      "id": 45,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la expresión verbal que usas cuando una parte de tu cuerpo choca accidentalmente contra un objeto. Por ejemplo, cuando caminas de noche y golpeas el dedo del pie contra la esquina de un mueble.",
+      "acc": ["darse con"],
+      "disp": "darse con",
+      "exp": "The scenario clue 'choca accidentalmente contra un objeto' (crashes accidentally into an object) defines this expression. 'Darse con' literally means to give oneself against something — you impact your body against a specific hard surface or object. The class notes list the conjugation as 'me di con' in the preterite. This is different from 'caerse' (losing balance and falling to the floor — not necessarily hitting a specific object) and 'lastimarse' (getting injured — the result, not the action of hitting). Write the full expression: 'darse con,' not just 'darse.'"
+    },
+    {
+      "id": 46,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el aparato que está conectado al ordenador y que produce copias en papel físico de los documentos o fotos que tienes guardados en el sistema. Necesita tinta para funcionar.",
+      "acc": ["la impresora", "impresora"],
+      "disp": "la impresora",
+      "exp": "The clues 'conectado al ordenador,' 'copias en papel físico,' and 'necesita tinta' (needs ink) define a printer. 'La impresora' comes from 'imprimir' (to print) — the -ora suffix marks it as the machine that performs that action. This is the inverse of the scanner: a printer converts digital files to paper, while a scanner converts paper to digital. It is different from 'la pantalla' (the screen — displays content but produces no paper) and 'el escáner' (does the reverse operation). You also need 'el papel' and 'la tinta' for it to function."
+    },
+    {
+      "id": 47,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es el aparato que hace exactamente lo contrario que la impresora: toma un documento de papel y lo convierte en un archivo digital que puedes guardar en el ordenador o enviar por correo electrónico.",
+      "acc": ["el escáner", "escáner"],
+      "disp": "el escáner",
+      "exp": "The key clue is 'hace lo contrario que la impresora' (does the opposite of the printer). A printer sends digital → paper; a scanner sends paper → digital. 'El escáner' is a direct borrowing from English. It is used to digitize physical documents, photos, and forms so they can be stored, emailed, or edited on a computer. The mention of 'enviar por correo electrónico' after scanning confirms its digital-output purpose. The accent is required: 'escáner,' not 'escaner.' In the preterite: escaneé."
+    },
+    {
+      "id": 48,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la acción de quitar completamente la energía eléctrica a un aparato para que deje de funcionar. Es exactamente lo contrario de encender o prender.",
+      "acc": ["apagar"],
+      "disp": "apagar",
+      "exp": "The key clue is 'lo contrario de encender o prender.' Both 'encender' and 'prender' are listed in the class notes as synonyms for turning on a device — so their antonym is the target word. 'Apagar' applies to all electric devices: the computer, television, lights, phone, and more. Important spelling note: 'apagar' is a -gar verb. In the preterite yo form: apagué (not apagé) — the u is added before e to preserve the hard g sound. The same change applies to the negative tú command: no apagues."
+    },
+    {
+      "id": 49,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Son los brazos mecánicos que se mueven de un lado a otro en la parte delantera del vehículo para limpiar el agua de la lluvia y mantener la vista del conductor despejada.",
+      "acc": ["el parabrisas", "parabrisas"],
+      "disp": "el parabrisas",
+      "exp": "According to the class vocabulary list, 'el parabrisas' refers to windshield wipers — the mechanical arms that sweep back and forth across the front of the vehicle to clear rain and improve visibility. The clues 'se mueven de un lado a otro' (move back and forth) and 'limpiar el agua de la lluvia' confirm this. The word itself is a compound: 'para' (to protect against) + 'brisas' (breezes/wind). In standard Spanish, these are often called 'los limpiaparabrisas,' but for this class the listed term is 'el parabrisas.'"
+    },
+    {
+      "id": 50,
+      "sec": "Vocabulario en Contexto",
+      "type": "free",
+      "eng": false,
+      "prompt": "Es la parte circular de goma que rodea la rueda del vehículo y que está en contacto directo con el suelo. Se puede pinchar si hay un clavo o un objeto afilado en la calle.",
+      "acc": ["la llanta", "llanta"],
+      "disp": "la llanta",
+      "exp": "The clues 'circular de goma' (circular rubber), 'rodea la rueda' (wraps around the wheel), and 'contacto directo con el suelo' (direct ground contact) all describe a tire. The consequence clue 'se puede pinchar' (can get punctured) is realistic — a nail causes a flat tire that requires a trip to the mechanic or taller. 'La llanta' is the standard term in Latin America; in Spain it is sometimes called 'el neumático.' A key phrase from this unit is 'se rompió la llanta' — the tire broke — which appears as a realistic accident scenario."
+    }
+  ]
+---
