@@ -35,6 +35,10 @@ const getQuestionDetails = (questions: Array<Record<string, any>>) =>
         correct: question.cor || "",
         answers: Array.isArray(question.acc) ? question.acc : [],
         display: question.disp || question.cor || (Array.isArray(question.acc) ? question.acc[0] : ""),
+        explanation: question.exp || "",
+        passage: question.passage || null,
+        media: question.media || "",
+        englishAnswer: Boolean(question.eng),
       },
     ]),
   );
@@ -126,7 +130,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
     <link rel="icon" href={iconHref} type="image/png" />
     <link rel="apple-touch-icon" href={iconHref} />
     <style is:global>
-      @import url("https://fonts.googleapis.com/css2?family=Besley:opsz,wght@6..32,600;6..32,800&family=Manrope:wght@400;500;700;800&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Besley:opsz,wght@6..32,600;6..32,800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@400;500;700;800&display=swap");
 
       :root {
         --bg: #040404;
@@ -401,12 +405,28 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
       .miss-card {
         display: grid;
-        gap: 0.75rem;
+        grid-template-columns: 1fr auto;
+        gap: 0.65rem;
+        align-items: center;
+        width: 100%;
         min-height: 6.2rem;
         border: 1px solid rgba(255, 116, 51, 0.22);
         border-radius: 0.5rem;
         background: rgba(255, 255, 255, 0.04);
         padding: 0.9rem;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        text-align: left;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .miss-card:hover,
+      .miss-card:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(255, 116, 51, 0.62);
+        background: rgba(255, 116, 51, 0.09);
+        outline: none;
       }
 
       .miss-card.is-cleared {
@@ -427,53 +447,17 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       }
 
       .miss-question {
-        color: var(--text);
-        font-size: 0.9rem;
-        line-height: 1.65;
-      }
-
-      .miss-answer {
-        display: grid;
-        gap: 0.5rem;
-      }
-
-      .miss-choice {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 0.42rem;
-        padding: 0.55rem 0.65rem;
         color: var(--muted);
-        background: rgba(255, 255, 255, 0.025);
-        cursor: pointer;
-        line-height: 1.45;
+        font-size: 0.84rem;
+        line-height: 1.5;
+        margin-top: 0.3rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
-      .miss-choice input {
-        margin-top: 0.2rem;
-        accent-color: var(--orange);
-      }
-
-      .miss-input {
-        width: 100%;
-        min-height: 2.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 0.42rem;
-        background: rgba(255, 255, 255, 0.045);
-        color: var(--text);
-        padding: 0 0.75rem;
-        font: inherit;
-      }
-
-      .miss-actions {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.6rem;
-      }
-
-      .miss-actions button,
+      .miss-open,
       .miss-link {
         min-height: 2.2rem;
         border-radius: 0.38rem;
@@ -485,19 +469,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         text-decoration: none;
       }
 
-      .miss-actions button {
-        border: 0;
-        color: #111;
-        background: linear-gradient(135deg, var(--orange), var(--gold));
-        cursor: pointer;
-        font-family: inherit;
-      }
-
-      .miss-actions button:disabled {
-        cursor: default;
-        opacity: 0.62;
-      }
-
+      .miss-open,
       .miss-link {
         display: inline-flex;
         align-items: center;
@@ -506,22 +478,319 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         background: rgba(255, 116, 51, 0.08);
       }
 
-      .miss-feedback {
-        color: var(--muted);
-        font-size: 0.82rem;
-        line-height: 1.55;
+      .miss-card:hover .miss-open,
+      .miss-card:focus-visible .miss-open {
+        background: linear-gradient(135deg, var(--orange), var(--gold));
+        color: #111;
+        border-color: transparent;
       }
 
-      .miss-feedback.bad {
-        color: var(--red);
+      .miss-review {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: #06060c;
+        color: #ccccd8;
+        font-family: "Inter", "Manrope", system-ui, sans-serif;
       }
 
-      .miss-feedback.good {
-        color: var(--green);
-      }
-
-      .miss-feedback[hidden] {
+      .miss-review[hidden] {
         display: none;
+      }
+
+      body.miss-review-open {
+        overflow: hidden;
+      }
+
+      .miss-review .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.7rem 2rem;
+        background: rgba(6, 6, 12, 0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        flex-shrink: 0;
+      }
+
+      .miss-review .tb-left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .miss-review .tb-qnum {
+        font-family: "Lora", Georgia, serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .miss-review .tb-qof {
+        color: #3e3e52;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        margin-top: 0.1rem;
+        text-transform: uppercase;
+      }
+
+      .miss-review .review-return {
+        min-height: 2.35rem;
+        border: 1px solid rgba(167, 139, 250, 0.28);
+        border-radius: 0.38rem;
+        padding: 0 0.85rem;
+        color: #c4b5fd;
+        background: rgba(167, 139, 250, 0.08);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .miss-review .progbar-wrap {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.04);
+        flex-shrink: 0;
+      }
+
+      .miss-review .progbar {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, #6d28d9, #a78bfa);
+      }
+
+      .miss-review .qarea {
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: auto;
+        padding: 2rem 1.5rem 3rem;
+      }
+
+      .miss-review .qwrap {
+        width: 100%;
+        max-width: 700px;
+        animation: qfade 0.35s ease;
+      }
+
+      .miss-review .qsec-label {
+        color: #3e3e52;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+      }
+
+      .miss-review .qtype-badge {
+        display: inline-block;
+        border-radius: 0.2rem;
+        margin-bottom: 0.9rem;
+        padding: 0.12rem 0.5rem;
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .miss-review .passage-card {
+        background: #0f0f18;
+        border: 1px solid rgba(52, 211, 153, 0.12);
+        border-radius: 0.75rem;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+        color: #b6b6c8;
+        line-height: 1.9;
+        margin-bottom: 1.4rem;
+        padding: 1.2rem 1.4rem;
+      }
+
+      .miss-review .passage-label {
+        color: #34d399;
+        font: 700 0.58rem "Inter", sans-serif;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.55rem;
+        text-transform: uppercase;
+      }
+
+      .miss-review .passage-body {
+        color: #c4c4d8;
+        font-family: "Lora", Georgia, serif;
+        font-size: 0.96rem;
+        line-height: 1.95;
+      }
+
+      .miss-review .qprompt {
+        color: #ddd;
+        font-family: "Lora", Georgia, serif;
+        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        line-height: 1.85;
+        margin-bottom: 1.4rem;
+        white-space: pre-line;
+      }
+
+      .miss-review .choices-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .miss-review .choice-btn {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 0.45rem;
+        background: rgba(255, 255, 255, 0.025);
+        color: #888;
+        cursor: pointer;
+        font: 0.88rem/1.5 "Inter", sans-serif;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        transition: all 0.13s;
+      }
+
+      .miss-review .choice-btn:hover {
+        background: rgba(255, 255, 255, 0.055);
+        border-color: rgba(255, 255, 255, 0.14);
+        color: #ccc;
+      }
+
+      .miss-review .choice-btn.sel {
+        border-color: rgba(167, 139, 250, 0.55);
+        color: #ede9fe;
+        background: rgba(167, 139, 250, 0.08);
+      }
+
+      .miss-review .choice-btn.correct {
+        border-color: rgba(52, 211, 153, 0.35);
+        color: #86efac;
+        background: rgba(52, 211, 153, 0.08);
+      }
+
+      .miss-review .choice-btn.wrong {
+        border-color: rgba(248, 113, 113, 0.35);
+        color: #fca5a5;
+        background: rgba(248, 113, 113, 0.08);
+      }
+
+      .miss-review .free-wrap {
+        margin-bottom: 1.4rem;
+      }
+
+      .miss-review .free-label {
+        color: #3e3e52;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      .miss-review .free-input {
+        width: 100%;
+        border: 1.5px solid rgba(255, 255, 255, 0.09);
+        border-radius: 0.45rem;
+        background: rgba(255, 255, 255, 0.03);
+        color: #ccccd8;
+        font: 1rem "IBM Plex Mono", monospace;
+        letter-spacing: 0.04em;
+        outline: none;
+        padding: 0.8rem 1rem;
+        transition: border-color 0.2s, background 0.2s;
+      }
+
+      .miss-review .free-input:focus {
+        border-color: rgba(167, 139, 250, 0.35);
+        background: rgba(167, 139, 250, 0.04);
+      }
+
+      .miss-review .accent-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.6rem;
+      }
+
+      .miss-review .accent-btn {
+        min-width: 2rem;
+        border: 1px solid rgba(167, 139, 250, 0.3);
+        border-radius: 0.35rem;
+        background: rgba(167, 139, 250, 0.12);
+        color: #a78bfa;
+        cursor: pointer;
+        font: 600 0.85rem "Inter", sans-serif;
+        padding: 0.4rem 0.6rem;
+        text-align: center;
+        transition: all 0.15s;
+      }
+
+      .miss-review .accent-btn:hover {
+        background: rgba(167, 139, 250, 0.22);
+        border-color: rgba(167, 139, 250, 0.5);
+        color: #c4b5fd;
+      }
+
+      .miss-review .btn-next {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 0.4rem;
+        background: #15151f;
+        color: #444;
+        cursor: not-allowed;
+        font: 600 0.85rem "Inter", sans-serif;
+        letter-spacing: 0.08em;
+        padding: 0.85rem 2.5rem;
+        text-transform: uppercase;
+        transition: all 0.2s;
+      }
+
+      .miss-review .btn-next.ready {
+        border-color: transparent;
+        background: linear-gradient(135deg, #6d28d9, #4f46e5);
+        box-shadow: 0 0 30px rgba(109, 40, 217, 0.3);
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .miss-review .btn-next.ready:hover {
+        box-shadow: 0 0 50px rgba(109, 40, 217, 0.45);
+        transform: translateY(-1px);
+      }
+
+      .miss-review .miss-review-feedback {
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.035);
+        color: #888;
+        line-height: 1.75;
+        margin-top: 1rem;
+        padding: 0.85rem 1rem;
+      }
+
+      .miss-review .miss-review-feedback.good {
+        border-color: rgba(52, 211, 153, 0.24);
+        color: #86efac;
+      }
+
+      .miss-review .miss-review-feedback.bad {
+        border-color: rgba(248, 113, 113, 0.24);
+        color: #fca5a5;
+      }
+
+      @keyframes qfade {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .score-chip {
@@ -715,8 +984,18 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           grid-template-columns: 1fr;
         }
 
+        .miss-card {
+          grid-template-columns: 1fr;
+        }
+
         .score-chip {
           justify-self: start;
+        }
+
+        .miss-review .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 0.7rem 1rem;
         }
       }
     </style>
@@ -848,6 +1127,20 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       </section>
     </main>
 
+    <section class="miss-review" id="miss-review" hidden aria-live="polite">
+      <div class="topbar">
+        <div class="tb-left">
+          <div class="tb-qnum" id="miss-review-title">Question Review</div>
+          <div class="tb-qof" id="miss-review-meta">Pregunta 1 de 1</div>
+        </div>
+        <button class="review-return" type="button" data-miss-return>Return</button>
+      </div>
+      <div class="progbar-wrap"><div class="progbar"></div></div>
+      <div class="qarea">
+        <div class="qwrap" id="miss-review-body"></div>
+      </div>
+    </section>
+
     <script type="application/json" id="test-metadata" set:html={JSON.stringify(testMetadata)}></script>
     <script>
       import {
@@ -866,6 +1159,10 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       const gateTitle = document.getElementById("gate-title");
       const gateCopy = document.getElementById("gate-copy");
       const gateSignin = document.getElementById("gate-signin");
+      const missReview = document.getElementById("miss-review");
+      const missReviewBody = document.getElementById("miss-review-body");
+      const missReviewTitle = document.getElementById("miss-review-title");
+      const missReviewMeta = document.getElementById("miss-review-meta");
 
       const esc = (value) => String(value ?? "")
         .replace(/&/g, "&amp;")
@@ -873,10 +1170,14 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
 
+      const escAttr = (value) => esc(value).replace(/'/g, "&#39;");
       const pct = (correct, total) => total ? Math.round((correct / total) * 100) : 0;
       const scoreClass = (value) => value >= 85 ? "good" : value < 70 ? "bad" : "mid";
       let activeUserId = "local";
       let clearedMisses = new Set();
+      let reviewMisses = [];
+      let activeReview = null;
+      let activeReviewAnswer = "";
 
       const mediaLabelMap = {
         "": "Standard questions",
@@ -1141,59 +1442,173 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         return detail.display || detail.answers?.[0] || "";
       }
 
-      function missAnswerHtml(key, detail) {
-        if (!detail) return "";
-        if (detail.type === "mc" && detail.choices?.length) {
-          return `<div class="miss-answer" data-miss-answer>
-            ${detail.choices.map((choice) => {
-              const value = String(choice).slice(0, 1);
-              return `<label class="miss-choice">
-                <input type="radio" name="miss-${esc(key)}" value="${esc(value)}" />
-                <span>${esc(choice)}</span>
-              </label>`;
-            }).join("")}
-          </div>`;
-        }
-
-        return `<div class="miss-answer" data-miss-answer>
-          <input class="miss-input" type="text" autocomplete="off" placeholder="Your answer" />
+      function passageHtml(passage) {
+        if (!passage) return "";
+        const body = typeof passage === "string" ? passage : passage.body || passage.text || "";
+        const title = typeof passage === "object" && passage.title ? passage.title : "Reading passage";
+        if (!body) return "";
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(title)}</div>
+          <div class="passage-body">${esc(body)}</div>
         </div>`;
       }
 
-      function bindMissReviewHandlers() {
-        document.querySelectorAll("[data-miss-check]").forEach((button) => {
-          button.addEventListener("click", () => {
-            const card = button.closest("[data-miss-key]");
-            if (!card) return;
+      function reviewQuestionHtml(review) {
+        const detail = review.detail;
+        const typeColor = detail.type === "mc" ? "#a78bfa" : "#34d399";
+        const typeLabel = detail.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        let html = `<div class="qsec-label">${esc(detail.section || review.question.section || "Uncategorized")}</div>
+          <span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>
+          ${passageHtml(detail.passage)}
+          <p class="qprompt">${esc(detail.prompt)}</p>`;
 
-            const detail = JSON.parse(card.dataset.missDetail || "{}");
-            const selected = card.querySelector("input[type='radio']:checked");
-            const typed = card.querySelector(".miss-input");
-            const answer = selected?.value || typed?.value || "";
-            const feedback = card.querySelector("[data-miss-feedback]");
-            const correctValues = detail.type === "mc" ? [detail.correct] : (detail.answers || []);
-            const isCorrect = correctValues.some((value) => normalizeAnswer(value) === normalizeAnswer(answer));
-
-            if (isCorrect) {
-              clearedMisses.add(card.dataset.missKey);
-              saveClearedMisses();
-              card.classList.add("is-cleared");
-              card.remove();
-              const list = document.getElementById("recent-misses");
-              if (list && !list.querySelector("[data-miss-key]")) {
-                list.innerHTML = `<p class="empty">Nice work. Cleared misses will stay off this dashboard.</p>`;
-              }
-              return;
-            }
-
-            if (feedback) {
-              feedback.hidden = false;
-              feedback.className = "miss-feedback bad";
-              feedback.textContent = `Not quite. Answer: ${answerDisplay(detail)}. Try this miss again later.`;
-            }
-            card.querySelectorAll("input").forEach((input) => input.disabled = true);
-            button.disabled = true;
+        if (detail.type === "mc" && detail.choices?.length) {
+          html += `<div class="choices-grid">`;
+          detail.choices.forEach((choice) => {
+            const value = String(choice).slice(0, 1);
+            html += `<button class="choice-btn" type="button" data-review-choice="${escAttr(value)}">${esc(choice)}</button>`;
           });
+          html += `</div>`;
+        } else {
+          const labelText = detail.englishAnswer ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = detail.englishAnswer ? "short English phrase..." : "tu respuesta...";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="miss-review-input" autocomplete="off" placeholder="${placeholderText}" />
+            ${!detail.englishAnswer ? `<div class="accent-buttons">
+              ${["á", "é", "í", "ó", "ú", "ñ", "Á", "É", "Í", "Ó", "Ú", "Ñ"].map((char) =>
+                `<button class="accent-btn" type="button" data-review-accent="${escAttr(char)}">${esc(char)}</button>`,
+              ).join("")}
+            </div>` : ""}
+          </div>`;
+        }
+
+        html += `<button class="btn-next" type="button" data-review-check disabled>Check Answer</button>
+          <div class="miss-review-feedback" data-review-feedback hidden></div>`;
+        return html;
+      }
+
+      function setReviewReady(isReady) {
+        const button = missReviewBody?.querySelector("[data-review-check]");
+        if (!button) return;
+        button.disabled = !isReady;
+        button.classList.toggle("ready", isReady);
+      }
+
+      function closeMissReview() {
+        if (!missReview) return;
+        missReview.hidden = true;
+        document.body.classList.remove("miss-review-open");
+        activeReview = null;
+        activeReviewAnswer = "";
+      }
+
+      function renderClearedMissState() {
+        const list = document.getElementById("recent-misses");
+        if (list && !list.querySelector("[data-miss-key]")) {
+          list.innerHTML = `<p class="empty">Nice work. Cleared misses will stay off this dashboard.</p>`;
+        }
+      }
+
+      function clearActiveMiss() {
+        if (!activeReview) return;
+        clearedMisses.add(activeReview.key);
+        saveClearedMisses();
+        document.querySelectorAll("[data-miss-key]").forEach((card) => {
+          if (card.dataset.missKey === activeReview.key) card.remove();
+        });
+        renderClearedMissState();
+      }
+
+      function markReviewChoice(letter) {
+        activeReviewAnswer = letter;
+        missReviewBody?.querySelectorAll("[data-review-choice]").forEach((button) => {
+          button.classList.toggle("sel", button.dataset.reviewChoice === letter);
+        });
+        setReviewReady(true);
+      }
+
+      function showReviewResult(isCorrect) {
+        if (!activeReview) return;
+        const detail = activeReview.detail;
+        const feedback = missReviewBody?.querySelector("[data-review-feedback]");
+        const button = missReviewBody?.querySelector("[data-review-check]");
+        const correctAnswer = answerDisplay(detail);
+
+        if (detail.type === "mc") {
+          missReviewBody?.querySelectorAll("[data-review-choice]").forEach((choiceButton) => {
+            const value = choiceButton.dataset.reviewChoice;
+            choiceButton.disabled = true;
+            if (value === detail.correct) choiceButton.classList.add("correct");
+            if (value === activeReviewAnswer && value !== detail.correct) choiceButton.classList.add("wrong");
+          });
+        } else {
+          const input = missReviewBody?.querySelector("#miss-review-input");
+          if (input) input.disabled = true;
+        }
+
+        if (button) {
+          button.textContent = "Return to Analytics";
+          button.disabled = false;
+          button.classList.add("ready");
+          button.dataset.reviewDone = "true";
+        }
+
+        if (feedback) {
+          feedback.hidden = false;
+          feedback.className = `miss-review-feedback ${isCorrect ? "good" : "bad"}`;
+          feedback.innerHTML = isCorrect
+            ? "Correct. This miss has been cleared from your dashboard."
+            : `Not quite. Answer: <strong>${esc(correctAnswer)}</strong>${detail.explanation ? `<br />${esc(detail.explanation)}` : ""}<br />Try this one again later.`;
+        }
+
+        if (isCorrect) clearActiveMiss();
+      }
+
+      function checkReviewAnswer() {
+        if (!activeReview) return;
+        const detail = activeReview.detail;
+        const button = missReviewBody?.querySelector("[data-review-check]");
+        if (button?.dataset.reviewDone === "true") {
+          closeMissReview();
+          return;
+        }
+
+        const input = missReviewBody?.querySelector("#miss-review-input");
+        const answer = detail.type === "mc" ? activeReviewAnswer : (input?.value || "");
+        const correctValues = detail.type === "mc" ? [detail.correct] : (detail.answers || []);
+        const isCorrect = correctValues.some((value) => normalizeAnswer(value) === normalizeAnswer(answer));
+        showReviewResult(isCorrect);
+      }
+
+      function insertReviewAccent(char) {
+        const input = missReviewBody?.querySelector("#miss-review-input");
+        if (!input) return;
+        const start = input.selectionStart || 0;
+        const end = input.selectionEnd || 0;
+        input.value = input.value.slice(0, start) + char + input.value.slice(end);
+        input.selectionStart = input.selectionEnd = start + char.length;
+        input.focus();
+        setReviewReady(input.value.trim().length > 0);
+      }
+
+      function openMissReview(index) {
+        const review = reviewMisses[index];
+        if (!review?.detail || !missReview || !missReviewBody) return;
+        activeReview = review;
+        activeReviewAnswer = "";
+        if (missReviewTitle) missReviewTitle.textContent = `Question ${review.question.id}`;
+        if (missReviewMeta) missReviewMeta.textContent = `${review.attempt.testTitle} - ${review.detail.type === "mc" ? "Multiple choice" : "Free response"}`;
+        missReviewBody.innerHTML = reviewQuestionHtml(review);
+        missReview.hidden = false;
+        document.body.classList.add("miss-review-open");
+        setReviewReady(false);
+        missReviewBody.querySelector("#miss-review-input")?.focus();
+      }
+
+      function bindMissReviewHandlers() {
+        document.querySelectorAll("[data-miss-open]").forEach((card) => {
+          card.addEventListener("click", () => openMissReview(Number(card.dataset.missOpen)));
         });
       }
 
@@ -1207,6 +1622,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           });
         });
 
+        reviewMisses = [];
         const items = misses.slice(0, 8).map(({ attempt, question }) => {
           const test = testsBySlug.get(attempt.testSlug);
           const detail = getQuestionDetail(attempt, question);
@@ -1219,23 +1635,19 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
                 <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
               </div>
               <p class="miss-question">Open the test to review this legacy question.</p>
-              <div class="miss-actions"><a class="miss-link" href="${esc(href)}">Open Review</a></div>
+              <a class="miss-link" href="${esc(href)}">Open Review</a>
             </article>`;
           }
 
-          return `<article class="miss-card" data-miss-key="${esc(key)}" data-miss-detail="${esc(JSON.stringify(detail))}">
+          const reviewIndex = reviewMisses.push({ attempt, question, detail, key, href }) - 1;
+          return `<button class="miss-card" type="button" data-miss-key="${escAttr(key)}" data-miss-open="${reviewIndex}">
             <div>
               <div class="mini-title">${esc(question.section || detail.section)}</div>
               <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
+              <p class="miss-question">${esc(detail.prompt)}</p>
             </div>
-            <p class="miss-question">${esc(detail.prompt)}</p>
-            ${missAnswerHtml(key, detail)}
-            <div class="miss-actions">
-              <button type="button" data-miss-check>Check Answer</button>
-              <a class="miss-link" href="${esc(href)}">Open Test</a>
-            </div>
-            <p class="miss-feedback" data-miss-feedback hidden></p>
-          </article>`;
+            <span class="miss-open">Try Again</span>
+          </button>`;
         });
         renderList("recent-misses", items, "Missed question tags will appear after saved attempts.");
         bindMissReviewHandlers();
@@ -1429,6 +1841,43 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
         if (hero) hero.hidden = true;
         loadAnalytics(user.uid);
+      });
+
+      document.querySelector("[data-miss-return]")?.addEventListener("click", closeMissReview);
+      missReviewBody?.addEventListener("click", (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (!target) return;
+
+        const choice = target.closest("[data-review-choice]");
+        if (choice) {
+          markReviewChoice(choice.dataset.reviewChoice || "");
+          return;
+        }
+
+        const accent = target.closest("[data-review-accent]");
+        if (accent) {
+          insertReviewAccent(accent.dataset.reviewAccent || "");
+          return;
+        }
+
+        const check = target.closest("[data-review-check]");
+        if (check) checkReviewAnswer();
+      });
+      missReviewBody?.addEventListener("input", (event) => {
+        const target = event.target instanceof HTMLInputElement ? event.target : null;
+        if (target?.matches("#miss-review-input")) {
+          setReviewReady(target.value.trim().length > 0);
+        }
+      });
+      missReviewBody?.addEventListener("keydown", (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (event.key === "Enter" && target?.matches("#miss-review-input")) {
+          event.preventDefault();
+          if (!missReviewBody.querySelector("[data-review-check]")?.disabled) checkReviewAnswer();
+        }
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && missReview && !missReview.hidden) closeMissReview();
       });
     </script>
   </body>

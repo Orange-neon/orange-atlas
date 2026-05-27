@@ -11806,7 +11806,7 @@ function zh() {
                             className: "space-y-2",
                             children: [g.jsx("div", {
                                 className: "text-3xl md:text-4xl font-bold text-gradient",
-                                children: "10+"
+                                children: "5+"
                             }), g.jsx("div", {
                                 className: "text-sm text-foreground-muted",
                                 children: "Students"
