@@ -3,11 +3,26 @@
     "rules": "firestore.rules"
   },
   "hosting": {
-    "public": "public",
+    "public": "dist",
+    "predeploy": [
+      "npm run build:firebase"
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/orange-atlas",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "regex": "/orange-atlas/(.*)",
+        "destination": "/:1",
+        "type": 301
+      }
     ]
   }
 }
