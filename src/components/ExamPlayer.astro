@@ -642,7 +642,7 @@ const analyticsHref = `${basePath}analytics/`;
         const questionResults = QS.map(q => {
           const ans = ST.answers[q.id] || "";
           const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
-          const media = q.media || "none";
+          const media = q.media || "Standard questions";
           addStat(sectionStats, q.sec, ok);
           addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
           addStat(mediaStats, media, ok);
