@@ -112,7 +112,7 @@ questionsJson: |
       "id": 11,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Ya llamaste a la compañía de seguros para reportar el accidente? — Todavía no. Lo haré esta tarde sin falta. — Bien. Cuando _____ con ellos, ten todos los documentos del mecánico a mano — los necesitarán para procesar la reclamación. Sin eso, pueden retrasar todo semanas enteras. — Sí, los tengo todos escaneados en el portátil. — Perfecto. Y no olvides pedirles el número de caso al final de la llamada.",
+      "prompt": "— ¿Ya llamaste a la compañía de seguros para reportar el accidente?\n— Todavía no. Lo haré esta tarde sin falta.\n— Bien. Cuando _____ con ellos, ten todos los documentos del mecánico a mano — los necesitarán para procesar la reclamación. Sin eso, pueden retrasar todo semanas enteras.\n— Sí, los tengo todos escaneados en el portátil.\n— Perfecto. Y no olvides pedirles el número de caso al final de la llamada.",
       "ch": ["A) hablas", "B) hablarás", "C) hablaste", "D) hables"],
       "cor": "D",
       "exp": "'Hables' is the present subjunctive of 'hablar,' required here because 'cuando' introduces a future hypothetical action — the call hasn't happened yet. In Spanish, 'cuando' + a future or hypothetical meaning ALWAYS requires the subjunctive in the subordinate clause. This is different from 'cuando' + an established habitual fact, which uses the indicative (e.g., 'cuando hablo con ellos, siempre tomo notas'). 'Hablas' is present indicative — only for current facts. 'Hablarás' is future tense — you cannot use a conjugated future form after 'cuando' in Spanish. 'Hablaste' is preterite. Only 'hables' is subjunctive for a future hypothetical."
@@ -121,7 +121,7 @@ questionsJson: |
       "id": 12,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Ya te enteraste de que al mecánico del barrio le detectaron una enfermedad seria el mes pasado? — Sí, lo _____ la semana pasada cuando vi a su hijo en la gasolinera y me lo contó todo. Me sorprendió muchísimo porque parecía estar perfectamente bien la última vez que lo vi. — Sí, a veces estas cosas pasan sin ningún aviso previo. — Le voy a mandar un mensaje hoy para ver cómo está.",
+      "prompt": "— ¿Ya te enteraste de que al mecánico del barrio le detectaron una enfermedad seria el mes pasado?\n— Sí, lo _____ la semana pasada cuando vi a su hijo en la gasolinera y me lo contó todo. Me sorprendió muchísimo porque parecía estar perfectamente bien la última vez que lo vi.\n— Sí, a veces estas cosas pasan sin ningún aviso previo.\n— Le voy a mandar un mensaje hoy para ver cómo está.",
       "ch": ["A) sabía", "B) sé", "C) supe", "D) sabré"],
       "cor": "C",
       "exp": "'Supe' is the preterite of 'saber,' and this is a classic meaning-change preterite. In the preterite, 'saber' does NOT mean 'I knew' — it means 'I found out' or 'I learned.' The speaker learned the news for the first time last week when they ran into the son — a single completed moment of discovery. 'Sabía' (imperfect) means 'I already knew' as ongoing background knowledge — the speaker would have known before that moment. 'Sé' is present tense. 'Sabré' is future. Only 'supe' correctly captures the moment of first learning new information. This preterite meaning-change is one of the most tested distinctions in Spanish 2."
@@ -130,7 +130,7 @@ questionsJson: |
       "id": 13,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Doctor, tengo una pregunta sobre la receta que me dio. No entiendo bien las instrucciones de dosificación. — Por supuesto, señor. _____ su pregunta sin problema — para eso estamos. — La receta dice tomar dos pastillas, pero no especifica si es con comida o sin comida. — Siempre con comida, señor. Este antibiótico específico puede causar náuseas si se toma con el estómago vacío.",
+      "prompt": "— Doctor, tengo una pregunta sobre la receta que me dio. No entiendo bien las instrucciones de dosificación.\n— Por supuesto, señor. _____ su pregunta sin problema — para eso estamos.\n— La receta dice tomar dos pastillas, pero no especifica si es con comida o sin comida.\n— Siempre con comida, señor. Este antibiótico específico puede causar náuseas si se toma con el estómago vacío.",
       "ch": ["A) Diga", "B) Dígame", "C) Díganme", "D) Me diga"],
       "cor": "B",
       "exp": "'Dígame' is the formal Usted command of 'decir' with an attached indirect object pronoun. Step 1: Formal command of decir — yo form is 'digo' → drop -o → 'dig' → add opposite ending for -ir verbs (-a) → 'diga.' Step 2: Attach pronoun 'me' (to me): diga + me = dígame. When pronouns attach to a command that is two or more syllables, a written accent is added to maintain the original stress on the command syllable: dí-ga-me (stress stays on the 'ga'). 'Diga' alone means 'speak/say' without a recipient. 'Díganme' is the plural ustedes command. 'Me diga' puts the pronoun before the verb — pronouns must ATTACH to affirmative commands, never precede them."
@@ -139,7 +139,7 @@ questionsJson: |
       "id": 14,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Voy al taller hoy sí o sí. El coche no puede esperar ni un día más. — Bien. Aunque el mecánico _____ que no tiene tiempo libre hasta la próxima semana, insiste en que es una situación urgente. No aceptes un no como respuesta. — Lo haré. Y si no puede atenderme él, le pido que me recomiende a alguien de confianza. — Exacto. Un buen mecánico siempre tiene contactos.",
+      "prompt": "— Voy al taller hoy sí o sí. El coche no puede esperar ni un día más.\n— Bien. Aunque el mecánico _____ que no tiene tiempo libre hasta la próxima semana, insiste en que es una situación urgente. No aceptes un no como respuesta.\n— Lo haré. Y si no puede atenderme él, le pido que me recomiende a alguien de confianza.\n— Exacto. Un buen mecánico siempre tiene contactos.",
       "ch": ["A) dice", "B) diga", "C) dijo", "D) diría"],
       "cor": "B",
       "exp": "'Diga' is the present subjunctive of 'decir,' required here after 'aunque' when introducing a hypothetical or uncertain condition. This is one of the subtler subjunctive uses: 'aunque' (even though / even if) takes the SUBJUNCTIVE when the speaker does not know for certain whether the condition is true — 'even if he says he has no time' (we don't know yet if he will say this). If the speaker knew it was already a fact, the indicative would be used: 'aunque dice que no tiene tiempo' = 'even though he does say he has no time' (a known reality). The subjunctive after 'aunque' signals a hypothetical future possibility, not an established fact. 'Dijo' is preterite. 'Diría' is conditional."
@@ -148,7 +148,7 @@ questionsJson: |
       "id": 15,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Cómo está tu vecino después del accidente tan serio que tuvo la semana pasada? — Mucho mejor de lo que esperábamos, la verdad. Está caminando solo por el pasillo del hospital y comiendo con buena cara. — ¡Qué alivio! — Sí. _____ alguien que sufrió una fractura tan grave hace solo cinco días, tiene un aspecto físico increíblemente bueno. — Es que tiene una actitud muy positiva. Eso ayuda enormemente en la recuperación.",
+      "prompt": "— ¿Cómo está tu vecino después del accidente tan serio que tuvo la semana pasada?\n— Mucho mejor de lo que esperábamos, la verdad. Está caminando solo por el pasillo del hospital y comiendo con buena cara.\n— ¡Qué alivio!\n— Sí. _____ alguien que sufrió una fractura tan grave hace solo cinco días, tiene un aspecto físico increíblemente bueno.\n— Es que tiene una actitud muy positiva. Eso ayuda enormemente en la recuperación.",
       "ch": ["A) Por", "B) Según", "C) Para", "D) De"],
       "cor": "C",
       "exp": "'Para' is required here because it expresses comparison against an expected standard — one of its core uses (PERFECTOS: C = Comparison). 'Para alguien que sufrió una fractura' = 'for someone who suffered a fracture' — meaning, given what you would typically expect from someone in that situation, he looks surprisingly well. This 'para' structure sets up a standard (being a fracture patient) against which the quality (looking well) is measured and found unexpected. 'Por alguien' would express cause or exchange, not comparison. 'Según' means 'according to.' 'De alguien' would mean 'from someone,' not 'for someone in that situation.'"
@@ -157,7 +157,7 @@ questionsJson: |
       "id": 16,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Doctor, mi hijo lleva cinco días con fiebre muy alta que no baja con nada. Estoy muy preocupado. — Entiendo completamente, señor. Le recomiendo firmemente que _____ directamente a la sala de emergencias esta misma tarde — con una temperatura tan persistente en un niño, no es prudente esperar más tiempo. — ¿Y el consultorio normal no sirve para esto? — No, señor. La sala de emergencias tiene todos los equipos para un diagnóstico rápido y completo. Vayan ahora, por favor.",
+      "prompt": "— Doctor, mi hijo lleva cinco días con fiebre muy alta que no baja con nada. Estoy muy preocupado.\n— Entiendo completamente, señor. Le recomiendo firmemente que _____ directamente a la sala de emergencias esta misma tarde — con una temperatura tan persistente en un niño, no es prudente esperar más tiempo.\n— ¿Y el consultorio normal no sirve para esto?\n— No, señor. La sala de emergencias tiene todos los equipos para un diagnóstico rápido y completo. Vayan ahora, por favor.",
       "ch": ["A) va", "B) irán", "C) vaya", "D) fue"],
       "cor": "C",
       "exp": "'Vaya' is the present subjunctive of 'ir,' required after 'le recomiendo que' — a WEIRDOS trigger (R = Recommendations/Requests). Two subjects are present: the doctor recommends / that the patient goes. The subjunctive is required in the subordinate clause. 'Ir' is completely irregular in the present subjunctive: vaya, vayas, vaya, vayamos, vayan. 'Va' is present indicative — used when stating facts, not making recommendations. 'Irán' is third-person plural future tense. 'Fue' is preterite. Only 'vaya' is the present subjunctive form required after a recommendation trigger."
@@ -166,7 +166,7 @@ questionsJson: |
       "id": 17,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Conociste al especialista nuevo que empezó esta semana en la clínica del barrio? — Sí, lo vi el lunes en el pasillo. Es el médico _____ diagnósticos de infecciones crónicas son considerados los más precisos de toda la región, según los otros doctores. — Tiene mucha fama. — Y además dicen que es muy paciente explicando los tratamientos a sus pacientes.",
+      "prompt": "— ¿Conociste al especialista nuevo que empezó esta semana en la clínica del barrio?\n— Sí, lo vi el lunes en el pasillo. Es el médico _____ diagnósticos de infecciones crónicas son considerados los más precisos de toda la región, según los otros doctores.\n— Tiene mucha fama.\n— Y además dicen que es muy paciente explicando los tratamientos a sus pacientes.",
       "ch": ["A) que", "B) quien", "C) cuyo", "D) cuyos"],
       "cor": "D",
       "exp": "'Cuyos' is the plural masculine possessive relative pronoun, agreeing with 'diagnósticos' — the noun that immediately follows it. This is the critical rule for 'cuyo': it agrees in gender and number with the noun AFTER it, not the noun before it. El médico is masculine singular, but 'diagnósticos' is masculine PLURAL — so the possessive must also be plural: cuyos. The trap is choosing 'cuyo' (masculine singular) because 'el médico' is singular. Always look at what follows 'cuyo,' not what precedes it. 'Que' and 'quien' cannot express possession. 'Cuyo' is masculine singular — grammatically wrong here because 'diagnósticos' is plural."
@@ -175,7 +175,7 @@ questionsJson: |
       "id": 18,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Acabo de escanear todos los documentos del accidente y del taller. ¿Los mando al seguro ahora mismo? — No _____ todavía — primero tienes que esperar a que el mecánico te envíe el presupuesto final firmado por escrito. Sin ese documento, el seguro no puede procesar absolutamente nada. — Ah, no lo sabía. Gracias por decírmelo a tiempo. — De nada. Mándalo todo junto cuando tengas el presupuesto completo en mano.",
+      "prompt": "— Acabo de escanear todos los documentos del accidente y del taller. ¿Los mando al seguro ahora mismo?\n— No _____ todavía — primero tienes que esperar a que el mecánico te envíe el presupuesto final firmado por escrito. Sin ese documento, el seguro no puede procesar absolutamente nada.\n— Ah, no lo sabía. Gracias por decírmelo a tiempo.\n— De nada. Mándalo todo junto cuando tengas el presupuesto completo en mano.",
       "ch": ["A) llegues", "B) llegas", "C) llegaste", "D) llegarás"],
       "cor": "A",
       "exp": "Wait — re-read the dialogue. The blank is 'No _____ todavía' referring to sending the documents — but the verb needed is for 'No _____ los documentos' meaning 'don't send them.' The verb here is 'llegar' used as a stand-in meaning 'don't go ahead yet.' 'Llegues' is the negative tú command of 'llegar,' a -gar verb. To form a negative tú command: llego → lleg → add -es → BUT -gar verbs change g → gu before e to preserve the hard g sound → llegues. Negative command: No llegues. 'Llegas' is present indicative. 'Llegaste' is preterite. 'Llegarás' is future. The spelling change g → gu is the key detail that makes -gar negative commands harder than standard -ar commands."
@@ -184,7 +184,7 @@ questionsJson: |
       "id": 19,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Crees que el taller puede tener el coche listo para el miércoles por la mañana? — Honestamente, no creo que lo _____ antes del jueves como mínimo — hay varias piezas que tienen que pedir al proveedor y eso sola tarda dos días hábiles. — ¡Eso es demasiado tiempo! Tengo que llevar a mi mamá al hospital el miércoles sin falta. — Habla directamente con el mecánico — a veces tiene piezas en el almacén que no menciona automáticamente.",
+      "prompt": "— ¿Crees que el taller puede tener el coche listo para el miércoles por la mañana?\n— Honestamente, no creo que lo _____ antes del jueves como mínimo — hay varias piezas que tienen que pedir al proveedor y eso sola tarda dos días hábiles.\n— ¡Eso es demasiado tiempo! Tengo que llevar a mi mamá al hospital el miércoles sin falta.\n— Habla directamente con el mecánico — a veces tiene piezas en el almacén que no menciona automáticamente.",
       "ch": ["A) tenga", "B) tiene", "C) tenía", "D) tuvo"],
       "cor": "A",
       "exp": "'Tenga' is the present subjunctive of 'tener,' triggered by 'no creo que' — expressing doubt or disbelief, a classic WEIRDOS trigger (D = Doubt/Denial). When 'creer que' is NEGATIVE (no creer que), it always requires the subjunctive because the speaker is doubting or denying the truth of the subordinate clause. When 'creer que' is AFFIRMATIVE, it uses the indicative because the speaker believes it to be true. 'Tiene' is present indicative — used with affirmative belief. 'Tenía' is imperfect. 'Tuvo' is preterite. 'Tener' is irregular in the subjunctive: tenga, tengas, tenga, tengamos, tengan."
@@ -193,7 +193,7 @@ questionsJson: |
       "id": 20,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Por qué cambiaste de farmacia el mes pasado? Creía que estabas contento con la del barrio. — Es que la nueva está abierta _____ las veinticuatro horas del día, los siete días de la semana. Con la medicación de mi padre, a veces necesito comprar pastillas de madrugada y la farmacia anterior cerraba a las nueve en punto. — Eso es muy práctico. ¿Y los precios son similares? — Más o menos. La diferencia es mínima.",
+      "prompt": "— ¿Por qué cambiaste de farmacia el mes pasado? Creía que estabas contento con la del barrio.\n— Es que la nueva está abierta _____ las veinticuatro horas del día, los siete días de la semana. Con la medicación de mi padre, a veces necesito comprar pastillas de madrugada y la farmacia anterior cerraba a las nueve en punto.\n— Eso es muy práctico. ¿Y los precios son similares?\n— Más o menos. La diferencia es mínima.",
       "ch": ["A) desde", "B) en", "C) para", "D) por"],
       "cor": "D",
       "exp": "'Por' expresses duration — how long a state or activity continues (DREAMS: D = Duration). 'Abierta por las veinticuatro horas' means open for/throughout a continuous 24-hour period. This 'por' extends across all 24 hours without interruption. 'Para' followed by a time expression typically indicates a deadline or a specific target point in the future — not ongoing duration. 'Desde' means 'since a specific starting point up to now' — it requires a reference point in time, not just a quantity. 'En' does not fit this duration structure. Only 'por' correctly expresses continuous operation across a span of time."
@@ -202,7 +202,7 @@ questionsJson: |
       "id": 21,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Le mencionaste al médico que llevas una semana tomando el antibiótico de manera irregular porque se te olvida la dosis del mediodía? — No, no lo hice. Se me olvidó decírselo en la consulta. — Pues _____ la verdad la próxima vez que lo veas — es fundamental que sepa exactamente cómo has tomado el medicamento para ajustar el tratamiento correctamente si es necesario. — Tienes razón. Lo apuntaré en el teléfono para no olvidarlo.",
+      "prompt": "— ¿Le mencionaste al médico que llevas una semana tomando el antibiótico de manera irregular porque se te olvida la dosis del mediodía?\n— No, no lo hice. Se me olvidó decírselo en la consulta.\n— Pues _____ la verdad la próxima vez que lo veas — es fundamental que sepa exactamente cómo has tomado el medicamento para ajustar el tratamiento correctamente si es necesario.\n— Tienes razón. Lo apuntaré en el teléfono para no olvidarlo.",
       "ch": ["A) dile", "B) díle", "C) díselo", "D) di"],
       "cor": "A",
       "exp": "'Dile' is the irregular affirmative tú command 'di' + indirect object pronoun 'le' (to him/to the doctor). Step 1: The irregular tú command of 'decir' is 'di' (memorized: Ven Di Sal Haz Ten Ve Pon Sé). Step 2: Attach the indirect object pronoun 'le': di + le = dile. No written accent is needed because monosyllabic commands (di, ve, sal, etc.) do NOT add a written accent when only ONE pronoun is attached — the word remains short enough that stress is naturally maintained. 'Díle' with an accent is incorrect spelling. 'Díselo' would be used if we also needed a direct object pronoun (di + se + lo). 'Di' alone means 'tell' without specifying a recipient."
@@ -211,7 +211,7 @@ questionsJson: |
       "id": 22,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Cuéntame exactamente cómo ocurrió el accidente. El seguro me pidió todos los detalles posibles. — Pues, normalmente _____ por la carretera vieja porque tiene mucho menos tráfico, pero ese día decidí probar la ruta nueva y fue un error enorme. Salió un coche de una calle lateral sin mirar y chocó directamente con mi puerta izquierda. — ¿Pudiste salir del coche tú solo después? — Sí, menos mal. Me lastimé un poco el codo con el volante pero nada más.",
+      "prompt": "— Cuéntame exactamente cómo ocurrió el accidente. El seguro me pidió todos los detalles posibles.\n— Pues, normalmente _____ por la carretera vieja porque tiene mucho menos tráfico, pero ese día decidí probar la ruta nueva y fue un error enorme. Salió un coche de una calle lateral sin mirar y chocó directamente con mi puerta izquierda.\n— ¿Pudiste salir del coche tú solo después?\n— Sí, menos mal. Me lastimé un poco el codo con el volante pero nada más.",
       "ch": ["A) manejé", "B) manejaba", "C) manejaré", "D) manejo"],
       "cor": "B",
       "exp": "'Manejaba' is the imperfect of 'manejar.' The key word is 'normalmente' — a classic imperfect trigger indicating a habitual, repeated past action. The sentence structure also contrasts the habit (imperfect: manejaba por la carretera vieja — I habitually took the old road) against the specific deviation that day (preterite: decidí probar la ruta nueva — I decided to try the new route, a single completed choice). The imperfect sets the established background habit; the preterite marks the interruption of that habit. 'Manejé' (preterite) would incorrectly frame the usual driving as a single event rather than a routine. 'Manejaré' is future. 'Manejo' is present."
@@ -220,7 +220,7 @@ questionsJson: |
       "id": 23,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Entendiste todo lo que te explicó el especialista en la consulta de ayer? — Más o menos. _____ más me preocupó fue descubrir que tengo una alergia seria a uno de los ingredientes del medicamento que llevaba tomando dos meses completos. Nunca lo había sabido hasta ese momento. — ¡Qué sorpresa tan grande! — Sí. Por suerte el especialista ya me recetó una alternativa sin ese ingrediente.",
+      "prompt": "— ¿Entendiste todo lo que te explicó el especialista en la consulta de ayer?\n— Más o menos. _____ más me preocupó fue descubrir que tengo una alergia seria a uno de los ingredientes del medicamento que llevaba tomando dos meses completos. Nunca lo había sabido hasta ese momento.\n— ¡Qué sorpresa tan grande!\n— Sí. Por suerte el especialista ya me recetó una alternativa sin ese ingrediente.",
       "ch": ["A) Que", "B) Lo que", "C) El que", "D) Quien"],
       "cor": "B",
       "exp": "'Lo que' means 'what' or 'that which' and introduces an abstract concept — the most worrying thing — without a specific named noun before it. This is the defining use of 'lo que': it stands alone as the subject when referring to an unspecified idea or situation rather than a named noun. 'Que' requires a specific noun directly before it as an antecedent. 'El que' means 'the one that' and would require a specific masculine singular noun antecedent. 'Quien' is used for people — either after a preposition or set off by commas. 'Lo que' is the only form that correctly introduces an unnamed concept as the grammatical subject of the sentence."
@@ -229,7 +229,7 @@ questionsJson: |
       "id": 24,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Por qué compraste esos altavoces nuevos para el ordenador? Parecían caros. — Los compré _____ tener mejor sonido en las videollamadas con el médico desde casa. Los anteriores eran tan malos que casi no se entendía nada y era muy frustrante para los dos. — ¿Y funcionan bien los nuevos? — Mucho mejor. Ahora la comunicación es perfectamente clara y no hay que repetir nada.",
+      "prompt": "— ¿Por qué compraste esos altavoces nuevos para el ordenador? Parecían caros.\n— Los compré _____ tener mejor sonido en las videollamadas con el médico desde casa. Los anteriores eran tan malos que casi no se entendía nada y era muy frustrante para los dos.\n— ¿Y funcionan bien los nuevos?\n— Mucho mejor. Ahora la comunicación es perfectamente clara y no hay que repetir nada.",
       "ch": ["A) por", "B) para", "C) de", "D) con"],
       "cor": "B",
       "exp": "'Para' followed by an infinitive expresses purpose — the reason or goal behind an action (PERFECTOS: P = Purpose). 'Los compré para tener mejor sonido' = I bought them IN ORDER TO have better sound. This is the goal the speaker had in mind when making the purchase. The subtle trap: 'por' followed by an infinitive expresses cause or reason for something that already happened or a justification — 'los compré por tener problemas' would mean 'I bought them BECAUSE OF having problems.' 'Para' = future-oriented purpose (to achieve something); 'por' = backward-looking cause (because of something). Only 'para' correctly expresses the intended goal of the purchase."
@@ -238,7 +238,7 @@ questionsJson: |
       "id": 25,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Encontraste ya un mecánico de confianza en el barrio nuevo? — Todavía no. Quiero un mecánico que _____ experiencia específica con coches eléctricos porque el mío es un modelo bastante reciente y los mecánicos normales no saben trabajar con él. — En ese caso, busca en los foros de internet — los dueños de coches eléctricos se recomiendan mecánicos entre ellos constantemente. — Buena idea, lo hago esta noche sin falta.",
+      "prompt": "— ¿Encontraste ya un mecánico de confianza en el barrio nuevo?\n— Todavía no. Quiero un mecánico que _____ experiencia específica con coches eléctricos porque el mío es un modelo bastante reciente y los mecánicos normales no saben trabajar con él.\n— En ese caso, busca en los foros de internet — los dueños de coches eléctricos se recomiendan mecánicos entre ellos constantemente.\n— Buena idea, lo hago esta noche sin falta.",
       "ch": ["A) tiene", "B) tenía", "C) tenga", "D) tuvo"],
       "cor": "C",
       "exp": "'Tenga' is the present subjunctive required in relative clauses when the antecedent is undefined or hypothetical. The speaker is still searching for a mechanic — this specific mechanic does not yet exist in reality. When a relative clause refers to something or someone that may not exist or has not been found yet, the subjunctive is required. Compare: 'Encontré un mecánico que TIENE experiencia' (indicative — specific, real, already found) vs. 'Quiero un mecánico que TENGA experiencia' (subjunctive — still searching, hypothetical, not yet identified). This is one of the most nuanced and advanced subjunctive uses in Spanish 2. 'Tiene' would incorrectly imply the mechanic already exists and has been found."

@@ -112,7 +112,7 @@ questionsJson: |
       "id": 11,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¡Qué día tan largo! ¿Pudiste solucionar todo con el seguro después del accidente? — Más o menos. Mientras el mecánico _____ el coche en el taller, yo llamé a la compañía de seguros y estuve al teléfono casi dos horas explicando todo. — ¿Y qué te dijeron? — Que necesitan todos los documentos firmados antes del jueves para procesar la reclamación.",
+      "prompt": "— ¡Qué día tan largo! ¿Pudiste solucionar todo con el seguro después del accidente?\n— Más o menos. Mientras el mecánico _____ el coche en el taller, yo llamé a la compañía de seguros y estuve al teléfono casi dos horas explicando todo.\n— ¿Y qué te dijeron?\n— Que necesitan todos los documentos firmados antes del jueves para procesar la reclamación.",
       "ch": ["A) revisaba", "B) revisó", "C) revisa", "D) revisará"],
       "cor": "A",
       "exp": "'Revisaba' is the imperfect of 'revisar.' This sentence contains the classic preterite-imperfect contrast: 'mientras' (while) signals that the mechanic's review was the ongoing background action in progress when the single completed preterite event (llamé — I called) occurred. The imperfect sets the unfinished scene; the preterite cuts through it. 'Revisó' (preterite) would incorrectly imply the mechanic's review was a completed single event rather than a continuous background activity happening simultaneously with calling the insurance company."
@@ -121,7 +121,7 @@ questionsJson: |
       "id": 12,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Doctor, me siento muy mal. Llevo tres días con fiebre alta y no puedo trabajar. — Ya veo. Tiene una infección bastante seria. Quiero que usted _____ en cama durante al menos cuatro días completos y que tome el antibiótico exactamente como indica la receta. — ¿Y si la fiebre no baja en dos días? — Llámeme inmediatamente y ajustamos el tratamiento. No espere más tiempo.",
+      "prompt": "— Doctor, me siento muy mal. Llevo tres días con fiebre alta y no puedo trabajar.\n— Ya veo. Tiene una infección bastante seria. Quiero que usted _____ en cama durante al menos cuatro días completos y que tome el antibiótico exactamente como indica la receta.\n— ¿Y si la fiebre no baja en dos días?\n— Llámeme inmediatamente y ajustamos el tratamiento. No espere más tiempo.",
       "ch": ["A) duerme", "B) dormía", "C) durmió", "D) duerma"],
       "cor": "D",
       "exp": "'Duerma' is the present subjunctive of 'dormir.' The trigger is 'quiero que' — expressing a desire directed at a different subject (the doctor wants / the patient to sleep), which is a WEIRDOS trigger (W = Wishes/Desires). Two different subjects are present, so the subjunctive is required. 'Dormir' is a stem-changing verb (o→ue) and also has a subjunctive stem change: duerma, duermas, duerma, durmamos, duerman. 'Duerme' is present indicative. 'Dormía' is imperfect. 'Durmió' is preterite. Only 'duerma' is present subjunctive."
@@ -130,7 +130,7 @@ questionsJson: |
       "id": 13,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Señor Rodríguez, antes de irse, por favor _____ mucha agua durante el día — mínimo dos litros. Es fundamental para que el medicamento funcione bien con este tipo de infección. — ¿Puedo tomar café también? — Mejor no durante esta semana. El café puede interferir con el antibiótico. — Entendido, doctor. Lo haré.",
+      "prompt": "— Señor Rodríguez, antes de irse, por favor _____ mucha agua durante el día — mínimo dos litros. Es fundamental para que el medicamento funcione bien con este tipo de infección.\n— ¿Puedo tomar café también?\n— Mejor no durante esta semana. El café puede interferir con el antibiótico.\n— Entendido, doctor. Lo haré.",
       "ch": ["A) toma", "B) tome", "C) tomó", "D) tomaste"],
       "cor": "B",
       "exp": "'Tome' is the formal Usted command of 'tomar.' The doctor addresses the patient as 'señor' — a formal register requiring the Usted command, not the tú command. To form a formal Usted command: (1) yo form: tomo, (2) drop the -o: tom-, (3) add the opposite ending (-e for -ar verbs): tome. 'Toma' is the affirmative tú command — too informal for a doctor-patient interaction addressed as 'señor.' 'Tomó' is third-person preterite. 'Tomaste' is second-person preterite. Only 'tome' is the formal Usted command."
@@ -139,7 +139,7 @@ questionsJson: |
       "id": 14,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Sabes cuánto cobró el mecánico _____ cambiar las dos llantas traseras después del accidente? — Creo que como doscientos dólares cada una. Fue muy caro, pero no había alternativa porque estaban completamente destruidas. — ¡Qué precio tan alto! ¿Y el seguro no ayudó nada? — Solo cubrió la mitad. El resto lo tuve que pagar yo de mi bolsillo.",
+      "prompt": "— ¿Sabes cuánto cobró el mecánico _____ cambiar las dos llantas traseras después del accidente?\n— Creo que como doscientos dólares cada una. Fue muy caro, pero no había alternativa porque estaban completamente destruidas.\n— ¡Qué precio tan alto! ¿Y el seguro no ayudó nada?\n— Solo cubrió la mitad. El resto lo tuve que pagar yo de mi bolsillo.",
       "ch": ["A) para", "B) de", "C) por", "D) en"],
       "cor": "C",
       "exp": "'Por' expresses exchange — what you pay or trade in return for something (DREAMS: E = Exchange). 'Cobrar por' means to charge in exchange for a service. The mechanic received money in exchange for the work of changing the tires — that exchange relationship is expressed with 'por.' 'Para' followed by an infinitive expresses purpose (in order to), which would change the meaning entirely to suggest the mechanic charged the money so that someone could change the tires. Only 'por' correctly captures the financial exchange."
@@ -148,7 +148,7 @@ questionsJson: |
       "id": 15,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Oye, voy a salir un momento al coche a buscar el cargador que se me olvidó esta mañana. — _____ cuidado al cruzar la carretera — hay mucho tráfico a esta hora y algunos conductores no respetan la velocidad máxima para nada. — Sí, lo sé. Ya aprendí la lección después de casi torcerme el tobillo corriendo sin mirar la semana pasada. — Mejor ve despacio, no hay ninguna prisa.",
+      "prompt": "— Oye, voy a salir un momento al coche a buscar el cargador que se me olvidó esta mañana.\n— _____ cuidado al cruzar la carretera — hay mucho tráfico a esta hora y algunos conductores no respetan la velocidad máxima para nada.\n— Sí, lo sé. Ya aprendí la lección después de casi torcerme el tobillo corriendo sin mirar la semana pasada.\n— Mejor ve despacio, no hay ninguna prisa.",
       "ch": ["A) Tienes", "B) Tuviste", "C) Ten", "D) Tengas"],
       "cor": "C",
       "exp": "'Ten' is the irregular affirmative tú command of 'tener.' The irregular tú commands are memorized as: Ven Di Sal Haz Ten Ve Pon Sé. 'Tener' → Ten. You cannot form this command with the regular method (drop the -s from tienes → tiene — that doesn't apply to these irregulars). 'Tienes' is present indicative — a statement, not a command. 'Tuviste' is second-person preterite. 'Tengas' is the subjunctive form, used after triggers like 'espero que' — not as a standalone command. Only 'ten' is the affirmative tú command."
@@ -157,7 +157,7 @@ questionsJson: |
       "id": 16,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Conoces a la nueva enfermera que empezó esta semana en la clínica? — Sí, es la señora a _____ le recomendé el puesto cuando la directora me preguntó si conocía a alguien con experiencia en urgencias el mes pasado. Tiene muchos años de práctica en hospitales grandes. — ¡Qué buena persona eres! ¿Ya hablaste con ella esta semana? — Sí, la vi ayer. Parece muy competente y profesional.",
+      "prompt": "— ¿Conoces a la nueva enfermera que empezó esta semana en la clínica?\n— Sí, es la señora a _____ le recomendé el puesto cuando la directora me preguntó si conocía a alguien con experiencia en urgencias el mes pasado. Tiene muchos años de práctica en hospitales grandes.\n— ¡Qué buena persona eres! ¿Ya hablaste con ella esta semana?\n— Sí, la vi ayer. Parece muy competente y profesional.",
       "ch": ["A) que", "B) lo que", "C) cuyo", "D) quien"],
       "cor": "D",
       "exp": "'Quien' is required here because the relative pronoun follows a preposition — specifically 'a.' The rule is: after a preposition, you must use 'quien' (for people), never 'que.' 'Que' cannot follow a preposition directly. The structure is 'a quien' — to whom I recommended the job. 'Lo que' refers to abstract ideas or situations, not specific people. 'Cuyo' is possessive (whose) and requires a noun immediately after it. Only 'quien' is grammatically required after the preposition 'a' when referring to a person."
@@ -166,7 +166,7 @@ questionsJson: |
       "id": 17,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Conseguiste conectarte al wifi del hospital para enviar los archivos del paciente al especialista? — Todavía no, la señal está muy débil en esta parte del edificio y tarda mucho. — Espero que lo _____ antes de las dos, porque el doctor necesita ver los resultados de la radiografía antes de comenzar la operación. — Voy a acercarme más a la ventana a ver si mejora algo la conexión.",
+      "prompt": "— ¿Conseguiste conectarte al wifi del hospital para enviar los archivos del paciente al especialista?\n— Todavía no, la señal está muy débil en esta parte del edificio y tarda mucho.\n— Espero que lo _____ antes de las dos, porque el doctor necesita ver los resultados de la radiografía antes de comenzar la operación.\n— Voy a acercarme más a la ventana a ver si mejora algo la conexión.",
       "ch": ["A) descargas", "B) descargues", "C) descargaste", "D) descargabas"],
       "cor": "B",
       "exp": "'Descargues' is the present subjunctive of 'descargar.' The trigger is 'espero que' — a wish or hope directed at a different subject (WEIRDOS: W = Wishes/Hopes). Two different subjects are present, so the subjunctive is required. 'Descargar' is a -gar verb, which requires a spelling change before the subjunctive ending to preserve the hard g sound: descargar → descargo → descarg- → add subjunctive ending -es → BUT -gar verbs insert a u before e: descargues. 'Descargas' is present indicative. 'Descargaste' is preterite. 'Descargabas' is imperfect. Only 'descargues' is present subjunctive with the correct spelling."
@@ -175,7 +175,7 @@ questionsJson: |
       "id": 18,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Cuéntame exactamente cómo fue el accidente de ayer — el seguro me pidió todos los detalles. — Pues, _____ tranquilamente por la carretera a la velocidad correcta cuando de repente un carro salió de una calle lateral sin mirar y chocó directamente contra mi puerta izquierda. Fue un susto enorme. — ¿Y pudiste salir del coche sin problemas después del golpe? — Sí, menos mal. Solo me lastimé un poco el codo al golpear contra el volante.",
+      "prompt": "— Cuéntame exactamente cómo fue el accidente de ayer — el seguro me pidió todos los detalles.\n— Pues, _____ tranquilamente por la carretera a la velocidad correcta cuando de repente un carro salió de una calle lateral sin mirar y chocó directamente contra mi puerta izquierda. Fue un susto enorme.\n— ¿Y pudiste salir del coche sin problemas después del golpe?\n— Sí, menos mal. Solo me lastimé un poco el codo al golpear contra el volante.",
       "ch": ["A) Manejé", "B) Manejo", "C) Manejaré", "D) Manejaba"],
       "cor": "D",
       "exp": "'Manejaba' is the imperfect of 'manejar.' This is the classic imperfect-preterite contrast: 'de repente' (suddenly) signals the preterite interruption, but the action before it — driving along calmly — was the ongoing, unfinished background activity. The imperfect describes what was already in progress when the sudden event cut through it. 'Manejé' (preterite) would incorrectly frame the driving as a single completed event rather than the continuous background context. 'Manejo' is present. 'Manejaré' is future. Only 'manejaba' correctly sets the ongoing background scene."
@@ -184,7 +184,7 @@ questionsJson: |
       "id": 19,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Cuándo tiene que estar lista toda la documentación del accidente para la compañía de seguros? — La tienen que recibir _____ el próximo lunes sin ninguna excepción. Si no llega a tiempo, pueden rechazar la reclamación completamente. — ¡Eso es en tres días! ¿Necesitas ayuda para escanear todos los documentos del taller y del hospital? — Sería estupendo, gracias. Tengo muchos papeles.",
+      "prompt": "— ¿Cuándo tiene que estar lista toda la documentación del accidente para la compañía de seguros?\n— La tienen que recibir _____ el próximo lunes sin ninguna excepción. Si no llega a tiempo, pueden rechazar la reclamación completamente.\n— ¡Eso es en tres días! ¿Necesitas ayuda para escanear todos los documentos del taller y del hospital?\n— Sería estupendo, gracias. Tengo muchos papeles.",
       "ch": ["A) por", "B) desde", "C) en", "D) para"],
       "cor": "D",
       "exp": "'Para' expresses a deadline — a specific point in the future by which something must be completed (PERFECTOS: F = Future deadline). 'Para el lunes' means by Monday — the deadline for submission. 'Por' expresses duration (for how long something lasts) or exchange — not a deadline. 'Desde' means since (from a starting point to the present). 'En' can express time frames but not deadlines with the same precision. Only 'para' correctly establishes Monday as the cutoff deadline."
@@ -193,7 +193,7 @@ questionsJson: |
       "id": 20,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Oye, ¿sabes dónde está el coche? Lo necesito para ir a la farmacia esta tarde a buscar los medicamentos. — Está en el taller. Lo llevé esta mañana porque _____ llanta trasera izquierda estaba completamente pinchada desde anoche. Me di cuenta cuando salí a trabajar. — ¡Qué mala suerte! ¿Y cuánto tiempo van a tardar? — El mecánico dijo que lo tiene listo antes de las cinco.",
+      "prompt": "— Oye, ¿sabes dónde está el coche? Lo necesito para ir a la farmacia esta tarde a buscar los medicamentos.\n— Está en el taller. Lo llevé esta mañana porque _____ llanta trasera izquierda estaba completamente pinchada desde anoche. Me di cuenta cuando salí a trabajar.\n— ¡Qué mala suerte! ¿Y cuánto tiempo van a tardar?\n— El mecánico dijo que lo tiene listo antes de las cinco.",
       "ch": ["A) nuestra", "B) suya", "C) tuya", "D) mi"],
       "cor": "A",
       "exp": "'Nuestra' is the stressed possessive adjective meaning 'our.' It must agree in gender and number with the noun it modifies — 'llanta' is feminine singular, so the form is 'nuestra.' Both speakers share the car, so 'our tire' is the correct meaning. 'Suya' is feminine singular but means 'his/her/your (formal)/their' — belonging to a third party, not to us. 'Tuya' is feminine singular but means 'yours' (tú) — belonging only to the listener. 'Mi' is first-person singular (my) — belonging only to the speaker. Only 'nuestra' expresses shared ownership between both speakers."
@@ -202,7 +202,7 @@ questionsJson: |
       "id": 21,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Cómo le fue a tu padre en la operación al final? — Muy bien, gracias a Dios. Fue bastante larga pero todo salió perfectamente bien. — Me alegra muchísimo que ya _____ en casa descansando con la familia. La semana pasada estábamos todos muy preocupados por él. — Sí, fue una semana muy difícil para toda la familia. Ahora necesita tres semanas más de reposo total.",
+      "prompt": "— ¿Cómo le fue a tu padre en la operación al final?\n— Muy bien, gracias a Dios. Fue bastante larga pero todo salió perfectamente bien.\n— Me alegra muchísimo que ya _____ en casa descansando con la familia. La semana pasada estábamos todos muy preocupados por él.\n— Sí, fue una semana muy difícil para toda la familia. Ahora necesita tres semanas más de reposo total.",
       "ch": ["A) estaba", "B) está", "C) esté", "D) estuvo"],
       "cor": "C",
       "exp": "'Esté' is the present subjunctive of 'estar.' The trigger is 'me alegra que' — expressing an emotion or feeling (WEIRDOS: E = Emotions) directed at a situation involving a different subject. Two different subjects are present (I am glad / that he is home), so the subjunctive is required. 'Estar' is irregular in the present subjunctive: esté, estés, esté, estemos, estén — note the accent marks on all forms except estemos. 'Estaba' is imperfect indicative. 'Está' is present indicative (used without doubt or emotion trigger). 'Estuvo' is preterite. Only 'esté' is present subjunctive."
@@ -211,7 +211,7 @@ questionsJson: |
       "id": 22,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Oye, no encuentro mis audífonos por ningún lado. Los he buscado en toda la habitación y no están. — No los _____ más en el cuarto — los dejaste esta mañana en el baúl del coche cuando llegaste de la gasolinera. Me acuerdo perfectamente porque los vi al cerrar el baúl. — ¡Tienes razón! Se me había olvidado completamente. ¡Qué despistado soy! — Eso te pasa por tener el coche tan desordenado siempre.",
+      "prompt": "— Oye, no encuentro mis audífonos por ningún lado. Los he buscado en toda la habitación y no están.\n— No los _____ más en el cuarto — los dejaste esta mañana en el baúl del coche cuando llegaste de la gasolinera. Me acuerdo perfectamente porque los vi al cerrar el baúl.\n— ¡Tienes razón! Se me había olvidado completamente. ¡Qué despistado soy!\n— Eso te pasa por tener el coche tan desordenado siempre.",
       "ch": ["A) buscas", "B) busques", "C) buscaste", "D) buscarás"],
       "cor": "B",
       "exp": "'Busques' is the negative tú command of 'buscar.' To form a negative tú command: (1) yo form: busco, (2) drop the -o: busc-, (3) add the opposite subjunctive ending for -ar verbs: -es. However, 'buscar' is a -car verb, which requires a spelling change before -e to preserve the hard c/k sound: c → qu. So: busc + ques = busques. Negative command: no busques. 'Buscas' is present indicative — a statement, not a command. 'Buscaste' is preterite. 'Buscarás' is future tense. The spelling change (c → qu) is the key detail that distinguishes busques from a simpler -ar command."
@@ -220,7 +220,7 @@ questionsJson: |
       "id": 23,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Por qué llevas el brazo en cabestrillo? ¡Cuéntame qué pasó! — Me _____ el hueso del codo el jueves pasado cuando me caí de la bicicleta en la carretera principal. Fue un golpe muy fuerte y tuve que ir directamente a urgencias en taxi porque no podía manejar solo. — ¡Dios mío, qué terrible! ¿Y el médico qué te dijo exactamente? — Que necesito seis semanas de reposo completo y volver para una radiografía de control el mes que viene.",
+      "prompt": "— ¿Por qué llevas el brazo en cabestrillo? ¡Cuéntame qué pasó!\n— Me _____ el hueso del codo el jueves pasado cuando me caí de la bicicleta en la carretera principal. Fue un golpe muy fuerte y tuve que ir directamente a urgencias en taxi porque no podía manejar solo.\n— ¡Dios mío, qué terrible! ¿Y el médico qué te dijo exactamente?\n— Que necesito seis semanas de reposo completo y volver para una radiografía de control el mes que viene.",
       "ch": ["A) rompo", "B) rompía", "C) romperé", "D) rompí"],
       "cor": "D",
       "exp": "'Rompí' is the preterite of 'romper.' The trigger 'el jueves pasado' (last Thursday) signals a single completed past event — a specific injury that happened on a specific day and is done. Preterite is required. Note the context: 'romperse' is the reflexive form used when breaking a body part (me rompí el hueso — I broke the bone), whereas 'romper' (non-reflexive) is used for breaking external objects. 'Rompo' is present tense. 'Rompía' is imperfect — used for habitual or ongoing past, not a single completed injury. 'Romperé' is future. Only 'rompí' places this as a single completed past event."
@@ -229,7 +229,7 @@ questionsJson: |
       "id": 24,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Entendiste todo lo que te explicó el especialista sobre el diagnóstico en la consulta de ayer? — Más o menos. _____ más me sorprendió fue que resulta que soy alérgico a uno de los ingredientes principales del medicamento que llevaba tomando dos meses. Nunca lo había sabido hasta ahora. — ¡Qué sorpresa tan grande! ¿Y qué vas a hacer con el tratamiento? — El especialista ya me recetó un medicamento alternativo sin ese ingrediente.",
+      "prompt": "— ¿Entendiste todo lo que te explicó el especialista sobre el diagnóstico en la consulta de ayer?\n— Más o menos. _____ más me sorprendió fue que resulta que soy alérgico a uno de los ingredientes principales del medicamento que llevaba tomando dos meses. Nunca lo había sabido hasta ahora.\n— ¡Qué sorpresa tan grande! ¿Y qué vas a hacer con el tratamiento?\n— El especialista ya me recetó un medicamento alternativo sin ese ingrediente.",
       "ch": ["A) Lo que", "B) Quien", "C) Que", "D) Cuyo"],
       "cor": "A",
       "exp": "'Lo que' means 'what' or 'that which' and refers to an abstract concept or idea — in this case, 'what surprised me most.' There is no specific named noun antecedent before it; instead, 'lo que' introduces the entire concept of the most surprising thing. This is the defining use of 'lo que': it stands alone as the subject when referring to a general idea or unnamed situation. 'Quien' requires a specific person antecedent. 'Que' requires a specific noun directly before it. 'Cuyo' is possessive (whose). Only 'lo que' correctly introduces an abstract, unspecified concept as the subject."
@@ -238,7 +238,7 @@ questionsJson: |
       "id": 25,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Mi hijo lleva dos semanas con mucho estrés por los exámenes finales. Come muy poco, casi no duerme y está muy irritable con todos en casa. — Entiendo. Es muy importante que él _____ tiempo suficiente para descansar todos los días, sin excepción. También debería comer mejor y salir a caminar un poco. — ¿Le puede recetar algo natural para los nervios? — Le voy a dar algo suave, sin efectos secundarios fuertes. Pero el descanso es absolutamente fundamental.",
+      "prompt": "— Mi hijo lleva dos semanas con mucho estrés por los exámenes finales. Come muy poco, casi no duerme y está muy irritable con todos en casa.\n— Entiendo. Es muy importante que él _____ tiempo suficiente para descansar todos los días, sin excepción. También debería comer mejor y salir a caminar un poco.\n— ¿Le puede recetar algo natural para los nervios?\n— Le voy a dar algo suave, sin efectos secundarios fuertes. Pero el descanso es absolutamente fundamental.",
       "ch": ["A) dedica", "B) dedicó", "C) dedique", "D) dedicará"],
       "cor": "C",
       "exp": "'Dedique' is the present subjunctive of 'dedicar.' The trigger is 'es muy importante que' — an impersonal expression conveying necessity or importance (WEIRDOS: I = Impersonal Expressions). Two different subjects are present (it is important / that he dedicate), so the subjunctive is required. 'Dedicar' is a -car verb: dedicar → dedico → dedic → add subjunctive ending -e → BUT -car verbs change c → qu before e: dedique. 'Dedica' is present indicative. 'Dedicó' is preterite. 'Dedicará' is future. Only 'dedique' is the present subjunctive with the correct spelling change."

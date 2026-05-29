@@ -547,6 +547,7 @@ const analyticsHref = `${basePath}analytics/`;
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
+      const fmtPrompt = s => esc(s).trim().replace(/([.?!])\s+—\s+/g, "$1\n— ");
       const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
       const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
       const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
@@ -774,7 +775,7 @@ const analyticsHref = `${basePath}analytics/`;
 
         const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
         const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
-        html += `<div class="qsec-label">${q.sec}</div>`;
+        html += `<div class="qsec-label">${esc(q.sec)}</div>`;
         html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
 
         if (q.media === "infographic" && infographicSrc) {
@@ -795,12 +796,12 @@ const analyticsHref = `${basePath}analytics/`;
           html += renderPassageCard(q);
         }
 
-        html += `<p class="qprompt">${q.prompt}</p>`;
+        html += `<p class="qprompt">${fmtPrompt(q.prompt)}</p>`;
 
         if (q.type === "mc") {
           html += `<div class="choices-grid">`;
           q.ch.forEach(c => {
-            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${c}</button>`;
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${esc(c)}</button>`;
           });
           html += `</div>`;
         } else {
@@ -1030,7 +1031,7 @@ const analyticsHref = `${basePath}analytics/`;
             <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
             <div>
               <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
-              <p class="res-prompt">${q.prompt}</p>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
             </div>
           </div>`;
 
@@ -1043,7 +1044,7 @@ const analyticsHref = `${basePath}analytics/`;
               let cls = "";
               if (isRight) cls = "rc-right";
               else if (isYours && !isRight) cls = "rc-wrong";
-              html += `<div class="res-mc-choice ${cls}">${c}</div>`;
+              html += `<div class="res-mc-choice ${cls}">${esc(c)}</div>`;
             });
             html += `</div>`;
           } else {
@@ -1079,14 +1080,14 @@ const analyticsHref = `${basePath}analytics/`;
             <div class="res-num bad">${q.id}</div>
             <div>
               <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
-              <p class="res-prompt">${q.prompt}</p>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
             </div>
           </div>`;
 
         if (q.type === "mc") {
           html += `<div class="res-mc-choices">`;
           q.ch.forEach(c => {
-            html += `<div class="res-mc-choice ${c[0] === q.cor ? "rc-right" : ""}">${c}</div>`;
+            html += `<div class="res-mc-choice ${c[0] === q.cor ? "rc-right" : ""}">${esc(c)}</div>`;
           });
           html += `</div>`;
         } else {

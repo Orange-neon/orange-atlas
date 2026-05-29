@@ -112,7 +112,7 @@ questionsJson: |
       "id": 11,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Mamá, acabo de llamar a la clínica y el doctor puede verme esta tarde. — ¡Menos mal! Es bueno que lo _____ hoy, porque llevas tres días con fiebre alta y no has mejorado nada. — Tienes razón. Me siento muy mal.",
+      "prompt": "— Mamá, acabo de llamar a la clínica y el doctor puede verme esta tarde.\n— ¡Menos mal! Es bueno que lo _____ hoy, porque llevas tres días con fiebre alta y no has mejorado nada.\n— Tienes razón. Me siento muy mal.",
       "ch": ["A) ves", "B) veas", "C) veías", "D) viste"],
       "cor": "B",
       "exp": "'Veas' is the present subjunctive of 'ver.' The trigger is 'es bueno que' — an impersonal expression conveying emotion or judgment (WEIRDOS: I = Impersonal Expressions / E = Emotions). Two different subjects are present (it is good / that you go), so subjunctive is required. To conjugate: yo form of ver → veo → drop -o → ve- → add subjunctive ending (-as for tú) → veas. 'Ves' is present indicative. 'Veías' is imperfect. 'Viste' is preterite. Only 'veas' is present subjunctive."
@@ -121,7 +121,7 @@ questionsJson: |
       "id": 12,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Por qué llegaste tan tarde al consultorio esta mañana? — Es que _____ el carro en el taller desde ayer por la noche y no me lo devolvieron hasta las diez. — ¡Qué molestia! ¿Y al final lo arreglaron bien? — Sí, pero fue un día muy largo.",
+      "prompt": "— ¿Por qué llegaste tan tarde al consultorio esta mañana?\n— Es que _____ el carro en el taller desde ayer por la noche y no me lo devolvieron hasta las diez.\n— ¡Qué molestia! ¿Y al final lo arreglaron bien?\n— Sí, pero fue un día muy largo.",
       "ch": ["A) dejé", "B) dejaba", "C) dejo", "D) dejaré"],
       "cor": "A",
       "exp": "'Dejé' is the preterite of 'dejar.' Leaving the car at the shop is presented as a single completed past action — a specific event that happened and is done. The time references 'desde ayer por la noche' and the completed narrative confirm this is preterite. 'Dejaba' (imperfect) would imply a habitual or ongoing action rather than a single event. 'Dejo' is present tense. 'Dejaré' is future. The preterite is the only form that correctly places this as a completed singular past action."
@@ -130,7 +130,7 @@ questionsJson: |
       "id": 13,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Disculpe, señor. La velocidad máxima en esta zona es de 60 kilómetros por hora. — Lo siento, oficial, no vi el cartel. Estaba buscando la gasolinera. — _____ más despacio de ahora en adelante. Si no, tendré que multarlo. — Sí, señor. Entendido.",
+      "prompt": "— Disculpe, señor. La velocidad máxima en esta zona es de 60 kilómetros por hora.\n— Lo siento, oficial, no vi el cartel. Estaba buscando la gasolinera.\n— _____ más despacio de ahora en adelante. Si no, tendré que multarlo.\n— Sí, señor. Entendido.",
       "ch": ["A) Manejas", "B) Manejabas", "C) Maneje", "D) Maneja"],
       "cor": "C",
       "exp": "'Maneje' is the formal Usted command of 'manejar.' The police officer addresses the driver as 'señor' — a formal register that requires the Usted command, not the tú command. To form a formal command: yo form → manejo → drop -o → manej- → add opposite ending (-e for -ar verbs) → maneje. 'Maneja' is the affirmative tú command — too informal for this official interaction. 'Manejas' is present tense indicative. 'Manejabas' is imperfect. Neither fits a command in a formal police stop."
@@ -139,7 +139,7 @@ questionsJson: |
       "id": 14,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Oye, ¿cuánto tiempo tienes que seguir tomando ese antibiótico? — El médico dijo que lo tengo que tomar _____ diez días completos, aunque me sienta mucho mejor antes de terminar. — Sí, es muy importante terminarlo. Si paras antes, la infección puede volver más fuerte. — Lo sé, lo sé.",
+      "prompt": "— Oye, ¿cuánto tiempo tienes que seguir tomando ese antibiótico?\n— El médico dijo que lo tengo que tomar _____ diez días completos, aunque me sienta mucho mejor antes de terminar.\n— Sí, es muy importante terminarlo. Si paras antes, la infección puede volver más fuerte.\n— Lo sé, lo sé.",
       "ch": ["A) por", "B) para", "C) desde", "D) en"],
       "cor": "A",
       "exp": "'Por' expresses duration of time — how long an action continues — which is one of its core uses (DREAMS: D = Duration). 'Tomar por diez días' means to take it for a span of ten days. 'Para' expresses purpose, deadlines, or destinations — not ongoing duration of an action. 'Desde' means 'since' (from a starting point to now, used with present or imperfect). 'En' does not fit this duration structure. Only 'por' correctly expresses how long the medication must be taken."
@@ -148,7 +148,7 @@ questionsJson: |
       "id": 15,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Oye, voy a apagar el wifi un momento. ¿Estás haciendo algo importante? — ¡No lo _____ ahora! Estoy descargando el programa nuevo del consultorio y si lo interrumpes, tengo que empezar todo de cero. — Ay, perdona. Avísame cuando termines. — Te digo en diez minutos.",
+      "prompt": "— Oye, voy a apagar el wifi un momento. ¿Estás haciendo algo importante?\n— ¡No lo _____ ahora! Estoy descargando el programa nuevo del consultorio y si lo interrumpes, tengo que empezar todo de cero.\n— Ay, perdona. Avísame cuando termines.\n— Te digo en diez minutos.",
       "ch": ["A) apaga", "B) apagues", "C) apagaste", "D) apagas"],
       "cor": "B",
       "exp": "'Apagues' is the negative tú command of 'apagar.' To form a negative tú command: (1) take the yo form: apago, (2) drop the -o: apag-, (3) add the opposite subjunctive ending for -ar verbs: -es. However, 'apagar' is a -gar verb, which requires a spelling change before -e to preserve the hard g sound: g → gu. So: apag + ues = apagues. 'Apaga' is the affirmative tú command — only used for positive commands, not negative. 'Apagaste' is preterite. 'Apagas' is present indicative. Only 'apagues' is the negative tú command."
@@ -157,7 +157,7 @@ questionsJson: |
       "id": 16,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Quién es el señor mayor que está junto a la entrada del taller? — Es el dueño del negocio _____ arregló mi coche cuando tuve el accidente el año pasado. — ¡Ah, qué bueno! ¿Y es de confianza? — Muy bueno. Lo recomiendo completamente.",
+      "prompt": "— ¿Quién es el señor mayor que está junto a la entrada del taller?\n— Es el dueño del negocio _____ arregló mi coche cuando tuve el accidente el año pasado.\n— ¡Ah, qué bueno! ¿Y es de confianza?\n— Muy bueno. Lo recomiendo completamente.",
       "ch": ["A) cuyo", "B) quien", "C) que", "D) lo que"],
       "cor": "C",
       "exp": "'Que' is the correct relative pronoun here. It refers back to 'el negocio' — a thing, not a person — and introduces a relative clause identifying which business repaired the car. 'Que' works for both people and things as the subject or object of a relative clause. 'Quien' is used for people — but only after a preposition (e.g., 'con quien') or set off by commas. 'Cuyo' is possessive (whose) and would need a following noun. 'Lo que' refers to abstract ideas or concepts, not a specific noun antecedent like 'el negocio.'"
@@ -166,7 +166,7 @@ questionsJson: |
       "id": 17,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Fui al consultorio ayer y el médico me explicó muchísimas cosas sobre mi condición. — ¿Entendiste todo? — La verdad, no. _____ más me confundió fue toda la explicación sobre los efectos secundarios del medicamento. — Puedes llamar a la clínica mañana y pedir que te lo expliquen de nuevo.",
+      "prompt": "— Fui al consultorio ayer y el médico me explicó muchísimas cosas sobre mi condición.\n— ¿Entendiste todo?\n— La verdad, no. _____ más me confundió fue toda la explicación sobre los efectos secundarios del medicamento.\n— Puedes llamar a la clínica mañana y pedir que te lo expliquen de nuevo.",
       "ch": ["A) Quien", "B) Lo que", "C) Que", "D) Cuyo"],
       "cor": "B",
       "exp": "'Lo que' means 'what' or 'that which' and refers to an abstract concept or idea — in this case, 'what confused me most.' There is no specific noun antecedent before it; instead, 'lo que' introduces the whole concept of the most confusing part. 'Quien' is for people (not ideas). 'Que' needs a specific noun antecedent directly before it. 'Cuyo' is possessive. 'Lo que' is the only form that correctly refers to a situation or concept rather than a specific person or thing named earlier in the sentence."
@@ -175,7 +175,7 @@ questionsJson: |
       "id": 18,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Oye, ¿este cargador es tuyo o es de Carlos? — Es _____, gracias. Lo estaba buscando por todas partes desde esta mañana y estaba muy frustrado. — Lo encontré debajo del teclado, al lado del ratón. — ¡Menos mal! Lo necesito para el portátil esta tarde.",
+      "prompt": "— Oye, ¿este cargador es tuyo o es de Carlos?\n— Es _____, gracias. Lo estaba buscando por todas partes desde esta mañana y estaba muy frustrado.\n— Lo encontré debajo del teclado, al lado del ratón.\n— ¡Menos mal! Lo necesito para el portátil esta tarde.",
       "ch": ["A) suya", "B) nuestro", "C) tuya", "D) mío"],
       "cor": "D",
       "exp": "'Mío' is the stressed possessive adjective meaning 'mine,' used after the verb 'ser.' It must agree in gender and number with the noun it refers to — 'el cargador' is masculine singular, so the correct form is 'mío.' 'Suya' is feminine singular (belongs to él/ella/usted). 'Nuestro' is masculine but means 'ours,' not 'mine.' 'Tuya' is feminine singular and refers to something belonging to 'tú.' Only 'mío' is masculine singular and first-person singular. Stressed possessives always come after the noun or after 'ser.'"
@@ -184,7 +184,7 @@ questionsJson: |
       "id": 19,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Has probado el nuevo programa de computación que lanzaron la semana pasada? — Sí, pero no estoy seguro de que _____ compatible con todos los sistemas operativos. Mi ordenador es bastante viejo. — Puedes entrar al sitio web del programa y verificarlo antes de descargarlo. — Buena idea, lo hago ahora mismo.",
+      "prompt": "— ¿Has probado el nuevo programa de computación que lanzaron la semana pasada?\n— Sí, pero no estoy seguro de que _____ compatible con todos los sistemas operativos. Mi ordenador es bastante viejo.\n— Puedes entrar al sitio web del programa y verificarlo antes de descargarlo.\n— Buena idea, lo hago ahora mismo.",
       "ch": ["A) está", "B) esté", "C) estaba", "D) estuvo"],
       "cor": "B",
       "exp": "'Esté' is the present subjunctive of 'estar.' The trigger is 'no estoy seguro de que' — expressing doubt or uncertainty, a classic WEIRDOS trigger (D = Doubt/Denial). To conjugate 'estar' in the present subjunctive: estar is an irregular subjunctive verb — esté, estés, esté, estemos, estén. 'Está' is present indicative, used when there is no doubt. 'Estaba' is imperfect. 'Estuvo' is preterite. Only 'esté' reflects the uncertainty and doubt the speaker is expressing about compatibility."
@@ -193,7 +193,7 @@ questionsJson: |
       "id": 20,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Qué pasó exactamente cuando tuviste el accidente ayer? — _____ por la carretera a velocidad normal cuando, de repente, un carro salió de una calle lateral sin mirar y me golpeó por el lado izquierdo. — ¡Qué susto más grande! ¿Y las llantas aguantaron? — Las de adelante sí, pero la trasera izquierda se pinchó completamente.",
+      "prompt": "— ¿Qué pasó exactamente cuando tuviste el accidente ayer?\n— _____ por la carretera a velocidad normal cuando, de repente, un carro salió de una calle lateral sin mirar y me golpeó por el lado izquierdo.\n— ¡Qué susto más grande! ¿Y las llantas aguantaron?\n— Las de adelante sí, pero la trasera izquierda se pinchó completamente.",
       "ch": ["A) Circulaba", "B) Circulé", "C) Circulo", "D) Circularé"],
       "cor": "A",
       "exp": "'Circulaba' is the imperfect form of 'circular.' This sentence contains the classic preterite-imperfect contrast: the imperfect describes the ongoing background action (driving along normally) that was in progress when 'de repente' (suddenly) signals the preterite interruption (a car came out and hit). The imperfect sets the unfinished scene; the preterite cuts through it. 'Circulé' (preterite) would incorrectly imply that driving was a single completed event rather than the continuous background. 'Circulo' is present. 'Circularé' is future."
@@ -202,7 +202,7 @@ questionsJson: |
       "id": 21,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Cómo le mandaste todos los documentos del accidente a la compañía de seguros? — Se los envié _____ correo electrónico porque la oficina del seguro quedaba muy lejos y no podía ir en persona ese día. — ¿Y ya te respondieron con la información del mecánico? — Sí, me contestaron ayer mismo por la tarde.",
+      "prompt": "— ¿Cómo le mandaste todos los documentos del accidente a la compañía de seguros?\n— Se los envié _____ correo electrónico porque la oficina del seguro quedaba muy lejos y no podía ir en persona ese día.\n— ¿Y ya te respondieron con la información del mecánico?\n— Sí, me contestaron ayer mismo por la tarde.",
       "ch": ["A) en", "B) de", "C) por", "D) para"],
       "cor": "C",
       "exp": "'Por' is correct here. When talking about the means or channel through which something is communicated or transmitted, Spanish uses 'por' (DREAMS: M = Means). 'Enviar por correo electrónico' = to send by/via email. The same pattern applies to: por teléfono (by phone), por mensaje (by text), por correo (by mail). 'Para' would express purpose or a destination — not the means of transmission. 'En' and 'de' don't fit this channel-of-communication structure. Think: the email is the channel the documents travel through."
@@ -211,7 +211,7 @@ questionsJson: |
       "id": 22,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Mi hijo lleva casi una semana sin poder dormir bien. Está muy cansado y le duele la cabeza cada mañana. — ¡Qué pena! Es necesario que _____ al médico cuanto antes — el insomnio puede ser síntoma de algo más serio. — Tienes razón. Voy a llamar al consultorio esta tarde para pedir una cita urgente. — Bien, espero que todo esté bien.",
+      "prompt": "— Mi hijo lleva casi una semana sin poder dormir bien. Está muy cansado y le duele la cabeza cada mañana.\n— ¡Qué pena! Es necesario que _____ al médico cuanto antes — el insomnio puede ser síntoma de algo más serio.\n— Tienes razón. Voy a llamar al consultorio esta tarde para pedir una cita urgente.\n— Bien, espero que todo esté bien.",
       "ch": ["A) va", "B) fue", "C) iba", "D) vaya"],
       "cor": "D",
       "exp": "'Vaya' is the present subjunctive of 'ir.' The trigger is 'es necesario que' — an impersonal expression of necessity, which is a classic WEIRDOS trigger (I = Impersonal Expressions). Two different subjects are present (it is necessary / that he go), so subjunctive is required. 'Ir' is irregular in the subjunctive: vaya, vayas, vaya, vayamos, vayan. 'Va' is present indicative. 'Fue' is preterite. 'Iba' is imperfect. Only 'vaya' is present subjunctive and correctly expresses the necessity in a subordinate clause."
@@ -220,7 +220,7 @@ questionsJson: |
       "id": 23,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— Señor, por favor, no _____ el teléfono en esta área. Está completamente prohibido por razones de seguridad del hospital. — Disculpe, no lo sabía. Lo guardo ahora mismo. — Gracias por su comprensión. Puede usarlo en la sala de espera del primer piso. — De acuerdo, muchas gracias.",
+      "prompt": "— Señor, por favor, no _____ el teléfono en esta área. Está completamente prohibido por razones de seguridad del hospital.\n— Disculpe, no lo sabía. Lo guardo ahora mismo.\n— Gracias por su comprensión. Puede usarlo en la sala de espera del primer piso.\n— De acuerdo, muchas gracias.",
       "ch": ["A) uses", "B) use", "C) usas", "D) usó"],
       "cor": "B",
       "exp": "'Use' is the negative formal Usted command of 'usar.' The context — addressing someone as 'señor' in an official hospital setting — requires the Usted command, not the tú command. To form a formal command: yo form → uso → drop -o → us- → add opposite ending (-e for -ar verbs) → use. Negative formal: 'No use.' 'Uses' is the negative tú command — too informal for 'señor.' 'Usas' is present indicative, not a command. 'Usó' is preterite. The formal register of the hospital staff member's speech makes the Usted command the only acceptable answer."
@@ -229,7 +229,7 @@ questionsJson: |
       "id": 24,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— ¿Conoces a la doctora nueva que empezó esta semana en la clínica del barrio? — Sí, es la señora _____ especialidad es la ortopedia, ¿verdad? La vi el lunes en el pasillo. — Exacto. Dicen que es excelente para los problemas de rodilla y tobillo. — Qué bueno, porque tengo un paciente que la necesita urgentemente.",
+      "prompt": "— ¿Conoces a la doctora nueva que empezó esta semana en la clínica del barrio?\n— Sí, es la señora _____ especialidad es la ortopedia, ¿verdad? La vi el lunes en el pasillo.\n— Exacto. Dicen que es excelente para los problemas de rodilla y tobillo.\n— Qué bueno, porque tengo un paciente que la necesita urgentemente.",
       "ch": ["A) que", "B) quien", "C) cuya", "D) lo que"],
       "cor": "C",
       "exp": "'Cuya' is the possessive relative pronoun meaning 'whose.' It connects 'la señora' to 'especialidad' — her specialty is what belongs to her. 'Cuya' must agree in gender and number with the noun that follows it (not the noun before it): 'especialidad' is feminine singular → cuya. If the noun were masculine, it would be 'cuyo.' 'Que' introduces a relative clause but cannot express possession. 'Quien' is for people but cannot show possession. 'Lo que' refers to abstract ideas. Only 'cuya' correctly expresses 'whose specialty.'"
@@ -238,7 +238,7 @@ questionsJson: |
       "id": 25,
       "sec": "Gramática en Contexto",
       "type": "mc",
-      "prompt": "— El mecánico dice que mi coche puede estar listo esta tarde, pero todavía no está seguro. — ¡Ojalá que lo _____ a tiempo! Lo necesito para llevar a mi mamá al médico mañana por la mañana temprano. — Espero que sí. ¿Y si no está listo? — Tendré que pedir un taxi, supongo. No hay otra opción.",
+      "prompt": "— El mecánico dice que mi coche puede estar listo esta tarde, pero todavía no está seguro.\n— ¡Ojalá que lo _____ a tiempo! Lo necesito para llevar a mi mamá al médico mañana por la mañana temprano.\n— Espero que sí. ¿Y si no está listo?\n— Tendré que pedir un taxi, supongo. No hay otra opción.",
       "ch": ["A) termine", "B) terminó", "C) terminaba", "D) termina"],
       "cor": "A",
       "exp": "'Termine' is the present subjunctive of 'terminar.' 'Ojalá que' is a fixed WEIRDOS expression (O = Ojalá) that ALWAYS requires the subjunctive with no exceptions — regardless of context, tense, or subject. To conjugate: terminar → yo termino → drop -o → termin- → add subjunctive ending (-e for -ar verbs, 3rd person singular) → termine. 'Terminó' is preterite (completed past). 'Terminaba' is imperfect (ongoing past). 'Termina' is present indicative. Only 'termine' is present subjunctive, as required after 'ojalá que.'"
