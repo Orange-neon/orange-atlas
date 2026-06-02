@@ -152,6 +152,11 @@ const analyticsHref = `${basePath}analytics/`;
     __orangeAtlasUser?: ReturnType<typeof getCurrentUser>;
     orangeAtlasProgress?: Record<string, unknown>;
   };
+  const IDLE_SIGN_OUT_MS = 10 * 60 * 1000;
+  const ACTIVITY_EVENTS = ["click", "keydown", "pointerdown", "touchstart", "scroll", "mousemove"];
+  let idleSignOutTimer: ReturnType<typeof window.setTimeout> | undefined;
+  let idleSignOutInFlight = false;
+  let lastActivityAt = Date.now();
 
   function profileFromUser(user: ReturnType<typeof getCurrentUser>) {
     if (!user) return null;
@@ -193,6 +198,7 @@ const analyticsHref = `${basePath}analytics/`;
   function publishAuthChange(user: ReturnType<typeof getCurrentUser>) {
     authWindow.__orangeAtlasUser = user;
     updateAuthNav(user);
+    scheduleIdleSignOut(user);
     window.dispatchEvent(
       new CustomEvent("orange-atlas-auth-change", {
         detail: {
@@ -201,6 +207,45 @@ const analyticsHref = `${basePath}analytics/`;
         },
       }),
     );
+  }
+
+  function clearIdleSignOutTimer() {
+    if (idleSignOutTimer) window.clearTimeout(idleSignOutTimer);
+    idleSignOutTimer = undefined;
+  }
+
+  function scheduleIdleSignOut(user: ReturnType<typeof getCurrentUser> = authWindow.__orangeAtlasUser ?? getCurrentUser()) {
+    clearIdleSignOutTimer();
+    if (!user) return;
+    const delay = Math.max(0, IDLE_SIGN_OUT_MS - (Date.now() - lastActivityAt));
+    idleSignOutTimer = window.setTimeout(handleIdleSignOut, delay);
+  }
+
+  async function handleIdleSignOut() {
+    const user = authWindow.__orangeAtlasUser ?? getCurrentUser();
+    if (!user || idleSignOutInFlight) return;
+    if (Date.now() - lastActivityAt < IDLE_SIGN_OUT_MS) {
+      scheduleIdleSignOut(user);
+      return;
+    }
+
+    idleSignOutInFlight = true;
+    try {
+      await signOutGoogle();
+      window.dispatchEvent(new CustomEvent("orange-atlas-auth-timeout"));
+    } catch (error) {
+      console.warn("Unable to auto sign out after inactivity", error);
+    } finally {
+      idleSignOutInFlight = false;
+      clearIdleSignOutTimer();
+    }
+  }
+
+  function markActivity() {
+    const now = Date.now();
+    if (now - lastActivityAt < 1000) return;
+    lastActivityAt = now;
+    if (authWindow.__orangeAtlasUser ?? getCurrentUser()) scheduleIdleSignOut();
   }
 
   authWindow.orangeAtlasProgress = {
@@ -220,6 +265,12 @@ const analyticsHref = `${basePath}analytics/`;
     });
 
     subscribeToAuth((user) => publishAuthChange(user));
+    ACTIVITY_EVENTS.forEach((eventName) => {
+      window.addEventListener(eventName, markActivity, { passive: true });
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) markActivity();
+    });
 
     document.addEventListener("click", async (event) => {
       const actionEl = (event.target as HTMLElement).closest<HTMLElement>("[data-auth-action]");

@@ -513,7 +513,7 @@ const analyticsHref = `${basePath}analytics/`;
         <div class="progress-save-card" id="progress-save-card">
           <div class="progress-save-title" id="progress-save-title">Save your progress</div>
           <p class="progress-save-copy" id="progress-save-copy">
-            Sign in with Google to keep this attempt in your analytics dashboard.
+            Sign in with Google now and this completed attempt will be saved to your analytics dashboard.
           </p>
           <div class="progress-save-actions">
             <button class="progress-save-btn" type="button" data-auth-action="sign-in" id="progress-signin-btn">
@@ -613,8 +613,8 @@ const analyticsHref = `${basePath}analytics/`;
         }
 
         if (mode === "signed-out") {
-          titleEl.textContent = "Save your progress";
-          copyEl.textContent = "Sign in with Google to keep this attempt in your analytics dashboard.";
+          titleEl.textContent = "Save this attempt";
+          copyEl.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
           signInBtn.hidden = false;
           return;
         }
@@ -627,7 +627,7 @@ const analyticsHref = `${basePath}analytics/`;
 
         if (mode === "saved") {
           titleEl.textContent = "Progress saved";
-          copyEl.textContent = "This attempt is now included in your mastery and improvement analytics.";
+          copyEl.textContent = "This attempt is now included in your analytics dashboard.";
           analyticsLink.classList.add("show");
           return;
         }

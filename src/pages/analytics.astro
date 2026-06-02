@@ -364,6 +364,32 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         color: var(--subtle);
       }
 
+      .panel-action {
+        min-height: 2.1rem;
+        border: 1px solid rgba(255, 116, 51, 0.28);
+        border-radius: 0.38rem;
+        padding: 0 0.72rem;
+        color: var(--gold);
+        background: rgba(255, 116, 51, 0.08);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.74rem;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .panel-action:hover,
+      .panel-action:focus-visible {
+        border-color: rgba(255, 116, 51, 0.62);
+        background: rgba(255, 116, 51, 0.14);
+        outline: none;
+      }
+
+      .panel-action[hidden] {
+        display: none;
+      }
+
       .grid-two {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -483,6 +509,82 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         background: linear-gradient(135deg, var(--orange), var(--gold));
         color: #111;
         border-color: transparent;
+      }
+
+      .miss-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: grid;
+        place-items: center;
+        padding: clamp(1rem, 4vw, 2.5rem);
+        background: rgba(4, 4, 8, 0.72);
+        backdrop-filter: blur(14px);
+      }
+
+      .miss-modal[hidden] {
+        display: none;
+      }
+
+      body.miss-modal-open {
+        overflow: hidden;
+      }
+
+      .miss-modal-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        width: min(980px, 100%);
+        max-height: min(82vh, 860px);
+        border: 1px solid rgba(255, 116, 51, 0.24);
+        border-radius: 0.65rem;
+        background: linear-gradient(145deg, rgba(19, 19, 24, 0.98), rgba(9, 9, 12, 0.98));
+        box-shadow: 0 32px 90px rgba(0, 0, 0, 0.48);
+        overflow: hidden;
+      }
+
+      .miss-modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .miss-modal-title {
+        color: var(--text);
+        font-size: 1.1rem;
+        font-weight: 850;
+      }
+
+      .miss-modal-sub {
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.45;
+        margin-top: 0.18rem;
+      }
+
+      .miss-modal-close {
+        min-height: 2.35rem;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 0.42rem;
+        padding: 0 0.86rem;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+      }
+
+      .miss-modal-close:hover,
+      .miss-modal-close:focus-visible {
+        border-color: rgba(255, 116, 51, 0.55);
+        outline: none;
+      }
+
+      .miss-modal-body {
+        overflow: auto;
+        padding: 1rem;
       }
 
       .miss-review {
@@ -984,8 +1086,26 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           grid-template-columns: 1fr;
         }
 
+        .panel-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
         .miss-card {
           grid-template-columns: 1fr;
+        }
+
+        .miss-modal {
+          padding: 0.75rem;
+        }
+
+        .miss-modal-card {
+          max-height: 88vh;
+        }
+
+        .miss-modal-head {
+          align-items: flex-start;
+          flex-direction: column;
         }
 
         .score-chip {
@@ -1110,8 +1230,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
           <section class="panel">
             <div class="panel-head">
-              <h2>Recent Misses</h2>
-              <span class="panel-kicker">Question tags</span>
+              <div>
+                <h2>Recent Misses</h2>
+                <span class="panel-kicker" id="recent-misses-kicker">Latest 3 question tags</span>
+              </div>
+              <button class="panel-action" type="button" id="recent-misses-see-all" hidden>See all</button>
             </div>
             <div class="mini-list" id="recent-misses"></div>
           </section>
@@ -1126,6 +1249,21 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         </section>
       </section>
     </main>
+
+    <section class="miss-modal" id="miss-modal" role="dialog" aria-modal="true" aria-labelledby="miss-modal-title" hidden>
+      <div class="miss-modal-card">
+        <div class="miss-modal-head">
+          <div>
+            <div class="miss-modal-title" id="miss-modal-title">All Recent Misses</div>
+            <div class="miss-modal-sub" id="miss-modal-sub">Review every saved miss from your latest attempts.</div>
+          </div>
+          <button class="miss-modal-close" type="button" data-miss-modal-close>Close</button>
+        </div>
+        <div class="miss-modal-body">
+          <div class="mini-list" id="all-recent-misses"></div>
+        </div>
+      </div>
+    </section>
 
     <section class="miss-review" id="miss-review" hidden aria-live="polite">
       <div class="topbar">
@@ -1163,6 +1301,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       const missReviewBody = document.getElementById("miss-review-body");
       const missReviewTitle = document.getElementById("miss-review-title");
       const missReviewMeta = document.getElementById("miss-review-meta");
+      const missModal = document.getElementById("miss-modal");
+      const missModalList = document.getElementById("all-recent-misses");
+      const missModalSub = document.getElementById("miss-modal-sub");
+      const seeAllMissesButton = document.getElementById("recent-misses-see-all");
+      const recentMissesKicker = document.getElementById("recent-misses-kicker");
 
       const esc = (value) => String(value ?? "")
         .replace(/&/g, "&amp;")
@@ -1173,9 +1316,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       const escAttr = (value) => esc(value).replace(/'/g, "&#39;");
       const pct = (correct, total) => total ? Math.round((correct / total) * 100) : 0;
       const scoreClass = (value) => value >= 85 ? "good" : value < 70 ? "bad" : "mid";
+      const recentMissLimit = 3;
       let activeUserId = "local";
       let clearedMisses = new Set();
       let reviewMisses = [];
+      let currentMisses = [];
       let activeReview = null;
       let activeReviewAnswer = "";
 
@@ -1503,10 +1648,35 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         activeReviewAnswer = "";
       }
 
-      function renderClearedMissState() {
-        const list = document.getElementById("recent-misses");
-        if (list && !list.querySelector("[data-miss-key]")) {
-          list.innerHTML = `<p class="empty">Nice work. Cleared misses will stay off this dashboard.</p>`;
+      function closeMissModal() {
+        if (!missModal) return;
+        missModal.hidden = true;
+        document.body.classList.remove("miss-modal-open");
+      }
+
+      function openMissModal() {
+        if (!missModal) return;
+        missModal.hidden = false;
+        document.body.classList.add("miss-modal-open");
+        missModal.querySelector("[data-miss-modal-close]")?.focus();
+      }
+
+      function updateMissSummary() {
+        const allCount = missModalList?.querySelectorAll("[data-miss-key]").length || 0;
+        const visibleCount = document.getElementById("recent-misses")?.querySelectorAll("[data-miss-key]").length || 0;
+        if (recentMissesKicker) {
+          recentMissesKicker.textContent = allCount > recentMissLimit
+            ? `Latest ${Math.min(recentMissLimit, visibleCount)} of ${allCount} question tags`
+            : "Latest question tags";
+        }
+        if (missModalSub) {
+          missModalSub.textContent = allCount === 1
+            ? "1 saved miss is ready to review."
+            : `${allCount} saved misses are ready to review.`;
+        }
+        if (seeAllMissesButton) {
+          seeAllMissesButton.hidden = allCount <= recentMissLimit;
+          seeAllMissesButton.textContent = allCount > recentMissLimit ? `See all (${allCount})` : "See all";
         }
       }
 
@@ -1514,10 +1684,8 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         if (!activeReview) return;
         clearedMisses.add(activeReview.key);
         saveClearedMisses();
-        document.querySelectorAll("[data-miss-key]").forEach((card) => {
-          if (card.dataset.missKey === activeReview.key) card.remove();
-        });
-        renderClearedMissState();
+        currentMisses = currentMisses.filter(({ attempt, question }) => missKey(attempt, question) !== activeReview.key);
+        renderMissLists("Nice work. Cleared misses will stay off this dashboard.");
       }
 
       function markReviewChoice(letter) {
@@ -1595,6 +1763,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       function openMissReview(index) {
         const review = reviewMisses[index];
         if (!review?.detail || !missReview || !missReviewBody) return;
+        closeMissModal();
         activeReview = review;
         activeReviewAnswer = "";
         if (missReviewTitle) missReviewTitle.textContent = `Question ${review.question.id}`;
@@ -1612,6 +1781,42 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         });
       }
 
+      function missCardHtml(attempt, question) {
+        const test = testsBySlug.get(attempt.testSlug);
+        const detail = getQuestionDetail(attempt, question);
+        const key = missKey(attempt, question);
+        const href = withReviewParam(test?.href, question.id);
+        if (!detail) {
+          return `<article class="miss-card" data-miss-key="${escAttr(key)}">
+            <div>
+              <div class="mini-title">${esc(question.section)}</div>
+              <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
+              <p class="miss-question">Open the test to review this legacy question.</p>
+            </div>
+            <a class="miss-link" href="${escAttr(href)}">Open Review</a>
+          </article>`;
+        }
+
+        const reviewIndex = reviewMisses.push({ attempt, question, detail, key, href }) - 1;
+        return `<button class="miss-card" type="button" data-miss-key="${escAttr(key)}" data-miss-open="${reviewIndex}">
+          <div>
+            <div class="mini-title">${esc(question.section || detail.section)}</div>
+            <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
+            <p class="miss-question">${esc(detail.prompt)}</p>
+          </div>
+          <span class="miss-open">Try Again</span>
+        </button>`;
+      }
+
+      function renderMissLists(emptyText = "Missed question tags will appear after saved attempts.") {
+        reviewMisses = [];
+        const allItems = currentMisses.map(({ attempt, question }) => missCardHtml(attempt, question));
+        renderList("recent-misses", allItems.slice(0, recentMissLimit), emptyText);
+        renderList("all-recent-misses", allItems, emptyText);
+        updateMissSummary();
+        bindMissReviewHandlers();
+      }
+
       function renderMisses(attempts) {
         const misses = [];
         sortRecent(attempts).forEach((attempt) => {
@@ -1622,35 +1827,8 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           });
         });
 
-        reviewMisses = [];
-        const items = misses.slice(0, 8).map(({ attempt, question }) => {
-          const test = testsBySlug.get(attempt.testSlug);
-          const detail = getQuestionDetail(attempt, question);
-          const key = missKey(attempt, question);
-          const href = withReviewParam(test?.href, question.id);
-          if (!detail) {
-            return `<article class="miss-card" data-miss-key="${esc(key)}">
-              <div>
-                <div class="mini-title">${esc(question.section)}</div>
-                <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
-              </div>
-              <p class="miss-question">Open the test to review this legacy question.</p>
-              <a class="miss-link" href="${esc(href)}">Open Review</a>
-            </article>`;
-          }
-
-          const reviewIndex = reviewMisses.push({ attempt, question, detail, key, href }) - 1;
-          return `<button class="miss-card" type="button" data-miss-key="${escAttr(key)}" data-miss-open="${reviewIndex}">
-            <div>
-              <div class="mini-title">${esc(question.section || detail.section)}</div>
-              <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
-              <p class="miss-question">${esc(detail.prompt)}</p>
-            </div>
-            <span class="miss-open">Try Again</span>
-          </button>`;
-        });
-        renderList("recent-misses", items, "Missed question tags will appear after saved attempts.");
-        bindMissReviewHandlers();
+        currentMisses = misses;
+        renderMissLists();
       }
 
       function nextInSeries(test, attempted) {
@@ -1739,20 +1917,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         const typeStats = aggregateObjectStats(attempts, "typeStats");
         const mediaStats = aggregateObjectStats(attempts, "mediaStats");
         const mastered = sections.filter((item) => item.total >= 8 && item.percent >= 85);
-        const strictWeak = sections.filter((item) => item.total >= 5 && item.percent < 70);
-        const focus = sections
-          .filter((item) => item.total > item.correct)
-          .sort((a, b) => {
-            const misses = (b.total - b.correct) - (a.total - a.correct);
-            return misses || a.percent - b.percent || b.total - a.total;
-          });
-        const focusByKey = new Map([...strictWeak, ...focus].map((item) => [item.key, item]));
-        const weak = [...focusByKey.values()].sort((a, b) => {
-          const misses = (b.total - b.correct) - (a.total - a.correct);
-          return misses || a.percent - b.percent || b.total - a.total;
-        });
+        const weak = sections
+          .filter((item) => item.total >= 5 && item.percent < 70)
+          .sort((a, b) => a.percent === b.percent ? b.total - a.total : a.percent - b.percent);
         const weakUnits = units
-          .filter((unit) => unit.total > unit.correct)
+          .filter((unit) => unit.percent < 70)
           .map((unit) => unit.key);
 
         document.getElementById("stat-attempts").textContent = String(totalAttempts);
@@ -1786,7 +1955,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         renderList(
           "weak-list",
           weak.slice(0, 8).map((item) => metricCard(item.key, `${item.correct}/${item.total} correct`, item.percent, "bad")),
-          "No focus areas yet. More saved attempts will make this sharper.",
+          "No areas are below 70% right now.",
         );
         renderRecentAttempts(attemptsSorted);
         renderMisses(attemptsSorted);
@@ -1844,6 +2013,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       });
 
       document.querySelector("[data-miss-return]")?.addEventListener("click", closeMissReview);
+      document.querySelector("[data-miss-modal-close]")?.addEventListener("click", closeMissModal);
+      seeAllMissesButton?.addEventListener("click", openMissModal);
+      missModal?.addEventListener("click", (event) => {
+        if (event.target === missModal) closeMissModal();
+      });
       missReviewBody?.addEventListener("click", (event) => {
         const target = event.target instanceof Element ? event.target : null;
         if (!target) return;
@@ -1877,7 +2051,12 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         }
       });
       window.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && missReview && !missReview.hidden) closeMissReview();
+        if (event.key !== "Escape") return;
+        if (missReview && !missReview.hidden) {
+          closeMissReview();
+          return;
+        }
+        if (missModal && !missModal.hidden) closeMissModal();
       });
     </script>
   </body>

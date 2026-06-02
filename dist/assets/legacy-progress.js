@@ -7,7 +7,12 @@ const state = {
   pendingAttempt: null,
   savedAttemptId: null,
   saveInFlight: false,
+  idleTimer: null,
+  idleSignOutInFlight: false,
+  lastActivityAt: Date.now(),
 };
+const IDLE_SIGN_OUT_MS = 10 * 60 * 1000;
+const ACTIVITY_EVENTS = ["click", "keydown", "pointerdown", "touchstart", "scroll", "mousemove"];
 
 function configReady(config) {
   return Boolean(config?.apiKey && config?.authDomain && config?.projectId && config?.appId);
@@ -58,6 +63,42 @@ function basePath() {
 
 function getAnalyticsHref() {
   return `${basePath()}analytics/`;
+}
+
+function clearIdleTimer() {
+  if (state.idleTimer) window.clearTimeout(state.idleTimer);
+  state.idleTimer = null;
+}
+
+function scheduleIdleSignOut() {
+  clearIdleTimer();
+  if (!state.user) return;
+  const delay = Math.max(0, IDLE_SIGN_OUT_MS - (Date.now() - state.lastActivityAt));
+  state.idleTimer = window.setTimeout(handleIdleSignOut, delay);
+}
+
+async function handleIdleSignOut() {
+  if (!state.user || state.idleSignOutInFlight) return;
+  if (Date.now() - state.lastActivityAt < IDLE_SIGN_OUT_MS) {
+    scheduleIdleSignOut();
+    return;
+  }
+  state.idleSignOutInFlight = true;
+  try {
+    await signOutUser();
+  } catch (error) {
+    console.warn("Unable to auto sign out after inactivity", error);
+  } finally {
+    state.idleSignOutInFlight = false;
+    clearIdleTimer();
+  }
+}
+
+function markActivity() {
+  const now = Date.now();
+  if (now - state.lastActivityAt < 1000) return;
+  state.lastActivityAt = now;
+  if (state.user) scheduleIdleSignOut();
 }
 
 function renderNav() {
@@ -114,7 +155,7 @@ function ensureProgressCard() {
   card.className = "oa-progress-card";
   card.innerHTML = `
     <div class="oa-progress-title" data-oa-progress-title>Save your progress</div>
-    <p class="oa-progress-copy" data-oa-progress-copy>Sign in with Google to keep this attempt in your analytics dashboard.</p>
+    <p class="oa-progress-copy" data-oa-progress-copy>Sign in with Google now and this completed attempt will be saved to your analytics dashboard.</p>
     <div class="oa-progress-actions">
       <button type="button" data-oa-progress-sign-in>Sign in with Google</button>
       <a href="${getAnalyticsHref()}" data-oa-progress-link hidden>View analytics</a>
@@ -147,8 +188,8 @@ function setProgressCard(mode, detail) {
     return;
   }
   if (mode === "signed-out") {
-    title.textContent = "Save your progress";
-    copy.textContent = "Sign in with Google to keep this attempt in your analytics dashboard.";
+    title.textContent = "Save this attempt";
+    copy.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
     signIn.hidden = false;
     return;
   }
@@ -159,7 +200,7 @@ function setProgressCard(mode, detail) {
   }
   if (mode === "saved") {
     title.textContent = "Progress saved";
-    copy.textContent = "This attempt is now included in your mastery and improvement analytics.";
+    copy.textContent = "This attempt is now included in your analytics dashboard.";
     link.hidden = false;
     return;
   }
@@ -193,6 +234,7 @@ async function loadFirebase() {
     state.user = user;
     if (user) ensureUserProfile(user).catch((error) => console.warn("Unable to update profile", error));
     updateNav();
+    scheduleIdleSignOut();
     if (state.pendingAttempt && !state.savedAttemptId) savePendingAttempt();
   });
 }
@@ -281,6 +323,13 @@ document.addEventListener("click", (event) => {
     event.preventDefault();
     signOutUser();
   }
+});
+
+ACTIVITY_EVENTS.forEach((eventName) => {
+  window.addEventListener(eventName, markActivity, { passive: true });
+});
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) markActivity();
 });
 
 window.orangeAtlasLegacyTrack = (payload) => {
