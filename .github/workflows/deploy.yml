@@ -19,6 +19,8 @@ jobs:
 
       - name: Install, build, and upload your site
         uses: withastro/action@v6
+        env:
+          PUBLIC_CHAT_API_URL: https://my-api-proxy.orange-atlas-ai-helper.workers.dev
 
   deploy:
     needs: build

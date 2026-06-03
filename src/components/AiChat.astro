@@ -4,8 +4,8 @@ interface Props {
 }
 
 const { basePath } = Astro.props;
-const firebaseChatUrl = "https://orange-atlas.web.app/api/chat";
-const chatUrl = import.meta.env.PUBLIC_CHAT_API_URL ?? (basePath === "/" ? `${basePath}api/chat` : firebaseChatUrl);
+const workerChatUrl = "https://my-api-proxy.orange-atlas-ai-helper.workers.dev";
+const chatUrl = import.meta.env.PUBLIC_CHAT_API_URL ?? workerChatUrl;
 const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 ---
 
@@ -387,7 +387,7 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
       }
 
       function backendMissingMessage() {
-        return "The tutor backend is not reachable yet. Deploy the Cloudflare Worker proxy, set PUBLIC_CHAT_API_URL, then rebuild and deploy the site.";
+        return "The tutor backend is not reachable yet. Check the Cloudflare Worker proxy deployment, then rebuild and redeploy the site.";
       }
 
       function chatErrorMessage(error: unknown) {

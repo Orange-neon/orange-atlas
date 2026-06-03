@@ -335,10 +335,10 @@ const analyticsHref = `${basePath}analytics/`;
       .res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:"IBM Plex Mono",monospace}
 
       #res-body{max-width:1120px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
-      .review-shell{display:grid;grid-template-columns:minmax(0,800px) 11.5rem;gap:1rem;align-items:start}
-      #res-list{grid-column:1;min-width:0}
+      .review-shell{display:grid;grid-template-columns:11.5rem minmax(0,800px);gap:1rem;align-items:start}
+      #res-list{grid-column:2;min-width:0}
       .review-rail{
-        grid-column:2;
+        grid-column:1;
         position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto;
         background:rgba(15,15,24,.92);border:1px solid rgba(255,255,255,.09);
         border-radius:.6rem;padding:.8rem;box-shadow:0 18px 44px rgba(0,0,0,.24);
@@ -456,11 +456,30 @@ const analyticsHref = `${basePath}analytics/`;
 
       @media(max-width:900px){
         #res-body{max-width:800px}
-        .review-shell{display:block}
-        #res-list,.review-rail{grid-column:auto}
-        .review-rail{top:0;margin-bottom:1rem;max-height:none;overflow:visible;z-index:8}
-        .review-rail-grid{display:flex;overflow-x:auto;padding-bottom:.2rem}
-        .review-jump{min-width:2.1rem}
+        .review-shell{grid-template-columns:5rem minmax(0,1fr);gap:.65rem}
+        #res-list{grid-column:2}
+        .review-rail{
+          grid-column:1;top:.75rem;max-height:calc(100vh - 1.5rem);
+          padding:.55rem;z-index:8;
+        }
+        .review-rail-title{font-size:.48rem;letter-spacing:.12em}
+        .review-rail-summary{font-size:.75rem;margin-bottom:.55rem}
+        .review-rail-grid{grid-template-columns:1fr;gap:.28rem}
+        .review-jump{height:1.75rem;min-width:0;font-size:.68rem}
+      }
+
+      @media(max-width:540px){
+        #res-body{padding:1.25rem .75rem 5rem}
+        .review-shell{grid-template-columns:3.55rem minmax(0,1fr);gap:.5rem}
+        .review-rail{padding:.4rem;top:.55rem}
+        .review-rail-title{display:none}
+        .review-rail-summary{font-size:.62rem;text-align:center;margin-bottom:.42rem}
+        .res-q{padding:1.05rem .9rem}
+        .res-q-top{gap:.55rem}
+        .res-ans-row,
+        .res-mc-choices,
+        .res-exp-box{padding-left:0;margin-left:0}
+        .res-exp-btn{margin-left:0}
       }
     </style>
   </head>
