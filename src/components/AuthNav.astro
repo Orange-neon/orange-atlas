@@ -1,4 +1,6 @@
 ---
+import AiChat from "./AiChat.astro";
+
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
@@ -17,6 +19,8 @@ const analyticsHref = `${basePath}analytics/`;
   </button>
   <span class="oa-auth-nav__setup" data-auth-setup hidden>Firebase setup needed</span>
 </div>
+
+<AiChat basePath={basePath} />
 
 <style>
   .oa-auth-nav {
@@ -138,6 +142,7 @@ const analyticsHref = `${basePath}analytics/`;
 <script>
   import {
     completeRedirectSignIn,
+    getCurrentIdToken,
     getCurrentUser,
     isFirebaseConfigured,
     loadUserAttempts,
@@ -254,6 +259,7 @@ const analyticsHref = `${basePath}analytics/`;
     signInWithGoogle,
     signOutGoogle,
     saveAttempt,
+    getCurrentIdToken,
     loadUserAttempts,
   };
 

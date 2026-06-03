@@ -112,6 +112,11 @@ export function getCurrentUser() {
   return getFirebaseServices()?.auth.currentUser ?? null;
 }
 
+export async function getCurrentIdToken(forceRefresh = false) {
+  const user = getCurrentUser();
+  return user ? user.getIdToken(forceRefresh) : null;
+}
+
 export async function ensureUserProfile(user: User) {
   const active = getFirebaseServices();
   if (!active) return;

@@ -1,4 +1,8 @@
 {
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs20"
+  },
   "firestore": {
     "rules": "firestore.rules"
   },
@@ -22,6 +26,15 @@
         "regex": "/orange-atlas/(.*)",
         "destination": "/:1",
         "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/chat",
+        "function": {
+          "functionId": "chat",
+          "region": "us-central1"
+        }
       }
     ]
   }

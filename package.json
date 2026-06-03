@@ -8,7 +8,8 @@
     "build:firebase": "ASTRO_SITE=https://orange-atlas.web.app ASTRO_BASE=/ astro build",
     "preview": "astro preview",
     "predeploy": "npm run build",
-    "deploy:firebase": "firebase deploy --only hosting",
+    "deploy:firebase": "firebase deploy --only hosting,functions",
+    "deploy:hosting": "firebase deploy --only hosting",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

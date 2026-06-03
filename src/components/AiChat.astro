@@ -1,0 +1,537 @@
+---
+interface Props {
+  basePath: string;
+}
+
+const { basePath } = Astro.props;
+const chatUrl = `${basePath}api/chat`;
+const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
+---
+
+<div class="oa-ai-chat" data-ai-chat data-chat-url={chatUrl} data-base-root={baseRoot}>
+  <button
+    class="oa-ai-chat__launcher"
+    type="button"
+    aria-expanded="false"
+    aria-controls="oa-ai-chat-panel"
+    data-chat-toggle
+  >
+    <span class="oa-ai-chat__spark">AI</span>
+    <span>Spanish Tutor</span>
+  </button>
+
+  <section class="oa-ai-chat__panel" id="oa-ai-chat-panel" aria-label="Orange Atlas Spanish tutor" data-chat-panel hidden>
+    <header class="oa-ai-chat__head">
+      <div>
+        <div class="oa-ai-chat__title">Atlas Tutor</div>
+        <div class="oa-ai-chat__sub" data-chat-subtitle>Sign in to ask Spanish 2 questions.</div>
+      </div>
+      <div class="oa-ai-chat__head-actions">
+        <button class="oa-ai-chat__ghost" type="button" data-chat-reset>Reset</button>
+        <button class="oa-ai-chat__close" type="button" aria-label="Close tutor" data-chat-close>Close</button>
+      </div>
+    </header>
+
+    <div class="oa-ai-chat__auth" data-chat-auth>
+      <span data-chat-auth-copy>Sign in with Google to use the tutor.</span>
+      <button type="button" data-auth-action="sign-in">Sign in</button>
+    </div>
+
+    <div class="oa-ai-chat__messages" aria-live="polite" data-chat-messages></div>
+    <div class="oa-ai-chat__status" data-chat-status hidden></div>
+
+    <form class="oa-ai-chat__form" data-chat-form>
+      <label class="oa-ai-chat__label" for="oa-ai-chat-input">Ask a Spanish 2 question</label>
+      <textarea
+        id="oa-ai-chat-input"
+        data-chat-input
+        rows="2"
+        maxlength="1200"
+        placeholder="Ask about relative pronouns, preterite vs. imperfect, commands..."
+      ></textarea>
+      <button type="submit" data-chat-send>Send</button>
+    </form>
+  </section>
+</div>
+
+<style>
+  .oa-ai-chat {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1900;
+    font-family: Inter, Manrope, system-ui, sans-serif;
+    color: #f8efe8;
+  }
+
+  .oa-ai-chat[hidden],
+  body.oa-exam-running .oa-ai-chat {
+    display: none;
+  }
+
+  .oa-ai-chat__launcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 3rem;
+    border: 1px solid rgba(255, 116, 51, 0.42);
+    border-radius: 999px;
+    padding: 0 1rem 0 0.55rem;
+    color: #111;
+    background: linear-gradient(135deg, #ff7433, #ffbd78);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 900;
+  }
+
+  .oa-ai-chat__spark {
+    display: grid;
+    place-items: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 50%;
+    color: #fff7ed;
+    background: rgba(8, 8, 12, 0.82);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+  }
+
+  .oa-ai-chat__panel {
+    position: absolute;
+    right: 0;
+    bottom: 3.7rem;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+    width: min(24rem, calc(100vw - 2rem));
+    height: min(38rem, calc(100vh - 7rem));
+    border: 1px solid rgba(255, 116, 51, 0.26);
+    border-radius: 0.65rem;
+    background: linear-gradient(145deg, rgba(18, 18, 24, 0.98), rgba(7, 7, 10, 0.98));
+    box-shadow: 0 28px 74px rgba(0, 0, 0, 0.52);
+    overflow: hidden;
+  }
+
+  .oa-ai-chat__panel[hidden] {
+    display: none;
+  }
+
+  .oa-ai-chat__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .oa-ai-chat__title {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .oa-ai-chat__sub {
+    margin-top: 0.18rem;
+    color: #a8a09a;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .oa-ai-chat__head-actions {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .oa-ai-chat__ghost,
+  .oa-ai-chat__close,
+  .oa-ai-chat__auth button,
+  .oa-ai-chat__form button {
+    min-height: 2rem;
+    border-radius: 0.38rem;
+    padding: 0 0.68rem;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 850;
+  }
+
+  .oa-ai-chat__ghost,
+  .oa-ai-chat__close {
+    color: #f8efe8;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .oa-ai-chat__auth {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 0.9rem;
+    color: #ffd1a6;
+    background: rgba(255, 116, 51, 0.08);
+    border-bottom: 1px solid rgba(255, 116, 51, 0.14);
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .oa-ai-chat__auth[hidden] {
+    display: none;
+  }
+
+  .oa-ai-chat__auth button,
+  .oa-ai-chat__form button {
+    border: 0;
+    color: #111;
+    background: linear-gradient(135deg, #ff7433, #ffbd78);
+  }
+
+  .oa-ai-chat__messages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    min-height: 0;
+    overflow: auto;
+    padding: 0.9rem;
+  }
+
+  .oa-ai-chat__empty {
+    margin: auto 0;
+    color: #a8a09a;
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  .oa-ai-chat__msg {
+    max-width: 88%;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 0.55rem;
+    padding: 0.65rem 0.72rem;
+    color: #e8e2da;
+    background: rgba(255, 255, 255, 0.055);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+
+  .oa-ai-chat__msg.user {
+    align-self: flex-end;
+    color: #111;
+    border-color: transparent;
+    background: linear-gradient(135deg, #ff7433, #ffbd78);
+  }
+
+  .oa-ai-chat__msg.assistant {
+    align-self: flex-start;
+  }
+
+  .oa-ai-chat__status {
+    margin: 0 0.9rem 0.75rem;
+    border: 1px solid rgba(255, 189, 120, 0.24);
+    border-radius: 0.45rem;
+    padding: 0.6rem 0.7rem;
+    color: #ffd1a6;
+    background: rgba(255, 189, 120, 0.08);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .oa-ai-chat__status.error {
+    color: #ffb4b4;
+    border-color: rgba(255, 89, 89, 0.28);
+    background: rgba(255, 89, 89, 0.08);
+  }
+
+  .oa-ai-chat__status[hidden] {
+    display: none;
+  }
+
+  .oa-ai-chat__form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.55rem;
+    padding: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .oa-ai-chat__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .oa-ai-chat__form textarea {
+    min-height: 2.65rem;
+    max-height: 7rem;
+    resize: vertical;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 0.45rem;
+    padding: 0.62rem 0.7rem;
+    color: #f8efe8;
+    background: rgba(255, 255, 255, 0.06);
+    font: inherit;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .oa-ai-chat__form textarea:focus,
+  .oa-ai-chat__form button:focus-visible,
+  .oa-ai-chat__launcher:focus-visible,
+  .oa-ai-chat__ghost:focus-visible,
+  .oa-ai-chat__close:focus-visible {
+    outline: 2px solid rgba(255, 189, 120, 0.72);
+    outline-offset: 2px;
+  }
+
+  .oa-ai-chat__form textarea:disabled,
+  .oa-ai-chat__form button:disabled {
+    opacity: 0.58;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 620px) {
+    .oa-ai-chat {
+      right: 0.75rem;
+      bottom: 0.75rem;
+      left: 0.75rem;
+    }
+
+    .oa-ai-chat__launcher {
+      margin-left: auto;
+    }
+
+    .oa-ai-chat__panel {
+      right: 0;
+      left: 0;
+      width: 100%;
+      height: min(36rem, calc(100vh - 6.2rem));
+    }
+
+    .oa-ai-chat__head,
+    .oa-ai-chat__auth {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  type ChatRole = "user" | "assistant";
+  type ChatMessage = { role: ChatRole; content: string };
+  type ChatUser = { uid?: string; displayName?: string | null; email?: string | null; photoURL?: string | null };
+  type OrangeAtlasProgress = {
+    isFirebaseConfigured?: () => boolean;
+    getCurrentUser?: () => ChatUser | null;
+    getCurrentIdToken?: () => Promise<string | null>;
+  };
+  type ChatWindow = typeof window & {
+    orangeAtlasProgress?: OrangeAtlasProgress;
+  };
+
+  const chatRoot = document.querySelector<HTMLElement>("[data-ai-chat]");
+  const chatWindow = window as ChatWindow;
+
+  if (chatRoot) {
+      const panel = chatRoot.querySelector<HTMLElement>("[data-chat-panel]");
+      const toggle = chatRoot.querySelector<HTMLElement>("[data-chat-toggle]");
+      const close = chatRoot.querySelector<HTMLElement>("[data-chat-close]");
+      const reset = chatRoot.querySelector<HTMLElement>("[data-chat-reset]");
+      const auth = chatRoot.querySelector<HTMLElement>("[data-chat-auth]");
+      const messagesEl = chatRoot.querySelector<HTMLElement>("[data-chat-messages]");
+      const statusEl = chatRoot.querySelector<HTMLElement>("[data-chat-status]");
+      const subtitle = chatRoot.querySelector<HTMLElement>("[data-chat-subtitle]");
+      const form = chatRoot.querySelector<HTMLFormElement>("[data-chat-form]");
+      const input = chatRoot.querySelector<HTMLTextAreaElement>("[data-chat-input]");
+      const send = chatRoot.querySelector<HTMLButtonElement>("[data-chat-send]");
+      const chatUrl = chatRoot.dataset.chatUrl || "/api/chat";
+
+      let activeUser: ChatUser | null = null;
+      let configured = false;
+      let messages: ChatMessage[] = [];
+      let loading = false;
+
+      function progressApi() {
+        return chatWindow.orangeAtlasProgress || null;
+      }
+
+      function storageKey() {
+        return `orangeAtlasAiChat:v1:${activeUser?.uid || "signed-out"}`;
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function setStatus(message = "", kind = "") {
+        if (!statusEl) return;
+        statusEl.hidden = !message;
+        statusEl.textContent = message;
+        statusEl.classList.toggle("error", kind === "error");
+      }
+
+      function loadMessages() {
+        try {
+          const parsed = JSON.parse(sessionStorage.getItem(storageKey()) || "[]");
+          messages = Array.isArray(parsed)
+            ? parsed.flatMap((message): ChatMessage[] => {
+              const role = message?.role === "user" || message?.role === "assistant" ? message.role : null;
+              const content = typeof message?.content === "string" ? message.content.trim() : "";
+              return role && content ? [{ role, content }] : [];
+            }).slice(-12)
+            : [];
+        } catch {
+          messages = [];
+        }
+      }
+
+      function saveMessages() {
+        try {
+          sessionStorage.setItem(storageKey(), JSON.stringify(messages.slice(-12)));
+        } catch {
+          // Session storage is a convenience only; the tutor still works without it.
+        }
+      }
+
+      function renderMessages() {
+        if (!messagesEl) return;
+        if (!messages.length) {
+          messagesEl.innerHTML = `<p class="oa-ai-chat__empty">Ask for help with a Spanish 2 concept, like when to use <strong>lo que</strong>, how commands work, or why a sentence needs preterite instead of imperfect.</p>`;
+        } else {
+          messagesEl.innerHTML = messages.map((message) =>
+            `<div class="oa-ai-chat__msg ${message.role}">${escapeHtml(message.content)}</div>`,
+          ).join("");
+        }
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      function updateUi() {
+        const signedIn = Boolean(activeUser);
+        if (auth) auth.hidden = configured && signedIn;
+        if (subtitle) {
+          subtitle.textContent = !configured
+            ? "Firebase setup is needed before the tutor can sign users in."
+            : signedIn
+              ? "Ask for hints, grammar help, and study guidance."
+              : "Sign in to ask Spanish 2 questions.";
+        }
+        if (input) input.disabled = loading || !configured || !signedIn;
+        if (send) send.disabled = loading || !configured || !signedIn;
+      }
+
+      function setOpen(isOpen) {
+        if (!panel || !toggle) return;
+        panel.hidden = !isOpen;
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        if (isOpen) setTimeout(() => input?.focus(), 0);
+      }
+
+      function syncAuth(detail: { configured?: boolean; user?: ChatUser | null } | null = null) {
+        const api = progressApi();
+        configured = Boolean(detail?.configured ?? api?.isFirebaseConfigured?.());
+        activeUser = detail?.user || api?.getCurrentUser?.() || null;
+        loadMessages();
+        renderMessages();
+        updateUi();
+      }
+
+      async function sendMessage(event: SubmitEvent) {
+        event.preventDefault();
+        const content = input?.value.trim() || "";
+        if (!content || loading) return;
+
+        const api = progressApi();
+        if (!configured || !activeUser || !api?.getCurrentIdToken) {
+          setStatus("Sign in with Google to use the tutor.", "error");
+          updateUi();
+          return;
+        }
+
+        loading = true;
+        setStatus("Atlas is thinking...");
+        messages = [...messages, { role: "user", content }].slice(-12);
+        if (input) input.value = "";
+        renderMessages();
+        saveMessages();
+        updateUi();
+
+        try {
+          const token = await api.getCurrentIdToken();
+          if (!token) throw new Error("Sign in again to use the tutor.");
+
+          const response = await fetch(chatUrl, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              messages,
+              page: {
+                path: window.location.pathname,
+                title: document.title,
+              },
+            }),
+          });
+
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(payload?.error || "The tutor is unavailable right now.");
+          }
+
+          messages = [...messages, { role: "assistant", content: payload.reply }].slice(-12);
+          saveMessages();
+          renderMessages();
+          setStatus("");
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "The tutor is unavailable right now.";
+          setStatus(message, "error");
+        } finally {
+          loading = false;
+          updateUi();
+        }
+      }
+
+      toggle?.addEventListener("click", () => setOpen(panel?.hidden));
+      close?.addEventListener("click", () => setOpen(false));
+      reset?.addEventListener("click", () => {
+        messages = [];
+        saveMessages();
+        renderMessages();
+        setStatus("");
+        input?.focus();
+      });
+      form?.addEventListener("submit", sendMessage);
+      input?.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          form?.requestSubmit();
+        }
+      });
+
+      window.addEventListener("orange-atlas-auth-change", (event) => {
+        syncAuth((event as CustomEvent).detail);
+      });
+      window.addEventListener("orange-atlas-auth-timeout", () => {
+        activeUser = null;
+        syncAuth({ configured, user: null });
+        setStatus("You were signed out after inactivity. Sign in again to keep chatting.", "error");
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && panel && !panel.hidden) setOpen(false);
+      });
+
+      setTimeout(() => syncAuth(), 0);
+      renderMessages();
+      updateUi();
+  }
+</script>
