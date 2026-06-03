@@ -3,29 +3,71 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page Not Found - 404</title>
+    <title>Page Not Found - Orange Atlas</title>
     
+    <link rel="icon" href="assets/orangeAtlas.png" type="image/png">
     <link rel="stylesheet" href="assets/index-css.css">
   </head>
-  <body class="bg-background-dark text-foreground min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-gradient-hero">
+  <body class="bg-background-dark text-foreground min-h-screen flex flex-col font-sans">
+    
+    <div class="relative min-h-screen flex flex-col overflow-hidden bg-gradient-hero justify-center items-center py-24 md:py-32">
+        <div class="absolute inset-0 bg-gradient-radial opacity-50 z-0"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl animate-pulse z-0"></div>
 
-    <div class="w-full max-w-2xl bg-surface/50 border border-border-subtle rounded-lg p-8 md:p-12 text-center backdrop-blur-sm glow-subtle transition-all">
-      
-      <h2 class="text-gradient text-4xl md:text-6xl font-bold mb-4 animate-glow">404</h2>
-      <h1 class="text-2xl md:text-3xl font-semibold mb-4">Page Not Found</h1>
-      
-      <p class="text-foreground-muted text-base md:text-lg mb-8 leading-relaxed">
-        The specified file was not found on this website. Please check the URL for mistakes and try again.
-      </p>
+        <div class="container relative z-10 px-4">
+            <div class="mx-auto max-w-4xl text-center space-y-8">
+                
+                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full border-2 border-primary/30 bg-surface/30 backdrop-blur-sm glow-subtle mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary animate-pulse">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        <path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>
+                    </svg>
+                    <span class="text-lg font-bold text-gradient">System Error</span>
+                </div>
 
-      <div class="mb-16">
-        <a href="/" class="inline-flex items-center justify-center bg-primary hover:bg-primary-glow text-background-dark font-bold px-8 py-3 rounded-md transition-all hover:glow-primary-intense focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background">
-          Return to Homepage
-        </a>
-      </div>
+                <h1 class="text-gradient animate-glow">404</h1>
+                <h2>Lost in the Atlas</h2>
+                <p class="text-xl md:text-2xl text-foreground-muted max-w-3xl mx-auto leading-relaxed mb-16">
+                    The specified page was not found. Please check the URL for mistakes or navigate back to the hub to continue your academic journey.
+                </p>
 
-      <hr class="border-border-subtle mb-8">
-      
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 mb-16">
+                    <a href="/" onclick="returnHome(event)" class="inline-flex items-center justify-center whitespace-nowrap rounded-lg ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-primary text-background-dark hover:bg-primary-glow glow-primary-intense animate-glow text-lg font-bold px-8 py-6">
+                        Return to Homepage
+                    </a>
+                </div>
+
+                <script>
+                    function returnHome(event) {
+                        event.preventDefault(); // Stop the default "/" link behavior
+                        
+                        // Check if we are hosted on GitHub Pages
+                        if (window.location.hostname.includes('github.io')) {
+                            window.location.href = '/orange-atlas/';
+                        } else {
+                            // Standard routing for Firebase, localhost, or custom domains
+                            window.location.href = '/';
+                        }
+                    }
+                </script>
+                
+                <div class="pt-12 max-w-2xl mx-auto">
+                    <div class="rounded-lg border-2 border-border bg-surface/50 backdrop-blur-sm p-6 text-left hover:border-primary transition-all hover:glow-primary">
+                        <h3 class="text-lg font-bold text-foreground mb-4">Why am I seeing this?</h3>
+                        <p class="text-sm text-foreground-muted leading-relaxed">
+                            This page was generated by the Firebase Command-Line Interface. To modify it, edit the 
+                            <code class="text-primary bg-background-dark border border-border-subtle rounded-md" style="padding: 2px 6px;">404.html</code> 
+                            file in your project's configured 
+                            <code class="text-primary bg-background-dark border border-border-subtle rounded-md" style="padding: 2px 6px;">public</code> 
+                            directory.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background-dark to-transparent z-0"></div>
     </div>
   </body>
 </html>
