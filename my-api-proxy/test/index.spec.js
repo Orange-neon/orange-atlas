@@ -1,6 +1,6 @@
 import { env, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
 import { describe, it, expect } from "vitest";
-import worker from "../src/index.js";
+import worker, { upstreamErrorMessage } from "../src/index.js";
 
 const ALLOWED_ORIGIN = "https://orange-atlas.web.app";
 
@@ -82,5 +82,15 @@ describe("Orange Atlas API proxy", () => {
 
     expect(response.status).toBe(401);
     expect(payload.error).toBe("Sign in again to use the tutor.");
+  });
+
+  it("turns upstream auth errors into an actionable key message", () => {
+    expect(upstreamErrorMessage(401, { error: { message: "No auth credentials found" } }))
+      .toContain("OPENROUTER_API_KEY");
+  });
+
+  it("turns upstream billing errors into an actionable credits message", () => {
+    expect(upstreamErrorMessage(402, { error: { message: "Insufficient credits" } }))
+      .toContain("credits");
   });
 });

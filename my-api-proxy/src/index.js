@@ -1,7 +1,7 @@
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
 const FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
 const DEFAULT_FIREBASE_PROJECT_ID = "orange-atlas";
-const DEFAULT_MODEL = "openai/gpt-5.2";
+const DEFAULT_MODEL = "openai/gpt-5.2-chat";
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 1200;
 const MAX_TOTAL_CHARS = 4000;
@@ -225,6 +225,32 @@ async function readJson(request) {
   }
 }
 
+export function upstreamErrorMessage(status, payload = {}) {
+  const error = payload?.error || {};
+  const detail = cleanText(
+    typeof error === "string" ? error : error.message || payload?.message,
+    400,
+  ).toLowerCase();
+
+  if (status === 401 || status === 403) {
+    return "The tutor backend's OpenRouter API key is not being accepted. Set OPENROUTER_API_KEY in Cloudflare and redeploy the Worker.";
+  }
+
+  if (status === 402 || detail.includes("credit") || detail.includes("billing")) {
+    return "The tutor backend's OpenRouter account needs credits or billing enabled.";
+  }
+
+  if (status === 404 || detail.includes("model") || detail.includes("not found")) {
+    return "The configured tutor model is not available. Update OPENROUTER_MODEL in the Worker config and redeploy.";
+  }
+
+  if (status === 429 || detail.includes("rate limit") || detail.includes("quota")) {
+    return "The tutor hit an AI provider rate limit. Try again in a few minutes.";
+  }
+
+  return "The tutor is unavailable right now.";
+}
+
 async function handleChat(request, env) {
   await verifyFirebaseToken(request, env);
 
@@ -260,7 +286,7 @@ async function handleChat(request, env) {
 
   if (!upstreamResponse.ok) {
     console.error("OpenRouter error", upstreamResponse.status, payload?.error || payload);
-    throw new HttpError(502, "The tutor is unavailable right now.");
+    throw new HttpError(502, upstreamErrorMessage(upstreamResponse.status, payload));
   }
 
   const reply = cleanText(payload?.choices?.[0]?.message?.content, 5000);

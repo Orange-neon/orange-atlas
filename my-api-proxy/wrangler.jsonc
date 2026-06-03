@@ -16,7 +16,7 @@
 	],
 	"vars": {
 		"FIREBASE_PROJECT_ID": "orange-atlas",
-		"OPENROUTER_MODEL": "openai/gpt-5.2"
+		"OPENROUTER_MODEL": "openai/gpt-5.2-chat"
 	}
 	/**
 	 * Smart Placement

@@ -18,6 +18,8 @@ Store the OpenRouter key as a Cloudflare secret:
 npx wrangler secret put OPENROUTER_API_KEY
 ```
 
+The Worker still accepts a legacy `AI_API_KEY` secret, but `OPENROUTER_API_KEY` is the preferred name.
+
 Run the proxy locally:
 
 ```sh
