@@ -126,7 +126,7 @@ const analyticsHref = `${basePath}analytics/`;
         --border:rgba(255,255,255,0.07);
         --text:#ccccd8;--dim:#3e3e52;
         --accent:#a78bfa;--accentd:#7c3aed;
-        --green:#34d399;--red:#f87171;
+        --green:#34d399;--red:#ff3b30;
         --warn:#fb923c;
         --teal:#22d3ee;
       }
@@ -334,20 +334,51 @@ const analyticsHref = `${basePath}analytics/`;
       .res-msg{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:.25rem}
       .res-time{font-size:.75rem;color:var(--dim);margin-top:.4rem;font-family:"IBM Plex Mono",monospace}
 
-      #res-body{max-width:800px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
-      .res-q{background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;margin-bottom:.8rem;border:1px solid var(--border)}
+      #res-body{max-width:1120px;margin:0 auto;padding:2rem 1.5rem 6rem;width:100%}
+      .review-shell{display:grid;grid-template-columns:minmax(0,800px) 11.5rem;gap:1rem;align-items:start}
+      #res-list{grid-column:1;min-width:0}
+      .review-rail{
+        grid-column:2;
+        position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto;
+        background:rgba(15,15,24,.92);border:1px solid rgba(255,255,255,.09);
+        border-radius:.6rem;padding:.8rem;box-shadow:0 18px 44px rgba(0,0,0,.24);
+      }
+      .review-rail[hidden]{display:none}
+      .review-rail-title{font-size:.55rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8a8aa4;margin-bottom:.25rem}
+      .review-rail-summary{font-family:"Lora",serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.7rem}
+      .review-rail-summary strong{color:#ff3b30}
+      .review-rail-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35rem}
+      .review-jump{
+        height:2rem;border-radius:.35rem;border:1px solid rgba(255,255,255,.1);
+        color:#8f8fa5;background:rgba(255,255,255,.035);font-family:"IBM Plex Mono",monospace;
+        font-size:.72rem;font-weight:700;cursor:pointer;transition:transform .12s,border-color .12s,background .12s,color .12s,box-shadow .12s;
+      }
+      .review-jump:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.24);color:#fff}
+      .review-jump.is-ok{color:#86efac;border-color:rgba(52,211,153,.22);background:rgba(52,211,153,.08)}
+      .review-jump.is-wrong{
+        color:#fff;border-color:rgba(255,59,48,.82);
+        background:linear-gradient(135deg,#ff3b30,#d90429);
+        box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 0 22px rgba(255,59,48,.36);
+      }
+      .review-jump:focus-visible{outline:2px solid rgba(255,189,120,.72);outline-offset:2px}
+      .res-q{background:var(--s1);border-radius:.65rem;padding:1.4rem 1.6rem;margin-bottom:.8rem;border:1px solid var(--border);scroll-margin-top:1rem}
       .res-q.rq-ok{border-color:rgba(52,211,153,.25)}
-      .res-q.rq-bad{border-color:rgba(248,113,113,.25)}
+      .res-q.rq-bad{
+        border-color:rgba(255,59,48,.82);
+        background:linear-gradient(135deg,rgba(255,59,48,.13),rgba(15,15,24,.98) 42%);
+        box-shadow:0 0 0 1px rgba(255,59,48,.16) inset,0 18px 48px rgba(255,59,48,.12);
+      }
+      .res-q.rq-focus{outline:2px solid rgba(255,189,120,.75);outline-offset:3px}
       .res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
       .res-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
       .res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
-      .res-num.bad{background:rgba(248,113,113,.15);color:var(--red)}
+      .res-num.bad{background:#ff3b30;color:#fff;box-shadow:0 0 20px rgba(255,59,48,.45)}
       .res-prompt{font-family:"Lora",serif;font-size:.88rem;color:#bbb;line-height:1.75;white-space:pre-line}
       .res-ans-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.55rem;padding-left:2.1rem}
       .res-chip{font-size:.75rem;padding:.22rem .65rem;border-radius:.25rem;font-family:"IBM Plex Mono",monospace}
       .res-chip.yours{background:rgba(255,255,255,.05);color:#888}
       .res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
-      .res-chip.yours.bad{background:rgba(248,113,113,.1);color:var(--red)}
+      .res-chip.yours.bad{background:rgba(255,59,48,.16);color:#ffb4ae;border:1px solid rgba(255,59,48,.35)}
       .res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
       .res-exp-btn{
         background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
@@ -366,7 +397,10 @@ const analyticsHref = `${basePath}analytics/`;
       .res-mc-choices{display:flex;flex-direction:column;gap:.3rem;padding-left:2.1rem;margin-bottom:.5rem}
       .res-mc-choice{font-size:.82rem;padding:.5rem .75rem;border-radius:.35rem;border:1px solid transparent;color:#666}
       .res-mc-choice.rc-right{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.25);color:#86efac}
-      .res-mc-choice.rc-wrong{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.25);color:#fca5a5}
+      .res-mc-choice.rc-wrong{
+        background:rgba(255,59,48,.16);border-color:rgba(255,59,48,.7);color:#fff;
+        box-shadow:0 0 18px rgba(255,59,48,.18);
+      }
 
       .res-section-divider{
         font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
@@ -418,6 +452,15 @@ const analyticsHref = `${basePath}analytics/`;
         .info-n{font-size:1.5rem}
         .infographic-frame{height:380px}
         #audio-bar{padding:.7rem 1rem}
+      }
+
+      @media(max-width:900px){
+        #res-body{max-width:800px}
+        .review-shell{display:block}
+        #res-list,.review-rail{grid-column:auto}
+        .review-rail{top:0;margin-bottom:1rem;max-height:none;overflow:visible;z-index:8}
+        .review-rail-grid{display:flex;overflow-x:auto;padding-bottom:.2rem}
+        .review-jump{min-width:2.1rem}
       }
     </style>
   </head>
@@ -522,7 +565,10 @@ const analyticsHref = `${basePath}analytics/`;
             <a class="progress-save-link" href={analyticsHref} id="progress-analytics-link">View analytics</a>
           </div>
         </div>
-        <div id="res-list"></div>
+        <div class="review-shell">
+          <aside class="review-rail" id="review-rail" aria-label="Question review shortcuts" hidden></aside>
+          <div id="res-list"></div>
+        </div>
       </div>
     </div>
 
@@ -672,6 +718,46 @@ const analyticsHref = `${basePath}analytics/`;
           questionResults,
           source: "astro",
         };
+      }
+
+      function questionOutcome(q) {
+        const ans = ST.answers[q.id] || "";
+        const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+        return { ans, ok };
+      }
+
+      function jumpToResultQuestion(id) {
+        const target = document.getElementById(`res-q-${id}`);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.classList.add("rq-focus");
+        window.setTimeout(() => target.classList.remove("rq-focus"), 1200);
+      }
+
+      function renderReviewRail(questionStates) {
+        const rail = document.getElementById("review-rail");
+        if (!rail) return;
+
+        const missed = questionStates.filter(({ ok }) => !ok);
+        rail.hidden = false;
+        rail.innerHTML = `
+          <div class="review-rail-title">Review</div>
+          <div class="review-rail-summary">${missed.length ? `<strong>${missed.length}</strong> missed` : "All correct"}</div>
+          <div class="review-rail-grid">
+            ${questionStates.map(({ q, ok }) => `
+              <button
+                class="review-jump ${ok ? "is-ok" : "is-wrong"}"
+                type="button"
+                data-review-jump="${q.id}"
+                aria-label="Question ${q.id}: ${ok ? "correct" : "wrong"}"
+              >${q.id}</button>
+            `).join("")}
+          </div>
+        `;
+
+        rail.querySelectorAll("[data-review-jump]").forEach((button) => {
+          button.addEventListener("click", () => jumpToResultQuestion(button.getAttribute("data-review-jump")));
+        });
       }
 
       async function saveLatestAttempt() {
@@ -941,15 +1027,8 @@ const analyticsHref = `${basePath}analytics/`;
         clearInterval(ST.tick);
         const elapsed = duration * 60 - ST.secsLeft;
 
-        let score = 0;
-        QS.forEach(q => {
-          const ans = ST.answers[q.id] || "";
-          if (q.type === "mc") {
-            if (ans === q.cor) score++;
-          } else if (cf(ans, q.acc)) {
-            score++;
-          }
-        });
+        const questionStates = QS.map(q => ({ q, ...questionOutcome(q) }));
+        const score = questionStates.reduce((total, { ok }) => total + (ok ? 1 : 0), 0);
         const pct = Math.round((score / QS.length) * 100);
         latestAttemptPayload = buildAttemptPayload(score, pct, elapsed);
 
@@ -1004,15 +1083,13 @@ const analyticsHref = `${basePath}analytics/`;
 
         if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
         saveLatestAttempt();
+        renderReviewRail(questionStates);
 
         const list = document.getElementById("res-list");
         list.innerHTML = "";
 
         let lastMedia = null;
-        QS.forEach(q => {
-          const ans = ST.answers[q.id] || "";
-          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
-
+        questionStates.forEach(({ q, ans, ok }) => {
           if (q.media && q.media !== lastMedia) {
             const div = document.createElement("div");
             div.className = "res-section-divider";
@@ -1024,6 +1101,7 @@ const analyticsHref = `${basePath}analytics/`;
           }
 
           const card = document.createElement("div");
+          card.id = `res-q-${q.id}`;
           card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
           const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
 
@@ -1130,6 +1208,11 @@ const analyticsHref = `${basePath}analytics/`;
         document.getElementById("res-time").textContent = "Opened from analytics";
         document.getElementById("timeout-banner").style.display = "none";
         document.getElementById("progress-save-card").classList.remove("show");
+        const rail = document.getElementById("review-rail");
+        if (rail) {
+          rail.hidden = true;
+          rail.innerHTML = "";
+        }
         document.getElementById("res-list").innerHTML = `<div class="review-actions"><a href="${window.location.pathname}">Start full test</a></div>${renderReviewQuestion(q)}`;
         window.scrollTo(0, 0);
       }

@@ -4,7 +4,8 @@ interface Props {
 }
 
 const { basePath } = Astro.props;
-const chatUrl = `${basePath}api/chat`;
+const firebaseChatUrl = "https://orange-atlas.web.app/api/chat";
+const chatUrl = import.meta.env.PUBLIC_CHAT_API_URL ?? (basePath === "/" ? `${basePath}api/chat` : firebaseChatUrl);
 const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 ---
 
@@ -251,6 +252,7 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
   .oa-ai-chat__form {
     display: grid;
     grid-template-columns: 1fr auto;
+    align-items: end;
     gap: 0.55rem;
     padding: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -276,6 +278,12 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     font: inherit;
     font-size: 0.86rem;
     line-height: 1.45;
+  }
+
+  .oa-ai-chat__form button {
+    align-self: end;
+    height: 2.65rem;
+    white-space: nowrap;
   }
 
   .oa-ai-chat__form textarea:focus,

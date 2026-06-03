@@ -11,6 +11,13 @@ const openRouterModel = defineString("OPENROUTER_MODEL", {
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const SITE_URL = "https://orange-atlas.web.app";
+const ALLOWED_ORIGIN_PATTERNS = [
+  /^https:\/\/orange-atlas\.web\.app$/,
+  /^https:\/\/orange-atlas\.firebaseapp\.com$/,
+  /^https:\/\/orange-neon\.github\.io$/,
+  /^http:\/\/localhost:\d+$/,
+  /^http:\/\/127\.0\.0\.1:\d+$/,
+];
 const MAX_MESSAGES = 12;
 const MAX_INPUT_CHARS = 4000;
 const MAX_RESPONSE_TOKENS = 600;
@@ -30,6 +37,18 @@ function json(res, status, payload) {
     .set("Cache-Control", "no-store")
     .set("X-Content-Type-Options", "nosniff")
     .json(payload);
+}
+
+function setCorsHeaders(req, res) {
+  const origin = req.get("origin") || "";
+  res.set("Vary", "Origin");
+
+  if (origin && ALLOWED_ORIGIN_PATTERNS.some((pattern) => pattern.test(origin))) {
+    res.set("Access-Control-Allow-Origin", origin);
+    res.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.set("Access-Control-Allow-Headers", "Authorization, Content-Type");
+    res.set("Access-Control-Max-Age", "3600");
+  }
 }
 
 function getBearerToken(req) {
@@ -154,6 +173,13 @@ exports.chat = onRequest(
     timeoutSeconds: 60,
   },
   async (req, res) => {
+    setCorsHeaders(req, res);
+
+    if (req.method === "OPTIONS") {
+      res.status(204).send("");
+      return;
+    }
+
     try {
       if (req.method !== "POST") {
         res.set("Allow", "POST");
