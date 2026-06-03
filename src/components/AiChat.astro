@@ -386,6 +386,18 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
         statusEl.classList.toggle("error", kind === "error");
       }
 
+      function backendMissingMessage() {
+        return "The tutor backend is not reachable yet. Deploy the Cloudflare Worker proxy, set PUBLIC_CHAT_API_URL, then rebuild and deploy the site.";
+      }
+
+      function chatErrorMessage(error: unknown) {
+        const message = error instanceof Error ? error.message : "The tutor is unavailable right now.";
+        if (/failed to fetch|networkerror|load failed/i.test(message)) {
+          return backendMissingMessage();
+        }
+        return message || "The tutor is unavailable right now.";
+      }
+
       function loadMessages() {
         try {
           const parsed = JSON.parse(sessionStorage.getItem(storageKey()) || "[]");
@@ -493,7 +505,7 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
           const payload = await response.json().catch(() => ({}));
           if (!response.ok) {
-            throw new Error(payload?.error || "The tutor is unavailable right now.");
+            throw new Error(payload?.error || (response.status === 404 ? backendMissingMessage() : "The tutor is unavailable right now."));
           }
 
           messages = [...messages, { role: "assistant", content: payload.reply }].slice(-12);
@@ -501,8 +513,7 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
           renderMessages();
           setStatus("");
         } catch (error) {
-          const message = error instanceof Error ? error.message : "The tutor is unavailable right now.";
-          setStatus(message, "error");
+          setStatus(chatErrorMessage(error), "error");
         } finally {
           loading = false;
           updateUi();

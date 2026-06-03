@@ -10,7 +10,10 @@
     "predeploy": "npm run build",
     "deploy:firebase": "firebase deploy --only hosting,functions",
     "deploy:hosting": "firebase deploy --only hosting",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "proxy:dev": "npm --prefix my-api-proxy run dev",
+    "proxy:test": "npm --prefix my-api-proxy test",
+    "proxy:deploy": "npm --prefix my-api-proxy run deploy"
   },
   "dependencies": {
     "astro": "^5.0.0",

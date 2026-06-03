@@ -4,3 +4,8 @@ node_modules/
 dist/
 .astro/
 node_modules/.cache/
+.firebase/*.cache
+firebase-debug.log
+my-api-proxy/node_modules/
+my-api-proxy/.wrangler/
+my-api-proxy/.dev.vars*
