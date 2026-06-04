@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import worker, {
   clientStatusForUpstream,
   modelCandidates,
+  providerCandidates,
   shouldRetryUpstream,
   upstreamErrorMessage,
 } from "../src/index.js";
@@ -106,6 +107,18 @@ describe("Orange Atlas API proxy", () => {
     });
 
     expect(models.slice(0, 2)).toEqual(["example/primary:free", "example/backup:free"]);
+  });
+
+  it("prefers Groq when a Groq key is configured", () => {
+    const providers = providerCandidates({
+      GROQ_API_KEY: "gsk_test",
+      OPENROUTER_API_KEY: "sk-or-test",
+      GROQ_MODEL: "llama-3.1-8b-instant",
+      OPENROUTER_MODEL: "example/openrouter:free",
+    });
+
+    expect(providers[0].provider).toBe("groq");
+    expect(providers[0].model).toBe("llama-3.1-8b-instant");
   });
 
   it("returns a client rate-limit status for upstream rate limits", () => {

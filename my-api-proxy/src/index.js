@@ -1,6 +1,8 @@
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
+const GROQ_CHAT_URL = "https://api.groq.com/openai/v1/chat/completions";
 const FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
 const DEFAULT_FIREBASE_PROJECT_ID = "orange-atlas";
+const DEFAULT_GROQ_MODEL = "llama-3.1-8b-instant";
 const DEFAULT_MODEL = "mistralai/mistral-small-3.1-24b-instruct:free";
 const DEFAULT_FALLBACK_MODELS = [
   "google/gemma-3-27b-it:free",
@@ -247,6 +249,45 @@ export function modelCandidates(env = {}) {
   return [...new Set(models)].slice(0, 4);
 }
 
+export function providerCandidates(env = {}) {
+  const candidates = [];
+  const groqModels = [
+    ...modelList(env.GROQ_MODEL || DEFAULT_GROQ_MODEL),
+    ...modelList(env.GROQ_FALLBACK_MODELS),
+  ];
+  const openRouterModels = modelCandidates(env);
+
+  if (env.GROQ_API_KEY) {
+    groqModels.forEach((model) => {
+      candidates.push({
+        provider: "groq",
+        apiKey: env.GROQ_API_KEY,
+        model,
+        url: GROQ_CHAT_URL,
+      });
+    });
+  }
+
+  if (env.OPENROUTER_API_KEY || env.AI_API_KEY) {
+    openRouterModels.forEach((model) => {
+      candidates.push({
+        provider: "openrouter",
+        apiKey: env.OPENROUTER_API_KEY || env.AI_API_KEY,
+        model,
+        url: OPENROUTER_CHAT_URL,
+      });
+    });
+  }
+
+  const seen = new Set();
+  return candidates.filter((candidate) => {
+    const key = `${candidate.provider}:${candidate.model}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  }).slice(0, 5);
+}
+
 function upstreamDetail(payload = {}) {
   const error = payload?.error || {};
   return cleanText(
@@ -275,15 +316,17 @@ export function clientStatusForUpstream(status, payload = {}) {
   return status === 429 || detail.includes("rate limit") || detail.includes("quota") ? 429 : 502;
 }
 
-export function upstreamErrorMessage(status, payload = {}) {
+export function upstreamErrorMessage(status, payload = {}, provider = "openrouter") {
   const detail = upstreamDetail(payload);
+  const providerName = provider === "groq" ? "Groq" : "OpenRouter";
+  const secretName = provider === "groq" ? "GROQ_API_KEY" : "OPENROUTER_API_KEY";
 
   if (status === 401 || status === 403) {
-    return "The tutor backend's OpenRouter API key is not being accepted. Set OPENROUTER_API_KEY in Cloudflare and redeploy the Worker.";
+    return `The tutor backend's ${providerName} API key is not being accepted. Set ${secretName} in Cloudflare and redeploy the Worker.`;
   }
 
   if (status === 402 || detail.includes("credit") || detail.includes("billing")) {
-    return "The tutor backend's OpenRouter account needs credits or billing enabled.";
+    return `The tutor backend's ${providerName} account needs credits or billing enabled.`;
   }
 
   if (status === 404 || detail.includes("model") || detail.includes("not found")) {
@@ -297,17 +340,22 @@ export function upstreamErrorMessage(status, payload = {}) {
   return "The tutor is unavailable right now.";
 }
 
-async function openRouterChat(apiKey, model, messages, page) {
-  const response = await fetch(OPENROUTER_CHAT_URL, {
+async function providerChat(candidate, messages, page) {
+  const headers = {
+    Authorization: `Bearer ${candidate.apiKey}`,
+    "Content-Type": "application/json",
+  };
+
+  if (candidate.provider === "openrouter") {
+    headers["HTTP-Referer"] = "https://orange-atlas.web.app";
+    headers["X-OpenRouter-Title"] = "Orange Atlas";
+  }
+
+  const response = await fetch(candidate.url, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-      "HTTP-Referer": "https://orange-atlas.web.app",
-      "X-OpenRouter-Title": "Orange Atlas",
-    },
+    headers,
     body: JSON.stringify({
-      model,
+      model: candidate.model,
       messages: [
         { role: "system", content: systemPrompt(page) },
         ...messages,
@@ -323,25 +371,32 @@ async function openRouterChat(apiKey, model, messages, page) {
 async function handleChat(request, env) {
   await verifyFirebaseToken(request, env);
 
-  const apiKey = env.OPENROUTER_API_KEY || env.AI_API_KEY;
-  if (!apiKey) {
-    throw new HttpError(500, "The tutor backend is missing OPENROUTER_API_KEY.");
-  }
-
   const body = await readJson(request);
   const messages = validateMessages(body.messages);
   const page = pageContext(body.page);
-  const models = modelCandidates(env);
-  let lastError = { status: 502, payload: {} };
+  const candidates = providerCandidates(env);
+  let lastError = { status: 502, payload: {}, provider: "openrouter" };
 
-  for (const [index, model] of models.entries()) {
+  if (!candidates.length) {
+    throw new HttpError(500, "The tutor backend is missing GROQ_API_KEY or OPENROUTER_API_KEY.");
+  }
+
+  for (const [index, candidate] of candidates.entries()) {
     let upstream;
     try {
-      upstream = await openRouterChat(apiKey, model, messages, page);
+      upstream = await providerChat(candidate, messages, page);
     } catch (error) {
-      console.error("OpenRouter fetch failed", { model, error: error?.message || error });
-      lastError = { status: 503, payload: { error: { message: "OpenRouter request failed." } } };
-      if (index < models.length - 1) continue;
+      console.error("AI provider fetch failed", {
+        provider: candidate.provider,
+        model: candidate.model,
+        error: error?.message || error,
+      });
+      lastError = {
+        status: 503,
+        payload: { error: { message: "AI provider request failed." } },
+        provider: candidate.provider,
+      };
+      if (index < candidates.length - 1) continue;
       break;
     }
 
@@ -355,19 +410,28 @@ async function handleChat(request, env) {
         };
       }
 
-      lastError = { status: 502, payload: { error: { message: "The tutor returned an empty response." } } };
+      lastError = {
+        status: 502,
+        payload: { error: { message: "The tutor returned an empty response." } },
+        provider: candidate.provider,
+      };
     } else {
-      console.error("OpenRouter error", { status: response.status, model, error: payload?.error || payload });
-      lastError = { status: response.status, payload };
+      console.error("AI provider error", {
+        status: response.status,
+        provider: candidate.provider,
+        model: candidate.model,
+        error: payload?.error || payload,
+      });
+      lastError = { status: response.status, payload, provider: candidate.provider };
     }
 
-    if (index < models.length - 1 && shouldRetryUpstream(lastError.status, lastError.payload)) continue;
+    if (index < candidates.length - 1 && shouldRetryUpstream(lastError.status, lastError.payload)) continue;
     break;
   }
 
   throw new HttpError(
     clientStatusForUpstream(lastError.status, lastError.payload),
-    upstreamErrorMessage(lastError.status, lastError.payload),
+    upstreamErrorMessage(lastError.status, lastError.payload, lastError.provider),
   );
 }
 
