@@ -52,16 +52,26 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
       ></textarea>
       <button type="submit" data-chat-send>Send</button>
     </form>
+    <div
+      class="oa-ai-chat__resize"
+      role="separator"
+      aria-label="Resize tutor panel"
+      aria-orientation="vertical"
+      tabindex="0"
+      data-chat-resize
+    ></div>
   </section>
 </div>
 
 <style>
   .oa-ai-chat {
     position: fixed;
-    left: 1rem;
-    top: 1rem;
-    bottom: 1rem;
-    width: min(28rem, calc(100vw - 2rem));
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--oa-ai-chat-width, 28rem);
+    min-width: 20rem;
+    max-width: min(48rem, calc(100vw - 1rem));
     z-index: 1900;
     font-family: Inter, Manrope, system-ui, sans-serif;
     color: #f8efe8;
@@ -94,8 +104,8 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
   .oa-ai-chat__launcher {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 1rem;
+    bottom: 1rem;
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
@@ -133,15 +143,52 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     width: 100%;
     height: 100%;
     border: 1px solid rgba(255, 116, 51, 0.26);
-    border-radius: 0.75rem;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 0;
     background: linear-gradient(145deg, rgba(18, 18, 24, 0.98), rgba(7, 7, 10, 0.98));
-    box-shadow: 0 28px 74px rgba(0, 0, 0, 0.52);
+    box-shadow: 18px 0 60px rgba(0, 0, 0, 0.48);
     overflow: hidden;
     pointer-events: auto;
   }
 
   .oa-ai-chat__panel[hidden] {
     display: none;
+  }
+
+  .oa-ai-chat__resize {
+    position: absolute;
+    top: 0;
+    right: -0.28rem;
+    bottom: 0;
+    z-index: 8;
+    width: 0.64rem;
+    cursor: ew-resize;
+    touch-action: none;
+  }
+
+  .oa-ai-chat__resize::before {
+    position: absolute;
+    top: 50%;
+    right: 0.22rem;
+    width: 0.18rem;
+    height: 4.5rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ff7433, #ffbd78);
+    box-shadow: 0 0 20px rgba(255, 116, 51, 0.28);
+    content: "";
+    transform: translateY(-50%);
+  }
+
+  .oa-ai-chat__resize:focus-visible {
+    outline: 2px solid rgba(255, 189, 120, 0.78);
+    outline-offset: -2px;
+  }
+
+  :global(body.oa-ai-chat-resizing) {
+    cursor: ew-resize;
+    user-select: none;
   }
 
   .oa-ai-chat__head {
@@ -441,11 +488,13 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
   @media (max-width: 620px) {
     .oa-ai-chat {
-      left: 0.75rem;
-      top: 0.75rem;
-      right: 0.75rem;
-      bottom: 0.75rem;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
       width: auto;
+      min-width: 0;
+      max-width: none;
     }
 
     .oa-ai-chat__launcher {
@@ -457,6 +506,10 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
       inset: 0;
       width: 100%;
       height: 100%;
+    }
+
+    .oa-ai-chat__resize {
+      display: none;
     }
 
     .oa-ai-chat__head,
@@ -495,7 +548,11 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
       const form = chatRoot.querySelector<HTMLFormElement>("[data-chat-form]");
       const input = chatRoot.querySelector<HTMLTextAreaElement>("[data-chat-input]");
       const send = chatRoot.querySelector<HTMLButtonElement>("[data-chat-send]");
+      const resize = chatRoot.querySelector<HTMLElement>("[data-chat-resize]");
       const chatUrl = chatRoot.dataset.chatUrl || "/api/chat";
+      const widthStorageKey = "orangeAtlasAiChat:panelWidth";
+      const minPanelWidth = 320;
+      const maxPanelWidth = 768;
 
       let activeUser: ChatUser | null = null;
       let configured = false;
@@ -508,6 +565,48 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
       function storageKey() {
         return `orangeAtlasAiChat:v1:${activeUser?.uid || "signed-out"}`;
+      }
+
+      function panelWidthBounds() {
+        const max = Math.min(maxPanelWidth, Math.max(minPanelWidth, window.innerWidth - 16));
+        return {
+          min: Math.min(minPanelWidth, max),
+          max,
+        };
+      }
+
+      function setPanelWidth(value: number, persist = false) {
+        if (window.matchMedia("(max-width: 620px)").matches) {
+          chatRoot.style.removeProperty("--oa-ai-chat-width");
+          return;
+        }
+
+        const bounds = panelWidthBounds();
+        const width = Math.round(Math.min(bounds.max, Math.max(bounds.min, value)));
+        chatRoot.style.setProperty("--oa-ai-chat-width", `${width}px`);
+        if (resize) {
+          resize.setAttribute("aria-valuemin", String(bounds.min));
+          resize.setAttribute("aria-valuemax", String(bounds.max));
+          resize.setAttribute("aria-valuenow", String(width));
+        }
+        if (persist) {
+          try {
+            localStorage.setItem(widthStorageKey, String(width));
+          } catch {
+            // Width persistence is optional.
+          }
+        }
+      }
+
+      function loadPanelWidth() {
+        let savedWidth = 448;
+        try {
+          const parsed = Number(localStorage.getItem(widthStorageKey));
+          if (Number.isFinite(parsed)) savedWidth = parsed;
+        } catch {
+          // Width persistence is optional.
+        }
+        setPanelWidth(savedWidth);
       }
 
       function escapeHtml(value) {
@@ -672,6 +771,55 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
         if (isOpen) setTimeout(() => input?.focus(), 0);
       }
 
+      function installResizeHandle() {
+        if (!resize) return;
+
+        resize.addEventListener("pointerdown", (event) => {
+          if (window.matchMedia("(max-width: 620px)").matches) return;
+
+          event.preventDefault();
+          resize.setPointerCapture?.(event.pointerId);
+          document.body.classList.add("oa-ai-chat-resizing");
+
+          const startX = event.clientX;
+          const startWidth = chatRoot.getBoundingClientRect().width;
+
+          const move = (moveEvent: PointerEvent) => {
+            setPanelWidth(startWidth + moveEvent.clientX - startX);
+          };
+          const stop = (upEvent: PointerEvent) => {
+            resize.releasePointerCapture?.(upEvent.pointerId);
+            document.body.classList.remove("oa-ai-chat-resizing");
+            setPanelWidth(chatRoot.getBoundingClientRect().width, true);
+            window.removeEventListener("pointermove", move);
+            window.removeEventListener("pointerup", stop);
+          };
+
+          window.addEventListener("pointermove", move);
+          window.addEventListener("pointerup", stop, { once: true });
+        });
+
+        resize.addEventListener("keydown", (event) => {
+          if (window.matchMedia("(max-width: 620px)").matches) return;
+
+          const currentWidth = chatRoot.getBoundingClientRect().width;
+          const bounds = panelWidthBounds();
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            setPanelWidth(currentWidth + 24, true);
+          } else if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            setPanelWidth(currentWidth - 24, true);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            setPanelWidth(bounds.min, true);
+          } else if (event.key === "End") {
+            event.preventDefault();
+            setPanelWidth(bounds.max, true);
+          }
+        });
+      }
+
       function syncAuth(detail: { configured?: boolean; user?: ChatUser | null } | null = null) {
         const api = progressApi();
         configured = Boolean(detail?.configured ?? api?.isFirebaseConfigured?.());
@@ -766,7 +914,13 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
       window.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && panel && !panel.hidden) setOpen(false);
       });
+      window.addEventListener("resize", () => {
+        const currentWidth = chatRoot.getBoundingClientRect().width;
+        setPanelWidth(currentWidth, true);
+      });
 
+      loadPanelWidth();
+      installResizeHandle();
       setTimeout(() => syncAuth(), 0);
       renderMessages();
       updateUi();
