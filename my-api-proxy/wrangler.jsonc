@@ -16,7 +16,8 @@
 	],
 	"vars": {
 		"FIREBASE_PROJECT_ID": "orange-atlas",
-		"OPENROUTER_MODEL": "meta-llama/llama-3.3-70b-instruct:free"
+		"OPENROUTER_MODEL": "meta-llama/llama-3.3-70b-instruct:free",
+		"OPENROUTER_FALLBACK_MODELS": "qwen/qwen3-235b-a22b-2507:free,z-ai/glm-4.5-air:free,mistralai/mistral-small-3.1-24b-instruct:free"
 	}
 	/**
 	 * Smart Placement

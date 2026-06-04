@@ -2,6 +2,11 @@ const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
 const FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
 const DEFAULT_FIREBASE_PROJECT_ID = "orange-atlas";
 const DEFAULT_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
+const DEFAULT_FALLBACK_MODELS = [
+  "qwen/qwen3-235b-a22b-2507:free",
+  "z-ai/glm-4.5-air:free",
+  "mistralai/mistral-small-3.1-24b-instruct:free",
+];
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 1200;
 const MAX_TOTAL_CHARS = 4000;
@@ -225,12 +230,51 @@ async function readJson(request) {
   }
 }
 
-export function upstreamErrorMessage(status, payload = {}) {
+function modelList(value) {
+  return typeof value === "string"
+    ? value.split(/[\s,]+/).map((model) => cleanText(model, 180)).filter(Boolean)
+    : [];
+}
+
+export function modelCandidates(env = {}) {
+  const models = [
+    ...modelList(env.OPENROUTER_MODEL || DEFAULT_MODEL),
+    ...modelList(env.OPENROUTER_FALLBACK_MODELS),
+    ...DEFAULT_FALLBACK_MODELS,
+  ];
+  return [...new Set(models)].slice(0, 4);
+}
+
+function upstreamDetail(payload = {}) {
   const error = payload?.error || {};
-  const detail = cleanText(
+  return cleanText(
     typeof error === "string" ? error : error.message || payload?.message,
     400,
   ).toLowerCase();
+}
+
+export function shouldRetryUpstream(status, payload = {}) {
+  const detail = upstreamDetail(payload);
+
+  if (status === 401 || status === 402 || status === 403) return false;
+  if (detail.includes("credit") || detail.includes("billing")) return false;
+
+  return status === 404
+    || status === 429
+    || status >= 500
+    || detail.includes("rate limit")
+    || detail.includes("temporarily")
+    || detail.includes("provider returned error")
+    || detail.includes("no endpoints");
+}
+
+export function clientStatusForUpstream(status, payload = {}) {
+  const detail = upstreamDetail(payload);
+  return status === 429 || detail.includes("rate limit") || detail.includes("quota") ? 429 : 502;
+}
+
+export function upstreamErrorMessage(status, payload = {}) {
+  const detail = upstreamDetail(payload);
 
   if (status === 401 || status === 403) {
     return "The tutor backend's OpenRouter API key is not being accepted. Set OPENROUTER_API_KEY in Cloudflare and redeploy the Worker.";
@@ -251,6 +295,29 @@ export function upstreamErrorMessage(status, payload = {}) {
   return "The tutor is unavailable right now.";
 }
 
+async function openRouterChat(apiKey, model, messages, page) {
+  const response = await fetch(OPENROUTER_CHAT_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://orange-atlas.web.app",
+      "X-OpenRouter-Title": "Orange Atlas",
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: "system", content: systemPrompt(page) },
+        ...messages,
+      ],
+      max_tokens: 600,
+      temperature: 0.35,
+    }),
+  });
+  const payload = await response.json().catch(() => ({}));
+  return { response, payload };
+}
+
 async function handleChat(request, env) {
   await verifyFirebaseToken(request, env);
 
@@ -262,42 +329,44 @@ async function handleChat(request, env) {
   const body = await readJson(request);
   const messages = validateMessages(body.messages);
   const page = pageContext(body.page);
+  const models = modelCandidates(env);
+  let lastError = { status: 502, payload: {} };
 
-  const upstreamResponse = await fetch(OPENROUTER_CHAT_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-      "HTTP-Referer": "https://orange-atlas.web.app",
-      "X-OpenRouter-Title": "Orange Atlas",
-    },
-    body: JSON.stringify({
-      model: env.OPENROUTER_MODEL || DEFAULT_MODEL,
-      messages: [
-        { role: "system", content: systemPrompt(page) },
-        ...messages,
-      ],
-      max_tokens: 600,
-      temperature: 0.35,
-    }),
-  });
+  for (const [index, model] of models.entries()) {
+    let upstream;
+    try {
+      upstream = await openRouterChat(apiKey, model, messages, page);
+    } catch (error) {
+      console.error("OpenRouter fetch failed", { model, error: error?.message || error });
+      lastError = { status: 503, payload: { error: { message: "OpenRouter request failed." } } };
+      if (index < models.length - 1) continue;
+      break;
+    }
 
-  const payload = await upstreamResponse.json().catch(() => ({}));
+    const { response, payload } = upstream;
+    if (response.ok) {
+      const reply = cleanText(payload?.choices?.[0]?.message?.content, 5000);
+      if (reply) {
+        return {
+          reply,
+          usage: payload.usage || null,
+        };
+      }
 
-  if (!upstreamResponse.ok) {
-    console.error("OpenRouter error", upstreamResponse.status, payload?.error || payload);
-    throw new HttpError(502, upstreamErrorMessage(upstreamResponse.status, payload));
+      lastError = { status: 502, payload: { error: { message: "The tutor returned an empty response." } } };
+    } else {
+      console.error("OpenRouter error", { status: response.status, model, error: payload?.error || payload });
+      lastError = { status: response.status, payload };
+    }
+
+    if (index < models.length - 1 && shouldRetryUpstream(lastError.status, lastError.payload)) continue;
+    break;
   }
 
-  const reply = cleanText(payload?.choices?.[0]?.message?.content, 5000);
-  if (!reply) {
-    throw new HttpError(502, "The tutor returned an empty response.");
-  }
-
-  return {
-    reply,
-    usage: payload.usage || null,
-  };
+  throw new HttpError(
+    clientStatusForUpstream(lastError.status, lastError.payload),
+    upstreamErrorMessage(lastError.status, lastError.payload),
+  );
 }
 
 export default {

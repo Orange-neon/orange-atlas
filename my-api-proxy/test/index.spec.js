@@ -1,6 +1,11 @@
 import { env, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
 import { describe, it, expect } from "vitest";
-import worker, { upstreamErrorMessage } from "../src/index.js";
+import worker, {
+  clientStatusForUpstream,
+  modelCandidates,
+  shouldRetryUpstream,
+  upstreamErrorMessage,
+} from "../src/index.js";
 
 const ALLOWED_ORIGIN = "https://orange-atlas.web.app";
 
@@ -92,5 +97,26 @@ describe("Orange Atlas API proxy", () => {
   it("turns upstream billing errors into an actionable credits message", () => {
     expect(upstreamErrorMessage(402, { error: { message: "Insufficient credits" } }))
       .toContain("credits");
+  });
+
+  it("keeps configured models first and de-duplicates fallbacks", () => {
+    const models = modelCandidates({
+      OPENROUTER_MODEL: "example/primary:free",
+      OPENROUTER_FALLBACK_MODELS: "example/backup:free, example/primary:free",
+    });
+
+    expect(models.slice(0, 2)).toEqual(["example/primary:free", "example/backup:free"]);
+  });
+
+  it("returns a client rate-limit status for upstream rate limits", () => {
+    expect(clientStatusForUpstream(429, { error: { message: "Provider rate limit exceeded" } }))
+      .toBe(429);
+  });
+
+  it("retries provider limits but not billing failures", () => {
+    expect(shouldRetryUpstream(429, { error: { message: "Provider returned error" } }))
+      .toBe(true);
+    expect(shouldRetryUpstream(402, { error: { message: "Insufficient credits" } }))
+      .toBe(false);
   });
 });
