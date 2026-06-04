@@ -6,7 +6,7 @@ admin.initializeApp();
 
 const openRouterApiKey = defineSecret("OPENROUTER_API_KEY");
 const openRouterModel = defineString("OPENROUTER_MODEL", {
-  default: "meta-llama/llama-3.3-70b-instruct:free",
+  default: "mistralai/mistral-small-3.1-24b-instruct:free",
 });
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
@@ -20,7 +20,7 @@ const ALLOWED_ORIGIN_PATTERNS = [
 ];
 const MAX_MESSAGES = 12;
 const MAX_INPUT_CHARS = 4000;
-const MAX_RESPONSE_TOKENS = 600;
+const MAX_RESPONSE_TOKENS = 360;
 const MINUTE_LIMIT = 6;
 const DAY_LIMIT = 30;
 
@@ -150,7 +150,8 @@ function makeSystemPrompt(page) {
     "Help students with grammar, vocabulary, study strategies, and explanations for concepts like relative pronouns, preterite vs. imperfect, commands, subjunctive, audio comprehension, and test review.",
     "Give hints, examples, and short explanations. Do not simply provide direct answers to active practice-test questions; guide the student to reason it out.",
     "If a student asks for an answer, explain the relevant rule and ask them to try applying it.",
-    "Keep replies focused, student-friendly, and usually under 180 words.",
+    "Keep replies focused, student-friendly, and usually under 120 words unless the student asks for more detail.",
+    "Use simple Markdown for emphasis and lists, such as **bold** for key terms.",
     `Current page: ${title} (${path}).`,
   ].join(" ");
 }
@@ -199,7 +200,7 @@ exports.chat = onRequest(
           "X-OpenRouter-Title": "Orange Atlas",
         },
         body: JSON.stringify({
-          model: openRouterModel.value() || "meta-llama/llama-3.3-70b-instruct:free",
+          model: openRouterModel.value() || "mistralai/mistral-small-3.1-24b-instruct:free",
           messages: [
             { role: "system", content: makeSystemPrompt(req.body?.page) },
             ...messages,

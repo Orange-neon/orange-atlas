@@ -1,15 +1,15 @@
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
 const FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
 const DEFAULT_FIREBASE_PROJECT_ID = "orange-atlas";
-const DEFAULT_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
+const DEFAULT_MODEL = "mistralai/mistral-small-3.1-24b-instruct:free";
 const DEFAULT_FALLBACK_MODELS = [
-  "qwen/qwen3-235b-a22b-2507:free",
-  "z-ai/glm-4.5-air:free",
-  "mistralai/mistral-small-3.1-24b-instruct:free",
+  "google/gemma-3-27b-it:free",
+  "meta-llama/llama-3.3-70b-instruct:free",
 ];
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 1200;
 const MAX_TOTAL_CHARS = 4000;
+const MAX_RESPONSE_TOKENS = 360;
 const JWKS_CACHE_MS = 60 * 60 * 1000;
 
 const ALLOWED_ORIGINS = new Set([
@@ -218,6 +218,8 @@ function systemPrompt(page) {
     "You are Atlas Tutor, a concise and encouraging Spanish 2 tutor for Orange Atlas.",
     "Help students understand grammar, vocabulary, and study strategy without doing entire graded assignments for them.",
     "Give short explanations, ask follow-up questions when needed, and include Spanish examples with English glosses.",
+    "Keep replies under 120 words unless the student asks for more detail.",
+    "Use simple Markdown for emphasis and lists, such as **bold** for key terms.",
     `The student is on: ${page.title} (${page.path}).`,
   ].join("\n");
 }
@@ -310,7 +312,7 @@ async function openRouterChat(apiKey, model, messages, page) {
         { role: "system", content: systemPrompt(page) },
         ...messages,
       ],
-      max_tokens: 600,
+      max_tokens: MAX_RESPONSE_TOKENS,
       temperature: 0.35,
     }),
   });

@@ -228,6 +228,26 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     align-self: flex-start;
   }
 
+  .oa-ai-chat__msg strong {
+    color: #fff7ed;
+    font-weight: 900;
+  }
+
+  .oa-ai-chat__msg em {
+    color: #fff0df;
+    font-style: italic;
+  }
+
+  .oa-ai-chat__msg code {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.28rem;
+    padding: 0.06rem 0.22rem;
+    color: #ffe4c7;
+    background: rgba(255, 255, 255, 0.08);
+    font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.82em;
+  }
+
   .oa-ai-chat__status {
     margin: 0 0.9rem 0.75rem;
     border: 1px solid rgba(255, 189, 120, 0.24);
@@ -379,6 +399,30 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
           .replace(/'/g, "&#39;");
       }
 
+      function renderInlineMarkdown(value) {
+        const codeSpans: string[] = [];
+        let html = escapeHtml(value)
+          .replace(/`([^`\n]+)`/g, (_, code) => {
+            const token = `@@CODE${codeSpans.length}@@`;
+            codeSpans.push(`<code>${code}</code>`);
+            return token;
+          })
+          .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>")
+          .replace(/(^|[^\*])\*([^*\n]+)\*/g, "$1<em>$2</em>");
+
+        codeSpans.forEach((code, index) => {
+          html = html.replace(`@@CODE${index}@@`, code);
+        });
+
+        return html;
+      }
+
+      function renderMessageContent(message: ChatMessage) {
+        return message.role === "assistant"
+          ? renderInlineMarkdown(message.content)
+          : escapeHtml(message.content);
+      }
+
       function setStatus(message = "", kind = "") {
         if (!statusEl) return;
         statusEl.hidden = !message;
@@ -427,7 +471,7 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
           messagesEl.innerHTML = `<p class="oa-ai-chat__empty">Ask for help with a Spanish 2 concept, like when to use <strong>lo que</strong>, how commands work, or why a sentence needs preterite instead of imperfect.</p>`;
         } else {
           messagesEl.innerHTML = messages.map((message) =>
-            `<div class="oa-ai-chat__msg ${message.role}">${escapeHtml(message.content)}</div>`,
+            `<div class="oa-ai-chat__msg ${message.role}">${renderMessageContent(message)}</div>`,
           ).join("");
         }
         messagesEl.scrollTop = messagesEl.scrollHeight;
