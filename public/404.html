@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <title>Page Not Found - Orange Atlas</title>
+    <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png" data-site-icon>
     <style>
       :root {
         color-scheme: dark;
@@ -160,8 +161,10 @@
       const basePath = isGitHubPages ? "/orange-atlas/" : "/";
       const homeLink = document.querySelector("[data-home-link]");
       const backLink = document.querySelector("[data-back-link]");
+      const siteIcon = document.querySelector("[data-site-icon]");
       const pathLabel = document.querySelector("[data-path]");
 
+      if (siteIcon) siteIcon.href = `${basePath}assets/orangeAtlas.png`;
       if (homeLink) homeLink.href = basePath;
       if (backLink) {
         backLink.href = basePath;

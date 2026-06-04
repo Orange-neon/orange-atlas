@@ -198,25 +198,25 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     padding: 0.9rem;
   }
 
-  .oa-ai-chat__empty {
+  :global(.oa-ai-chat__empty) {
     margin: auto 0;
     color: #a8a09a;
     font-size: 0.86rem;
     line-height: 1.65;
   }
 
-  .oa-ai-chat__turn {
+  :global(.oa-ai-chat__turn) {
     display: flex;
     align-items: flex-end;
     gap: 0.55rem;
     width: 100%;
   }
 
-  .oa-ai-chat__turn.user {
+  :global(.oa-ai-chat__turn.user) {
     flex-direction: row-reverse;
   }
 
-  .oa-ai-chat__avatar {
+  :global(.oa-ai-chat__avatar) {
     display: grid;
     flex: 0 0 auto;
     place-items: center;
@@ -231,35 +231,23 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     letter-spacing: 0;
   }
 
-  .oa-ai-chat__turn.user .oa-ai-chat__avatar {
+  :global(.oa-ai-chat__turn.user .oa-ai-chat__avatar) {
     color: #111;
     border-color: transparent;
     background: linear-gradient(135deg, #ff7433, #ffbd78);
   }
 
-  .oa-ai-chat__bubble-wrap {
+  :global(.oa-ai-chat__bubble-wrap) {
     display: flex;
     flex-direction: column;
-    gap: 0.22rem;
     max-width: min(19rem, calc(100% - 2.7rem));
   }
 
-  .oa-ai-chat__turn.user .oa-ai-chat__bubble-wrap {
+  :global(.oa-ai-chat__turn.user .oa-ai-chat__bubble-wrap) {
     align-items: flex-end;
   }
 
-  .oa-ai-chat__speaker {
-    color: #a8a09a;
-    font-size: 0.68rem;
-    font-weight: 850;
-    line-height: 1.2;
-  }
-
-  .oa-ai-chat__turn.user .oa-ai-chat__speaker {
-    color: #ffd1a6;
-  }
-
-  .oa-ai-chat__msg {
+  :global(.oa-ai-chat__msg) {
     width: fit-content;
     max-width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.09);
@@ -272,24 +260,44 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     white-space: pre-wrap;
   }
 
-  .oa-ai-chat__msg.user {
+  :global(.oa-ai-chat__msg.user) {
     color: #111;
     border-color: transparent;
     border-radius: 0.68rem 0.68rem 0.22rem 0.68rem;
     background: linear-gradient(135deg, #ff7433, #ffbd78);
   }
 
-  .oa-ai-chat__msg strong {
+  :global(.oa-ai-chat__msg p) {
+    margin: 0;
+  }
+
+  :global(.oa-ai-chat__msg p + p),
+  :global(.oa-ai-chat__msg ul + p),
+  :global(.oa-ai-chat__msg p + ul) {
+    margin-top: 0.55rem;
+  }
+
+  :global(.oa-ai-chat__msg ul) {
+    margin: 0.45rem 0 0;
+    padding-left: 1.15rem;
+  }
+
+  :global(.oa-ai-chat__msg li) {
+    margin: 0.18rem 0;
+    padding-left: 0.1rem;
+  }
+
+  :global(.oa-ai-chat__msg strong) {
     color: #fff7ed;
     font-weight: 900;
   }
 
-  .oa-ai-chat__msg em {
+  :global(.oa-ai-chat__msg em) {
     color: #fff0df;
     font-style: italic;
   }
 
-  .oa-ai-chat__msg code {
+  :global(.oa-ai-chat__msg code) {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 0.28rem;
     padding: 0.06rem 0.22rem;
@@ -468,9 +476,56 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
         return html;
       }
 
+      function renderAssistantMarkdown(value) {
+        const normalized = String(value ?? "")
+          .replace(/\r\n?/g, "\n")
+          .replace(/([.!?]\))\s+\*\s+/g, "$1\n* ")
+          .replace(/([.!?])\s+\*\s+/g, "$1\n* ")
+          .replace(/(\))\s+\*\s+/g, "$1\n* ");
+        const lines = normalized.split("\n");
+        const blocks: string[] = [];
+        let paragraph: string[] = [];
+        let listItems: string[] = [];
+
+        const flushParagraph = () => {
+          if (!paragraph.length) return;
+          blocks.push(`<p>${renderInlineMarkdown(paragraph.join(" "))}</p>`);
+          paragraph = [];
+        };
+        const flushList = () => {
+          if (!listItems.length) return;
+          blocks.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
+          listItems = [];
+        };
+
+        lines.forEach((line) => {
+          const trimmed = line.trim();
+          const bullet = trimmed.match(/^(?:[-*]|[0-9]+[.)])\s+(.+)$/);
+
+          if (!trimmed) {
+            flushParagraph();
+            flushList();
+            return;
+          }
+
+          if (bullet) {
+            flushParagraph();
+            listItems.push(bullet[1]);
+            return;
+          }
+
+          flushList();
+          paragraph.push(trimmed);
+        });
+
+        flushParagraph();
+        flushList();
+        return blocks.join("");
+      }
+
       function renderMessageContent(message: ChatMessage) {
         return message.role === "assistant"
-          ? renderInlineMarkdown(message.content)
+          ? renderAssistantMarkdown(message.content)
           : escapeHtml(message.content);
       }
 
@@ -525,7 +580,6 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
             `<div class="oa-ai-chat__turn ${message.role}">
               <div class="oa-ai-chat__avatar" aria-hidden="true">${message.role === "assistant" ? "AI" : "You"}</div>
               <div class="oa-ai-chat__bubble-wrap">
-                <div class="oa-ai-chat__speaker">${message.role === "assistant" ? "Atlas" : "You"}</div>
                 <div class="oa-ai-chat__msg ${message.role}">${renderMessageContent(message)}</div>
               </div>
             </div>`,
