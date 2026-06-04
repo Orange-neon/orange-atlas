@@ -6,7 +6,7 @@ admin.initializeApp();
 
 const openRouterApiKey = defineSecret("OPENROUTER_API_KEY");
 const openRouterModel = defineString("OPENROUTER_MODEL", {
-  default: "openai/gpt-5.2-chat",
+  default: "meta-llama/llama-3.3-70b-instruct:free",
 });
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
@@ -199,7 +199,7 @@ exports.chat = onRequest(
           "X-OpenRouter-Title": "Orange Atlas",
         },
         body: JSON.stringify({
-          model: openRouterModel.value() || "openai/gpt-5.2-chat",
+          model: openRouterModel.value() || "meta-llama/llama-3.3-70b-instruct:free",
           messages: [
             { role: "system", content: makeSystemPrompt(req.body?.page) },
             ...messages,
