@@ -58,11 +58,14 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 <style>
   .oa-ai-chat {
     position: fixed;
-    right: 1rem;
+    left: 1rem;
+    top: 1rem;
     bottom: 1rem;
+    width: min(28rem, calc(100vw - 2rem));
     z-index: 1900;
     font-family: Inter, Manrope, system-ui, sans-serif;
     color: #f8efe8;
+    pointer-events: none;
   }
 
   .oa-ai-chat[hidden],
@@ -70,7 +73,29 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     display: none;
   }
 
+  :global(html) {
+    scrollbar-color: #ff7433 #07070a;
+    scrollbar-width: thin;
+  }
+
+  :global(html::-webkit-scrollbar) {
+    width: 0.7rem;
+  }
+
+  :global(html::-webkit-scrollbar-track) {
+    background: #07070a;
+  }
+
+  :global(html::-webkit-scrollbar-thumb) {
+    border: 0.18rem solid #07070a;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ff7433, #ffbd78);
+  }
+
   .oa-ai-chat__launcher {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
@@ -85,6 +110,7 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     font: inherit;
     font-size: 0.86rem;
     font-weight: 900;
+    pointer-events: auto;
   }
 
   .oa-ai-chat__spark {
@@ -101,17 +127,17 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
   .oa-ai-chat__panel {
     position: absolute;
-    right: 0;
-    bottom: 3.7rem;
+    inset: 0;
     display: grid;
     grid-template-rows: auto auto minmax(0, 1fr) auto auto;
-    width: min(24rem, calc(100vw - 2rem));
-    height: min(38rem, calc(100vh - 7rem));
+    width: 100%;
+    height: 100%;
     border: 1px solid rgba(255, 116, 51, 0.26);
-    border-radius: 0.65rem;
+    border-radius: 0.75rem;
     background: linear-gradient(145deg, rgba(18, 18, 24, 0.98), rgba(7, 7, 10, 0.98));
     box-shadow: 0 28px 74px rgba(0, 0, 0, 0.52);
     overflow: hidden;
+    pointer-events: auto;
   }
 
   .oa-ai-chat__panel[hidden] {
@@ -196,6 +222,26 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
     min-height: 0;
     overflow: auto;
     padding: 0.9rem;
+    scrollbar-color: #ff7433 rgba(255, 255, 255, 0.08);
+    scrollbar-width: thin;
+  }
+
+  .oa-ai-chat__messages::-webkit-scrollbar {
+    width: 0.62rem;
+  }
+
+  .oa-ai-chat__messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.055);
+  }
+
+  .oa-ai-chat__messages::-webkit-scrollbar-thumb {
+    border: 0.18rem solid rgba(18, 18, 24, 0.98);
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ff7433, #ffbd78);
+  }
+
+  .oa-ai-chat__messages::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff8a52, #ffd09a);
   }
 
   :global(.oa-ai-chat__empty) {
@@ -278,13 +324,19 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
   }
 
   :global(.oa-ai-chat__msg ul) {
+    list-style: disc outside;
     margin: 0.45rem 0 0;
     padding-left: 1.15rem;
   }
 
   :global(.oa-ai-chat__msg li) {
+    display: list-item;
     margin: 0.18rem 0;
     padding-left: 0.1rem;
+  }
+
+  :global(.oa-ai-chat__msg li::marker) {
+    color: #ffbd78;
   }
 
   :global(.oa-ai-chat__msg strong) {
@@ -330,11 +382,12 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
   .oa-ai-chat__form {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) 4.6rem;
     align-items: end;
     gap: 0.55rem;
     padding: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(7, 7, 10, 0.94);
   }
 
   .oa-ai-chat__label {
@@ -346,6 +399,8 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
   }
 
   .oa-ai-chat__form textarea {
+    width: 100%;
+    min-width: 0;
     min-height: 2.65rem;
     max-height: 7rem;
     resize: vertical;
@@ -360,8 +415,12 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
   }
 
   .oa-ai-chat__form button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     align-self: end;
     height: 2.65rem;
+    width: 100%;
     white-space: nowrap;
   }
 
@@ -382,20 +441,22 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
   @media (max-width: 620px) {
     .oa-ai-chat {
+      left: 0.75rem;
+      top: 0.75rem;
       right: 0.75rem;
       bottom: 0.75rem;
-      left: 0.75rem;
+      width: auto;
     }
 
     .oa-ai-chat__launcher {
-      margin-left: auto;
+      left: 0;
+      right: auto;
     }
 
     .oa-ai-chat__panel {
-      right: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
-      height: min(36rem, calc(100vh - 6.2rem));
+      height: 100%;
     }
 
     .oa-ai-chat__head,
@@ -479,9 +540,11 @@ const baseRoot = basePath === "/" ? "" : basePath.replace(/\/$/, "");
       function renderAssistantMarkdown(value) {
         const normalized = String(value ?? "")
           .replace(/\r\n?/g, "\n")
+          .replace(/(:)\s+\*\s+/g, "$1\n* ")
           .replace(/([.!?]\))\s+\*\s+/g, "$1\n* ")
           .replace(/([.!?])\s+\*\s+/g, "$1\n* ")
-          .replace(/(\))\s+\*\s+/g, "$1\n* ");
+          .replace(/(\))\s+\*\s+/g, "$1\n* ")
+          .replace(/\s+(Example:)/gi, "\n\n$1");
         const lines = normalized.split("\n");
         const blocks: string[] = [];
         let paragraph: string[] = [];
