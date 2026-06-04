@@ -1,73 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
     <title>Page Not Found - Orange Atlas</title>
-    
-    <link rel="icon" href="assets/orangeAtlas.png" type="image/png">
-    <link rel="stylesheet" href="assets/index-css.css">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #090a0d;
+        --panel: #141519;
+        --panel-2: #1d1e24;
+        --text: #fff7ed;
+        --muted: #b8afa7;
+        --line: rgba(255, 255, 255, 0.12);
+        --orange: #ff7433;
+        --orange-2: #ffbd78;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--text);
+        background:
+          linear-gradient(180deg, rgba(255, 116, 51, 0.08), transparent 34rem),
+          var(--bg);
+        font-family: Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 2rem;
+      }
+
+      .not-found {
+        width: min(42rem, 100%);
+        border: 1px solid var(--line);
+        border-radius: 0.85rem;
+        padding: clamp(1.4rem, 5vw, 3rem);
+        background: linear-gradient(145deg, rgba(29, 30, 36, 0.96), rgba(13, 14, 18, 0.98));
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 2rem;
+        color: var(--orange-2);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 2.35rem;
+        height: 2.35rem;
+        place-items: center;
+        border-radius: 50%;
+        color: #111;
+        background: linear-gradient(135deg, var(--orange), var(--orange-2));
+        font-size: 1.15rem;
+      }
+
+      .code {
+        margin: 0 0 0.45rem;
+        color: var(--orange);
+        font-size: clamp(4.4rem, 18vw, 8rem);
+        font-weight: 950;
+        line-height: 0.9;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 5vw, 3.2rem);
+        line-height: 1.02;
+      }
+
+      p {
+        max-width: 34rem;
+        margin: 1rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.4vw, 1.16rem);
+        line-height: 1.65;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      a {
+        display: inline-flex;
+        min-height: 2.8rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding: 0 1rem;
+        color: inherit;
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .primary {
+        color: #111;
+        background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      }
+
+      .secondary {
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--orange-2);
+        outline-offset: 3px;
+      }
+
+      .path {
+        margin-top: 2rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1rem;
+        color: #8f8780;
+        font-size: 0.8rem;
+        overflow-wrap: anywhere;
+      }
+    </style>
   </head>
-  <body class="bg-background-dark text-foreground min-h-screen flex flex-col font-sans">
-    
-    <div class="relative min-h-screen flex flex-col overflow-hidden bg-gradient-hero justify-center items-center py-24 md:py-32">
-        <div class="absolute inset-0 bg-gradient-radial opacity-50 z-0"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl animate-pulse z-0"></div>
-
-        <div class="container relative z-10 px-4">
-            <div class="mx-auto max-w-4xl text-center space-y-8">
-                
-                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full border-2 border-primary/30 bg-surface/30 backdrop-blur-sm glow-subtle mx-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary animate-pulse">
-                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                        <path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>
-                    </svg>
-                    <span class="text-lg font-bold text-gradient">System Error</span>
-                </div>
-
-                <h1 class="text-gradient animate-glow">404</h1>
-                <h2>Lost in the Atlas</h2>
-                <p class="text-xl md:text-2xl text-foreground-muted max-w-3xl mx-auto leading-relaxed mb-16">
-                    The specified page was not found. Please check the URL for mistakes or navigate back to the hub to continue your academic journey.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 mb-16">
-                    <a href="/" onclick="returnHome(event)" class="inline-flex items-center justify-center whitespace-nowrap rounded-lg ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-primary text-background-dark hover:bg-primary-glow glow-primary-intense animate-glow text-lg font-bold px-8 py-6">
-                        Return to Homepage
-                    </a>
-                </div>
-
-                <script>
-                    function returnHome(event) {
-                        event.preventDefault(); // Stop the default "/" link behavior
-                        
-                        // Check if we are hosted on GitHub Pages
-                        if (window.location.hostname.includes('github.io')) {
-                            window.location.href = '/orange-atlas/';
-                        } else {
-                            // Standard routing for Firebase, localhost, or custom domains
-                            window.location.href = '/';
-                        }
-                    }
-                </script>
-                
-                <div class="pt-12 max-w-2xl mx-auto">
-                    <div class="rounded-lg border-2 border-border bg-surface/50 backdrop-blur-sm p-6 text-left hover:border-primary transition-all hover:glow-primary">
-                        <h3 class="text-lg font-bold text-foreground mb-4">Why am I seeing this?</h3>
-                        <p class="text-sm text-foreground-muted leading-relaxed">
-                            This page was generated by the Firebase Command-Line Interface. To modify it, edit the 
-                            <code class="text-primary bg-background-dark border border-border-subtle rounded-md" style="padding: 2px 6px;">404.html</code> 
-                            file in your project's configured 
-                            <code class="text-primary bg-background-dark border border-border-subtle rounded-md" style="padding: 2px 6px;">public</code> 
-                            directory.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
+  <body>
+    <main>
+      <section class="not-found" aria-labelledby="page-title">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">O</span>
+          <span>Orange Atlas</span>
         </div>
-        
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background-dark to-transparent z-0"></div>
-    </div>
+        <p class="code">404</p>
+        <h1 id="page-title">This page is not in the atlas.</h1>
+        <p>The link may be outdated, or the page may have moved. Head back to the hub and keep going from there.</p>
+        <div class="actions">
+          <a class="primary" href="/orange-atlas/" data-home-link>Return to Homepage</a>
+          <a class="secondary" href="/orange-atlas/" data-back-link>Go Back</a>
+        </div>
+        <div class="path" data-path></div>
+      </section>
+    </main>
+    <script>
+      const isGitHubPages = location.hostname.endsWith(".github.io");
+      const basePath = isGitHubPages ? "/orange-atlas/" : "/";
+      const homeLink = document.querySelector("[data-home-link]");
+      const backLink = document.querySelector("[data-back-link]");
+      const pathLabel = document.querySelector("[data-path]");
+
+      if (homeLink) homeLink.href = basePath;
+      if (backLink) {
+        backLink.href = basePath;
+        backLink.addEventListener("click", (event) => {
+          if (history.length > 1) {
+            event.preventDefault();
+            history.back();
+          }
+        });
+      }
+      if (pathLabel) pathLabel.textContent = `Missing page: ${location.pathname}`;
+    </script>
   </body>
 </html>
