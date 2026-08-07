@@ -6,7 +6,7 @@ admin.initializeApp();
 
 const openRouterApiKey = defineSecret("OPENROUTER_API_KEY");
 const openRouterModel = defineString("OPENROUTER_MODEL", {
-  default: "mistralai/mistral-small-3.1-24b-instruct:free",
+  default: "openrouter/free",
 });
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
@@ -200,7 +200,7 @@ exports.chat = onRequest(
           "X-OpenRouter-Title": "Orange Atlas",
         },
         body: JSON.stringify({
-          model: openRouterModel.value() || "mistralai/mistral-small-3.1-24b-instruct:free",
+          model: openRouterModel.value() || "openrouter/free",
           messages: [
             { role: "system", content: makeSystemPrompt(req.body?.page) },
             ...messages,

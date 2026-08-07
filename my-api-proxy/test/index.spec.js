@@ -109,6 +109,16 @@ describe("Orange Atlas API proxy", () => {
     expect(models.slice(0, 2)).toEqual(["example/primary:free", "example/backup:free"]);
   });
 
+  it("always retains the maintained free router as a final fallback", () => {
+    const models = modelCandidates({
+      OPENROUTER_MODEL: "example/primary:free",
+      OPENROUTER_FALLBACK_MODELS: "example/one:free,example/two:free,example/three:free,example/four:free",
+    });
+
+    expect(models).toHaveLength(4);
+    expect(models.at(-1)).toBe("openrouter/free");
+  });
+
   it("prefers Groq when a Groq key is configured", () => {
     const providers = providerCandidates({
       GROQ_API_KEY: "gsk_test",

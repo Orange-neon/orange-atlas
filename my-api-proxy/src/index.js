@@ -3,11 +3,7 @@ const GROQ_CHAT_URL = "https://api.groq.com/openai/v1/chat/completions";
 const FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
 const DEFAULT_FIREBASE_PROJECT_ID = "orange-atlas";
 const DEFAULT_GROQ_MODEL = "llama-3.1-8b-instant";
-const DEFAULT_MODEL = "mistralai/mistral-small-3.1-24b-instruct:free";
-const DEFAULT_FALLBACK_MODELS = [
-  "google/gemma-3-27b-it:free",
-  "meta-llama/llama-3.3-70b-instruct:free",
-];
+const DEFAULT_MODEL = "openrouter/free";
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 1200;
 const MAX_TOTAL_CHARS = 4000;
@@ -244,9 +240,18 @@ export function modelCandidates(env = {}) {
   const models = [
     ...modelList(env.OPENROUTER_MODEL || DEFAULT_MODEL),
     ...modelList(env.OPENROUTER_FALLBACK_MODELS),
-    ...DEFAULT_FALLBACK_MODELS,
+    DEFAULT_MODEL,
   ];
-  return [...new Set(models)].slice(0, 4);
+  const uniqueModels = [...new Set(models)];
+  const candidates = uniqueModels.slice(0, 4);
+
+  // Specific free model IDs are retired often. Always retain OpenRouter's
+  // maintained free-model router even when custom fallback lists are long.
+  if (!candidates.includes(DEFAULT_MODEL)) {
+    candidates[candidates.length - 1] = DEFAULT_MODEL;
+  }
+
+  return candidates;
 }
 
 export function providerCandidates(env = {}) {
