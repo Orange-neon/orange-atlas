@@ -23,6 +23,56 @@ const stylesheetHref = `${basePath}assets/index-css.css`;
   </head>
   <body>
     <AuthNav />
+    <nav class="course-directory" aria-label="Course directory">
+      <a class="course-directory__brand" href={basePath}>
+        <img src={iconHref} alt="" />
+        <span>Orange Atlas Courses</span>
+      </a>
+      <div class="course-directory__links">
+        <a href={`${basePath}spanish2/`}>Spanish 2</a>
+        <a class="new" href={`${basePath}ap-world/`}><span>New</span> AP World History</a>
+      </div>
+    </nav>
     <div id="root"></div>
+    <style>
+      .course-directory {
+        position: relative;
+        z-index: 100;
+        width: min(1200px, calc(100% - 2rem));
+        min-height: 4.7rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .12);
+        font-family: Inter, system-ui, sans-serif;
+      }
+      .course-directory a { text-decoration: none; }
+      .course-directory__brand { display: inline-flex; align-items: center; gap: .65rem; color: #fff7ed; font-weight: 800; }
+      .course-directory__brand img { width: 2.25rem; height: 2.25rem; object-fit: cover; border-radius: .45rem; }
+      .course-directory__links { display: flex; flex-wrap: wrap; gap: .5rem; padding-right: 18rem; }
+      .course-directory__links a {
+        min-height: 2.35rem;
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        padding: 0 .75rem;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: .45rem;
+        color: #d6d3d1;
+        background: rgba(255,255,255,.04);
+        font-size: .8rem;
+        font-weight: 700;
+      }
+      .course-directory__links a:hover { border-color: rgba(255,116,51,.65); color: #fff; background: rgba(255,116,51,.1); }
+      .course-directory__links a.new { border-color: rgba(255,184,109,.42); color: #ffd1a6; }
+      .course-directory__links span { border-radius: 999px; padding: .08rem .34rem; color: #111; background: #ffb86d; font-size: .57rem; text-transform: uppercase; letter-spacing: .08em; }
+      @media (max-width: 900px) {
+        .course-directory { align-items: flex-start; flex-direction: column; padding: 4.5rem 0 1rem; }
+        .course-directory__links { width: 100%; padding-right: 0; }
+        .course-directory__links a { flex: 1 1 9rem; justify-content: center; }
+      }
+    </style>
   </body>
 </html>

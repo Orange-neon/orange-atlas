@@ -35,7 +35,12 @@ interface Props {
   heroTitle?: string;
   heroAccent?: string;
   topbarTitle?: string;
+  landingKicker?: string;
+  uiLanguage?: "en" | "es";
   questionCount?: number;
+  questionSelectionCount?: number;
+  selectionCounts?: Record<string, number>;
+  showAnswerBank?: boolean;
   sourceCount?: number;
   extraStatValue?: string | number;
   extraStatLabel?: string;
@@ -61,7 +66,12 @@ const {
   heroTitle,
   heroAccent,
   topbarTitle,
+  landingKicker,
+  uiLanguage = "es",
   questionCount,
+  questionSelectionCount,
+  selectionCounts,
+  showAnswerBank = false,
   sourceCount,
   extraStatValue,
   extraStatLabel,
@@ -101,6 +111,10 @@ const displayModePills = infoQuestions.length > 0 || audioQuestions.length > 0;
 const thirdStatValue = extraStatValue ?? totalSources;
 const thirdStatLabel = extraStatLabel ?? (extraStatValue !== undefined ? "tipos" : "fuentes");
 const resolvedTopbarTitle = topbarTitle ?? title;
+const isEnglish = uiLanguage === "en";
+const resolvedLandingKicker = landingKicker ?? (isEnglish
+  ? [examCode, course, unit].filter(Boolean).join(" · ")
+  : `${examCode ? `${examCode} · ` : ""}Senderos 2 · Lección 5`);
 const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -110,7 +124,7 @@ const analyticsHref = `${basePath}analytics/`;
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={uiLanguage}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -309,6 +323,25 @@ const analyticsHref = `${basePath}analytics/`;
         transform:scale(.95);
       }
 
+      .answer-bank{
+        margin-top:.85rem;padding:.85rem;border:1px solid rgba(34,211,238,.18);
+        border-radius:.5rem;background:rgba(34,211,238,.045);
+      }
+      .answer-bank-label{
+        font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+        color:var(--teal);margin-bottom:.6rem;
+      }
+      .answer-bank-options{display:flex;flex-wrap:wrap;gap:.42rem}
+      .answer-bank-btn{
+        border:1px solid rgba(34,211,238,.22);border-radius:.35rem;
+        background:rgba(34,211,238,.07);color:#b8eff7;padding:.42rem .62rem;
+        font-family:"Inter",sans-serif;font-size:.72rem;line-height:1.35;cursor:pointer;
+        transition:background .15s,border-color .15s,opacity .15s,transform .15s;
+      }
+      .answer-bank-btn:hover{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.48);transform:translateY(-1px)}
+      .answer-bank-btn.used{opacity:.43;text-decoration:line-through}
+      .answer-bank-note{font-size:.62rem;color:#5e7480;margin-top:.55rem}
+
       .btn-next{
         background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
         padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
@@ -484,16 +517,21 @@ const analyticsHref = `${basePath}analytics/`;
     </style>
   </head>
   <body>
-    <AuthNav />
+    <AuthNav showAiChat={!isEnglish} />
 
     <div class="screen active" id="s-landing">
       <div class="land-inner">
-        <p class="land-kicker">{examCode ? `${examCode} · ` : ""}Senderos 2 · Lección 5</p>
+        <p class="land-kicker">{resolvedLandingKicker}</p>
         <h1 class="land-title">
           {introHeading}
           {introAccent && <><br /><em>{introAccent}</em></>}
         </h1>
-        <p class="land-sub">{totalQuestions} preguntas. <strong>{String(duration).padStart(2, "0")}:00</strong><br />{totalSources} fuentes — una pregunta a la vez.</p>
+        <p class="land-sub">
+          {isEnglish ? `${totalQuestions} questions.` : `${totalQuestions} preguntas.`} <strong>{String(duration).padStart(2, "0")}:00</strong><br />
+          {isEnglish
+            ? (showAnswerBank ? "Choose from the word bank — one question at a time." : `${totalSources} sources — one question at a time.`)
+            : `${totalSources} fuentes — una pregunta a la vez.`}
+        </p>
 
         {displayModePills && (
           <div class="mode-pills">
@@ -509,11 +547,11 @@ const analyticsHref = `${basePath}analytics/`;
         <div class="info-grid">
           <div class="info-card">
             <div class="info-n">{totalQuestions}</div>
-            <div class="info-l">preguntas</div>
+            <div class="info-l">{isEnglish ? "questions" : "preguntas"}</div>
           </div>
           <div class="info-card">
             <div class="info-n" style="color:var(--warn)">{String(duration).padStart(2, "0")}:00</div>
-            <div class="info-l">minutos</div>
+            <div class="info-l">{isEnglish ? "minutes" : "minutos"}</div>
           </div>
           <div class="info-card">
             <div class="info-n">{thirdStatValue}</div>
@@ -522,13 +560,13 @@ const analyticsHref = `${basePath}analytics/`;
         </div>
 
         <div class="rules-box">
-          <strong>Reglas del examen:</strong>
+          <strong>{isEnglish ? "Test rules:" : "Reglas del examen:"}</strong>
           <ul>
             {rulesList.map((rule) => <li>{rule}</li>)}
           </ul>
         </div>
 
-        <button class="btn-main" onclick="startExam()">Comenzar Examen</button>
+        <button class="btn-main" onclick="startExam()">{isEnglish ? "Start Test" : "Comenzar Examen"}</button>
       </div>
     </div>
 
@@ -536,7 +574,7 @@ const analyticsHref = `${basePath}analytics/`;
       <div id="topbar">
         <div class="tb-left">
           <div class="tb-qnum" id="tb-mode">{resolvedTopbarTitle}</div>
-          <div class="tb-qof" id="qof">Pregunta 1 de {totalQuestions}</div>
+          <div class="tb-qof" id="qof">{isEnglish ? `Question 1 of ${totalQuestions}` : `Pregunta 1 de ${totalQuestions}`}</div>
         </div>
         <div class="tb-timer" id="timer">
           <span class="timer-icon">⏱</span>
@@ -564,14 +602,16 @@ const analyticsHref = `${basePath}analytics/`;
 
     <div class="screen" id="s-results" hidden>
       <div id="res-header">
-        <div class="res-kicker" id="res-kicker">Resultado Final</div>
+        <div class="res-kicker" id="res-kicker">{isEnglish ? "Final Score" : "Resultado Final"}</div>
         <div class="res-score" id="res-score"></div>
         <div class="res-pct" id="res-pct"></div>
         <div class="res-msg" id="res-msg"></div>
         <div class="res-time" id="res-time"></div>
       </div>
       <div id="res-body">
-        <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div>
+        <div id="timeout-banner">{isEnglish
+          ? "⚠ Time expired — unanswered questions were marked incorrect."
+          : "⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas."}</div>
         <div class="progress-save-card" id="progress-save-card">
           <div class="progress-save-title" id="progress-save-title">Save your progress</div>
           <p class="progress-save-copy" id="progress-save-copy">
@@ -595,6 +635,10 @@ const analyticsHref = `${basePath}analytics/`;
       questions,
       duration,
       totalQuestions,
+      questionSelectionCount,
+      selectionCounts,
+      showAnswerBank,
+      isEnglish,
       testSlug,
       testTitle: title,
       course,
@@ -616,7 +660,48 @@ const analyticsHref = `${basePath}analytics/`;
       const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
       const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
       const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
-      const QS = questions;
+      const shuffle = items => {
+        const shuffled = [...items];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      };
+      const sourceQuestions = [...questions];
+      const requestedSelectionSize = Number(questionSelectionCount);
+      const shouldSelectQuestions = requestedSelectionSize > 0 && requestedSelectionSize < sourceQuestions.length;
+      const selectionSize = shouldSelectQuestions ? requestedSelectionSize : sourceQuestions.length;
+      let selectedQuestions = sourceQuestions;
+
+      if (shouldSelectQuestions) {
+        selectedQuestions = [];
+        if (selectionCounts && typeof selectionCounts === "object") {
+          Object.entries(selectionCounts).forEach(([section, count]) => {
+            const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+            const sectionQuestions = sourceQuestions.filter(question =>
+              question.sec === section && !selectedTerms.has(nm(question.disp || ""))
+            );
+            selectedQuestions.push(...shuffle(sectionQuestions).slice(0, Number(count) || 0));
+          });
+        }
+        const alreadySelected = new Set(selectedQuestions);
+        const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+        const remaining = shuffle(sourceQuestions.filter(question =>
+          !alreadySelected.has(question) && !selectedTerms.has(nm(question.disp || ""))
+        ));
+        selectedQuestions = shuffle([...selectedQuestions, ...remaining.slice(0, Math.max(0, selectionSize - selectedQuestions.length))]).slice(0, selectionSize);
+      }
+
+      const QS = selectedQuestions.map((question, index) => ({
+        ...question,
+        sourceId: question.id,
+        id: index + 1,
+      }));
+      const WORD_BANK = [...new Set(QS
+        .map(question => question.disp || (question.acc && question.acc[0]) || "")
+        .filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
 
       function getQuestionPassage(q) {
         if (q.text && passages[String(q.text)]) return passages[String(q.text)];
@@ -865,7 +950,9 @@ const analyticsHref = `${basePath}analytics/`;
         const wrap = document.getElementById("qwrap");
 
         updateProgBar(ST.idx);
-        document.getElementById("qof").textContent = `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("qof").textContent = isEnglish
+          ? `Question ${ST.idx + 1} of ${QS.length}`
+          : `Pregunta ${ST.idx + 1} de ${QS.length}`;
         document.getElementById("tb-mode").textContent =
           q.media === "audio"
             ? "Audio — Interpretivo"
@@ -878,7 +965,9 @@ const analyticsHref = `${basePath}analytics/`;
 
         let html = "";
 
-        const typeLabel = q.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeLabel = q.type === "mc"
+          ? (isEnglish ? "Multiple Choice" : "Opción Múltiple")
+          : (isEnglish ? "Free Answer" : "Respuesta Libre");
         const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
         html += `<div class="qsec-label">${esc(q.sec)}</div>`;
         html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
@@ -910,13 +999,26 @@ const analyticsHref = `${basePath}analytics/`;
           });
           html += `</div>`;
         } else {
-          const labelText = q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
-          const placeholderText = q.eng ? "short English phrase…" : "tu respuesta…";
+          const labelText = showAnswerBank
+            ? "Enter the matching term"
+            : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = showAnswerBank
+            ? "type or choose a term…"
+            : q.eng ? "short English phrase…" : "tu respuesta…";
           html += `<div class="free-wrap">
             <div class="free-label">${labelText}</div>
             <input class="free-input" id="freeinp" placeholder="${placeholderText}"
               oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
-            ${!q.eng ? '<div class="accent-buttons">\
+            ${showAnswerBank ? `<div class="answer-bank">
+                <div class="answer-bank-label">Word bank</div>
+                <div class="answer-bank-options">
+                  ${WORD_BANK.map(term => {
+                    const used = Object.values(ST.answers).some(answer => nm(answer) === nm(term));
+                    return `<button class="answer-bank-btn${used ? " used" : ""}" type="button" data-bank-term="${encodeURIComponent(term)}">${esc(term)}</button>`;
+                  }).join("")}
+                </div>
+                <p class="answer-bank-note">Select a term to fill the answer box, or copy and paste it.</p>
+              </div>` : !q.eng ? '<div class="accent-buttons">\
                 <div class="accent-row">\
                   <button class="accent-btn" data-char="á" type="button">á</button>\
                   <button class="accent-btn" data-char="é" type="button">é</button>\
@@ -939,7 +1041,7 @@ const analyticsHref = `${basePath}analytics/`;
 
         const isLast = ST.idx === QS.length - 1;
         html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
-          ${isLast ? "Entregar Examen →" : "Siguiente →"}
+          ${isLast ? (isEnglish ? "Submit Test →" : "Entregar Examen →") : (isEnglish ? "Next →" : "Siguiente →")}
         </button>`;
 
         wrap.style.animation = "none";
@@ -957,6 +1059,17 @@ const analyticsHref = `${basePath}analytics/`;
             });
           });
         }
+
+        wrap.querySelectorAll('[data-bank-term]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const term = decodeURIComponent(btn.getAttribute('data-bank-term') || '');
+            const inp = document.getElementById('freeinp');
+            if (!inp || !term) return;
+            inp.value = term;
+            inp.focus();
+            freeTyped();
+          });
+        });
 
         const prev = ST.answers[q.id];
         if (prev !== undefined) {
@@ -1090,15 +1203,19 @@ const analyticsHref = `${basePath}analytics/`;
 
         document.getElementById("res-pct").textContent = hasMediaQuestions
           ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
-          : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+          : isEnglish
+            ? `Free answer: ${freeScore}/${freeQ.length}${mcQ.length ? `  ·  Multiple choice: ${mcScore}/${mcQ.length}` : ""}`
+            : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
 
-        const msgs = hasMediaQuestions
+        const msgs = isEnglish
+          ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed terms."], [0, "Keep studying and try again."]]
+          : hasMediaQuestions
           ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
           : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
         document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
         document.getElementById("res-time").textContent = ST.timedOut
-          ? "⚠ Tiempo agotado"
-          : `Tiempo: ${fmtT(elapsed)}`;
+          ? (isEnglish ? "⚠ Time expired" : "⚠ Tiempo agotado")
+          : `${isEnglish ? "Time" : "Tiempo"}: ${fmtT(elapsed)}`;
 
         if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
         saveLatestAttempt();
@@ -1153,7 +1270,7 @@ const analyticsHref = `${basePath}analytics/`;
             html += `</div>`;
           }
 
-          html += `<button class="res-exp-btn" onclick="togE(${q.id})">Ver explicación</button>
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">${isEnglish ? "View explanation" : "Ver explicación"}</button>
           <div class="res-exp-box" id="rexp${q.id}">
             ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
           </div>`;
@@ -1167,7 +1284,9 @@ const analyticsHref = `${basePath}analytics/`;
         const b = document.getElementById(`rexp${id}`);
         const btn = b.previousElementSibling;
         b.classList.toggle("open");
-        btn.textContent = b.classList.contains("open") ? "Ocultar explicación" : "Ver explicación";
+        btn.textContent = b.classList.contains("open")
+          ? (isEnglish ? "Hide explanation" : "Ocultar explicación")
+          : (isEnglish ? "View explanation" : "Ver explicación");
       }
 
       function renderReviewQuestion(q) {

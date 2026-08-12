@@ -1,0 +1,176 @@
+---
+import AuthNav from "../../components/AuthNav.astro";
+import { apWorldVocabularyQuestions } from "../../data/apWorldVocabulary";
+
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const iconHref = `${basePath}assets/orangeAtlas.png`;
+const vocabulary = apWorldVocabularyQuestions.filter((question) => question.sec === "Vocabulary");
+const geography = apWorldVocabularyQuestions.filter((question) => question.sec === "Geography");
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AP World History vocabulary and geography practice tests on Orange Atlas." />
+    <title>AP World History Practice Hub | Orange Atlas</title>
+    <link rel="icon" href={iconHref} type="image/png" />
+    <link rel="apple-touch-icon" href={iconHref} />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap");
+
+      :root {
+        --bg: #080706;
+        --panel: #12100d;
+        --panel-soft: #18140f;
+        --line: rgba(248, 210, 148, 0.16);
+        --line-strong: rgba(232, 151, 67, 0.48);
+        --text: #f7f1e7;
+        --muted: #b8aa97;
+        --gold: #e89743;
+        --gold-light: #ffd59a;
+        --blue: #76b7c7;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        min-height: 100vh;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        background:
+          radial-gradient(circle at 12% 4%, rgba(232, 151, 67, 0.15), transparent 28rem),
+          radial-gradient(circle at 90% 23%, rgba(118, 183, 199, 0.09), transparent 25rem),
+          linear-gradient(180deg, #050403, var(--bg) 42%, #0d0a07);
+        padding: 0 1rem 4rem;
+      }
+
+      .site-nav, .wrap { width: min(1120px, 100%); margin: 0 auto; }
+      .site-nav {
+        min-height: 4.8rem; display: flex; align-items: center; justify-content: space-between;
+        gap: 1rem; border-bottom: 1px solid var(--line); padding-right: 17rem;
+      }
+      .brand, .all-courses { color: inherit; text-decoration: none; font-weight: 700; }
+      .brand { display: inline-flex; align-items: center; gap: .7rem; }
+      .brand img { width: 2.35rem; height: 2.35rem; border-radius: .5rem; object-fit: cover; }
+      .brand span { color: var(--gold-light); }
+      .all-courses {
+        border: 1px solid var(--line); border-radius: .45rem; padding: .65rem .85rem;
+        color: var(--muted); background: rgba(255,255,255,.025);
+      }
+      .all-courses:hover { border-color: var(--line-strong); color: var(--text); }
+
+      .hero { padding: clamp(4rem, 9vw, 7.5rem) 0 3.5rem; max-width: 860px; }
+      .eyebrow {
+        color: var(--gold); font-size: .69rem; font-weight: 700; letter-spacing: .22em;
+        text-transform: uppercase; margin-bottom: 1rem;
+      }
+      h1, h2, h3 { font-family: "Newsreader", Georgia, serif; }
+      h1 { font-size: clamp(3.2rem, 9vw, 6.4rem); line-height: .92; letter-spacing: -.035em; }
+      h1 em { color: var(--gold-light); font-style: italic; font-weight: 500; }
+      .hero-copy { max-width: 680px; margin-top: 1.35rem; color: var(--muted); font-size: 1.06rem; line-height: 1.78; }
+      .stats { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+      .stat {
+        min-width: 9.2rem; border-left: 2px solid var(--gold); padding: .25rem .9rem;
+      }
+      .stat strong { display: block; color: var(--text); font-family: "Newsreader", serif; font-size: 1.55rem; }
+      .stat span { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; }
+
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin: 1rem 0 1.1rem; }
+      h2 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1; }
+      .section-head p { color: var(--muted); max-width: 38rem; line-height: 1.65; font-size: .9rem; }
+      .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .85rem; }
+      .test-card {
+        min-height: 12rem; display: flex; flex-direction: column; color: inherit; text-decoration: none;
+        border: 1px solid var(--line); border-radius: .55rem; padding: 1.1rem;
+        background: linear-gradient(145deg, rgba(28,23,17,.9), rgba(13,11,9,.94));
+        transition: transform .18s, border-color .18s, background .18s;
+      }
+      .test-card:hover { transform: translateY(-3px); border-color: var(--line-strong); background: linear-gradient(145deg, rgba(46,33,20,.95), rgba(17,13,10,.98)); }
+      .test-number { color: var(--gold); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; }
+      h3 { font-size: 1.48rem; margin: .55rem 0 .45rem; }
+      .test-card p { color: var(--muted); font-size: .84rem; line-height: 1.55; flex: 1; }
+      .test-meta { color: var(--gold-light); font-size: .72rem; margin-top: .9rem; text-transform: uppercase; letter-spacing: .08em; }
+
+      .bank {
+        margin-top: 3.5rem; border-top: 1px solid var(--line); padding-top: 2.4rem;
+      }
+      .bank-intro { color: var(--muted); margin: .65rem 0 1.2rem; line-height: 1.7; max-width: 62rem; }
+      .bank-columns { display: grid; grid-template-columns: 3fr 1fr; gap: 1rem; }
+      .bank-card { border: 1px solid var(--line); border-radius: .55rem; padding: 1rem; background: rgba(255,255,255,.025); }
+      .bank-card h3 { color: var(--gold-light); font-size: 1.15rem; margin: 0 0 .75rem; }
+      .term-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+      .term-list span { border: 1px solid rgba(255,255,255,.09); border-radius: .3rem; color: #d2c6b6; padding: .32rem .5rem; font-size: .72rem; background: rgba(255,255,255,.025); }
+
+      @media (max-width: 900px) {
+        .site-nav { align-items: flex-start; flex-direction: column; padding: 4.5rem 0 1rem; }
+        .all-courses { width: 100%; text-align: center; }
+        .hero { padding-top: 3rem; }
+        .section-head { align-items: flex-start; flex-direction: column; }
+        .bank-columns { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <AuthNav showAiChat={false} />
+
+    <nav class="site-nav" aria-label="Course navigation">
+      <a class="brand" href={basePath} aria-label="Orange Atlas home">
+        <img src={iconHref} alt="" />
+        <span>Orange Atlas</span>
+      </a>
+      <a class="all-courses" href={basePath}>All Courses</a>
+    </nav>
+
+    <main class="wrap">
+      <header class="hero">
+        <p class="eyebrow">New Course · Test Set One</p>
+        <h1>AP World<br /><em>History</em></h1>
+        <p class="hero-copy">
+          Build fast recall across foundational belief systems, states, trade networks, civilizations, and world regions. Every test is free answer and uses the exact term bank below.
+        </p>
+        <div class="stats" aria-label="Test set statistics">
+          <div class="stat"><strong>7</strong><span>practice tests</span></div>
+          <div class="stat"><strong>10</strong><span>questions each</span></div>
+          <div class="stat"><strong>5:00</strong><span>per test</span></div>
+          <div class="stat"><strong>78</strong><span>bank entries</span></div>
+        </div>
+      </header>
+
+      <section aria-labelledby="tests-heading">
+        <div class="section-head">
+          <h2 id="tests-heading">Vocabulary Test 1</h2>
+          <p>Each numbered test draws ten questions from the complete bank. Questions move forward only and submit automatically at five minutes.</p>
+        </div>
+        <div class="test-grid">
+          {Array.from({ length: 7 }, (_, index) => (
+            <a class="test-card" href={`${basePath}tests/ap-world-vocab-${index + 1}/`}>
+              <span class="test-number">Practice set {String(index + 1).padStart(2, "0")}</span>
+              <h3>Vocabulary Test {index + 1}</h3>
+              <p>Identify the vocabulary or geography term from its definition, using the on-screen word bank.</p>
+              <span class="test-meta">10 questions · 5 minutes →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="bank" aria-labelledby="bank-heading">
+        <h2 id="bank-heading">Complete term bank</h2>
+        <p class="bank-intro">All supplied terms are available to the randomized tests. Eastern Orthodox Christianity appears in both the vocabulary and geography group, matching the provided lists.</p>
+        <div class="bank-columns">
+          <article class="bank-card">
+            <h3>Vocabulary · {vocabulary.length}</h3>
+            <div class="term-list">{vocabulary.map((question) => <span>{question.disp}</span>)}</div>
+          </article>
+          <article class="bank-card">
+            <h3>Geography · {geography.length}</h3>
+            <div class="term-list">{geography.map((question) => <span>{question.disp}</span>)}</div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

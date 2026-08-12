@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ExamPlayer from "../../components/ExamPlayer.astro";
 import TestLayout from "../../layouts/TestLayout.astro";
 import { DEFAULT_COURSE, inferUnitFromSlug } from "../../lib/testMeta";
+import { apWorldVocabularyQuestions } from "../../data/apWorldVocabulary";
 
 export async function getStaticPaths() {
   const tests = await getCollection("tests");
@@ -19,7 +20,11 @@ interface Props {
 
 const { test } = Astro.props;
 const { Content } = await test.render();
-const questions = test.data.questionsJson ? JSON.parse(test.data.questionsJson) : null;
+const questions = test.data.questionsJson
+  ? JSON.parse(test.data.questionsJson)
+  : test.slug.startsWith("ap-world-vocab-")
+    ? apWorldVocabularyQuestions
+    : null;
 const passages = test.data.passagesJson ? JSON.parse(test.data.passagesJson) : null;
 const course = test.data.course ?? DEFAULT_COURSE;
 const unit = test.data.unit ?? inferUnitFromSlug(test.slug);
@@ -39,7 +44,12 @@ const unit = test.data.unit ?? inferUnitFromSlug(test.slug);
       heroTitle={test.data.heroTitle}
       heroAccent={test.data.heroAccent}
       topbarTitle={test.data.topbarTitle}
+      landingKicker={test.data.landingKicker}
+      uiLanguage={test.data.uiLanguage}
       questionCount={test.data.questionCount}
+      questionSelectionCount={test.data.questionSelectionCount}
+      selectionCounts={test.data.selectionCounts}
+      showAnswerBank={test.data.showAnswerBank}
       sourceCount={test.data.sourceCount}
       extraStatValue={test.data.extraStatValue}
       extraStatLabel={test.data.extraStatLabel}
