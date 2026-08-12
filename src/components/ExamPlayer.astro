@@ -529,7 +529,11 @@ const analyticsHref = `${basePath}analytics/`;
         <p class="land-sub">
           {isEnglish ? `${totalQuestions} questions.` : `${totalQuestions} preguntas.`} <strong>{String(duration).padStart(2, "0")}:00</strong><br />
           {isEnglish
-            ? (showAnswerBank ? "Choose from the word bank — one question at a time." : `${totalSources} sources — one question at a time.`)
+            ? (showAnswerBank
+              ? "Choose from the word bank — one question at a time."
+              : totalSources > 0
+                ? `${totalSources} sources — one question at a time.`
+                : "One question at a time — no going back.")
             : `${totalSources} fuentes — una pregunta a la vez.`}
         </p>
 
@@ -966,8 +970,9 @@ const analyticsHref = `${basePath}analytics/`;
 
         let html = "";
 
+        const isTrueFalse = q.type === "mc" && q.ch?.length === 2 && q.ch[0] === "A) True" && q.ch[1] === "B) False";
         const typeLabel = q.type === "mc"
-          ? (isEnglish ? "Multiple Choice" : "Opción Múltiple")
+          ? (isEnglish ? (isTrueFalse ? "True or False" : "Multiple Choice") : "Opción Múltiple")
           : (isEnglish ? "Free Answer" : "Respuesta Libre");
         const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
         html += `<div class="qsec-label">${esc(q.sec)}</div>`;
@@ -1205,7 +1210,10 @@ const analyticsHref = `${basePath}analytics/`;
         document.getElementById("res-pct").textContent = hasMediaQuestions
           ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
           : isEnglish
-            ? `Free answer: ${freeScore}/${freeQ.length}${mcQ.length ? `  ·  Multiple choice: ${mcScore}/${mcQ.length}` : ""}`
+            ? [
+                freeQ.length ? `Free answer: ${freeScore}/${freeQ.length}` : "",
+                mcQ.length ? `Multiple choice: ${mcScore}/${mcQ.length}` : "",
+              ].filter(Boolean).join("  ·  ")
             : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
 
         const msgs = isEnglish

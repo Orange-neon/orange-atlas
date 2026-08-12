@@ -12,7 +12,7 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AP World History vocabulary and geography practice tests on Orange Atlas." />
+    <meta name="description" content="AP World History vocabulary, reading, and historical-reasoning practice tests on Orange Atlas." />
     <title>AP World History Practice Hub | Orange Atlas</title>
     <link rel="icon" href={iconHref} type="image/png" />
     <link rel="apple-touch-icon" href={iconHref} />
@@ -77,6 +77,7 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
       .stat span { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; }
 
       .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin: 1rem 0 1.1rem; }
+      .test-section + .test-section { margin-top: 3.2rem; padding-top: 2.8rem; border-top: 1px solid var(--line); }
       h2 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1; }
       .section-head p { color: var(--muted); max-width: 38rem; line-height: 1.65; font-size: .9rem; }
       .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .85rem; }
@@ -113,20 +114,20 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
 
     <main class="wrap">
       <header class="hero">
-        <p class="eyebrow">New Course · Test Set One</p>
+        <p class="eyebrow">Course Hub · Chapters 1–2</p>
         <h1>AP World<br /><em>History</em></h1>
         <p class="hero-copy">
-          Build fast recall across foundational belief systems, states, trade networks, civilizations, and world regions. Every question asks you to recall the exact term from its definition.
+          Build fast recall, verify close reading, and practice the historical reasoning needed to compare societies and explain change across the foundations of world history.
         </p>
         <div class="stats" aria-label="Test set statistics">
-          <div class="stat"><strong>7</strong><span>practice tests</span></div>
-          <div class="stat"><strong>10</strong><span>questions each</span></div>
-          <div class="stat"><strong>5:00</strong><span>per test</span></div>
-          <div class="stat"><strong>78</strong><span>bank entries</span></div>
+          <div class="stat"><strong>12</strong><span>practice tests</span></div>
+          <div class="stat"><strong>130</strong><span>total questions</span></div>
+          <div class="stat"><strong>2</strong><span>chapters covered</span></div>
+          <div class="stat"><strong>3</strong><span>test formats</span></div>
         </div>
       </header>
 
-      <section aria-labelledby="tests-heading">
+      <section class="test-section" aria-labelledby="tests-heading">
         <div class="section-head">
           <h2 id="tests-heading">Vocabulary Test 1</h2>
           <p>Each numbered test draws ten questions from the complete bank. Questions move forward only and submit automatically at five minutes.</p>
@@ -140,6 +141,54 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
               <span class="test-meta">10 questions · 5 minutes →</span>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section class="test-section" aria-labelledby="reading-heading">
+        <div class="section-head">
+          <h2 id="reading-heading">Chapter Reading Checks</h2>
+          <p>Four quick true-or-false tests drawn directly from the assigned <em>Ways of the World</em> Chapter 1 and Chapter 2 readings.</p>
+        </div>
+        <div class="test-grid">
+          <a class="test-card" href={`${basePath}tests/ap-world-ch1-reading-1/`}>
+            <span class="test-number">Chapter 1 · Part A</span>
+            <h3>Origins & Civilizations</h3>
+            <p>Paleolithic societies, agriculture, pastoralism, village life, cities, hierarchy, and environmental change.</p>
+            <span class="test-meta">10 true/false · 6 minutes →</span>
+          </a>
+          <a class="test-card" href={`${basePath}tests/ap-world-ch1-reading-2/`}>
+            <span class="test-number">Chapter 1 · Part B</span>
+            <h3>Beliefs & Connections</h3>
+            <p>Hinduism, Buddhism, Chinese traditions, Abrahamic faiths, and premodern cross-cultural exchange.</p>
+            <span class="test-meta">10 true/false · 6 minutes →</span>
+          </a>
+          <a class="test-card" href={`${basePath}tests/ap-world-ch2-reading-1/`}>
+            <span class="test-number">Chapter 2 · Part A</span>
+            <h3>East & Southeast Asia</h3>
+            <p>Song China and the distinct societies that borrowed, adapted, and traded across its cultural orbit.</p>
+            <span class="test-meta">10 true/false · 6 minutes →</span>
+          </a>
+          <a class="test-card" href={`${basePath}tests/ap-world-ch2-reading-2/`}>
+            <span class="test-number">Chapter 2 · Part B</span>
+            <h3>Worlds Beyond East Asia</h3>
+            <p>Islamic states, African civilizations, Eastern and Western Christendom, and American empires.</p>
+            <span class="test-meta">10 true/false · 6 minutes →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="test-section" aria-labelledby="review-heading">
+        <div class="section-head">
+          <h2 id="review-heading">Chapters 1–2 Content Review</h2>
+          <p>A cumulative assessment built around AP-style historical thinking instead of sentence recall.</p>
+        </div>
+        <div class="test-grid">
+          <a class="test-card" href={`${basePath}tests/ap-world-ch1-2-review/`}>
+            <span class="test-number">Cumulative · Historical Reasoning</span>
+            <h3>Foundations & Regional Worlds</h3>
+            <p>Apply chronology, causation, comparison, contextualization, and evidence across both chapters.</p>
+            <span class="test-meta">20 questions · 15 minutes →</span>
+          </a>
         </div>
       </section>
     </main>

@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ExamPlayer from "../../components/ExamPlayer.astro";
 import TestLayout from "../../layouts/TestLayout.astro";
 import { DEFAULT_COURSE, inferUnitFromSlug } from "../../lib/testMeta";
+import { apWorldChapterTests } from "../../data/apWorldChapterTests";
 import { apWorldVocabularyQuestions } from "../../data/apWorldVocabulary";
 
 export async function getStaticPaths() {
@@ -22,6 +23,8 @@ const { test } = Astro.props;
 const { Content } = await test.render();
 const questions = test.data.questionsJson
   ? JSON.parse(test.data.questionsJson)
+  : apWorldChapterTests[test.slug]
+    ? apWorldChapterTests[test.slug]
   : test.slug.startsWith("ap-world-vocab-")
     ? apWorldVocabularyQuestions
     : null;
