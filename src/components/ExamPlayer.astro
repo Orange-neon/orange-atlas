@@ -660,6 +660,7 @@ const analyticsHref = `${basePath}analytics/`;
       const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
       const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
       const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const expectsExactTerm = course === "AP World History";
       const shuffle = items => {
         const shuffled = [...items];
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -999,11 +1000,11 @@ const analyticsHref = `${basePath}analytics/`;
           });
           html += `</div>`;
         } else {
-          const labelText = showAnswerBank
+          const labelText = expectsExactTerm
             ? "Enter the matching term"
             : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
-          const placeholderText = showAnswerBank
-            ? "type or choose a term…"
+          const placeholderText = expectsExactTerm
+            ? "type the term…"
             : q.eng ? "short English phrase…" : "tu respuesta…";
           html += `<div class="free-wrap">
             <div class="free-label">${labelText}</div>

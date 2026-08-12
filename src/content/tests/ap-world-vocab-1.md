@@ -16,12 +16,12 @@ questionSelectionCount: 10
 selectionCounts:
   Vocabulary: 7
   Geography: 3
-showAnswerBank: true
+showAnswerBank: false
 extraStatValue: 2
 extraStatLabel: "sections"
 rules:
   - "Each attempt draws 10 questions from the complete vocabulary and geography pool"
-  - "Read the definition, then enter the matching term from the word bank"
+  - "Read the definition, then recall and enter the matching term"
   - "One question at a time — you cannot go back"
   - "The test submits automatically when the 5-minute timer reaches zero"
 ---

@@ -11779,7 +11779,7 @@ function zh() {
                         }), g.jsx(Wn, {
                             variant: "outline",
                             size: "xl",
-                            onClick: () => window.location.href = "../orange-atlas/spanish2/index.html",
+                            onClick: () => window.location.href = "#courses",
                             children: "Explore Subjects"
                         })]
                     }), g.jsxs("div", {
