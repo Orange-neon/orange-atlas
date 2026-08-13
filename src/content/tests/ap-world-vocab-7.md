@@ -4,7 +4,7 @@ duration: 5
 difficulty: "Vocabulary & Geography"
 description: "Ten free-answer questions drawn from the complete AP World vocabulary and geography bank. Match each definition to its term."
 course: "AP World History"
-unit: "Vocabulary & Geography Test 1"
+unit: "Vocabulary & Geography"
 examCode: "Test 7"
 heroTitle: "Vocabulary"
 heroAccent: "Test 7"

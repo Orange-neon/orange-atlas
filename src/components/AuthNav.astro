@@ -3,14 +3,17 @@ import AiChat from "./AiChat.astro";
 
 interface Props {
   showAiChat?: boolean;
+  analyticsCourse?: string;
 }
 
-const { showAiChat = true } = Astro.props;
+const { showAiChat = true, analyticsCourse } = Astro.props;
 
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-const analyticsHref = `${basePath}analytics/`;
+const analyticsHref = analyticsCourse
+  ? `${basePath}analytics/?course=${encodeURIComponent(analyticsCourse)}`
+  : `${basePath}analytics/`;
 ---
 
 <div class="oa-auth-nav" data-auth-nav>

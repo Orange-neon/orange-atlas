@@ -669,18 +669,18 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
   </style>
 </head>
 <body>
-  <AuthNav />
+  <AuthNav analyticsCourse="Spanish 2" />
 
   <nav class="site-nav" aria-label="Course navigation">
-    <a class="brand" href="../" aria-label="Orange Atlas home">
+    <a class="brand" href={basePath} aria-label="Orange Atlas home">
       <span class="brand-mark"><img src={iconHref} alt="" loading="eager"></span>
       <span class="brand-name">Orange Atlas</span>
     </a>
-    <a class="home-link" href="../">All Courses</a>
+    <a class="home-link" href={`${basePath}#subjects`}>All Courses</a>
   </nav>
 
   <main class="wrap">
-    <a class="crumb" href="../" aria-label="Back to all courses">&larr; All Courses</a>
+    <a class="crumb" href={`${basePath}#subjects`} aria-label="Back to all courses">&larr; All Courses</a>
 
     <section class="hero">
       <p class="eyebrow">Spanish 2 Course Home</p>

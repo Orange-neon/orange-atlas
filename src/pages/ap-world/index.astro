@@ -102,14 +102,14 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
     </style>
   </head>
   <body>
-    <AuthNav showAiChat={false} />
+    <AuthNav showAiChat={false} analyticsCourse="AP World History" />
 
     <nav class="site-nav" aria-label="Course navigation">
       <a class="brand" href={basePath} aria-label="Orange Atlas home">
         <img src={iconHref} alt="" />
         <span>Orange Atlas</span>
       </a>
-      <a class="all-courses" href={basePath}>All Courses</a>
+      <a class="all-courses" href={`${basePath}#subjects`}>All Courses</a>
     </nav>
 
     <main class="wrap">
@@ -129,7 +129,7 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
 
       <section class="test-section" aria-labelledby="tests-heading">
         <div class="section-head">
-          <h2 id="tests-heading">Vocabulary Test 1</h2>
+          <h2 id="tests-heading">Vocabulary &amp; Geography Tests</h2>
           <p>Each numbered test draws ten questions from the complete bank. Questions move forward only and submit automatically at five minutes.</p>
         </div>
         <div class="test-grid">

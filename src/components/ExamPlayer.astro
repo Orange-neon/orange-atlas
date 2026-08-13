@@ -88,39 +88,53 @@ const {
 const totalQuestions = questionCount ?? questions.length;
 const infoQuestions = questions.filter((question) => question.media === "infographic");
 const audioQuestions = questions.filter((question) => question.media === "audio");
+const isEnglish = uiLanguage === "en";
 const totalSources =
   sourceCount ??
   [infographicSrc ? "infographic" : null, audioSrc ? "audio" : null].filter(Boolean).length;
 const rulesList =
   rules ??
-  [
-    infoQuestions.length
-      ? `Preguntas 1–${infoQuestions.length}: Lee el infográfico con atención — desplázalo para ver todos los datos`
-      : null,
-    audioQuestions.length
-      ? `Preguntas ${infoQuestions.length + 1}–${infoQuestions.length + audioQuestions.length}: Escucha el audio — puedes reproducirlo cuantas veces quieras`
-      : null,
-    "Una pregunta a la vez — no puedes volver atrás",
-    "Preguntas de vocabulario: escribe una frase corta en inglés con el significado de la palabra",
-  ].filter(Boolean);
+  (isEnglish
+    ? [
+        infoQuestions.length
+          ? `Questions 1–${infoQuestions.length}: Read the infographic carefully — scroll to see all the data`
+          : null,
+        audioQuestions.length
+          ? `Questions ${infoQuestions.length + 1}–${infoQuestions.length + audioQuestions.length}: Listen to the audio — replay it as often as needed`
+          : null,
+        "One question at a time — you cannot go back",
+        "For vocabulary questions, write a short English phrase explaining the word's meaning",
+      ]
+    : [
+        infoQuestions.length
+          ? `Preguntas 1–${infoQuestions.length}: Lee el infográfico con atención — desplázalo para ver todos los datos`
+          : null,
+        audioQuestions.length
+          ? `Preguntas ${infoQuestions.length + 1}–${infoQuestions.length + audioQuestions.length}: Escucha el audio — puedes reproducirlo cuantas veces quieras`
+          : null,
+        "Una pregunta a la vez — no puedes volver atrás",
+        "Preguntas de vocabulario: escribe una frase corta en inglés con el significado de la palabra",
+      ]).filter(Boolean);
 const introHeading = heroTitle ?? title;
 const introAccent = heroAccent ?? "";
 const pageTitle = `${title} | Orange Atlas`;
 const audioMeta = [audioTitle, audioDescription].filter(Boolean).join(" · ");
 const displayModePills = infoQuestions.length > 0 || audioQuestions.length > 0;
 const thirdStatValue = extraStatValue ?? totalSources;
-const thirdStatLabel = extraStatLabel ?? (extraStatValue !== undefined ? "tipos" : "fuentes");
+const thirdStatLabel = extraStatLabel ?? (extraStatValue !== undefined
+  ? (isEnglish ? "types" : "tipos")
+  : (isEnglish ? "sources" : "fuentes"));
 const resolvedTopbarTitle = topbarTitle ?? title;
-const isEnglish = uiLanguage === "en";
 const resolvedLandingKicker = landingKicker ?? (isEnglish
   ? [examCode, course, unit].filter(Boolean).join(" · ")
   : `${examCode ? `${examCode} · ` : ""}Senderos 2 · Lección 5`);
+const resolvedInfographicTitle = infographicTitle ?? (isEnglish ? "Infographic" : "Infografía");
 const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}assets/orangeAtlas.png`;
-const analyticsHref = `${basePath}analytics/`;
+const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)}`;
 ---
 
 <!DOCTYPE html>
@@ -517,7 +531,7 @@ const analyticsHref = `${basePath}analytics/`;
     </style>
   </head>
   <body>
-    <AuthNav showAiChat={!isEnglish} />
+    <AuthNav showAiChat={!isEnglish} analyticsCourse={course} />
 
     <div class="screen active" id="s-landing">
       <div class="land-inner">
@@ -540,10 +554,10 @@ const analyticsHref = `${basePath}analytics/`;
         {displayModePills && (
           <div class="mode-pills">
             {infoQuestions.length > 0 && (
-              <div class="mode-pill infographic">📊 Preguntas 1–{infoQuestions.length} · Infografía</div>
+              <div class="mode-pill infographic">📊 {isEnglish ? "Questions" : "Preguntas"} 1–{infoQuestions.length} · {isEnglish ? "Infographic" : "Infografía"}</div>
             )}
             {audioQuestions.length > 0 && (
-              <div class="mode-pill audio">🎧 Preguntas {infoQuestions.length + 1}–{infoQuestions.length + audioQuestions.length} · Audio</div>
+              <div class="mode-pill audio">🎧 {isEnglish ? "Questions" : "Preguntas"} {infoQuestions.length + 1}–{infoQuestions.length + audioQuestions.length} · Audio</div>
             )}
           </div>
         )}
@@ -593,9 +607,11 @@ const analyticsHref = `${basePath}analytics/`;
           <div class="audio-bar-meta">{audioMeta}</div>
           <audio id="test-audio" controls preload="auto">
             {audioSrc && <source src={audioSrc} type="audio/mpeg" />}
-            Tu navegador no soporta el elemento de audio.
+            {isEnglish ? "Your browser does not support the audio element." : "Tu navegador no soporta el elemento de audio."}
           </audio>
-          <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p>
+          <p class="audio-hint">{isEnglish
+            ? "Replay the audio as often as needed before answering each question."
+            : "Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta."}</p>
         </div>
       </div>
 
@@ -648,7 +664,7 @@ const analyticsHref = `${basePath}analytics/`;
       course,
       unit,
       passages,
-      infographicTitle: infographicTitle ?? "Infografía",
+      infographicTitle: resolvedInfographicTitle,
       infographicSrc: infographicSrc ?? "",
       audioSrc: audioSrc ?? "",
       audioTitle: audioTitle ?? "Audio",
@@ -664,7 +680,7 @@ const analyticsHref = `${basePath}analytics/`;
       const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
       const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
       const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
-      const expectsExactTerm = course === "AP World History";
+      const expectsExactTerm = testSlug.startsWith("ap-world-vocab-");
       const shuffle = items => {
         const shuffled = [...items];
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -803,7 +819,8 @@ const analyticsHref = `${basePath}analytics/`;
           addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
           addStat(mediaStats, media, ok);
           return {
-            id: q.id,
+            id: q.sourceId ?? q.id,
+            displayId: q.id,
             section: q.sec || "Uncategorized",
             type: q.type,
             media,
@@ -960,9 +977,9 @@ const analyticsHref = `${basePath}analytics/`;
           : `Pregunta ${ST.idx + 1} de ${QS.length}`;
         document.getElementById("tb-mode").textContent =
           q.media === "audio"
-            ? "Audio — Interpretivo"
+            ? (isEnglish ? "Audio — Interpretive" : "Audio — Interpretivo")
             : q.media === "infographic"
-              ? "Infografía — Interpretiva"
+              ? (isEnglish ? "Infographic — Interpretive" : "Infografía — Interpretativa")
               : defaultTopbarTitle;
 
         const audioBar = document.getElementById("audio-bar");
@@ -980,15 +997,15 @@ const analyticsHref = `${basePath}analytics/`;
 
         if (q.media === "infographic" && infographicSrc) {
           html += `<div class="infographic-wrap">
-            <div class="infographic-label">📊 Infográfico — ${infographicTitle}</div>
+            <div class="infographic-label">📊 ${isEnglish ? "Infographic" : "Infográfico"} — ${infographicTitle}</div>
             <iframe
               src="${infographicSrc}"
               class="infographic-frame"
               frameborder="0"
               scrolling="yes"
-              title="Infográfico: ${infographicTitle}">
+              title="${isEnglish ? "Infographic" : "Infográfico"}: ${infographicTitle}">
             </iframe>
-            <p class="infographic-scroll-hint">↕ Desplaza el infográfico para ver todos los datos</p>
+            <p class="infographic-scroll-hint">↕ ${isEnglish ? "Scroll the infographic to see all the data" : "Desplaza el infográfico para ver todos los datos"}</p>
           </div>`;
         }
 
@@ -1208,7 +1225,9 @@ const analyticsHref = `${basePath}analytics/`;
         }, 0);
 
         document.getElementById("res-pct").textContent = hasMediaQuestions
-          ? `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`
+          ? (isEnglish
+            ? `Infographic: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Multiple choice: ${mcScore}/${mcQ.length}  ·  Free answer: ${freeScore}/${freeQ.length}`
+            : `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`)
           : isEnglish
             ? [
                 freeQ.length ? `Free answer: ${freeScore}/${freeQ.length}` : "",
@@ -1217,7 +1236,7 @@ const analyticsHref = `${basePath}analytics/`;
             : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
 
         const msgs = isEnglish
-          ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed terms."], [0, "Keep studying and try again."]]
+          ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed questions and concepts."], [0, "Keep studying and try again."]]
           : hasMediaQuestions
           ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
           : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
@@ -1239,7 +1258,7 @@ const analyticsHref = `${basePath}analytics/`;
             const div = document.createElement("div");
             div.className = "res-section-divider";
             div.innerHTML = q.media === "infographic"
-              ? `📊 Infografía — ${infographicTitle}`
+              ? `📊 ${isEnglish ? "Infographic" : "Infografía"} — ${infographicTitle}`
               : `🎧 Audio — ${audioTitle}`;
             list.appendChild(div);
             lastMedia = q.media;
@@ -1273,15 +1292,15 @@ const analyticsHref = `${basePath}analytics/`;
           } else {
             html += `<div class="res-ans-row">`;
             html += ans
-              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">Your answer: ${ans}</span>`
-              : `<span class="res-chip yours bad">No answer</span>`;
-            if (!ok) html += `<span class="res-chip correct">Correct: ${q.disp}</span>`;
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">${isEnglish ? "Your answer" : "Tu respuesta"}: ${ans}</span>`
+              : `<span class="res-chip yours bad">${isEnglish ? "No answer" : "Sin respuesta"}</span>`;
+            if (!ok) html += `<span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${q.disp}</span>`;
             html += `</div>`;
           }
 
           html += `<button class="res-exp-btn" onclick="togE(${q.id})">${isEnglish ? "View explanation" : "Ver explicación"}</button>
           <div class="res-exp-box" id="rexp${q.id}">
-            ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp}
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp}
           </div>`;
 
           card.innerHTML = html;
@@ -1318,20 +1337,24 @@ const analyticsHref = `${basePath}analytics/`;
         } else {
           const correct = q.disp || (q.acc || []).join(", ");
           html += `<div class="res-ans-row">
-            <span class="res-chip correct">Correct: ${correct}</span>
+            <span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${correct}</span>
           </div>`;
         }
 
         html += `<div class="res-exp-box open" id="rexp${q.id}">
-          ${q.type !== "free" ? `<strong style="color:#a0a0c0">Correcto: ${q.cor} · </strong>` : ""}${q.exp || "Review the prompt, correct answer, and source context for this question."}
+          ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp || (isEnglish ? "Review the prompt, correct answer, and source context for this question." : "Repasa la pregunta, la respuesta correcta y el contexto de la fuente.")}
         </div></div>`;
         return html;
       }
 
       function showReviewFromUrl() {
-        const reviewId = Number(new URLSearchParams(window.location.search).get("review"));
+        const reviewId = new URLSearchParams(window.location.search).get("review");
         if (!reviewId) return;
-        const q = QS.find(question => Number(question.id) === reviewId);
+        const sourceQuestion = sourceQuestions.find(question => String(question.id) === reviewId);
+        const selectedQuestion = QS.find(question => String(question.id) === reviewId);
+        const q = sourceQuestion
+          ? { ...sourceQuestion, sourceId: sourceQuestion.id, id: sourceQuestion.id }
+          : selectedQuestion;
         if (!q) return;
 
         document.body.classList.remove("oa-exam-running");
@@ -1348,11 +1371,13 @@ const analyticsHref = `${basePath}analytics/`;
 
         const hdr = document.getElementById("res-header");
         hdr.style.background = "linear-gradient(135deg,#111827,#3b1d0d)";
-        document.getElementById("res-kicker").textContent = "Question Review";
+        document.getElementById("res-kicker").textContent = isEnglish ? "Question Review" : "Repaso de Pregunta";
         document.getElementById("res-score").textContent = `Q${q.id}`;
-        document.getElementById("res-pct").textContent = `${q.sec} · ${q.type === "mc" ? "Multiple choice" : "Free response"}`;
+        document.getElementById("res-pct").textContent = `${q.sec} · ${q.type === "mc"
+          ? (isEnglish ? "Multiple choice" : "Opción múltiple")
+          : (isEnglish ? "Free response" : "Respuesta libre")}`;
         document.getElementById("res-msg").textContent = testTitle;
-        document.getElementById("res-time").textContent = "Opened from analytics";
+        document.getElementById("res-time").textContent = isEnglish ? "Opened from analytics" : "Abierto desde analytics";
         document.getElementById("timeout-banner").style.display = "none";
         document.getElementById("progress-save-card").classList.remove("show");
         const rail = document.getElementById("review-rail");
@@ -1360,7 +1385,7 @@ const analyticsHref = `${basePath}analytics/`;
           rail.hidden = true;
           rail.innerHTML = "";
         }
-        document.getElementById("res-list").innerHTML = `<div class="review-actions"><a href="${window.location.pathname}">Start full test</a></div>${renderReviewQuestion(q)}`;
+        document.getElementById("res-list").innerHTML = `<div class="review-actions"><a href="${window.location.pathname}">${isEnglish ? "Start full test" : "Comenzar examen completo"}</a></div>${renderReviewQuestion(q)}`;
         window.scrollTo(0, 0);
       }
 

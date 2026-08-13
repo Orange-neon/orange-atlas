@@ -1,7 +1,7 @@
 export const DEFAULT_COURSE = "Spanish 2";
 
 export function inferUnitFromSlug(slug: string) {
-  if (slug.startsWith("ap-world-vocab-")) return "Vocabulary & Geography Test 1";
+  if (slug.startsWith("ap-world-vocab-")) return "Vocabulary & Geography";
   if (slug.startsWith("ap-world-ch1-reading-")) return "Chapter 1 Reading Checks";
   if (slug.startsWith("ap-world-ch2-reading-")) return "Chapter 2 Reading Checks";
   if (slug === "ap-world-ch1-2-review") return "Chapters 1–2 Content Review";

@@ -26,6 +26,7 @@ import {
 
 export interface QuestionResult {
   id: number | string;
+  displayId?: number | string;
   section: string;
   type: string;
   media: string;

@@ -5,8 +5,9 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}assets/orangeAtlas.png`;
-const scriptHref = `${basePath}assets/index-js.js`;
-const stylesheetHref = `${basePath}assets/index-css.css`;
+const analyticsHref = `${basePath}analytics/`;
+const spanishHref = `${basePath}spanish2/`;
+const apWorldHref = `${basePath}ap-world/`;
 ---
 
 <!doctype html>
@@ -14,65 +15,823 @@ const stylesheetHref = `${basePath}assets/index-css.css`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Orange Atlas - Your comprehensive hub for quality academic practice tests across subjects" />
-    <title>Orange Atlas - Academic Practice Hub</title>
+    <meta
+      name="description"
+      content="Choose Spanish 2 or AP World History practice tests, review detailed feedback, and track your progress with Orange Atlas."
+    />
+    <meta name="theme-color" content="#090807" />
+    <title>Orange Atlas | Practice With Direction</title>
     <link rel="icon" href={iconHref} type="image/png" />
     <link rel="apple-touch-icon" href={iconHref} />
-    <script is:inline type="module" crossorigin src={scriptHref}></script>
-    <link rel="stylesheet" crossorigin href={stylesheetHref}>
-  </head>
-  <body>
-    <AuthNav />
-    <nav class="course-directory" id="courses" aria-label="Course directory">
-      <a class="course-directory__brand" href={basePath}>
-        <img src={iconHref} alt="" />
-        <span>Orange Atlas Courses</span>
-      </a>
-      <div class="course-directory__links">
-        <a href={`${basePath}spanish2/`}>Spanish 2</a>
-        <a class="new" href={`${basePath}ap-world/`}><span>New</span> AP World History</a>
-      </div>
-    </nav>
-    <div id="root"></div>
     <style>
-      .course-directory {
+      :root {
+        color-scheme: dark;
+        --bg: #090807;
+        --bg-deep: #050403;
+        --surface: #15110e;
+        --surface-raised: #1d1712;
+        --line: rgba(255, 224, 191, 0.14);
+        --line-strong: rgba(255, 137, 69, 0.5);
+        --text: #fff8f0;
+        --muted: #bcb0a5;
+        --orange: #ff7433;
+        --orange-light: #ffbd78;
+        --gold: #e9a95e;
+        --blue: #77b9c8;
+        --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-color: var(--orange) var(--bg-deep);
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 3%, rgba(255, 116, 51, 0.17), transparent 27rem),
+          radial-gradient(circle at 88% 28%, rgba(119, 185, 200, 0.08), transparent 25rem),
+          linear-gradient(180deg, var(--bg-deep), var(--bg) 38%, #0d0a08);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 3000;
+        padding: 0.65rem 0.85rem;
+        border-radius: 0.45rem;
+        color: #160c07;
+        background: var(--orange-light);
+        font-size: 0.82rem;
+        font-weight: 800;
+        text-decoration: none;
+        transform: translateY(-180%);
+        transition: transform 0.16s ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .shell {
+        width: min(1160px, calc(100% - 2rem));
+        margin-inline: auto;
+      }
+
+      .site-header {
         position: relative;
         z-index: 100;
-        width: min(1200px, calc(100% - 2rem));
-        min-height: 4.7rem;
-        margin: 0 auto;
+      }
+
+      .site-nav {
+        min-height: 5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, .12);
-        font-family: Inter, system-ui, sans-serif;
+        padding-right: 18rem;
+        border-bottom: 1px solid var(--line);
       }
-      .course-directory a { text-decoration: none; }
-      .course-directory__brand { display: inline-flex; align-items: center; gap: .65rem; color: #fff7ed; font-weight: 800; }
-      .course-directory__brand img { width: 2.25rem; height: 2.25rem; object-fit: cover; border-radius: .45rem; }
-      .course-directory__links { display: flex; flex-wrap: wrap; gap: .5rem; padding-right: 18rem; }
-      .course-directory__links a {
-        min-height: 2.35rem;
+
+      .brand {
         display: inline-flex;
         align-items: center;
-        gap: .4rem;
-        padding: 0 .75rem;
-        border: 1px solid rgba(255,255,255,.15);
-        border-radius: .45rem;
-        color: #d6d3d1;
-        background: rgba(255,255,255,.04);
-        font-size: .8rem;
-        font-weight: 700;
+        gap: 0.72rem;
+        color: var(--text);
+        font-weight: 850;
+        letter-spacing: -0.02em;
+        text-decoration: none;
       }
-      .course-directory__links a:hover { border-color: rgba(255,116,51,.65); color: #fff; background: rgba(255,116,51,.1); }
-      .course-directory__links a.new { border-color: rgba(255,184,109,.42); color: #ffd1a6; }
-      .course-directory__links span { border-radius: 999px; padding: .08rem .34rem; color: #111; background: #ffb86d; font-size: .57rem; text-transform: uppercase; letter-spacing: .08em; }
-      @media (max-width: 900px) {
-        .course-directory { align-items: flex-start; flex-direction: column; padding: 4.5rem 0 1rem; }
-        .course-directory__links { width: 100%; padding-right: 0; }
-        .course-directory__links a { flex: 1 1 9rem; justify-content: center; }
+
+      .brand img {
+        width: 2.4rem;
+        height: 2.4rem;
+        border: 1px solid rgba(255, 189, 120, 0.35);
+        border-radius: 0.55rem;
+        object-fit: cover;
+        box-shadow: 0 0 26px rgba(255, 116, 51, 0.16);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.15rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.8rem;
+        font-weight: 750;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        min-height: min(45rem, calc(100vh - 5rem));
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(17rem, 0.82fr);
+        align-items: center;
+        gap: clamp(2.5rem, 7vw, 7rem);
+        padding: clamp(5rem, 10vw, 8.5rem) 0 clamp(4.5rem, 9vw, 7rem);
+      }
+
+      .eyebrow {
+        margin: 0 0 1.15rem;
+        color: var(--orange-light);
+        font-size: 0.7rem;
+        font-weight: 850;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      h1 {
+        max-width: 12ch;
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        font-weight: 600;
+        letter-spacing: -0.055em;
+        line-height: 0.91;
+      }
+
+      h1 em {
+        color: var(--orange-light);
+        font-weight: 500;
+      }
+
+      .hero-copy {
+        max-width: 43rem;
+        margin: 1.55rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        line-height: 1.78;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .button {
+        min-height: 3.05rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0 1.1rem;
+        border: 1px solid var(--line);
+        border-radius: 0.52rem;
+        font-size: 0.84rem;
+        font-weight: 850;
+        text-decoration: none;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.primary {
+        border-color: transparent;
+        color: #1b0c05;
+        background: linear-gradient(135deg, var(--orange), var(--orange-light));
+        box-shadow: 0 14px 36px rgba(255, 116, 51, 0.21);
+      }
+
+      .button.secondary {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .button.secondary:hover {
+        border-color: var(--line-strong);
+        background: rgba(255, 116, 51, 0.07);
+      }
+
+      .hero-notes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem 1.2rem;
+        margin: 1.6rem 0 0;
+        padding: 0;
+        color: #94877c;
+        font-size: 0.75rem;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .hero-notes li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .hero-notes li::before {
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 12px rgba(255, 116, 51, 0.55);
+        content: "";
+      }
+
+      .atlas-mark {
+        position: relative;
+        width: min(100%, 25rem);
+        aspect-ratio: 1;
+        justify-self: end;
+        border: 1px solid rgba(255, 189, 120, 0.2);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 34% 30%, rgba(255, 189, 120, 0.2), transparent 13%),
+          radial-gradient(circle at center, rgba(255, 116, 51, 0.11), rgba(255, 255, 255, 0.02) 60%, transparent 61%);
+        box-shadow: inset 0 0 80px rgba(255, 116, 51, 0.05), var(--shadow);
+      }
+
+      .atlas-mark::before,
+      .atlas-mark::after {
+        position: absolute;
+        inset: 12%;
+        border: 1px solid rgba(255, 189, 120, 0.2);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .atlas-mark::before {
+        transform: rotate(28deg) scaleX(0.46);
+      }
+
+      .atlas-mark::after {
+        transform: rotate(-19deg) scaleY(0.42);
+      }
+
+      .atlas-axis,
+      .atlas-equator {
+        position: absolute;
+        top: 50%;
+        left: 9%;
+        width: 82%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 189, 120, 0.36), transparent);
+      }
+
+      .atlas-axis {
+        transform: rotate(-28deg);
+      }
+
+      .atlas-label {
+        position: absolute;
+        right: -0.35rem;
+        bottom: 13%;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid var(--line);
+        border-radius: 0.4rem;
+        color: var(--orange-light);
+        background: rgba(9, 8, 7, 0.86);
+        font-size: 0.62rem;
+        font-weight: 850;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .subjects {
+        scroll-margin-top: 1rem;
+        padding: clamp(4rem, 8vw, 7rem) 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(18rem, 1.2fr);
+        align-items: end;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      h2 {
+        max-width: 13ch;
+        font-size: clamp(2.5rem, 5vw, 4.3rem);
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+      }
+
+      .section-heading > p {
+        max-width: 39rem;
+        justify-self: end;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .subject-card {
+        position: relative;
+        min-height: 24rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(1.4rem, 3vw, 2rem);
+        border: 1px solid var(--line);
+        border-radius: 0.72rem;
+        background:
+          linear-gradient(145deg, rgba(31, 24, 19, 0.94), rgba(13, 11, 9, 0.97));
+        box-shadow: 0 20px 55px rgba(0, 0, 0, 0.18);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .subject-card::after {
+        position: absolute;
+        top: -7rem;
+        right: -6rem;
+        width: 17rem;
+        height: 17rem;
+        border-radius: 50%;
+        background: rgba(255, 116, 51, 0.08);
+        filter: blur(2px);
+        content: "";
+      }
+
+      .subject-card.history::after {
+        background: rgba(119, 185, 200, 0.09);
+      }
+
+      .subject-card:hover {
+        z-index: 1;
+        border-color: var(--line-strong);
+        transform: translateY(-4px);
+      }
+
+      .card-top,
+      .subject-card h3,
+      .subject-card > p,
+      .topic-list,
+      .card-link {
+        position: relative;
+        z-index: 1;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: var(--orange-light);
+        font-size: 0.66rem;
+        font-weight: 850;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .history .card-top {
+        color: #a8d6df;
+      }
+
+      .course-number {
+        color: rgba(255, 248, 240, 0.23);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 2.2rem;
+        letter-spacing: -0.05em;
+      }
+
+      .subject-card h3 {
+        margin-top: 3.5rem;
+        font-size: clamp(2.15rem, 5vw, 3.65rem);
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 0.96;
+      }
+
+      .subject-card > p {
+        max-width: 31rem;
+        margin: 1.1rem 0 0;
+        color: var(--muted);
+        line-height: 1.68;
+      }
+
+      .topic-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin: 1.5rem 0 2.25rem;
+        padding: 0;
+        list-style: none;
+      }
+
+      .topic-list li {
+        padding: 0.36rem 0.58rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #cbbfb4;
+        background: rgba(255, 255, 255, 0.025);
+        font-size: 0.66rem;
+        font-weight: 720;
+      }
+
+      .card-link {
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-top: auto;
+        color: var(--orange-light);
+        font-size: 0.82rem;
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .history .card-link {
+        color: #a8d6df;
+      }
+
+      .card-link span {
+        transition: transform 0.18s ease;
+      }
+
+      .card-link:hover span {
+        transform: translateX(0.25rem);
+      }
+
+      .practice {
+        padding: clamp(4rem, 8vw, 7rem) 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .practice-grid {
+        display: grid;
+        grid-template-columns: 1.1fr repeat(3, minmax(0, 0.72fr));
+        gap: 1rem;
+      }
+
+      .practice-intro {
+        padding-right: clamp(1rem, 4vw, 3.5rem);
+      }
+
+      .practice-intro h2 {
+        font-size: clamp(2.3rem, 4vw, 3.6rem);
+      }
+
+      .practice-intro p,
+      .feature p {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .practice-intro p {
+        margin: 1rem 0 0;
+      }
+
+      .feature {
+        padding: 1.25rem;
+        border-left: 1px solid var(--line);
+      }
+
+      .feature h3 {
+        display: block;
+        color: var(--orange-light);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.2rem;
+      }
+
+      .feature p {
+        margin: 0.65rem 0 0;
+        font-size: 0.82rem;
+      }
+
+      .closing {
+        margin-bottom: clamp(4rem, 8vw, 7rem);
+        padding: clamp(2rem, 5vw, 4rem);
+        border: 1px solid var(--line);
+        border-radius: 0.75rem;
+        background:
+          radial-gradient(circle at 90% 20%, rgba(255, 116, 51, 0.15), transparent 20rem),
+          var(--surface);
+        text-align: center;
+      }
+
+      .closing h2 {
+        max-width: none;
+        font-size: clamp(2.2rem, 5vw, 3.75rem);
+      }
+
+      .closing p {
+        max-width: 38rem;
+        margin: 1rem auto 1.6rem;
+        color: var(--muted);
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-inner {
+        min-height: 6rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: #887c72;
+        font-size: 0.72rem;
+      }
+
+      .footer-inner a {
+        color: var(--orange-light);
+        font-weight: 750;
+        text-decoration: none;
+      }
+
+      :focus-visible {
+        outline: 3px solid rgba(255, 189, 120, 0.9);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 980px) {
+        .hero {
+          min-height: auto;
+          grid-template-columns: minmax(0, 1fr) 16rem;
+          gap: 2rem;
+        }
+
+        .practice-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .practice-intro {
+          grid-column: 1 / -1;
+          max-width: 42rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .site-nav {
+          min-height: 4rem;
+          padding-top: 4.35rem;
+          padding-right: 0;
+        }
+
+        .nav-links {
+          gap: 0.8rem;
+        }
+
+        .hero {
+          display: block;
+          padding-top: 4.5rem;
+        }
+
+        .atlas-mark {
+          width: min(72vw, 19rem);
+          margin: 4rem auto 0;
+        }
+
+        .section-heading,
+        .subject-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-heading > p {
+          justify-self: start;
+        }
+
+        .subject-card {
+          min-height: 21rem;
+        }
+
+        .subject-card h3 {
+          margin-top: 2.5rem;
+        }
+
+        .practice-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .practice-intro {
+          grid-column: auto;
+        }
+
+        .feature {
+          padding: 1rem 0;
+          border-top: 1px solid var(--line);
+          border-left: 0;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .shell {
+          width: min(100% - 1.25rem, 1160px);
+        }
+
+        .site-nav {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.65rem;
+          padding-bottom: 1rem;
+        }
+
+        h1 {
+          font-size: clamp(3.25rem, 17vw, 4.75rem);
+        }
+
+        .hero-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .atlas-label {
+          right: 0;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <AuthNav showAiChat={false} />
+
+    <header class="site-header">
+      <nav class="site-nav shell" aria-label="Primary navigation">
+        <a class="brand" href={basePath} aria-label="Orange Atlas home">
+          <img src={iconHref} alt="" width="38" height="38" />
+          <span>Orange Atlas</span>
+        </a>
+        <div class="nav-links">
+          <a href="#subjects">Subjects</a>
+          <a href={analyticsHref}>Analytics</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Focused practice · Clear progress</p>
+          <h1 id="hero-title">Study with <em>direction.</em></h1>
+          <p class="hero-copy">
+            Choose a course, practice the material that matters, and turn every result into a clearer next step.
+            Orange Atlas brings focused assessments and useful feedback into one calm place.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#subjects">Explore Subjects <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href={analyticsHref}>View Analytics</a>
+          </div>
+          <ul class="hero-notes" aria-label="Platform highlights">
+            <li>Two focused courses</li>
+            <li>Immediate answer review</li>
+            <li>Progress by subject</li>
+          </ul>
+        </div>
+        <div class="atlas-mark" aria-hidden="true">
+          <span class="atlas-axis"></span>
+          <span class="atlas-equator"></span>
+          <span class="atlas-label">Find your next step</span>
+        </div>
+      </section>
+
+      <section class="subjects" id="subjects" aria-labelledby="subjects-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Explore subjects</p>
+              <h2 id="subjects-title">Choose your course.</h2>
+            </div>
+            <p>
+              Each course has its own focused hub, test library, and learning context. Pick the subject you want to
+              work on now; your results stay organized in Analytics.
+            </p>
+          </div>
+
+          <div class="subject-grid">
+            <article class="subject-card language" aria-labelledby="spanish-title">
+              <div class="card-top">
+                <span>Language</span>
+                <span class="course-number" aria-hidden="true">01</span>
+              </div>
+              <h3 id="spanish-title">Spanish 2</h3>
+              <p>
+                Strengthen vocabulary, interpretive reading, grammar, and cumulative exam readiness with targeted
+                practice sets.
+              </p>
+              <ul class="topic-list" aria-label="Spanish 2 topics">
+                <li>Vocabulary</li>
+                <li>Reading</li>
+                <li>Grammar</li>
+                <li>Final review</li>
+              </ul>
+              <a class="card-link" href={spanishHref}>
+                Open Spanish 2 hub <span aria-hidden="true">→</span>
+              </a>
+            </article>
+
+            <article class="subject-card history" aria-labelledby="history-title">
+              <div class="card-top">
+                <span>History</span>
+                <span class="course-number" aria-hidden="true">02</span>
+              </div>
+              <h3 id="history-title">AP World History</h3>
+              <p>
+                Build historical vocabulary, verify close reading, and apply chronology, comparison, causation, and
+                contextualization.
+              </p>
+              <ul class="topic-list" aria-label="AP World History topics">
+                <li>Vocabulary</li>
+                <li>Geography</li>
+                <li>Reading checks</li>
+                <li>Historical reasoning</li>
+              </ul>
+              <a class="card-link" href={apWorldHref}>
+                Open AP World hub <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="practice shell" aria-labelledby="practice-title">
+        <div class="practice-grid">
+          <div class="practice-intro">
+            <p class="eyebrow">Designed for useful repetition</p>
+            <h2 id="practice-title">Practice, review, improve.</h2>
+            <p>Every session is built to help you identify what you know and what deserves another pass.</p>
+          </div>
+          <div class="feature">
+            <h3>Focused tests</h3>
+            <p>Work through clearly scoped assessments instead of searching through unrelated material.</p>
+          </div>
+          <div class="feature">
+            <h3>Clear feedback</h3>
+            <p>Review your answers and explanations after submitting, while the material is still fresh.</p>
+          </div>
+          <div class="feature">
+            <h3>Subject analytics</h3>
+            <p>See progress in the context of the course you are studying and choose a relevant next test.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing shell" aria-labelledby="closing-title">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="closing-title">Start with the subject in front of you.</h2>
+        <p>Choose a course hub and turn the next few minutes into focused progress.</p>
+        <a class="button primary" href="#subjects">Browse Subjects <span aria-hidden="true">↑</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner shell">
+        <span>© 2026 Orange Atlas</span>
+        <a href={analyticsHref}>Open Analytics</a>
+      </div>
+    </footer>
   </body>
 </html>

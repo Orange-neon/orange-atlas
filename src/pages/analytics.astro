@@ -3,17 +3,40 @@ import { getCollection } from "astro:content";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, join, relative } from "node:path";
 import AuthNav from "../components/AuthNav.astro";
+import { apWorldChapterTests } from "../data/apWorldChapterTests";
+import { apWorldVocabularyQuestions } from "../data/apWorldVocabulary";
 import { DEFAULT_COURSE, inferUnitFromSlug } from "../lib/testMeta";
 
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}assets/orangeAtlas.png`;
-const unitOrder: Record<string, number> = {
-  "Unidad 4 - En el Consultorio": 4,
-  "Unidad 5 - La Tecnologia": 5,
-  "Unidad 6 - La Vivienda": 6,
-  "Semester 2 Final Review": 7,
+const courseConfigs = [
+  {
+    name: DEFAULT_COURSE,
+    shortName: "Spanish 2",
+    unitOrder: [
+      "Unidad 4 - En el Consultorio",
+      "Unidad 5 - La Tecnologia",
+      "Unidad 6 - La Vivienda",
+      "Semester 2 Final Review",
+    ],
+  },
+  {
+    name: "AP World History",
+    shortName: "AP World",
+    unitOrder: [
+      "Vocabulary & Geography",
+      "Chapter 1 Reading Checks",
+      "Chapter 2 Reading Checks",
+      "Chapters 1–2 Content Review",
+    ],
+  },
+];
+const courseConfigByName = new Map(courseConfigs.map((course) => [course.name, course]));
+const unitSortValue = (course: string, unit: string) => {
+  const index = courseConfigByName.get(course)?.unitOrder.indexOf(unit) ?? -1;
+  return index === -1 ? 99 : index;
 };
 const getSeriesInfo = (slug: string) => {
   const match = slug.match(/^(.*?)-(\d+)$/);
@@ -79,7 +102,8 @@ const legacyTestMetadata = legacyFiles.map((filePath) => {
     title: (titleMatch?.[1] ?? h1Match?.[1] ?? slug).replace(/<[^>]+>/g, "").trim(),
     course: DEFAULT_COURSE,
     unit,
-    unitOrder: unitOrder[unit] ?? 99,
+    unitOrder: unitSortValue(DEFAULT_COURSE, unit),
+    uiLanguage: "es",
     difficulty: "Legacy static test",
     href: `${basePath}${relativePath}`,
     questionCount,
@@ -90,22 +114,30 @@ const legacyTestMetadata = legacyFiles.map((filePath) => {
 });
 const tests = await getCollection("tests");
 const astroTestMetadata = tests
-  .filter((test) => Boolean(test.data.questionsJson))
   .map((test) => {
-    const questions = JSON.parse(test.data.questionsJson ?? "[]") as Array<Record<string, any>>;
+    const questions = (test.data.questionsJson
+      ? JSON.parse(test.data.questionsJson)
+      : apWorldChapterTests[test.slug]
+        ? apWorldChapterTests[test.slug]
+        : test.slug.startsWith("ap-world-vocab-")
+          ? apWorldVocabularyQuestions
+          : []) as Array<Record<string, any>>;
+    if (!questions.length) return null;
     const sections = Array.from(
       new Set(questions.map((question: { sec?: string }) => question.sec || "Uncategorized")),
     );
 
     const unit = test.data.unit ?? inferUnitFromSlug(test.slug);
+    const course = test.data.course ?? DEFAULT_COURSE;
     const series = getSeriesInfo(test.slug);
 
     return {
       slug: test.slug,
       title: test.data.title,
-      course: test.data.course ?? DEFAULT_COURSE,
+      course,
       unit,
-      unitOrder: unitOrder[unit] ?? 99,
+      unitOrder: unitSortValue(course, unit),
+      uiLanguage: test.data.uiLanguage ?? "es",
       difficulty: test.data.difficulty,
       href: `${basePath}tests/${test.slug}/`,
       questionCount: test.data.questionCount ?? questions.length,
@@ -114,9 +146,14 @@ const astroTestMetadata = tests
       source: "astro",
       ...series,
     };
-  });
+  })
+  .filter(Boolean);
 const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
-  (a, b) => a.unitOrder - b.unitOrder || a.group.localeCompare(b.group) || a.sequence - b.sequence,
+  (a, b) =>
+    a.course.localeCompare(b.course)
+    || a.unitOrder - b.unitOrder
+    || a.group.localeCompare(b.group)
+    || a.sequence - b.sequence,
 );
 ---
 
@@ -207,6 +244,26 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         font-size: 0.86rem;
         font-weight: 800;
         text-decoration: none;
+      }
+
+      .top-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.55rem;
+      }
+
+      .hub-link.primary {
+        border-color: rgba(255, 116, 51, 0.38);
+        color: var(--gold);
+        background: rgba(255, 116, 51, 0.09);
+      }
+
+      .hub-link:hover,
+      .hub-link:focus-visible {
+        border-color: rgba(255, 116, 51, 0.65);
+        color: var(--text);
+        outline: none;
       }
 
       .hero {
@@ -311,6 +368,63 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       .dashboard {
         display: grid;
         gap: 1rem;
+      }
+
+      .course-switcher-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        padding: 1rem;
+      }
+
+      .course-switcher-copy {
+        max-width: 570px;
+      }
+
+      .course-switcher-copy h2 {
+        margin-top: 0.16rem;
+        font-size: 1.35rem;
+      }
+
+      .course-switcher-copy p:last-child {
+        margin-top: 0.28rem;
+        color: var(--muted);
+        font-size: 0.87rem;
+        line-height: 1.5;
+      }
+
+      .course-switcher {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+
+      .course-switcher button {
+        min-height: 2.6rem;
+        border: 1px solid var(--line);
+        border-radius: 0.42rem;
+        padding: 0 0.88rem;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.04);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.8rem;
+        font-weight: 850;
+      }
+
+      .course-switcher button:hover,
+      .course-switcher button:focus-visible {
+        border-color: rgba(255, 116, 51, 0.58);
+        color: var(--text);
+        outline: none;
+      }
+
+      .course-switcher button[aria-pressed="true"] {
+        border-color: rgba(255, 189, 120, 0.65);
+        color: #14100d;
+        background: linear-gradient(135deg, var(--orange), var(--gold));
       }
 
       .overview {
@@ -1069,6 +1183,16 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         .grid-two {
           grid-template-columns: 1fr;
         }
+
+        .course-switcher-panel {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .course-switcher {
+          width: 100%;
+          justify-content: flex-start;
+        }
       }
 
       @media (max-width: 620px) {
@@ -1079,6 +1203,17 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         .topline {
           align-items: flex-start;
           flex-direction: column;
+        }
+
+        .top-actions,
+        .course-switcher,
+        .course-switcher button {
+          width: 100%;
+        }
+
+        .course-switcher button,
+        .hub-link {
+          justify-content: center;
         }
 
         .panel-head,
@@ -1121,7 +1256,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
     </style>
   </head>
   <body>
-    <AuthNav />
+    <AuthNav showAiChat={false} />
 
     <main class="wrap">
       <div class="topline">
@@ -1129,14 +1264,18 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           <img src={iconHref} alt="" />
           <span>Orange Atlas</span>
         </a>
-        <a class="hub-link" href={`${basePath}spanish2/`}>Spanish 2 Hub</a>
+        <div class="top-actions">
+          <a class="hub-link primary" href={`${basePath}#subjects`}>Explore Subjects</a>
+          <a class="hub-link" href={`${basePath}spanish2/`}>Spanish 2 Hub</a>
+          <a class="hub-link" href={`${basePath}ap-world/`}>AP World Hub</a>
+        </div>
       </div>
 
       <section class="hero">
         <p class="eyebrow">Progress Analytics</p>
         <h1>Know what is mastered and what needs work.</h1>
         <p class="hero-copy">
-          Signed-in attempts from all supported Spanish 2 tests become score trends, skill mastery, recent misses, and targeted next-test suggestions.
+          Choose one subject at a time to see its score trends, skill mastery, recent misses, and targeted next-test suggestions. Results from different courses stay separate.
         </p>
         <p class="status-pill" id="auth-state">Checking sign-in</p>
       </section>
@@ -1148,6 +1287,25 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       </section>
 
       <section class="dashboard" id="analytics-dashboard" hidden>
+        <section class="panel course-switcher-panel" aria-labelledby="active-course-heading">
+          <div class="course-switcher-copy">
+            <p class="panel-kicker">Viewing subject</p>
+            <h2 id="active-course-heading">Spanish 2</h2>
+            <p id="course-attempt-count">Only attempts and recommendations for this subject are shown.</p>
+          </div>
+          <div class="course-switcher" id="course-switcher" aria-label="Choose analytics subject">
+            {courseConfigs.map((course, index) => (
+              <button
+                type="button"
+                data-course={course.name}
+                aria-pressed={index === 0 ? "true" : "false"}
+              >
+                {course.shortName}
+              </button>
+            ))}
+          </div>
+        </section>
+
         <div class="overview" aria-label="Progress overview">
           <div class="stat average-card">
             <div class="stat-value" id="stat-average">0%</div>
@@ -1269,7 +1427,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       <div class="topbar">
         <div class="tb-left">
           <div class="tb-qnum" id="miss-review-title">Question Review</div>
-          <div class="tb-qof" id="miss-review-meta">Pregunta 1 de 1</div>
+          <div class="tb-qof" id="miss-review-meta">Question 1 of 1</div>
         </div>
         <button class="review-return" type="button" data-miss-return>Return</button>
       </div>
@@ -1280,6 +1438,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
     </section>
 
     <script type="application/json" id="test-metadata" set:html={JSON.stringify(testMetadata)}></script>
+    <script type="application/json" id="course-metadata" set:html={JSON.stringify(courseConfigs)}></script>
     <script>
       import {
         isFirebaseConfigured,
@@ -1288,8 +1447,10 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       } from "../lib/progress";
 
       const tests = JSON.parse(document.getElementById("test-metadata")?.textContent || "[]");
+      const courses = JSON.parse(document.getElementById("course-metadata")?.textContent || "[]");
       const testsBySlug = new Map(tests.map((test) => [test.slug, test]));
-      const unitOrder = ["Unidad 4 - En el Consultorio", "Unidad 5 - La Tecnologia", "Unidad 6 - La Vivienda", "Semester 2 Final Review"];
+      const coursesByName = new Map(courses.map((course) => [course.name, course]));
+      const defaultCourse = courses[0]?.name || "Spanish 2";
       const gate = document.getElementById("analytics-gate");
       const dashboard = document.getElementById("analytics-dashboard");
       const hero = document.querySelector(".hero");
@@ -1306,6 +1467,9 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       const missModalSub = document.getElementById("miss-modal-sub");
       const seeAllMissesButton = document.getElementById("recent-misses-see-all");
       const recentMissesKicker = document.getElementById("recent-misses-kicker");
+      const activeCourseHeading = document.getElementById("active-course-heading");
+      const courseAttemptCount = document.getElementById("course-attempt-count");
+      const courseSwitcher = document.getElementById("course-switcher");
 
       const esc = (value) => String(value ?? "")
         .replace(/&/g, "&amp;")
@@ -1323,6 +1487,8 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       let currentMisses = [];
       let activeReview = null;
       let activeReviewAnswer = "";
+      let allAttempts = [];
+      let activeCourse = defaultCourse;
 
       const mediaLabelMap = {
         "": "Standard questions",
@@ -1394,6 +1560,67 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
       function sortRecent(attempts) {
         return [...attempts].sort((a, b) => attemptMillis(b) - attemptMillis(a));
+      }
+
+      function attemptCourse(attempt) {
+        return attempt.course || testsBySlug.get(attempt.testSlug)?.course || defaultCourse;
+      }
+
+      function courseStorageKey() {
+        return `orangeAtlasAnalyticsCourse:v1:${activeUserId || "local"}`;
+      }
+
+      function testsForCourse(courseName) {
+        return tests.filter((test) => test.course === courseName);
+      }
+
+      function unitOrderForCourse(courseName) {
+        return coursesByName.get(courseName)?.unitOrder || [];
+      }
+
+      function preferredCourse(attempts) {
+        const requested = new URLSearchParams(window.location.search).get("course");
+        if (requested && coursesByName.has(requested)) return requested;
+
+        try {
+          const saved = localStorage.getItem(courseStorageKey());
+          if (saved && coursesByName.has(saved)) return saved;
+        } catch {
+          // Local storage can be unavailable in privacy-restricted browsers.
+        }
+
+        const recentCourse = attemptCourse(sortRecent(attempts)[0] || {});
+        return coursesByName.has(recentCourse) ? recentCourse : defaultCourse;
+      }
+
+      function setActiveCourse(courseName, persist = true) {
+        if (!coursesByName.has(courseName)) return;
+        activeCourse = courseName;
+        const attempts = allAttempts.filter((attempt) => attemptCourse(attempt) === courseName);
+
+        courseSwitcher?.querySelectorAll("[data-course]").forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.course === courseName));
+        });
+        if (activeCourseHeading) activeCourseHeading.textContent = courseName;
+        if (courseAttemptCount) {
+          courseAttemptCount.textContent = attempts.length
+            ? `${attempts.length} saved attempt${attempts.length === 1 ? "" : "s"}. No other subject is included in these calculations.`
+            : "No saved attempts yet. Recommendations below are a starting path for this subject.";
+        }
+        if (persist) {
+          try {
+            localStorage.setItem(courseStorageKey(), courseName);
+          } catch {
+            // The selector still works for this page when storage is unavailable.
+          }
+          const url = new URL(window.location.href);
+          url.searchParams.set("course", courseName);
+          window.history.replaceState({}, "", url);
+        }
+
+        closeMissReview();
+        closeMissModal();
+        renderDashboard(attempts, courseName);
       }
 
       function addBucket(map, key, correct, total) {
@@ -1576,6 +1803,9 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
       function getQuestionDetail(attempt, question) {
         const test = testsBySlug.get(attempt.testSlug);
+        if (attempt.testSlug?.startsWith("ap-world-vocab-") && !question.displayId) {
+          return null;
+        }
         return test?.questionDetails?.[String(question.id)] || null;
       }
 
@@ -1600,8 +1830,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
       function reviewQuestionHtml(review) {
         const detail = review.detail;
+        const isEnglishReview = review.test?.uiLanguage === "en";
         const typeColor = detail.type === "mc" ? "#a78bfa" : "#34d399";
-        const typeLabel = detail.type === "mc" ? "Opción Múltiple" : "Respuesta Libre";
+        const typeLabel = detail.type === "mc"
+          ? (isEnglishReview ? "Multiple Choice" : "Opción Múltiple")
+          : (isEnglishReview ? "Free Answer" : "Respuesta Libre");
         let html = `<div class="qsec-label">${esc(detail.section || review.question.section || "Uncategorized")}</div>
           <span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>
           ${passageHtml(detail.passage)}
@@ -1615,12 +1848,16 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           });
           html += `</div>`;
         } else {
-          const labelText = detail.englishAnswer ? "Write a short English phrase" : "Escribe tu respuesta";
-          const placeholderText = detail.englishAnswer ? "short English phrase..." : "tu respuesta...";
+          const labelText = isEnglishReview
+            ? "Enter the matching term"
+            : detail.englishAnswer ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = isEnglishReview
+            ? "your answer..."
+            : detail.englishAnswer ? "short English phrase..." : "tu respuesta...";
           html += `<div class="free-wrap">
             <div class="free-label">${labelText}</div>
             <input class="free-input" id="miss-review-input" autocomplete="off" placeholder="${placeholderText}" />
-            ${!detail.englishAnswer ? `<div class="accent-buttons">
+            ${!isEnglishReview && !detail.englishAnswer ? `<div class="accent-buttons">
               ${["á", "é", "í", "ó", "ú", "ñ", "Á", "É", "Í", "Ó", "Ú", "Ñ"].map((char) =>
                 `<button class="accent-btn" type="button" data-review-accent="${escAttr(char)}">${esc(char)}</button>`,
               ).join("")}
@@ -1766,7 +2003,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         closeMissModal();
         activeReview = review;
         activeReviewAnswer = "";
-        if (missReviewTitle) missReviewTitle.textContent = `Question ${review.question.id}`;
+        if (missReviewTitle) missReviewTitle.textContent = `Question ${review.question.displayId || review.question.id}`;
         if (missReviewMeta) missReviewMeta.textContent = `${review.attempt.testTitle} - ${review.detail.type === "mc" ? "Multiple choice" : "Free response"}`;
         missReviewBody.innerHTML = reviewQuestionHtml(review);
         missReview.hidden = false;
@@ -1785,23 +2022,27 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         const test = testsBySlug.get(attempt.testSlug);
         const detail = getQuestionDetail(attempt, question);
         const key = missKey(attempt, question);
-        const href = withReviewParam(test?.href, question.id);
+        const unresolvedRandomizedQuestion = attempt.testSlug?.startsWith("ap-world-vocab-") && !question.displayId;
+        const href = unresolvedRandomizedQuestion ? test?.href : withReviewParam(test?.href, question.id);
+        const displayId = question.displayId || question.id;
         if (!detail) {
           return `<article class="miss-card" data-miss-key="${escAttr(key)}">
             <div>
               <div class="mini-title">${esc(question.section)}</div>
-              <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
-              <p class="miss-question">Open the test to review this legacy question.</p>
+              <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(displayId)} - ${esc(question.type)}</div>
+              <p class="miss-question">${unresolvedRandomizedQuestion
+                ? "This older randomized attempt did not save the term's stable ID. Retake the test for accurate question review."
+                : "Open the test to review this legacy question."}</p>
             </div>
-            <a class="miss-link" href="${escAttr(href)}">Open Review</a>
+            <a class="miss-link" href="${escAttr(href)}">${unresolvedRandomizedQuestion ? "Retake" : "Open Review"}</a>
           </article>`;
         }
 
-        const reviewIndex = reviewMisses.push({ attempt, question, detail, key, href }) - 1;
+        const reviewIndex = reviewMisses.push({ attempt, question, detail, test, key, href }) - 1;
         return `<button class="miss-card" type="button" data-miss-key="${escAttr(key)}" data-miss-open="${reviewIndex}">
           <div>
             <div class="mini-title">${esc(question.section || detail.section)}</div>
-            <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(question.id)} - ${esc(question.type)}</div>
+            <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(displayId)} - ${esc(question.type)}</div>
             <p class="miss-question">${esc(detail.prompt)}</p>
           </div>
           <span class="miss-open">Try Again</span>
@@ -1831,29 +2072,43 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         renderMissLists();
       }
 
-      function nextInSeries(test, attempted) {
+      function nextInSeries(test, attempted, courseTests) {
         if (!test) return null;
-        return tests.find((candidate) =>
+        return courseTests.find((candidate) =>
           candidate.group === test.group
           && candidate.sequence > test.sequence
           && !attempted.has(candidate.slug)
-        ) || tests.find((candidate) => candidate.slug === test.slug);
+        ) || courseTests.find((candidate) => candidate.slug === test.slug);
       }
 
-      function firstUntakenInNextUnit(currentUnit, attempted) {
+      function firstUntakenInNextUnit(currentUnit, attempted, courseTests, unitOrder) {
         const currentIndex = unitOrder.indexOf(currentUnit);
         if (currentIndex === -1) return null;
         for (let i = currentIndex + 1; i < unitOrder.length; i++) {
-          const found = tests.find((test) => test.unit === unitOrder[i] && !attempted.has(test.slug));
+          const found = courseTests.find((test) => test.unit === unitOrder[i] && !attempted.has(test.slug));
           if (found) return found;
         }
         return null;
       }
 
-      function renderRecommendations(attempts, weakSections, weakUnits) {
+      function renderRecommendations(attempts, weakSections, weakUnits, courseName) {
+        const courseTests = testsForCourse(courseName);
+        const unitOrder = unitOrderForCourse(courseName);
         const attempted = new Set(attempts.map((attempt) => attempt.testSlug));
         const recommendations = [];
         const seen = new Set();
+
+        if (!attempts.length) {
+          const starter = courseTests[0];
+          if (starter) {
+            recommendations.push({
+              test: starter,
+              chip: "Start",
+              reason: `Begin your ${courseName} practice path here.`,
+            });
+            seen.add(starter.slug);
+          }
+        }
 
         sortRecent(attempts)
           .filter((attempt) =>
@@ -1863,16 +2118,43 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           )
           .forEach((attempt) => {
             const source = testsBySlug.get(attempt.testSlug);
-            const next = nextInSeries(source, attempted);
+            const next = nextInSeries(source, attempted, courseTests);
             if (next && !seen.has(next.slug)) {
+              const focusQuestion = (attempt.questionResults || []).find((question) =>
+                !question.correct && weakSections.includes(question.section)
+              );
               seen.add(next.slug);
               recommendations.push({
                 test: next,
                 chip: next.slug === source?.slug ? "Retry" : "Next",
-                reason: `${attempt.testTitle} still has misses to clean up at ${Number(attempt.percent) || 0}%.`,
+                reason: focusQuestion
+                  ? `${focusQuestion.section} is a focus area from ${attempt.testTitle}.`
+                  : `${attempt.testTitle} still has misses to clean up at ${Number(attempt.percent) || 0}%.`,
               });
             }
           });
+
+        const latestAttempt = sortRecent(attempts)[0];
+        if (latestAttempt && Number(latestAttempt.percent) >= 85) {
+          const source = testsBySlug.get(latestAttempt.testSlug);
+          const nextSeriesTest = source
+            ? courseTests.find((candidate) =>
+                candidate.group === source.group
+                && candidate.sequence > source.sequence
+                && !attempted.has(candidate.slug)
+              )
+            : null;
+          const nextUnitTest = nextSeriesTest
+            || firstUntakenInNextUnit(latestAttempt.unit, attempted, courseTests, unitOrder);
+          if (nextUnitTest && !seen.has(nextUnitTest.slug)) {
+            seen.add(nextUnitTest.slug);
+            recommendations.push({
+              test: nextUnitTest,
+              chip: nextSeriesTest ? "Next" : "Advance",
+              reason: `${latestAttempt.testTitle} is mastered at ${Number(latestAttempt.percent) || 0}%.`,
+            });
+          }
+        }
 
         const masteredByUnit = new Map();
         attempts.forEach((attempt) => {
@@ -1882,7 +2164,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         });
         masteredByUnit.forEach((count, unit) => {
           if (count < 2) return;
-          const nextUnitTest = firstUntakenInNextUnit(unit, attempted);
+          const nextUnitTest = firstUntakenInNextUnit(unit, attempted, courseTests, unitOrder);
           if (nextUnitTest && !seen.has(nextUnitTest.slug)) {
             seen.add(nextUnitTest.slug);
             recommendations.push({
@@ -1902,11 +2184,12 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         renderList(
           "recommendations",
           items,
-          "No recommendations yet. Complete at least one test so Orange Atlas can recommend the next version, a retry, or the next unit.",
+          `No ${courseName} recommendations are available yet. Open the subject hub to choose a test.`,
         );
       }
 
-      function renderDashboard(attempts) {
+      function renderDashboard(attempts, courseName = activeCourse) {
+        const unitOrder = unitOrderForCourse(courseName);
         const attemptsSorted = sortRecent(attempts);
         const totalAttempts = attempts.length;
         const totalScore = attempts.reduce((sum, attempt) => sum + (Number(attempt.score) || 0), 0);
@@ -1959,7 +2242,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         );
         renderRecentAttempts(attemptsSorted);
         renderMisses(attemptsSorted);
-        renderRecommendations(attemptsSorted, weak.map((item) => item.key), weakUnits);
+        renderRecommendations(attemptsSorted, weak.map((item) => item.key), weakUnits, courseName);
       }
 
       function showGate(title, copy, canSignIn) {
@@ -1982,11 +2265,12 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         if (authState) authState.textContent = "Loading analytics";
         try {
           const attempts = await loadUserAttempts();
+          allAttempts = attempts;
           if (hero) hero.hidden = true;
           if (gate) gate.hidden = true;
           if (dashboard) dashboard.hidden = false;
           if (authState) authState.textContent = `${attempts.length} saved attempt${attempts.length === 1 ? "" : "s"}`;
-          renderDashboard(attempts);
+          setActiveCourse(preferredCourse(attempts), false);
         } catch (error) {
           console.warn("Unable to load Orange Atlas analytics", error);
           if (authState) authState.textContent = "Analytics failed to load";
@@ -2002,6 +2286,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         }
 
         if (!user) {
+          allAttempts = [];
           loadClearedMisses("local");
           if (authState) authState.textContent = "Signed out";
           showGate("Sign in to view analytics", "Use Google sign-in to load saved attempts and progress insights.", true);
@@ -2010,6 +2295,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
         if (hero) hero.hidden = true;
         loadAnalytics(user.uid);
+      });
+
+      courseSwitcher?.addEventListener("click", (event) => {
+        const button = event.target instanceof Element ? event.target.closest("[data-course]") : null;
+        if (button?.dataset.course) setActiveCourse(button.dataset.course);
       });
 
       document.querySelector("[data-miss-return]")?.addEventListener("click", closeMissReview);
