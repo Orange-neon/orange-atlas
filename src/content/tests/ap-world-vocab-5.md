@@ -22,6 +22,6 @@ extraStatLabel: "sections"
 rules:
   - "Each attempt draws 10 questions from the complete vocabulary and geography pool"
   - "Read the definition, then recall and enter the matching term"
-  - "One question at a time — you cannot go back"
+  - "Use Previous to go back and revise answers before submitting"
   - "The test submits automatically when the 5-minute timer reaches zero"
 ---

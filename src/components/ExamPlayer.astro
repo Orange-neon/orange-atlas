@@ -89,6 +89,7 @@ const totalQuestions = questionCount ?? questions.length;
 const infoQuestions = questions.filter((question) => question.media === "infographic");
 const audioQuestions = questions.filter((question) => question.media === "audio");
 const isEnglish = uiLanguage === "en";
+const allowBack = course === "AP World History";
 const totalSources =
   sourceCount ??
   [infographicSrc ? "infographic" : null, audioSrc ? "audio" : null].filter(Boolean).length;
@@ -102,7 +103,9 @@ const rulesList =
         audioQuestions.length
           ? `Questions ${infoQuestions.length + 1}–${infoQuestions.length + audioQuestions.length}: Listen to the audio — replay it as often as needed`
           : null,
-        "One question at a time — you cannot go back",
+        allowBack
+          ? "Use Previous to go back and revise answers before submitting"
+          : "One question at a time — you cannot go back",
         "For vocabulary questions, write a short English phrase explaining the word's meaning",
       ]
     : [
@@ -356,6 +359,17 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       .answer-bank-btn.used{opacity:.43;text-decoration:line-through}
       .answer-bank-note{font-size:.62rem;color:#5e7480;margin-top:.55rem}
 
+      .question-actions{display:grid;gap:.65rem}
+      .question-actions.has-back{grid-template-columns:minmax(0,.42fr) minmax(0,1fr)}
+      .btn-back{
+        background:rgba(255,255,255,.035);color:#aaa;border:1px solid rgba(255,255,255,.11);
+        padding:.85rem 1rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
+        cursor:pointer;letter-spacing:.08em;text-transform:uppercase;
+        font-family:"Inter",sans-serif;transition:all .2s;width:100%;
+      }
+      .btn-back:hover{background:rgba(255,255,255,.075);border-color:rgba(167,139,250,.32);color:#ede9fe}
+      .btn-back:disabled{opacity:.3;cursor:not-allowed}
+      .btn-back:disabled:hover{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.11);color:#aaa}
       .btn-next{
         background:var(--s2);color:#444;border:1px solid rgba(255,255,255,.06);
         padding:.85rem 2.5rem;border-radius:.4rem;font-size:.85rem;font-weight:600;
@@ -543,11 +557,13 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         <p class="land-sub">
           {isEnglish ? `${totalQuestions} questions.` : `${totalQuestions} preguntas.`} <strong>{String(duration).padStart(2, "0")}:00</strong><br />
           {isEnglish
-            ? (showAnswerBank
-              ? "Choose from the word bank — one question at a time."
-              : totalSources > 0
-                ? `${totalSources} sources — one question at a time.`
-                : "One question at a time — no going back.")
+            ? (allowBack
+              ? "One question at a time — you can go back and revise answers."
+              : showAnswerBank
+                ? "Choose from the word bank — one question at a time."
+                : totalSources > 0
+                  ? `${totalSources} sources — one question at a time.`
+                  : "One question at a time — no going back.")
             : `${totalSources} fuentes — una pregunta a la vez.`}
         </p>
 
@@ -659,6 +675,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       selectionCounts,
       showAnswerBank,
       isEnglish,
+      allowBack,
       testSlug,
       testTitle: title,
       course,
@@ -1063,9 +1080,12 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         }
 
         const isLast = ST.idx === QS.length - 1;
-        html += `<button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
-          ${isLast ? (isEnglish ? "Submit Test →" : "Entregar Examen →") : (isEnglish ? "Next →" : "Siguiente →")}
-        </button>`;
+        html += `<div class="question-actions${allowBack ? " has-back" : ""}">
+          ${allowBack ? `<button class="btn-back" id="btnback" onclick="goBack()" ${ST.idx === 0 ? "disabled" : ""}>← Previous</button>` : ""}
+          <button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+            ${isLast ? (isEnglish ? "Submit Test →" : "Entregar Examen →") : (isEnglish ? "Next →" : "Siguiente →")}
+          </button>
+        </div>`;
 
         wrap.style.animation = "none";
         wrap.offsetHeight;
@@ -1175,6 +1195,17 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         ST.idx++;
         if (ST.idx >= QS.length) showResults();
         else renderQ();
+      }
+
+      function goBack() {
+        if (!allowBack || ST.idx <= 0) return;
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        ST.idx--;
+        renderQ();
       }
 
       function showResults() {
@@ -1393,6 +1424,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       window.pickMC = pickMC;
       window.freeTyped = freeTyped;
       window.tryNext = tryNext;
+      window.goBack = goBack;
       window.togE = togE;
       showReviewFromUrl();
     </script>

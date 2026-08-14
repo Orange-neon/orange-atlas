@@ -17,6 +17,6 @@ extraStatLabel: "skills"
 rules:
   - "Apply chapter content through causation, comparison, chronology, contextualization, and evidence"
   - "Questions test historical reasoning, not isolated sentence recall"
-  - "One question at a time — you cannot go back"
+  - "Use Previous to go back and revise answers before submitting"
   - "The test submits automatically when the 15-minute timer reaches zero"
 ---

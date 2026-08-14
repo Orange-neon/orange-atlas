@@ -1,6 +1,6 @@
 ---
 title: "Mixed Reading Test 2"
-duration: 10
+duration: 5
 difficulty: "AP-Style Multiple Choice"
 description: "A mixed AP-style reading assessment drawing detailed questions from both Chapter 1 and Chapter 2."
 course: "AP World History"
@@ -17,6 +17,6 @@ extraStatLabel: "choices each"
 rules:
   - "Choose the one answer that is completely accurate; one distractor may be nearly correct"
   - "Questions from both chapters are mixed rather than grouped by topic"
-  - "One question at a time — you cannot go back"
-  - "The test submits automatically when the 10-minute timer reaches zero"
+  - "Use Previous to go back and revise answers before submitting"
+  - "The test submits automatically when the 5-minute timer reaches zero"
 ---
