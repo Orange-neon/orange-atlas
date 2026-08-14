@@ -120,8 +120,8 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
           Build fast recall, verify close reading, and practice the historical reasoning needed to compare societies and explain change across the foundations of world history.
         </p>
         <div class="stats" aria-label="Test set statistics">
-          <div class="stat"><strong>12</strong><span>practice tests</span></div>
-          <div class="stat"><strong>130</strong><span>total questions</span></div>
+          <div class="stat"><strong>14</strong><span>practice tests</span></div>
+          <div class="stat"><strong>150</strong><span>total questions</span></div>
           <div class="stat"><strong>2</strong><span>chapters covered</span></div>
           <div class="stat"><strong>3</strong><span>test formats</span></div>
         </div>
@@ -146,34 +146,18 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
 
       <section class="test-section" aria-labelledby="reading-heading">
         <div class="section-head">
-          <h2 id="reading-heading">Chapter Reading Checks</h2>
-          <p>Four quick true-or-false tests drawn directly from the assigned <em>Ways of the World</em> Chapter 1 and Chapter 2 readings.</p>
+          <h2 id="reading-heading">Mixed Chapter Reading Tests</h2>
+          <p>Six AP-style multiple-choice tests that mix Chapter 1 and Chapter 2 details. Every question has four choices, including one close distractor and one completely correct answer.</p>
         </div>
         <div class="test-grid">
-          <a class="test-card" href={`${basePath}tests/ap-world-ch1-reading-1/`}>
-            <span class="test-number">Chapter 1 · Part A</span>
-            <h3>Origins & Civilizations</h3>
-            <p>Paleolithic societies, agriculture, pastoralism, village life, cities, hierarchy, and environmental change.</p>
-            <span class="test-meta">10 true/false · 6 minutes →</span>
-          </a>
-          <a class="test-card" href={`${basePath}tests/ap-world-ch1-reading-2/`}>
-            <span class="test-number">Chapter 1 · Part B</span>
-            <h3>Beliefs & Connections</h3>
-            <p>Hinduism, Buddhism, Chinese traditions, Abrahamic faiths, and premodern cross-cultural exchange.</p>
-            <span class="test-meta">10 true/false · 6 minutes →</span>
-          </a>
-          <a class="test-card" href={`${basePath}tests/ap-world-ch2-reading-1/`}>
-            <span class="test-number">Chapter 2 · Part A</span>
-            <h3>East & Southeast Asia</h3>
-            <p>Song China and the distinct societies that borrowed, adapted, and traded across its cultural orbit.</p>
-            <span class="test-meta">10 true/false · 6 minutes →</span>
-          </a>
-          <a class="test-card" href={`${basePath}tests/ap-world-ch2-reading-2/`}>
-            <span class="test-number">Chapter 2 · Part B</span>
-            <h3>Worlds Beyond East Asia</h3>
-            <p>Islamic states, African civilizations, Eastern and Western Christendom, and American empires.</p>
-            <span class="test-meta">10 true/false · 6 minutes →</span>
-          </a>
+          {Array.from({ length: 6 }, (_, index) => (
+            <a class="test-card" href={`${basePath}tests/ap-world-reading-${index + 1}/`}>
+              <span class="test-number">Chapters 1–2 · Set {String(index + 1).padStart(2, "0")}</span>
+              <h3>Mixed Reading Test {index + 1}</h3>
+              <p>Move across both chapters without topic labels, using close reading to separate a nearly right answer from the fully accurate one.</p>
+              <span class="test-meta">10 questions · 10 minutes →</span>
+            </a>
+          ))}
         </div>
       </section>
 
