@@ -364,9 +364,11 @@ const apWorldHref = `${basePath}ap-world/`;
         padding: clamp(1.4rem, 3vw, 2rem);
         border: 1px solid var(--line);
         border-radius: 0.72rem;
+        color: inherit;
         background:
           linear-gradient(145deg, rgba(31, 24, 19, 0.94), rgba(13, 11, 9, 0.97));
         box-shadow: 0 20px 55px rgba(0, 0, 0, 0.18);
+        text-decoration: none;
         transition: transform 0.2s ease, border-color 0.2s ease;
       }
 
@@ -390,6 +392,13 @@ const apWorldHref = `${basePath}ap-world/`;
         z-index: 1;
         border-color: var(--line-strong);
         transform: translateY(-4px);
+      }
+
+      .subject-card:focus-visible {
+        z-index: 1;
+        border-color: var(--orange-light);
+        outline: 3px solid rgba(255, 189, 120, 0.35);
+        outline-offset: 4px;
       }
 
       .card-top,
@@ -478,7 +487,8 @@ const apWorldHref = `${basePath}ap-world/`;
         transition: transform 0.18s ease;
       }
 
-      .card-link:hover span {
+      .subject-card:hover .card-link span,
+      .subject-card:focus-visible .card-link span {
         transform: translateX(0.25rem);
       }
 
@@ -752,7 +762,7 @@ const apWorldHref = `${basePath}ap-world/`;
           </div>
 
           <div class="subject-grid">
-            <article class="subject-card language" aria-labelledby="spanish-title">
+            <a class="subject-card language" href={spanishHref} aria-labelledby="spanish-title">
               <div class="card-top">
                 <span>Language</span>
                 <span class="course-number" aria-hidden="true">01</span>
@@ -768,12 +778,12 @@ const apWorldHref = `${basePath}ap-world/`;
                 <li>Grammar</li>
                 <li>Final review</li>
               </ul>
-              <a class="card-link" href={spanishHref}>
+              <span class="card-link">
                 Open Spanish 2 hub <span aria-hidden="true">→</span>
-              </a>
-            </article>
+              </span>
+            </a>
 
-            <article class="subject-card history" aria-labelledby="history-title">
+            <a class="subject-card history" href={apWorldHref} aria-labelledby="history-title">
               <div class="card-top">
                 <span>History</span>
                 <span class="course-number" aria-hidden="true">02</span>
@@ -789,10 +799,10 @@ const apWorldHref = `${basePath}ap-world/`;
                 <li>Reading checks</li>
                 <li>Historical reasoning</li>
               </ul>
-              <a class="card-link" href={apWorldHref}>
+              <span class="card-link">
                 Open AP World hub <span aria-hidden="true">→</span>
-              </a>
-            </article>
+              </span>
+            </a>
           </div>
         </div>
       </section>

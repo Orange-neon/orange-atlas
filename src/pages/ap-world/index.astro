@@ -120,8 +120,8 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
           Build fast recall, verify close reading, and practice the historical reasoning needed to compare societies and explain change across the foundations of world history.
         </p>
         <div class="stats" aria-label="Test set statistics">
-          <div class="stat"><strong>14</strong><span>practice tests</span></div>
-          <div class="stat"><strong>150</strong><span>total questions</span></div>
+          <div class="stat"><strong>16</strong><span>practice tests</span></div>
+          <div class="stat"><strong>190</strong><span>total questions</span></div>
           <div class="stat"><strong>2</strong><span>chapters covered</span></div>
           <div class="stat"><strong>3</strong><span>test formats</span></div>
         </div>
@@ -164,15 +164,36 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
       <section class="test-section" aria-labelledby="review-heading">
         <div class="section-head">
           <h2 id="review-heading">Chapters 1–2 Content Review</h2>
-          <p>A cumulative assessment built around AP-style historical thinking instead of sentence recall.</p>
+          <p>Three cumulative assessments that progress from application to evidence analysis, qualification, counterfactuals, and synthesis.</p>
         </div>
         <div class="test-grid">
-          <a class="test-card" href={`${basePath}tests/ap-world-ch1-2-review/`}>
-            <span class="test-number">Cumulative · Historical Reasoning</span>
-            <h3>Foundations & Regional Worlds</h3>
-            <p>Apply chronology, causation, comparison, contextualization, and evidence across both chapters.</p>
-            <span class="test-meta">20 questions · 15 minutes →</span>
-          </a>
+          {[
+            {
+              href: "ap-world-ch1-2-review",
+              level: "Review 01 · Historical Reasoning",
+              title: "Foundations & Regional Worlds",
+              description: "Apply chronology, causation, comparison, contextualization, and evidence across both chapters.",
+            },
+            {
+              href: "ap-world-ch1-2-review-2",
+              level: "Review 02 · Evidence & Causation",
+              title: "Evidence Into Argument",
+              description: "Interpret archaeological findings, short sources, causal models, and counterfactual situations.",
+            },
+            {
+              href: "ap-world-ch1-2-review-3",
+              level: "Review 03 · Qualification & Synthesis",
+              title: "Rival Interpretations",
+              description: "Qualify claims, corroborate evidence, test explanations, and synthesize patterns across regions.",
+            },
+          ].map((review) => (
+            <a class="test-card" href={`${basePath}tests/${review.href}/`}>
+              <span class="test-number">{review.level}</span>
+              <h3>{review.title}</h3>
+              <p>{review.description}</p>
+              <span class="test-meta">20 questions · 15 minutes →</span>
+            </a>
+          ))}
         </div>
       </section>
     </main>
