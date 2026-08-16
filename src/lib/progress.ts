@@ -31,6 +31,14 @@ export interface QuestionResult {
   type: string;
   media: string;
   correct: boolean;
+  prompt?: string;
+  choices?: string[];
+  correctAnswer?: string;
+  acceptedAnswers?: string[];
+  displayAnswer?: string;
+  explanation?: string;
+  passage?: unknown;
+  englishAnswer?: boolean;
 }
 
 export interface BucketStat {

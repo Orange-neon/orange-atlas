@@ -95,11 +95,19 @@ const legacyTestMetadata = legacyFiles.map((filePath) => {
   const unit = isUnit4 ? "Unidad 4 - En el Consultorio" : "Unidad 5 - La Tecnologia";
   const titleMatch = source.match(/<title>(.*?)<\/title>/i);
   const h1Match = source.match(/<h1[^>]*>(.*?)<\/h1>/is);
+  const titleAliases = [titleMatch?.[1], h1Match?.[1]]
+    .filter(Boolean)
+    .map((title) => String(title)
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim());
   const series = getSeriesInfo(slug);
 
   return {
     slug,
     title: (titleMatch?.[1] ?? h1Match?.[1] ?? slug).replace(/<[^>]+>/g, "").trim(),
+    titleAliases,
     course: DEFAULT_COURSE,
     unit,
     unitOrder: unitSortValue(DEFAULT_COURSE, unit),
@@ -1447,10 +1455,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         loadUserAttempts,
         subscribeToAuth,
       } from "../lib/progress";
+      import { createReviewResolver } from "../lib/reviewResolver";
 
       const tests = JSON.parse(document.getElementById("test-metadata")?.textContent || "[]");
       const courses = JSON.parse(document.getElementById("course-metadata")?.textContent || "[]");
-      const testsBySlug = new Map(tests.map((test) => [test.slug, test]));
+      const reviewResolver = createReviewResolver(tests);
       const coursesByName = new Map(courses.map((course) => [course.name, course]));
       const defaultCourse = courses[0]?.name || "Spanish 2";
       const gate = document.getElementById("analytics-gate");
@@ -1565,7 +1574,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       }
 
       function attemptCourse(attempt) {
-        return attempt.course || testsBySlug.get(attempt.testSlug)?.course || defaultCourse;
+        return attempt.course || reviewResolver.resolveTest(attempt)?.course || defaultCourse;
       }
 
       function courseStorageKey() {
@@ -1803,14 +1812,6 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         renderList("recent-attempts", items, "Saved attempts will appear here.");
       }
 
-      function getQuestionDetail(attempt, question) {
-        const test = testsBySlug.get(attempt.testSlug);
-        if (attempt.testSlug?.startsWith("ap-world-vocab-") && !question.displayId) {
-          return null;
-        }
-        return test?.questionDetails?.[String(question.id)] || null;
-      }
-
       function answerDisplay(detail) {
         if (!detail) return "";
         if (detail.type === "mc") {
@@ -2021,10 +2022,9 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
       }
 
       function missCardHtml(attempt, question) {
-        const test = testsBySlug.get(attempt.testSlug);
-        const detail = getQuestionDetail(attempt, question);
+        const { test, detail } = reviewResolver.resolveQuestion(attempt, question);
         const key = missKey(attempt, question);
-        const unresolvedRandomizedQuestion = attempt.testSlug?.startsWith("ap-world-vocab-") && !question.displayId;
+        const unresolvedRandomizedQuestion = (test?.slug || attempt.testSlug)?.startsWith("ap-world-vocab-") && !question.displayId;
         const href = unresolvedRandomizedQuestion || !detail
           ? test?.href
           : withReviewParam(test?.href, question.id);
@@ -2036,9 +2036,9 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
               <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(displayId)} - ${esc(question.type)}</div>
               <p class="miss-question">${unresolvedRandomizedQuestion
                 ? "This older randomized attempt did not save the term's stable ID. Retake the test for accurate question review."
-                : "Question details are unavailable for this saved attempt. Open the test to review the material."}</p>
+                : "This saved result predates the question snapshot and no matching prompt remains."}</p>
             </div>
-            <a class="miss-link" href="${escAttr(href)}">${unresolvedRandomizedQuestion ? "Retake" : "Open Test"}</a>
+            ${unresolvedRandomizedQuestion ? `<a class="miss-link" href="${escAttr(href)}">Retake</a>` : ""}
           </article>`;
         }
 
@@ -2121,7 +2121,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
             || (attempt.questionResults || []).some((question) => !question.correct),
           )
           .forEach((attempt) => {
-            const source = testsBySlug.get(attempt.testSlug);
+            const source = reviewResolver.resolveTest(attempt);
             const next = nextInSeries(source, attempted, courseTests);
             if (next && !seen.has(next.slug)) {
               const focusQuestion = (attempt.questionResults || []).find((question) =>
@@ -2140,7 +2140,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
         const latestAttempt = sortRecent(attempts)[0];
         if (latestAttempt && Number(latestAttempt.percent) >= 85) {
-          const source = testsBySlug.get(latestAttempt.testSlug);
+          const source = reviewResolver.resolveTest(latestAttempt);
           const nextSeriesTest = source
             ? courseTests.find((candidate) =>
                 candidate.group === source.group

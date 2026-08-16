@@ -881,7 +881,28 @@ function startExam() {
       addStat(sectionStats, section, ok);
       addStat(typeStats, type === "mc" ? "Multiple choice" : "Free response", ok);
       addStat(mediaStats, media, ok);
-      return { id: q.id, section, type, media, correct: ok };
+      const acceptedAnswers = q.acc || q.accepted || [];
+      const displayAnswer = q.disp || q.display || correctAnswer || acceptedAnswers[0] || "";
+      const passageBody = typeof READING_PASSAGE !== "undefined"
+        ? READING_PASSAGE
+        : typeof PASSAGE !== "undefined" ? PASSAGE : "";
+      return {
+        id: q.id,
+        section,
+        type,
+        media,
+        correct: ok,
+        prompt: q.prompt || "",
+        choices: q.ch || q.choices || [],
+        correctAnswer,
+        acceptedAnswers,
+        displayAnswer,
+        explanation: q.exp || "",
+        passage: media === "passage" && passageBody
+          ? { title: "Texto de lectura", body: passageBody }
+          : null,
+        englishAnswer: Boolean(q.eng),
+      };
     });
     const total = questions.length || 1;
     return {

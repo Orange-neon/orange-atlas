@@ -842,6 +842,14 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
             type: q.type,
             media,
             correct: ok,
+            prompt: q.prompt,
+            choices: q.ch || [],
+            correctAnswer: q.cor || "",
+            acceptedAnswers: q.acc || [],
+            displayAnswer: q.disp || q.cor || (q.acc && q.acc[0]) || "",
+            explanation: q.exp || "",
+            passage: q.passage ? getQuestionPassage(q) : null,
+            englishAnswer: Boolean(q.eng),
           };
         });
 
