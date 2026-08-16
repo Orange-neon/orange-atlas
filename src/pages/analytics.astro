@@ -2023,24 +2023,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
       function missCardHtml(attempt, question) {
         const { test, detail } = reviewResolver.resolveQuestion(attempt, question);
+        if (!detail) return null;
+
         const key = missKey(attempt, question);
-        const unresolvedRandomizedQuestion = (test?.slug || attempt.testSlug)?.startsWith("ap-world-vocab-") && !question.displayId;
-        const href = unresolvedRandomizedQuestion || !detail
-          ? test?.href
-          : withReviewParam(test?.href, question.id);
+        const href = withReviewParam(test?.href, question.id);
         const displayId = question.displayId || question.id;
-        if (!detail) {
-          return `<article class="miss-card" data-miss-key="${escAttr(key)}">
-            <div>
-              <div class="mini-title">${esc(question.section)}</div>
-              <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(displayId)} - ${esc(question.type)}</div>
-              <p class="miss-question">${unresolvedRandomizedQuestion
-                ? "This older randomized attempt did not save the term's stable ID. Retake the test for accurate question review."
-                : "This saved result predates the question snapshot and no matching prompt remains."}</p>
-            </div>
-            ${unresolvedRandomizedQuestion ? `<a class="miss-link" href="${escAttr(href)}">Retake</a>` : ""}
-          </article>`;
-        }
 
         const reviewIndex = reviewMisses.push({ attempt, question, detail, test, key, href }) - 1;
         return `<button class="miss-card" type="button" data-miss-key="${escAttr(key)}" data-miss-open="${reviewIndex}">
@@ -2053,9 +2040,11 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         </button>`;
       }
 
-      function renderMissLists(emptyText = "Missed question tags will appear after saved attempts.") {
+      function renderMissLists(emptyText = "Reviewable missed questions will appear after saved attempts.") {
         reviewMisses = [];
-        const allItems = currentMisses.map(({ attempt, question }) => missCardHtml(attempt, question));
+        const allItems = currentMisses
+          .map(({ attempt, question }) => missCardHtml(attempt, question))
+          .filter(Boolean);
         renderList("recent-misses", allItems.slice(0, recentMissLimit), emptyText);
         renderList("all-recent-misses", allItems, emptyText);
         updateMissSummary();
