@@ -5,6 +5,7 @@ import { basename, join, relative } from "node:path";
 import AuthNav from "../components/AuthNav.astro";
 import { apWorldChapterTests } from "../data/apWorldChapterTests";
 import { apWorldVocabularyQuestions } from "../data/apWorldVocabulary";
+import { extractLegacyTestData } from "../lib/legacyTests";
 import { DEFAULT_COURSE, inferUnitFromSlug } from "../lib/testMeta";
 
 const basePath = import.meta.env.BASE_URL.endsWith("/")
@@ -44,7 +45,10 @@ const getSeriesInfo = (slug: string) => {
     sequence: match ? Number(match[2]) : 0,
   };
 };
-const getQuestionDetails = (questions: Array<Record<string, any>>) =>
+const getQuestionDetails = (
+  questions: Array<Record<string, any>>,
+  passages: Record<string, Record<string, string>> = {},
+) =>
   Object.fromEntries(
     questions.map((question) => [
       String(question.id),
@@ -58,7 +62,11 @@ const getQuestionDetails = (questions: Array<Record<string, any>>) =>
         answers: Array.isArray(question.acc) ? question.acc : [],
         display: question.disp || question.cor || (Array.isArray(question.acc) ? question.acc[0] : ""),
         explanation: question.exp || "",
-        passage: question.passage || null,
+        passage: question.passage
+          ? passages[String(question.text)]
+            || Object.values(passages)[0]
+            || null
+          : null,
         media: question.media || "",
         englishAnswer: Boolean(question.eng),
       },
@@ -76,6 +84,7 @@ const walkLegacyFiles = (dir: string) => {
 if (existsSync(legacyRoot)) walkLegacyFiles(legacyRoot);
 const legacyTestMetadata = legacyFiles.map((filePath) => {
   const source = readFileSync(filePath, "utf8");
+  const legacyData = extractLegacyTestData(source);
   const relativePath = relative(join(process.cwd(), "public"), filePath).replaceAll("\\", "/");
   const fileSlug = basename(filePath, ".html")
     .toLowerCase()
@@ -86,14 +95,6 @@ const legacyTestMetadata = legacyFiles.map((filePath) => {
   const unit = isUnit4 ? "Unidad 4 - En el Consultorio" : "Unidad 5 - La Tecnologia";
   const titleMatch = source.match(/<title>(.*?)<\/title>/i);
   const h1Match = source.match(/<h1[^>]*>(.*?)<\/h1>/is);
-  const sections = Array.from(
-    new Set(
-      [...source.matchAll(/\b(?:sec|secTitle|title):\s*"([^"]+)"/g)]
-        .map((match) => match[1])
-        .filter((section) => section.length < 64),
-    ),
-  );
-  const questionCount = (source.match(/\bid:\s*\d+/g) ?? []).length || 20;
   const series = getSeriesInfo(slug);
 
   return {
@@ -103,11 +104,11 @@ const legacyTestMetadata = legacyFiles.map((filePath) => {
     unit,
     unitOrder: unitSortValue(DEFAULT_COURSE, unit),
     uiLanguage: "es",
-    difficulty: "Legacy static test",
+    difficulty: "Practice Test",
     href: `${basePath}${relativePath}`,
-    questionCount,
-    sections,
-    source: "legacy-static",
+    questionCount: legacyData.questionCount,
+    sections: legacyData.sections,
+    questionDetails: legacyData.questionDetails,
     ...series,
   };
 });
@@ -122,6 +123,9 @@ const astroTestMetadata = tests
           ? apWorldVocabularyQuestions
           : []) as Array<Record<string, any>>;
     if (!questions.length) return null;
+    const passages = test.data.passagesJson
+      ? JSON.parse(test.data.passagesJson) as Record<string, Record<string, string>>
+      : {};
     const sections = Array.from(
       new Set(questions.map((question: { sec?: string }) => question.sec || "Uncategorized")),
     );
@@ -141,8 +145,7 @@ const astroTestMetadata = tests
       href: `${basePath}tests/${test.slug}/`,
       questionCount: test.data.questionCount ?? questions.length,
       sections,
-      questionDetails: getQuestionDetails(questions),
-      source: "astro",
+      questionDetails: getQuestionDetails(questions, passages),
       ...series,
     };
   })
@@ -2022,7 +2025,9 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         const detail = getQuestionDetail(attempt, question);
         const key = missKey(attempt, question);
         const unresolvedRandomizedQuestion = attempt.testSlug?.startsWith("ap-world-vocab-") && !question.displayId;
-        const href = unresolvedRandomizedQuestion ? test?.href : withReviewParam(test?.href, question.id);
+        const href = unresolvedRandomizedQuestion || !detail
+          ? test?.href
+          : withReviewParam(test?.href, question.id);
         const displayId = question.displayId || question.id;
         if (!detail) {
           return `<article class="miss-card" data-miss-key="${escAttr(key)}">
@@ -2031,9 +2036,9 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
               <div class="mini-sub">${esc(attempt.testTitle)} - Question ${esc(displayId)} - ${esc(question.type)}</div>
               <p class="miss-question">${unresolvedRandomizedQuestion
                 ? "This older randomized attempt did not save the term's stable ID. Retake the test for accurate question review."
-                : "Open the test to review this legacy question."}</p>
+                : "Question details are unavailable for this saved attempt. Open the test to review the material."}</p>
             </div>
-            <a class="miss-link" href="${escAttr(href)}">${unresolvedRandomizedQuestion ? "Retake" : "Open Review"}</a>
+            <a class="miss-link" href="${escAttr(href)}">${unresolvedRandomizedQuestion ? "Retake" : "Open Test"}</a>
           </article>`;
         }
 
