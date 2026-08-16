@@ -1,0 +1,767 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AP World Vocabulary Test 5 | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="apple-touch-icon" href="/orange-atlas/assets/orangeAtlas.png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.QdHIsByf.css">
+<link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CdOO5QoA.css"></head> <body> <div class="oa-auth-nav" data-auth-nav data-astro-cid-amj3u3q3> <a class="oa-auth-nav__link" href="/orange-atlas/analytics/?course=AP%20World%20History" data-astro-cid-amj3u3q3>Analytics</a> <button class="oa-auth-nav__button" type="button" data-auth-action="sign-in" data-astro-cid-amj3u3q3>Sign in</button> <span class="oa-auth-nav__profile" data-auth-profile hidden data-astro-cid-amj3u3q3> <img data-auth-photo alt="" data-astro-cid-amj3u3q3> <span data-auth-name data-astro-cid-amj3u3q3></span> </span> <button class="oa-auth-nav__button secondary" type="button" data-auth-action="sign-out" hidden data-astro-cid-amj3u3q3>
+Sign out
+</button> <span class="oa-auth-nav__setup" data-auth-setup hidden data-astro-cid-amj3u3q3>Firebase setup needed</span> </div>   <script type="module" src="/orange-atlas/_astro/AuthNav.astro_astro_type_script_index_0_lang.IvQfRgoT.js"></script> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">AP World History · Vocabulary &amp; Geography</p> <h1 class="land-title"> Vocabulary <br><em>Test 5</em> </h1> <p class="land-sub"> 10 questions. <strong>05:00</strong><br> One question at a time — you can go back and revise answers. </p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">10</div> <div class="info-l">questions</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">05:00</div> <div class="info-l">minutes</div> </div> <div class="info-card"> <div class="info-n">2</div> <div class="info-l">sections</div> </div> </div> <div class="rules-box"> <strong>Test rules:</strong> <ul> <li>Each attempt draws 10 questions from the complete vocabulary and geography pool</li><li>Read the definition, then recall and enter the matching term</li><li>Use Previous to go back and revise answers before submitting</li><li>The test submits automatically when the 5-minute timer reaches zero</li> </ul> </div> <button class="btn-main" onclick="startExam()">Start Test</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">AP World · Test 5</div> <div class="tb-qof" id="qof">Question 1 of 10</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">05:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto">  Your browser does not support the audio element. </audio> <p class="audio-hint">Replay the audio as often as needed before answering each question.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Final Score</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ Time expired — unanswered questions were marked incorrect.</div> <div class="progress-save-card" id="progress-save-card"> <div class="progress-save-title" id="progress-save-title">Save your progress</div> <p class="progress-save-copy" id="progress-save-copy">
+Sign in with Google now and this completed attempt will be saved to your analytics dashboard.
+</p> <div class="progress-save-actions"> <button class="progress-save-btn" type="button" data-auth-action="sign-in" id="progress-signin-btn">
+Sign in with Google
+</button> <a class="progress-save-link" href="/orange-atlas/analytics/?course=AP%20World%20History" id="progress-analytics-link">View analytics</a> </div> </div> <div class="review-shell"> <aside class="review-rail" id="review-rail" aria-label="Question review shortcuts" hidden></aside> <div id="res-list"></div> </div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The long transition, beginning around 10,000 BCE in several regions, from hunting and gathering to farming and the domestication of animals.","acc":["Agricultural Revolution","Neolithic Revolution"],"disp":"Agricultural Revolution","exp":"The Agricultural Revolution created settled communities, food surpluses, and the conditions for cities and states."},{"id":2,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A devotional Hindu tradition that emphasized an intense personal love for a deity and often challenged caste and ritual barriers.","acc":["Bhakti Movement"],"disp":"Bhakti Movement","exp":"Bhakti teachers promoted a direct emotional bond between worshippers and a chosen Hindu deity."},{"id":3,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Chinese ethical and political philosophy stressing education, proper conduct, social harmony, and respect within hierarchical relationships.","acc":["Confucianism"],"disp":"Confucianism","exp":"Confucianism shaped Chinese family life, government service, and the civil service examination system."},{"id":4,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Chinese tradition that encourages living simply and spontaneously in harmony with the natural way of the universe.","acc":["Daoism","Taoism"],"disp":"Daoism","exp":"Daoism emphasizes alignment with the Dao and the principle of effortless action, or wu wei."},{"id":5,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The Chinese dynasty from 206 BCE to 220 CE that expanded imperial rule, adopted Confucian government, and participated in Silk Roads trade.","acc":["Han Dynasty"],"disp":"Han Dynasty","exp":"The Han consolidated a durable imperial system and gave its name to China's largest ethnic group."},{"id":6,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A diverse Indian religious tradition involving ideas such as dharma, karma, rebirth, and liberation from the cycle of reincarnation.","acc":["Hinduism"],"disp":"Hinduism","exp":"Hinduism developed over centuries from South Asian traditions rather than from a single founder."},{"id":7,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A first-century Jewish teacher whose life, teachings, crucifixion, and reported resurrection became the foundation of Christianity.","acc":["Jesus of Nazareth"],"disp":"Jesus of Nazareth","exp":"Christians regard Jesus as the Messiah and the central figure of their faith."},{"id":8,"sec":"Vocabulary","type":"free","eng":true,"prompt":"An ancient monotheistic tradition of the Jewish people centered on a covenant with one God and sacred writings including the Torah.","acc":["Judaism"],"disp":"Judaism","exp":"Judaism strongly influenced the later development of Christianity and Islam."},{"id":9,"sec":"Vocabulary","type":"free","eng":true,"prompt":"Institutions of learning in the Islamic world, often attached to mosques, where students studied religious law and other subjects.","acc":["madrassas","madrasas","madrasa","madrasah","madrasahs"],"disp":"madrassas","exp":"Madrassas educated scholars and helped transmit Islamic learning across Afro-Eurasia."},{"id":10,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A major Buddhist tradition that emphasizes compassionate bodhisattvas who postpone final enlightenment to help other beings.","acc":["Mahayana Buddhism"],"disp":"Mahayana Buddhism","exp":"Mahayana Buddhism became especially influential in China, Korea, Japan, and Vietnam."},{"id":11,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The seventh-century Arabian prophet whose revelations form the Quran and who founded the first Muslim community.","acc":["Muhammad Ibn Abdullah","Muhammad","Muhammad ibn Abd Allah","Muhammad ibn Abdullah"],"disp":"Muhammad Ibn Abdullah","exp":"Muslims regard Muhammad as the final prophet in a line that includes Abraham, Moses, and Jesus."},{"id":12,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The Old Stone Age, when humans lived primarily in mobile hunting-and-gathering communities and used tools made from stone.","acc":["Paleolithic era","Paleolithic","Paleolithic Era","Old Stone Age"],"disp":"Paleolithic era","exp":"The Paleolithic era covers most of human history and predates widespread agriculture."},{"id":13,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A community whose livelihood centers on herding domesticated animals, often moving seasonally to find pasture.","acc":["pastoral society","pastoral societies","pastoralism"],"disp":"pastoral society","exp":"Pastoral societies frequently connected farming civilizations through trade, migration, and conquest."},{"id":14,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A social system in which men hold disproportionate authority in families, politics, property ownership, and public life.","acc":["patriarchy"],"disp":"patriarchy","exp":"Patriarchal systems developed in many societies, though their rules and intensity varied greatly."},{"id":15,"sec":"Vocabulary","type":"free","eng":true,"prompt":"An educated young Christian woman executed in Roman North Africa in 203 CE whose prison account became a famous martyr narrative.","acc":["Perpetua","Saint Perpetua"],"disp":"Perpetua","exp":"Perpetua's story illustrates both Roman persecution and the appeal of early Christianity to women."},{"id":16,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The sacred scripture of Islam, understood by Muslims as God's revelations to Muhammad in Arabic.","acc":["Quran","Qur'an","Koran"],"disp":"Quran","exp":"The Quran is Islam's central revealed text and a major source of belief and practice."},{"id":17,"sec":"Vocabulary","type":"free","eng":true,"prompt":"An early Christian missionary whose travels and letters helped spread Christianity among non-Jews throughout the Roman world.","acc":["Saint Paul","Paul","Paul the Apostle","Apostle Paul"],"disp":"Saint Paul","exp":"Paul argued that Gentile converts could become Christians without first fully adopting Jewish law."},{"id":18,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The network of trans-Saharan caravan routes that exchanged gold, salt, enslaved people, and ideas between West Africa and North Africa.","acc":["Sand Roads","Trans-Saharan trade routes","trans Saharan trade routes"],"disp":"Sand Roads","exp":"Camel caravans made sustained commerce across the Sahara possible."},{"id":19,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The Indian Ocean maritime trading network linking East Africa, the Middle East, South Asia, Southeast Asia, and China.","acc":["Sea Roads","Indian Ocean trade network","Indian Ocean trade routes"],"disp":"Sea Roads","exp":"Merchants used monsoon winds to move bulky goods and ideas across the Indian Ocean basin."},{"id":20,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The body of Islamic moral and legal guidance derived principally from the Quran and traditions about Muhammad.","acc":["sharia","sharia law","shari'a"],"disp":"sharia","exp":"Sharia addresses worship, ethics, family life, commerce, and other areas of Muslim conduct."},{"id":21,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The South Asian prince-turned-teacher who attained enlightenment and taught a path for overcoming suffering.","acc":["Siddhartha Gautama (the Buddha)","Siddhartha Gautama","the Buddha","Buddha","Gautama Buddha"],"disp":"Siddhartha Gautama (the Buddha)","exp":"Siddhartha Gautama is known as the Buddha, meaning the Awakened One."},{"id":22,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A changing network of overland routes across Eurasia that carried luxury goods, religions, technologies, and diseases.","acc":["Silk Roads","Silk Road","Silk Routes"],"disp":"Silk Roads","exp":"The Silk Roads linked China, Central Asia, the Middle East, and the Mediterranean world."},{"id":23,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A mystical current within Islam that seeks direct closeness to God through devotion, discipline, poetry, music, or meditation.","acc":["Sufism"],"disp":"Sufism","exp":"Sufi teachers and brotherhoods played an important role in spreading Islam."},{"id":24,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Buddhist tradition emphasizing monastic discipline, meditation, and the ideal of attaining nirvana through the Buddha's earliest teachings.","acc":["Theravada Buddhism"],"disp":"Theravada Buddhism","exp":"Theravada Buddhism became prominent in Sri Lanka and much of mainland Southeast Asia."},{"id":25,"sec":"Vocabulary","type":"free","eng":true,"prompt":"Muslim scholars trained in religious knowledge and Islamic law who served as teachers, judges, and interpreters of faith.","acc":["ulama","ulema"],"disp":"ulama","exp":"The ulama held religious authority without forming a single centralized priesthood."},{"id":26,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The worldwide community of Muslims united by their shared faith rather than by tribe, ethnicity, or nationality.","acc":["umma","ummah"],"disp":"umma","exp":"Muhammad's community at Medina provided an early model of the umma."},{"id":27,"sec":"Vocabulary","type":"free","eng":true,"prompt":"Ancient Indian philosophical texts that explore the relationship between the individual soul, ultimate reality, karma, and rebirth.","acc":["Upanishads"],"disp":"Upanishads","exp":"The Upanishads helped shape core philosophical ideas within Hindu traditions."},{"id":28,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The Chinese dynasty from 960 to 1279 known for commercial growth, urbanization, technological innovation, and a Confucian scholar-official elite.","acc":["Song dynasty","Song Dynasty"],"disp":"Song dynasty","exp":"Song China was among the world's wealthiest and most technologically advanced societies."},{"id":29,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The surge in Chinese production, commerce, population, and urbanization during the Tang-Song era, aided by new crops and technologies.","acc":["China's economic revolution","Chinas economic revolution","Chinese economic revolution"],"disp":"China's economic revolution","exp":"This transformation included expanded markets, paper money, iron production, and Champa rice cultivation."},{"id":30,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The prosperous southern capital of Song China, famous for its enormous population, markets, canals, and cosmopolitan urban life.","acc":["Hangzhou"],"disp":"Hangzhou","exp":"Hangzhou impressed visitors as one of the largest and richest cities of the premodern world."},{"id":31,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A painful Chinese practice of tightly wrapping young girls' feet to alter their shape, associated with beauty, status, and female restriction.","acc":["foot binding"],"disp":"foot binding","exp":"Foot binding spread among elite and later broader groups during and after the Song period."},{"id":32,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The phonetic Korean alphabet commissioned by King Sejong in the fifteenth century to make reading and writing more accessible.","acc":["hangul","Hangul"],"disp":"hangul","exp":"Hangul offered a simpler alternative to relying entirely on Chinese characters for Korean."},{"id":33,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The idealized code of conduct associated with Japanese samurai, emphasizing loyalty, courage, discipline, and honor.","acc":["bushido"],"disp":"bushido","exp":"Bushido means the way of the warrior and became a lasting image of samurai values."},{"id":34,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Chinese-centered diplomatic framework in which foreign rulers offered gifts and ritual submission in exchange for recognition, trade, and benefits.","acc":["tribute system"],"disp":"tribute system","exp":"The tribute system expressed China's claim to cultural centrality while enabling practical diplomacy and commerce."},{"id":35,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Vietnamese writing system that adapted Chinese characters to represent the sounds and words of the Vietnamese language.","acc":["chu nom","chữ Nôm","Chu Nom","Chữ Nôm"],"disp":"chu nom","exp":"Chu nom allowed writers to record spoken Vietnamese rather than only classical Chinese."},{"id":36,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A powerful Buddhist maritime state based on Sumatra that profited by controlling trade through the Strait of Malacca.","acc":["Srivijaya"],"disp":"Srivijaya","exp":"Srivijaya flourished as a commercial and Buddhist center in Southeast Asia."},{"id":37,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Java-based Hindu-Buddhist kingdom that dominated much of the Indonesian archipelago's trade during the thirteenth through fifteenth centuries.","acc":["Madjapahit","Majapahit"],"disp":"Madjapahit","exp":"Usually spelled Majapahit, this empire followed Srivijaya as a major Southeast Asian power."},{"id":38,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A vast twelfth-century temple complex built by the Khmer Empire in present-day Cambodia, originally dedicated to the Hindu god Vishnu.","acc":["Angkor Wat"],"disp":"Angkor Wat","exp":"Angkor Wat reflects Indian religious influence and the wealth and engineering skill of the Khmer state."},{"id":39,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The Islamic caliphate that ruled from Baghdad beginning in 750 and presided over flourishing trade, scholarship, and cultural exchange.","acc":["Abbasid caliphate","Abbasid Caliphate","Abbasids"],"disp":"Abbasid caliphate","exp":"Although its political unity weakened, the Abbasid era remained a high point of Islamic intellectual and commercial life."},{"id":40,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Sunni Muslim Turkic empire that took control of much of Southwest Asia in the eleventh century while recognizing the Abbasid caliph's religious prestige.","acc":["Seljuk Turkic Empire","Seljuk Empire","Seljuk Turks"],"disp":"Seljuk Turkic Empire","exp":"Seljuk expansion reshaped the Islamic world and contributed to conflict with Byzantium and the Crusades."},{"id":41,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A long-lasting Muslim Turkic empire centered in Anatolia that expanded into Southeast Europe, the Middle East, and North Africa.","acc":["Ottoman Empire"],"disp":"Ottoman Empire","exp":"The Ottoman Empire began around 1300 and became a major regional power after capturing Constantinople."},{"id":42,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The strategically located capital of the Byzantine Empire on the Bosporus, later captured by the Ottomans and known as Istanbul.","acc":["Constantinople","Byzantium"],"disp":"Constantinople","exp":"Constantinople controlled key routes between Europe and Asia and between the Black and Mediterranean seas."},{"id":43,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A tax historically paid by certain non-Muslim subjects in Muslim-ruled states in return for protection and exemption from military service.","acc":["jizya"],"disp":"jizya","exp":"The jizya marked protected non-Muslims as a distinct legal community."},{"id":44,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The name for Muslim-ruled parts of the Iberian Peninsula, noted especially for cities, learning, agriculture, and cultural exchange.","acc":["al-Andalus","Al-Andalus","al Andalus"],"disp":"al-Andalus","exp":"Al-Andalus connected Islamic, Christian, and Jewish intellectual traditions in medieval Iberia."},{"id":45,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The network of East African coastal city-states whose African culture blended with Islamic and Indian Ocean commercial influences.","acc":["Swahili civilization","Swahili Civilization","Swahili city states","Swahili city-states"],"disp":"Swahili civilization","exp":"Swahili cities such as Kilwa traded gold, ivory, and other goods across the Indian Ocean."},{"id":46,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The societies of the western Sudan and surrounding regions that built cities and states, traded across the Sahara, and selectively adopted Islam.","acc":["West African civilization","West African Civilization","West African civilizations"],"disp":"West African civilization","exp":"Ghana, Mali, and Songhai grew from West African agriculture, political organization, and long-distance trade."},{"id":47,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The wealthy thirteenth- to fifteenth-century West African empire associated with Mansa Musa and control of major gold and trans-Saharan trade routes.","acc":["Mali","Mali Empire","Empire of Mali"],"disp":"Mali","exp":"Mali supported Islamic scholarship and trade centers including Timbuktu."},{"id":48,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The long-distance trafficking of enslaved Africans northward across the Sahara into North Africa and the wider Islamic world.","acc":["trans-Saharan slave trade","trans Saharan slave trade"],"disp":"trans-Saharan slave trade","exp":"This trade operated for centuries alongside commerce in gold, salt, and other goods."},{"id":49,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A West African city on the southern edge of the Sahara that became a renowned center of trade, Islamic scholarship, and manuscript culture.","acc":["Timbuktu"],"disp":"Timbuktu","exp":"Timbuktu prospered within Mali and later Songhai because of trans-Saharan commerce and learning."},{"id":50,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The eastern continuation of the Roman Empire, centered at Constantinople and characterized by Greek language and Orthodox Christianity.","acc":["Byzantine Empire"],"disp":"Byzantine Empire","exp":"The Byzantine Empire preserved Roman institutions while developing a distinct eastern Christian civilization."},{"id":51,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The 1453 conquest led by Sultan Mehmed II that ended the Byzantine Empire and made the city an Ottoman capital.","acc":["Ottoman seizure of Constantinople","fall of Constantinople","capture of Constantinople","conquest of Constantinople"],"disp":"Ottoman seizure of Constantinople","exp":"The Ottoman capture of Constantinople marked a major shift in power in the eastern Mediterranean."},{"id":52,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A federation centered on Kyiv that linked Slavic and Viking peoples through river trade and adopted Orthodox Christianity from Byzantium.","acc":["Kievan Rus","Kievan Rus'","Kyivan Rus","Kyivan Rus'"],"disp":"Kievan Rus","exp":"Kievan Rus was an important cultural ancestor of Russia, Ukraine, and Belarus."},{"id":53,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The branch of Christianity centered historically in Byzantium that recognizes eastern patriarchs, uses distinctive liturgy, and separated from the Roman Catholic West.","acc":["Eastern Orthodox Christianity","Eastern Orthodoxy","Orthodox Christianity"],"disp":"Eastern Orthodox Christianity","exp":"Eastern Orthodoxy spread from Byzantium into the Balkans and the lands of the Rus."},{"id":54,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The Latin Christian civilization of medieval Western Europe, shaped by the Roman Catholic Church and politically divided kingdoms.","acc":["Western Christendom"],"disp":"Western Christendom","exp":"Western Christendom developed separately from the Byzantine and Orthodox Christian East."},{"id":55,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A decentralized political and social arrangement in medieval Europe based on personal bonds, landholding, and obligations between lords and vassals.","acc":["feudalism"],"disp":"feudalism","exp":"Feudal relationships exchanged land or protection for loyalty and service."},{"id":56,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The western Christian institution led by the pope that became medieval Western Europe's most influential religious and cultural organization.","acc":["Roman Catholic Church","Catholic Church","Roman Catholicism"],"disp":"Roman Catholic Church","exp":"The Roman Catholic Church operated monasteries, schools, courts, and a hierarchy that crossed political borders."},{"id":57,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A cultural movement beginning in Italian cities that revived classical Greek and Roman learning and encouraged humanism and artistic innovation.","acc":["European Renaissance","Renaissance","Italian Renaissance"],"disp":"European Renaissance","exp":"The Renaissance spread across Europe and transformed art, education, literature, and intellectual life."},{"id":58,"sec":"Vocabulary","type":"free","eng":true,"prompt":"A Mesoamerican civilization known for independent city-states, monumental architecture, hieroglyphic writing, mathematics, and complex calendars.","acc":["Maya civilization","Maya","Mayan civilization"],"disp":"Maya civilization","exp":"Maya civilization flourished in present-day southern Mexico and Central America before and after 900 CE."},{"id":59,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The tribute-based Mesoamerican empire centered at Tenochtitlan that dominated much of central Mexico before the Spanish conquest.","acc":["Aztec Empire","Aztecs","Mexica Empire"],"disp":"Aztec Empire","exp":"The Mexica-led Aztec Empire extracted goods and labor from conquered peoples."},{"id":60,"sec":"Vocabulary","type":"free","eng":true,"prompt":"The vast Andean empire centered at Cuzco that governed through roads, labor taxation, storehouses, and local administrators.","acc":["Inca Empire","Inca","Incas","Tawantinsuyu"],"disp":"Inca Empire","exp":"The Inca called their empire Tawantinsuyu and ruled without an alphabetic writing system."},{"id":61,"sec":"Geography","type":"free","eng":true,"prompt":"The ocean basin separating the Americas from Europe and Africa.","acc":["Atlantic Ocean"],"disp":"Atlantic Ocean","exp":"The Atlantic Ocean borders eastern North and South America and western Europe and Africa."},{"id":62,"sec":"Geography","type":"free","eng":true,"prompt":"The continent and country located southeast of Asia between the Indian and Pacific Oceans.","acc":["Australia"],"disp":"Australia","exp":"Australia is the largest landmass within the broader region of Oceania."},{"id":63,"sec":"Geography","type":"free","eng":true,"prompt":"The narrow land region connecting Mexico and South America, including countries from Guatemala through Panama.","acc":["Central America"],"disp":"Central America","exp":"Central America forms the southern portion of the North American continent."},{"id":64,"sec":"Geography","type":"free","eng":true,"prompt":"The inland region between East Asia, Russia, the Middle East, and South Asia that includes Kazakhstan and neighboring republics.","acc":["Central Asia"],"disp":"Central Asia","exp":"Central Asia historically served as the heartland of many Silk Roads routes."},{"id":65,"sec":"Geography","type":"free","eng":true,"prompt":"The region of Asia that includes China, Korea, Japan, Mongolia, and nearby territories.","acc":["East Asia"],"disp":"East Asia","exp":"East Asia was strongly influenced by Chinese political and cultural traditions."},{"id":66,"sec":"Geography","type":"free","eng":true,"prompt":"The part of Europe lying between Central Europe and Russia, including much of the continent's eastern states.","acc":["Eastern Europe"],"disp":"Eastern Europe","exp":"Eastern Europe's exact boundaries vary, but the region historically connects Europe with Russia and Eurasia."},{"id":67,"sec":"Geography","type":"free","eng":true,"prompt":"The ocean bounded by Africa, Asia, Australia, and the Southern Ocean.","acc":["Indian Ocean"],"disp":"Indian Ocean","exp":"Seasonal monsoon winds made the Indian Ocean a major premodern commercial highway."},{"id":68,"sec":"Geography","type":"free","eng":true,"prompt":"The region centered on Southwest Asia and often including Egypt, positioned where Africa, Asia, and Europe meet.","acc":["Middle East","Southwest Asia"],"disp":"Middle East","exp":"The Middle East includes the Arabian Peninsula, the Levant, Anatolia, Iran, and nearby lands."},{"id":69,"sec":"Geography","type":"free","eng":true,"prompt":"The predominantly desert and Mediterranean region of Africa north of the Sahara.","acc":["North Africa"],"disp":"North Africa","exp":"North Africa stretches from Morocco in the west through Egypt in the east."},{"id":70,"sec":"Geography","type":"free","eng":true,"prompt":"The continent north of South America, bordered by the Atlantic, Pacific, and Arctic Oceans.","acc":["North America"],"disp":"North America","exp":"North America includes Canada, the United States, Mexico, Central America, and the Caribbean in many geographic schemes."},{"id":71,"sec":"Geography","type":"free","eng":true,"prompt":"The broad Pacific region that includes Australia, New Zealand, Melanesia, Micronesia, and Polynesia.","acc":["Oceania"],"disp":"Oceania","exp":"Oceania groups thousands of Pacific islands with Australia and neighboring lands."},{"id":72,"sec":"Geography","type":"free","eng":true,"prompt":"The world's largest ocean, lying between Asia and Australia in the west and the Americas in the east.","acc":["Pacific Ocean"],"disp":"Pacific Ocean","exp":"The Pacific covers more surface area than any other ocean basin."},{"id":73,"sec":"Geography","type":"free","eng":true,"prompt":"The vast transcontinental country stretching across northern Eastern Europe and northern Asia to the Pacific.","acc":["Russia"],"disp":"Russia","exp":"Russia spans eleven time zones and occupies much of northern Eurasia."},{"id":74,"sec":"Geography","type":"free","eng":true,"prompt":"The continent south of Central America, bordered by the Pacific to the west and Atlantic to the east.","acc":["South America"],"disp":"South America","exp":"South America contains the Andes Mountains and most of the Amazon basin."},{"id":75,"sec":"Geography","type":"free","eng":true,"prompt":"The mainland and island region east of India and south of China, extending through Indonesia and the Philippines.","acc":["Southeast Asia"],"disp":"Southeast Asia","exp":"Southeast Asia sits between the Indian and Pacific Oceans and has long been a maritime crossroads."},{"id":76,"sec":"Geography","type":"free","eng":true,"prompt":"The broad part of the African continent located south of the Sahara Desert.","acc":["Sub Saharan Africa","Sub-Saharan Africa","Subsaharan Africa"],"disp":"Sub Saharan Africa","exp":"Sub-Saharan Africa includes West, Central, East, and Southern Africa."},{"id":77,"sec":"Geography","type":"free","eng":true,"prompt":"The western portion of Europe along the Atlantic, generally including countries such as France, the United Kingdom, Ireland, and nearby states.","acc":["Western Europe"],"disp":"Western Europe","exp":"Definitions vary, but Western Europe is commonly distinguished from the continent's central and eastern regions."},{"id":78,"sec":"Geography","type":"free","eng":true,"prompt":"The Christian tradition historically dominant in the Byzantine world, Russia, and parts of Eastern and Southeastern Europe.","acc":["Eastern Orthodox Christianity","Eastern Orthodoxy","Orthodox Christianity"],"disp":"Eastern Orthodox Christianity","exp":"On a cultural map, Eastern Orthodox Christianity is especially associated with Greece, the Balkans, and Russia."}];
+const duration = 5;
+const totalQuestions = 10;
+const questionSelectionCount = 10;
+const selectionCounts = {"Vocabulary":7,"Geography":3};
+const showAnswerBank = false;
+const isEnglish = true;
+const allowBack = true;
+const testSlug = "ap-world-vocab-5";
+const testTitle = "AP World Vocabulary Test 5";
+const course = "AP World History";
+const unit = "Vocabulary & Geography";
+const passages = null;
+const infographicTitle = "Infographic";
+const infographicSrc = "";
+const audioSrc = "";
+const audioTitle = "Audio";
+const audioMeta = "";
+const defaultTopbarTitle = "AP World · Test 5";
+const hasMediaQuestions = false;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const fmtPrompt = s => esc(s).trim().replace(/([.?!])\s+—\s+/g, "$1\n— ");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const expectsExactTerm = testSlug.startsWith("ap-world-vocab-");
+      const shuffle = items => {
+        const shuffled = [...items];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      };
+      const sourceQuestions = [...questions];
+      const requestedSelectionSize = Number(questionSelectionCount);
+      const shouldSelectQuestions = requestedSelectionSize > 0 && requestedSelectionSize < sourceQuestions.length;
+      const selectionSize = shouldSelectQuestions ? requestedSelectionSize : sourceQuestions.length;
+      let selectedQuestions = sourceQuestions;
+
+      if (shouldSelectQuestions) {
+        selectedQuestions = [];
+        if (selectionCounts && typeof selectionCounts === "object") {
+          Object.entries(selectionCounts).forEach(([section, count]) => {
+            const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+            const sectionQuestions = sourceQuestions.filter(question =>
+              question.sec === section && !selectedTerms.has(nm(question.disp || ""))
+            );
+            selectedQuestions.push(...shuffle(sectionQuestions).slice(0, Number(count) || 0));
+          });
+        }
+        const alreadySelected = new Set(selectedQuestions);
+        const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+        const remaining = shuffle(sourceQuestions.filter(question =>
+          !alreadySelected.has(question) && !selectedTerms.has(nm(question.disp || ""))
+        ));
+        selectedQuestions = shuffle([...selectedQuestions, ...remaining.slice(0, Math.max(0, selectionSize - selectedQuestions.length))]).slice(0, selectionSize);
+      }
+
+      const QS = selectedQuestions.map((question, index) => ({
+        ...question,
+        sourceId: question.id,
+        id: index + 1,
+      }));
+      const WORD_BANK = [...new Set(QS
+        .map(question => question.disp || (question.acc && question.acc[0]) || "")
+        .filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+      let latestAttemptPayload = null;
+      let saveInFlight = false;
+      let savedAttemptId = null;
+
+      function addStat(bucket, key, ok) {
+        const statKey = key || "Uncategorized";
+        if (!bucket[statKey]) bucket[statKey] = { correct: 0, total: 0 };
+        bucket[statKey].total++;
+        if (ok) bucket[statKey].correct++;
+      }
+
+      function setProgressCard(mode, detail) {
+        const card = document.getElementById("progress-save-card");
+        const titleEl = document.getElementById("progress-save-title");
+        const copyEl = document.getElementById("progress-save-copy");
+        const signInBtn = document.getElementById("progress-signin-btn");
+        const analyticsLink = document.getElementById("progress-analytics-link");
+        if (!card || !titleEl || !copyEl || !signInBtn || !analyticsLink) return;
+
+        card.classList.add("show");
+        analyticsLink.classList.remove("show");
+        signInBtn.hidden = true;
+
+        if (mode === "unconfigured") {
+          titleEl.textContent = "Progress tracking needs Firebase setup";
+          copyEl.textContent = "Add the PUBLIC_FIREBASE_* values to enable Google sign-in and saved analytics.";
+          return;
+        }
+
+        if (mode === "signed-out") {
+          titleEl.textContent = "Save this attempt";
+          copyEl.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
+          signInBtn.hidden = false;
+          return;
+        }
+
+        if (mode === "saving") {
+          titleEl.textContent = "Saving progress";
+          copyEl.textContent = "Your attempt is being added to your analytics dashboard.";
+          return;
+        }
+
+        if (mode === "saved") {
+          titleEl.textContent = "Progress saved";
+          copyEl.textContent = "This attempt is now included in your analytics dashboard.";
+          analyticsLink.classList.add("show");
+          return;
+        }
+
+        titleEl.textContent = "Progress was not saved";
+        copyEl.textContent = detail || "There was a problem saving this attempt. Your score above is still available on this page.";
+      }
+
+      function buildAttemptPayload(score, pct, elapsed) {
+        const sectionStats = {};
+        const typeStats = {};
+        const mediaStats = {};
+        const questionResults = QS.map(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+          const media = q.media || "Standard questions";
+          addStat(sectionStats, q.sec, ok);
+          addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
+          addStat(mediaStats, media, ok);
+          return {
+            id: q.sourceId ?? q.id,
+            displayId: q.id,
+            section: q.sec || "Uncategorized",
+            type: q.type,
+            media,
+            correct: ok,
+          };
+        });
+
+        return {
+          testSlug,
+          testTitle,
+          course,
+          unit,
+          score,
+          total: QS.length,
+          percent: pct,
+          elapsedSeconds: elapsed,
+          timedOut: ST.timedOut,
+          sectionStats,
+          typeStats,
+          mediaStats,
+          questionResults,
+          source: "astro",
+        };
+      }
+
+      function questionOutcome(q) {
+        const ans = ST.answers[q.id] || "";
+        const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+        return { ans, ok };
+      }
+
+      function jumpToResultQuestion(id) {
+        const target = document.getElementById(`res-q-${id}`);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.classList.add("rq-focus");
+        window.setTimeout(() => target.classList.remove("rq-focus"), 1200);
+      }
+
+      function renderReviewRail(questionStates) {
+        const rail = document.getElementById("review-rail");
+        if (!rail) return;
+
+        const missed = questionStates.filter(({ ok }) => !ok);
+        rail.hidden = false;
+        rail.innerHTML = `
+          <div class="review-rail-title">Review</div>
+          <div class="review-rail-summary">${missed.length ? `<strong>${missed.length}</strong> missed` : "All correct"}</div>
+          <div class="review-rail-grid">
+            ${questionStates.map(({ q, ok }) => `
+              <button
+                class="review-jump ${ok ? "is-ok" : "is-wrong"}"
+                type="button"
+                data-review-jump="${q.id}"
+                aria-label="Question ${q.id}: ${ok ? "correct" : "wrong"}"
+              >${q.id}</button>
+            `).join("")}
+          </div>
+        `;
+
+        rail.querySelectorAll("[data-review-jump]").forEach((button) => {
+          button.addEventListener("click", () => jumpToResultQuestion(button.getAttribute("data-review-jump")));
+        });
+      }
+
+      async function saveLatestAttempt() {
+        if (!latestAttemptPayload || savedAttemptId || saveInFlight) return;
+
+        const progress = window.orangeAtlasProgress;
+        if (!progress || !progress.isFirebaseConfigured || !progress.isFirebaseConfigured()) {
+          setProgressCard("unconfigured");
+          return;
+        }
+
+        if (!progress.getCurrentUser || !progress.getCurrentUser()) {
+          setProgressCard("signed-out");
+          return;
+        }
+
+        saveInFlight = true;
+        setProgressCard("saving");
+
+        try {
+          const result = await progress.saveAttempt(latestAttemptPayload);
+          if (result && result.status === "saved") {
+            savedAttemptId = result.id;
+            setProgressCard("saved");
+          } else {
+            setProgressCard("signed-out");
+          }
+        } catch (error) {
+          console.warn("Unable to save Orange Atlas attempt", error);
+          setProgressCard("error");
+        } finally {
+          saveInFlight = false;
+        }
+      }
+
+      window.addEventListener("orange-atlas-auth-change", () => {
+        if (latestAttemptPayload && !savedAttemptId) saveLatestAttempt();
+      });
+
+      function startExam() {
+        document.body.classList.add("oa-exam-running");
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = isEnglish
+          ? `Question ${ST.idx + 1} of ${QS.length}`
+          : `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? (isEnglish ? "Audio — Interpretive" : "Audio — Interpretivo")
+            : q.media === "infographic"
+              ? (isEnglish ? "Infographic — Interpretive" : "Infografía — Interpretativa")
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const isTrueFalse = q.type === "mc" && q.ch?.length === 2 && q.ch[0] === "A) True" && q.ch[1] === "B) False";
+        const typeLabel = q.type === "mc"
+          ? (isEnglish ? (isTrueFalse ? "True or False" : "Multiple Choice") : "Opción Múltiple")
+          : (isEnglish ? "Free Answer" : "Respuesta Libre");
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${esc(q.sec)}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 ${isEnglish ? "Infographic" : "Infográfico"} — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="${isEnglish ? "Infographic" : "Infográfico"}: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ ${isEnglish ? "Scroll the infographic to see all the data" : "Desplaza el infográfico para ver todos los datos"}</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${fmtPrompt(q.prompt)}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${esc(c)}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = expectsExactTerm
+            ? "Enter the matching term"
+            : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = expectsExactTerm
+            ? "type the term…"
+            : q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${showAnswerBank ? `<div class="answer-bank">
+                <div class="answer-bank-label">Word bank</div>
+                <div class="answer-bank-options">
+                  ${WORD_BANK.map(term => {
+                    const used = Object.values(ST.answers).some(answer => nm(answer) === nm(term));
+                    return `<button class="answer-bank-btn${used ? " used" : ""}" type="button" data-bank-term="${encodeURIComponent(term)}">${esc(term)}</button>`;
+                  }).join("")}
+                </div>
+                <p class="answer-bank-note">Select a term to fill the answer box, or copy and paste it.</p>
+              </div>` : !q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<div class="question-actions${allowBack ? " has-back" : ""}">
+          ${allowBack ? `<button class="btn-back" id="btnback" onclick="goBack()" ${ST.idx === 0 ? "disabled" : ""}>← Previous</button>` : ""}
+          <button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+            ${isLast ? (isEnglish ? "Submit Test →" : "Entregar Examen →") : (isEnglish ? "Next →" : "Siguiente →")}
+          </button>
+        </div>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        wrap.querySelectorAll('[data-bank-term]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const term = decodeURIComponent(btn.getAttribute('data-bank-term') || '');
+            const inp = document.getElementById('freeinp');
+            if (!inp || !term) return;
+            inp.value = term;
+            inp.focus();
+            freeTyped();
+          });
+        });
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function goBack() {
+        if (!allowBack || ST.idx <= 0) return;
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        ST.idx--;
+        renderQ();
+      }
+
+      function showResults() {
+        document.body.classList.remove("oa-exam-running");
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        const questionStates = QS.map(q => ({ q, ...questionOutcome(q) }));
+        const score = questionStates.reduce((total, { ok }) => total + (ok ? 1 : 0), 0);
+        const pct = Math.round((score / QS.length) * 100);
+        latestAttemptPayload = buildAttemptPayload(score, pct, elapsed);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? (isEnglish
+            ? `Infographic: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Multiple choice: ${mcScore}/${mcQ.length}  ·  Free answer: ${freeScore}/${freeQ.length}`
+            : `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`)
+          : isEnglish
+            ? [
+                freeQ.length ? `Free answer: ${freeScore}/${freeQ.length}` : "",
+                mcQ.length ? `Multiple choice: ${mcScore}/${mcQ.length}` : "",
+              ].filter(Boolean).join("  ·  ")
+            : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = isEnglish
+          ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed questions and concepts."], [0, "Keep studying and try again."]]
+          : hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? (isEnglish ? "⚠ Time expired" : "⚠ Tiempo agotado")
+          : `${isEnglish ? "Time" : "Tiempo"}: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+        saveLatestAttempt();
+        renderReviewRail(questionStates);
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        questionStates.forEach(({ q, ans, ok }) => {
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 ${isEnglish ? "Infographic" : "Infografía"} — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.id = `res-q-${q.id}`;
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${esc(c)}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">${isEnglish ? "Your answer" : "Tu respuesta"}: ${ans}</span>`
+              : `<span class="res-chip yours bad">${isEnglish ? "No answer" : "Sin respuesta"}</span>`;
+            if (!ok) html += `<span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">${isEnglish ? "View explanation" : "Ver explicación"}</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open")
+          ? (isEnglish ? "Hide explanation" : "Ocultar explicación")
+          : (isEnglish ? "View explanation" : "Ver explicación");
+      }
+
+      function renderReviewQuestion(q) {
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        let html = `<div class="res-q rq-bad">
+          <div class="res-q-top">
+            <div class="res-num bad">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
+            </div>
+          </div>`;
+
+        if (q.type === "mc") {
+          html += `<div class="res-mc-choices">`;
+          q.ch.forEach(c => {
+            html += `<div class="res-mc-choice ${c[0] === q.cor ? "rc-right" : ""}">${esc(c)}</div>`;
+          });
+          html += `</div>`;
+        } else {
+          const correct = q.disp || (q.acc || []).join(", ");
+          html += `<div class="res-ans-row">
+            <span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${correct}</span>
+          </div>`;
+        }
+
+        html += `<div class="res-exp-box open" id="rexp${q.id}">
+          ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp || (isEnglish ? "Review the prompt, correct answer, and source context for this question." : "Repasa la pregunta, la respuesta correcta y el contexto de la fuente.")}
+        </div></div>`;
+        return html;
+      }
+
+      function showReviewFromUrl() {
+        const reviewId = new URLSearchParams(window.location.search).get("review");
+        if (!reviewId) return;
+        const sourceQuestion = sourceQuestions.find(question => String(question.id) === reviewId);
+        const selectedQuestion = QS.find(question => String(question.id) === reviewId);
+        const q = sourceQuestion
+          ? { ...sourceQuestion, sourceId: sourceQuestion.id, id: sourceQuestion.id }
+          : selectedQuestion;
+        if (!q) return;
+
+        document.body.classList.remove("oa-exam-running");
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = "linear-gradient(135deg,#111827,#3b1d0d)";
+        document.getElementById("res-kicker").textContent = isEnglish ? "Question Review" : "Repaso de Pregunta";
+        document.getElementById("res-score").textContent = `Q${q.id}`;
+        document.getElementById("res-pct").textContent = `${q.sec} · ${q.type === "mc"
+          ? (isEnglish ? "Multiple choice" : "Opción múltiple")
+          : (isEnglish ? "Free response" : "Respuesta libre")}`;
+        document.getElementById("res-msg").textContent = testTitle;
+        document.getElementById("res-time").textContent = isEnglish ? "Opened from analytics" : "Abierto desde analytics";
+        document.getElementById("timeout-banner").style.display = "none";
+        document.getElementById("progress-save-card").classList.remove("show");
+        const rail = document.getElementById("review-rail");
+        if (rail) {
+          rail.hidden = true;
+          rail.innerHTML = "";
+        }
+        document.getElementById("res-list").innerHTML = `<div class="review-actions"><a href="${window.location.pathname}">${isEnglish ? "Start full test" : "Comenzar examen completo"}</a></div>${renderReviewQuestion(q)}`;
+        window.scrollTo(0, 0);
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.goBack = goBack;
+      window.togE = togE;
+      showReviewFromUrl();
+    })();</script> </body> </html>

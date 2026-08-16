@@ -7,7 +7,12 @@ const state = {
   pendingAttempt: null,
   savedAttemptId: null,
   saveInFlight: false,
+  idleTimer: null,
+  idleSignOutInFlight: false,
+  lastActivityAt: Date.now(),
 };
+const IDLE_SIGN_OUT_MS = 10 * 60 * 1000;
+const ACTIVITY_EVENTS = ["click", "keydown", "pointerdown", "touchstart", "scroll", "mousemove"];
 
 function configReady(config) {
   return Boolean(config?.apiKey && config?.authDomain && config?.projectId && config?.appId);
@@ -36,6 +41,7 @@ function addStyles() {
     .oa-auth-nav .name{max-width:9.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .oa-auth-nav .setup{display:inline-flex;align-items:center;color:#ffbd78;border:1px solid rgba(255,189,120,.28);background:rgba(255,189,120,.09)}
     .oa-auth-nav [hidden]{display:none!important}
+    body.oa-exam-running .oa-auth-nav{display:none!important}
     .oa-progress-card{display:none;margin:1rem auto 0;max-width:820px;border:1px solid rgba(255,255,255,.11);border-radius:.58rem;background:rgba(8,8,12,.78);padding:1rem 1.1rem;color:#d8d2ca;font-family:Inter,Manrope,system-ui,sans-serif}
     .oa-progress-card.show{display:block}
     .oa-progress-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:.25rem}
@@ -57,6 +63,42 @@ function basePath() {
 
 function getAnalyticsHref() {
   return `${basePath()}analytics/`;
+}
+
+function clearIdleTimer() {
+  if (state.idleTimer) window.clearTimeout(state.idleTimer);
+  state.idleTimer = null;
+}
+
+function scheduleIdleSignOut() {
+  clearIdleTimer();
+  if (!state.user) return;
+  const delay = Math.max(0, IDLE_SIGN_OUT_MS - (Date.now() - state.lastActivityAt));
+  state.idleTimer = window.setTimeout(handleIdleSignOut, delay);
+}
+
+async function handleIdleSignOut() {
+  if (!state.user || state.idleSignOutInFlight) return;
+  if (Date.now() - state.lastActivityAt < IDLE_SIGN_OUT_MS) {
+    scheduleIdleSignOut();
+    return;
+  }
+  state.idleSignOutInFlight = true;
+  try {
+    await signOutUser();
+  } catch (error) {
+    console.warn("Unable to auto sign out after inactivity", error);
+  } finally {
+    state.idleSignOutInFlight = false;
+    clearIdleTimer();
+  }
+}
+
+function markActivity() {
+  const now = Date.now();
+  if (now - state.lastActivityAt < 1000) return;
+  state.lastActivityAt = now;
+  if (state.user) scheduleIdleSignOut();
 }
 
 function renderNav() {
@@ -113,7 +155,7 @@ function ensureProgressCard() {
   card.className = "oa-progress-card";
   card.innerHTML = `
     <div class="oa-progress-title" data-oa-progress-title>Save your progress</div>
-    <p class="oa-progress-copy" data-oa-progress-copy>Sign in with Google to keep this attempt in your analytics dashboard.</p>
+    <p class="oa-progress-copy" data-oa-progress-copy>Sign in with Google now and this completed attempt will be saved to your analytics dashboard.</p>
     <div class="oa-progress-actions">
       <button type="button" data-oa-progress-sign-in>Sign in with Google</button>
       <a href="${getAnalyticsHref()}" data-oa-progress-link hidden>View analytics</a>
@@ -146,8 +188,8 @@ function setProgressCard(mode, detail) {
     return;
   }
   if (mode === "signed-out") {
-    title.textContent = "Save your progress";
-    copy.textContent = "Sign in with Google to keep this attempt in your analytics dashboard.";
+    title.textContent = "Save this attempt";
+    copy.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
     signIn.hidden = false;
     return;
   }
@@ -158,7 +200,7 @@ function setProgressCard(mode, detail) {
   }
   if (mode === "saved") {
     title.textContent = "Progress saved";
-    copy.textContent = "This attempt is now included in your mastery and improvement analytics.";
+    copy.textContent = "This attempt is now included in your analytics dashboard.";
     link.hidden = false;
     return;
   }
@@ -192,6 +234,7 @@ async function loadFirebase() {
     state.user = user;
     if (user) ensureUserProfile(user).catch((error) => console.warn("Unable to update profile", error));
     updateNav();
+    scheduleIdleSignOut();
     if (state.pendingAttempt && !state.savedAttemptId) savePendingAttempt();
   });
 }
@@ -266,6 +309,10 @@ async function savePendingAttempt() {
 }
 
 document.addEventListener("click", (event) => {
+  if (event.target.closest(".btn-start, .btn-main, [onclick*='startExam']")) {
+    document.body.classList.add("oa-exam-running");
+  }
+
   const signInButton = event.target.closest("[data-oa-sign-in], [data-oa-progress-sign-in]");
   const signOutButton = event.target.closest("[data-oa-sign-out]");
   if (signInButton) {
@@ -278,7 +325,15 @@ document.addEventListener("click", (event) => {
   }
 });
 
+ACTIVITY_EVENTS.forEach((eventName) => {
+  window.addEventListener(eventName, markActivity, { passive: true });
+});
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) markActivity();
+});
+
 window.orangeAtlasLegacyTrack = (payload) => {
+  document.body.classList.remove("oa-exam-running");
   state.pendingAttempt = payload;
   state.savedAttemptId = null;
   savePendingAttempt();

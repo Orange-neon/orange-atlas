@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Page Not Found - Orange Atlas</title>
+    <link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png" data-site-icon>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #090a0d;
+        --panel: #141519;
+        --panel-2: #1d1e24;
+        --text: #fff7ed;
+        --muted: #b8afa7;
+        --line: rgba(255, 255, 255, 0.12);
+        --orange: #ff7433;
+        --orange-2: #ffbd78;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--text);
+        background:
+          linear-gradient(180deg, rgba(255, 116, 51, 0.08), transparent 34rem),
+          var(--bg);
+        font-family: Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 2rem;
+      }
+
+      .not-found {
+        width: min(42rem, 100%);
+        border: 1px solid var(--line);
+        border-radius: 0.85rem;
+        padding: clamp(1.4rem, 5vw, 3rem);
+        background: linear-gradient(145deg, rgba(29, 30, 36, 0.96), rgba(13, 14, 18, 0.98));
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 2rem;
+        color: var(--orange-2);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 2.35rem;
+        height: 2.35rem;
+        place-items: center;
+        border-radius: 50%;
+        color: #111;
+        background: linear-gradient(135deg, var(--orange), var(--orange-2));
+        font-size: 1.15rem;
+      }
+
+      .code {
+        margin: 0 0 0.45rem;
+        color: var(--orange);
+        font-size: clamp(4.4rem, 18vw, 8rem);
+        font-weight: 950;
+        line-height: 0.9;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 5vw, 3.2rem);
+        line-height: 1.02;
+      }
+
+      p {
+        max-width: 34rem;
+        margin: 1rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.4vw, 1.16rem);
+        line-height: 1.65;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      a {
+        display: inline-flex;
+        min-height: 2.8rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        padding: 0 1rem;
+        color: inherit;
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .primary {
+        color: #111;
+        background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      }
+
+      .secondary {
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--orange-2);
+        outline-offset: 3px;
+      }
+
+      .path {
+        margin-top: 2rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1rem;
+        color: #8f8780;
+        font-size: 0.8rem;
+        overflow-wrap: anywhere;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="not-found" aria-labelledby="page-title">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">O</span>
+          <span>Orange Atlas</span>
+        </div>
+        <p class="code">404</p>
+        <h1 id="page-title">This page is not in the atlas.</h1>
+        <p>The link may be outdated, or the page may have moved. Head back to the hub and keep going from there.</p>
+        <div class="actions">
+          <a class="primary" href="/orange-atlas/" data-home-link>Return to Homepage</a>
+          <a class="secondary" href="/orange-atlas/" data-back-link>Go Back</a>
+        </div>
+        <div class="path" data-path></div>
+      </section>
+    </main>
+    <script>
+      const isGitHubPages = location.hostname.endsWith(".github.io");
+      const basePath = isGitHubPages ? "/orange-atlas/" : "/";
+      const homeLink = document.querySelector("[data-home-link]");
+      const backLink = document.querySelector("[data-back-link]");
+      const siteIcon = document.querySelector("[data-site-icon]");
+      const pathLabel = document.querySelector("[data-path]");
+
+      if (siteIcon) siteIcon.href = `${basePath}assets/orangeAtlas.png`;
+      if (homeLink) homeLink.href = basePath;
+      if (backLink) {
+        backLink.href = basePath;
+        backLink.addEventListener("click", (event) => {
+          if (history.length > 1) {
+            event.preventDefault();
+            history.back();
+          }
+        });
+      }
+      if (pathLabel) pathLabel.textContent = `Missing page: ${location.pathname}`;
+    </script>
+  </body>
+</html>

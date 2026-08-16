@@ -11779,7 +11779,7 @@ function zh() {
                         }), g.jsx(Wn, {
                             variant: "outline",
                             size: "xl",
-                            onClick: () => window.location.href = "../orange-atlas/spanish2/index.html",
+                            onClick: () => window.location.href = "#courses",
                             children: "Explore Subjects"
                         })]
                     }), g.jsxs("div", {
@@ -11788,25 +11788,25 @@ function zh() {
                             className: "space-y-2",
                             children: [g.jsx("div", {
                                 className: "text-3xl md:text-4xl font-bold text-gradient",
-                                children: "500+"
+                                children: "900+"
                             }), g.jsx("div", {
                                 className: "text-sm text-foreground-muted",
-                                children: "Practice Tests"
+                                children: "Test Problems"
                             })]
                         }), g.jsxs("div", {
                             className: "space-y-2",
                             children: [g.jsx("div", {
                                 className: "text-3xl md:text-4xl font-bold text-gradient",
-                                children: "15+"
+                                children: "30+"
                             }), g.jsx("div", {
                                 className: "text-sm text-foreground-muted",
-                                children: "Subjects"
+                                children: "Tests"
                             })]
                         }), g.jsxs("div", {
                             className: "space-y-2",
                             children: [g.jsx("div", {
                                 className: "text-3xl md:text-4xl font-bold text-gradient",
-                                children: "10K+"
+                                children: "5+"
                             }), g.jsx("div", {
                                 className: "text-sm text-foreground-muted",
                                 children: "Students"

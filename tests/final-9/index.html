@@ -1,0 +1,767 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Los Que Conectan | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="apple-touch-icon" href="/orange-atlas/assets/orangeAtlas.png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.QdHIsByf.css">
+<link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CdOO5QoA.css"></head> <body> <div class="oa-auth-nav" data-auth-nav data-astro-cid-amj3u3q3> <a class="oa-auth-nav__link" href="/orange-atlas/analytics/?course=Spanish%202" data-astro-cid-amj3u3q3>Analytics</a> <button class="oa-auth-nav__button" type="button" data-auth-action="sign-in" data-astro-cid-amj3u3q3>Sign in</button> <span class="oa-auth-nav__profile" data-auth-profile hidden data-astro-cid-amj3u3q3> <img data-auth-photo alt="" data-astro-cid-amj3u3q3> <span data-auth-name data-astro-cid-amj3u3q3></span> </span> <button class="oa-auth-nav__button secondary" type="button" data-auth-action="sign-out" hidden data-astro-cid-amj3u3q3>
+Sign out
+</button> <span class="oa-auth-nav__setup" data-auth-setup hidden data-astro-cid-amj3u3q3>Firebase setup needed</span> </div> <div class="oa-ai-chat" data-ai-chat data-chat-url="https://my-api-proxy.orange-atlas-ai-helper.workers.dev" data-base-root="/orange-atlas" data-astro-cid-zasvxobd> <button class="oa-ai-chat__launcher" type="button" aria-expanded="false" aria-controls="oa-ai-chat-panel" data-chat-toggle data-astro-cid-zasvxobd> <span class="oa-ai-chat__spark" data-astro-cid-zasvxobd>AI</span> <span data-astro-cid-zasvxobd>Spanish Tutor</span> </button> <section class="oa-ai-chat__panel" id="oa-ai-chat-panel" aria-label="Orange Atlas Spanish tutor" data-chat-panel hidden data-astro-cid-zasvxobd> <header class="oa-ai-chat__head" data-astro-cid-zasvxobd> <div data-astro-cid-zasvxobd> <div class="oa-ai-chat__title" data-astro-cid-zasvxobd>Atlas Tutor</div> <div class="oa-ai-chat__sub" data-chat-subtitle data-astro-cid-zasvxobd>Sign in to ask Spanish 2 questions.</div> </div> <div class="oa-ai-chat__head-actions" data-astro-cid-zasvxobd> <button class="oa-ai-chat__ghost" type="button" data-chat-reset data-astro-cid-zasvxobd>Reset</button> <button class="oa-ai-chat__close" type="button" aria-label="Close tutor" data-chat-close data-astro-cid-zasvxobd>Close</button> </div> </header> <div class="oa-ai-chat__auth" data-chat-auth data-astro-cid-zasvxobd> <span data-chat-auth-copy data-astro-cid-zasvxobd>Sign in with Google to use the tutor.</span> <button type="button" data-auth-action="sign-in" data-astro-cid-zasvxobd>Sign in</button> </div> <div class="oa-ai-chat__messages" aria-live="polite" data-chat-messages data-astro-cid-zasvxobd></div> <div class="oa-ai-chat__status" data-chat-status hidden data-astro-cid-zasvxobd></div> <form class="oa-ai-chat__form" data-chat-form data-astro-cid-zasvxobd> <label class="oa-ai-chat__label" for="oa-ai-chat-input" data-astro-cid-zasvxobd>Ask a Spanish 2 question</label> <textarea id="oa-ai-chat-input" data-chat-input rows="2" maxlength="1200" placeholder="Ask about relative pronouns, preterite vs. imperfect, commands..." data-astro-cid-zasvxobd></textarea> <button type="submit" data-chat-send data-astro-cid-zasvxobd>Send</button> </form> <div class="oa-ai-chat__resize" role="separator" aria-label="Resize tutor panel" aria-orientation="vertical" tabindex="0" data-chat-resize data-astro-cid-zasvxobd></div> </section> </div>  <script type="module" src="/orange-atlas/_astro/AiChat.astro_astro_type_script_index_0_lang.CEESlbtj.js"></script>  <script type="module" src="/orange-atlas/_astro/AuthNav.astro_astro_type_script_index_0_lang.IvQfRgoT.js"></script> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">Repaso Final IX · Senderos 2 · Lección 5</p> <h1 class="land-title"> Los Que <br><em>Conectan</em> </h1> <p class="land-sub"> 50 preguntas. <strong>55:00</strong><br> 5 fuentes — una pregunta a la vez. </p> <div class="mode-pills">  <div class="mode-pill audio">🎧 Preguntas 1–6 · Audio</div> </div> <div class="info-grid"> <div class="info-card"> <div class="info-n">50</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">55:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">5</div> <div class="info-l">tipos</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Preguntas 1–6: Escucha el audio con dos partes — puedes reproducirlo cuantas veces quieras</li><li>Todas las preguntas son de opción múltiple</li><li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Los espacios numerados se completan con la opción que mejor encaja en contexto</li><li>Presta atención a los pronombres relativos y al antecedente</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">Los Que Conectan</div> <div class="tb-qof" id="qof">Pregunta 1 de 50</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">55:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta">Clínica móvil · Dos partes · Pronombres relativos, mandatos y tecnología</div> <audio id="test-audio" controls preload="auto"> <source src="/orange-atlas/assets/final-9-relative-audio.mp3" type="audio/mpeg"> Tu navegador no soporta el elemento de audio. </audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div class="progress-save-card" id="progress-save-card"> <div class="progress-save-title" id="progress-save-title">Save your progress</div> <p class="progress-save-copy" id="progress-save-copy">
+Sign in with Google now and this completed attempt will be saved to your analytics dashboard.
+</p> <div class="progress-save-actions"> <button class="progress-save-btn" type="button" data-auth-action="sign-in" id="progress-signin-btn">
+Sign in with Google
+</button> <a class="progress-save-link" href="/orange-atlas/analytics/?course=Spanish%202" id="progress-analytics-link">View analytics</a> </div> </div> <div class="review-shell"> <aside class="review-rail" id="review-rail" aria-label="Question review shortcuts" hidden></aside> <div id="res-list"></div> </div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Audio Parte 1 — Comprensión","type":"mc","media":"audio","prompt":"¿Cuál es la idea principal de la parte 1?","ch":["A) Mateo organiza una clínica móvil para ayudar a pacientes sin transporte","B) Mateo compra muebles para decorar un apartamento nuevo","C) Mateo explica cómo reparar los frenos de un coche","D) Mateo cancela todas las videollamadas médicas"],"cor":"A","exp":"A is correct because \"Mateo organiza una clínica móvil para ayudar a pacientes sin transporte\" is the detail or interpretation supported by the referenced audio part. B is incorrect because \"Mateo compra muebles para decorar un apartamento nuevo\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. C is incorrect because \"Mateo explica cómo reparar los frenos de un coche\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. D is incorrect because \"Mateo cancela todas las videollamadas médicas\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says."},{"id":2,"sec":"Audio Parte 1 — Pronombres relativos","type":"mc","media":"audio","prompt":"En el audio, ¿qué significa 'Lo que más le preocupa'?","ch":["A) What worries him most","B) The person whom he worries","C) The place where he works","D) Whose worry belongs to him"],"cor":"A","exp":"A is correct because \"What worries him most\" is the detail or interpretation supported by the referenced audio part. B is incorrect because \"The person whom he worries\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. C is incorrect because \"The place where he works\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. D is incorrect because \"Whose worry belongs to him\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says."},{"id":3,"sec":"Audio Parte 1 — Relativos + Subjuntivo","type":"mc","media":"audio","prompt":"¿Por qué Mateo dice 'voluntarios que puedan manejar'?","ch":["A) Porque busca voluntarios todavía no identificados","B) Porque ya habló con todos los voluntarios exactos","C) Porque 'manejar' siempre exige pretérito","D) Porque los voluntarios son objetos, no personas"],"cor":"A","exp":"A is correct because \"Porque busca voluntarios todavía no identificados\" is the detail or interpretation supported by the referenced audio part. B is incorrect because \"Porque ya habló con todos los voluntarios exactos\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. C is incorrect because \"Porque 'manejar' siempre exige pretérito\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. D is incorrect because \"Porque los voluntarios son objetos, no personas\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says."},{"id":4,"sec":"Audio Parte 1 — Pronombres relativos","type":"mc","media":"audio","prompt":"¿A quiénes se refiere 'a quienes enviará una lista de síntomas'?","ch":["A) A las enfermeras","B) A los pacientes sin coche","C) A los mecánicos","D) A los vecinos del patio"],"cor":"A","exp":"A is correct because \"A las enfermeras\" is the detail or interpretation supported by the referenced audio part. B is incorrect because \"A los pacientes sin coche\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. C is incorrect because \"A los mecánicos\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. D is incorrect because \"A los vecinos del patio\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says."},{"id":5,"sec":"Audio Parte 1 — Pronombres relativos","type":"mc","media":"audio","prompt":"Según el audio, ¿qué objeto tiene la cámara que funciona mejor?","ch":["A) El portátil","B) La memoria de USB","C) El volante","D) La receta"],"cor":"A","exp":"A is correct because \"El portátil\" is the detail or interpretation supported by the referenced audio part. B is incorrect because \"La memoria de USB\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. C is incorrect because \"El volante\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. D is incorrect because \"La receta\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says."},{"id":6,"sec":"Audio Parte 2 — Mandatos","type":"mc","media":"audio","prompt":"¿Qué les dice Laura a los estudiantes en la parte 2?","ch":["A) No borren nada y no envíen archivos sin revisar la firma","B) Manejen a la gasolinera y compren gasolina","C) Tomen medicamentos viejos sin preguntar","D) Cierren la clínica móvil para siempre"],"cor":"A","exp":"A is correct because \"No borren nada y no envíen archivos sin revisar la firma\" is the detail or interpretation supported by the referenced audio part. B is incorrect because \"Manejen a la gasolinera y compren gasolina\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. C is incorrect because \"Tomen medicamentos viejos sin preguntar\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says. D is incorrect because \"Cierren la clínica móvil para siempre\" is not supported by the referenced audio part; it changes the person, object, action, or main idea from what the script says."},{"id":7,"sec":"Pronombres relativos: Odd One Out","type":"mc","prompt":"¿Cuál opción es la única que ya incluye una preposición?","ch":["A) que","B) quien","C) a quienes","D) quienes"],"cor":"C","exp":"A is incorrect because \"que\" does not satisfy the requirement: the answer must be the relative-pronoun option that already contains a preposition. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed, so it does not fit this sentence or question. B is incorrect because \"quien\" does not satisfy the requirement: the answer must be the relative-pronoun option that already contains a preposition. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is correct because \"a quienes\" satisfies the requirement: the answer must be the relative-pronoun option that already contains a preposition. In context, it refers to plural people and already includes the needed preposition/personal a. D is incorrect because \"quienes\" does not satisfy the requirement: the answer must be the relative-pronoun option that already contains a preposition. In context, it refers to plural people, so it does not fit this sentence or question."},{"id":8,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál palabra no pertenece al mismo grupo?","ch":["A) los frenos","B) la llanta","C) el parabrisas","D) la aspirina"],"cor":"D","exp":"A is incorrect because \"los frenos\" fits the group or category that the prompt is testing. In context, they are the brakes of a car, so it is not the odd one out. B is incorrect because \"la llanta\" fits the group or category that the prompt is testing. In context, it is a tire, so it is not the odd one out. C is incorrect because \"el parabrisas\" fits the group or category that the prompt is testing. In context, it is a windshield, so it is not the odd one out. D is correct because \"la aspirina\" is the outlier requested by the prompt. In context, it is medicine, not a car part, which separates it from the other choices."},{"id":9,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es el aparato que produce sonido cuando escuchas música o una videollamada en el ordenador.","ch":["A) los altavoces","B) el teclado","C) el escáner","D) el parabrisas"],"cor":"A","exp":"A is correct because \"los altavoces\" matches the definition in the prompt. In context, they are speakers that produce sound. B is incorrect because \"el teclado\" names a different concept and does not match the definition. In context, it is a keyboard, a computer input device. C is incorrect because \"el escáner\" names a different concept and does not match the definition. In context, it is a scanner that turns paper into digital files. D is incorrect because \"el parabrisas\" names a different concept and does not match the definition. In context, it is a windshield."},{"id":10,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es el documento que el doctor escribe para que el paciente pueda recibir un medicamento.","ch":["A) el seguro","B) la receta","C) el baúl","D) el alquiler"],"cor":"B","exp":"A is incorrect because \"el seguro\" names a different concept and does not match the definition. In context, it is insurance. B is correct because \"la receta\" matches the definition in the prompt. In context, it is a medical prescription. C is incorrect because \"el baúl\" names a different concept and does not match the definition. In context, it is the trunk of a car. D is incorrect because \"el alquiler\" names a different concept and does not match the definition. In context, it is rent."},{"id":11,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es el lugar donde compras gasolina para el coche.","ch":["A) la farmacia","B) el sótano","C) la gasolinera","D) el consultorio"],"cor":"C","exp":"A is incorrect because \"la farmacia\" names a different concept and does not match the definition. In context, it is a pharmacy. B is incorrect because \"el sótano\" names a different concept and does not match the definition. In context, it is a basement. C is correct because \"la gasolinera\" matches the definition in the prompt. In context, it is a gas station. D is incorrect because \"el consultorio\" names a different concept and does not match the definition. In context, it is a doctor's office."},{"id":12,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es la acción de limpiar superficies con un paño para remover polvo.","ch":["A) sacar la basura","B) quitar el polvo","C) lavar los platos","D) subirse al coche"],"cor":"B","exp":"A is incorrect because \"sacar la basura\" names a different concept and does not match the definition. In context, it means to take out the trash. B is correct because \"quitar el polvo\" matches the definition in the prompt. In context, it means to dust/clean dust from surfaces. C is incorrect because \"lavar los platos\" names a different concept and does not match the definition. In context, it means to wash dishes. D is incorrect because \"subirse al coche\" names a different concept and does not match the definition. In context, it means to get into a car."},{"id":13,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es la persona que vive cerca de ti, en tu edificio, calle o barrio.","ch":["A) el vecino","B) el mecánico","C) el paciente","D) el agente"],"cor":"A","exp":"A is correct because \"el vecino\" matches the definition in the prompt. In context, it is a neighbor. B is incorrect because \"el mecánico\" names a different concept and does not match the definition. In context, it is a mechanic. C is incorrect because \"el paciente\" names a different concept and does not match the definition. In context, it is a patient. D is incorrect because \"el agente\" names a different concept and does not match the definition. In context, it is an agent."},{"id":14,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es el área que está fuera del centro de la ciudad o en el borde de la ciudad.","ch":["A) el centro","B) las afueras","C) el comedor","D) la autopista"],"cor":"B","exp":"A is incorrect because \"el centro\" names a different concept and does not match the definition. In context, it is the center/downtown. B is correct because \"las afueras\" matches the definition in the prompt. In context, it means the outskirts or edge of a city. C is incorrect because \"el comedor\" names a different concept and does not match the definition. In context, it is a dining room. D is incorrect because \"la autopista\" names a different concept and does not match the definition. In context, it is a highway."},{"id":15,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es lastimarse una articulación, como el tobillo o la muñeca, sin romperse el hueso.","ch":["A) torcerse","B) manejar","C) chatear","D) estacionar"],"cor":"A","exp":"A is correct because \"torcerse\" matches the definition in the prompt. In context, it means to twist or sprain a joint. B is incorrect because \"manejar\" names a different concept and does not match the definition. In context, it means to drive. C is incorrect because \"chatear\" names a different concept and does not match the definition. In context, it means to chat online. D is incorrect because \"estacionar\" names a different concept and does not match the definition. In context, it means to park a car."},{"id":16,"sec":"Vocabulario: Definiciones","type":"mc","prompt":"Es el sistema digital por el que envías mensajes y archivos a una dirección con arroba.","ch":["A) la memoria de USB","B) el correo electrónico","C) la cámara web","D) el volante"],"cor":"B","exp":"A is incorrect because \"la memoria de USB\" names a different concept and does not match the definition. In context, it is a USB drive used to store files. B is correct because \"el correo electrónico\" matches the definition in the prompt. In context, it is email, used to send messages and files. C is incorrect because \"la cámara web\" names a different concept and does not match the definition. In context, it is a webcam. D is incorrect because \"el volante\" names a different concept and does not match the definition. In context, it is a steering wheel."},{"id":17,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [17], elige la opción correcta.","ch":["A) que","B) quien","C) lo que","D) cuyo"],"cor":"A","exp":"A is correct because \"que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. D is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question."},{"id":18,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [18], elige la opción correcta.","ch":["A) que","B) lo que","C) cuyo","D) a quienes"],"cor":"A","exp":"A is correct because \"que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed. B is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"a quienes\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people and already includes the needed preposition/personal a, so it does not fit this sentence or question."},{"id":19,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [19], elige la opción correcta.","ch":["A) que","B) con quienes","C) lo que","D) cuyo"],"cor":"B","exp":"A is incorrect because \"que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed, so it does not fit this sentence or question. B is correct because \"con quienes\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it keeps the preposition con for hablar con and refers to plural people. C is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. D is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question."},{"id":20,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [20], elige la opción correcta.","ch":["A) que","B) quien","C) cuyo","D) donde"],"cor":"A","exp":"A is correct because \"que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question."},{"id":21,"sec":"Mandatos","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [21], elige el mandato correcto.","ch":["A) envías","B) envía","C) envíes","D) enviaste"],"cor":"C","exp":"A is incorrect because \"envías\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is present indicative tú, not a command form, so it does not fit this sentence or question. B is incorrect because \"envía\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is an affirmative tú command or present él/ella form, not a negative command, so it does not fit this sentence or question. C is correct because \"envíes\" satisfies the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is the tú subjunctive form used for a negative tú command. D is incorrect because \"enviaste\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is preterite tú, so it describes a completed past action, so it does not fit this sentence or question."},{"id":22,"sec":"Subjuntivo","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [22], elige la forma verbal correcta.","ch":["A) manda","B) mandó","C) mande","D) mandaba"],"cor":"C","exp":"A is incorrect because \"manda\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is an informal tú command or present él/ella form, so it does not fit this sentence or question. B is incorrect because \"mandó\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite, so it describes a completed past action, so it does not fit this sentence or question. C is correct because \"mande\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive, the form required after hasta que when the event has not happened yet. D is incorrect because \"mandaba\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is imperfect, so it describes background or habitual past action, so it does not fit this sentence or question."},{"id":23,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [23], elige la opción correcta.","ch":["A) quien","B) que","C) cuyo","D) lo cual"],"cor":"B","exp":"A is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. B is correct because \"que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"lo cual\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers back to an entire previous idea, not just one noun, so it does not fit this sentence or question."},{"id":24,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [24], elige la opción correcta.","ch":["A) quienes","B) cuyo","C) lo que","D) donde"],"cor":"A","exp":"A is correct because \"quienes\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people. B is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. C is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. D is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question."},{"id":25,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [25], elige la opción correcta.","ch":["A) cuya","B) cuyo","C) quienes","D) lo que"],"cor":"A","exp":"A is correct because \"cuya\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a feminine singular thing possessed. B is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. C is incorrect because \"quienes\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people, so it does not fit this sentence or question. D is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question."},{"id":26,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [26], elige la opción correcta.","ch":["A) en la que","B) a quienes","C) cuyo","D) lo cual"],"cor":"A","exp":"A is correct because \"en la que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it keeps the preposition en and agrees with a feminine singular place or object. B is incorrect because \"a quienes\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people and already includes the needed preposition/personal a, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"lo cual\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers back to an entire previous idea, not just one noun, so it does not fit this sentence or question."},{"id":27,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [27], elige la opción correcta.","ch":["A) quien","B) cuyo","C) lo que","D) a quienes"],"cor":"A","exp":"A is correct because \"quien\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses. B is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. C is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. D is incorrect because \"a quienes\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people and already includes the needed preposition/personal a, so it does not fit this sentence or question."},{"id":28,"sec":"Subjuntivo","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [28], elige la forma verbal correcta.","ch":["A) ves","B) viste","C) veas","D) verás"],"cor":"C","exp":"A is incorrect because \"ves\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present indicative tú, so it does not fit this sentence or question. B is incorrect because \"viste\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite tú, so it does not fit this sentence or question. C is correct because \"veas\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive tú. D is incorrect because \"verás\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is future tú, so it does not fit this sentence or question."},{"id":29,"sec":"Mandatos","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [29], elige el mandato correcto.","ch":["A) tomas","B) toma","C) tomaste","D) tomes"],"cor":"D","exp":"A is incorrect because \"tomas\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is present indicative tú, so it does not fit this sentence or question. B is incorrect because \"toma\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is an affirmative tú command or present él/ella form, so it does not fit this sentence or question. C is incorrect because \"tomaste\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is preterite tú, so it does not fit this sentence or question. D is correct because \"tomes\" satisfies the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is the tú subjunctive form used in a negative tú command."},{"id":30,"sec":"Subjuntivo","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [30], elige la forma verbal correcta.","ch":["A) dice","B) dijo","C) diga","D) decía"],"cor":"C","exp":"A is incorrect because \"dice\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present indicative, so it does not fit this sentence or question. B is incorrect because \"dijo\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite, so it does not fit this sentence or question. C is correct because \"diga\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive. D is incorrect because \"decía\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is imperfect, so it does not fit this sentence or question."},{"id":31,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: Lo ___ necesito es una conexión estable.","ch":["A) que","B) quien","C) cuyo","D) donde"],"cor":"A","exp":"A is correct because \"que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it is the general relative pronoun for people or things when no special preposition, location word, or possession word is needed. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question."},{"id":32,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: La doctora a ___ llamé trabaja en la clínica nueva.","ch":["A) quien","B) cuyo","C) donde","D) lo que"],"cor":"A","exp":"A is correct because \"quien\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses. B is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. C is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question. D is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question."},{"id":33,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: Los pacientes a ___ ayudamos no podían manejar.","ch":["A) quien","B) quienes","C) cuyo","D) donde"],"cor":"B","exp":"A is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. B is correct because \"quienes\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question."},{"id":34,"sec":"Relativos + Subjuntivo","type":"mc","prompt":"Elige la opción correcta: Busco un apartamento ___ balcón y ascensor.","ch":["A) que tenga","B) que tiene","C) quien tenga","D) lo que tiene"],"cor":"A","exp":"A is correct because \"que tenga\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it uses que plus present subjunctive, which fits a thing being sought but not yet identified. B is incorrect because \"que tiene\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it uses que plus indicative, which fits a thing known or identified as real, so it does not fit this sentence or question. C is incorrect because \"quien tenga\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it uses a person-only relative pronoun, so it does not fit an apartment or other non-person antecedent, so it does not fit this sentence or question. D is incorrect because \"lo que tiene\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it means what has/what it has and does not attach correctly to the noun in this sentence, so it does not fit this sentence or question."},{"id":35,"sec":"Relativos + Indicativo","type":"mc","prompt":"Elige la opción correcta: Conozco un apartamento ___ balcón y ascensor.","ch":["A) que tenga","B) que tiene","C) a quien tiene","D) cuyo tiene"],"cor":"B","exp":"A is incorrect because \"que tenga\" does not satisfy the requirement: the answer must use a relative clause with indicative because the noun/person is known, real, or identified. In context, it uses que plus present subjunctive, which fits a thing being sought but not yet identified, so it does not fit this sentence or question. B is correct because \"que tiene\" satisfies the requirement: the answer must use a relative clause with indicative because the noun/person is known, real, or identified. In context, it uses que plus indicative, which fits a thing known or identified as real. C is incorrect because \"a quien tiene\" does not satisfy the requirement: the answer must use a relative clause with indicative because the noun/person is known, real, or identified. In context, it wrongly treats a non-person thing as a personal object and does not fit the sentence, so it does not fit this sentence or question. D is incorrect because \"cuyo tiene\" does not satisfy the requirement: the answer must use a relative clause with indicative because the noun/person is known, real, or identified. In context, it misuses cuyo because cuyo must be followed by the noun possessed, not by a conjugated verb, so it does not fit this sentence or question."},{"id":36,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: La enfermera, ___ vive cerca, llegará a las ocho.","ch":["A) quien","B) lo que","C) cuyo","D) a quienes"],"cor":"A","exp":"A is correct because \"quien\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses. B is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"a quienes\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people and already includes the needed preposition/personal a, so it does not fit this sentence or question."},{"id":37,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: El portátil ___ pantalla no funciona necesita reparación.","ch":["A) quien","B) cuya","C) cuyo","D) lo que"],"cor":"B","exp":"A is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. B is correct because \"cuya\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a feminine singular thing possessed. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question."},{"id":38,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: El barrio ___ viven mis abuelos está en las afueras.","ch":["A) donde","B) quien","C) lo que","D) cuyo"],"cor":"A","exp":"A is correct because \"donde\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. D is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question."},{"id":39,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: No entendí ___ dijiste sobre el seguro.","ch":["A) lo que","B) quien","C) cuyo","D) donde"],"cor":"A","exp":"A is correct because \"lo que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question."},{"id":40,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: El agente no llegó, ___ nos preocupó mucho.","ch":["A) lo cual","B) quien","C) cuyo","D) a quienes"],"cor":"A","exp":"A is correct because \"lo cual\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers back to an entire previous idea, not just one noun. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"a quienes\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people and already includes the needed preposition/personal a, so it does not fit this sentence or question."},{"id":41,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: La familia con ___ compartimos el taxi vive al lado.","ch":["A) la que","B) quien","C) lo que","D) cuyo"],"cor":"A","exp":"A is correct because \"la que\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it agrees with a feminine singular antecedent and works after a preposition such as con or a. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"lo que\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it means what or the thing that when there is no specific noun before the relative clause, so it does not fit this sentence or question. D is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question."},{"id":42,"sec":"Pronombres relativos","type":"mc","prompt":"Completa: Los vecinos de ___ recibimos ayuda trajeron comida.","ch":["A) quienes","B) quien","C) cuyo","D) donde"],"cor":"A","exp":"A is correct because \"quienes\" satisfies the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to plural people. B is incorrect because \"quien\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it refers to one person and is especially common after a preposition or in explanatory clauses, so it does not fit this sentence or question. C is incorrect because \"cuyo\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it expresses possession and agrees with a masculine singular thing possessed, so it does not fit this sentence or question. D is incorrect because \"donde\" does not satisfy the requirement: the answer must use the relative pronoun or related form that matches the antecedent, any needed preposition, and whether possession or location is involved. In context, it introduces a relative clause about a place, so it does not fit this sentence or question."},{"id":43,"sec":"Mandatos","type":"mc","prompt":"Completa el mandato negativo de tú: No ___ el archivo sin guardarlo primero.","ch":["A) borras","B) borres","C) borra","D) borraste"],"cor":"B","exp":"A is incorrect because \"borras\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is present indicative tú, so it does not fit this sentence or question. B is correct because \"borres\" satisfies the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is the tú subjunctive form used in a negative tú command. C is incorrect because \"borra\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is an affirmative tú command or present él/ella form, so it does not fit this sentence or question. D is incorrect because \"borraste\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is preterite tú, so it does not fit this sentence or question."},{"id":44,"sec":"Mandatos","type":"mc","prompt":"Completa el mandato formal: ___ los documentos al seguro, señor Gómez.","ch":["A) Envíe","B) Envía","C) Envías","D) Enviaste"],"cor":"A","exp":"A is correct because \"Envíe\" satisfies the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is the formal usted command. B is incorrect because \"Envía\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is the informal affirmative tú command, so it does not fit this sentence or question. C is incorrect because \"Envías\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is present indicative tú, so it does not fit this sentence or question. D is incorrect because \"Enviaste\" does not satisfy the requirement: the answer must be the command form that matches the subject, formality, and whether the command is affirmative or negative. In context, it is preterite tú, so it does not fit this sentence or question."},{"id":45,"sec":"Subjuntivo","type":"mc","prompt":"Completa: Es necesario que la clínica ___ abierta los domingos.","ch":["A) está","B) estuvo","C) esté","D) estaba"],"cor":"C","exp":"A is incorrect because \"está\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present indicative, so it does not fit this sentence or question. B is incorrect because \"estuvo\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite, so it does not fit this sentence or question. C is correct because \"esté\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive. D is incorrect because \"estaba\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is imperfect, so it does not fit this sentence or question."},{"id":46,"sec":"Subjuntivo","type":"mc","prompt":"Completa: Ojalá los voluntarios ___ temprano.","ch":["A) llegan","B) lleguen","C) llegaron","D) llegaban"],"cor":"B","exp":"A is incorrect because \"llegan\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present indicative plural, so it does not fit this sentence or question. B is correct because \"lleguen\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive plural. C is incorrect because \"llegaron\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite plural, so it does not fit this sentence or question. D is incorrect because \"llegaban\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is imperfect plural, so it does not fit this sentence or question."},{"id":47,"sec":"Subjuntivo","type":"mc","prompt":"Completa: Cuando tú ___ la receta, mándala por correo electrónico.","ch":["A) recibes","B) recibiste","C) recibas","D) recibirás"],"cor":"C","exp":"A is incorrect because \"recibes\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present indicative tú, so it does not fit this sentence or question. B is incorrect because \"recibiste\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite tú, so it does not fit this sentence or question. C is correct because \"recibas\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive tú. D is incorrect because \"recibirás\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is future tú, so it does not fit this sentence or question."},{"id":48,"sec":"Subjuntivo","type":"mc","prompt":"Completa: Aunque el coche ___ bien, revisa los frenos.","ch":["A) funciona","B) funcionó","C) funcione","D) funcionaba"],"cor":"C","exp":"A is incorrect because \"funciona\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present indicative, so it does not fit this sentence or question. B is incorrect because \"funcionó\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is preterite, so it does not fit this sentence or question. C is correct because \"funcione\" satisfies the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is present subjunctive. D is incorrect because \"funcionaba\" does not satisfy the requirement: the answer must be the subjunctive form required by the trigger or by a future event that has not happened yet. In context, it is imperfect, so it does not fit this sentence or question."},{"id":49,"sec":"Cultura breve","type":"mc","prompt":"¿Qué opción explica mejor por qué los azulejos aparecen en muchas casas tradicionales hispanas?","ch":["A) Por la influencia árabe transmitida por España","B) Porque todos los países hispanos tienen el mismo clima","C) Porque la madera estaba prohibida en América Latina","D) Porque las casas modernas no pueden tener color"],"cor":"A","exp":"A is correct because \"Por la influencia árabe transmitida por España\" is the accurate fact. this is accurate because tilework is commonly linked to Arab influence in Spain and later Hispanic architectural traditions. B is incorrect because \"Porque todos los países hispanos tienen el mismo clima\" is not the accurate fact required by the question. this is inaccurate because Spanish-speaking countries do not all share the same climate. C is incorrect because \"Porque la madera estaba prohibida en América Latina\" is not the accurate fact required by the question. this is inaccurate because wood was not broadly prohibited in Latin America. D is incorrect because \"Porque las casas modernas no pueden tener color\" is not the accurate fact required by the question. this is inaccurate because modern homes can absolutely use color."},{"id":50,"sec":"Cultura breve","type":"mc","prompt":"¿Cuál afirmación es correcta?","ch":["A) El 16 de septiembre se asocia con la independencia de México","B) El 5 de mayo es la independencia de todos los países hispanos","C) Tegucigalpa es la capital de España","D) El Día de Reyes se celebra siempre con una sala de emergencias"],"cor":"A","exp":"A is correct because \"El 16 de septiembre se asocia con la independencia de México\" is the accurate fact. this is accurate because September 16 is Mexican Independence Day. B is incorrect because \"El 5 de mayo es la independencia de todos los países hispanos\" is not the accurate fact required by the question. this is inaccurate because Cinco de Mayo is not a universal Hispanic independence day. C is incorrect because \"Tegucigalpa es la capital de España\" is not the accurate fact required by the question. this is inaccurate because Tegucigalpa is the capital of Honduras, not Spain. D is incorrect because \"El Día de Reyes se celebra siempre con una sala de emergencias\" is not the accurate fact required by the question. this is inaccurate because Día de Reyes is a holiday tradition, not an emergency-room event."}];
+const duration = 55;
+const totalQuestions = 50;
+const questionSelectionCount = undefined;
+const selectionCounts = undefined;
+const showAnswerBank = false;
+const isEnglish = false;
+const allowBack = false;
+const testSlug = "final-9";
+const testTitle = "Los Que Conectan";
+const course = "Spanish 2";
+const unit = "Semester 2 Final Review";
+const passages = {"1":{"label":"Conversación","title":"La clínica móvil que necesita voluntarios","body":"— Laura: Busco voluntarios [17] puedan manejar los sábados para llevar medicinas a los pacientes.\n— Benjamín: Conozco a dos estudiantes [18] viven en las afueras y tienen coche.\n— Laura: ¿Son los chicos [19] hablaste ayer después de la clase de tecnología?\n— Benjamín: Sí. Lo [20] me preocupa es que el seguro todavía no aprueba el presupuesto del taller.\n— Laura: Entonces no [21] los formularios hasta que el agente nos [22] la autorización.\n— Benjamín: También hay pacientes [23] no pueden salir de casa porque tienen fiebre o dolor fuerte.\n— Laura: Prepararemos una lista para las enfermeras, [24] revisarán los síntomas por videollamada.\n— Benjamín: Necesitamos un portátil [25] cámara web funcione bien.\n— Laura: Y una memoria de USB [26] guardemos las recetas por si acaso.\n— Benjamín: ¿Qué hacemos con don Rafael, [27] vive solo y no tiene wifi?\n— Laura: Cuando lo [28] mañana, dile: no [29] medicamentos viejos sin preguntar a la doctora.\n— Benjamín: Me parece bien. Aunque él [30] que está mejor, debe ir al consultorio si tiene fiebre alta."}};
+const infographicTitle = "Infografía";
+const infographicSrc = "";
+const audioSrc = "/orange-atlas/assets/final-9-relative-audio.mp3";
+const audioTitle = "Clínica móvil";
+const audioMeta = "Clínica móvil · Dos partes · Pronombres relativos, mandatos y tecnología";
+const defaultTopbarTitle = "Los Que Conectan";
+const hasMediaQuestions = true;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const fmtPrompt = s => esc(s).trim().replace(/([.?!])\s+—\s+/g, "$1\n— ");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const expectsExactTerm = testSlug.startsWith("ap-world-vocab-");
+      const shuffle = items => {
+        const shuffled = [...items];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      };
+      const sourceQuestions = [...questions];
+      const requestedSelectionSize = Number(questionSelectionCount);
+      const shouldSelectQuestions = requestedSelectionSize > 0 && requestedSelectionSize < sourceQuestions.length;
+      const selectionSize = shouldSelectQuestions ? requestedSelectionSize : sourceQuestions.length;
+      let selectedQuestions = sourceQuestions;
+
+      if (shouldSelectQuestions) {
+        selectedQuestions = [];
+        if (selectionCounts && typeof selectionCounts === "object") {
+          Object.entries(selectionCounts).forEach(([section, count]) => {
+            const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+            const sectionQuestions = sourceQuestions.filter(question =>
+              question.sec === section && !selectedTerms.has(nm(question.disp || ""))
+            );
+            selectedQuestions.push(...shuffle(sectionQuestions).slice(0, Number(count) || 0));
+          });
+        }
+        const alreadySelected = new Set(selectedQuestions);
+        const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+        const remaining = shuffle(sourceQuestions.filter(question =>
+          !alreadySelected.has(question) && !selectedTerms.has(nm(question.disp || ""))
+        ));
+        selectedQuestions = shuffle([...selectedQuestions, ...remaining.slice(0, Math.max(0, selectionSize - selectedQuestions.length))]).slice(0, selectionSize);
+      }
+
+      const QS = selectedQuestions.map((question, index) => ({
+        ...question,
+        sourceId: question.id,
+        id: index + 1,
+      }));
+      const WORD_BANK = [...new Set(QS
+        .map(question => question.disp || (question.acc && question.acc[0]) || "")
+        .filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+      let latestAttemptPayload = null;
+      let saveInFlight = false;
+      let savedAttemptId = null;
+
+      function addStat(bucket, key, ok) {
+        const statKey = key || "Uncategorized";
+        if (!bucket[statKey]) bucket[statKey] = { correct: 0, total: 0 };
+        bucket[statKey].total++;
+        if (ok) bucket[statKey].correct++;
+      }
+
+      function setProgressCard(mode, detail) {
+        const card = document.getElementById("progress-save-card");
+        const titleEl = document.getElementById("progress-save-title");
+        const copyEl = document.getElementById("progress-save-copy");
+        const signInBtn = document.getElementById("progress-signin-btn");
+        const analyticsLink = document.getElementById("progress-analytics-link");
+        if (!card || !titleEl || !copyEl || !signInBtn || !analyticsLink) return;
+
+        card.classList.add("show");
+        analyticsLink.classList.remove("show");
+        signInBtn.hidden = true;
+
+        if (mode === "unconfigured") {
+          titleEl.textContent = "Progress tracking needs Firebase setup";
+          copyEl.textContent = "Add the PUBLIC_FIREBASE_* values to enable Google sign-in and saved analytics.";
+          return;
+        }
+
+        if (mode === "signed-out") {
+          titleEl.textContent = "Save this attempt";
+          copyEl.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
+          signInBtn.hidden = false;
+          return;
+        }
+
+        if (mode === "saving") {
+          titleEl.textContent = "Saving progress";
+          copyEl.textContent = "Your attempt is being added to your analytics dashboard.";
+          return;
+        }
+
+        if (mode === "saved") {
+          titleEl.textContent = "Progress saved";
+          copyEl.textContent = "This attempt is now included in your analytics dashboard.";
+          analyticsLink.classList.add("show");
+          return;
+        }
+
+        titleEl.textContent = "Progress was not saved";
+        copyEl.textContent = detail || "There was a problem saving this attempt. Your score above is still available on this page.";
+      }
+
+      function buildAttemptPayload(score, pct, elapsed) {
+        const sectionStats = {};
+        const typeStats = {};
+        const mediaStats = {};
+        const questionResults = QS.map(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+          const media = q.media || "Standard questions";
+          addStat(sectionStats, q.sec, ok);
+          addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
+          addStat(mediaStats, media, ok);
+          return {
+            id: q.sourceId ?? q.id,
+            displayId: q.id,
+            section: q.sec || "Uncategorized",
+            type: q.type,
+            media,
+            correct: ok,
+          };
+        });
+
+        return {
+          testSlug,
+          testTitle,
+          course,
+          unit,
+          score,
+          total: QS.length,
+          percent: pct,
+          elapsedSeconds: elapsed,
+          timedOut: ST.timedOut,
+          sectionStats,
+          typeStats,
+          mediaStats,
+          questionResults,
+          source: "astro",
+        };
+      }
+
+      function questionOutcome(q) {
+        const ans = ST.answers[q.id] || "";
+        const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+        return { ans, ok };
+      }
+
+      function jumpToResultQuestion(id) {
+        const target = document.getElementById(`res-q-${id}`);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.classList.add("rq-focus");
+        window.setTimeout(() => target.classList.remove("rq-focus"), 1200);
+      }
+
+      function renderReviewRail(questionStates) {
+        const rail = document.getElementById("review-rail");
+        if (!rail) return;
+
+        const missed = questionStates.filter(({ ok }) => !ok);
+        rail.hidden = false;
+        rail.innerHTML = `
+          <div class="review-rail-title">Review</div>
+          <div class="review-rail-summary">${missed.length ? `<strong>${missed.length}</strong> missed` : "All correct"}</div>
+          <div class="review-rail-grid">
+            ${questionStates.map(({ q, ok }) => `
+              <button
+                class="review-jump ${ok ? "is-ok" : "is-wrong"}"
+                type="button"
+                data-review-jump="${q.id}"
+                aria-label="Question ${q.id}: ${ok ? "correct" : "wrong"}"
+              >${q.id}</button>
+            `).join("")}
+          </div>
+        `;
+
+        rail.querySelectorAll("[data-review-jump]").forEach((button) => {
+          button.addEventListener("click", () => jumpToResultQuestion(button.getAttribute("data-review-jump")));
+        });
+      }
+
+      async function saveLatestAttempt() {
+        if (!latestAttemptPayload || savedAttemptId || saveInFlight) return;
+
+        const progress = window.orangeAtlasProgress;
+        if (!progress || !progress.isFirebaseConfigured || !progress.isFirebaseConfigured()) {
+          setProgressCard("unconfigured");
+          return;
+        }
+
+        if (!progress.getCurrentUser || !progress.getCurrentUser()) {
+          setProgressCard("signed-out");
+          return;
+        }
+
+        saveInFlight = true;
+        setProgressCard("saving");
+
+        try {
+          const result = await progress.saveAttempt(latestAttemptPayload);
+          if (result && result.status === "saved") {
+            savedAttemptId = result.id;
+            setProgressCard("saved");
+          } else {
+            setProgressCard("signed-out");
+          }
+        } catch (error) {
+          console.warn("Unable to save Orange Atlas attempt", error);
+          setProgressCard("error");
+        } finally {
+          saveInFlight = false;
+        }
+      }
+
+      window.addEventListener("orange-atlas-auth-change", () => {
+        if (latestAttemptPayload && !savedAttemptId) saveLatestAttempt();
+      });
+
+      function startExam() {
+        document.body.classList.add("oa-exam-running");
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = isEnglish
+          ? `Question ${ST.idx + 1} of ${QS.length}`
+          : `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? (isEnglish ? "Audio — Interpretive" : "Audio — Interpretivo")
+            : q.media === "infographic"
+              ? (isEnglish ? "Infographic — Interpretive" : "Infografía — Interpretativa")
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const isTrueFalse = q.type === "mc" && q.ch?.length === 2 && q.ch[0] === "A) True" && q.ch[1] === "B) False";
+        const typeLabel = q.type === "mc"
+          ? (isEnglish ? (isTrueFalse ? "True or False" : "Multiple Choice") : "Opción Múltiple")
+          : (isEnglish ? "Free Answer" : "Respuesta Libre");
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${esc(q.sec)}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 ${isEnglish ? "Infographic" : "Infográfico"} — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="${isEnglish ? "Infographic" : "Infográfico"}: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ ${isEnglish ? "Scroll the infographic to see all the data" : "Desplaza el infográfico para ver todos los datos"}</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${fmtPrompt(q.prompt)}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${esc(c)}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = expectsExactTerm
+            ? "Enter the matching term"
+            : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = expectsExactTerm
+            ? "type the term…"
+            : q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${showAnswerBank ? `<div class="answer-bank">
+                <div class="answer-bank-label">Word bank</div>
+                <div class="answer-bank-options">
+                  ${WORD_BANK.map(term => {
+                    const used = Object.values(ST.answers).some(answer => nm(answer) === nm(term));
+                    return `<button class="answer-bank-btn${used ? " used" : ""}" type="button" data-bank-term="${encodeURIComponent(term)}">${esc(term)}</button>`;
+                  }).join("")}
+                </div>
+                <p class="answer-bank-note">Select a term to fill the answer box, or copy and paste it.</p>
+              </div>` : !q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<div class="question-actions${allowBack ? " has-back" : ""}">
+          ${allowBack ? `<button class="btn-back" id="btnback" onclick="goBack()" ${ST.idx === 0 ? "disabled" : ""}>← Previous</button>` : ""}
+          <button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+            ${isLast ? (isEnglish ? "Submit Test →" : "Entregar Examen →") : (isEnglish ? "Next →" : "Siguiente →")}
+          </button>
+        </div>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        wrap.querySelectorAll('[data-bank-term]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const term = decodeURIComponent(btn.getAttribute('data-bank-term') || '');
+            const inp = document.getElementById('freeinp');
+            if (!inp || !term) return;
+            inp.value = term;
+            inp.focus();
+            freeTyped();
+          });
+        });
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function goBack() {
+        if (!allowBack || ST.idx <= 0) return;
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        ST.idx--;
+        renderQ();
+      }
+
+      function showResults() {
+        document.body.classList.remove("oa-exam-running");
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        const questionStates = QS.map(q => ({ q, ...questionOutcome(q) }));
+        const score = questionStates.reduce((total, { ok }) => total + (ok ? 1 : 0), 0);
+        const pct = Math.round((score / QS.length) * 100);
+        latestAttemptPayload = buildAttemptPayload(score, pct, elapsed);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? (isEnglish
+            ? `Infographic: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Multiple choice: ${mcScore}/${mcQ.length}  ·  Free answer: ${freeScore}/${freeQ.length}`
+            : `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`)
+          : isEnglish
+            ? [
+                freeQ.length ? `Free answer: ${freeScore}/${freeQ.length}` : "",
+                mcQ.length ? `Multiple choice: ${mcScore}/${mcQ.length}` : "",
+              ].filter(Boolean).join("  ·  ")
+            : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = isEnglish
+          ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed questions and concepts."], [0, "Keep studying and try again."]]
+          : hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? (isEnglish ? "⚠ Time expired" : "⚠ Tiempo agotado")
+          : `${isEnglish ? "Time" : "Tiempo"}: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+        saveLatestAttempt();
+        renderReviewRail(questionStates);
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        questionStates.forEach(({ q, ans, ok }) => {
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 ${isEnglish ? "Infographic" : "Infografía"} — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.id = `res-q-${q.id}`;
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${esc(c)}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">${isEnglish ? "Your answer" : "Tu respuesta"}: ${ans}</span>`
+              : `<span class="res-chip yours bad">${isEnglish ? "No answer" : "Sin respuesta"}</span>`;
+            if (!ok) html += `<span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">${isEnglish ? "View explanation" : "Ver explicación"}</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open")
+          ? (isEnglish ? "Hide explanation" : "Ocultar explicación")
+          : (isEnglish ? "View explanation" : "Ver explicación");
+      }
+
+      function renderReviewQuestion(q) {
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        let html = `<div class="res-q rq-bad">
+          <div class="res-q-top">
+            <div class="res-num bad">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
+            </div>
+          </div>`;
+
+        if (q.type === "mc") {
+          html += `<div class="res-mc-choices">`;
+          q.ch.forEach(c => {
+            html += `<div class="res-mc-choice ${c[0] === q.cor ? "rc-right" : ""}">${esc(c)}</div>`;
+          });
+          html += `</div>`;
+        } else {
+          const correct = q.disp || (q.acc || []).join(", ");
+          html += `<div class="res-ans-row">
+            <span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${correct}</span>
+          </div>`;
+        }
+
+        html += `<div class="res-exp-box open" id="rexp${q.id}">
+          ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp || (isEnglish ? "Review the prompt, correct answer, and source context for this question." : "Repasa la pregunta, la respuesta correcta y el contexto de la fuente.")}
+        </div></div>`;
+        return html;
+      }
+
+      function showReviewFromUrl() {
+        const reviewId = new URLSearchParams(window.location.search).get("review");
+        if (!reviewId) return;
+        const sourceQuestion = sourceQuestions.find(question => String(question.id) === reviewId);
+        const selectedQuestion = QS.find(question => String(question.id) === reviewId);
+        const q = sourceQuestion
+          ? { ...sourceQuestion, sourceId: sourceQuestion.id, id: sourceQuestion.id }
+          : selectedQuestion;
+        if (!q) return;
+
+        document.body.classList.remove("oa-exam-running");
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = "linear-gradient(135deg,#111827,#3b1d0d)";
+        document.getElementById("res-kicker").textContent = isEnglish ? "Question Review" : "Repaso de Pregunta";
+        document.getElementById("res-score").textContent = `Q${q.id}`;
+        document.getElementById("res-pct").textContent = `${q.sec} · ${q.type === "mc"
+          ? (isEnglish ? "Multiple choice" : "Opción múltiple")
+          : (isEnglish ? "Free response" : "Respuesta libre")}`;
+        document.getElementById("res-msg").textContent = testTitle;
+        document.getElementById("res-time").textContent = isEnglish ? "Opened from analytics" : "Abierto desde analytics";
+        document.getElementById("timeout-banner").style.display = "none";
+        document.getElementById("progress-save-card").classList.remove("show");
+        const rail = document.getElementById("review-rail");
+        if (rail) {
+          rail.hidden = true;
+          rail.innerHTML = "";
+        }
+        document.getElementById("res-list").innerHTML = `<div class="review-actions"><a href="${window.location.pathname}">${isEnglish ? "Start full test" : "Comenzar examen completo"}</a></div>${renderReviewQuestion(q)}`;
+        window.scrollTo(0, 0);
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.goBack = goBack;
+      window.togE = togE;
+      showReviewFromUrl();
+    })();</script> </body> </html>

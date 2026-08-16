@@ -1,0 +1,767 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>A Prueba de Fuego | Orange Atlas</title><link rel="icon" href="/orange-atlas/assets/orangeAtlas.png" type="image/png"><link rel="apple-touch-icon" href="/orange-atlas/assets/orangeAtlas.png"><link rel="stylesheet" href="/orange-atlas/_astro/_slug_.QdHIsByf.css">
+<link rel="stylesheet" href="/orange-atlas/_astro/_slug_.CdOO5QoA.css"></head> <body> <div class="oa-auth-nav" data-auth-nav data-astro-cid-amj3u3q3> <a class="oa-auth-nav__link" href="/orange-atlas/analytics/?course=Spanish%202" data-astro-cid-amj3u3q3>Analytics</a> <button class="oa-auth-nav__button" type="button" data-auth-action="sign-in" data-astro-cid-amj3u3q3>Sign in</button> <span class="oa-auth-nav__profile" data-auth-profile hidden data-astro-cid-amj3u3q3> <img data-auth-photo alt="" data-astro-cid-amj3u3q3> <span data-auth-name data-astro-cid-amj3u3q3></span> </span> <button class="oa-auth-nav__button secondary" type="button" data-auth-action="sign-out" hidden data-astro-cid-amj3u3q3>
+Sign out
+</button> <span class="oa-auth-nav__setup" data-auth-setup hidden data-astro-cid-amj3u3q3>Firebase setup needed</span> </div> <div class="oa-ai-chat" data-ai-chat data-chat-url="https://my-api-proxy.orange-atlas-ai-helper.workers.dev" data-base-root="/orange-atlas" data-astro-cid-zasvxobd> <button class="oa-ai-chat__launcher" type="button" aria-expanded="false" aria-controls="oa-ai-chat-panel" data-chat-toggle data-astro-cid-zasvxobd> <span class="oa-ai-chat__spark" data-astro-cid-zasvxobd>AI</span> <span data-astro-cid-zasvxobd>Spanish Tutor</span> </button> <section class="oa-ai-chat__panel" id="oa-ai-chat-panel" aria-label="Orange Atlas Spanish tutor" data-chat-panel hidden data-astro-cid-zasvxobd> <header class="oa-ai-chat__head" data-astro-cid-zasvxobd> <div data-astro-cid-zasvxobd> <div class="oa-ai-chat__title" data-astro-cid-zasvxobd>Atlas Tutor</div> <div class="oa-ai-chat__sub" data-chat-subtitle data-astro-cid-zasvxobd>Sign in to ask Spanish 2 questions.</div> </div> <div class="oa-ai-chat__head-actions" data-astro-cid-zasvxobd> <button class="oa-ai-chat__ghost" type="button" data-chat-reset data-astro-cid-zasvxobd>Reset</button> <button class="oa-ai-chat__close" type="button" aria-label="Close tutor" data-chat-close data-astro-cid-zasvxobd>Close</button> </div> </header> <div class="oa-ai-chat__auth" data-chat-auth data-astro-cid-zasvxobd> <span data-chat-auth-copy data-astro-cid-zasvxobd>Sign in with Google to use the tutor.</span> <button type="button" data-auth-action="sign-in" data-astro-cid-zasvxobd>Sign in</button> </div> <div class="oa-ai-chat__messages" aria-live="polite" data-chat-messages data-astro-cid-zasvxobd></div> <div class="oa-ai-chat__status" data-chat-status hidden data-astro-cid-zasvxobd></div> <form class="oa-ai-chat__form" data-chat-form data-astro-cid-zasvxobd> <label class="oa-ai-chat__label" for="oa-ai-chat-input" data-astro-cid-zasvxobd>Ask a Spanish 2 question</label> <textarea id="oa-ai-chat-input" data-chat-input rows="2" maxlength="1200" placeholder="Ask about relative pronouns, preterite vs. imperfect, commands..." data-astro-cid-zasvxobd></textarea> <button type="submit" data-chat-send data-astro-cid-zasvxobd>Send</button> </form> <div class="oa-ai-chat__resize" role="separator" aria-label="Resize tutor panel" aria-orientation="vertical" tabindex="0" data-chat-resize data-astro-cid-zasvxobd></div> </section> </div>  <script type="module" src="/orange-atlas/_astro/AiChat.astro_astro_type_script_index_0_lang.CEESlbtj.js"></script>  <script type="module" src="/orange-atlas/_astro/AuthNav.astro_astro_type_script_index_0_lang.IvQfRgoT.js"></script> <div class="screen active" id="s-landing"> <div class="land-inner"> <p class="land-kicker">Repaso Final VI · Senderos 2 · Lección 5</p> <h1 class="land-title"> A Prueba <br><em>de Fuego</em> </h1> <p class="land-sub"> 50 preguntas. <strong>55:00</strong><br> 5 fuentes — una pregunta a la vez. </p>  <div class="info-grid"> <div class="info-card"> <div class="info-n">50</div> <div class="info-l">preguntas</div> </div> <div class="info-card"> <div class="info-n" style="color:var(--warn)">55:00</div> <div class="info-l">minutos</div> </div> <div class="info-card"> <div class="info-n">5</div> <div class="info-l">tipos</div> </div> </div> <div class="rules-box"> <strong>Reglas del examen:</strong> <ul> <li>Una pregunta a la vez — no puedes volver atrás</li><li>El examen termina automáticamente cuando el tiempo llega a cero</li><li>Usa el contexto completo antes de elegir</li><li>Las conversaciones tienen varios espacios numerados</li><li>Escribe las respuestas de vocabulario en español cuando se indique</li> </ul> </div> <button class="btn-main" onclick="startExam()">Comenzar Examen</button> </div> </div> <div class="screen" id="s-exam" hidden> <div id="topbar"> <div class="tb-left"> <div class="tb-qnum" id="tb-mode">A Prueba de Fuego</div> <div class="tb-qof" id="qof">Pregunta 1 de 50</div> </div> <div class="tb-timer" id="timer"> <span class="timer-icon">⏱</span> <span id="tdisp">55:00</span> </div> </div> <div id="progbar-wrap"><div id="progbar"></div></div> <div id="audio-bar"> <div class="audio-bar-inner"> <div class="audio-bar-label">🎧 Audio</div> <div class="audio-bar-meta"></div> <audio id="test-audio" controls preload="auto">  Tu navegador no soporta el elemento de audio. </audio> <p class="audio-hint">Puedes reproducir el audio cuantas veces necesites antes de responder cada pregunta.</p> </div> </div> <div id="qarea"> <div class="qwrap" id="qwrap"></div> </div> </div> <div class="screen" id="s-results" hidden> <div id="res-header"> <div class="res-kicker" id="res-kicker">Resultado Final</div> <div class="res-score" id="res-score"></div> <div class="res-pct" id="res-pct"></div> <div class="res-msg" id="res-msg"></div> <div class="res-time" id="res-time"></div> </div> <div id="res-body"> <div id="timeout-banner">⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas.</div> <div class="progress-save-card" id="progress-save-card"> <div class="progress-save-title" id="progress-save-title">Save your progress</div> <p class="progress-save-copy" id="progress-save-copy">
+Sign in with Google now and this completed attempt will be saved to your analytics dashboard.
+</p> <div class="progress-save-actions"> <button class="progress-save-btn" type="button" data-auth-action="sign-in" id="progress-signin-btn">
+Sign in with Google
+</button> <a class="progress-save-link" href="/orange-atlas/analytics/?course=Spanish%202" id="progress-analytics-link">View analytics</a> </div> </div> <div class="review-shell"> <aside class="review-rail" id="review-rail" aria-label="Question review shortcuts" hidden></aside> <div id="res-list"></div> </div> </div> </div> <script>(function(){const questions = [{"id":1,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) la rodilla","B) la muñeca","C) el codo","D) la garganta"],"cor":"D","exp":"La rodilla, la muñeca y el codo son articulaciones: partes donde se doblan o conectan huesos. La garganta es un conducto interno relacionado con tragar, respirar y hablar; no es una articulación. La dificultad está en no agruparla simplemente como una parte del cuerpo."},{"id":2,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) los ojos","B) las orejas","C) las manos","D) el corazón"],"cor":"D","exp":"Los ojos, las orejas y las manos vienen naturalmente en pares. El corazón es un órgano singular; normalmente hay uno. Esta pregunta prueba conocimiento semántico, no solo traducción."},{"id":3,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el antibiótico","B) la aspirina","C) la pastilla","D) la clínica"],"cor":"D","exp":"Antibiótico, aspirina y pastilla son medicamentos u objetos que se toman para tratar una condición. La clínica es un lugar médico. La categoría cambia de tratamiento físico a ubicación."},{"id":4,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) toser","B) estornudar","C) tener fiebre","D) recetar"],"cor":"D","exp":"Toser, estornudar y tener fiebre son síntomas o experiencias del paciente. Recetar es una acción profesional del doctor. El sujeto implícito cambia: paciente frente a profesional médico."},{"id":5,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el teclado","B) la cámara web","C) el micrófono","D) el programa de computación"],"cor":"D","exp":"Teclado, cámara web y micrófono son hardware físico, especialmente dispositivos de entrada. El programa de computación es software: instrucciones digitales que no se pueden tocar."},{"id":6,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) borrar","B) descargar","C) grabar","D) chatear"],"cor":"D","exp":"Borrar, descargar y grabar son operaciones sobre archivos o datos. Chatear es comunicación interpersonal. Todas son acciones digitales, pero no todas operan sobre archivos."},{"id":7,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) subirse a","B) bajarse de","C) estacionar","D) la gasolinera"],"cor":"D","exp":"Subirse, bajarse y estacionar son acciones relacionadas con usar un coche. La gasolinera es un lugar. La pregunta mezcla vocabulario de coche con categoría gramatical."},{"id":8,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el dormitorio","B) la cocina","C) el sótano","D) el lavaplatos"],"cor":"D","exp":"Dormitorio, cocina y sótano son espacios o habitaciones de una vivienda. El lavaplatos es un electrodoméstico dentro de una casa, no una habitación."},{"id":9,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) barrer el piso","B) quitar el polvo","C) sacar la basura","D) la secadora"],"cor":"D","exp":"Las tres primeras opciones son quehaceres domésticos, acciones que alguien realiza. La secadora es una máquina. Esta es una trampa de tema: todo pertenece a la casa, pero no a la misma función."},{"id":10,"sec":"Vocabulario: Odd One Out","type":"mc","prompt":"¿Cuál de las siguientes palabras no pertenece al mismo grupo que las demás?","ch":["A) el alquiler","B) la vivienda","C) mudarse","D) el vecindario"],"cor":"C","exp":"Alquiler, vivienda y vecindario son sustantivos relacionados con dónde vive una persona. Mudarse es un verbo, una acción de cambiar de vivienda. La diferencia principal es gramatical y conceptual."},{"id":11,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [11], elige la forma que mejor completa la conversación.","ch":["A) manejé","B) manejaba","C) manejo","D) manejaré"],"cor":"B","exp":"Manejaba es imperfecto. La acción de manejar era el fondo continuo cuando ocurrió la interrupción repentina: un coche salió y chocó. El imperfecto crea la escena; el pretérito marca el evento que la interrumpe."},{"id":12,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [12], elige la forma que mejor completa la conversación.","ch":["A) prestó","B) prestaba","C) preste","D) prestara"],"cor":"D","exp":"Es una lástima que introduce emoción o juicio sobre otra acción, lo cual activa el subjuntivo. Como Camila habla de un hecho pasado, la forma más precisa es el imperfecto de subjuntivo: prestara."},{"id":13,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [13], elige la forma que mejor completa la conversación.","ch":["A) saque","B) sacara","C) saco","D) saqué"],"cor":"A","exp":"La enfermera le dio una recomendación o mandato indirecto: me dijo que saque una radiografía hoy. En este contexto se espera subjuntivo después de una recomendación. Además, sacar requiere cambio ortográfico c a qu ante e: saque."},{"id":14,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [14], elige la forma que mejor completa la conversación.","ch":["A) mande","B) mandó","C) manda","D) mandará"],"cor":"A","exp":"Después de cuando, si la acción todavía no ha ocurrido y se refiere al futuro, se usa subjuntivo. Mateo aún no tiene el presupuesto final, así que cuando te mande es la forma correcta."},{"id":15,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [15], elige la forma que mejor completa la conversación.","ch":["A) envías","B) envíes","C) enviaste","D) enviarás"],"cor":"B","exp":"No envíes es un mandato negativo de tú. Los mandatos negativos usan la forma de subjuntivo, y el pronombre no aparece porque el objeto directo está explícito: los documentos."},{"id":16,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":1,"prompt":"Para el espacio [16], elige la forma que mejor completa la conversación.","ch":["A) dice","B) dijo","C) diga","D) decía"],"cor":"C","exp":"Aunque + subjuntivo expresa una condición hipotética o no confirmada: even if the shop says the car works. Camila no está afirmando que el taller ya lo dijo; está anticipando una posibilidad."},{"id":17,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":2,"prompt":"Para el espacio [17], elige la forma que mejor completa la conversación.","ch":["A) tiene","B) tuvo","C) tenga","D) tenía"],"cor":"C","exp":"Lucía busca un vecino no identificado. En una cláusula relativa con antecedente indefinido o hipotético, se usa subjuntivo: un vecino que tenga experiencia."},{"id":18,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":2,"prompt":"Para el espacio [18], elige la forma que mejor completa la conversación.","ch":["A) descargues","B) descarga","C) descargas","D) descargaste"],"cor":"A","exp":"No descargues es mandato negativo de tú. Descargar es verbo -gar, así que mantiene el sonido fuerte con gu antes de e: descargues."},{"id":19,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":2,"prompt":"Para el espacio [19], elige la palabra que expresa mejor la relación lógica.","ch":["A) por","B) para","C) desde","D) de"],"cor":"B","exp":"Para expresa propósito: Lucía compró los altavoces con el objetivo de escuchar mejor al doctor. Por indicaría causa, intercambio o medio, pero aquí hay finalidad clara."},{"id":20,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":2,"prompt":"Para el espacio [20], elige la palabra que expresa mejor la relación lógica.","ch":["A) por","B) desde","C) para","D) según"],"cor":"A","exp":"Por si acaso significa in case o just in case. Diego recomienda guardar copias en la memoria de USB ante la posibilidad de que el ordenador falle."},{"id":21,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":2,"prompt":"Para el espacio [21], elige la forma que mejor completa la conversación.","ch":["A) era","B) es","C) sea","D) fue"],"cor":"B","exp":"Lucía habla de una característica general y actual de las paredes de cemento: es difícil poner cables. No hay disparador de subjuntivo porque se presenta como explicación factual."},{"id":22,"sec":"Gramática en Contexto","type":"mc","passage":true,"text":2,"prompt":"Para el espacio [22], elige el pronombre relativo correcto.","ch":["A) quien","B) cuyo","C) lo que","D) que"],"cor":"D","exp":"Que introduce una cláusula relativa que explica la influencia o preferencia. Quien se usa para personas, cuyo exige un sustantivo poseído después, y lo que se refiere a una idea completa sin antecedente específico."},{"id":23,"sec":"Cultura Hispana","type":"mc","prompt":"Según las notas de clase, ¿qué detalle conecta el Día de Reyes con una obligación social posterior?","ch":["A) La persona que recibe zapatos debe llevar zanahorias a la iglesia","B) La persona que encuentra el niño Jesús en el pan de reyes debe organizar una fiesta","C) Los niños que reciben regalos deben cantar El Grito al día siguiente","D) La familia que come pan de reyes debe mudarse antes de febrero"],"cor":"B","exp":"Las notas dicen que quien encuentra el niño Jesús en el pan de reyes tira u organiza una fiesta, conectada con el 2 de febrero y los tamales. No es solo comida; la sorpresa crea una responsabilidad social."},{"id":24,"sec":"Cultura Hispana","type":"mc","prompt":"¿Cuál opción interpreta mejor la tradición de dejar zapatos y zanahorias durante el Día de Reyes?","ch":["A) Los zapatos son para los Reyes y las zanahorias para sus caballos","B) Los zapatos son para los caballos y las zanahorias para los niños","C) Ambos objetos son para Santa Claus, como leche y galletas","D) Ambos objetos se esconden dentro del pan de reyes"],"cor":"A","exp":"Las notas contrastan esta tradición con leche y galletas. Se dejan zapatos y zanahorias bajo el árbol: los zapatos se asocian con los Reyes Magos y las zanahorias con sus caballos."},{"id":25,"sec":"Cultura Hispana","type":"mc","prompt":"En las notas de medicina latina, ¿por qué Vick Vaporub es culturalmente importante?","ch":["A) Porque solo se usa para infecciones graves recetadas por doctores","B) Porque aparece como remedio casero casi universal para muchos problemas","C) Porque reemplaza la visita a la farmacia en todos los países","D) Porque se menciona como medicamento prohibido en hospitales"],"cor":"B","exp":"Las notas presentan Vick Vaporub como un remedio latino para casi todo. La pregunta prueba la idea cultural: medicina casera y familiar, no una receta médica específica."},{"id":26,"sec":"Cultura Hispana","type":"mc","prompt":"¿Qué idea resume mejor la diferencia cultural sobre farmacias según las notas?","ch":["A) Las farmacias son más caras que en Estados Unidos y casi nunca tienen clínicas","B) Las farmacias funcionan solo como tiendas de vitaminas naturales","C) Es más barato y fácil recibir atención básica y comprar medicina cerca o en el mismo edificio","D) Los farmacéuticos reemplazan por completo a todos los doctores especialistas"],"cor":"C","exp":"Las notas dicen que las consultas clínicas son baratas y que luego se puede comprar medicina en una farmacia cercana, a veces en el mismo edificio. También aclaran que los farmacéuticos no son doctores."},{"id":27,"sec":"Cultura Hispana","type":"mc","prompt":"Según las definiciones de clase, ¿cuál persona sería hispana pero no latina?","ch":["A) Una persona de España que habla español","B) Una persona de México que vive en los Estados Unidos","C) Una persona de Panamá que habla español","D) Una persona nacida en EE.UU. con padres mexicanos"],"cor":"A","exp":"Hispano/a incluye los países que hablan español, incluyendo España. Latino/a, según las notas, excluye España y se refiere a los países hispanohablantes de las Américas."},{"id":28,"sec":"Cultura Hispana","type":"mc","prompt":"¿Cuál detalle sobre el 16 de septiembre muestra que la celebración ocurre en un espacio público específico y simbólico?","ch":["A) El Grito se hace en el Zócalo de la Ciudad de México a medianoche","B) La gente come pan de reyes en la plaza central","C) La batalla principal ocurrió en Puebla a las ocho de la mañana","D) La salsa verde se prepara frente al Palacio Nacional"],"cor":"A","exp":"Las notas mencionan El Grito, ¡Viva México!, en el Zócalo de la Ciudad de México a medianoche. Esa combinación de lugar, hora y frase lo convierte en un acto cívico simbólico."},{"id":29,"sec":"Cultura Hispana","type":"mc","prompt":"¿Por qué el 5 de mayo NO debe confundirse con el Día de la Independencia de México?","ch":["A) Porque el 5 de mayo celebra el Día de Reyes","B) Porque el 5 de mayo recuerda la Batalla de Puebla contra Francia después de la independencia","C) Porque el 5 de mayo es una celebración española de arquitectura árabe","D) Porque el 5 de mayo marca la primera presidenta de México"],"cor":"B","exp":"Las notas subrayan que Cinco de Mayo es la Batalla de Puebla, México contra Francia, y no el Día de Independencia. La independencia mexicana se celebra el 16 de septiembre."},{"id":30,"sec":"Cultura Hispana","type":"mc","prompt":"En la salsa verde de las notas, ¿qué ingrediente está enfatizado como esencial?","ch":["A) el ajo","B) la mantequilla","C) el cilantro","D) el limón"],"cor":"C","exp":"La lista de ingredientes termina con CILANTRO enfatizado con asteriscos. Eso lo marca como el ingrediente que las notas quieren que recuerdes por encima de los demás."},{"id":31,"sec":"Cultura Hispana","type":"mc","prompt":"¿Cuál explicación conecta correctamente la arquitectura de casas hispanas con la historia cultural de las notas?","ch":["A) Los arcos y azulejos vienen de una cadena de influencia árabe a España y luego a América","B) Los techos planos vienen principalmente de la arquitectura francesa de Puebla","C) Las casas usan madera porque la influencia árabe rechazaba los azulejos","D) Las casas no tienen patios porque el clima no permite plantas ni agua"],"cor":"A","exp":"Las notas explican una cadena histórica: imperio árabe, España, colonización de las Américas. Por eso aparecen arcos, patios centrales, fuentes y azulejos de colores."},{"id":32,"sec":"Cultura Hispana","type":"mc","prompt":"En una mesa formal según las notas, ¿qué objeto va arriba a la izquierda?","ch":["A) el vaso para bebidas frías","B) el plato pequeño de pan con cuchillo de mantequilla","C) la cuchara de sopa junto al cuchillo","D) el plato hondo de sopa encima de todos los cubiertos"],"cor":"B","exp":"Las notas de mesa formal ponen arriba a la izquierda el platito para pan y el cuchillo de mantequilla. El vaso está arriba a la derecha."},{"id":33,"sec":"Capitales","type":"mc","prompt":"¿Cuál opción empareja correctamente país y capital según las notas?","ch":["A) Honduras — Managua","B) Nicaragua — Tegucigalpa","C) Costa Rica — San José","D) El Salvador — Guatemala"],"cor":"C","exp":"Costa Rica tiene como capital San José. Managua es Nicaragua, Tegucigalpa es Honduras y San Salvador es El Salvador."},{"id":34,"sec":"Capitales","type":"mc","prompt":"Si alguien confunde las capitales que empiezan con San, ¿cuál corrección es correcta?","ch":["A) San Juan es Puerto Rico y San Salvador es El Salvador","B) San José es Cuba y San Juan es Costa Rica","C) San Salvador es República Dominicana y Santo Domingo es El Salvador","D) San Juan es Panamá y San José es Puerto Rico"],"cor":"A","exp":"Las notas listan Puerto Rico: San Juan, El Salvador: San Salvador y Costa Rica: San José. La pregunta obliga a distinguir las capitales con nombres similares."},{"id":35,"sec":"Capitales","type":"mc","prompt":"¿Qué país tiene como capital Santo Domingo?","ch":["A) Cuba","B) República Dominicana","C) Panamá","D) Guatemala"],"cor":"B","exp":"República Dominicana tiene como capital Santo Domingo. Cuba es La Habana, Panamá es Panamá y Guatemala es Guatemala."},{"id":36,"sec":"Capitales","type":"mc","prompt":"¿Cuál conjunto contiene solo capitales de países centroamericanos o caribeños mencionados en las notas?","ch":["A) Tegucigalpa, Managua, San José, San Salvador","B) Madrid, Lima, Bogotá, Quito","C) Puebla, Zócalo, Castellano, Candelaria","D) México, Chicano, Latino, Hispano"],"cor":"A","exp":"Tegucigalpa, Managua, San José y San Salvador son capitales de Honduras, Nicaragua, Costa Rica y El Salvador. Las otras opciones mezclan ciudades, conceptos culturales o países no tratados como capitales en esa lista."},{"id":37,"sec":"Gramática y Cultura","type":"mc","prompt":"¿Cuál oración usa correctamente por o para según la lógica de las notas?","ch":["A) Compré una memoria de USB por guardar copias de los archivos","B) Mandé los documentos para correo electrónico","C) Pagué doscientos dólares por reparar la llanta","D) La receta tiene que llegar por el lunes como fecha límite"],"cor":"C","exp":"Por expresa intercambio: pagué dinero por un servicio. Para sería propósito o fecha límite. Enviar por correo electrónico usa por como medio, pero la opción B usa para incorrectamente."},{"id":38,"sec":"Gramática y Cultura","type":"mc","prompt":"¿Cuál opción contiene un mandato afirmativo de tú con pronombre escrito correctamente?","ch":["A) Me diga la verdad","B) Dímelo ahora","C) No dímelo ahora","D) Dime lo ahora"],"cor":"B","exp":"En mandatos afirmativos, los pronombres se pegan al verbo y se añade acento cuando hace falta: dímelo. En mandatos negativos, los pronombres van antes: no me lo digas."},{"id":39,"sec":"Gramática y Cultura","type":"mc","prompt":"¿Cuál oración usa correctamente un pronombre relativo después de preposición para una persona?","ch":["A) La doctora con que hablé fue paciente","B) La doctora con quien hablé fue paciente","C) La doctora cuyo hablé fue paciente","D) La doctora lo que hablé fue paciente"],"cor":"B","exp":"Después de una preposición, si el referente es una persona, se usa quien o quienes. Con que para personas después de preposición es incorrecto en este nivel."},{"id":40,"sec":"Gramática y Cultura","type":"mc","prompt":"¿Cuál oración usa correctamente cuyo/cuya/cuyos/cuyas?","ch":["A) La clínica cuyas instalaciones son modernas queda cerca","B) La clínica cuyo instalaciones son modernas queda cerca","C) La clínica que instalaciones son modernas queda cerca","D) La clínica quien instalaciones son modernas queda cerca"],"cor":"A","exp":"Cuyo debe concordar con el sustantivo que viene después, no con el antecedente. Instalaciones es femenino plural, por eso cuyas."},{"id":41,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el espacio de una vivienda que normalmente está debajo del nivel principal. Puede usarse para guardar cajas, herramientas o cosas que no se usan todos los días. No es el ático, porque no está arriba.","acc":["el sótano","sótano"],"disp":"el sótano","exp":"Las pistas debajo del nivel principal y no está arriba señalan el sótano. El ático o altillo está en la parte superior de la casa."},{"id":42,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la máquina que lava automáticamente los platos después de comer. Está en la cocina y no debe confundirse con la lavadora, porque no lava ropa.","acc":["el lavaplatos","lavaplatos"],"disp":"el lavaplatos","exp":"El lavaplatos es el electrodoméstico para platos. La lavadora es para ropa y la secadora es para secarla."},{"id":43,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción doméstica de pasar una escoba por el suelo para quitar suciedad. No es quitar el polvo de muebles ni pasar una máquina eléctrica.","acc":["barrer el piso","barrer"],"disp":"barrer el piso","exp":"La escoba y el suelo apuntan a barrer el piso. Pasar la aspiradora usa una máquina; quitar el polvo se hace en superficies como muebles."},{"id":44,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el lugar médico al que vas cuando no tienes una emergencia sino una cita programada con un médico. Es más pequeño y personal que un hospital.","acc":["el consultorio","consultorio"],"disp":"el consultorio","exp":"El consultorio es la oficina del médico. La sala de emergencias es para urgencias, y el hospital es una institución más grande."},{"id":45,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el papel o documento que el doctor da para que el paciente pueda obtener un medicamento específico en la farmacia. No es el medicamento mismo.","acc":["la receta","receta"],"disp":"la receta","exp":"La receta es la prescripción escrita. El medicamento o la pastilla es lo que se toma; la receta autoriza o indica ese tratamiento."},{"id":46,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el objeto pequeño donde puedes guardar archivos y llevarlos físicamente de un ordenador a otro. En las notas también aparece como lápiz de USB.","acc":["la memoria de USB","memoria de USB","el lápiz de USB","lápiz de USB"],"disp":"la memoria de USB","exp":"La memoria de USB o el lápiz de USB sirve para guardar y transportar archivos. No es software; es un objeto físico."},{"id":47,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la parte del coche que el conductor sostiene con las manos para dirigir el vehículo. Si te golpeas el codo contra esta parte, estás dentro del coche, no afuera.","acc":["el volante","volante"],"disp":"el volante","exp":"El volante es la rueda de dirección dentro del coche. No es la llanta, que toca la carretera, ni el parabrisas."},{"id":48,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la acción de poner gasolina en el depósito del coche hasta que tenga suficiente combustible. Normalmente se hace en la gasolinera antes de un viaje.","acc":["llenar el tanque","llenar tanque"],"disp":"llenar el tanque","exp":"Llenar el tanque significa poner gasolina en el coche. La gasolinera es el lugar donde se hace."},{"id":49,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es la palabra que describe un dispositivo que todavía prende y funciona, pero responde muy despacio, tarda en abrir programas y hace que todo tome más tiempo.","acc":["lento","lenta"],"disp":"lento / lenta","exp":"Lento o lenta describe velocidad baja. No es descompuesto, porque el aparato funciona; simplemente funciona despacio."},{"id":50,"sec":"Vocabulario en Contexto","type":"free","eng":false,"prompt":"Es el objeto decorativo con marco que cuelga en la pared. Puede ser una imagen o dibujo; no es el cartel, que normalmente es más simple y sin marco.","acc":["el cuadro","cuadro"],"disp":"el cuadro","exp":"El cuadro es una pintura o dibujo con marco. El cartel también puede estar en la pared, pero la pista del marco distingue el cuadro."}];
+const duration = 55;
+const totalQuestions = 50;
+const questionSelectionCount = undefined;
+const selectionCounts = undefined;
+const showAnswerBank = false;
+const isEnglish = false;
+const allowBack = false;
+const testSlug = "final-6";
+const testTitle = "A Prueba de Fuego";
+const course = "Spanish 2";
+const unit = "Semester 2 Final Review";
+const passages = {"1":{"label":"Conversación 1","title":"Accidente, clínica y seguro","body":"— Mateo: Ayer, cuando [11] por la carretera vieja, un coche salió de una calle lateral y se dio con mi puerta. No iba rápido, pero el golpe dañó la llanta y el parabrisas.\n— Camila: ¡Qué susto! Es una lástima que el otro conductor no [12] atención antes de entrar a la carretera. ¿Te lastimaste?\n— Mateo: Me duele la muñeca y creo que me torcí el tobillo al bajarme del coche. La enfermera me dijo que [13] una radiografía hoy mismo.\n— Camila: Entonces no esperes. Y cuando el mecánico te [14] el presupuesto final, envíaselo al seguro por correo electrónico.\n— Mateo: Sí, pero no quiero mandarlo incompleto. El agente me dijo: No [15] los documentos hasta tener la firma del taller.\n— Camila: Tiene sentido. Además, aunque el taller [16] que el coche funciona, pide otra revisión. Un accidente puede esconder problemas que no se ven al principio."},"2":{"label":"Conversación 2","title":"Mudanza, tecnología y casa nueva","body":"— Lucía: Nos mudamos a un edificio de apartamentos en las afueras. Busco un vecino que [17] experiencia arreglando conexiones de wifi porque el portátil está lentísimo.\n— Diego: Si la conexión está mal, no [18] el programa de computación todavía. Podrías perder los archivos si la descarga se corta.\n— Lucía: Tienes razón. Lo que más me molesta es que el correo electrónico funciona, pero las videollamadas no. Compré unos altavoces nuevos [19] escuchar mejor al doctor en línea.\n— Diego: Para una consulta médica virtual, eso ayuda mucho. También guarda los documentos en la memoria de USB [20] si el ordenador se descompone.\n— Lucía: Por cierto, esta vivienda tiene paredes de cemento y casi no hay enchufes. Según mi mamá, las casas hispanas tradicionales tienen lámparas porque [21] difícil poner cables dentro de esas paredes.\n— Diego: Exacto. Y si quieres decorar, compra azulejos de colores, no madera. En muchas casas hispanas se prefiere el suelo de baldosas, [22] viene de la influencia árabe transmitida por España."}};
+const infographicTitle = "Infografía";
+const infographicSrc = "";
+const audioSrc = "";
+const audioTitle = "Audio";
+const audioMeta = "";
+const defaultTopbarTitle = "A Prueba de Fuego";
+const hasMediaQuestions = false;
+
+      const esc = s => (s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+      const fmtPrompt = s => esc(s).trim().replace(/([.?!])\s+—\s+/g, "$1\n— ");
+      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+      const expectsExactTerm = testSlug.startsWith("ap-world-vocab-");
+      const shuffle = items => {
+        const shuffled = [...items];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      };
+      const sourceQuestions = [...questions];
+      const requestedSelectionSize = Number(questionSelectionCount);
+      const shouldSelectQuestions = requestedSelectionSize > 0 && requestedSelectionSize < sourceQuestions.length;
+      const selectionSize = shouldSelectQuestions ? requestedSelectionSize : sourceQuestions.length;
+      let selectedQuestions = sourceQuestions;
+
+      if (shouldSelectQuestions) {
+        selectedQuestions = [];
+        if (selectionCounts && typeof selectionCounts === "object") {
+          Object.entries(selectionCounts).forEach(([section, count]) => {
+            const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+            const sectionQuestions = sourceQuestions.filter(question =>
+              question.sec === section && !selectedTerms.has(nm(question.disp || ""))
+            );
+            selectedQuestions.push(...shuffle(sectionQuestions).slice(0, Number(count) || 0));
+          });
+        }
+        const alreadySelected = new Set(selectedQuestions);
+        const selectedTerms = new Set(selectedQuestions.map(question => nm(question.disp || "")));
+        const remaining = shuffle(sourceQuestions.filter(question =>
+          !alreadySelected.has(question) && !selectedTerms.has(nm(question.disp || ""))
+        ));
+        selectedQuestions = shuffle([...selectedQuestions, ...remaining.slice(0, Math.max(0, selectionSize - selectedQuestions.length))]).slice(0, selectionSize);
+      }
+
+      const QS = selectedQuestions.map((question, index) => ({
+        ...question,
+        sourceId: question.id,
+        id: index + 1,
+      }));
+      const WORD_BANK = [...new Set(QS
+        .map(question => question.disp || (question.acc && question.acc[0]) || "")
+        .filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
+
+      function getQuestionPassage(q) {
+        if (q.text && passages[String(q.text)]) return passages[String(q.text)];
+        const match = (q.prompt || "").match(/\btexto\s+(\d+)\b/i);
+        if (match && passages[match[1]]) return passages[match[1]];
+        return Object.values(passages)[0] || null;
+      }
+
+      function renderPassageCard(q) {
+        const passage = getQuestionPassage(q);
+        if (!passage) return "";
+
+        const paragraphs = passage.body
+          .split(/\n\s*\n/)
+          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .join("");
+
+        return `<div class="passage-card">
+          <div class="passage-label">${esc(passage.label)}</div>
+          <div class="passage-title">${esc(passage.title)}</div>
+          <div class="passage-body">${paragraphs}</div>
+        </div>`;
+      }
+
+      const ST = {
+        idx: 0,
+        answers: {},
+        secsLeft: duration * 60,
+        tick: null,
+        timedOut: false,
+      };
+      let latestAttemptPayload = null;
+      let saveInFlight = false;
+      let savedAttemptId = null;
+
+      function addStat(bucket, key, ok) {
+        const statKey = key || "Uncategorized";
+        if (!bucket[statKey]) bucket[statKey] = { correct: 0, total: 0 };
+        bucket[statKey].total++;
+        if (ok) bucket[statKey].correct++;
+      }
+
+      function setProgressCard(mode, detail) {
+        const card = document.getElementById("progress-save-card");
+        const titleEl = document.getElementById("progress-save-title");
+        const copyEl = document.getElementById("progress-save-copy");
+        const signInBtn = document.getElementById("progress-signin-btn");
+        const analyticsLink = document.getElementById("progress-analytics-link");
+        if (!card || !titleEl || !copyEl || !signInBtn || !analyticsLink) return;
+
+        card.classList.add("show");
+        analyticsLink.classList.remove("show");
+        signInBtn.hidden = true;
+
+        if (mode === "unconfigured") {
+          titleEl.textContent = "Progress tracking needs Firebase setup";
+          copyEl.textContent = "Add the PUBLIC_FIREBASE_* values to enable Google sign-in and saved analytics.";
+          return;
+        }
+
+        if (mode === "signed-out") {
+          titleEl.textContent = "Save this attempt";
+          copyEl.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
+          signInBtn.hidden = false;
+          return;
+        }
+
+        if (mode === "saving") {
+          titleEl.textContent = "Saving progress";
+          copyEl.textContent = "Your attempt is being added to your analytics dashboard.";
+          return;
+        }
+
+        if (mode === "saved") {
+          titleEl.textContent = "Progress saved";
+          copyEl.textContent = "This attempt is now included in your analytics dashboard.";
+          analyticsLink.classList.add("show");
+          return;
+        }
+
+        titleEl.textContent = "Progress was not saved";
+        copyEl.textContent = detail || "There was a problem saving this attempt. Your score above is still available on this page.";
+      }
+
+      function buildAttemptPayload(score, pct, elapsed) {
+        const sectionStats = {};
+        const typeStats = {};
+        const mediaStats = {};
+        const questionResults = QS.map(q => {
+          const ans = ST.answers[q.id] || "";
+          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+          const media = q.media || "Standard questions";
+          addStat(sectionStats, q.sec, ok);
+          addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
+          addStat(mediaStats, media, ok);
+          return {
+            id: q.sourceId ?? q.id,
+            displayId: q.id,
+            section: q.sec || "Uncategorized",
+            type: q.type,
+            media,
+            correct: ok,
+          };
+        });
+
+        return {
+          testSlug,
+          testTitle,
+          course,
+          unit,
+          score,
+          total: QS.length,
+          percent: pct,
+          elapsedSeconds: elapsed,
+          timedOut: ST.timedOut,
+          sectionStats,
+          typeStats,
+          mediaStats,
+          questionResults,
+          source: "astro",
+        };
+      }
+
+      function questionOutcome(q) {
+        const ans = ST.answers[q.id] || "";
+        const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+        return { ans, ok };
+      }
+
+      function jumpToResultQuestion(id) {
+        const target = document.getElementById(`res-q-${id}`);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.classList.add("rq-focus");
+        window.setTimeout(() => target.classList.remove("rq-focus"), 1200);
+      }
+
+      function renderReviewRail(questionStates) {
+        const rail = document.getElementById("review-rail");
+        if (!rail) return;
+
+        const missed = questionStates.filter(({ ok }) => !ok);
+        rail.hidden = false;
+        rail.innerHTML = `
+          <div class="review-rail-title">Review</div>
+          <div class="review-rail-summary">${missed.length ? `<strong>${missed.length}</strong> missed` : "All correct"}</div>
+          <div class="review-rail-grid">
+            ${questionStates.map(({ q, ok }) => `
+              <button
+                class="review-jump ${ok ? "is-ok" : "is-wrong"}"
+                type="button"
+                data-review-jump="${q.id}"
+                aria-label="Question ${q.id}: ${ok ? "correct" : "wrong"}"
+              >${q.id}</button>
+            `).join("")}
+          </div>
+        `;
+
+        rail.querySelectorAll("[data-review-jump]").forEach((button) => {
+          button.addEventListener("click", () => jumpToResultQuestion(button.getAttribute("data-review-jump")));
+        });
+      }
+
+      async function saveLatestAttempt() {
+        if (!latestAttemptPayload || savedAttemptId || saveInFlight) return;
+
+        const progress = window.orangeAtlasProgress;
+        if (!progress || !progress.isFirebaseConfigured || !progress.isFirebaseConfigured()) {
+          setProgressCard("unconfigured");
+          return;
+        }
+
+        if (!progress.getCurrentUser || !progress.getCurrentUser()) {
+          setProgressCard("signed-out");
+          return;
+        }
+
+        saveInFlight = true;
+        setProgressCard("saving");
+
+        try {
+          const result = await progress.saveAttempt(latestAttemptPayload);
+          if (result && result.status === "saved") {
+            savedAttemptId = result.id;
+            setProgressCard("saved");
+          } else {
+            setProgressCard("signed-out");
+          }
+        } catch (error) {
+          console.warn("Unable to save Orange Atlas attempt", error);
+          setProgressCard("error");
+        } finally {
+          saveInFlight = false;
+        }
+      }
+
+      window.addEventListener("orange-atlas-auth-change", () => {
+        if (latestAttemptPayload && !savedAttemptId) saveLatestAttempt();
+      });
+
+      function startExam() {
+        document.body.classList.add("oa-exam-running");
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        results.classList.remove("active");
+        results.hidden = true;
+        exam.hidden = false;
+        exam.classList.add("active");
+        window.scrollTo(0, 0);
+        startTimer();
+        renderQ();
+      }
+
+      function startTimer() {
+        document.getElementById("tdisp").textContent = fmtT(ST.secsLeft);
+        ST.tick = setInterval(() => {
+          ST.secsLeft--;
+          const d = document.getElementById("tdisp");
+          const t = document.getElementById("timer");
+          d.textContent = fmtT(ST.secsLeft);
+          if (ST.secsLeft <= 60) t.classList.add("crit");
+          else if (ST.secsLeft <= 180) t.classList.add("warn");
+          if (ST.secsLeft <= 0) {
+            clearInterval(ST.tick);
+            ST.timedOut = true;
+            showResults();
+          }
+        }, 1000);
+      }
+
+      function updateProgBar(idx) {
+        const bar = document.getElementById("progbar");
+        const pct = (idx / QS.length) * 100;
+        bar.style.width = pct + "%";
+        const isAudio = QS[idx] && QS[idx].media === "audio";
+        bar.style.background = isAudio
+          ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : "linear-gradient(90deg,#6d28d9,#a78bfa)";
+      }
+
+      function renderQ() {
+        const q = QS[ST.idx];
+        const wrap = document.getElementById("qwrap");
+
+        updateProgBar(ST.idx);
+        document.getElementById("qof").textContent = isEnglish
+          ? `Question ${ST.idx + 1} of ${QS.length}`
+          : `Pregunta ${ST.idx + 1} de ${QS.length}`;
+        document.getElementById("tb-mode").textContent =
+          q.media === "audio"
+            ? (isEnglish ? "Audio — Interpretive" : "Audio — Interpretivo")
+            : q.media === "infographic"
+              ? (isEnglish ? "Infographic — Interpretive" : "Infografía — Interpretativa")
+              : defaultTopbarTitle;
+
+        const audioBar = document.getElementById("audio-bar");
+        audioBar.style.display = q.media === "audio" && audioSrc ? "block" : "none";
+
+        let html = "";
+
+        const isTrueFalse = q.type === "mc" && q.ch?.length === 2 && q.ch[0] === "A) True" && q.ch[1] === "B) False";
+        const typeLabel = q.type === "mc"
+          ? (isEnglish ? (isTrueFalse ? "True or False" : "Multiple Choice") : "Opción Múltiple")
+          : (isEnglish ? "Free Answer" : "Respuesta Libre");
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        html += `<div class="qsec-label">${esc(q.sec)}</div>`;
+        html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
+
+        if (q.media === "infographic" && infographicSrc) {
+          html += `<div class="infographic-wrap">
+            <div class="infographic-label">📊 ${isEnglish ? "Infographic" : "Infográfico"} — ${infographicTitle}</div>
+            <iframe
+              src="${infographicSrc}"
+              class="infographic-frame"
+              frameborder="0"
+              scrolling="yes"
+              title="${isEnglish ? "Infographic" : "Infográfico"}: ${infographicTitle}">
+            </iframe>
+            <p class="infographic-scroll-hint">↕ ${isEnglish ? "Scroll the infographic to see all the data" : "Desplaza el infográfico para ver todos los datos"}</p>
+          </div>`;
+        }
+
+        if (q.passage) {
+          html += renderPassageCard(q);
+        }
+
+        html += `<p class="qprompt">${fmtPrompt(q.prompt)}</p>`;
+
+        if (q.type === "mc") {
+          html += `<div class="choices-grid">`;
+          q.ch.forEach(c => {
+            html += `<button class="choice-btn" id="cb${c[0]}" onclick="pickMC('${c[0]}')">${esc(c)}</button>`;
+          });
+          html += `</div>`;
+        } else {
+          const labelText = expectsExactTerm
+            ? "Enter the matching term"
+            : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = expectsExactTerm
+            ? "type the term…"
+            : q.eng ? "short English phrase…" : "tu respuesta…";
+          html += `<div class="free-wrap">
+            <div class="free-label">${labelText}</div>
+            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
+              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${showAnswerBank ? `<div class="answer-bank">
+                <div class="answer-bank-label">Word bank</div>
+                <div class="answer-bank-options">
+                  ${WORD_BANK.map(term => {
+                    const used = Object.values(ST.answers).some(answer => nm(answer) === nm(term));
+                    return `<button class="answer-bank-btn${used ? " used" : ""}" type="button" data-bank-term="${encodeURIComponent(term)}">${esc(term)}</button>`;
+                  }).join("")}
+                </div>
+                <p class="answer-bank-note">Select a term to fill the answer box, or copy and paste it.</p>
+              </div>` : !q.eng ? '<div class="accent-buttons">\
+                <div class="accent-row">\
+                  <button class="accent-btn" data-char="á" type="button">á</button>\
+                  <button class="accent-btn" data-char="é" type="button">é</button>\
+                  <button class="accent-btn" data-char="í" type="button">í</button>\
+                  <button class="accent-btn" data-char="ó" type="button">ó</button>\
+                  <button class="accent-btn" data-char="ú" type="button">ú</button>\
+                  <button class="accent-btn" data-char="ñ" type="button">ñ</button>\
+                </div>\
+                <div class="accent-row accent-row-upper">\
+                  <button class="accent-btn" data-char="Á" type="button">Á</button>\
+                  <button class="accent-btn" data-char="É" type="button">É</button>\
+                  <button class="accent-btn" data-char="Í" type="button">Í</button>\
+                  <button class="accent-btn" data-char="Ó" type="button">Ó</button>\
+                  <button class="accent-btn" data-char="Ú" type="button">Ú</button>\
+                  <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
+                </div>\
+              </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+          </div>`;
+        }
+
+        const isLast = ST.idx === QS.length - 1;
+        html += `<div class="question-actions${allowBack ? " has-back" : ""}">
+          ${allowBack ? `<button class="btn-back" id="btnback" onclick="goBack()" ${ST.idx === 0 ? "disabled" : ""}>← Previous</button>` : ""}
+          <button class="btn-next${isLast ? " last" : ""}" id="btnnext" onclick="tryNext()" disabled>
+            ${isLast ? (isEnglish ? "Submit Test →" : "Entregar Examen →") : (isEnglish ? "Next →" : "Siguiente →")}
+          </button>
+        </div>`;
+
+        wrap.style.animation = "none";
+        wrap.offsetHeight;
+        wrap.style.animation = "";
+        wrap.innerHTML = html;
+
+        // Attach click listeners to accent buttons (use data-char to avoid inline handlers)
+        const accentButtons = wrap.querySelectorAll('.accent-btn');
+        if (accentButtons && accentButtons.length) {
+          accentButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const ch = btn.getAttribute('data-char');
+              if (ch) insertAccent(ch);
+            });
+          });
+        }
+
+        wrap.querySelectorAll('[data-bank-term]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const term = decodeURIComponent(btn.getAttribute('data-bank-term') || '');
+            const inp = document.getElementById('freeinp');
+            if (!inp || !term) return;
+            inp.value = term;
+            inp.focus();
+            freeTyped();
+          });
+        });
+
+        const prev = ST.answers[q.id];
+        if (prev !== undefined) {
+          if (q.type === "mc") {
+            const btn = document.getElementById(`cb${prev}`);
+            if (btn) btn.classList.add("sel");
+            enableNext();
+          } else {
+            const inp = document.getElementById("freeinp");
+            if (inp) {
+              inp.value = prev;
+              enableNext();
+            }
+          }
+        }
+
+        if (q.type === "free") {
+          setTimeout(() => {
+            const inp = document.getElementById("freeinp");
+            if (inp) inp.focus();
+          }, 50);
+        }
+      }
+
+      function pickMC(letter) {
+        const q = QS[ST.idx];
+        q.ch.forEach(c => {
+          const b = document.getElementById(`cb${c[0]}`);
+          if (b) b.classList.remove("sel");
+        });
+        const btn = document.getElementById(`cb${letter}`);
+        if (btn) btn.classList.add("sel");
+        ST.answers[q.id] = letter;
+        enableNext();
+      }
+
+      function freeTyped() {
+        const inp = document.getElementById("freeinp");
+        ST.answers[QS[ST.idx].id] = inp ? inp.value : "";
+        if (inp && inp.value.trim().length > 0) enableNext();
+        else disableNext();
+      }
+
+      function insertAccent(char) {
+        const inp = document.getElementById("freeinp");
+        if (!inp) return;
+        const start = inp.selectionStart;
+        const end = inp.selectionEnd;
+        const before = inp.value.substring(0, start);
+        const after = inp.value.substring(end);
+        inp.value = before + char + after;
+        inp.selectionStart = inp.selectionEnd = start + 1;
+        inp.focus();
+        freeTyped();
+      }
+
+      function enableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.add("ready");
+          b.disabled = false;
+        }
+      }
+
+      function disableNext() {
+        const b = document.getElementById("btnnext");
+        if (b) {
+          b.classList.remove("ready");
+          b.disabled = true;
+        }
+      }
+
+      function tryNext() {
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        if (ST.answers[q.id] === undefined || ST.answers[q.id] === "") return;
+        ST.idx++;
+        if (ST.idx >= QS.length) showResults();
+        else renderQ();
+      }
+
+      function goBack() {
+        if (!allowBack || ST.idx <= 0) return;
+        const q = QS[ST.idx];
+        if (q.type === "free") {
+          const inp = document.getElementById("freeinp");
+          if (inp) ST.answers[q.id] = inp.value;
+        }
+        ST.idx--;
+        renderQ();
+      }
+
+      function showResults() {
+        document.body.classList.remove("oa-exam-running");
+        clearInterval(ST.tick);
+        const elapsed = duration * 60 - ST.secsLeft;
+
+        const questionStates = QS.map(q => ({ q, ...questionOutcome(q) }));
+        const score = questionStates.reduce((total, { ok }) => total + (ok ? 1 : 0), 0);
+        const pct = Math.round((score / QS.length) * 100);
+        latestAttemptPayload = buildAttemptPayload(score, pct, elapsed);
+
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("test-audio");
+        if (audio) audio.pause();
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = pct >= 80
+          ? "linear-gradient(135deg,#052e16,#064e3b)"
+          : pct >= 55
+            ? "linear-gradient(135deg,#431407,#78350f)"
+            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+
+        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+
+        const mcQ = QS.filter(q => q.type === "mc");
+        const freeQ = QS.filter(q => q.type === "free");
+        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
+        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
+
+        const infoQ = QS.filter(q => q.media === "infographic");
+        const audioQ = QS.filter(q => q.media === "audio");
+        const infoScore = infoQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+        const audioScore = audioQ.reduce((a, q) => {
+          const ans = ST.answers[q.id] || "";
+          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
+        }, 0);
+
+        document.getElementById("res-pct").textContent = hasMediaQuestions
+          ? (isEnglish
+            ? `Infographic: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Multiple choice: ${mcScore}/${mcQ.length}  ·  Free answer: ${freeScore}/${freeQ.length}`
+            : `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`)
+          : isEnglish
+            ? [
+                freeQ.length ? `Free answer: ${freeScore}/${freeQ.length}` : "",
+                mcQ.length ? `Multiple choice: ${mcScore}/${mcQ.length}` : "",
+              ].filter(Boolean).join("  ·  ")
+            : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+
+        const msgs = isEnglish
+          ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed questions and concepts."], [0, "Keep studying and try again."]]
+          : hasMediaQuestions
+          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
+          : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
+        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-time").textContent = ST.timedOut
+          ? (isEnglish ? "⚠ Time expired" : "⚠ Tiempo agotado")
+          : `${isEnglish ? "Time" : "Tiempo"}: ${fmtT(elapsed)}`;
+
+        if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
+        saveLatestAttempt();
+        renderReviewRail(questionStates);
+
+        const list = document.getElementById("res-list");
+        list.innerHTML = "";
+
+        let lastMedia = null;
+        questionStates.forEach(({ q, ans, ok }) => {
+          if (q.media && q.media !== lastMedia) {
+            const div = document.createElement("div");
+            div.className = "res-section-divider";
+            div.innerHTML = q.media === "infographic"
+              ? `📊 ${isEnglish ? "Infographic" : "Infografía"} — ${infographicTitle}`
+              : `🎧 Audio — ${audioTitle}`;
+            list.appendChild(div);
+            lastMedia = q.media;
+          }
+
+          const card = document.createElement("div");
+          card.id = `res-q-${q.id}`;
+          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+
+          let html = `<div class="res-q-top">
+            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
+            </div>
+          </div>`;
+
+          if (q.type === "mc") {
+            html += `<div class="res-mc-choices">`;
+            q.ch.forEach(c => {
+              const l = c[0];
+              const isRight = l === q.cor;
+              const isYours = l === ans;
+              let cls = "";
+              if (isRight) cls = "rc-right";
+              else if (isYours && !isRight) cls = "rc-wrong";
+              html += `<div class="res-mc-choice ${cls}">${esc(c)}</div>`;
+            });
+            html += `</div>`;
+          } else {
+            html += `<div class="res-ans-row">`;
+            html += ans
+              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">${isEnglish ? "Your answer" : "Tu respuesta"}: ${ans}</span>`
+              : `<span class="res-chip yours bad">${isEnglish ? "No answer" : "Sin respuesta"}</span>`;
+            if (!ok) html += `<span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${q.disp}</span>`;
+            html += `</div>`;
+          }
+
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">${isEnglish ? "View explanation" : "Ver explicación"}</button>
+          <div class="res-exp-box" id="rexp${q.id}">
+            ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp}
+          </div>`;
+
+          card.innerHTML = html;
+          list.appendChild(card);
+        });
+      }
+
+      function togE(id) {
+        const b = document.getElementById(`rexp${id}`);
+        const btn = b.previousElementSibling;
+        b.classList.toggle("open");
+        btn.textContent = b.classList.contains("open")
+          ? (isEnglish ? "Hide explanation" : "Ocultar explicación")
+          : (isEnglish ? "View explanation" : "Ver explicación");
+      }
+
+      function renderReviewQuestion(q) {
+        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        let html = `<div class="res-q rq-bad">
+          <div class="res-q-top">
+            <div class="res-num bad">${q.id}</div>
+            <div>
+              <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
+              <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
+            </div>
+          </div>`;
+
+        if (q.type === "mc") {
+          html += `<div class="res-mc-choices">`;
+          q.ch.forEach(c => {
+            html += `<div class="res-mc-choice ${c[0] === q.cor ? "rc-right" : ""}">${esc(c)}</div>`;
+          });
+          html += `</div>`;
+        } else {
+          const correct = q.disp || (q.acc || []).join(", ");
+          html += `<div class="res-ans-row">
+            <span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${correct}</span>
+          </div>`;
+        }
+
+        html += `<div class="res-exp-box open" id="rexp${q.id}">
+          ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp || (isEnglish ? "Review the prompt, correct answer, and source context for this question." : "Repasa la pregunta, la respuesta correcta y el contexto de la fuente.")}
+        </div></div>`;
+        return html;
+      }
+
+      function showReviewFromUrl() {
+        const reviewId = new URLSearchParams(window.location.search).get("review");
+        if (!reviewId) return;
+        const sourceQuestion = sourceQuestions.find(question => String(question.id) === reviewId);
+        const selectedQuestion = QS.find(question => String(question.id) === reviewId);
+        const q = sourceQuestion
+          ? { ...sourceQuestion, sourceId: sourceQuestion.id, id: sourceQuestion.id }
+          : selectedQuestion;
+        if (!q) return;
+
+        document.body.classList.remove("oa-exam-running");
+        const landing = document.getElementById("s-landing");
+        const exam = document.getElementById("s-exam");
+        const results = document.getElementById("s-results");
+
+        landing.classList.remove("active");
+        landing.hidden = true;
+        exam.classList.remove("active");
+        exam.hidden = true;
+        results.hidden = false;
+        results.classList.add("active");
+
+        const hdr = document.getElementById("res-header");
+        hdr.style.background = "linear-gradient(135deg,#111827,#3b1d0d)";
+        document.getElementById("res-kicker").textContent = isEnglish ? "Question Review" : "Repaso de Pregunta";
+        document.getElementById("res-score").textContent = `Q${q.id}`;
+        document.getElementById("res-pct").textContent = `${q.sec} · ${q.type === "mc"
+          ? (isEnglish ? "Multiple choice" : "Opción múltiple")
+          : (isEnglish ? "Free response" : "Respuesta libre")}`;
+        document.getElementById("res-msg").textContent = testTitle;
+        document.getElementById("res-time").textContent = isEnglish ? "Opened from analytics" : "Abierto desde analytics";
+        document.getElementById("timeout-banner").style.display = "none";
+        document.getElementById("progress-save-card").classList.remove("show");
+        const rail = document.getElementById("review-rail");
+        if (rail) {
+          rail.hidden = true;
+          rail.innerHTML = "";
+        }
+        document.getElementById("res-list").innerHTML = `<div class="review-actions"><a href="${window.location.pathname}">${isEnglish ? "Start full test" : "Comenzar examen completo"}</a></div>${renderReviewQuestion(q)}`;
+        window.scrollTo(0, 0);
+      }
+
+      window.startExam = startExam;
+      window.pickMC = pickMC;
+      window.freeTyped = freeTyped;
+      window.tryNext = tryNext;
+      window.goBack = goBack;
+      window.togE = togE;
+      showReviewFromUrl();
+    })();</script> </body> </html>
