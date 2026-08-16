@@ -146,15 +146,15 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
 
       <section class="test-section" aria-labelledby="reading-heading">
         <div class="section-head">
-          <h2 id="reading-heading">Mixed Chapter Reading Tests</h2>
-          <p>Six AP-style multiple-choice tests that mix Chapter 1 and Chapter 2 details. Every question has four choices, including one close distractor and one completely correct answer.</p>
+          <h2 id="reading-heading">Cumulative Chapter Reading Tests</h2>
+          <p>Six distinct, self-contained tests that each draw across Chapters 1 and 2 without dividing questions into topic sections.</p>
         </div>
         <div class="test-grid">
           {Array.from({ length: 6 }, (_, index) => (
             <a class="test-card" href={`${basePath}tests/ap-world-reading-${index + 1}/`}>
               <span class="test-number">Chapters 1–2 · Set {String(index + 1).padStart(2, "0")}</span>
-              <h3>Mixed Reading Test {index + 1}</h3>
-              <p>Move across both chapters without topic labels, using close reading to separate a nearly right answer from the fully accurate one.</p>
+              <h3>Cumulative Reading Test {index + 1}</h3>
+              <p>Use a unique set of questions spanning both chapters to separate a nearly right answer from the fully accurate one.</p>
               <span class="test-meta">10 questions · 5 minutes →</span>
             </a>
           ))}
@@ -164,33 +164,33 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
       <section class="test-section" aria-labelledby="review-heading">
         <div class="section-head">
           <h2 id="review-heading">Chapters 1–2 Content Review</h2>
-          <p>Four AP-style reviews built from concrete Chapters 1–2 details, with four choices and one close distractor per question.</p>
+          <p>Four distinct, self-contained cumulative reviews. Every test spans the full Chapters 1–2 content instead of covering one regional section.</p>
         </div>
         <div class="test-grid">
           {[
             {
               href: "ap-world-ch1-2-review",
-              level: "Review 01 · Foundations & Belief Systems",
-              title: "First Civilizations & Traditions",
-              description: "Review agriculture, urban life, social systems, and early religious and philosophical traditions.",
+              level: "Cumulative Review · Set 01",
+              title: "Chapters 1–2 Test 1",
+              description: "A unique twenty-question test moving throughout the foundations, traditions, networks, and regional worlds in both chapters.",
             },
             {
               href: "ap-world-ch1-2-review-2",
-              level: "Review 02 · Asia & the Islamic World",
-              title: "Regional Worlds of Asia",
-              description: "Review Song China and its neighbors, Southeast Asia, and the institutions of the Islamic world.",
+              level: "Cumulative Review · Set 02",
+              title: "Chapters 1–2 Test 2",
+              description: "A second complete Chapters 1–2 assessment with twenty different questions and no topic sections.",
             },
             {
               href: "ap-world-ch1-2-review-3",
-              level: "Review 03 · Africa, Europe & the Americas",
-              title: "Regional Worlds Compared",
-              description: "Review African trade states, Christian societies, and the political systems of the Aztec and Inca.",
+              level: "Cumulative Review · Set 03",
+              title: "Chapters 1–2 Test 3",
+              description: "A third independent cumulative assessment drawing new questions from the full two-chapter scope.",
             },
             {
               href: "ap-world-ch1-2-review-4",
-              level: "Review 04 · Mixed Chapters 1–2",
-              title: "Detailed Cumulative Review",
-              description: "Connect concrete people, places, institutions, technologies, and comparisons from both chapters.",
+              level: "Cumulative Review · Set 04",
+              title: "Chapters 1–2 Test 4",
+              description: "A fourth complete and distinct test of people, places, institutions, technologies, and comparisons across both chapters.",
             },
           ].map((review) => (
             <a class="test-card" href={`${basePath}tests/${review.href}/`}>

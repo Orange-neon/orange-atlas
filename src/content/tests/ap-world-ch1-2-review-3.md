@@ -1,21 +1,21 @@
 ---
 title: "Chapters 1–2 Content Review 3"
 duration: 15
-difficulty: "Detailed Comparative Review"
-description: "An AP-style review of African societies, Byzantium, Kievan Rus, Western Europe, the Aztec Empire, and the Inca Empire."
+difficulty: "Cumulative Content Review"
+description: "A third self-contained AP-style test with a different question set spanning all of Chapters 1 and 2."
 course: "AP World History"
 unit: "Chapters 1–2 Content Review"
 examCode: "Chapters 1–2 · Review 3"
 heroTitle: "Chapters 1–2"
 heroAccent: "Content Review 3"
 topbarTitle: "AP World · Content Review 3"
-landingKicker: "Ways of the World · Africa, Christendom, and the Americas"
+landingKicker: "Ways of the World · Cumulative Test Set 3"
 uiLanguage: "en"
 questionCount: 20
 extraStatValue: 4
 extraStatLabel: "choices each"
 rules:
-  - "Use specific chapter details to distinguish regional institutions and practices"
+  - "Questions move throughout both chapters without being divided into topic sections"
   - "Choose the one completely accurate answer; one other choice will be intentionally close"
   - "Each item has two weak distractors, one close distractor, and one fully accurate answer"
   - "Use Previous to go back and revise answers before submitting"

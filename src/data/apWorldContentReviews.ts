@@ -518,9 +518,20 @@ const review4: ContentQuestion[] = [
   ], "C", "Agriculture began first, followed by urban civilizations, Islam in the seventh century, and Song rule after 960."),
 ];
 
+const sourceBanks = [review1, review2, review3, review4];
+
+const cumulativeReview = (offset: number): ContentQuestion[] =>
+  [0, 4, 8, 12, 16]
+    .flatMap((baseIndex) => sourceBanks.map((bank) => bank[baseIndex + offset]))
+    .map((question, index) => ({
+      ...question,
+      id: index + 1,
+      sec: "Chapters 1–2 · Cumulative Content Review",
+    }));
+
 export const apWorldContentReviews: Record<string, ContentQuestion[]> = {
-  "ap-world-ch1-2-review": review1,
-  "ap-world-ch1-2-review-2": review2,
-  "ap-world-ch1-2-review-3": review3,
-  "ap-world-ch1-2-review-4": review4,
+  "ap-world-ch1-2-review": cumulativeReview(0),
+  "ap-world-ch1-2-review-2": cumulativeReview(1),
+  "ap-world-ch1-2-review-3": cumulativeReview(2),
+  "ap-world-ch1-2-review-4": cumulativeReview(3),
 };

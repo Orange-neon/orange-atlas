@@ -20,7 +20,7 @@ const readingQuestion = (
   explanation: string,
 ): ChapterQuestion => ({
   id,
-  sec: "Chapters 1–2 · Mixed Reading",
+  sec: "Chapters 1–2 · Cumulative Reading Test",
   type: "mc",
   prompt,
   ch: choices.map((choice, index) => `${letters[index]}) ${choice}`),
