@@ -545,7 +545,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
     </style>
   </head>
   <body>
-    <AuthNav showAiChat={!isEnglish} analyticsCourse={course} />
+    <AuthNav showAiChat={!isEnglish && course !== "Spanish 3"} analyticsCourse={course} uiLanguage={uiLanguage} />
 
     <div class="screen active" id="s-landing">
       <div class="land-inner">
@@ -564,7 +564,9 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
                 : totalSources > 0
                   ? `${totalSources} sources — one question at a time.`
                   : "One question at a time — no going back.")
-            : `${totalSources} fuentes — una pregunta a la vez.`}
+            : totalSources > 0
+              ? `${totalSources} fuentes — una pregunta a la vez.`
+              : "Una pregunta a la vez — no puedes volver atrás."}
         </p>
 
         {displayModePills && (
@@ -649,15 +651,17 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           ? "⚠ Time expired — unanswered questions were marked incorrect."
           : "⚠ El tiempo se acabó — las preguntas sin responder se marcaron como incorrectas."}</div>
         <div class="progress-save-card" id="progress-save-card">
-          <div class="progress-save-title" id="progress-save-title">Save your progress</div>
+          <div class="progress-save-title" id="progress-save-title">{isEnglish ? "Save your progress" : "Guarda tu progreso"}</div>
           <p class="progress-save-copy" id="progress-save-copy">
-            Sign in with Google now and this completed attempt will be saved to your analytics dashboard.
+            {isEnglish
+              ? "Sign in with Google now and this completed attempt will be saved to your analytics dashboard."
+              : "Inicia sesión con Google y este intento se guardará en tu panel de análisis."}
           </p>
           <div class="progress-save-actions">
             <button class="progress-save-btn" type="button" data-auth-action="sign-in" id="progress-signin-btn">
-              Sign in with Google
+              {isEnglish ? "Sign in with Google" : "Iniciar sesión con Google"}
             </button>
-            <a class="progress-save-link" href={analyticsHref} id="progress-analytics-link">View analytics</a>
+            <a class="progress-save-link" href={analyticsHref} id="progress-analytics-link">{isEnglish ? "View analytics" : "Ver análisis"}</a>
           </div>
         </div>
         <div class="review-shell">
@@ -795,33 +799,43 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         signInBtn.hidden = true;
 
         if (mode === "unconfigured") {
-          titleEl.textContent = "Progress tracking needs Firebase setup";
-          copyEl.textContent = "Add the PUBLIC_FIREBASE_* values to enable Google sign-in and saved analytics.";
+          titleEl.textContent = isEnglish ? "Progress tracking needs Firebase setup" : "El seguimiento necesita la configuración de Firebase";
+          copyEl.textContent = isEnglish
+            ? "Add the PUBLIC_FIREBASE_* values to enable Google sign-in and saved analytics."
+            : "Agrega los valores PUBLIC_FIREBASE_* para activar el inicio de sesión y guardar los análisis.";
           return;
         }
 
         if (mode === "signed-out") {
-          titleEl.textContent = "Save this attempt";
-          copyEl.textContent = "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard.";
+          titleEl.textContent = isEnglish ? "Save this attempt" : "Guarda este intento";
+          copyEl.textContent = isEnglish
+            ? "You are signed out. Sign in now and this completed attempt will be saved to your analytics dashboard."
+            : "No has iniciado sesión. Inicia sesión ahora para guardar este intento en tu panel de análisis.";
           signInBtn.hidden = false;
           return;
         }
 
         if (mode === "saving") {
-          titleEl.textContent = "Saving progress";
-          copyEl.textContent = "Your attempt is being added to your analytics dashboard.";
+          titleEl.textContent = isEnglish ? "Saving progress" : "Guardando el progreso";
+          copyEl.textContent = isEnglish
+            ? "Your attempt is being added to your analytics dashboard."
+            : "Tu intento se está agregando al panel de análisis.";
           return;
         }
 
         if (mode === "saved") {
-          titleEl.textContent = "Progress saved";
-          copyEl.textContent = "This attempt is now included in your analytics dashboard.";
+          titleEl.textContent = isEnglish ? "Progress saved" : "Progreso guardado";
+          copyEl.textContent = isEnglish
+            ? "This attempt is now included in your analytics dashboard."
+            : "Este intento ya aparece en tu panel de análisis.";
           analyticsLink.classList.add("show");
           return;
         }
 
-        titleEl.textContent = "Progress was not saved";
-        copyEl.textContent = detail || "There was a problem saving this attempt. Your score above is still available on this page.";
+        titleEl.textContent = isEnglish ? "Progress was not saved" : "No se guardó el progreso";
+        copyEl.textContent = detail || (isEnglish
+          ? "There was a problem saving this attempt. Your score above is still available on this page."
+          : "Hubo un problema al guardar este intento. Tu resultado todavía está disponible en esta página.");
       }
 
       function buildAttemptPayload(score, pct, elapsed) {
@@ -892,15 +906,17 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         const missed = questionStates.filter(({ ok }) => !ok);
         rail.hidden = false;
         rail.innerHTML = `
-          <div class="review-rail-title">Review</div>
-          <div class="review-rail-summary">${missed.length ? `<strong>${missed.length}</strong> missed` : "All correct"}</div>
+          <div class="review-rail-title">${isEnglish ? "Review" : "Repaso"}</div>
+          <div class="review-rail-summary">${missed.length
+            ? `<strong>${missed.length}</strong> ${isEnglish ? "missed" : "incorrectas"}`
+            : (isEnglish ? "All correct" : "Todo correcto")}</div>
           <div class="review-rail-grid">
             ${questionStates.map(({ q, ok }) => `
               <button
                 class="review-jump ${ok ? "is-ok" : "is-wrong"}"
                 type="button"
                 data-review-jump="${q.id}"
-                aria-label="Question ${q.id}: ${ok ? "correct" : "wrong"}"
+                aria-label="${isEnglish ? "Question" : "Pregunta"} ${q.id}: ${ok ? (isEnglish ? "correct" : "correcta") : (isEnglish ? "wrong" : "incorrecta")}"
               >${q.id}</button>
             `).join("")}
           </div>
