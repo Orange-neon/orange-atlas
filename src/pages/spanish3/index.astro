@@ -5,7 +5,8 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const iconHref = `${basePath}assets/orangeAtlas.png`;
-const testHref = `${basePath}tests/la-naturaleza-1/`;
+const firstTestHref = `${basePath}tests/la-naturaleza-1/`;
+const secondTestHref = `${basePath}tests/la-naturaleza-2/`;
 ---
 
 <!doctype html>
@@ -63,11 +64,13 @@ const testHref = `${basePath}tests/la-naturaleza-1/`;
       .chip { display: inline-block; margin-bottom: .8rem; padding: .2rem .6rem; border: 1px solid rgba(110,231,183,.32); border-radius: 999px; color: var(--green); background: rgba(110,231,183,.08); font-size: .67rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
       .unit h3 { margin-bottom: .55rem; font-family: Georgia, serif; font-size: 1.55rem; }
       .unit > p { color: var(--muted); }
-      .test { display: block; margin-top: 1.5rem; padding: 1.15rem; border: 1px solid rgba(255,196,119,.28); border-radius: .75rem; background: rgba(5,8,13,.48); text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
+      .test-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin-top: 1.5rem; }
+      .test { display: block; padding: 1.15rem; border: 1px solid rgba(255,196,119,.28); border-radius: .75rem; background: rgba(5,8,13,.48); text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
       .test:hover { transform: translateY(-3px); border-color: var(--gold); }
       .test strong { display: block; margin-bottom: .35rem; color: #fff; font-size: 1.05rem; }
       .test span { color: var(--muted); font-size: .9rem; }
       .open { display: block; margin-top: .8rem; color: var(--gold) !important; font-weight: 800; }
+      @media (max-width: 680px) { .test-list { grid-template-columns: 1fr; } }
       @media (max-width: 560px) { main { padding-top: 2rem; } .stats { display: grid; grid-template-columns: 1fr; } }
     </style>
   </head>
@@ -83,19 +86,26 @@ const testHref = `${basePath}tests/la-naturaleza-1/`;
       <p class="intro">Repasa el vocabulario y los conceptos de cada unidad con pruebas cronometradas, retroalimentación detallada y resultados organizados por tema.</p>
       <div class="stats" aria-label="Datos del curso">
         <div class="stat"><strong>1</strong><span>unidad activa</span></div>
-        <div class="stat"><strong>1</strong><span>prueba disponible</span></div>
-        <div class="stat"><strong>20</strong><span>preguntas</span></div>
+        <div class="stat"><strong>2</strong><span>pruebas disponibles</span></div>
+        <div class="stat"><strong>40</strong><span>preguntas en total</span></div>
       </div>
       <h2>Unidades</h2>
       <section class="unit" aria-labelledby="naturaleza-title">
         <span class="chip">Unidad activa</span>
         <h3 id="naturaleza-title">Unidad 1 · La Naturaleza</h3>
         <p>Animales, paisajes, materiales, problemas ambientales y acciones para conservar el planeta.</p>
-        <a class="test" href={testHref}>
-          <strong>La Naturaleza 1</strong>
-          <span>Prueba de vocabulario con 20 preguntas y un límite de 20 minutos.</span>
-          <span class="open">Comenzar prueba →</span>
-        </a>
+        <div class="test-list">
+          <a class="test" href={firstTestHref}>
+            <strong>La Naturaleza 1</strong>
+            <span>Práctica mixta con 15 preguntas de opción múltiple y 5 respuestas de una palabra.</span>
+            <span class="open">Comenzar prueba →</span>
+          </a>
+          <a class="test" href={secondTestHref}>
+            <strong>La Naturaleza 2 · Difícil</strong>
+            <span>Reto avanzado con diferencias sutiles y 8 respuestas de una palabra.</span>
+            <span class="open">Comenzar prueba →</span>
+          </a>
+        </div>
       </section>
     </main>
   </body>

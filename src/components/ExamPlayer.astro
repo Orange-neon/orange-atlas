@@ -665,7 +665,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           </div>
         </div>
         <div class="review-shell">
-          <aside class="review-rail" id="review-rail" aria-label="Question review shortcuts" hidden></aside>
+          <aside class="review-rail" id="review-rail" aria-label={isEnglish ? "Question review shortcuts" : "Atajos para repasar las preguntas"} hidden></aside>
           <div id="res-list"></div>
         </div>
       </div>
