@@ -10,12 +10,12 @@ const secondTestHref = `${basePath}tests/la-naturaleza-2/`;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Pruebas de práctica de Español 3 en Orange Atlas." />
-    <title>Español 3 | Orange Atlas</title>
+    <meta name="description" content="Spanish 3 vocabulary and subjunctive practice tests on Orange Atlas." />
+    <title>Spanish 3 | Orange Atlas</title>
     <link rel="icon" href={iconHref} type="image/png" />
     <link rel="apple-touch-icon" href={iconHref} />
     <style>
@@ -75,35 +75,35 @@ const secondTestHref = `${basePath}tests/la-naturaleza-2/`;
     </style>
   </head>
   <body>
-    <AuthNav showAiChat={false} analyticsCourse="Spanish 3" uiLanguage="es" />
-    <nav class="nav" aria-label="Navegación del curso">
-      <a class="brand" href={basePath} aria-label="Inicio de Orange Atlas"><img src={iconHref} alt="" /> Orange Atlas</a>
-      <a class="all-courses" href={`${basePath}#subjects`}>Todos los cursos</a>
+    <AuthNav showAiChat={false} analyticsCourse="Spanish 3" />
+    <nav class="nav" aria-label="Course navigation">
+      <a class="brand" href={basePath} aria-label="Orange Atlas home"><img src={iconHref} alt="" /> Orange Atlas</a>
+      <a class="all-courses" href={`${basePath}#subjects`}>All courses</a>
     </nav>
     <main>
-      <p class="eyebrow">Centro del curso</p>
-      <h1>Práctica de <span>Español 3</span></h1>
-      <p class="intro">Repasa el vocabulario y los conceptos de cada unidad con pruebas cronometradas, retroalimentación detallada y resultados organizados por tema.</p>
-      <div class="stats" aria-label="Datos del curso">
-        <div class="stat"><strong>1</strong><span>unidad activa</span></div>
-        <div class="stat"><strong>2</strong><span>pruebas disponibles</span></div>
-        <div class="stat"><strong>40</strong><span>preguntas en total</span></div>
+      <p class="eyebrow">Course home</p>
+      <h1><span>Spanish 3</span> Practice Hub</h1>
+      <p class="intro">Practice unit vocabulary and the present subjunctive with timed tests, detailed feedback, and results by topic.</p>
+      <div class="stats" aria-label="Course statistics">
+        <div class="stat"><strong>1</strong><span>active unit</span></div>
+        <div class="stat"><strong>2</strong><span>available tests</span></div>
+        <div class="stat"><strong>48</strong><span>total questions</span></div>
       </div>
-      <h2>Unidades</h2>
+      <h2>Units</h2>
       <section class="unit" aria-labelledby="naturaleza-title">
-        <span class="chip">Unidad activa</span>
-        <h3 id="naturaleza-title">Unidad 1 · La Naturaleza</h3>
-        <p>Animales, paisajes, materiales, problemas ambientales y acciones para conservar el planeta.</p>
+        <span class="chip">Active unit</span>
+        <h3 id="naturaleza-title">Unit 1 · La Naturaleza</h3>
+        <p>Nature vocabulary, precise definitions, and subjunctive usage and formation. Both tests include odd-one-out questions, sentence completion, and short written answers.</p>
         <div class="test-list">
           <a class="test" href={firstTestHref}>
             <strong>La Naturaleza 1</strong>
-            <span>Práctica mixta con 15 preguntas de opción múltiple y 5 respuestas de una palabra.</span>
-            <span class="open">Comenzar prueba →</span>
+            <span>Hard practice: 24 questions, with 12 multiple-choice and 12 short-answer questions.</span>
+            <span class="open">Start test →</span>
           </a>
           <a class="test" href={secondTestHref}>
-            <strong>La Naturaleza 2 · Difícil</strong>
-            <span>Reto avanzado con diferencias sutiles y 8 respuestas de una palabra.</span>
-            <span class="open">Comenzar prueba →</span>
+            <strong>La Naturaleza 2 · Hard</strong>
+            <span>Hard practice: 24 new questions testing vocabulary distinctions and subjunctive application.</span>
+            <span class="open">Start test →</span>
           </a>
         </div>
       </section>

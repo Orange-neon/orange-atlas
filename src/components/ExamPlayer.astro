@@ -545,7 +545,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
     </style>
   </head>
   <body>
-    <AuthNav showAiChat={!isEnglish && course !== "Spanish 3"} analyticsCourse={course} uiLanguage={uiLanguage} />
+    <AuthNav showAiChat={!isEnglish && course !== "Spanish 3"} analyticsCourse={course} uiLanguage={course === "Spanish 3" ? "en" : uiLanguage} />
 
     <div class="screen active" id="s-landing">
       <div class="land-inner">

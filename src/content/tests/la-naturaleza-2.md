@@ -1,214 +1,340 @@
 ---
-title: "Equilibrio al Límite"
-duration: 25
-difficulty: "Vocabulario difícil"
-description: "Una prueba avanzada de la Unidad 1 con diferencias sutiles, contextos exigentes y respuestas de una sola palabra."
+title: "La naturaleza 2: vocabulario y subjuntivo"
+duration: 30
+difficulty: "Difícil"
+description: "Distingue términos de la lista de vocabulario y aplica el presente de subjuntivo según el significado de cada oración."
 course: "Spanish 3"
 unit: "Unidad 1 - La Naturaleza"
-examCode: "La Naturaleza II"
-heroTitle: "Equilibrio al"
-heroAccent: "Límite"
-topbarTitle: "La Naturaleza · Reto de Vocabulario"
+examCode: "La Naturaleza 2"
+heroTitle: "La naturaleza"
+heroAccent: "Prueba 2"
+topbarTitle: "La naturaleza · Vocabulario y subjuntivo"
 landingKicker: "Español 3 · Unidad 1 · Nivel difícil"
 uiLanguage: "es"
-questionCount: 20
+questionCount: 24
 extraStatValue: 2
 extraStatLabel: "formatos"
 rules:
-  - "Tienes 25 minutos para contestar 20 preguntas"
-  - "Una pregunta a la vez — no puedes volver atrás"
-  - "Elige el término más preciso, aunque varias opciones parezcan posibles"
-  - "En las respuestas libres, escribe exactamente una palabra en español"
-  - "Los artículos no forman parte de las respuestas libres"
+  - "Tienes 30 minutos para contestar 24 preguntas."
+  - "Contesta una pregunta a la vez. No puedes volver atrás."
+  - "Elige la palabra intrusa por su significado. No escribas una justificación."
+  - "Usa los términos de la lista de vocabulario. Incluye el artículo cuando se pida el término completo."
+  - "Si el artículo ya aparece antes del espacio, escribe solo la palabra que falta."
+  - "En los ejercicios de conjugación, escribe una sola palabra con las tildes necesarias."
+  - "El examen termina automáticamente cuando se acaba el tiempo."
 questionsJson: |
   [
     {
-      "id": 1,
-      "sec": "Diferencias sutiles",
-      "type": "mc",
-      "prompt": "Un informe registra únicamente que la temperatura media de la Tierra ha aumentado de forma sostenida. ¿Cuál es el término más preciso para ese dato?",
-      "ch": ["A) el cambio climático", "B) el calentamiento global", "C) la contaminación del aire", "D) la deforestación"],
-      "cor": "B",
-      "exp": "El calentamiento global nombra específicamente el aumento de la temperatura media. El cambio climático es más amplio e incluye cambios en lluvias, estaciones y fenómenos extremos."
-    },
-    {
-      "id": 2,
-      "sec": "Diferencias sutiles",
-      "type": "mc",
-      "prompt": "Después de un derrame de petróleo, disminuyó la población de peces aunque el agua ya fue limpiada. Los peces todavía ____ las consecuencias del accidente.",
-      "ch": ["A) están contaminados por", "B) están afectados por", "C) dejan de", "D) desarrollan"],
-      "cor": "B",
-      "exp": "Estar afectado por indica sufrir las consecuencias de algo. El contexto aclara que el agua ya fue limpiada, así que contaminados no es la opción más precisa."
-    },
-    {
-      "id": 3,
-      "sec": "Diferencias sutiles",
-      "type": "mc",
-      "prompt": "Una bióloga analiza cómo la desaparición de un insecto altera las plantas, las aves y el suelo del bosque. ¿Qué campo estudia esas relaciones?",
-      "ch": ["A) la conservación", "B) la ecología", "C) el ecoturismo", "D) el reciclaje"],
-      "cor": "B",
-      "exp": "La ecología estudia las relaciones entre los seres vivos y su entorno. La conservación utiliza conocimientos como esos para proteger la naturaleza."
-    },
-    {
-      "id": 4,
-      "sec": "Diferencias sutiles",
-      "type": "mc",
-      "prompt": "En la frase «El agua dulce es limitada y debemos administrarla con cuidado», ¿qué expresión clasifica mejor al agua dulce?",
-      "ch": ["A) el medio ambiente", "B) el recurso natural", "C) la solución", "D) la naturaleza"],
-      "cor": "B",
-      "exp": "El agua dulce es un recurso natural porque procede de la naturaleza y las personas la utilizan. Medio ambiente y naturaleza nombran conjuntos mucho más amplios."
-    },
-    {
-      "id": 5,
-      "sec": "La opción precisa",
-      "type": "mc",
-      "prompt": "La ciudad no solo quiere producir menos basura en el futuro; quiere disminuir ahora la cantidad que ya genera. ¿Qué verbo completa mejor la meta?",
-      "ch": ["A) conservar", "B) reducir", "C) controlar", "D) resolver"],
-      "cor": "B",
-      "exp": "Reducir significa hacer menor una cantidad. Controlar puede limitar o vigilar, pero no expresa necesariamente una disminución."
-    },
-    {
-      "id": 6,
-      "sec": "La opción precisa",
-      "type": "mc",
-      "prompt": "Los guardabosques no permiten que los visitantes toquen los nidos y además vigilan la zona día y noche. ¿Qué verbo resume mejor su acción?",
-      "ch": ["A) descubrir", "B) recoger", "C) proteger", "D) respirar"],
-      "cor": "C",
-      "exp": "Proteger es defender algo de un peligro o daño. La prohibición y la vigilancia existen para mantener seguros los nidos."
-    },
-    {
-      "id": 7,
-      "sec": "La opción precisa",
-      "type": "mc",
-      "prompt": "Una científica encuentra por primera vez una especie que nadie había registrado. Otro equipo pasa años convirtiendo ese hallazgo en un nuevo tratamiento. ¿Qué pareja de verbos corresponde, en ese orden, a las dos acciones?",
-      "ch": ["A) descubrir y desarrollar", "B) desarrollar y descubrir", "C) conservar y controlar", "D) recoger y resolver"],
-      "cor": "A",
-      "exp": "Descubrir es encontrar algo antes desconocido; desarrollar es crear y perfeccionar una aplicación a lo largo del tiempo. El orden de las pistas es decisivo."
-    },
-    {
-      "id": 8,
-      "sec": "La opción precisa",
-      "type": "mc",
-      "prompt": "Una isla recibe pocos viajeros, limita el tamaño de los grupos y usa el dinero de las visitas para conservar el bosque. ¿Qué actividad describe el caso?",
-      "ch": ["A) la sobrepoblación", "B) el ecoturismo", "C) la deforestación", "D) la energía nuclear"],
-      "cor": "B",
-      "exp": "El ecoturismo permite visitar espacios naturales procurando causar poco impacto y apoyar su conservación."
-    },
-    {
-      "id": 9,
-      "sec": "La opción precisa",
-      "type": "mc",
-      "prompt": "El número de habitantes crece más rápido que la vivienda, el agua y los alimentos disponibles. ¿Qué problema aparece?",
-      "ch": ["A) la población", "B) la conservación", "C) la sobrepoblación", "D) la extinción"],
-      "cor": "C",
-      "exp": "La sobrepoblación ocurre cuando la cantidad de habitantes supera la capacidad o los recursos disponibles. Población solo nombra al conjunto de habitantes."
-    },
-    {
-      "id": 10,
       "sec": "La palabra intrusa",
       "type": "mc",
-      "prompt": "¿Cuál palabra no pertenece al grupo si el criterio es «formas del relieve terrestre»?",
-      "ch": ["A) el valle", "B) el cráter", "C) el volcán", "D) la nube"],
-      "cor": "D",
-      "exp": "El valle, el cráter y el volcán son formas o rasgos de la superficie terrestre. La nube se encuentra en la atmósfera."
-    },
-    {
-      "id": 11,
-      "sec": "Materiales y energía",
-      "type": "mc",
-      "prompt": "El recipiente es metálico, muy ligero y no se rompe como el vidrio. La etiqueta indica que puede reciclarse muchas veces. ¿De qué material es probablemente?",
-      "ch": ["A) de plástico", "B) de vidrio", "C) de aluminio", "D) de tierra"],
-      "cor": "C",
-      "exp": "El aluminio es un metal ligero y reciclable. El vidrio puede romperse y el plástico no es metálico."
-    },
-    {
-      "id": 12,
-      "sec": "Materiales y energía",
-      "type": "mc",
-      "prompt": "¿Cuál afirmación distingue correctamente la energía solar de la energía nuclear?",
-      "ch": ["A) La solar aprovecha la radiación del sol; la nuclear libera energía del núcleo atómico.", "B) La solar siempre contamina el aire; la nuclear nunca produce residuos.", "C) La solar depende del petróleo; la nuclear depende del viento.", "D) Las dos significan exactamente lo mismo."],
+      "prompt": "Elige la palabra que no pertenece al mismo grupo por su significado.",
+      "ch": [
+        "A) el gato",
+        "B) el pato",
+        "C) el pájaro",
+        "D) el ave"
+      ],
       "cor": "A",
-      "exp": "La energía solar aprovecha la radiación del sol, mientras que la nuclear procede de reacciones en el núcleo de los átomos."
+      "exp": "El pato, el pájaro y el ave pertenecen al grupo de las aves. El gato es un mamífero.",
+      "id": 1
     },
     {
-      "id": 13,
-      "sec": "Respuesta de una palabra",
-      "type": "free",
-      "eng": false,
-      "prompt": "Tras años de tala, un bosque pierde casi todos sus árboles y el suelo queda expuesto. Escribe una sola palabra para nombrar este proceso.",
-      "acc": ["deforestación"],
-      "disp": "deforestación",
-      "exp": "Deforestación nombra la eliminación extensa de árboles o bosques. La terminación y la tilde son necesarias."
+      "sec": "La palabra intrusa",
+      "type": "mc",
+      "prompt": "Elige la palabra que no pertenece al mismo grupo por su significado.",
+      "ch": [
+        "A) la flor",
+        "B) la hierba",
+        "C) la planta",
+        "D) la piedra"
+      ],
+      "cor": "D",
+      "exp": "La flor, la hierba y la planta son vegetales o partes de ellos. La piedra no es un ser vivo.",
+      "id": 2
     },
     {
-      "id": 14,
-      "sec": "Respuesta de una palabra",
-      "type": "free",
-      "eng": false,
-      "prompt": "Muere el último individuo de una especie y ya no queda ninguno en el planeta. Escribe una sola palabra para ese resultado.",
-      "acc": ["extinción"],
-      "disp": "extinción",
-      "exp": "Extinción es la desaparición total de una especie. No significa simplemente que queden pocos individuos."
+      "sec": "La palabra intrusa",
+      "type": "mc",
+      "prompt": "Elige la palabra que no pertenece al mismo grupo por su significado.",
+      "ch": [
+        "A) el calentamiento global",
+        "B) la deforestación",
+        "C) la sobrepoblación",
+        "D) la solución"
+      ],
+      "cor": "D",
+      "exp": "Los tres primeros términos nombran problemas ambientales. La solución permite resolver un problema.",
+      "id": 3
     },
     {
-      "id": 15,
-      "sec": "Respuesta de una palabra",
-      "type": "free",
-      "eng": false,
-      "prompt": "Una caja, botella o lata sirve para contener y proteger un producto. Escribe una sola palabra que nombre cualquiera de esos recipientes.",
-      "acc": ["envase"],
-      "disp": "envase",
-      "exp": "Envase es el recipiente que contiene, conserva o presenta un producto."
+      "sec": "La palabra intrusa",
+      "type": "mc",
+      "prompt": "Elige la palabra que no pertenece al mismo grupo por su significado.",
+      "ch": [
+        "A) el sol",
+        "B) la nube",
+        "C) la estrella",
+        "D) la luna"
+      ],
+      "cor": "B",
+      "exp": "El sol, la estrella y la luna son cuerpos celestes. La nube se forma en la atmósfera.",
+      "id": 4
     },
     {
-      "id": 16,
-      "sec": "Respuesta de una palabra",
-      "type": "free",
-      "eng": false,
-      "prompt": "En la cima de un volcán hay una abertura circular por donde pueden salir lava, gases y ceniza. Escribe una sola palabra para nombrarla.",
-      "acc": ["cráter"],
-      "disp": "cráter",
-      "exp": "Cráter es la depresión o abertura situada en la parte superior de muchos volcanes. Lleva tilde."
+      "sec": "Definiciones",
+      "type": "mc",
+      "prompt": "Es la disciplina que estudia las relaciones entre los seres vivos y su medio ambiente.",
+      "ch": [
+        "A) la conservación",
+        "B) el ecoturismo",
+        "C) la ecología",
+        "D) el recurso natural"
+      ],
+      "cor": "C",
+      "exp": "La ecología estudia esas relaciones. La conservación se ocupa de mantener y proteger.",
+      "id": 5
     },
     {
-      "id": 17,
-      "sec": "Respuesta de una palabra",
-      "type": "free",
-      "eng": false,
-      "prompt": "Esta persona estudia las relaciones de los seres vivos con su entorno y propone maneras de protegerlas. Escribe una sola palabra para nombrar su profesión.",
-      "acc": ["ecologista"],
-      "disp": "ecologista",
-      "exp": "Ecologista puede referirse a la persona que estudia o defiende el equilibrio del medio ambiente. La misma forma sirve para cualquier género."
+      "sec": "Definiciones",
+      "type": "mc",
+      "prompt": "Es el conjunto de alteraciones duraderas del clima, incluidas las de temperatura y lluvia.",
+      "ch": [
+        "A) el calentamiento global",
+        "B) el cambio climático",
+        "C) la contaminación del agua",
+        "D) la energía nuclear"
+      ],
+      "cor": "B",
+      "exp": "El cambio climático incluye alteraciones de temperatura y lluvia. El calentamiento global nombra específicamente el aumento de temperatura.",
+      "id": 6
     },
     {
-      "id": 18,
-      "sec": "Respuesta de una palabra",
+      "sec": "Definiciones",
       "type": "free",
       "eng": false,
-      "prompt": "La ciudad instala paneles solares porque su fuente puede reponerse naturalmente, a diferencia del carbón. Escribe una sola palabra que describa esa fuente.",
-      "acc": ["renovable"],
-      "disp": "renovable",
-      "exp": "Renovable describe una fuente que puede regenerarse naturalmente en una escala de tiempo útil."
+      "prompt": "Es un recipiente que sirve para contener un producto. Escribe el término general con su artículo.",
+      "acc": [
+        "el envase"
+      ],
+      "disp": "el envase",
+      "exp": "El envase es el recipiente en general. La lata es un tipo de envase.",
+      "id": 7
     },
     {
-      "id": 19,
-      "sec": "Respuesta de una palabra",
+      "sec": "Definiciones",
       "type": "free",
       "eng": false,
-      "prompt": "Antes de construir la carretera, los ingenieros cambian la ruta para impedir que atraviese el hábitat de las tortugas. Escribe una sola palabra para esa acción preventiva.",
-      "acc": ["evitar"],
+      "prompt": "Es impedir que algo ocurra. Escribe el infinitivo del vocabulario, una sola palabra.",
+      "acc": [
+        "evitar"
+      ],
       "disp": "evitar",
-      "exp": "Evitar significa impedir que algo ocurra. Cambiar la ruta previene el daño antes de que suceda."
+      "exp": "Evitar significa impedir que algo suceda. Resolver supone dar solución a un problema.",
+      "id": 8
     },
     {
-      "id": 20,
-      "sec": "Respuesta de una palabra",
+      "sec": "Completa la oración",
+      "type": "mc",
+      "prompt": "Para producir electricidad a partir de la luz del sol, se utiliza ____.",
+      "ch": [
+        "A) la energía nuclear",
+        "B) la contaminación del aire",
+        "C) la energía solar",
+        "D) el calentamiento global"
+      ],
+      "cor": "C",
+      "exp": "La energía solar procede del sol. La energía nuclear tiene otro origen.",
+      "id": 9
+    },
+    {
+      "sec": "Completa la oración",
+      "type": "mc",
+      "prompt": "Para caminar por el bosque sin pisar la hierba, sigue ____.",
+      "ch": [
+        "A) el valle",
+        "B) el sendero",
+        "C) el cráter",
+        "D) el río"
+      ],
+      "cor": "B",
+      "exp": "El sendero es un camino por el que se puede andar.",
+      "id": 10
+    },
+    {
+      "sec": "Completa la oración",
       "type": "free",
       "eng": false,
-      "prompt": "Después del festival, los voluntarios levantan del suelo todas las latas y botellas abandonadas. Escribe una sola palabra para esa acción.",
-      "acc": ["recoger"],
-      "disp": "recoger",
-      "exp": "Recoger significa levantar o reunir cosas que estaban dispersas, como la basura dejada en el suelo."
+      "prompt": "Completa con una palabra del vocabulario: Una regla que establece el gobierno y que se debe cumplir es la ____.",
+      "acc": [
+        "ley"
+      ],
+      "disp": "ley",
+      "exp": "La ley es una regla obligatoria. El artículo la ya está escrito.",
+      "id": 11
+    },
+    {
+      "sec": "Completa la oración",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con un infinitivo del vocabulario: Para que el aire deje de estar contaminado, hay que dejar de ____.",
+      "acc": [
+        "contaminar"
+      ],
+      "disp": "contaminar",
+      "exp": "Dejar de seguido del infinitivo indica que la acción termina.",
+      "id": 12
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "mc",
+      "prompt": "Completa: No es verdad que los peces ____ en agua pura.",
+      "ch": [
+        "A) están",
+        "B) estar",
+        "C) estén",
+        "D) estamos"
+      ],
+      "cor": "C",
+      "exp": "No es verdad que niega una afirmación y requiere subjuntivo. Los peces corresponde a estén.",
+      "id": 13
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "mc",
+      "prompt": "Completa: Sabemos que esta ley ____ la naturaleza.",
+      "ch": [
+        "A) proteja",
+        "B) protejan",
+        "C) proteger",
+        "D) protege"
+      ],
+      "cor": "D",
+      "exp": "Sabemos que presenta información como cierta. Por eso se usa el indicativo protege.",
+      "id": 14
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "mc",
+      "prompt": "Completa: El gobierno quiere que nosotros ____ el agua.",
+      "ch": [
+        "A) conservamos",
+        "B) conservemos",
+        "C) conservar",
+        "D) conserven"
+      ],
+      "cor": "B",
+      "exp": "El gobierno y nosotros son sujetos distintos. Querer que exige subjuntivo. Los verbos en -ar usan -emos con nosotros.",
+      "id": 15
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "mc",
+      "prompt": "Completa: Usamos una solución que ya conocemos y que ____ la contaminación.",
+      "ch": [
+        "A) reduzca",
+        "B) reducir",
+        "C) reduce",
+        "D) reduzcan"
+      ],
+      "cor": "C",
+      "exp": "La solución está identificada y se afirma lo que hace. Se usa indicativo: reduce.",
+      "id": 16
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con reciclar: Es mejor que nosotros ____ las latas. Escribe una sola palabra.",
+      "acc": [
+        "reciclemos"
+      ],
+      "disp": "reciclemos",
+      "exp": "Es mejor que expresa una valoración. Reciclar forma reciclemos con la terminación -emos.",
+      "id": 17
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con resolver: Espero que tú ____ el problema. Escribe una sola palabra.",
+      "acc": [
+        "resuelvas"
+      ],
+      "disp": "resuelvas",
+      "exp": "Espero que expresa un deseo. Resolver cambia o por ue en la forma de tú: resuelvas.",
+      "id": 18
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con recoger: Es necesario que nosotros ____ los envases. Escribe una sola palabra.",
+      "acc": [
+        "recojamos"
+      ],
+      "disp": "recojamos",
+      "exp": "Recojo da la raíz recoj-. La terminación de nosotros es -amos.",
+      "id": 19
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con reducir: El ecologista recomienda que el gobierno ____ la contaminación. Escribe una sola palabra.",
+      "acc": [
+        "reduzca"
+      ],
+      "disp": "reduzca",
+      "exp": "La recomendación requiere subjuntivo. Reduzco da reduzca para el gobierno.",
+      "id": 20
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con destruir: Es importante que nosotros no ____ el bosque. Escribe una sola palabra.",
+      "acc": [
+        "destruyamos"
+      ],
+      "disp": "destruyamos",
+      "exp": "Destruir conserva la y de destruyo en el subjuntivo: destruyamos.",
+      "id": 21
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con cazar: El gobierno prohíbe que nosotros ____ las ballenas. Escribe una sola palabra.",
+      "acc": [
+        "cacemos"
+      ],
+      "disp": "cacemos",
+      "exp": "La prohibición exige subjuntivo. Cazar cambia z por c ante e y añade -emos.",
+      "id": 22
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con estar: Ojalá que los ríos no ____ contaminados. Escribe una sola palabra.",
+      "acc": [
+        "estén"
+      ],
+      "disp": "estén",
+      "exp": "Ojalá que requiere subjuntivo. El sujeto plural los ríos exige estén, con tilde.",
+      "id": 23
+    },
+    {
+      "sec": "El subjuntivo: uso y formación",
+      "type": "free",
+      "eng": false,
+      "prompt": "Completa con cuidar: Quiero que tú ____ la naturaleza, pero yo también quiero cuidarla. Escribe una sola palabra.",
+      "acc": [
+        "cuides"
+      ],
+      "disp": "cuides",
+      "exp": "Quiero que tú tiene dos sujetos y exige subjuntivo. Quiero cuidarla mantiene el mismo sujeto y usa infinitivo.",
+      "id": 24
     }
   ]
 ---
