@@ -10,7 +10,7 @@ heroTitle: "La naturaleza"
 heroAccent: "Prueba 1"
 topbarTitle: "La naturaleza · Vocabulario y subjuntivo"
 landingKicker: "Español 3 · Unidad 1 · Nivel difícil"
-uiLanguage: "es"
+uiLanguage: "en"
 questionCount: 24
 extraStatValue: 2
 extraStatLabel: "formatos"
@@ -35,7 +35,7 @@ questionsJson: |
         "D) la contaminación del agua"
       ],
       "cor": "D",
-      "exp": "El río, el lago y el valle son elementos del paisaje. La contaminación del agua es un problema ambiental.",
+      "exp": "El río, el lago, and el valle are natural landscape features. La contaminación del agua names an environmental problem.",
       "id": 1
     },
     {
@@ -49,7 +49,7 @@ questionsJson: |
         "D) cuidar"
       ],
       "cor": "C",
-      "exp": "Conservar, proteger y cuidar buscan mantener algo en buen estado. Destruir produce el efecto contrario.",
+      "exp": "Conservar, proteger, and cuidar all mean maintaining or defending something. Destruir produces the opposite result.",
       "id": 2
     },
     {
@@ -63,7 +63,7 @@ questionsJson: |
         "D) el ecoturismo"
       ],
       "cor": "A",
-      "exp": "La conservación, el reciclaje y el ecoturismo favorecen el cuidado del medio ambiente. La deforestación elimina los bosques.",
+      "exp": "La conservación, el reciclaje, and el ecoturismo can support environmental protection. La deforestación removes forests.",
       "id": 3
     },
     {
@@ -77,7 +77,7 @@ questionsJson: |
         "D) la tortuga marina"
       ],
       "cor": "D",
-      "exp": "La ballena, el mono y la vaca son mamíferos. La tortuga marina es un reptil.",
+      "exp": "La ballena, el mono, and la vaca are mammals. La tortuga marina is a reptile.",
       "id": 4
     },
     {
@@ -91,7 +91,7 @@ questionsJson: |
         "D) la deforestación"
       ],
       "cor": "B",
-      "exp": "El calentamiento global se refiere al aumento de temperatura. El cambio climático incluye otras alteraciones del clima.",
+      "exp": "El calentamiento global specifically means the rise in average temperature. El cambio climático includes broader changes in climate patterns.",
       "id": 5
     },
     {
@@ -105,7 +105,7 @@ questionsJson: |
         "D) la ecología"
       ],
       "cor": "C",
-      "exp": "El recurso natural es un elemento aprovechable. El medio ambiente y la naturaleza son conceptos más amplios.",
+      "exp": "El recurso natural is a usable element that comes from nature. El medio ambiente and la naturaleza are broader concepts.",
       "id": 6
     },
     {
@@ -117,7 +117,7 @@ questionsJson: |
         "la extinción"
       ],
       "disp": "la extinción",
-      "exp": "La extinción supone que ya no quedan individuos de una especie.",
+      "exp": "La extinción means that no members of a species remain. The article is part of the required term.",
       "id": 7
     },
     {
@@ -129,7 +129,7 @@ questionsJson: |
         "reciclar"
       ],
       "disp": "reciclar",
-      "exp": "Reciclar transforma materiales usados. Recoger solo indica reunirlos o retirarlos.",
+      "exp": "Reciclar means processing used materials so they can be used again. Recoger only means collecting or picking them up.",
       "id": 8
     },
     {
@@ -143,7 +143,7 @@ questionsJson: |
         "D) la ecología"
       ],
       "cor": "C",
-      "exp": "El reciclaje permite transformar materiales usados en nuevos productos.",
+      "exp": "El reciclaje is the process that turns used materials into materials or products that can be used again.",
       "id": 9
     },
     {
@@ -157,7 +157,7 @@ questionsJson: |
         "D) el calentamiento global"
       ],
       "cor": "A",
-      "exp": "La desaparición completa de la especie indica que la extinción ya ocurrió.",
+      "exp": "The complete disappearance of a species is la extinción. The sentence states that this outcome has already occurred.",
       "id": 10
     },
     {
@@ -169,7 +169,7 @@ questionsJson: |
         "renovable"
       ],
       "disp": "renovable",
-      "exp": "Renovable describe una fuente que se repone naturalmente.",
+      "exp": "Renovable describes an energy source that is replenished naturally.",
       "id": 11
     },
     {
@@ -181,7 +181,7 @@ questionsJson: |
         "deforestación"
       ],
       "disp": "deforestación",
-      "exp": "La deforestación es la eliminación de los bosques. El artículo la ya aparece antes del espacio.",
+      "exp": "La deforestación is the removal of forests. Because la already appears before the blank, the answer is only deforestación.",
       "id": 12
     },
     {
@@ -195,7 +195,7 @@ questionsJson: |
         "D) contaminas"
       ],
       "cor": "B",
-      "exp": "No creo que expresa falta de certeza. Contaminar cambia la terminación -ar por -e para la tercera persona singular del presente de subjuntivo.",
+      "exp": "No creo que expresses doubt, so the clause requires the subjunctive. For a singular subject, contaminar becomes contamine.",
       "id": 13
     },
     {
@@ -209,7 +209,7 @@ questionsJson: |
         "D) contamines"
       ],
       "cor": "C",
-      "exp": "Es cierto que presenta la contaminación como un hecho y requiere indicativo.",
+      "exp": "Es cierto que presents the claim as certain, so this statement does not need the subjunctive. The correct indicative form is contamina.",
       "id": 14
     },
     {
@@ -223,7 +223,7 @@ questionsJson: |
         "D) conserve"
       ],
       "cor": "B",
-      "exp": "El sujeto de querer y conservar es el mismo. Se usa el infinitivo sin que.",
+      "exp": "Nosotros is the subject of both querer and conservar. With one subject, Spanish uses the infinitive conservar instead of que plus the subjunctive.",
       "id": 15
     },
     {
@@ -237,103 +237,103 @@ questionsJson: |
         "D) protejan"
       ],
       "cor": "D",
-      "exp": "Me alegra que expresa emoción. Proteger parte de protejo y forma protejan para ustedes.",
+      "exp": "Me alegra que expresses emotion about another subject, so the subjunctive is required. Proteger uses the irregular yo stem protej- and becomes protejan.",
       "id": 16
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con reducir: Es necesario que nosotros ____ la contaminación. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con reducir: Es necesario que nosotros ____ la contaminación. Escribe una sola palabra.",
       "acc": [
         "reduzcamos"
       ],
       "disp": "reduzcamos",
-      "exp": "Reduzco da la raíz reduzc-. Para nosotros se añade -amos: reduzcamos.",
+      "exp": "Es necesario que expresses necessity, so the subjunctive is required. The irregular yo form reduzco supplies the stem reduzc-, producing reduzcamos.",
       "id": 17
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con proteger: Dudo que esta ley ____ la selva. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con proteger: Es evidente que esta ley ____ la selva. Escribe una sola palabra.",
       "acc": [
-        "proteja"
+        "protege"
       ],
-      "disp": "proteja",
-      "exp": "Dudo que requiere subjuntivo. Proteger usa la raíz de protejo: proteja.",
+      "disp": "protege",
+      "exp": "Es evidente que presents the protection as a fact, so the statement needs the indicative rather than the subjunctive. La ley takes protege.",
       "id": 18
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con recoger: El gobierno exige que tú ____ las latas. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con recoger: El gobierno exige que tú ____ las latas. Escribe una sola palabra.",
       "acc": [
         "recojas"
       ],
       "disp": "recojas",
-      "exp": "Una exigencia dirigida a otra persona requiere subjuntivo. Recojo da recojas.",
+      "exp": "The government directs a demand at tú, so exige que requires the subjunctive. The irregular yo form recojo supplies the stem recoj-, producing recojas.",
       "id": 19
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con resolver: Es importante que nosotros ____ el problema. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con resolver: Sabemos que nosotros ____ el problema cada año. Escribe una sola palabra.",
       "acc": [
-        "resolvamos"
+        "resolvemos"
       ],
-      "disp": "resolvamos",
-      "exp": "Resolver cambia o por ue en resuelva, pero nosotros conserva la o: resolvamos.",
+      "disp": "resolvemos",
+      "exp": "Sabemos que presents a known, habitual fact, so the statement uses the indicative. The nosotros form is resolvemos.",
       "id": 20
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con destruir: No queremos que las fábricas ____ la naturaleza. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con destruir: No queremos que las fábricas ____ la naturaleza. Escribe una sola palabra.",
       "acc": [
         "destruyan"
       ],
       "disp": "destruyan",
-      "exp": "La voluntad dirigida a otro sujeto requiere subjuntivo. Destruyo da destruyan para las fábricas.",
+      "exp": "No queremos que expresses a wish about a different subject, so it requires the subjunctive. The irregular yo form destruyo supplies the y in destruyan.",
       "id": 21
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con cazar: El ecologista pide que tú no ____ las aves. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con cazar: El ecologista quiere dejar de ____ las aves. Escribe una sola palabra.",
       "acc": [
-        "caces"
+        "cazar"
       ],
-      "disp": "caces",
-      "exp": "Pide que expresa una petición. Cazar cambia z por c ante e: caces.",
+      "disp": "cazar",
+      "exp": "The ecologist is the subject of both quiere and dejar. Dejar de must be followed by the infinitive cazar, so no subjunctive is needed.",
       "id": 22
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con conservar: Buscamos una solución que ____ el bosque. Todavía no sabemos si existe. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con conservar: Buscamos una solución que ____ el bosque. Todavía no sabemos si existe. Escribe una sola palabra.",
       "acc": [
         "conserve"
       ],
       "disp": "conserve",
-      "exp": "La solución no está identificada y su existencia es incierta. La oración relativa lleva subjuntivo.",
+      "exp": "The desired solution is unidentified and may not exist, so the relative clause requires the subjunctive conserve.",
       "id": 23
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con estar: Es una lástima que el río ____ contaminado. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con estar: Los científicos confirman que el río ____ contaminado. Escribe una sola palabra.",
       "acc": [
-        "esté"
+        "está"
       ],
-      "disp": "esté",
-      "exp": "La expresión de emoción requiere subjuntivo aunque la contaminación sea real. Esté lleva tilde.",
+      "disp": "está",
+      "exp": "Confirman que presents the pollution as verified information, so this clause takes the indicative está rather than the subjunctive esté.",
       "id": 24
     }
   ]

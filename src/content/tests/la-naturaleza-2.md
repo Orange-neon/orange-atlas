@@ -10,7 +10,7 @@ heroTitle: "La naturaleza"
 heroAccent: "Prueba 2"
 topbarTitle: "La naturaleza · Vocabulario y subjuntivo"
 landingKicker: "Español 3 · Unidad 1 · Nivel difícil"
-uiLanguage: "es"
+uiLanguage: "en"
 questionCount: 24
 extraStatValue: 2
 extraStatLabel: "formatos"
@@ -35,7 +35,7 @@ questionsJson: |
         "D) el ave"
       ],
       "cor": "A",
-      "exp": "El pato, el pájaro y el ave pertenecen al grupo de las aves. El gato es un mamífero.",
+      "exp": "El pato, el pájaro, and el ave belong to the bird category. El gato is a mammal.",
       "id": 1
     },
     {
@@ -49,7 +49,7 @@ questionsJson: |
         "D) la piedra"
       ],
       "cor": "D",
-      "exp": "La flor, la hierba y la planta son vegetales o partes de ellos. La piedra no es un ser vivo.",
+      "exp": "La flor, la hierba, and la planta are plants or plant parts. La piedra is not a living thing.",
       "id": 2
     },
     {
@@ -63,7 +63,7 @@ questionsJson: |
         "D) la solución"
       ],
       "cor": "D",
-      "exp": "Los tres primeros términos nombran problemas ambientales. La solución permite resolver un problema.",
+      "exp": "The first three terms name environmental problems. La solución is something that resolves a problem.",
       "id": 3
     },
     {
@@ -77,7 +77,7 @@ questionsJson: |
         "D) la luna"
       ],
       "cor": "B",
-      "exp": "El sol, la estrella y la luna son cuerpos celestes. La nube se forma en la atmósfera.",
+      "exp": "El sol, la estrella, and la luna are celestial bodies. La nube is a formation in the atmosphere.",
       "id": 4
     },
     {
@@ -91,7 +91,7 @@ questionsJson: |
         "D) el recurso natural"
       ],
       "cor": "C",
-      "exp": "La ecología estudia esas relaciones. La conservación se ocupa de mantener y proteger.",
+      "exp": "La ecología is the field that studies relationships between living things and their environment. La conservación focuses on protection.",
       "id": 5
     },
     {
@@ -105,7 +105,7 @@ questionsJson: |
         "D) la energía nuclear"
       ],
       "cor": "B",
-      "exp": "El cambio climático incluye alteraciones de temperatura y lluvia. El calentamiento global nombra específicamente el aumento de temperatura.",
+      "exp": "El cambio climático includes lasting changes in temperature, rainfall, and other climate patterns. El calentamiento global specifically names rising average temperatures.",
       "id": 6
     },
     {
@@ -117,7 +117,7 @@ questionsJson: |
         "el envase"
       ],
       "disp": "el envase",
-      "exp": "El envase es el recipiente en general. La lata es un tipo de envase.",
+      "exp": "El envase is the general term for a container. La lata is one specific kind of container.",
       "id": 7
     },
     {
@@ -129,7 +129,7 @@ questionsJson: |
         "evitar"
       ],
       "disp": "evitar",
-      "exp": "Evitar significa impedir que algo suceda. Resolver supone dar solución a un problema.",
+      "exp": "Evitar means preventing something from happening. Resolver means finding or carrying out a solution.",
       "id": 8
     },
     {
@@ -143,7 +143,7 @@ questionsJson: |
         "D) el calentamiento global"
       ],
       "cor": "C",
-      "exp": "La energía solar procede del sol. La energía nuclear tiene otro origen.",
+      "exp": "La energía solar comes from sunlight. La energía nuclear comes from a different source.",
       "id": 9
     },
     {
@@ -157,7 +157,7 @@ questionsJson: |
         "D) el río"
       ],
       "cor": "B",
-      "exp": "El sendero es un camino por el que se puede andar.",
+      "exp": "El sendero is a path intended for walking through an area.",
       "id": 10
     },
     {
@@ -169,7 +169,7 @@ questionsJson: |
         "ley"
       ],
       "disp": "ley",
-      "exp": "La ley es una regla obligatoria. El artículo la ya está escrito.",
+      "exp": "La ley is a rule established by a government. Because la already appears before the blank, the answer is only ley.",
       "id": 11
     },
     {
@@ -181,7 +181,7 @@ questionsJson: |
         "contaminar"
       ],
       "disp": "contaminar",
-      "exp": "Dejar de seguido del infinitivo indica que la acción termina.",
+      "exp": "Dejar de followed by an infinitive means stopping an action. The required infinitive is contaminar.",
       "id": 12
     },
     {
@@ -195,7 +195,7 @@ questionsJson: |
         "D) estamos"
       ],
       "cor": "C",
-      "exp": "No es verdad que niega una afirmación y requiere subjuntivo. Los peces corresponde a estén.",
+      "exp": "No es verdad que denies a claim, so the clause requires the subjunctive. The plural subject los peces takes estén.",
       "id": 13
     },
     {
@@ -209,7 +209,7 @@ questionsJson: |
         "D) protege"
       ],
       "cor": "D",
-      "exp": "Sabemos que presenta información como cierta. Por eso se usa el indicativo protege.",
+      "exp": "Sabemos que presents the information as known, so this statement does not need the subjunctive. The correct indicative form is protege.",
       "id": 14
     },
     {
@@ -223,7 +223,7 @@ questionsJson: |
         "D) conserven"
       ],
       "cor": "B",
-      "exp": "El gobierno y nosotros son sujetos distintos. Querer que exige subjuntivo. Los verbos en -ar usan -emos con nosotros.",
+      "exp": "El gobierno and nosotros are different subjects. Querer que expresses a wish about another subject and requires the subjunctive conservemos.",
       "id": 15
     },
     {
@@ -237,103 +237,103 @@ questionsJson: |
         "D) reduzcan"
       ],
       "cor": "C",
-      "exp": "La solución está identificada y se afirma lo que hace. Se usa indicativo: reduce.",
+      "exp": "The solution is specific and already known, and the sentence asserts what it does. The relative clause therefore uses the indicative reduce.",
       "id": 16
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con reciclar: Es mejor que nosotros ____ las latas. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con reciclar: Está claro que nosotros ____ las latas cada semana. Escribe una sola palabra.",
       "acc": [
-        "reciclemos"
+        "reciclamos"
       ],
-      "disp": "reciclemos",
-      "exp": "Es mejor que expresa una valoración. Reciclar forma reciclemos con la terminación -emos.",
+      "disp": "reciclamos",
+      "exp": "Está claro que presents a certain, habitual fact, so the statement uses the indicative reciclamos rather than the subjunctive reciclemos.",
       "id": 17
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con resolver: Espero que tú ____ el problema. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con resolver: Espero que tú ____ el problema. Escribe una sola palabra.",
       "acc": [
         "resuelvas"
       ],
       "disp": "resuelvas",
-      "exp": "Espero que expresa un deseo. Resolver cambia o por ue en la forma de tú: resuelvas.",
+      "exp": "Espero que expresses a hope about another subject, so it requires the subjunctive. Resolver changes o to ue in the tú form resuelvas.",
       "id": 18
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con recoger: Es necesario que nosotros ____ los envases. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con recoger: Necesitamos ____ los envases. Escribe una sola palabra.",
       "acc": [
-        "recojamos"
+        "recoger"
       ],
-      "disp": "recojamos",
-      "exp": "Recojo da la raíz recoj-. La terminación de nosotros es -amos.",
+      "disp": "recoger",
+      "exp": "Necesitamos and recoger share the same subject, so Spanish uses the infinitive recoger without que or the subjunctive.",
       "id": 19
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con reducir: El ecologista recomienda que el gobierno ____ la contaminación. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con reducir: El ecologista recomienda que el gobierno ____ la contaminación. Escribe una sola palabra.",
       "acc": [
         "reduzca"
       ],
       "disp": "reduzca",
-      "exp": "La recomendación requiere subjuntivo. Reduzco da reduzca para el gobierno.",
+      "exp": "A recommendation directed at another subject requires the subjunctive. The irregular yo form reduzco supplies the stem reduzc-, producing reduzca.",
       "id": 20
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con destruir: Es importante que nosotros no ____ el bosque. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con destruir: Los informes demuestran que nosotros no ____ el bosque. Escribe una sola palabra.",
       "acc": [
-        "destruyamos"
+        "destruimos"
       ],
-      "disp": "destruyamos",
-      "exp": "Destruir conserva la y de destruyo en el subjuntivo: destruyamos.",
+      "disp": "destruimos",
+      "exp": "Demuestran que presents the statement as supported by evidence, so the indicative destruimos is required instead of the subjunctive destruyamos.",
       "id": 21
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con cazar: El gobierno prohíbe que nosotros ____ las ballenas. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con cazar: El gobierno prohíbe que nosotros ____ las ballenas. Escribe una sola palabra.",
       "acc": [
         "cacemos"
       ],
       "disp": "cacemos",
-      "exp": "La prohibición exige subjuntivo. Cazar cambia z por c ante e y añade -emos.",
+      "exp": "The prohibition applies to a different subject, so prohíbe que requires the subjunctive. Cazar changes z to c before e, producing cacemos.",
       "id": 22
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con estar: Ojalá que los ríos no ____ contaminados. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con estar: Ojalá que los ríos no ____ contaminados. Escribe una sola palabra.",
       "acc": [
         "estén"
       ],
       "disp": "estén",
-      "exp": "Ojalá que requiere subjuntivo. El sujeto plural los ríos exige estén, con tilde.",
+      "exp": "Ojalá que always requires the subjunctive. The irregular plural form of estar is estén, including the written accent.",
       "id": 23
     },
     {
       "sec": "El subjuntivo: uso y formación",
       "type": "free",
       "eng": false,
-      "prompt": "Completa con cuidar: Quiero que tú ____ la naturaleza, pero yo también quiero cuidarla. Escribe una sola palabra.",
+      "prompt": "Decide si hace falta el subjuntivo. Completa con cuidar: Yo quiero ____ la naturaleza. Escribe una sola palabra.",
       "acc": [
-        "cuides"
+        "cuidar"
       ],
-      "disp": "cuides",
-      "exp": "Quiero que tú tiene dos sujetos y exige subjuntivo. Quiero cuidarla mantiene el mismo sujeto y usa infinitivo.",
+      "disp": "cuidar",
+      "exp": "Yo is the subject of both quiero and cuidar. With one subject, Spanish uses the infinitive cuidar rather than que plus the subjunctive.",
       "id": 24
     }
   ]
