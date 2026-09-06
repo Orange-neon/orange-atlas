@@ -114,15 +114,15 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
 
     <main class="wrap">
       <header class="hero">
-        <p class="eyebrow">Course Hub · Chapters 1–2</p>
+        <p class="eyebrow">Course Hub · Chapters 1–3</p>
         <h1>AP World<br /><em>History</em></h1>
         <p class="hero-copy">
           Build fast recall, verify close reading, and practice the historical reasoning needed to compare societies and explain change across the foundations of world history.
         </p>
         <div class="stats" aria-label="Test set statistics">
-          <div class="stat"><strong>17</strong><span>practice tests</span></div>
-          <div class="stat"><strong>210</strong><span>total questions</span></div>
-          <div class="stat"><strong>2</strong><span>chapters covered</span></div>
+          <div class="stat"><strong>20</strong><span>practice tests</span></div>
+          <div class="stat"><strong>240</strong><span>total questions</span></div>
+          <div class="stat"><strong>3</strong><span>chapters covered</span></div>
           <div class="stat"><strong>3</strong><span>test formats</span></div>
         </div>
       </header>
@@ -139,6 +139,23 @@ const iconHref = `${basePath}assets/orangeAtlas.png`;
               <h3>Vocabulary Test {index + 1}</h3>
               <p>Identify the vocabulary or geography term from its definition without an on-screen word bank.</p>
               <span class="test-meta">10 questions · 5 minutes →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="test-section" aria-labelledby="chapter-3-heading">
+        <div class="section-head">
+          <h2 id="chapter-3-heading">Chapter 3 Vocabulary Challenges</h2>
+          <p>Three non-overlapping tests divide a deduplicated 30-question bank. Distinguish terms using chronology, geography, political function, exchange medium, and historical consequence.</p>
+        </div>
+        <div class="test-grid">
+          {Array.from({ length: 3 }, (_, index) => (
+            <a class="test-card" href={`${basePath}tests/ap-world-vocab-chapter-3-${index + 1}/`}>
+              <span class="test-number">Chapter 3 · Set {String(index + 1).padStart(2, "0")} · Extremely Hard</span>
+              <h3>Chapter 3 Vocabulary Test {index + 1}</h3>
+              <p>Ten unique questions with two clear mismatches, one close historical distractor, and one completely accurate answer.</p>
+              <span class="test-meta">10 questions · 10 minutes →</span>
             </a>
           ))}
         </div>
