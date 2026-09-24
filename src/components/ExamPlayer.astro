@@ -4,8 +4,9 @@ import AuthNav from "./AuthNav.astro";
 interface Question {
   id: number;
   sec: string;
-  type: "mc" | "free";
-  media?: "infographic" | "audio";
+  type: "mc" | "free" | "self";
+  media?: "infographic" | "audio" | "video";
+  points?: number;
   passage?: boolean;
   text?: string | number;
   prompt: string;
@@ -50,6 +51,9 @@ interface Props {
   audioTitle?: string;
   audioDescription?: string;
   audioSrc?: string;
+  videoTitle?: string;
+  videoDescription?: string;
+  videoSrc?: string;
   passages?: Record<string, Passage>;
   questions: Question[];
 }
@@ -81,6 +85,9 @@ const {
   audioTitle,
   audioDescription,
   audioSrc,
+  videoTitle,
+  videoDescription,
+  videoSrc,
   passages = {},
   questions,
 } = Astro.props;
@@ -88,11 +95,12 @@ const {
 const totalQuestions = questionCount ?? questions.length;
 const infoQuestions = questions.filter((question) => question.media === "infographic");
 const audioQuestions = questions.filter((question) => question.media === "audio");
+const videoQuestions = questions.filter((question) => question.media === "video");
 const isEnglish = uiLanguage === "en";
 const allowBack = course === "AP World History";
 const totalSources =
   sourceCount ??
-  [infographicSrc ? "infographic" : null, audioSrc ? "audio" : null].filter(Boolean).length;
+  [infographicSrc ? "infographic" : null, audioSrc ? "audio" : null, videoSrc ? "video" : null].filter(Boolean).length;
 const rulesList =
   rules ??
   (isEnglish
@@ -122,7 +130,8 @@ const introHeading = heroTitle ?? title;
 const introAccent = heroAccent ?? "";
 const pageTitle = `${title} | Orange Atlas`;
 const audioMeta = [audioTitle, audioDescription].filter(Boolean).join(" · ");
-const displayModePills = infoQuestions.length > 0 || audioQuestions.length > 0;
+const videoMeta = [videoTitle, videoDescription].filter(Boolean).join(" · ");
+const displayModePills = infoQuestions.length > 0 || audioQuestions.length > 0 || videoQuestions.length > 0;
 const thirdStatValue = extraStatValue ?? totalSources;
 const thirdStatLabel = extraStatLabel ?? (extraStatValue !== undefined
   ? (isEnglish ? "types" : "tipos")
@@ -132,7 +141,7 @@ const resolvedLandingKicker = landingKicker ?? (isEnglish
   ? [examCode, course, unit].filter(Boolean).join(" · ")
   : `${examCode ? `${examCode} · ` : ""}Senderos 2 · Lección 5`);
 const resolvedInfographicTitle = infographicTitle ?? (isEnglish ? "Infographic" : "Infografía");
-const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0;
+const hasMediaQuestions = infoQuestions.length > 0 || audioQuestions.length > 0 || videoQuestions.length > 0;
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
@@ -219,6 +228,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
         position:sticky;top:0;z-index:50;flex-shrink:0;
       }
+      .mode-pill.video{color:#fb923c;border-color:rgba(251,146,60,.3);background:rgba(251,146,60,.06)}
       .tb-left{display:flex;flex-direction:column}
       .tb-qnum{font-family:"Lora",serif;font-size:.95rem;font-weight:700;color:#fff}
       .tb-qof{font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:.1rem}
@@ -294,6 +304,13 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       .infographic-scroll-hint{
         font-size:.63rem;color:var(--dim);margin-top:.35rem;font-style:italic;text-align:center;
       }
+      .video-wrap{margin-bottom:1.4rem}
+      .video-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fb923c;margin-bottom:.55rem}
+      .video-frame{
+        width:100%;aspect-ratio:16/9;border:1px solid rgba(251,146,60,.2);
+        border-radius:.6rem;overflow:hidden;display:block;background:#000;
+      }
+      .video-meta{font-size:.67rem;color:#66667f;margin-top:.45rem;line-height:1.55}
 
       .qprompt{
         font-family:"Lora",serif;font-size:clamp(1rem,2.5vw,1.15rem);
@@ -320,6 +337,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         font-family:"IBM Plex Mono",monospace;outline:none;
         letter-spacing:.04em;transition:border-color .2s,background .2s;
       }
+      textarea.free-input{min-height:8rem;resize:vertical;line-height:1.55;font-family:"Inter",sans-serif;letter-spacing:0}
       .free-input:focus{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.04)}
       .free-eng-note{
         font-size:.63rem;color:rgba(167,139,250,.6);margin-top:.35rem;font-style:italic;
@@ -430,6 +448,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         box-shadow:0 0 0 1px rgba(255,59,48,.16) inset,0 18px 48px rgba(255,59,48,.12);
       }
       .res-q.rq-focus{outline:2px solid rgba(255,189,120,.75);outline-offset:3px}
+      .review-jump.is-pending{color:#fde68a;border-color:rgba(251,191,36,.45);background:rgba(251,191,36,.1)}
       .res-q-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
       .res-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
       .res-num.ok{background:rgba(52,211,153,.15);color:var(--green)}
@@ -441,6 +460,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       .res-chip.yours.ok{background:rgba(52,211,153,.1);color:var(--green)}
       .res-chip.yours.bad{background:rgba(255,59,48,.16);color:#ffb4ae;border:1px solid rgba(255,59,48,.35)}
       .res-chip.correct{background:rgba(52,211,153,.12);color:var(--green)}
+      .res-q.rq-pending{border-color:rgba(251,191,36,.38);background:linear-gradient(135deg,rgba(251,191,36,.07),rgba(15,15,24,.98) 42%)}
       .res-exp-btn{
         background:none;border:1px solid rgba(255,255,255,.07);color:var(--dim);
         padding:.22rem .65rem;border-radius:.25rem;font-size:.62rem;cursor:pointer;
@@ -462,6 +482,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         background:rgba(255,59,48,.16);border-color:rgba(255,59,48,.7);color:#fff;
         box-shadow:0 0 18px rgba(255,59,48,.18);
       }
+      .res-num.pending{background:rgba(251,191,36,.16);color:#fde68a}
 
       .res-section-divider{
         font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
@@ -490,6 +511,14 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       .progress-save-btn{
         border:0;background:linear-gradient(135deg,#6d28d9,#4f46e5);color:#fff;cursor:pointer;
       }
+      .self-grade-box{margin:.8rem 0 0 2.1rem;padding:.9rem;border:1px solid rgba(251,191,36,.28);border-radius:.45rem;background:rgba(251,191,36,.055)}
+      .self-grade-title{font-size:.72rem;font-weight:700;color:#fde68a;margin-bottom:.55rem}
+      .self-grade-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+      .self-grade-btn{border:1px solid rgba(255,255,255,.12);border-radius:.35rem;padding:.55rem .75rem;background:rgba(255,255,255,.04);color:#bbb;cursor:pointer;font:600 .72rem "Inter",sans-serif}
+      .self-grade-btn.earned{border-color:rgba(52,211,153,.35);color:#86efac;background:rgba(52,211,153,.08)}
+      .self-grade-btn.retry{border-color:rgba(255,59,48,.3);color:#ffb4ae;background:rgba(255,59,48,.07)}
+      .self-grade-btn:hover{filter:brightness(1.2)}
+      .self-grade-btn.sel{outline:2px solid currentColor;outline-offset:2px}
       .progress-save-link{
         display:none;align-items:center;border:1px solid rgba(167,139,250,.28);color:#c4b5fd;
         background:rgba(167,139,250,.08);
@@ -576,6 +605,9 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
             )}
             {audioQuestions.length > 0 && (
               <div class="mode-pill audio">🎧 {isEnglish ? "Questions" : "Preguntas"} {infoQuestions.length + 1}–{infoQuestions.length + audioQuestions.length} · Audio</div>
+            )}
+            {videoQuestions.length > 0 && (
+              <div class="mode-pill video">▶ {videoQuestions.length} {isEnglish ? "video questions" : "preguntas de video"}</div>
             )}
           </div>
         )}
@@ -690,6 +722,9 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       audioSrc: audioSrc ?? "",
       audioTitle: audioTitle ?? "Audio",
       audioMeta,
+      videoSrc: videoSrc ?? "",
+      videoTitle: videoTitle ?? "Video",
+      videoMeta,
       defaultTopbarTitle: resolvedTopbarTitle,
       hasMediaQuestions,
     }}>
@@ -697,9 +732,10 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
+      const rich = s => esc(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
       const fmtPrompt = s => esc(s).trim().replace(/([.?!])\s+—\s+/g, "$1\n— ");
       const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
-      const cf = (inp, acc) => acc.map(nm).some(a => a === nm(inp));
+      const cf = (inp, acc = []) => acc.map(nm).some(a => a === nm(inp));
       const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
       const expectsExactTerm = testSlug.startsWith("ap-world-vocab-");
       const shuffle = items => {
@@ -740,6 +776,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         sourceId: question.id,
         id: index + 1,
       }));
+      const maxPoints = QS.reduce((sum, question) => sum + (question.points || 1), 0);
       const WORD_BANK = [...new Set(QS
         .map(question => question.disp || (question.acc && question.acc[0]) || "")
         .filter(Boolean))]
@@ -760,7 +797,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           ? passage.body
           : passage.body.split(/\n\s*\n/);
         const paragraphs = passageParagraphs
-          .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
+          .map(paragraph => `<p>${rich(paragraph).replace(/\n/g, "<br>")}</p>`)
           .join("");
 
         return `<div class="passage-card">
@@ -773,6 +810,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       const ST = {
         idx: 0,
         answers: {},
+        selfGrades: {},
         secsLeft: duration * 60,
         tick: null,
         timedOut: false,
@@ -845,11 +883,10 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         const typeStats = {};
         const mediaStats = {};
         const questionResults = QS.map(q => {
-          const ans = ST.answers[q.id] || "";
-          const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+          const { ans, ok } = questionOutcome(q);
           const media = q.media || "Standard questions";
           addStat(sectionStats, q.sec, ok);
-          addStat(typeStats, q.type === "mc" ? "Multiple choice" : "Free response", ok);
+          addStat(typeStats, q.type === "mc" ? "Multiple choice" : q.type === "self" ? "Self-graded response" : "Free response", ok);
           addStat(mediaStats, media, ok);
           return {
             id: q.sourceId ?? q.id,
@@ -858,6 +895,8 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
             type: q.type,
             media,
             correct: ok,
+            points: q.points || 1,
+            pointsEarned: ok ? (q.points || 1) : 0,
             prompt: q.prompt,
             choices: q.ch || [],
             correctAnswer: q.cor || "",
@@ -875,7 +914,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           course,
           unit,
           score,
-          total: QS.length,
+          total: maxPoints,
           percent: pct,
           elapsedSeconds: elapsed,
           timedOut: ST.timedOut,
@@ -889,7 +928,11 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
 
       function questionOutcome(q) {
         const ans = ST.answers[q.id] || "";
-        const ok = q.type === "mc" ? ans === q.cor : cf(ans, q.acc);
+        const ok = q.type === "mc"
+          ? ans === q.cor
+          : q.type === "self"
+            ? (Object.hasOwn(ST.selfGrades, q.id) ? ST.selfGrades[q.id] : null)
+            : cf(ans, q.acc);
         return { ans, ok };
       }
 
@@ -905,20 +948,23 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         const rail = document.getElementById("review-rail");
         if (!rail) return;
 
-        const missed = questionStates.filter(({ ok }) => !ok);
+        const missed = questionStates.filter(({ ok }) => ok === false);
+        const pending = questionStates.filter(({ ok }) => ok === null);
         rail.hidden = false;
         rail.innerHTML = `
           <div class="review-rail-title">${isEnglish ? "Review" : "Repaso"}</div>
-          <div class="review-rail-summary">${missed.length
-            ? `<strong>${missed.length}</strong> ${isEnglish ? "missed" : "incorrectas"}`
-            : (isEnglish ? "All correct" : "Todo correcto")}</div>
+          <div class="review-rail-summary">${pending.length
+            ? `<strong>${pending.length}</strong> ${isEnglish ? "to self-grade" : "por autoevaluar"}`
+            : missed.length
+              ? `<strong>${missed.length}</strong> ${isEnglish ? "missed" : "incorrectas"}`
+              : (isEnglish ? "All correct" : "Todo correcto")}</div>
           <div class="review-rail-grid">
             ${questionStates.map(({ q, ok }) => `
               <button
-                class="review-jump ${ok ? "is-ok" : "is-wrong"}"
+                class="review-jump ${ok === null ? "is-pending" : ok ? "is-ok" : "is-wrong"}"
                 type="button"
                 data-review-jump="${q.id}"
-                aria-label="${isEnglish ? "Question" : "Pregunta"} ${q.id}: ${ok ? (isEnglish ? "correct" : "correcta") : (isEnglish ? "wrong" : "incorrecta")}"
+                aria-label="${isEnglish ? "Question" : "Pregunta"} ${q.id}: ${ok === null ? (isEnglish ? "pending self-grade" : "autoevaluación pendiente") : ok ? (isEnglish ? "correct" : "correcta") : (isEnglish ? "wrong" : "incorrecta")}"
               >${q.id}</button>
             `).join("")}
           </div>
@@ -1005,8 +1051,10 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         const pct = (idx / QS.length) * 100;
         bar.style.width = pct + "%";
         const isAudio = QS[idx] && QS[idx].media === "audio";
+        const isVideo = QS[idx] && QS[idx].media === "video";
         bar.style.background = isAudio
           ? "linear-gradient(90deg,#0891b2,#22d3ee)"
+          : isVideo ? "linear-gradient(90deg,#ea580c,#fb923c)"
           : "linear-gradient(90deg,#6d28d9,#a78bfa)";
       }
 
@@ -1021,6 +1069,8 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         document.getElementById("tb-mode").textContent =
           q.media === "audio"
             ? (isEnglish ? "Audio — Interpretive" : "Audio — Interpretivo")
+            : q.media === "video"
+              ? (isEnglish ? "Video — Interpretive" : "Video — Interpretativo")
             : q.media === "infographic"
               ? (isEnglish ? "Infographic — Interpretive" : "Infografía — Interpretativa")
               : defaultTopbarTitle;
@@ -1033,8 +1083,10 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         const isTrueFalse = q.type === "mc" && q.ch?.length === 2 && q.ch[0] === "A) True" && q.ch[1] === "B) False";
         const typeLabel = q.type === "mc"
           ? (isEnglish ? (isTrueFalse ? "True or False" : "Multiple Choice") : "Opción Múltiple")
-          : (isEnglish ? "Free Answer" : "Respuesta Libre");
-        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+          : q.type === "self"
+            ? (isEnglish ? "Short Response · Self-grade" : "Respuesta corta · Autoevaluación")
+            : (isEnglish ? "Free Answer" : "Respuesta Libre");
+        const typeColor = q.type === "mc" ? "#a78bfa" : q.type === "self" ? "#fbbf24" : "#34d399";
         html += `<div class="qsec-label">${esc(q.sec)}</div>`;
         html += `<span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>`;
 
@@ -1052,6 +1104,20 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           </div>`;
         }
 
+        if (q.media === "video" && videoSrc) {
+          html += `<div class="video-wrap">
+            <div class="video-label">▶ ${esc(videoTitle)}</div>
+            <iframe
+              src="${videoSrc}"
+              class="video-frame"
+              title="${esc(videoTitle)}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+            <p class="video-meta">${esc(videoMeta)} · ${isEnglish ? "Replay as needed before answering." : "Reproduce el video las veces que necesites."}</p>
+          </div>`;
+        }
+
         if (q.passage) {
           html += renderPassageCard(q);
         }
@@ -1065,16 +1131,22 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           });
           html += `</div>`;
         } else {
-          const labelText = expectsExactTerm
-            ? "Enter the matching term"
-            : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
-          const placeholderText = expectsExactTerm
-            ? "type the term…"
-            : q.eng ? "short English phrase…" : "tu respuesta…";
+          const isSelf = q.type === "self";
+          const labelText = isSelf
+            ? (q.eng ? "Write 1–2 sentences in English" : "Escribe 1–2 oraciones en español")
+            : expectsExactTerm
+              ? "Enter the matching term"
+              : q.eng ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = isSelf
+            ? (q.eng ? "your short response…" : "tu respuesta corta…")
+            : expectsExactTerm
+              ? "type the term…"
+              : q.eng ? "short English phrase…" : "tu respuesta…";
           html += `<div class="free-wrap">
             <div class="free-label">${labelText}</div>
-            <input class="free-input" id="freeinp" placeholder="${placeholderText}"
-              oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">
+            ${isSelf
+              ? `<textarea class="free-input" id="freeinp" placeholder="${placeholderText}" oninput="freeTyped()"></textarea>`
+              : `<input class="free-input" id="freeinp" placeholder="${placeholderText}" oninput="freeTyped()" onkeydown="if(event.key==='Enter')tryNext()">`}
             ${showAnswerBank ? `<div class="answer-bank">
                 <div class="answer-bank-label">Word bank</div>
                 <div class="answer-bank-options">
@@ -1102,6 +1174,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
                   <button class="accent-btn" data-char="Ñ" type="button">Ñ</button>\
                 </div>\
               </div>' : '<p class="free-eng-note">Answer in English — describe what you think the word means based on context.</p>'}
+            ${isSelf ? '<p class="free-eng-note">After submitting, compare your response with the checklist and award the point yourself.</p>' : ''}
           </div>`;
         }
 
@@ -1155,7 +1228,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           }
         }
 
-        if (q.type === "free") {
+        if (q.type !== "mc") {
           setTimeout(() => {
             const inp = document.getElementById("freeinp");
             if (inp) inp.focus();
@@ -1213,7 +1286,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
 
       function tryNext() {
         const q = QS[ST.idx];
-        if (q.type === "free") {
+        if (q.type !== "mc") {
           const inp = document.getElementById("freeinp");
           if (inp) ST.answers[q.id] = inp.value;
         }
@@ -1226,7 +1299,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       function goBack() {
         if (!allowBack || ST.idx <= 0) return;
         const q = QS[ST.idx];
-        if (q.type === "free") {
+        if (q.type !== "mc") {
           const inp = document.getElementById("freeinp");
           if (inp) ST.answers[q.id] = inp.value;
         }
@@ -1234,76 +1307,74 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         renderQ();
       }
 
-      function showResults() {
+      function showResults(fromSelfGrade = false) {
         document.body.classList.remove("oa-exam-running");
         clearInterval(ST.tick);
         const elapsed = duration * 60 - ST.secsLeft;
 
         const questionStates = QS.map(q => ({ q, ...questionOutcome(q) }));
-        const score = questionStates.reduce((total, { ok }) => total + (ok ? 1 : 0), 0);
-        const pct = Math.round((score / QS.length) * 100);
+        const score = questionStates.reduce((sum, { q, ok }) => sum + (ok ? (q.points || 1) : 0), 0);
+        const pct = Math.round((score / maxPoints) * 100);
+        const pendingSelfCount = questionStates.filter(({ ok }) => ok === null).length;
         latestAttemptPayload = buildAttemptPayload(score, pct, elapsed);
 
         const exam = document.getElementById("s-exam");
         const results = document.getElementById("s-results");
 
-        exam.classList.remove("active");
-        exam.hidden = true;
-        results.hidden = false;
-        results.classList.add("active");
-        window.scrollTo(0, 0);
+        if (!fromSelfGrade) {
+          exam.classList.remove("active");
+          exam.hidden = true;
+          results.hidden = false;
+          results.classList.add("active");
+          window.scrollTo(0, 0);
 
-        const audio = document.getElementById("test-audio");
-        if (audio) audio.pause();
+          const audio = document.getElementById("test-audio");
+          if (audio) audio.pause();
+        }
 
         const hdr = document.getElementById("res-header");
-        hdr.style.background = pct >= 80
-          ? "linear-gradient(135deg,#052e16,#064e3b)"
-          : pct >= 55
-            ? "linear-gradient(135deg,#431407,#78350f)"
-            : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
+        hdr.style.background = pendingSelfCount
+          ? "linear-gradient(135deg,#422006,#713f12)"
+          : pct >= 80
+            ? "linear-gradient(135deg,#052e16,#064e3b)"
+            : pct >= 55
+              ? "linear-gradient(135deg,#431407,#78350f)"
+              : "linear-gradient(135deg,#3b0a0a,#6b1d1d)";
 
-        document.getElementById("res-score").textContent = `${score}/${QS.length}`;
+        document.getElementById("res-score").textContent = `${score}/${maxPoints}`;
 
         const mcQ = QS.filter(q => q.type === "mc");
         const freeQ = QS.filter(q => q.type === "free");
-        const mcScore = mcQ.reduce((a, q) => a + (ST.answers[q.id] === q.cor ? 1 : 0), 0);
-        const freeScore = freeQ.reduce((a, q) => a + (cf(ST.answers[q.id] || "", q.acc) ? 1 : 0), 0);
-
+        const selfQ = QS.filter(q => q.type === "self");
         const infoQ = QS.filter(q => q.media === "infographic");
         const audioQ = QS.filter(q => q.media === "audio");
-        const infoScore = infoQ.reduce((a, q) => {
-          const ans = ST.answers[q.id] || "";
-          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
-        }, 0);
-        const audioScore = audioQ.reduce((a, q) => {
-          const ans = ST.answers[q.id] || "";
-          return a + (q.type === "mc" ? (ans === q.cor ? 1 : 0) : (cf(ans, q.acc) ? 1 : 0));
-        }, 0);
-
-        document.getElementById("res-pct").textContent = hasMediaQuestions
-          ? (isEnglish
-            ? `Infographic: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Multiple choice: ${mcScore}/${mcQ.length}  ·  Free answer: ${freeScore}/${freeQ.length}`
-            : `Infografía: ${infoScore}/${infoQ.length}  ·  Audio: ${audioScore}/${audioQ.length}  ·  Opción múltiple: ${mcScore}/${mcQ.length}  ·  Vocabulario: ${freeScore}/${freeQ.length}`)
-          : isEnglish
-            ? [
-                freeQ.length ? `Free answer: ${freeScore}/${freeQ.length}` : "",
-                mcQ.length ? `Multiple choice: ${mcScore}/${mcQ.length}` : "",
-              ].filter(Boolean).join("  ·  ")
-            : `Opción múltiple: ${mcScore}/${mcQ.length}  ·  Respuesta libre: ${freeScore}/${freeQ.length}`;
+        const videoQ = QS.filter(q => q.media === "video");
+        const earned = qs => qs.reduce((sum, q) => sum + (questionOutcome(q).ok ? (q.points || 1) : 0), 0);
+        const possible = qs => qs.reduce((sum, q) => sum + (q.points || 1), 0);
+        const summaryParts = [
+          videoQ.length ? `Video: ${earned(videoQ)}/${possible(videoQ)} points` : "",
+          infoQ.length ? `${isEnglish ? "Infographic" : "Infografía"}: ${earned(infoQ)}/${possible(infoQ)}` : "",
+          audioQ.length ? `Audio: ${earned(audioQ)}/${possible(audioQ)}` : "",
+          mcQ.length && !videoQ.length ? `${isEnglish ? "Multiple choice" : "Opción múltiple"}: ${earned(mcQ)}/${possible(mcQ)}` : "",
+          freeQ.length ? `${isEnglish ? "Vocabulary" : "Vocabulario"}: ${earned(freeQ)}/${possible(freeQ)}` : "",
+          selfQ.length ? (pendingSelfCount
+            ? `${pendingSelfCount} ${isEnglish ? "response(s) still need self-grading" : "respuesta(s) por autoevaluar"}`
+            : `${isEnglish ? "Self-graded" : "Autoevaluación"}: ${earned(selfQ)}/${possible(selfQ)}`) : "",
+        ].filter(Boolean);
+        document.getElementById("res-pct").textContent = summaryParts.join("  ·  ");
 
         const msgs = isEnglish
           ? [[90, "Exceptional mastery."], [75, "Strong understanding."], [55, "Partial understanding — review the missed questions and concepts."], [0, "Keep studying and try again."]]
-          : hasMediaQuestions
-          ? [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa las fuentes."], [0, "Hay trabajo por hacer."]]
           : [[90, "Dominio excepcional."], [75, "Comprensión muy sólida."], [55, "Comprensión parcial — repasa los contextos."], [0, "Hay trabajo por hacer."]];
-        document.getElementById("res-msg").textContent = `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
+        document.getElementById("res-msg").textContent = pendingSelfCount
+          ? (isEnglish ? "Score pending — grade the written responses below." : "Resultado pendiente — autoevalúa las respuestas escritas.")
+          : `${pct}% — ${msgs.find(([n]) => pct >= n)[1]}`;
         document.getElementById("res-time").textContent = ST.timedOut
           ? (isEnglish ? "⚠ Time expired" : "⚠ Tiempo agotado")
           : `${isEnglish ? "Time" : "Tiempo"}: ${fmtT(elapsed)}`;
 
         if (ST.timedOut) document.getElementById("timeout-banner").style.display = "block";
-        saveLatestAttempt();
+        if (!pendingSelfCount) saveLatestAttempt();
         renderReviewRail(questionStates);
 
         const list = document.getElementById("res-list");
@@ -1316,18 +1387,22 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
             div.className = "res-section-divider";
             div.innerHTML = q.media === "infographic"
               ? `📊 ${isEnglish ? "Infographic" : "Infografía"} — ${infographicTitle}`
-              : `🎧 Audio — ${audioTitle}`;
+              : q.media === "video"
+                ? `▶ Video — ${videoTitle}`
+                : `🎧 Audio — ${audioTitle}`;
             list.appendChild(div);
             lastMedia = q.media;
           }
 
           const card = document.createElement("div");
           card.id = `res-q-${q.id}`;
-          card.className = `res-q ${ok ? "rq-ok" : "rq-bad"}`;
-          const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+          const stateClass = ok === null ? "rq-pending" : ok ? "rq-ok" : "rq-bad";
+          const numberClass = ok === null ? "pending" : ok ? "ok" : "bad";
+          card.className = `res-q ${stateClass}`;
+          const typeColor = q.type === "mc" ? "#a78bfa" : q.type === "self" ? "#fbbf24" : "#34d399";
 
           let html = `<div class="res-q-top">
-            <div class="res-num ${ok ? "ok" : "bad"}">${q.id}</div>
+            <div class="res-num ${numberClass}">${q.id}</div>
             <div>
               <span style="font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:${typeColor}18;color:${typeColor};border-radius:.2rem;padding:.08rem .38rem;display:inline-block;margin-bottom:.4rem">${q.sec}</span>
               <p class="res-prompt">${fmtPrompt(q.prompt)}</p>
@@ -1349,20 +1424,37 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
           } else {
             html += `<div class="res-ans-row">`;
             html += ans
-              ? `<span class="res-chip yours ${ok ? "ok" : "bad"}">${isEnglish ? "Your answer" : "Tu respuesta"}: ${ans}</span>`
+              ? `<span class="res-chip yours ${ok === null ? "" : ok ? "ok" : "bad"}">${isEnglish ? "Your answer" : "Tu respuesta"}: ${esc(ans)}</span>`
               : `<span class="res-chip yours bad">${isEnglish ? "No answer" : "Sin respuesta"}</span>`;
-            if (!ok) html += `<span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${q.disp}</span>`;
+            if (q.type === "free" && !ok) html += `<span class="res-chip correct">${isEnglish ? "Correct" : "Correcta"}: ${esc(q.disp)}</span>`;
             html += `</div>`;
           }
 
-          html += `<button class="res-exp-btn" onclick="togE(${q.id})">${isEnglish ? "View explanation" : "Ver explicación"}</button>
-          <div class="res-exp-box" id="rexp${q.id}">
-            ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp}
+          html += `<button class="res-exp-btn" onclick="togE(${q.id})">${q.type === "self" ? (isEnglish ? "View grading checklist" : "Ver criterios") : (isEnglish ? "View explanation" : "Ver explicación")}</button>
+          <div class="res-exp-box${q.type === "self" ? " open" : ""}" id="rexp${q.id}">
+            ${q.type === "mc" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp}
           </div>`;
+
+          if (q.type === "self") {
+            const selected = Object.hasOwn(ST.selfGrades, q.id) ? ST.selfGrades[q.id] : null;
+            html += `<div class="self-grade-box">
+              <div class="self-grade-title">${isEnglish ? "Does your response meet the checklist above?" : "¿Tu respuesta cumple con los criterios de arriba?"}</div>
+              <div class="self-grade-actions">
+                <button class="self-grade-btn earned${selected === true ? " sel" : ""}" type="button" onclick="gradeSelf(${q.id}, true)">✓ ${isEnglish ? "Award 1 point" : "Dar 1 punto"}</button>
+                <button class="self-grade-btn retry${selected === false ? " sel" : ""}" type="button" onclick="gradeSelf(${q.id}, false)">○ ${isEnglish ? "No point yet" : "Todavía no"}</button>
+              </div>
+            </div>`;
+          }
 
           card.innerHTML = html;
           list.appendChild(card);
         });
+      }
+
+      function gradeSelf(id, earned) {
+        ST.selfGrades[id] = earned;
+        showResults(true);
+        requestAnimationFrame(() => document.getElementById(`res-q-${id}`)?.scrollIntoView({ block: "center" }));
       }
 
       function togE(id) {
@@ -1375,7 +1467,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       }
 
       function renderReviewQuestion(q) {
-        const typeColor = q.type === "mc" ? "#a78bfa" : "#34d399";
+        const typeColor = q.type === "mc" ? "#a78bfa" : q.type === "self" ? "#fbbf24" : "#34d399";
         let html = `<div class="res-q rq-bad">
           <div class="res-q-top">
             <div class="res-num bad">${q.id}</div>
@@ -1391,6 +1483,8 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
             html += `<div class="res-mc-choice ${c[0] === q.cor ? "rc-right" : ""}">${esc(c)}</div>`;
           });
           html += `</div>`;
+        } else if (q.type === "self") {
+          html += `<div class="res-ans-row"><span class="res-chip yours">${isEnglish ? "Student self-grades this response" : "El estudiante autoevalúa esta respuesta"}</span></div>`;
         } else {
           const correct = q.disp || (q.acc || []).join(", ");
           html += `<div class="res-ans-row">
@@ -1399,7 +1493,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         }
 
         html += `<div class="res-exp-box open" id="rexp${q.id}">
-          ${q.type !== "free" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp || (isEnglish ? "Review the prompt, correct answer, and source context for this question." : "Repasa la pregunta, la respuesta correcta y el contexto de la fuente.")}
+          ${q.type === "mc" ? `<strong style="color:#a0a0c0">${isEnglish ? "Correct answer" : "Correcto"}: ${q.cor} · </strong>` : ""}${q.exp || (isEnglish ? "Review the prompt, correct answer, and source context for this question." : "Repasa la pregunta, la respuesta correcta y el contexto de la fuente.")}
         </div></div>`;
         return html;
       }
@@ -1452,6 +1546,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       window.tryNext = tryNext;
       window.goBack = goBack;
       window.togE = togE;
+      window.gradeSelf = gradeSelf;
       showReviewFromUrl();
     </script>
   </body>
