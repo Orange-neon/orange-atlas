@@ -1,25 +1,26 @@
 ---
-title: "La naturaleza 11: video interpretativo"
+title: "La naturaleza 11: comprensión auditiva — Guatemala"
 duration: 5
-difficulty: "Video interpretativo"
-description: "Mira un video de un minuto sobre la naturaleza de Costa Rica y contesta cinco afirmaciones de verdadero o falso por un total de siete puntos."
+difficulty: "Comprensión auditiva"
+description: "Escucha un minuto de narración en español sobre Guatemala y contesta cinco afirmaciones de verdadero o falso por un total de siete puntos."
 course: "Spanish 3"
 unit: "Unidad 1 - La Naturaleza"
 examCode: "La Naturaleza 11"
-heroTitle: "Video breve"
-heroAccent: "Costa Rica"
-topbarTitle: "La naturaleza · Video interpretativo"
-landingKicker: "Español 3 · Unidad 1 · Video"
+heroTitle: "Escucha breve"
+heroAccent: "Semuc Champey"
+topbarTitle: "La naturaleza · Comprensión auditiva"
+landingKicker: "Español 3 · Unidad 1 · Audio en español"
 uiLanguage: "en"
 questionCount: 5
 sourceCount: 1
 extraStatValue: 7
 extraStatLabel: "points"
-videoTitle: "Costa Rica en un minuto"
-videoDescription: "Milo Content · Parque Volcán Tenorio y Río Celeste · 1 minute"
-videoSrc: "https://www.youtube-nocookie.com/embed/Q59X4oHj7Mg?rel=0"
+videoTitle: "Guatemala y Semuc Champey · narración en español"
+videoDescription: "Planet Doc · segmento con audio en español · 1 minute"
+videoSrc: "https://www.youtube-nocookie.com/embed/8y6WehGb5BM?start=11&end=71&rel=0"
 rules:
-  - "Watch the one-minute video before answering. You may replay it as needed."
+  - "Listen carefully to the spoken Spanish in the one-minute video. You may replay it as needed."
+  - "The questions test what you hear, not only what you see."
   - "All five questions are True or False."
   - "Questions 1–2 are worth 2 points each; questions 3–5 are worth 1 point each."
   - "Answer one question at a time; you cannot go back."
@@ -28,58 +29,58 @@ questionsJson: |
   [
     {
       "id": 1,
-      "sec": "Video Comprehension · 2 points",
+      "sec": "Listening Comprehension · 2 points",
       "type": "mc",
       "media": "video",
       "points": 2,
-      "prompt": "True or False: The destination identified in the video is Parque Volcán Tenorio in Costa Rica.",
+      "prompt": "True or False: After the great Maya cities collapsed, the center of the civilization moved north toward the Yucatán Peninsula.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The video presents Parque Volcán Tenorio as the destination for this nature experience."
+      "exp": "The narrator says that the center of the civilization moved north toward the Yucatán Peninsula."
     },
     {
       "id": 2,
-      "sec": "Video Comprehension · 2 points",
+      "sec": "Listening Comprehension · 2 points",
       "type": "mc",
       "media": "video",
       "points": 2,
-      "prompt": "True or False: Río Celeste is shown with striking blue or turquoise water.",
+      "prompt": "True or False: Later groups traveled toward present-day Guatemala, where the Quiché people became predominant.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "Río Celeste's vivid blue-turquoise color is one of the central natural images in the video."
+      "exp": "The narrator explains that groups migrated toward present-day Guatemala and that the Quiché became predominant."
     },
     {
       "id": 3,
-      "sec": "Video Comprehension · 1 point",
+      "sec": "Listening Comprehension · 1 point",
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: The video takes place entirely in a crowded city with skyscrapers and heavy traffic.",
+      "prompt": "True or False: According to the narrator, the name Semuc Champey means “mountain covered with snow.”",
       "ch": ["A) True", "B) False"],
       "cor": "B",
-      "exp": "The video emphasizes a natural landscape, including tropical vegetation and the river, rather than an urban setting."
+      "exp": "The narrator gives the meaning as “agua sagrada que se esconde en la piedra,” not a snow-covered mountain."
     },
     {
       "id": 4,
-      "sec": "Video Comprehension · 1 point",
+      "sec": "Listening Comprehension · 1 point",
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: The travelers walk through a lush tropical environment.",
+      "prompt": "True or False: Semuc Champey is in Alta Verapaz, south of the forests of Petén.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The travelers are shown exploring on foot among dense green vegetation."
+      "exp": "The narrator locates Semuc Champey in Alta Verapaz, south of the forests of Petén."
     },
     {
       "id": 5,
-      "sec": "Video Comprehension · 1 point",
+      "sec": "Listening Comprehension · 1 point",
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: Snow and ice are the main natural features shown in the video.",
+      "prompt": "True or False: The narrator says that the valley has very little variety of plants and animals.",
       "ch": ["A) True", "B) False"],
       "cor": "B",
-      "exp": "The principal images are tropical forest and Río Celeste, not a snowy or icy landscape."
+      "exp": "The narrator describes tropical forest with a great diversity of flora and fauna."
     }
   ]
 ---

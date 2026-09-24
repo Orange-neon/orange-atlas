@@ -1,25 +1,26 @@
 ---
-title: "La naturaleza 13: video del Volcán Arenal"
+title: "La naturaleza 13: comprensión auditiva — el quetzal"
 duration: 5
-difficulty: "Video interpretativo"
-description: "Mira un segmento de un minuto sobre el Volcán Arenal y contesta cinco afirmaciones nuevas de verdadero o falso por un total de siete puntos."
+difficulty: "Comprensión auditiva"
+description: "Escucha un minuto de narración en español sobre el quetzal y contesta cinco afirmaciones de verdadero o falso por un total de siete puntos."
 course: "Spanish 3"
 unit: "Unidad 1 - La Naturaleza"
 examCode: "La Naturaleza 13"
-heroTitle: "Video breve"
-heroAccent: "Volcán Arenal"
-topbarTitle: "La naturaleza · Volcán Arenal"
-landingKicker: "Español 3 · Unidad 1 · Video"
+heroTitle: "Escucha breve"
+heroAccent: "El quetzal"
+topbarTitle: "La naturaleza · Comprensión auditiva"
+landingKicker: "Español 3 · Unidad 1 · Audio en español"
 uiLanguage: "en"
 questionCount: 5
 sourceCount: 1
 extraStatValue: 7
 extraStatLabel: "points"
-videoTitle: "Caminando por un volcán activo en Costa Rica · segmento de un minuto"
-videoDescription: "Luisito Comunica · Volcán Arenal · 0:00–1:00"
-videoSrc: "https://www.youtube-nocookie.com/embed/eNLzTzHHgA4?start=0&end=60&rel=0"
+videoTitle: "Cinco especies de quetzal · narración en español"
+videoDescription: "Mr. Hidalgo · audio en español · 1 minute"
+videoSrc: "https://www.youtube-nocookie.com/embed/b-Di_uJDIIU?start=0&end=60&rel=0"
 rules:
-  - "Watch the one-minute excerpt before answering. You may replay it as needed."
+  - "Listen carefully to the spoken Spanish in the one-minute video. You may replay it as needed."
+  - "The questions test what you hear, not only what you see."
   - "All five questions are True or False."
   - "Questions 1–2 are worth 2 points each; questions 3–5 are worth 1 point each."
   - "Answer one question at a time; you cannot go back."
@@ -28,58 +29,58 @@ questionsJson: |
   [
     {
       "id": 1,
-      "sec": "Video Comprehension · 2 points",
+      "sec": "Listening Comprehension · 2 points",
       "type": "mc",
       "media": "video",
       "points": 2,
-      "prompt": "True or False: The video identifies the destination as Volcán Arenal in Costa Rica.",
+      "prompt": "True or False: The speaker identifies the quetzal as the national bird of Guatemala.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The title and opening identify Volcán Arenal as the Costa Rican destination."
+      "exp": "At the beginning, the speaker calls the quetzal Guatemala's national bird."
     },
     {
       "id": 2,
-      "sec": "Video Comprehension · 2 points",
+      "sec": "Listening Comprehension · 2 points",
       "type": "mc",
       "media": "video",
       "points": 2,
-      "prompt": "True or False: The introduction connects the Arenal region with both a tragic past and its present-day natural appeal.",
+      "prompt": "True or False: The narrator says that there are five species of quetzal.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The opening contrasts the region's tragic history with the life, tourism, and nature found there today."
+      "exp": "The speaker introduces a list of five quetzal species."
     },
     {
       "id": 3,
-      "sec": "Video Comprehension · 1 point",
+      "sec": "Listening Comprehension · 1 point",
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: The segment presents Arenal as an entirely lifeless region with no visitors or vegetation.",
+      "prompt": "True or False: The Guatemalan quetzal lives only inside the borders of Guatemala.",
       "ch": ["A) True", "B) False"],
       "cor": "B",
-      "exp": "The segment presents Arenal as a place associated with nature and tourism, not as a lifeless region."
+      "exp": "The speaker says that the Guatemalan quetzal lives from southern Mexico to Panama."
     },
     {
       "id": 4,
-      "sec": "Video Comprehension · 1 point",
+      "sec": "Listening Comprehension · 1 point",
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: The speaker introduces a volcanic landscape rather than a coastal city or island.",
+      "prompt": "True or False: The golden-headed quetzal gets its name from the golden color of its crest.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The subject of the excerpt is the Volcán Arenal region and its volcanic landscape."
+      "exp": "The narrator explains that its name comes from its golden-colored crest."
     },
     {
       "id": 5,
-      "sec": "Video Comprehension · 1 point",
+      "sec": "Listening Comprehension · 1 point",
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: The video says that Volcán Arenal is located in Guatemala.",
+      "prompt": "True or False: The fifth species mentioned lives in Amazon forests between Venezuela and Brazil.",
       "ch": ["A) True", "B) False"],
-      "cor": "B",
-      "exp": "Volcán Arenal is in Costa Rica."
+      "cor": "A",
+      "exp": "The speaker locates the fifth species in the Amazon between Venezuela and Brazil."
     }
   ]
 ---
