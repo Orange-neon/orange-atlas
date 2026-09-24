@@ -184,7 +184,7 @@ questionsJson: |
       "passage": true,
       "eng": false,
       "prompt": "Escribe una oración sobre el futuro del sendero con una expresión de deseo o esperanza que requiera el subjuntivo, como «Espero que…» o «Deseo que…».",
-      "exp": "<strong>Criterios de autoevaluación (1 punto):</strong> Da el punto si expresaste un deseo o una esperanza lógica y usaste correctamente el presente del subjuntivo. Ejemplos: «Espero que los visitantes respeten las señales» o «Deseo que el bosque continúe recuperándose»."
+      "exp": "<strong>Self-grading requirements (1 point):</strong> Award the point if you expressed a logical wish or hope and correctly used the present subjunctive. Examples: «Espero que los visitantes respeten las señales» or «Deseo que el bosque continúe recuperándose»."
     }
   ]
 ---

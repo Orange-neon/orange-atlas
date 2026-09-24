@@ -184,7 +184,7 @@ questionsJson: |
       "passage": true,
       "eng": false,
       "prompt": "Escribe una recomendación breve para los visitantes del sendero. Usa una expresión que requiera el subjuntivo, como «Es importante que…», «Recomiendo que…» o «Es necesario que…».",
-      "exp": "<strong>Criterios de autoevaluación (1 punto):</strong> Da el punto si escribiste una recomendación lógica sobre el sendero y usaste correctamente el presente del subjuntivo después de una expresión que lo requiere. Ejemplos: «Es importante que los visitantes permanezcan en el sendero» o «Recomiendo que lleven agua y usen zapatos apropiados»."
+      "exp": "<strong>Self-grading requirements (1 point):</strong> Award the point if you wrote a logical recommendation about the trail and correctly used the present subjunctive after an expression that requires it. Examples: «Es importante que los visitantes permanezcan en el sendero» or «Recomiendo que lleven agua y usen zapatos apropiados»."
     }
   ]
 ---

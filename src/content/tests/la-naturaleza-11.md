@@ -1,8 +1,8 @@
 ---
 title: "La naturaleza 11: comprensión auditiva — Guatemala"
 duration: 5
-difficulty: "Comprensión auditiva"
-description: "Escucha un minuto de narración en español sobre Guatemala y contesta cinco afirmaciones de verdadero o falso por un total de siete puntos."
+difficulty: "Comprensión auditiva · inferencia"
+description: "Escucha un minuto de narración en español sobre Guatemala y contesta cinco afirmaciones de inferencia por un total de siete puntos."
 course: "Spanish 3"
 unit: "Unidad 1 - La Naturaleza"
 examCode: "La Naturaleza 11"
@@ -20,7 +20,7 @@ videoDescription: "Planet Doc · segmento con audio en español · 1 minute"
 videoSrc: "https://www.youtube-nocookie.com/embed/8y6WehGb5BM?start=11&end=71&rel=0"
 rules:
   - "Listen carefully to the spoken Spanish in the one-minute video. You may replay it as needed."
-  - "The questions test what you hear, not only what you see."
+  - "The statements paraphrase or imply ideas from the narration; use evidence and inference rather than matching exact words."
   - "All five questions are True or False."
   - "Questions 1–2 are worth 2 points each; questions 3–5 are worth 1 point each."
   - "Answer one question at a time; you cannot go back."
@@ -33,10 +33,10 @@ questionsJson: |
       "type": "mc",
       "media": "video",
       "points": 2,
-      "prompt": "True or False: After the great Maya cities collapsed, the center of the civilization moved north toward the Yucatán Peninsula.",
+      "prompt": "True or False: The collapse of the great Maya cities changed the civilization’s geographic center but did not immediately erase Maya civilization.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The narrator says that the center of the civilization moved north toward the Yucatán Peninsula."
+      "exp": "True. A civilization whose center moved toward Yucatán continued in a new geographic focus rather than disappearing at once."
     },
     {
       "id": 2,
@@ -44,10 +44,10 @@ questionsJson: |
       "type": "mc",
       "media": "video",
       "points": 2,
-      "prompt": "True or False: Later groups traveled toward present-day Guatemala, where the Quiché people became predominant.",
+      "prompt": "True or False: The narration suggests that every group arriving in present-day Guatemala had equal influence there.",
       "ch": ["A) True", "B) False"],
-      "cor": "A",
-      "exp": "The narrator explains that groups migrated toward present-day Guatemala and that the Quiché became predominant."
+      "cor": "B",
+      "exp": "False. The Quiché are described as predominant, so the groups did not all have equal influence."
     },
     {
       "id": 3,
@@ -55,10 +55,10 @@ questionsJson: |
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: According to the narrator, the name Semuc Champey means “mountain covered with snow.”",
+      "prompt": "True or False: The place’s name connects its identity to water that is partly concealed by rock.",
       "ch": ["A) True", "B) False"],
-      "cor": "B",
-      "exp": "The narrator gives the meaning as “agua sagrada que se esconde en la piedra,” not a snow-covered mountain."
+      "cor": "A",
+      "exp": "True. The stated meaning—sacred water hidden in stone—links both water and rock to the place’s identity."
     },
     {
       "id": 4,
@@ -66,10 +66,10 @@ questionsJson: |
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: Semuc Champey is in Alta Verapaz, south of the forests of Petén.",
+      "prompt": "True or False: A traveler going north from Semuc Champey would be moving generally toward the forests of Petén.",
       "ch": ["A) True", "B) False"],
       "cor": "A",
-      "exp": "The narrator locates Semuc Champey in Alta Verapaz, south of the forests of Petén."
+      "exp": "True. If Semuc Champey is south of Petén’s forests, traveling north would move toward them."
     },
     {
       "id": 5,
@@ -77,10 +77,10 @@ questionsJson: |
       "type": "mc",
       "media": "video",
       "points": 1,
-      "prompt": "True or False: The narrator says that the valley has very little variety of plants and animals.",
+      "prompt": "True or False: Based on the description, the valley would offer little value to someone studying biodiversity.",
       "ch": ["A) True", "B) False"],
       "cor": "B",
-      "exp": "The narrator describes tropical forest with a great diversity of flora and fauna."
+      "exp": "False. A tropical forest with great diversity of flora and fauna would be valuable for studying biodiversity."
     }
   ]
 ---
