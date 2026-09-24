@@ -20,7 +20,7 @@ interface Question {
 interface Passage {
   label: string;
   title: string;
-  body: string;
+  body: string | string[];
 }
 
 interface Props {
@@ -756,8 +756,10 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         const passage = getQuestionPassage(q);
         if (!passage) return "";
 
-        const paragraphs = passage.body
-          .split(/\n\s*\n/)
+        const passageParagraphs = Array.isArray(passage.body)
+          ? passage.body
+          : passage.body.split(/\n\s*\n/);
+        const paragraphs = passageParagraphs
           .map(paragraph => `<p>${esc(paragraph).replace(/\n/g, "<br>")}</p>`)
           .join("");
 
