@@ -968,6 +968,39 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         color: #c4b5fd;
       }
 
+      .miss-review textarea.free-input {
+        min-height: 8rem;
+        line-height: 1.6;
+        resize: vertical;
+      }
+
+      .miss-review .review-self-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 0.85rem;
+      }
+
+      .miss-review .review-self-btn {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 0.4rem;
+        background: rgba(255, 255, 255, 0.055);
+        color: #f4f4f8;
+        cursor: pointer;
+        font: 700 0.76rem "Inter", sans-serif;
+        padding: 0.65rem 0.8rem;
+      }
+
+      .miss-review .review-self-btn.earned {
+        border-color: rgba(52, 211, 153, 0.35);
+        color: #86efac;
+      }
+
+      .miss-review .review-self-btn.retry {
+        border-color: rgba(251, 191, 36, 0.35);
+        color: #fde68a;
+      }
+
       .miss-review .btn-next {
         width: 100%;
         border: 1px solid rgba(255, 255, 255, 0.06);
@@ -1544,12 +1577,29 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
 
       function normalizeAnswer(value) {
         return String(value ?? "")
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
+          .normalize("NFC")
           .toLowerCase()
           .trim()
           .replace(/\s+/g, " ")
           .replace(/[.,!?;:'"()]/g, "");
+      }
+
+      function accentGroup(value) {
+        return normalizeAnswer(String(value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+      }
+
+      function hasSpanishAccent(value) {
+        return /[áéíóúüñÁÉÍÓÚÜÑ]/.test(String(value ?? ""));
+      }
+
+      function strictAcceptedAnswers(values) {
+        return (values || []).filter((candidate) => {
+          const key = accentGroup(candidate);
+          const accentedVariantExists = values.some((other) =>
+            accentGroup(other) === key && hasSpanishAccent(other)
+          );
+          return !accentedVariantExists || hasSpanishAccent(candidate);
+        });
       }
 
       function missKey(attempt, question) {
@@ -1832,52 +1882,68 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         if (!passage) return "";
         const body = typeof passage === "string" ? passage : passage.body || passage.text || "";
         const title = typeof passage === "object" && passage.title ? passage.title : "Reading passage";
-        if (!body) return "";
-        return `<div class="passage-card">
-          <div class="passage-label">${esc(title)}</div>
-          <div class="passage-body">${esc(body)}</div>
-        </div>`;
+        const paragraphs = Array.isArray(body)
+          ? body
+          : String(body).split(/\n\s*\n/);
+        const formatted = paragraphs
+          .map((paragraph) => "<p>" + esc(paragraph).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>") + "</p>")
+          .join("");
+        if (!formatted) return "";
+        return '<div class="passage-card">'
+          + '<div class="passage-label">' + esc(title) + '</div>'
+          + '<div class="passage-body">' + formatted + '</div>'
+          + '</div>';
       }
 
       function reviewQuestionHtml(review) {
         const detail = review.detail;
         const isEnglishReview = review.test?.uiLanguage === "en";
-        const typeColor = detail.type === "mc" ? "#a78bfa" : "#34d399";
+        const isSelf = detail.type === "self";
+        const typeColor = detail.type === "mc" ? "#a78bfa" : isSelf ? "#fbbf24" : "#34d399";
         const typeLabel = detail.type === "mc"
           ? (isEnglishReview ? "Multiple Choice" : "Opción Múltiple")
-          : (isEnglishReview ? "Free Answer" : "Respuesta Libre");
-        let html = `<div class="qsec-label">${esc(detail.section || review.question.section || "Uncategorized")}</div>
-          <span class="qtype-badge" style="background:${typeColor}18;color:${typeColor}">${typeLabel}</span>
-          ${passageHtml(detail.passage)}
-          <p class="qprompt">${esc(detail.prompt)}</p>`;
+          : isSelf
+            ? (isEnglishReview ? "Long Response · Self-grade" : "Respuesta larga · Autoevaluación")
+            : (isEnglishReview ? "Free Answer" : "Respuesta Libre");
+        let html = '<div class="qsec-label">' + esc(detail.section || review.question.section || "Uncategorized") + '</div>'
+          + '<span class="qtype-badge" style="background:' + typeColor + '18;color:' + typeColor + '">' + typeLabel + '</span>'
+          + passageHtml(detail.passage)
+          + '<p class="qprompt">' + esc(detail.prompt) + '</p>';
 
         if (detail.type === "mc" && detail.choices?.length) {
-          html += `<div class="choices-grid">`;
+          html += '<div class="choices-grid">';
           detail.choices.forEach((choice) => {
             const value = String(choice).slice(0, 1);
-            html += `<button class="choice-btn" type="button" data-review-choice="${escAttr(value)}">${esc(choice)}</button>`;
+            html += '<button class="choice-btn" type="button" data-review-choice="' + escAttr(value) + '">' + esc(choice) + '</button>';
           });
-          html += `</div>`;
+          html += '</div>';
         } else {
-          const labelText = isEnglishReview
-            ? "Enter the matching term"
-            : detail.englishAnswer ? "Write a short English phrase" : "Escribe tu respuesta";
-          const placeholderText = isEnglishReview
-            ? "your answer..."
-            : detail.englishAnswer ? "short English phrase..." : "tu respuesta...";
-          html += `<div class="free-wrap">
-            <div class="free-label">${labelText}</div>
-            <input class="free-input" id="miss-review-input" autocomplete="off" placeholder="${placeholderText}" />
-            ${!isEnglishReview && !detail.englishAnswer ? `<div class="accent-buttons">
-              ${["á", "é", "í", "ó", "ú", "ñ", "Á", "É", "Í", "Ó", "Ú", "Ñ"].map((char) =>
-                `<button class="accent-btn" type="button" data-review-accent="${escAttr(char)}">${esc(char)}</button>`,
-              ).join("")}
-            </div>` : ""}
-          </div>`;
+          const labelText = isSelf
+            ? (detail.englishAnswer ? "Write your interpretive response in English" : "Escribe tu respuesta en español")
+            : isEnglishReview
+              ? "Enter the matching term"
+              : detail.englishAnswer ? "Write a short English phrase" : "Escribe tu respuesta";
+          const placeholderText = isSelf
+            ? (detail.englishAnswer ? "your interpretive response..." : "tu respuesta interpretativa...")
+            : isEnglishReview
+              ? "your answer..."
+              : detail.englishAnswer ? "short English phrase..." : "tu respuesta...";
+          const input = isSelf
+            ? '<textarea class="free-input" id="miss-review-input" autocomplete="off" placeholder="' + placeholderText + '"></textarea>'
+            : '<input class="free-input" id="miss-review-input" autocomplete="off" placeholder="' + placeholderText + '" />';
+          const accents = ["á", "é", "í", "ó", "ú", "ñ", "Á", "É", "Í", "Ó", "Ú", "Ñ"]
+            .map((char) => '<button class="accent-btn" type="button" data-review-accent="' + escAttr(char) + '">' + esc(char) + '</button>')
+            .join("");
+          html += '<div class="free-wrap">'
+            + '<div class="free-label">' + labelText + '</div>'
+            + input
+            + '<div class="accent-buttons" aria-label="Accent characters">' + accents + '</div>'
+            + '</div>';
         }
 
-        html += `<button class="btn-next" type="button" data-review-check disabled>Check Answer</button>
-          <div class="miss-review-feedback" data-review-feedback hidden></div>`;
+        html += '<button class="btn-next" type="button" data-review-check disabled>'
+          + (isSelf ? "Review and Self-Grade" : "Check Answer")
+          + '</button><div class="miss-review-feedback" data-review-feedback hidden></div>';
         return html;
       }
 
@@ -1981,6 +2047,52 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         if (isCorrect) clearActiveMiss();
       }
 
+      function plainReviewText(value) {
+        return String(value ?? "")
+          .replace(/<[^>]*>/g, "")
+          .replace(/\*\*/g, "")
+          .trim();
+      }
+
+      function showSelfReviewChecklist() {
+        if (!activeReview) return;
+        const detail = activeReview.detail;
+        const input = missReviewBody?.querySelector("#miss-review-input");
+        const feedback = missReviewBody?.querySelector("[data-review-feedback]");
+        const button = missReviewBody?.querySelector("[data-review-check]");
+        if (input) input.disabled = true;
+        if (button) button.hidden = true;
+        if (!feedback) return;
+        feedback.hidden = false;
+        feedback.className = "miss-review-feedback";
+        feedback.innerHTML = esc(plainReviewText(detail.explanation) || "Compare your response with the requirements, then grade it honestly.")
+          + '<div class="review-self-actions">'
+          + '<button class="review-self-btn earned" type="button" data-review-self-grade="true">✓ Award the point</button>'
+          + '<button class="review-self-btn retry" type="button" data-review-self-grade="false">○ Not yet</button>'
+          + '</div>';
+      }
+
+      function finishSelfReview(earned) {
+        if (!activeReview) return;
+        const feedback = missReviewBody?.querySelector("[data-review-feedback]");
+        const button = missReviewBody?.querySelector("[data-review-check]");
+        if (feedback) {
+          feedback.hidden = false;
+          feedback.className = "miss-review-feedback " + (earned ? "good" : "bad");
+          feedback.textContent = earned
+            ? "Self-graded as meeting the requirements. This miss has been cleared from your dashboard."
+            : "Keep this response for review and try it again after revising.";
+        }
+        if (button) {
+          button.hidden = false;
+          button.textContent = "Return to Analytics";
+          button.disabled = false;
+          button.classList.add("ready");
+          button.dataset.reviewDone = "true";
+        }
+        if (earned) clearActiveMiss();
+      }
+
       function checkReviewAnswer() {
         if (!activeReview) return;
         const detail = activeReview.detail;
@@ -1990,9 +2102,16 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           return;
         }
 
+        if (detail.type === "self") {
+          showSelfReviewChecklist();
+          return;
+        }
+
         const input = missReviewBody?.querySelector("#miss-review-input");
         const answer = detail.type === "mc" ? activeReviewAnswer : (input?.value || "");
-        const correctValues = detail.type === "mc" ? [detail.correct] : (detail.answers || []);
+        const correctValues = detail.type === "mc"
+          ? [detail.correct]
+          : strictAcceptedAnswers(detail.answers || []);
         const isCorrect = correctValues.some((value) => normalizeAnswer(value) === normalizeAnswer(answer));
         showReviewResult(isCorrect);
       }
@@ -2015,7 +2134,7 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
         activeReview = review;
         activeReviewAnswer = "";
         if (missReviewTitle) missReviewTitle.textContent = `Question ${review.question.displayId || review.question.id}`;
-        if (missReviewMeta) missReviewMeta.textContent = `${review.attempt.testTitle} - ${review.detail.type === "mc" ? "Multiple choice" : "Free response"}`;
+        if (missReviewMeta) missReviewMeta.textContent = `${review.attempt.testTitle} - ${review.detail.type === "mc" ? "Multiple choice" : review.detail.type === "self" ? "Long response · Self-grade" : "Free response"}`;
         missReviewBody.innerHTML = reviewQuestionHtml(review);
         missReview.hidden = false;
         document.body.classList.add("miss-review-open");
@@ -2325,17 +2444,25 @@ const testMetadata = [...legacyTestMetadata, ...astroTestMetadata].sort(
           return;
         }
 
+        const selfGrade = target.closest("[data-review-self-grade]");
+        if (selfGrade) {
+          finishSelfReview(selfGrade.dataset.reviewSelfGrade === "true");
+          return;
+        }
+
         const check = target.closest("[data-review-check]");
         if (check) checkReviewAnswer();
       });
       missReviewBody?.addEventListener("input", (event) => {
-        const target = event.target instanceof HTMLInputElement ? event.target : null;
+        const target = event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement
+          ? event.target
+          : null;
         if (target?.matches("#miss-review-input")) {
           setReviewReady(target.value.trim().length > 0);
         }
       });
       missReviewBody?.addEventListener("keydown", (event) => {
-        const target = event.target instanceof Element ? event.target : null;
+        const target = event.target instanceof HTMLInputElement ? event.target : null;
         if (event.key === "Enter" && target?.matches("#miss-review-input")) {
           event.preventDefault();
           if (!missReviewBody.querySelector("[data-review-check]")?.disabled) checkReviewAnswer();

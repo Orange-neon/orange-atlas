@@ -18,6 +18,7 @@ const tests = defineCollection({
     questionCount: z.number().optional(),
     questionSelectionCount: z.number().optional(),
     selectionCounts: z.record(z.string(), z.number()).optional(),
+    shuffleQuestions: z.boolean().optional(),
     showAnswerBank: z.boolean().optional(),
     sourceCount: z.number().optional(),
     extraStatValue: z.union([z.string(), z.number()]).optional(),

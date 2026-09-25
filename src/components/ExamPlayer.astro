@@ -41,6 +41,7 @@ interface Props {
   questionCount?: number;
   questionSelectionCount?: number;
   selectionCounts?: Record<string, number>;
+  shuffleQuestions?: boolean;
   showAnswerBank?: boolean;
   sourceCount?: number;
   extraStatValue?: string | number;
@@ -75,6 +76,7 @@ const {
   questionCount,
   questionSelectionCount,
   selectionCounts,
+  shuffleQuestions = false,
   showAnswerBank = false,
   sourceCount,
   extraStatValue,
@@ -709,6 +711,7 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       totalQuestions,
       questionSelectionCount,
       selectionCounts,
+      shuffleQuestions,
       showAnswerBank,
       isEnglish,
       allowBack,
@@ -734,8 +737,15 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
         .replace(/>/g, "&gt;");
       const rich = s => esc(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
       const fmtPrompt = s => esc(s).trim().replace(/([.?!])\s+—\s+/g, "$1\n— ");
-      const nm = s => (s || "").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
-      const cf = (inp, acc = []) => acc.map(nm).some(a => a === nm(inp));
+      const nm = s => (s || "").normalize("NFC").toLowerCase().trim().replace(/\s+/g, " ").replace(/[.,!?;:'"]/g, "");
+      const accentKey = s => nm((s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+      const hasSpanishAccent = s => /[áéíóúüñÁÉÍÓÚÜÑ]/.test(s || "");
+      const strictAcceptedAnswers = (answers = []) => answers.filter(candidate => {
+        const key = accentKey(candidate);
+        const accentedVariantExists = answers.some(other => accentKey(other) === key && hasSpanishAccent(other));
+        return !accentedVariantExists || hasSpanishAccent(candidate);
+      });
+      const cf = (inp, acc = []) => strictAcceptedAnswers(acc).map(nm).some(a => a === nm(inp));
       const fmtT = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
       const expectsExactTerm = testSlug.startsWith("ap-world-vocab-");
       const shuffle = items => {
@@ -751,6 +761,10 @@ const analyticsHref = `${basePath}analytics/?course=${encodeURIComponent(course)
       const shouldSelectQuestions = requestedSelectionSize > 0 && requestedSelectionSize < sourceQuestions.length;
       const selectionSize = shouldSelectQuestions ? requestedSelectionSize : sourceQuestions.length;
       let selectedQuestions = sourceQuestions;
+
+      if (shuffleQuestions && !shouldSelectQuestions) {
+        selectedQuestions = shuffle(sourceQuestions);
+      }
 
       if (shouldSelectQuestions) {
         selectedQuestions = [];
